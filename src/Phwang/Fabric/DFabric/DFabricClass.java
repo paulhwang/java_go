@@ -1,5 +1,6 @@
-package Phwang.Fabric;
+package Phwang.Fabric.DFabric;
 
+import Phwang.Fabric.FabricRootClass;
 import Phwang.Utils.AbendClass;
 
 public class DFabricClass {
