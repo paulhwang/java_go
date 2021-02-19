@@ -6,30 +6,24 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.LinkMgr;
+package Phwang.Fabric.GroupMgr;
 
-import Phwang.Fabric.FabricRootClass;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListMgrClass;
-import Phwang.Fabric.NameList.NameListClass;
+import Phwang.Utils.ArrayMgr.ArrayMgrClass;
 
-public class LinkMgrClass {
-    private String objectName() {return "LinkMgrClass";}
+public class GroupSessionMgrClass {
+    private String objectName() {return "GroupSessionMgrClass";}
 
-    private static final int FIRST_LINK_ID = 1000;
+    private static final int MAX_SESSION_ARRAY_SIZE = 10;
 
-    private FabricRootClass fabricRootObject;
-    private ListMgrClass listMgr;
+    private GroupClass groupObject;
+    private ArrayMgrClass arrayMgrObject;
 
-    public ListMgrClass ListMgr() { return this.listMgr; }
-    private NameListClass nameListObject() { return this.fabricRootObject.NameListObject(); }
 
-    public LinkMgrClass(FabricRootClass root_fabric_object_val)
+    public GroupSessionMgrClass(GroupClass group_object_val)
     {
-        this.debugIt(true, "LinkMgrClass", "init start");
-        
-        this.fabricRootObject = root_fabric_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_LINK_ID);
+        this.groupObject = group_object_val;
+        this.arrayMgrObject = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)

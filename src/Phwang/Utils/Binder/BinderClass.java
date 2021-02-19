@@ -6,31 +6,27 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.LinkMgr;
+package Phwang.Utils.Binder;
 
-import Phwang.Fabric.FabricRootClass;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListMgrClass;
-import Phwang.Fabric.NameList.NameListClass;
+import Phwang.Utils.Queue.ListQueueClass;
 
-public class LinkMgrClass {
-    private String objectName() {return "LinkMgrClass";}
+public class BinderClass {
+    private String objectName() {return "BinderClass";}
 
-    private static final int FIRST_LINK_ID = 1000;
+    private ListQueueClass receiveQueue;
+    private String ownerObject;
+    //private NetworkStream networkStream;
+    //private Thread receiveThread { get; set; }
+    //private Thread transmitThread { get; set; }
 
-    private FabricRootClass fabricRootObject;
-    private ListMgrClass listMgr;
 
-    public ListMgrClass ListMgr() { return this.listMgr; }
-    private NameListClass nameListObject() { return this.fabricRootObject.NameListObject(); }
-
-    public LinkMgrClass(FabricRootClass root_fabric_object_val)
+    public BinderClass(String owner_object_var)
     {
-        this.debugIt(true, "LinkMgrClass", "init start");
-        
-        this.fabricRootObject = root_fabric_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_LINK_ID);
+        this.ownerObject = owner_object_var;
+        this.receiveQueue = new ListQueueClass(true, 0);
     }
+
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
