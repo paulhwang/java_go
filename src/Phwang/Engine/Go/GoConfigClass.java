@@ -30,19 +30,17 @@ public class GoConfigClass {
 
     public void ConfigIt(String input_data_val)
     {
-    	/*
-        String len_str = input_data_val.Substring(0,3);
-        String board_size_str = input_data_val.Substring(3, 2);
-        String handicap_str = input_data_val.Substring(5, 2);
-        String komi_str = input_data_val.Substring(7, 2);
+        String len_str = input_data_val.substring(0,3);
+        String board_size_str = input_data_val.substring(3, 2);
+        String handicap_str = input_data_val.substring(5, 2);
+        String komi_str = input_data_val.substring(7, 2);
 
         this.boardSize = EncodeNumberClass.DecodeNumber(board_size_str);
         this.handicapPoint = EncodeNumberClass.DecodeNumber(handicap_str);
         this.komiPoint = EncodeNumberClass.DecodeNumber(komi_str);
 
-        int len = input_data_val.Length;//to be deleted
-        String name = input_data_val.Substring(10);//to be deleted
-        */
+        int len = input_data_val.length();//to be deleted
+        String name = input_data_val.substring(10);//to be deleted
     }
 
     private Boolean isValidCoordinate(int coordinate_val)

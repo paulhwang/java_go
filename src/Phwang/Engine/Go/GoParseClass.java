@@ -22,6 +22,42 @@ public class GoParseClass {
         this.theRootObject = go_root_object_val;
     }
 
+    public void ParseInputData(String input_data_val)
+    {
+        int len = input_data_val.length();//to be deleted
+        switch (input_data_val.charAt(0))
+        {
+            case GoProtocolClass.GO_PROTOCOL_MOVE_COMMAND:
+                GoMoveClass move = new GoMoveClass(input_data_val.substring(1, 8));
+                this.GameObject().AddNewMoveAndFight(move);
+                return;
+
+            case GoProtocolClass.GO_PROTOCOL_BACKWARD_COMMAND:
+                this.GameObject().ProcessBackwardMove();
+                return;
+
+            case GoProtocolClass.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
+                this.GameObject().ProcessDoubleBackwardMove();
+                return;
+
+            case GoProtocolClass.GO_PROTOCOL_FORWARD_COMMAND:
+                this.GameObject().ProcessForwardMove();
+                return;
+
+            case GoProtocolClass.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
+                this.GameObject().ProcessDoubleForwardMove();
+                return;
+
+            case GoProtocolClass.GO_PROTOCOL_PASS_COMMAND:
+                return;
+
+            default:
+                String err_msg = "command " + input_data_val.charAt(1) + " not supported";
+                this.abendIt("ParseInputData", err_msg);
+                return;
+        }
+    }
+
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)
