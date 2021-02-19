@@ -13,8 +13,8 @@ import Phwang.Utils.AbendClass;
 public class GoBoardClass {
     private String objectName() {return "GoBoardClass";}
     
-    //private int[,] theBoardArray;
-    //private int[,] theMarkedBoardArray;
+    private int[][] theBoardArray;
+    private int[][] theMarkedBoardArray;
     private String theBoardOutputBuffer;
     int theBlackCapturedStones;
     int theWhiteCapturedStones;
@@ -25,21 +25,61 @@ public class GoBoardClass {
     public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject(); }
     public GoGameClass GameObject() { return this.theRootObject.GameObject(); }
     public String BoardOutputBuffer() { return this.theBoardOutputBuffer; }
-    //public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val, y_val]; }
+    public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
     public void AddBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }
     public void AddWhiteCapturedStones(int val) { this.theWhiteCapturedStones += val; }
-    //public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val, y_val] = data_val; }
+    public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
     public void SetLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
 
     public GoBoardClass(GoRootClass root_object_val)
     {
         this.theRootObject = root_object_val;
-        //this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
-        //this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
+        this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
+        this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         //this.ResetBoardObjectData();
     }
 
 
+    
+
+    private Boolean isEmptySpace(int x_val, int y_val)
+    {
+        if (!this.theRootObject.ConfigObject().IsValidCoordinates(x_val, y_val))
+        {
+            return false;
+        }
+        if (this.theBoardArray[x_val][y_val] != GoDefineClass.GO_EMPTY_STONE)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean StoneHasAir(int x_val, int y_val)
+    {
+        if (this.isEmptySpace(x_val, y_val - 1))
+        {
+            return true;
+        }
+        if (this.isEmptySpace(x_val, y_val + 1))
+        {
+            return true;
+        }
+        if (this.isEmptySpace(x_val - 1, y_val))
+        {
+            return true;
+        }
+        if (this.isEmptySpace(x_val + 1, y_val))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)
