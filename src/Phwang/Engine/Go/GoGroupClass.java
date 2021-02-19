@@ -207,7 +207,7 @@ public class GoGroupClass {
 
     public void MarkLastDeadInfo()
     {
-         this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
+        this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
 
         if (this.maxX != this.minX)
         {

@@ -9,6 +9,7 @@
 package Phwang.Engine.Go;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.Encode.EncodeNumberClass;
 
 public class GoBoardClass {
     private String objectName() {return "GoBoardClass";}
@@ -36,11 +37,52 @@ public class GoBoardClass {
         this.theRootObject = root_object_val;
         this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
-        //this.ResetBoardObjectData();
+        this.ResetBoardObjectData();
     }
 
+    private final char GO_PROTOCOL_GAME_INFO = 'G';
 
-    
+    public void EncodeBoard()
+    {
+        this.theBoardOutputBuffer = "";
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().TotalMoves(), 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().NextColor(), 1);
+
+        int board_size = this.ConfigObject().BoardSize();
+        for (int i = 0; i < board_size; i++)
+        {
+            for (int j = 0; j < board_size; j++)
+            {
+                char c = '0';
+                switch (this.theBoardArray[i][j])
+                {
+                    case 1: c = '1'; break;
+                    case 2: c = '2'; break;
+                }
+                this.theBoardOutputBuffer = this.theBoardOutputBuffer + c;
+            }
+        }
+
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theBlackCapturedStones, 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theWhiteCapturedStones, 3);
+
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theLastDeadX, 2);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theLastDeadY, 2);
+
+        this.debugIt(false, "encodeBoard", this.theBoardOutputBuffer);
+    }
+
+    public void AddStoneToBoard(int x_val, int y_val, int color_val)
+    {
+        if (!this.ConfigObject().IsValidCoordinates(x_val, y_val))
+        {
+            this.abendIt("addStoneToBoard", "bad coordinate");
+            return;
+        }
+
+        this.theBoardArray[x_val][y_val] = color_val;
+    }
 
     private Boolean isEmptySpace(int x_val, int y_val)
     {
@@ -75,11 +117,34 @@ public class GoBoardClass {
         }
         return false;
     }
-    
-    
-    
-    
-    
+
+    public void ResetBoardObjectData()
+    {
+        int board_size = this.ConfigObject().BoardSize();
+        for (int i = 0; i < board_size; i++)
+        {
+            for (int j = 0; j < board_size; j++)
+            {
+                this.theBoardArray[i][j] = GoDefineClass.GO_EMPTY_STONE;
+                this.theMarkedBoardArray[i][j] = GoDefineClass.GO_EMPTY_STONE;
+            }
+        }
+        this.theBlackCapturedStones = 0;
+        this.theWhiteCapturedStones = 0;
+        this.ClearLastDeadStone();
+    }
+
+    public void ResetMarkedBoardObjectData()
+    {
+
+    }
+
+    public void ClearLastDeadStone()
+    {
+        this.theLastDeadX = 19;
+        this.theLastDeadY = 19;
+    }
+
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)
