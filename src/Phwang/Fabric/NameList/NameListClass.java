@@ -6,8 +6,9 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric;
+package Phwang.Fabric.NameList;
 
+import Phwang.Fabric.FabricRootClass;
 import Phwang.Utils.AbendClass;
 
 public class NameListClass {

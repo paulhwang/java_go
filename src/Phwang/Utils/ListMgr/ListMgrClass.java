@@ -24,11 +24,11 @@ public class ListMgrClass {
     int MaxIdIndexTableIndex;
     private int maxIndex;
     int entryCount;
-    //private ListEntryClass[] entryTableArray;
+    private ListEntryClass[] entryTableArray;
     //private object theLock;
 
     public int MaxIndex() { return this.maxIndex; }
-    //public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
+    public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
 
     public ListMgrClass(String caller_name_val, int first_global_id_val)
     {
@@ -49,7 +49,7 @@ public class ListMgrClass {
             //this->abend("ListMgrClass", "pthread_mutex_init fail");
         }
 
-        //this.entryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
+        this.entryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)

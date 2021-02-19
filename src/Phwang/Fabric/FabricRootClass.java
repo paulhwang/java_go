@@ -11,9 +11,9 @@ package Phwang.Fabric;
 import Phwang.Fabric.DFabric.DFabricClass;
 import Phwang.Fabric.GroupMgr.GroupMgrClass;
 import Phwang.Fabric.LinkMgr.LinkMgrClass;
+import Phwang.Fabric.NameList.NameListClass;
 import Phwang.Fabric.UFabric.UFabricClass;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListMgrClass;
 
 public class FabricRootClass {
     private String objectName() {return "FabricRootClass";}
