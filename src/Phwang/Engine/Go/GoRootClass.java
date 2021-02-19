@@ -34,6 +34,20 @@ public class GoRootClass {
         this.parseObject = new GoParseClass(this);
     }
 
+    public String DoSetup(String input_data_val)
+    {
+        this.configObject.ConfigIt(input_data_val);
+        return null;
+    }
+
+    public String ProcessInputData(String input_data_val)
+    {
+        this.parseObject.ParseInputData(input_data_val);
+        this.boardObject.EncodeBoard();
+        this.debugIt(true, "transmitBoardData", this.boardObject.BoardOutputBuffer());
+        return this.boardObject.BoardOutputBuffer();
+    }
+
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)

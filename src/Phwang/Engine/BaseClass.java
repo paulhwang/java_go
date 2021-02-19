@@ -8,9 +8,12 @@
 
 package Phwang.Engine;
 
-import Phwang.Engine.Go.GoRootClass;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
+import Phwang.Utils.Encode.EncodeNumberClass;
+import Phwang.Protocols.ThemeEngineProtocolClass;
+import Phwang.Engine.Go.GoRootClass;
+import Phwang.Engine.Go.GoRootClass;
 
 public class BaseClass {
     private String objectName() {return "BaseClass";}
@@ -28,6 +31,31 @@ public class BaseClass {
     {
         this.roomIdStr = room_id_str_val;
     }
+
+    public void BindListEntry(ListEntryClass list_entry_objectg_val)
+    {
+        this.listEntryObject = list_entry_objectg_val;
+        this.baseId = this.listEntryObject.Id();
+        this.baseIdStr = EncodeNumberClass.EncodeNumber(this.baseId, ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
+    }
+
+    public String SetupBase(String input_data_val)
+    {
+        String input_data = input_data_val.substring(1);
+
+        switch (input_data_val.charAt(0)) {
+            case 'G':
+                this.goRootObject = new GoRootClass();
+                return this.goRootObject.DoSetup(input_data);
+
+            default:
+                String err_msg = "command " + input_data_val.charAt(0) + " not supported";
+                this.abendIt("ProcessInputData", err_msg);
+                return err_msg;
+        }
+    }
+
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)
