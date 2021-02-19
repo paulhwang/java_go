@@ -6,28 +6,22 @@
  ******************************************************************************
  */
 
-package Phwang.Engine;
+package Phwang.Engine.Go;
 
-import Phwang.Engine.Go.GoRootClass;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListEntryClass;
 
-public class BaseClass {
-    private String objectName() {return "BaseClass";}
+public class GoParseClass {
+    private String objectName() {return "GoParseClass";}
 
-    private ListEntryClass listEntryObject;
-    private String roomIdStr;
-    private int baseId;
-    private String baseIdStr;
-    private GoRootClass goRootObject;
+    private GoRootClass theRootObject;
 
-    public String RoomIdStr() { return this.roomIdStr; }
-    public String BaseIdStr() { return this.baseIdStr; }
+    public GoGameClass GameObject() { return this.theRootObject.GameObject(); }
 
-    public BaseClass(String room_id_str_val)
-    {
-        this.roomIdStr = room_id_str_val;
+
+    public GoParseClass(GoRootClass go_root_object_val) {
+        this.theRootObject = go_root_object_val;
     }
+
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)

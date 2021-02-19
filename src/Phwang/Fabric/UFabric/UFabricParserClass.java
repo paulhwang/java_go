@@ -6,28 +6,25 @@
  ******************************************************************************
  */
 
-package Phwang.Engine;
+package Phwang.Fabric.UFabric;
 
-import Phwang.Engine.Go.GoRootClass;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListEntryClass;
+import Phwang.Fabric.FabricRootClass;
+import Phwang.Fabric.GroupMgr.GroupMgrClass;
 
-public class BaseClass {
-    private String objectName() {return "BaseClass";}
+public class UFabricParserClass {
+    private String objectName() {return "UFabricParserClass";}
 
-    private ListEntryClass listEntryObject;
-    private String roomIdStr;
-    private int baseId;
-    private String baseIdStr;
-    private GoRootClass goRootObject;
+    private UFabricClass uFabricObject;
 
-    public String RoomIdStr() { return this.roomIdStr; }
-    public String BaseIdStr() { return this.baseIdStr; }
+    public FabricRootClass FabricRootObject() { return this.uFabricObject.FabricRootObject();}
+    public GroupMgrClass GroupMgrObject() { return this.FabricRootObject().GroupMgrObject(); }
 
-    public BaseClass(String room_id_str_val)
+    public UFabricParserClass(UFabricClass ufabric_object_val)
     {
-        this.roomIdStr = room_id_str_val;
+        this.uFabricObject = ufabric_object_val;
     }
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)

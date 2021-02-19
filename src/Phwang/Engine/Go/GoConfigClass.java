@@ -6,28 +6,28 @@
  ******************************************************************************
  */
 
-package Phwang.Engine;
+package Phwang.Engine.Go;
 
-import Phwang.Engine.Go.GoRootClass;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListEntryClass;
 
-public class BaseClass {
-    private String objectName() {return "BaseClass";}
+public class GoConfigClass {
+    private String objectName() {return "GoConfigClass";}
 
-    private ListEntryClass listEntryObject;
-    private String roomIdStr;
-    private int baseId;
-    private String baseIdStr;
-    private GoRootClass goRootObject;
+    private GoRootClass theRootObject;
+    private int boardSize;
+    private int handicapPoint;
+    private int komiPoint;
 
-    public String RoomIdStr() { return this.roomIdStr; }
-    public String BaseIdStr() { return this.baseIdStr; }
+    public int BoardSize() { return this.boardSize; }
+    public int HandicapPoint() { return this.handicapPoint; }
+    public int KomiPoint() { return this.komiPoint; }
 
-    public BaseClass(String room_id_str_val)
+    public GoConfigClass(GoRootClass root_object_val)
     {
-        this.roomIdStr = room_id_str_val;
+        this.theRootObject = root_object_val;
     }
+
+
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)
