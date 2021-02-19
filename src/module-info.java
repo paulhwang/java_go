@@ -12,4 +12,5 @@ module java_go {
 	exports Phwang.Utils;
 	exports Phwang.Theme.Utheme;
 	exports Phwang.Fabric.UFabric;
+	exports Phwang.Utils.ListMgr;
 }

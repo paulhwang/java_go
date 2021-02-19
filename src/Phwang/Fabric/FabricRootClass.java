@@ -9,32 +9,35 @@
 package Phwang.Fabric;
 
 import Phwang.Fabric.DFabric.DFabricClass;
+import Phwang.Fabric.GroupMgr.GroupMgrClass;
+import Phwang.Fabric.LinkMgr.LinkMgrClass;
 import Phwang.Fabric.UFabric.UFabricClass;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.ListMgr.ListMgrClass;
 
 public class FabricRootClass {
     private String objectName() {return "FabricRootClass";}
     
     private UFabricClass uFabricObject;
     private DFabricClass dFabricObject;
-    //private LinkMgrClass linkMgrObject { get; }
-    //private GroupMgrClass groupMgrObject { get; }
-    //private NameListClass nameListObject { get; }
+    private LinkMgrClass linkMgrObject;
+    private GroupMgrClass groupMgrObject;
+    private NameListClass nameListObject;
 
     public UFabricClass UFabricObject() { return this.uFabricObject; }
     public DFabricClass DFabricObject() { return this.dFabricObject; }
-    //public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
-    //public GroupMgrClass GroupMgrObject() { return this.groupMgrObject; }
-    //public NameListClass NameListObject() { return this.nameListObject; }
+    public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
+    public GroupMgrClass GroupMgrObject() { return this.groupMgrObject; }
+    public NameListClass NameListObject() { return this.nameListObject; }
 
     public FabricRootClass () {
         this.debugIt(true, "FabricRootClass", "init start");
         
         this.uFabricObject = new UFabricClass(this);
         this.dFabricObject = new DFabricClass(this);
-        //this.linkMgrObject = new LinkMgrClass(this);
-        //this.groupMgrObject = new GroupMgrClass(this);
-        //this.nameListObject = new NameListClass(this);
+        this.linkMgrObject = new LinkMgrClass(this);
+        this.groupMgrObject = new GroupMgrClass(this);
+        this.nameListObject = new NameListClass(this);
 
         this.StartWatchDogThread();
 
