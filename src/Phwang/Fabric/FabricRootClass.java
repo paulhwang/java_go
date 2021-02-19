@@ -1,3 +1,11 @@
+/*
+ ******************************************************************************
+ *                                       
+ *  Copyright (c) 2018 phwang. All rights reserved.
+ *
+ ******************************************************************************
+ */
+
 package Phwang.Fabric;
 
 import Phwang.Fabric.DFabric.DFabricClass;
@@ -5,7 +13,7 @@ import Phwang.Fabric.UFabric.UFabricClass;
 import Phwang.Utils.AbendClass;
 
 public class FabricRootClass {
-    private String objectName = "FabricRootClass";
+    private String objectName() {return "FabricRootClass";}
     
     private UFabricClass uFabricObject;
     private DFabricClass dFabricObject;
@@ -45,12 +53,11 @@ public class FabricRootClass {
 
     private void logitIt(String str0_val, String str1_val)
     {
-        AbendClass.phwangLogit(this.objectName + "." + str0_val + "()", str1_val);
+        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
     private void abendIt(String str0_val, String str1_val)
     {
-        AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
+        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
-
 }

@@ -10,17 +10,24 @@ package Phwang.FrontEnd;
 
 import Phwang.Utils.AbendClass;
 
-public class FrontEndRootClass {
-    private String objectName() {return "FrontEndRootClass";}
-    
-    public FrontEndFabricClass frontEndFabricObject;
+public class FrontEndJobClass {
+    private String objectName() {return "FrontEndJobClass";}
 
-    public FrontEndRootClass()
+    public String ajaxIdStr;
+    //private ManualResetEvent theSignal;
+    private String theData;
+
+    public FrontEndJobClass(String ajax_id_str_val)
     {
-        this.debugIt(true, "FrontEndRootClass", "init start");
-        this.frontEndFabricObject = new FrontEndFabricClass(this);
+        this.ajaxIdStr = ajax_id_str_val;
+        //this.theSignal = new ManualResetEvent(false);
     }
 
+    
+    
+    
+    
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)

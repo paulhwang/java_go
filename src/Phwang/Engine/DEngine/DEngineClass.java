@@ -6,19 +6,27 @@
  ******************************************************************************
  */
 
-package Phwang.FrontEnd;
+package Phwang.Engine.DEngine;
 
+import Phwang.Engine.EngineRootClass;
 import Phwang.Utils.AbendClass;
 
-public class FrontEndRootClass {
-    private String objectName() {return "FrontEndRootClass";}
+public class DEngineClass {
+    private String objectName() {return "DEngineClass";}
     
-    public FrontEndFabricClass frontEndFabricObject;
-
-    public FrontEndRootClass()
+    public DEngineClass(EngineRootClass engine_root_object_val)
     {
-        this.debugIt(true, "FrontEndRootClass", "init start");
-        this.frontEndFabricObject = new FrontEndFabricClass(this);
+        this.debugIt(true, "DEngineClass", "init start");
+        
+        //this.engineRootObject = engine_root_object_val;
+        //this.dEngineParserObject = new DEngineParserClass(this);
+        //this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+
+        //this.receiveThread = new Thread(this.receiveThreadFunc);
+        //this.receiveThread.Start();
+
+        //this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        //this.debugIt(true, "DEngineClass", "init done");
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)

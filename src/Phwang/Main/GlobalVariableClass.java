@@ -8,14 +8,16 @@ import Phwang.Theme.ThemeRootClass;
 import Phwang.Utils.AbendClass;
 
 public class GlobalVariableClass {
+    private String objectName() {return "GlobalVariableClass";}
+    
     static public FrontEndRootClass frontEndRootObject;
     static public FabricRootClass fabricRootObject;
     static public ThemeRootClass themeRootObject;
     static public EngineRootClass engineRootObject;
     static public ModelRootClass modelRootObject;
 
-    public GlobalVariableClass () {
-		AbendClass.phwangLogit("GlobalVariableClass", "init");
+    public GlobalVariableClass() {
+        this.debugIt(true, "EngineRootClass", "init start");
 	}
     
     public static void Initilization()
@@ -36,5 +38,20 @@ public class GlobalVariableClass {
         return frontEndRootObject;
     }
 
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
+    {
+        if (on_off_val)
+            this.logitIt(str0_val, str1_val);
+    }
+
+    private void logitIt(String str0_val, String str1_val)
+    {
+        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
+    }
+
+    private void abendIt(String str0_val, String str1_val)
+    {
+        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
+    }
 }
 

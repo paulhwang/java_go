@@ -6,19 +6,19 @@
  ******************************************************************************
  */
 
-package Phwang.FrontEnd;
+package Phwang.Engine;
 
 import Phwang.Utils.AbendClass;
 
-public class FrontEndRootClass {
-    private String objectName() {return "FrontEndRootClass";}
+public class BaseMgrClass {
+    private String objectName() {return "BaseMgrClass";}
     
-    public FrontEndFabricClass frontEndFabricObject;
-
-    public FrontEndRootClass()
+    public BaseMgrClass(EngineRootClass engine_root_object_val)
     {
-        this.debugIt(true, "FrontEndRootClass", "init start");
-        this.frontEndFabricObject = new FrontEndFabricClass(this);
+        this.debugIt(true, "BaseMgrClass", "init start");
+
+        //this.engineRootObject = engine_root_object_val;
+        //this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, FIRST_BASE_ID);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)

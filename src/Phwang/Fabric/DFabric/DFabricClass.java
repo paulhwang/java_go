@@ -4,7 +4,7 @@ import Phwang.Fabric.FabricRootClass;
 import Phwang.Utils.AbendClass;
 
 public class DFabricClass {
-    private String objectName = "DFabricClass";
+    private String objectName() {return "DFabricClass";}
     
     public DFabricClass(FabricRootClass fabric_root_class_val)
     {
@@ -28,12 +28,12 @@ public class DFabricClass {
 
     private void logitIt(String str0_val, String str1_val)
     {
-        AbendClass.phwangLogit(this.objectName + "." + str0_val + "()", str1_val);
+        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
     private void abendIt(String str0_val, String str1_val)
     {
-        AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
+        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
 }

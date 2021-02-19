@@ -6,21 +6,14 @@
  ******************************************************************************
  */
 
-package Phwang.FrontEnd;
+package Phwang.Engine;
 
 import Phwang.Utils.AbendClass;
 
-public class FrontEndRootClass {
-    private String objectName() {return "FrontEndRootClass";}
+public class BaseClass {
+    private String objectName() {return "BaseClass";}
+
     
-    public FrontEndFabricClass frontEndFabricObject;
-
-    public FrontEndRootClass()
-    {
-        this.debugIt(true, "FrontEndRootClass", "init start");
-        this.frontEndFabricObject = new FrontEndFabricClass(this);
-    }
-
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)

@@ -6,19 +6,25 @@
  ******************************************************************************
  */
 
-package Phwang.FrontEnd;
+package Phwang.Theme.RoomMgr;
 
+import Phwang.Theme.ThemeRootClass;
 import Phwang.Utils.AbendClass;
 
-public class FrontEndRootClass {
-    private String objectName() {return "FrontEndRootClass";}
-    
-    public FrontEndFabricClass frontEndFabricObject;
+public class RoomMgrClass {
+    private String objectName() {return "RoomMgrClass";}
 
-    public FrontEndRootClass()
+    private static final int FIRST_ROOM_ID = 7000;
+
+    private ThemeRootClass themeRootObject;
+    //private PhwangUtils.ListMgrClass listMgr;
+
+    public RoomMgrClass(ThemeRootClass theme_root_object_val)
     {
-        this.debugIt(true, "FrontEndRootClass", "init start");
-        this.frontEndFabricObject = new FrontEndFabricClass(this);
+        this.debugIt(true, "RoomMgrClass", "init start");
+
+        this.themeRootObject = theme_root_object_val;
+        //this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, FIRST_ROOM_ID);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
