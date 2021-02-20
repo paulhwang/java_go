@@ -28,6 +28,37 @@ public class BinderClass {
     }
 
 
+    private void transmitThreadFunc()
+    {
+        this.debugIt(true, "transmitThreadFunc", "start");
+        while (true)
+        {
+            //Thread.Sleep(10000);
+        }
+    }
+
+    public String ReceiveData()
+    {
+        String data = (String) this.receiveQueue.DequeueData();
+        if (data != null)
+        {
+            this.debugIt(false, "ReceivData", "data = " + data);
+        }
+        return data;
+    }
+
+    public void TransmitRawData(String data_var)
+    {
+        this.debugIt(false, "TransmitData", "data = " + data_var);
+        //TcpServerClass.TcpTransmitData(this.networkStream, data_var);
+    }
+
+    public void TransmitData(String data_var)
+    {
+        this.debugIt(false, "TransmitData", "data = " + data_var);
+        this.TransmitRawData(data_var);
+    }
+
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
         if (on_off_val)

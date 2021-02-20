@@ -55,6 +55,21 @@ public class BaseClass {
         }
     }
 
+    public String ProcessInputData(String input_data_val)
+    {
+        String input_data = input_data_val.substring(1);
+
+        switch (input_data_val.charAt(0)) {
+            case 'G':
+                String output_data = this.goRootObject.ProcessInputData(input_data);
+                return output_data;
+
+            default:
+                String err_msg = "command " + input_data_val.charAt(0) + " not supported";
+                this.abendIt("ProcessInputData", err_msg);
+                return err_msg;
+        }
+    }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
