@@ -8,12 +8,16 @@
 
 package Phwang.Utils.Binder;
 
+import Phwang.Utils.UtilsClass;
 import Phwang.Utils.AbendClass;
 
 public class BinderTestClass {
+	private int port = 8001;
+	
     public BinderTestClass() {
-        new BinderServerTestClass();
-        new BinderClientTestClass();
+        new BinderServerTestClass(this.port);
+        UtilsClass.sleep(1000);
+        new BinderClientTestClass(this.port);
     }
 }
 
@@ -24,12 +28,14 @@ public class BinderTestClass {
 class BinderServerTestClass {
     private String objectName() {return "BinderServerTestClass";}
 
+	private int port;
     private Thread serverThread;
     private BinderTestServerRunnable serverRunnable;
 
-    public BinderServerTestClass() {
+    public BinderServerTestClass(int port_val) {
         this.debugIt(false, "BinderServerTestClass", "init start");
         
+        this.port = port_val;
         this.createServerThread();
     }
 
@@ -41,6 +47,8 @@ class BinderServerTestClass {
     
     public void binderTestServerThreadFunc() {
         this.debugIt(true, "binderTestServerThreadFunc", "start thread ***");
+        
+        
     	
     }
     
@@ -77,12 +85,14 @@ class BinderTestServerRunnable implements Runnable {
 class BinderClientTestClass {
     private String objectName() {return "BinderClientTestClass";}
 
+	private int port;
     private Thread clientThread;
     private BinderTestClientRunnable clientRunnable;
 	
-    public BinderClientTestClass() {
+    public BinderClientTestClass(int port_val) {
         this.debugIt(false, "BinderClientTestClass", "init start");
         
+        this.port = port_val;
         this.createClientThread();
     }
     
