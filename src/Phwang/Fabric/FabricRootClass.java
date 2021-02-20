@@ -31,38 +31,34 @@ public class FabricRootClass {
     public NameListClass NameListObject() { return this.nameListObject; }
 
     public FabricRootClass () {
-        this.debugIt(true, "FabricRootClass", "init start");
+        this.debugIt(false, "FabricRootClass", "init start");
         
         this.uFabricObject = new UFabricClass(this);
         this.dFabricObject = new DFabricClass(this);
         this.linkMgrObject = new LinkMgrClass(this);
         this.groupMgrObject = new GroupMgrClass(this);
         this.nameListObject = new NameListClass(this);
+        
         this.UFabricObject().startThreads();
-        //this.dFabricObject().startThreads();
+        this.DFabricObject().startThreads();
 
         this.StartWatchDogThread();
-
-        this.debugIt(true, "FabricRootClass", "init done");
 	}
 
     private void StartWatchDogThread() {
 
     }
 
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
             this.logitIt(str0_val, str1_val);
     }
 
-    private void logitIt(String str0_val, String str1_val)
-    {
+    private void logitIt(String str0_val, String str1_val) {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    public void abendIt(String str0_val, String str1_val)
-    {
+    public void abendIt(String str0_val, String str1_val) {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }

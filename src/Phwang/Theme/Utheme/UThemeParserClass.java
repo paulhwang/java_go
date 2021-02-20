@@ -27,7 +27,7 @@ public class UThemeParserClass {
 
     public UThemeParserClass(UThemeClass u_theme_object_val)
     {
-        this.debugIt(true, "UThemeParserClass", "init start");
+        this.debugIt(false, "UThemeParserClass", "init start");
         this.uThemeObject = u_theme_object_val;
     }
     public void ParseInputPacket(String input_data_val) {

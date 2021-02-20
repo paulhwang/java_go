@@ -30,18 +30,12 @@ public class UFabricClass {
 
     public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
 
-    public UFabricClass(FabricRootClass fabric_root_class_val)
-    {
-        this.debugIt(true, "UFabricClass", "init start");
+    public UFabricClass(FabricRootClass fabric_root_class_val) {
+        this.debugIt(false, "UFabricClass", "init start");
         this.fabricRootObject = fabric_root_class_val;
         this.uFabricParserObject = new UFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
         //this.binderObject.BindAsTcpServer(Protocols.FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
-
-        //this.receiveThread = new Thread(this.receiveThreadFunc);
-        //this.receiveThread.Start();
-
-        this.debugIt(true, "UFabricClass", "init done");
     }
 
     public void startThreads() {

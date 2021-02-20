@@ -26,7 +26,7 @@ public class UThemeClass {
 
     public UThemeClass(ThemeRootClass theme_root_object_val)
     {
-        this.debugIt(true, "UThemeClass", "init start");
+        this.debugIt(false, "UThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);

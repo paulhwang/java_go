@@ -26,7 +26,7 @@ public class GroupMgrClass {
     public ListMgrClass ListMgr() { return this.listMgr; }
 
     public GroupMgrClass(FabricRootClass root_fabric_object_val) {
-        this.debugIt(true, "GroupMgrClass", "init start");
+        this.debugIt(false, "GroupMgrClass", "init start");
         
         this.fabricRootObject = root_fabric_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_GROUP_ID);

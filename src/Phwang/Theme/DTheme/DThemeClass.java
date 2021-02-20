@@ -25,7 +25,7 @@ public class DThemeClass {
 
     public DThemeClass(ThemeRootClass theme_root_object_val)
     {
-        this.debugIt(true, "DThemeClass", "init start");
+        this.debugIt(false, "DThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.dThemeParserObject = new DThemeParserClass(this);

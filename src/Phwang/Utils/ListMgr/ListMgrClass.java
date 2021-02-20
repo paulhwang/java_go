@@ -32,7 +32,7 @@ public class ListMgrClass {
 
     public ListMgrClass(String caller_name_val, int first_global_id_val)
     {
-        this.debugIt(true, "ListMgrClass", "init start (" + caller_name_val + ")");
+        this.debugIt(false, "ListMgrClass", "init start (" + caller_name_val + ")");
 
         this.theCallerName = caller_name_val;
         this.globalId = first_global_id_val;
@@ -184,20 +184,16 @@ public class ListMgrClass {
         }
     }
 
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
             this.logitIt(str0_val, str1_val);
     }
 
-    private void logitIt(String str0_val, String str1_val)
-    {
+    private void logitIt(String str0_val, String str1_val) {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    private void abendIt(String str0_val, String str1_val)
-    {
+    public void abendIt(String str0_val, String str1_val) {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 

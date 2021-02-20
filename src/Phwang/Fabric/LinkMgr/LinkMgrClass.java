@@ -26,7 +26,7 @@ public class LinkMgrClass {
 
     public LinkMgrClass(FabricRootClass root_fabric_object_val)
     {
-        this.debugIt(true, "LinkMgrClass", "init start");
+        this.debugIt(false, "LinkMgrClass", "init start");
         
         this.fabricRootObject = root_fabric_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_LINK_ID);

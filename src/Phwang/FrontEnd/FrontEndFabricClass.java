@@ -21,7 +21,7 @@ public class FrontEndFabricClass {
 
     public FrontEndFabricClass(FrontEndRootClass root_object_val)
     {
-        this.debugIt(true, "FrontEndFabricClass", "init start");
+        this.debugIt(false, "FrontEndFabricClass", "init start");
         
         this.frontEndRootObject = root_object_val;
         this.stopReceiveThreadFlag = false;
@@ -30,8 +30,6 @@ public class FrontEndFabricClass {
         //this.receiveThread = new Thread(this.receiveThreadFunc);
         //this.receiveThread.Start();
         //this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
-        
-        this.debugIt(true, "FrontEndFabricClass", "init done");
     }
 
     public void StopReceiveThread()

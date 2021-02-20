@@ -24,7 +24,7 @@ public class RoomMgrClass {
 
     public RoomMgrClass(ThemeRootClass theme_root_object_val)
     {
-        this.debugIt(true, "RoomMgrClass", "init start");
+        this.debugIt(false, "RoomMgrClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_ROOM_ID);

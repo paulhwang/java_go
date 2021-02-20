@@ -17,7 +17,7 @@ public class FrontEndRootClass {
 
     public FrontEndRootClass()
     {
-        this.debugIt(true, "FrontEndRootClass", "init start");
+        this.debugIt(false, "FrontEndRootClass", "init start");
         this.frontEndFabricObject = new FrontEndFabricClass(this);
     }
 

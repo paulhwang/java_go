@@ -26,7 +26,7 @@ public class ThemeRootClass {
 
 
     public ThemeRootClass() {
-        this.debugIt(true, "ThemeRootClass", "init start");
+        this.debugIt(false, "ThemeRootClass", "init start");
         this.uThemeObject = new UThemeClass(this);
         this.dThemeObject = new DThemeClass(this);
         this.roomMgrObject = new RoomMgrClass(this);

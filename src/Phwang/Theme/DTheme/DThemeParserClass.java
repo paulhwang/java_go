@@ -26,7 +26,7 @@ public class DThemeParserClass {
     public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
     public DThemeParserClass(DThemeClass d_theme_object_val) {
-        this.debugIt(true, "DThemeParserClass", "init start");
+        this.debugIt(false, "DThemeParserClass", "init start");
         this.dThemeObject = d_theme_object_val;
     }
 

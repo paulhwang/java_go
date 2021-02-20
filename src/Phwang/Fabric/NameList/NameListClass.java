@@ -27,7 +27,7 @@ public class NameListClass {
 
     public NameListClass(FabricRootClass root_fabric_object_val)
     {
-        this.debugIt(true, "NameListClass", "init start");
+        this.debugIt(false, "NameListClass", "init start");
         
         this.fabricRootObject = root_fabric_object_val;
     }

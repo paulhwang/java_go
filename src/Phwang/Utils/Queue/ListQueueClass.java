@@ -29,7 +29,7 @@ public class ListQueueClass {
 
     public ListQueueClass(Boolean do_suspend_val, int max_length_val)
     {
-        this.debugIt(true, "ListQueueClass", "init start");
+        this.debugIt(false, "ListQueueClass", "init start");
         
         this.MaxQueueLength = max_length_val;
         this.theLock = new Object();
