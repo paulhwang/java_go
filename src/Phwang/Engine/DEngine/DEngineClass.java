@@ -17,12 +17,11 @@ public class DEngineClass {
     
     private EngineRootClass engineRootObject;
     private DEngineParserClass dEngineParserObject;
-    public BinderClass binderObject;
+    private BinderClass binderObject;
     private Thread receiveThread;
-    DEngineReceiveRunnable receiveRunable;
+    private DEngineReceiveRunnable receiveRunable;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
-
     
     public DEngineClass(EngineRootClass engine_root_object_val)
     {

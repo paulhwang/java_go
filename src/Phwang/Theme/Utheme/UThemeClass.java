@@ -8,16 +8,19 @@
 
 package Phwang.Theme.Utheme;
 
-import Phwang.Theme.ThemeRootClass;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.Binder.BinderClass;
+import Phwang.Engine.DEngine.DEngineClass;
+import Phwang.Theme.ThemeRootClass;
 
 public class UThemeClass {
     private String objectName() {return "UThemeClass";}
 
     private ThemeRootClass themeRootObject;
-    //private UThemeParserClass uThemeParserObject { get; }
-    //public PhwangUtils.BinderClass binderObject { get; set; }
+    private UThemeParserClass uThemeParserObject;
+    public BinderClass binderObject;
     //private Thread receiveThread { get; set; }
+    private DEngineReceiveRunnable receiveRunable;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
 
@@ -26,8 +29,8 @@ public class UThemeClass {
         this.debugIt(true, "UThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
-        //this.uThemeParserObject = new UThemeParserClass(this);
-        //this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+        this.uThemeParserObject = new UThemeParserClass(this);
+        this.binderObject = new BinderClass(this.objectName());
         //this.binderObject.BindAsTcpServer(Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
         //this.receiveThread = new Thread(this.receiveThreadFunc);
@@ -46,8 +49,22 @@ public class UThemeClass {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    private void abendIt(String str0_val, String str1_val)
+    public void abendIt(String str0_val, String str1_val)
     {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
+
+class DEngineReceiveRunnable implements Runnable
+{
+	DEngineClass theDEngineObject;
+	
+	public DEngineReceiveRunnable(DEngineClass d_engine_object_val) {
+		this.theDEngineObject = d_engine_object_val;
+	}
+	
+	public void run() {
+		theDEngineObject.receiveThreadFunc();
+	}
+}
+
