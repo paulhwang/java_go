@@ -14,6 +14,7 @@ import Phwang.FrontEnd.FrontEndRootClass;
 import Phwang.Models.ModelRootClass;
 import Phwang.Theme.ThemeRootClass;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.Binder.BinderTestClass;
 
 public class GlobalVariableClass {
     private String objectName() {return "GlobalVariableClass";}
@@ -42,6 +43,13 @@ public class GlobalVariableClass {
         Initilization();
         return frontEndRootObject;
     }
+	
+	public void doTest(Boolean do_it_val) {
+		if (do_it_val) {
+	        this.debugIt(true, "doTest", "init start ****************************");
+			new BinderTestClass();
+		}
+	}
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
