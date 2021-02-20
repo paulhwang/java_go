@@ -6,7 +6,7 @@ public class ModelRootClass {
     private String objectName() {return "ModelRootClass";}
 
     public ModelRootClass() {
-        this.debugIt(true, "ModelRootClass", "init start");
+        this.debugIt(false, "ModelRootClass", "init start");
 	}
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)

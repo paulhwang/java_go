@@ -25,7 +25,7 @@ public class BaseMgrClass {
   
     public BaseMgrClass(EngineRootClass engine_root_object_val)
     {
-        this.debugIt(true, "BaseMgrClass", "init start");
+        this.debugIt(false, "BaseMgrClass", "init start");
 
         this.engineRootObject = engine_root_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_BASE_ID);

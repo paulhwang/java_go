@@ -19,28 +19,31 @@ public class DEngineClass {
     private DEngineParserClass dEngineParserObject;
     public BinderClass binderObject;
     private Thread receiveThread;
+    DEngineReceiveRunnable receiveRunable;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
 
     
     public DEngineClass(EngineRootClass engine_root_object_val)
     {
-        this.debugIt(true, "DEngineClass", "init start");
+        this.debugIt(false, "DEngineClass", "init start");
         
         this.engineRootObject = engine_root_object_val;
         this.dEngineParserObject = new DEngineParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        //this.receiveThread = new Thread(this.receiveThreadFunc);
-        //this.receiveThread.Start();
-
         //this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
-        this.debugIt(true, "DEngineClass", "init done");
+        this.debugIt(false, "DEngineClass", "init done");
     }
 
-    private void receiveThreadFunc()
-    {
-        this.debugIt(true, "receiveThreadFunc", "start");
+    public void startThreads() {
+        this.receiveRunable = new DEngineReceiveRunnable(this);
+        this.receiveThread = new Thread(this.receiveRunable);
+        this.receiveThread.start();
+     }
+    
+    public void receiveThreadFunc() {
+        this.debugIt(true, "receiveThreadFunc", "start DEngineReceiveRunnable thread");
 
         String data;
         while (true)
@@ -78,3 +81,17 @@ public class DEngineClass {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
+
+class DEngineReceiveRunnable implements Runnable
+{
+	DEngineClass theDEngineObject;
+	
+	public DEngineReceiveRunnable(DEngineClass d_engine_object_val) {
+		this.theDEngineObject = d_engine_object_val;
+	}
+	
+	public void run() {
+		theDEngineObject.receiveThreadFunc();
+	}
+}
+

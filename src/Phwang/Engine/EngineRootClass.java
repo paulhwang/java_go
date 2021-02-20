@@ -21,9 +21,10 @@ public class EngineRootClass {
 
 
     public EngineRootClass() {
-        this.debugIt(true, "EngineRootClass", "init start");
+        this.debugIt(false, "EngineRootClass", "init start");
         this.dEngineObject = new DEngineClass(this);
         this.baseMgrObject = new BaseMgrClass(this);
+        this.dEngineObject.startThreads();
 	}
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
