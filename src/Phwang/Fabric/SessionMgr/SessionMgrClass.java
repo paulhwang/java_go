@@ -8,10 +8,11 @@
 
 package Phwang.Fabric.SessionMgr;
 
+import Phwang.Utils.AbendClass;
+import Phwang.Utils.Encode.EncodeNumberClass;
+import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Fabric.LinkMgr.LinkClass;
-import Phwang.Utils.AbendClass;
-import Phwang.Utils.ListMgr.ListMgrClass;
 
 public class SessionMgrClass {
     private String objectName() {return "SessionMgrClass";}
@@ -24,25 +25,46 @@ public class SessionMgrClass {
     public int GetSessionArrayMaxIndex() { return this.listMgr.MaxIndex(); }
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr.EntryTableArray(); }
 
-    public SessionMgrClass(LinkClass link_object_val)
-    {
+    public SessionMgrClass(LinkClass link_object_val) {
+        this.debugIt(true, "SessionMgrClass", "init start");
+        
         this.linkObject = link_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_SESSION_ID);
     }
 
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
+    public SessionClass MallocSession() {
+        SessionClass session = new SessionClass(this.linkObject);
+        ListEntryClass list_entry = this.listMgr.MallocEntry(session);
+        session.BindListEntry(list_entry);
+        return session;
+    }
+
+    public SessionClass GetSessionByIdStr(String session_id_str_val) {
+        int session_id = EncodeNumberClass.DecodeNumber(session_id_str_val);
+
+        return this.GetSessionBySessionId(session_id);
+    }
+
+    public SessionClass GetSessionBySessionId(int id_val) {
+        ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        if (list_entry == null) {
+            return null;
+        }
+        SessionClass session = (SessionClass)list_entry.Data();
+
+        return session;
+    }
+
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
             this.logitIt(str0_val, str1_val);
     }
 
-    private void logitIt(String str0_val, String str1_val)
-    {
+    private void logitIt(String str0_val, String str1_val) {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    private void abendIt(String str0_val, String str1_val)
-    {
+    public void abendIt(String str0_val, String str1_val) {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }

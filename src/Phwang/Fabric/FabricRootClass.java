@@ -38,6 +38,8 @@ public class FabricRootClass {
         this.linkMgrObject = new LinkMgrClass(this);
         this.groupMgrObject = new GroupMgrClass(this);
         this.nameListObject = new NameListClass(this);
+        this.UFabricObject().startThreads();
+        //this.dFabricObject().startThreads();
 
         this.StartWatchDogThread();
 
@@ -59,7 +61,7 @@ public class FabricRootClass {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    private void abendIt(String str0_val, String str1_val)
+    public void abendIt(String str0_val, String str1_val)
     {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }

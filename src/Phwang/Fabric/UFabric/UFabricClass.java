@@ -11,6 +11,7 @@ package Phwang.Fabric.UFabric;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Fabric.FabricRootClass;
+import Phwang.Theme.Utheme.UThemeClass;
 
 public class UFabricClass {
     private String objectName() {return "UFabricClass";}
@@ -25,10 +26,10 @@ public class UFabricClass {
     private UFabricParserClass uFabricParserObject;
     public BinderClass binderObject;
     private Thread receiveThread;
+    private UFabricReceiveRunnable receiveRunable;
 
     public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
 
-    
     public UFabricClass(FabricRootClass fabric_root_class_val)
     {
         this.debugIt(true, "UFabricClass", "init start");
@@ -42,6 +43,34 @@ public class UFabricClass {
 
         this.debugIt(true, "UFabricClass", "init done");
     }
+
+    public void startThreads() {
+        this.receiveRunable = new UFabricReceiveRunnable(this);
+        this.receiveThread = new Thread(this.receiveRunable);
+        this.receiveThread.start();
+     }
+
+    public void uFabricRreceiveThreadFunc()
+    {
+        this.debugIt(true, "uFabricRreceiveThreadFunc", "start thread");
+
+        String data;
+        while (true)
+        {
+            data = this.binderObject.ReceiveData();
+            if (data == null)
+            {
+                this.abendIt("receiveThreadFunc", "null data");
+                continue;
+            }
+            this.debugIt(true, "receiveThreadFunc", "data = " + data);
+            this.uFabricParserObject.parseInputPacket(data);
+        }
+    }
+
+    public void TransmitData(String data_val) {
+        this.binderObject.TransmitData(data_val);
+    }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
@@ -54,8 +83,22 @@ public class UFabricClass {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    private void abendIt(String str0_val, String str1_val)
+    public void abendIt(String str0_val, String str1_val)
     {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
+
+class UFabricReceiveRunnable implements Runnable
+{
+	UFabricClass theUFabricObject;
+	
+	public UFabricReceiveRunnable(UFabricClass u_fabric_object_val) {
+		this.theUFabricObject = u_fabric_object_val;
+	}
+	
+	public void run() {
+		this.theUFabricObject.uFabricRreceiveThreadFunc();
+	}
+}
+
