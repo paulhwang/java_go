@@ -28,11 +28,10 @@ public class GoMoveClass {
 
     private void decodeMove(String encoded_move_val)
     {
-        //this.theX = (encoded_move_val[0] - '0') * 10 + (encoded_move_val[1] - '0');
-        //this.theY = (encoded_move_val[2] - '0') * 10 + (encoded_move_val[3] - '0');
-        //this.myColor = encoded_move_val[4] - '0';
-        //this.turnIndex = (encoded_move_val[5] - '0') * 100 + (encoded_move_val[6] - '0') * 10 + (encoded_move_val[7] - '0');
+        this.theX = (encoded_move_val.charAt(0) - '0') * 10 + (encoded_move_val.charAt(1) - '0');
+        this.theY = (encoded_move_val.charAt(2) - '0') * 10 + (encoded_move_val.charAt(3) - '0');
+        this.myColor = encoded_move_val.charAt(4) - '0';
+        this.turnIndex = (encoded_move_val.charAt(5) - '0') * 100 + (encoded_move_val.charAt(6) - '0') * 10 + (encoded_move_val.charAt(7) - '0');
         this.moveInfo = "(" + this.theX + ", " + this.theY + ") " + this.myColor + ", " + this.turnIndex;
     }
-
 }

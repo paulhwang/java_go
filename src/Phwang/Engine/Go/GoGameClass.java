@@ -58,9 +58,9 @@ public class GoGameClass {
         }
 
         this.thePassReceived = false;
-        //this.BoardObject().ClearLastDeadStone();
+        this.BoardObject().ClearLastDeadStone();
         this.insertMoveToMoveList(move_val);
-        //this.FightObject().EnterBattle(move_val);
+        this.FightObject().EnterBattle(move_val);
         this.theNextColor = GoDefineClass.GetOppositeColor(move_val.MyColor());
     }
 
@@ -135,15 +135,15 @@ public class GoGameClass {
 
     private void processTheWholeMoveList()
     {
-        //this.BoardObject().ResetBoardObjectData();
-        //this.FightObject().ResetEngineObjectData();
+        this.BoardObject().ResetBoardObjectData();
+        this.FightObject().ResetEngineObjectData();
         this.resetGameObjectPartialData();
 
         int i = 0;
         while (i < this.theTotalMoves)
         {
             GoMoveClass move = this.theMovesArray[i];
-            //this.FightObject().EnterBattle(move);
+            this.FightObject().EnterBattle(move);
             this.theNextColor = GoDefineClass.GetOppositeColor(move.MyColor());
             i += 1;
         }
