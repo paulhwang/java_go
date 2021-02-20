@@ -41,8 +41,8 @@ public class DEngineClass {
         this.receiveThread.start();
      }
     
-    public void receiveThreadFunc() {
-        this.debugIt(true, "receiveThreadFunc", "start DEngineReceiveRunnable thread");
+    public void dEngineReceiveThreadFunc() {
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start thread");
 
         String data;
         while (true)
@@ -90,7 +90,7 @@ class DEngineReceiveRunnable implements Runnable
 	}
 	
 	public void run() {
-		theDEngineObject.receiveThreadFunc();
+		this.theDEngineObject.dEngineReceiveThreadFunc();
 	}
 }
 

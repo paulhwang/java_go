@@ -19,8 +19,8 @@ public class UThemeClass {
     private ThemeRootClass themeRootObject;
     private UThemeParserClass uThemeParserObject;
     public BinderClass binderObject;
-    //private Thread receiveThread { get; set; }
-    private DEngineReceiveRunnable receiveRunable;
+    private Thread receiveThread;
+    private UThemeReceiveRunnable receiveRunable;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
 
@@ -32,11 +32,36 @@ public class UThemeClass {
         this.uThemeParserObject = new UThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
         //this.binderObject.BindAsTcpServer(Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
-
-        //this.receiveThread = new Thread(this.receiveThreadFunc);
-        //this.receiveThread.Start();
     }
 
+    public void startThreads() {
+        this.receiveRunable = new UThemeReceiveRunnable(this);
+        this.receiveThread = new Thread(this.receiveRunable);
+        this.receiveThread.start();
+     }
+
+    public void uThemeRreceiveThreadFunc()
+    {
+        this.debugIt(true, "uThemeRreceiveThreadFunc", "start thread");
+
+        String data;
+        while (true)
+        {
+            data = this.binderObject.ReceiveData();
+            if (data == null)
+            {
+                this.abendIt("receiveThreadFunc", "null data");
+                continue;
+            }
+            this.debugIt(true, "receiveThreadFunc", "data = " + data);
+            this.uThemeParserObject.ParseInputPacket(data);
+
+        }
+    }
+
+    public void TransmitData(String data_val) {
+        this.binderObject.TransmitData(data_val);
+    }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
     {
@@ -55,16 +80,16 @@ public class UThemeClass {
     }
 }
 
-class DEngineReceiveRunnable implements Runnable
+class UThemeReceiveRunnable implements Runnable
 {
-	DEngineClass theDEngineObject;
+	UThemeClass theUThemeObject;
 	
-	public DEngineReceiveRunnable(DEngineClass d_engine_object_val) {
-		this.theDEngineObject = d_engine_object_val;
+	public UThemeReceiveRunnable(UThemeClass u_theme_object_val) {
+		this.theUThemeObject = u_theme_object_val;
 	}
 	
 	public void run() {
-		theDEngineObject.receiveThreadFunc();
+		this.theUThemeObject.uThemeRreceiveThreadFunc();
 	}
 }
 
