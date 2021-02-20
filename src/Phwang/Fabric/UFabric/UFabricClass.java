@@ -44,10 +44,12 @@ public class UFabricClass {
         this.receiveThread.start();
      }
 
-    public void uFabricRreceiveThreadFunc()
-    {
-        this.debugIt(true, "uFabricRreceiveThreadFunc", "start thread");
+    public void uFabricRreceiveThreadFunc() {
+        this.debugIt(true, "uFabricRreceiveThreadFunc", "start thread ***");
 
+        return;////////////////////////////////////
+        
+        /*
         String data;
         while (true)
         {
@@ -60,25 +62,23 @@ public class UFabricClass {
             this.debugIt(true, "receiveThreadFunc", "data = " + data);
             this.uFabricParserObject.parseInputPacket(data);
         }
+        */
     }
 
     public void TransmitData(String data_val) {
         this.binderObject.TransmitData(data_val);
     }
     
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
             this.logitIt(str0_val, str1_val);
     }
 
-    private void logitIt(String str0_val, String str1_val)
-    {
+    private void logitIt(String str0_val, String str1_val) {
         AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
     }
 
-    public void abendIt(String str0_val, String str1_val)
-    {
+    public void abendIt(String str0_val, String str1_val) {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }

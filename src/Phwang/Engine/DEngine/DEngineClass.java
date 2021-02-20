@@ -42,11 +42,13 @@ public class DEngineClass {
      }
     
     public void dEngineReceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start thread");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start thread ***");
 
+        return;///////////////////////////////////////////////
+        
+        /*
         String data;
-        while (true)
-        {
+        while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null)
             {
@@ -55,8 +57,8 @@ public class DEngineClass {
             }
             this.debugIt(true, "receiveThreadFunc", "data = " + data);
             this.dEngineParserObject.ParseInputPacket(data);
-
         }
+        */
     }
 
     public void TransmitData(String data_val)

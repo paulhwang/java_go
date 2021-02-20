@@ -42,8 +42,11 @@ public class DThemeClass {
 
     public void dThemeRreceiveThreadFunc()
     {
-        this.debugIt(true, "dThemeRreceiveThreadFunc", "start thread");
+        this.debugIt(true, "dThemeRreceiveThreadFunc", "start thread ***");
 
+        return;//////////////////////////////////////
+        
+        /*
         String data;
         while (true)
         {
@@ -55,8 +58,8 @@ public class DThemeClass {
             }
             this.debugIt(true, "receiveThreadFunc", "data = " + data);
             this.dThemeParserObject.ParseInputPacket(data);
-
         }
+        */
     }
 
     public void TransmitData(String data_val)

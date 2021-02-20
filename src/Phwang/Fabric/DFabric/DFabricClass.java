@@ -42,8 +42,11 @@ public class DFabricClass {
     }
 
     public void dFabricRreceiveThreadFunc() {
-        this.debugIt(true, "dFabricRreceiveThreadFunc", "start thread");
+        this.debugIt(true, "dFabricRreceiveThreadFunc", "start thread ***");
 
+        return;////////////////////////////////////////////
+        
+        /*
         String data;
         while (true) {
             data = this.binderObject.ReceiveData();
@@ -54,6 +57,7 @@ public class DFabricClass {
             this.debugIt(true, "receiveThreadFunc", "data = " + data);
             this.dFabricParserObject.parseInputPacket(data);
         }
+        */
     }
 
     public void TransmitData(String data_val) {
