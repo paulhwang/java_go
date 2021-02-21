@@ -8,16 +8,21 @@
 
 package Phwang.Utils.Binder;
 
+import java.net.*;
+import java.io.*;
+
 import Phwang.Utils.UtilsClass;
 import Phwang.Utils.AbendClass;
 
 public class BinderTestClass {
+    private Boolean useBinder = false;
+	private String host = "localhost";
 	private int port = 8001;
 	
     public BinderTestClass() {
-        new BinderServerTestClass(this.port);
+        new BinderServerTestClass(this.useBinder, this.port);
         UtilsClass.sleep(1000);
-        new BinderClientTestClass(this.port);
+        new BinderClientTestClass(this.useBinder, this.host, this.port);
     }
 }
 
@@ -28,13 +33,19 @@ public class BinderTestClass {
 class BinderServerTestClass {
     private String objectName() {return "BinderServerTestClass";}
 
+    private Boolean useBinder;
 	private int port;
+	private String clientName;
+	private String clientAddress;
+	private DataInputStream inputStream;
+    private DataOutputStream outputStream;
     private Thread serverThread;
     private BinderTestServerRunnable serverRunnable;
 
-    public BinderServerTestClass(int port_val) {
+    public BinderServerTestClass(Boolean use_binder_val, int port_val) {
         this.debugIt(false, "BinderServerTestClass", "init start");
         
+        this.useBinder = use_binder_val;
         this.port = port_val;
         this.createServerThread();
     }
@@ -48,8 +59,25 @@ class BinderServerTestClass {
     public void binderTestServerThreadFunc() {
         this.debugIt(true, "binderTestServerThreadFunc", "start thread ***");
         
-        
-    	
+        if (this.useBinder) {
+        	
+        }
+        else {
+        	try {
+        		ServerSocket ss = new ServerSocket(this.port);
+        		Socket connection = ss.accept();
+        		this.debugIt(true, "binderTestServerThreadFunc", "accepted");
+        		this.clientName = connection.getInetAddress().getHostName();
+        		this.clientAddress = connection.getInetAddress().getHostAddress();
+        		this.debugIt(true, "binderTestServerThreadFunc", "clientAddress = " + this.clientAddress);
+        		this.debugIt(true, "binderTestServerThreadFunc", "clientName = " + this.clientName);
+
+                
+                ss.close();
+        	}
+        	catch (Exception e) {
+        	}
+        }
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
@@ -85,13 +113,20 @@ class BinderTestServerRunnable implements Runnable {
 class BinderClientTestClass {
     private String objectName() {return "BinderClientTestClass";}
 
+    private Boolean useBinder;
+    private String host;
 	private int port;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
+    private String inputMessage;
     private Thread clientThread;
     private BinderTestClientRunnable clientRunnable;
 	
-    public BinderClientTestClass(int port_val) {
+    public BinderClientTestClass(Boolean use_binder_val, String host_val, int port_val) {
         this.debugIt(false, "BinderClientTestClass", "init start");
         
+        this.useBinder = use_binder_val;
+        this.host = host_val;
         this.port = port_val;
         this.createClientThread();
     }
@@ -105,6 +140,23 @@ class BinderClientTestClass {
     public void binderTestClientThreadFunc() {
         this.debugIt(true, "binderTestClientThreadFunc", "start thread ***");
     	
+        if (this.useBinder) {
+        	
+        }
+        else {
+        	try {
+        		Socket connection = new Socket(this.host, this.port);
+        		this.debugIt(true, "binderTestClientThreadFunc", "cconnected");
+        		
+                outputStream = new DataOutputStream(connection.getOutputStream());
+                outputStream.writeUTF("Hello!");
+                inputStream = new DataInputStream(connection.getInputStream());
+                inputMessage = inputStream.readUTF();
+                System.out.println("Message Server: " + inputMessage);
+        	}
+        	catch (Exception e) {
+        	}
+        }
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
