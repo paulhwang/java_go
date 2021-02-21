@@ -68,7 +68,7 @@ public class SessionClass {
 
     public int GetPendingDownLinkDataCount()
     {
-        return this.pendingDownLinkDataQueue.GetQueueLength();
+        return this.pendingDownLinkDataQueue.QueueLength();
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
