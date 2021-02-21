@@ -15,14 +15,14 @@ import Phwang.Utils.UtilsClass;
 import Phwang.Utils.AbendClass;
 
 public class BinderTestClass {
-    private Boolean useBinder = false;
+    private Boolean useBinder = true;
 	private String host = "localhost";
 	private short port = 8001;
 	
     public BinderTestClass() {
-        new BinderServerTestClass(false, this.port);
+        new BinderServerTestClass(this.useBinder, this.port);
         UtilsClass.sleep(1000);
-        new BinderClientTestClass(false, this.host, this.port);
+        new BinderClientTestClass(this.useBinder, this.host, this.port);
     }
 }
 
@@ -34,7 +34,7 @@ class BinderServerTestClass {
     private String objectName() {return "BinderServerTestClass";}
 
     private Boolean useBinder;
-	private short port;
+	private short thePort;
 	private String clientName;
 	private String clientAddress;
 	private DataInputStream inputStream;
@@ -43,12 +43,15 @@ class BinderServerTestClass {
     private BinderClass theBinderObject;
     private Thread serverThread;
     private BinderTestServerRunnable serverRunnable;
+    
+    private short Port() { return this.thePort; }
+    private BinderClass BinderObject() { return this.theBinderObject; }
 
     public BinderServerTestClass(Boolean use_binder_val, short port_val) {
         this.debugIt(false, "BinderServerTestClass", "init start");
         
         this.useBinder = use_binder_val;
-        this.port = port_val;
+        this.thePort = port_val;
         this.createServerThread();
     }
 
@@ -63,11 +66,13 @@ class BinderServerTestClass {
         
         if (this.useBinder) {
         	this.theBinderObject = new BinderClass("BinderTestServer");
-        	this.theBinderObject.BindAsTcpServer(this.port);
+        	if (this.BinderObject().BindAsTcpServer(this.Port())) {
+        		this.BinderObject().TransmitData("Welcome!!");
+        	}
         }
         else {
         	try {
-        		ServerSocket ss = new ServerSocket(this.port);
+        		ServerSocket ss = new ServerSocket(this.Port());
         		Socket connection = ss.accept();
         		this.debugIt(true, "binderTestServerThreadFunc", "accepted");
         		this.clientName = connection.getInetAddress().getHostName();
@@ -121,21 +126,25 @@ class BinderClientTestClass {
     private String objectName() {return "BinderClientTestClass";}
 
     private Boolean useBinder;
-    private String host;
-	private short port;
+    private String theHost;
+	private short thePort;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private String inputMessage;
     private Thread clientThread;
     private BinderClass theBinderObject;
     private BinderTestClientRunnable clientRunnable;
-	
+
+    private String Host() { return theHost; }
+    private short Port() { return this.thePort; }
+    private BinderClass BinderObject() { return this.theBinderObject; }
+
     public BinderClientTestClass(Boolean use_binder_val, String host_val, short port_val) {
         this.debugIt(false, "BinderClientTestClass", "init start");
         
         this.useBinder = use_binder_val;
-        this.host = host_val;
-        this.port = port_val;
+        this.theHost = host_val;
+        this.thePort = port_val;
         this.createClientThread();
     }
     
@@ -150,12 +159,14 @@ class BinderClientTestClass {
     	
         if (this.useBinder) {
         	this.theBinderObject = new BinderClass("BinderTestServer");
-        	this.theBinderObject.BindAsTcpClient(this.host, this.port);
-       	
+        	if (this.theBinderObject.BindAsTcpClient(this.Host(), this.Port())) {
+        		this.BinderObject().TransmitData("Hello!!");
+        	}
+      	
         }
         else {
         	try {
-        		Socket connection = new Socket(this.host, this.port);
+        		Socket connection = new Socket(this.Host(), this.Port());
         		this.debugIt(true, "binderTestClientThreadFunc", "cconnected");
         		
                 outputStream = new DataOutputStream(connection.getOutputStream());

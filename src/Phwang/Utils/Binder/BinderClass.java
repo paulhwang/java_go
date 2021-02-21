@@ -14,6 +14,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.*;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Tcp.*;
 import Phwang.Utils.Queue.ListQueueClass;
 
@@ -77,13 +78,12 @@ public class BinderClass {
             this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
             this.createWorkingThreads();
-
-           
             ss.close();
+            return true;
     	}
     	catch (Exception e) {
+    		return false;
     	}
-        return true;
     }
     
     /*
@@ -106,34 +106,35 @@ public class BinderClass {
     public void binderReceiveThreadFunc() {
         this.debugIt(false, "binderReceiveThreadFunc", "start thread ***");
         
-        return;//////////////////////////////////////////////////
+        if (this.TcpConnection() == null) {
+            this.abendIt("binderReceiveThreadFunc", "null networkStream");
+            return;
+        }
         
-        /*
-        if (this.networkStream == null) {
-            this.abendIt("receiveThreadFunc", "null networkStream");
-
-        }
         String data;
-        while (true)
-        {
-            data = PhwangUtils.TcpServerClass.TcpReceiveData(this.networkStream);
-            if (data != null)
-            {
-                this.debugIt(false, "receiveThreadFunc", "data = " + data);
-                this.receiveQueue.EnqueueData(data);
-            }
-            else
-            {
-                this.abendIt("receiveThreadFunc", "data is null=====================================");
-                Thread.Sleep(1);
-            }
+        while (true) {
+        	try {
+        		data = this.InputStream().readUTF();
+        		if (data != null) {
+        			this.debugIt(true, "binderReceiveThreadFunc", "data = " + data);
+        			//this.receiveQueue.EnqueueData(data);
+        		}
+        		else {
+        			this.abendIt("binderReceiveThreadFunc", "data is null=====================================");
+        			UtilsClass.sleep(1);
+        		}
+        	}
+        	catch (Exception e) {}
         }
-        */
     }
 
     public void binderTransmitThreadFunc() {
         this.debugIt(false, "binderTransmitThreadFunc", "start thread ***");
         
+        if (this.TcpConnection() == null) {
+            this.abendIt("binderTransmitThreadFunc", "null networkStream");
+            return;
+        }
         return;///////////////////////////////////
         
         /*
@@ -151,14 +152,19 @@ public class BinderClass {
         return data;
     }
 
-    public void TransmitRawData(String data_var) {
-        this.debugIt(false, "TransmitData", "data = " + data_var);
+    public void TransmitRawData(String data_val) {
+        this.debugIt(false, "TransmitRawData", "data = " + data_val);
+        try {
+        	this.OutputStream().writeUTF(data_val);
+        }
+        catch (Exception e) { }
+
         //TcpServerClass.TcpTransmitData(this.networkStream, data_var);
     }
 
-    public void TransmitData(String data_var) {
-        this.debugIt(false, "TransmitData", "data = " + data_var);
-        this.TransmitRawData(data_var);
+    public void TransmitData(String data_val) {
+        this.debugIt(false, "TransmitData", "data = " + data_val);
+        this.TransmitRawData(data_val);
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
