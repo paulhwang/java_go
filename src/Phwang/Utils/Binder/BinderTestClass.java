@@ -20,7 +20,7 @@ public class BinderTestClass {
 	private short port = 8001;
 	
     public BinderTestClass() {
-        new BinderServerTestClass(false, this.port);
+        new BinderServerTestClass(true, this.port);
         UtilsClass.sleep(1000);
         new BinderClientTestClass(true, this.host, this.port);
     }

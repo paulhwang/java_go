@@ -17,24 +17,34 @@ import Phwang.Utils.Queue.ListQueueClass;
 public class BinderClass {
     private String objectName() {return "BinderClass";}
 
-    private ListQueueClass receiveQueue;
     private String ownerObject;
-    //private NetworkStream networkStream;
     private Thread receiveThread;
     private Thread transmitThread;
     private BinderReceiveRunnable receiveRunable;
     private BinderTransmitRunnable transmitRunable;
-
+    
+    //private NetworkStream networkStream;
+    private String theServerIpAddress;
+    private short thePort;
+    private Socket theTcpConnection;
+    private ListQueueClass receiveQueue;
+    
+    public short Port() { return this.thePort; }
+    public String ServerIpAddress() { return this.theServerIpAddress; }
+    public Socket TcpConnection() { return this.theTcpConnection; }
+    public String TcpClientName() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostName() : ""; }
+    public String TcpClientAddress() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostAddress() : ""; }
 
     public BinderClass(String owner_object_var) {
         this.ownerObject = owner_object_var;
         this.receiveQueue = new ListQueueClass(true, 0);
     }
 
-    public Boolean BindAsTcpClient(String ip_addr_var, short port_var) {
-        //TcpClient client = new TcpClient(ip_addr_var, port_var);
+    public Boolean BindAsTcpClient(String ip_addr_val, short port_val) {
+		this.thePort = port_val;
+		this.theServerIpAddress = ip_addr_val;
     	try {
-    		Socket connection = new Socket(ip_addr_var, port_var);
+    		this.theTcpConnection = new Socket(this.ServerIpAddress(), this.Port());
     		this.debugIt(true, "BindAsTcpClient", "connected!");
     		//this.networkStream = client.GetStream();
     		//createWorkingThreads();
@@ -46,7 +56,20 @@ public class BinderClass {
     }
 
     public Boolean BindAsTcpServer(short port_val) {
+		this.thePort = port_val;
         //TcpApiClass.MallocTcpServer(this, port_val, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
+    	try {
+    		ServerSocket ss = new ServerSocket(this.Port());
+    		this.theTcpConnection = ss.accept();
+    		this.debugIt(true, "BindAsTcpServer", "accepted!");
+    		this.debugIt(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
+    		this.debugIt(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
+
+           
+            ss.close();
+    	}
+    	catch (Exception e) {
+    	}
         return true;
     }
 
@@ -124,7 +147,7 @@ public class BinderClass {
         this.debugIt(false, "TransmitData", "data = " + data_var);
         this.TransmitRawData(data_var);
     }
-
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
             this.logitIt(str0_val, str1_val);
