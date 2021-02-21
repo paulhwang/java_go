@@ -8,6 +8,9 @@
 
 package Phwang.Utils.ListMgr;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import Phwang.Utils.AbendClass;
 
 public class ListMgrClass {
@@ -16,6 +19,7 @@ public class ListMgrClass {
     private static final int LIST_MGR_MAX_GLOBAL_LIST_ID = 9999;
     private static final int LIST_MGR_ID_INDEX_ARRAY_SIZE = 1000;
 
+    private Boolean abendListMgrClassIsOn = true;
     private String theCallerName;
     private int IdSize;
     private int IndexSize;
@@ -25,7 +29,7 @@ public class ListMgrClass {
     private int maxIndex;
     int entryCount;
     private ListEntryClass[] entryTableArray;
-    private Object theLock;
+    private Lock theLock;
 
     public int MaxIndex() { return this.maxIndex; }
     public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
@@ -39,65 +43,53 @@ public class ListMgrClass {
         this.entryCount = 0;
         this.MaxIdIndexTableIndex = 0;
         this.maxIndex = -1;
-        //this.theLock = new object();
-
-
-        //this->theMutex = PTHREAD_MUTEX_INITIALIZER;
-
-        //if (pthread_mutex_init(&this->theMutex, NULL) != 0)
-        {
-            //this->abend("ListMgrClass", "pthread_mutex_init fail");
-        }
+        this.theLock = new ReentrantLock();
 
         this.entryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
     }
 
-    public ListEntryClass MallocEntry(Object object_val)
-    {
-        int id;
-        int index;
-        this.debugIt(true, "mallocEntry", "start");
-
-        ListEntryClass entry = new ListEntryClass();
-
+    public ListEntryClass MallocEntry(Object object_val) {
+        this.debugIt(true, "MallocEntry", "start");
+    	
         this.abendListMgrClass("before MallocEntry");
-        //lock (this.theLock)
-        {
-            id = this.allocId();
-            index = this.allocIndex();
-            if (index != -1)
-            {
-                this.entryTableArray[index] = entry;
-            }
-            else
-            {
-                this.abendIt("InsertEntry", "TBD");
-            }
-        }
+        this.theLock.lock();
+        ListEntryClass entry = this.DoMallocEntry(object_val);
+    	this.theLock.unlock();
         this.abendListMgrClass("after MallocEntry");
-
-        //entry.SetData(id, object_val, index);
+        
         return entry;
     }
 
-    private int allocId()
-    {
-        if (this.globalId >= LIST_MGR_MAX_GLOBAL_LIST_ID)
-        {
+    private ListEntryClass DoMallocEntry(Object object_val) {
+        int id;
+        int index;
+
+        ListEntryClass entry = new ListEntryClass();
+        id = this.allocId();
+        index = this.allocIndex();
+        if (index != -1) {
+            this.entryTableArray[index] = entry;
+        }
+        else {
+            this.abendIt("DoMallocEntry", "TBD");
+        }
+
+        entry.SetData(id, object_val, index);
+        return entry;
+    }
+
+    private int allocId() {
+        if (this.globalId >= LIST_MGR_MAX_GLOBAL_LIST_ID) {
             this.globalId = 0;
         }
         this.globalId++;
         return this.globalId;
     }
 
-    private int allocIndex()
-    {
-        for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++)
-        {
-            if (this.entryTableArray[i] == null)
-            {
-                if (i > this.maxIndex)
-                {
+    private int allocIndex() {
+        for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++) {
+            if (this.entryTableArray[i] == null) {
+                if (i > this.maxIndex) {
                     this.maxIndex = i;
                 }
                 this.entryCount++;
@@ -109,19 +101,21 @@ public class ListMgrClass {
         return -1;
     }
 
-    void FreeEntry(ListEntryClass entry_val)
+    public void FreeEntry(ListEntryClass entry_val)
     {
         this.abendListMgrClass("before FreeEntry");
-        //lock (this.theLock)
-        {
-            this.entryTableArray[entry_val.Index()] = null;
-        this.entryCount--;
-        }
+        this.theLock.lock();
+        this.DoFreeEntry(entry_val);
+        this.theLock.unlock();
         this.abendListMgrClass("after FreeEntry");
     }
 
-    public ListEntryClass GetEntryById(int id_val)
-    {
+    private void DoFreeEntry(ListEntryClass entry_val) {
+        this.entryTableArray[entry_val.Index()] = null;
+        this.entryCount--;
+    }
+
+    public ListEntryClass GetEntryById(int id_val) {
         ListEntryClass entry = null;
 
         this.abendListMgrClass("before GetEntryById");
@@ -165,22 +159,25 @@ public class ListMgrClass {
     }
 */
 
-    private void abendListMgrClass(String msg_val)
-    {
-        //lock (this.theLock)
-        { 
-            int count = 0;
-            for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++)
-            {
-                if (this.entryTableArray[i] != null)
-                {
-                    count++;
-                }
+    private void abendListMgrClass(String msg_val) {
+    	if (!this.abendListMgrClassIsOn)
+    		return;
+    	
+    	this.theLock.lock();
+    	this.DoAbendListMgrClass(msg_val);
+    	this.theLock.lock();
+    }
+    
+    private void DoAbendListMgrClass(String msg_val) {
+        int count = 0;
+        
+        for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++) {
+            if (this.entryTableArray[i] != null) {
+                count++;
             }
-            if (this.entryCount != count)
-            {
-                this.abendIt("abendListMgrClass", "count not match");
-            }
+        }
+        if (this.entryCount != count) {
+            this.abendIt("DoAbendListMgrClass", "count not match");
         }
     }
 
