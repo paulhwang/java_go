@@ -17,12 +17,12 @@ import Phwang.Utils.AbendClass;
 public class BinderTestClass {
     private Boolean useBinder = false;
 	private String host = "localhost";
-	private int port = 8001;
+	private short port = 8001;
 	
     public BinderTestClass() {
-        new BinderServerTestClass(this.useBinder, this.port);
+        new BinderServerTestClass(false, this.port);
         UtilsClass.sleep(1000);
-        new BinderClientTestClass(this.useBinder, this.host, this.port);
+        new BinderClientTestClass(true, this.host, this.port);
     }
 }
 
@@ -34,15 +34,16 @@ class BinderServerTestClass {
     private String objectName() {return "BinderServerTestClass";}
 
     private Boolean useBinder;
-	private int port;
+	private short port;
 	private String clientName;
 	private String clientAddress;
 	private DataInputStream inputStream;
     private DataOutputStream outputStream;
+    private BinderClass theBinderObject;
     private Thread serverThread;
     private BinderTestServerRunnable serverRunnable;
 
-    public BinderServerTestClass(Boolean use_binder_val, int port_val) {
+    public BinderServerTestClass(Boolean use_binder_val, short port_val) {
         this.debugIt(false, "BinderServerTestClass", "init start");
         
         this.useBinder = use_binder_val;
@@ -60,7 +61,8 @@ class BinderServerTestClass {
         this.debugIt(true, "binderTestServerThreadFunc", "start thread ***");
         
         if (this.useBinder) {
-        	
+        	this.theBinderObject = new BinderClass("BinderTestServer");
+        	this.theBinderObject.BindAsTcpServer(this.port);
         }
         else {
         	try {
@@ -115,14 +117,15 @@ class BinderClientTestClass {
 
     private Boolean useBinder;
     private String host;
-	private int port;
+	private short port;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private String inputMessage;
     private Thread clientThread;
+    private BinderClass theBinderObject;
     private BinderTestClientRunnable clientRunnable;
 	
-    public BinderClientTestClass(Boolean use_binder_val, String host_val, int port_val) {
+    public BinderClientTestClass(Boolean use_binder_val, String host_val, short port_val) {
         this.debugIt(false, "BinderClientTestClass", "init start");
         
         this.useBinder = use_binder_val;
@@ -141,7 +144,9 @@ class BinderClientTestClass {
         this.debugIt(true, "binderTestClientThreadFunc", "start thread ***");
     	
         if (this.useBinder) {
-        	
+        	this.theBinderObject = new BinderClass("BinderTestServer");
+        	this.theBinderObject.BindAsTcpClient(this.host, this.port);
+       	
         }
         else {
         	try {

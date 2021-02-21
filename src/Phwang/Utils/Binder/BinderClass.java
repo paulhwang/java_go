@@ -9,7 +9,9 @@
 package Phwang.Utils.Binder;
 
 import Phwang.Engine.DEngine.DEngineClass;
+import java.net.*;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.Tcp.*;
 import Phwang.Utils.Queue.ListQueueClass;
 
 public class BinderClass {
@@ -31,14 +33,20 @@ public class BinderClass {
 
     public Boolean BindAsTcpClient(String ip_addr_var, short port_var) {
         //TcpClient client = new TcpClient(ip_addr_var, port_var);
-        this.debugIt(true, "BindAsTcpClient", "connected!");
-        //this.networkStream = client.GetStream();
-        createWorkingThreads();
-        return true;
+    	try {
+    		Socket connection = new Socket(ip_addr_var, port_var);
+    		this.debugIt(true, "BindAsTcpClient", "connected!");
+    		//this.networkStream = client.GetStream();
+    		//createWorkingThreads();
+    		return true;
+    	}
+    	catch (Exception e) {
+    		return false;
+    	}
     }
 
     public Boolean BindAsTcpServer(short port_val) {
-        //PhwangUtils.TcpApiClass.MallocTcpServer(this, port_val, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
+        //TcpApiClass.MallocTcpServer(this, port_val, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
         return true;
     }
 
