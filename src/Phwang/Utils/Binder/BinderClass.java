@@ -9,6 +9,9 @@
 package Phwang.Utils.Binder;
 
 import Phwang.Engine.DEngine.DEngineClass;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.*;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Tcp.*;
@@ -27,11 +30,17 @@ public class BinderClass {
     private String theServerIpAddress;
     private short thePort;
     private Socket theTcpConnection;
+    private DataInputStream theInputStream;
+    private DataOutputStream theOutputStream;
+    
     private ListQueueClass receiveQueue;
     
     public short Port() { return this.thePort; }
     public String ServerIpAddress() { return this.theServerIpAddress; }
     public Socket TcpConnection() { return this.theTcpConnection; }
+    private DataInputStream InputStream() { return this.theInputStream; }
+    private DataOutputStream OutputStream() { return this.theOutputStream; }
+    
     public String TcpClientName() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostName() : ""; }
     public String TcpClientAddress() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostAddress() : ""; }
 
@@ -46,8 +55,9 @@ public class BinderClass {
     	try {
     		this.theTcpConnection = new Socket(this.ServerIpAddress(), this.Port());
     		this.debugIt(true, "BindAsTcpClient", "connected!");
-    		//this.networkStream = client.GetStream();
-    		//createWorkingThreads();
+            this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
+            this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
+    		createWorkingThreads();
     		return true;
     	}
     	catch (Exception e) {
@@ -64,6 +74,9 @@ public class BinderClass {
     		this.debugIt(true, "BindAsTcpServer", "accepted!");
     		this.debugIt(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
     		this.debugIt(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
+            this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
+            this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
+            this.createWorkingThreads();
 
            
             ss.close();
@@ -72,7 +85,7 @@ public class BinderClass {
     	}
         return true;
     }
-
+    
     /*
     private void binderTcpServerAcceptFunc(Object d_fabric_object_val, NetworkStream netwrok_stream_val) {
         this.debugIt(true, "binderTcpServerAcceptFunc", "accepted!");
@@ -91,7 +104,7 @@ public class BinderClass {
     }
 
     public void binderReceiveThreadFunc() {
-        this.debugIt(true, "binderReceiveThreadFunc", "start thread ***");
+        this.debugIt(false, "binderReceiveThreadFunc", "start thread ***");
         
         return;//////////////////////////////////////////////////
         
@@ -119,7 +132,7 @@ public class BinderClass {
     }
 
     public void binderTransmitThreadFunc() {
-        this.debugIt(true, "binderTransmitThreadFunc", "start thread ***");
+        this.debugIt(false, "binderTransmitThreadFunc", "start thread ***");
         
         return;///////////////////////////////////
         
