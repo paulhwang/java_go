@@ -136,29 +136,32 @@ public class ListMgrClass {
         return entry;
     }
 
-    /*
-    public delegate Boolean CompareStringFunc(object obj_val, string str_val);
-    public ListEntryClass GetEntryByCompare(CompareStringFunc compare_func_val, string string_val)
-    {
+    //public delegate Boolean CompareStringFunc(object obj_val, String str_val);
+    @FunctionalInterface
+    public interface CompareStringFunc {
+        Boolean run(Object obj_val, String str_val);
+    }
+    
+    public ListEntryClass GetEntryByCompare(CompareStringFunc compare_func_val, String string_val) {
+        this.abendListMgrClass("before GetEntryByCompare");
+        this.theLock.lock();
+        ListEntryClass entry = DoGetEntryByCompare(compare_func_val, string_val);
+        this.theLock.unlock();
+        this.abendListMgrClass("after GetEntryByCompare");
+    	return entry;
+    }
+    
+    public ListEntryClass DoGetEntryByCompare(CompareStringFunc compare_func_val, String string_val) {
         ListEntryClass entry = null;
 
-        this.abendListMgrClass("before GetEntryById");
-        //lock (this.theLock)
-        {
-            for (int i = 0; i <= maxIndex; i++)
-            {
-                if (compare_func_val(entryTableArray[i].Data(), string_val))
-                {
-                    entry = entryTableArray[i];
-                    break;
-                }
+        for (int i = 0; i <= maxIndex; i++) {
+            if (compare_func_val.run(entryTableArray[i].Data(), string_val)) {
+                entry = entryTableArray[i];
             }
         }
-        this.abendListMgrClass("after GetEntryById");
 
         return entry;
     }
-*/
 
     private void abendListMgrClass(String msg_val) {
     	if (!this.abendListMgrClassIsOn)
