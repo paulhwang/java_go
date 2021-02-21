@@ -20,9 +20,9 @@ public class BinderTestClass {
 	private short port = 8001;
 	
     public BinderTestClass() {
-        new BinderServerTestClass(true, this.port);
+        new BinderServerTestClass(false, this.port);
         UtilsClass.sleep(1000);
-        new BinderClientTestClass(true, this.host, this.port);
+        new BinderClientTestClass(false, this.host, this.port);
     }
 }
 
@@ -39,6 +39,7 @@ class BinderServerTestClass {
 	private String clientAddress;
 	private DataInputStream inputStream;
     private DataOutputStream outputStream;
+    private String inputMessage;
     private BinderClass theBinderObject;
     private Thread serverThread;
     private BinderTestServerRunnable serverRunnable;
@@ -73,9 +74,13 @@ class BinderServerTestClass {
         		this.clientAddress = connection.getInetAddress().getHostAddress();
         		this.debugIt(true, "binderTestServerThreadFunc", "clientAddress = " + this.clientAddress);
         		this.debugIt(true, "binderTestServerThreadFunc", "clientName = " + this.clientName);
-
-                
                 ss.close();
+
+                inputStream = new DataInputStream(connection.getInputStream());
+                inputMessage = inputStream.readUTF();
+                System.out.println("Message Client: " + inputMessage);
+                outputStream = new DataOutputStream(connection.getOutputStream());
+                outputStream.writeUTF("Welcome!");
         	}
         	catch (Exception e) {
         	}
@@ -158,6 +163,7 @@ class BinderClientTestClass {
                 inputStream = new DataInputStream(connection.getInputStream());
                 inputMessage = inputStream.readUTF();
                 System.out.println("Message Server: " + inputMessage);
+                
         	}
         	catch (Exception e) {
         	}
