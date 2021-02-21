@@ -116,22 +116,23 @@ public class ListMgrClass {
     }
 
     public ListEntryClass GetEntryById(int id_val) {
+        this.abendListMgrClass("before GetEntryById");
+        this.theLock.lock();
+    	ListEntryClass entry = DoGetEntryById(id_val);
+    	this.theLock.unlock();
+    	this.abendListMgrClass("after GetEntryById");
+    	return entry;
+    }
+
+    public ListEntryClass DoGetEntryById(int id_val) {
         ListEntryClass entry = null;
 
-        this.abendListMgrClass("before GetEntryById");
-        //lock (this.theLock)
-        {
-            for (int i = 0; i <= maxIndex; i++)
-            {
-                if (entryTableArray[i].Id() == id_val)
-                {
-                    entry = entryTableArray[i];
-                    break;
-                }
+        for (int i = 0; i <= maxIndex; i++) {
+            if (entryTableArray[i].Id() == id_val) {
+                entry = entryTableArray[i];
+                break;
             }
         }
-        this.abendListMgrClass("after GetEntryById");
-
         return entry;
     }
 
