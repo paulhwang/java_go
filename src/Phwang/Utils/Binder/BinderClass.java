@@ -15,7 +15,6 @@ import java.io.DataOutputStream;
 import java.net.*;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.UtilsClass;
-import Phwang.Utils.Tcp.*;
 import Phwang.Utils.Queue.ListQueueClass;
 
 public class BinderClass {
@@ -27,7 +26,6 @@ public class BinderClass {
     private BinderReceiveRunnable receiveRunable;
     private BinderTransmitRunnable transmitRunable;
     
-    //private NetworkStream networkStream;
     private String theServerIpAddress;
     private short thePort;
     private Socket theTcpConnection;
@@ -117,7 +115,7 @@ public class BinderClass {
         		data = this.InputStream().readUTF();
         		if (data != null) {
         			this.debugIt(true, "binderReceiveThreadFunc", "data = " + data);
-        			//this.receiveQueue.EnqueueData(data);
+        			this.receiveQueue.EnqueueData(data);
         		}
         		else {
         			this.abendIt("binderReceiveThreadFunc", "data is null=====================================");
@@ -147,7 +145,7 @@ public class BinderClass {
     public String ReceiveData() {
         String data = (String) this.receiveQueue.DequeueData();
         if (data != null) {
-            this.debugIt(false, "ReceivData", "data = " + data);
+            this.debugIt(true, "ReceivData", "data = " + data);
         }
         return data;
     }

@@ -15,11 +15,12 @@ import Phwang.Utils.UtilsClass;
 import Phwang.Utils.AbendClass;
 
 public class BinderTestClass {
-    private Boolean useBinder = true;
+    private Boolean useBinder;
 	private String host = "localhost";
 	private short port = 8001;
 	
     public BinderTestClass() {
+    	this.useBinder = true;
         new BinderServerTestClass(this.useBinder, this.port);
         UtilsClass.sleep(1000);
         new BinderClientTestClass(this.useBinder, this.host, this.port);
@@ -68,6 +69,8 @@ class BinderServerTestClass {
         	this.theBinderObject = new BinderClass("BinderTestServer");
         	if (this.BinderObject().BindAsTcpServer(this.Port())) {
         		this.BinderObject().TransmitData("Welcome!!");
+        		String data = this.BinderObject().ReceiveData();
+                this.debugIt(true, "binderTestServerThreadFunc", "received data = " + data);
         	}
         }
         else {
@@ -82,8 +85,8 @@ class BinderServerTestClass {
                 ss.close();
 
                 inputStream = new DataInputStream(connection.getInputStream());
-                inputMessage = inputStream.readUTF();
-                System.out.println("Message Client: " + inputMessage);
+                String data = inputStream.readUTF();
+                this.debugIt(true, "binderTestServerThreadFunc", "received data = " + data);
                 outputStream = new DataOutputStream(connection.getOutputStream());
                 outputStream.writeUTF("Welcome!");
         	}
@@ -130,7 +133,6 @@ class BinderClientTestClass {
 	private short thePort;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
-    private String inputMessage;
     private Thread clientThread;
     private BinderClass theBinderObject;
     private BinderTestClientRunnable clientRunnable;
@@ -161,6 +163,8 @@ class BinderClientTestClass {
         	this.theBinderObject = new BinderClass("BinderTestServer");
         	if (this.theBinderObject.BindAsTcpClient(this.Host(), this.Port())) {
         		this.BinderObject().TransmitData("Hello!!");
+        		String data = this.BinderObject().ReceiveData();
+                this.debugIt(true, "binderTestClientThreadFunc", "received data = " + data);
         	}
       	
         }
@@ -172,8 +176,8 @@ class BinderClientTestClass {
                 outputStream = new DataOutputStream(connection.getOutputStream());
                 outputStream.writeUTF("Hello!");
                 inputStream = new DataInputStream(connection.getInputStream());
-                inputMessage = inputStream.readUTF();
-                System.out.println("Message Server: " + inputMessage);
+                String data = inputStream.readUTF();
+                this.debugIt(true, "binderTestClientThreadFunc", "received data = " + data);
                 
         	}
         	catch (Exception e) {
