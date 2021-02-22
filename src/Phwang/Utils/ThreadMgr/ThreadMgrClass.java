@@ -19,8 +19,9 @@ public class ThreadMgrClass {
     }
 
     public ThreadClass CreateThreadObject(String thread_name_val) {
-    	ThreadClass thread_class = new ThreadClass(thread_name_val);
-    	return thread_class;
+    	ThreadClass thread_object = new ThreadClass(thread_name_val);
+    	thread_object.StartThread();
+    	return thread_object;
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {

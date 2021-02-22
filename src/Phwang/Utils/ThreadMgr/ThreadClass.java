@@ -13,12 +13,19 @@ import Phwang.Utils.AbendClass;
 public class ThreadClass {
     private String objectName() {return "ThreadClass";}
 
-    private String streadName;
+    private String threadName;
+    
+    public String ThreadName( ) { return this.threadName; }
     
     public ThreadClass(String thread_name_val) {
-        this.debugIt(true, "ThreadClass", "Create thread (" + thread_name_val + ")");
+        this.debugIt(false, "ThreadClass", "init start");
     	
-        this.streadName = thread_name_val;
+        this.threadName = thread_name_val;
+    }
+    
+    public void StartThread() {
+        this.debugIt(true, "StartThread", "Create thread (" + this.ThreadName() + ")");
+    	
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
