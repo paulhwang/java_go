@@ -9,6 +9,7 @@
 package Phwang.FrontEnd;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.UtilsClass;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.Binder.BinderClass;
@@ -46,19 +47,19 @@ public class UFrontClass implements ThreadInterface {
     private void UFrontReceiveThreadFunc() {
         this.debugIt(true, "UFrontReceiveThreadFunc", "start " + this.receiveThreadName());
         
-        return;/////////////////////////////////////////////
-        /*
         while (true) {
             if (this.stopReceiveThreadFlag) {
                 break;
             }
 
             String received_data = this.binderObject.ReceiveData();
-            this.debugIt(true, "UFrontReceiveThreadFunc", "start 2 " + this.receiveThreadName());
+            if (received_data == null) {
+            	UtilsClass.sleep(1000);
+            	continue;
+            }
+            
             String ajax_id_str = received_data.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            this.debugIt(true, "UFrontReceiveThreadFunc", "start 3 " + this.receiveThreadName());
             String response_data = received_data.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            this.debugIt(true, "UFrontReceiveThreadFunc", "start 5 " + this.receiveThreadName());
 
             FrontEndJobClass job_entry = this.frontEndJobMgrObject.GetJobObject(ajax_id_str);
             if (job_entry == null) {
@@ -70,7 +71,6 @@ public class UFrontClass implements ThreadInterface {
         }
 
         this.debugIt(true, "UFrontReceiveThreadFunc", "exit");
-        */
     }
 
     public void StopReceiveThread() {
