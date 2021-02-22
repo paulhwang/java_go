@@ -9,7 +9,7 @@
 package Phwang.Protocols;
 
 public class ThemeEngineProtocolClass {
-    public static final int BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8005;
+    public static final short BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8005;
 
     public static final int THEME_ROOM_ID_SIZE = 4;
     public static final int ENGINE_BASE_ID_SIZE = 4;

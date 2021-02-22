@@ -10,6 +10,7 @@ package Phwang.Engine.DEngine;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Engine.EngineRootClass;
 
 public class DEngineClass {
@@ -23,15 +24,14 @@ public class DEngineClass {
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
     
-    public DEngineClass(EngineRootClass engine_root_object_val)
-    {
+    public DEngineClass(EngineRootClass engine_root_object_val) {
         this.debugIt(false, "DEngineClass", "init start");
         
         this.engineRootObject = engine_root_object_val;
         this.dEngineParserObject = new DEngineParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        //this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpClient("127.0.0.1", ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debugIt(false, "DEngineClass", "init done");
     }
 
@@ -61,8 +61,7 @@ public class DEngineClass {
         */
     }
 
-    public void TransmitData(String data_val)
-    {
+    public void TransmitData(String data_val) {
         this.binderObject.TransmitData(data_val);
     }
 

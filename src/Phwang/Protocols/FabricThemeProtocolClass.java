@@ -9,7 +9,7 @@
 package Phwang.Protocols;
 
 public class FabricThemeProtocolClass {
-    public static final int GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER = 8009;
+    public static final short GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER = 8009;
 
     public static final String FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
     public static final String FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM = "r";

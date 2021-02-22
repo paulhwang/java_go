@@ -19,6 +19,6 @@ public class MainClass {
 		globalVariableObject = new GlobalVariableClass();
 		globalVariableObject.getGoRoot();
 		
-		globalVariableObject.doTest(true);
+		globalVariableObject.doTest(false);
 	}
 }

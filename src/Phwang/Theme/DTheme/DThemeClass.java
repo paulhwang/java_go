@@ -10,6 +10,7 @@ package Phwang.Theme.DTheme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Theme.ThemeRootClass;
 
 public class DThemeClass {
@@ -31,7 +32,7 @@ public class DThemeClass {
         this.dThemeParserObject = new DThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        //this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpClient("127.0.0.1", FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {

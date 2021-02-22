@@ -10,6 +10,7 @@ package Phwang.Theme.Utheme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Engine.DEngine.DEngineClass;
 import Phwang.Theme.ThemeRootClass;
 
@@ -30,7 +31,7 @@ public class UThemeClass {
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
-        //this.binderObject.BindAsTcpServer(Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        //this.binderObject.BindAsTcpServer(ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
