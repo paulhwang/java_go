@@ -26,8 +26,7 @@ public class DThemeClass implements ThreadInterface {
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
 
-    public DThemeClass(ThemeRootClass theme_root_object_val)
-    {
+    public DThemeClass(ThemeRootClass theme_root_object_val) {
         this.debugIt(false, "DThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
@@ -45,8 +44,7 @@ public class DThemeClass implements ThreadInterface {
 		this.dThemeRreceiveThreadFunc();
 	}
 
-    public void dThemeRreceiveThreadFunc()
-    {
+    public void dThemeRreceiveThreadFunc() {
         this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
 
         return;//////////////////////////////////////
@@ -67,24 +65,11 @@ public class DThemeClass implements ThreadInterface {
         */
     }
 
-    public void TransmitData(String data_val)
-    {
+    public void TransmitData(String data_val) {
         this.binderObject.TransmitData(data_val);
     }
 
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
-        if (on_off_val)
-            this.logitIt(str0_val, str1_val);
-    }
-
-    private void logitIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
-    }
-
-    public void abendIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
-    }
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
+    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
+    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
 }

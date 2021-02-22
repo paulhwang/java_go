@@ -267,10 +267,8 @@ public class GoFightClass {
         this.theLastDeadStone = null;
     }
 
-    private void abendEngine()
-    {
-        if (!this.abendEngineOn)
-        {
+    private void abendEngine() {
+        if (!this.abendEngineOn) {
             return;
         }
         this.debugIt(false, "abendEngine", "is ON ***");
@@ -290,31 +288,23 @@ public class GoFightClass {
         int white_stone_count = 0;
         int board_size = this.ConfigObject().BoardSize();
 
-        for (int x = 0; x < board_size; x++)
-        {
-            for (int y = 0; y < board_size; y++)
-            {
-                if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_BLACK_STONE)
-                {
+        for (int x = 0; x < board_size; x++) {
+            for (int y = 0; y < board_size; y++) {
+                if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_BLACK_STONE) {
                     black_stone_count++;
-                    if (!this.blackGroupList().StoneExistWithinMe(x, y))
-                    {
+                    if (!this.blackGroupList().StoneExistWithinMe(x, y)) {
                         this.abendIt("abendEngine", "black stone does not exist in blackGroupList");
                     }
                 }
-                else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_WHITE_STONE)
-                {
+                else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_WHITE_STONE) {
                     white_stone_count++;
-                    if (!this.whiteGroupList().StoneExistWithinMe(x, y))
-                    {
+                    if (!this.whiteGroupList().StoneExistWithinMe(x, y)) {
                         this.abendIt("abendEngine", "white stone does not exist in whiteGroupList");
                     }
                 }
-                else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_EMPTY_STONE)
-                {
+                else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_EMPTY_STONE) {
                 }
-                else
-                {
+                else {
                     this.abendIt("abendEngine", "bad color in theBoardArray");
                 }
             }
@@ -322,53 +312,42 @@ public class GoFightClass {
 
         int black_stone_count1 = 0;
         int white_stone_count1 = 0;
-        for (int x = 0; x < board_size; x++)
-        {
-            for (int y = 0; y < board_size; y++)
-            {
-                if (this.blackGroupList().StoneExistWithinMe(x, y))
-                {
+        for (int x = 0; x < board_size; x++) {
+            for (int y = 0; y < board_size; y++) {
+                if (this.blackGroupList().StoneExistWithinMe(x, y)) {
                     black_stone_count1++;
 
-                    if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_BLACK_STONE)
-                    {
+                    if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_BLACK_STONE) {
                         this.abendIt("abendEngine", "black stone does not exist in theBoardArray");
                     }
 
-                    if (this.whiteGroupList().StoneExistWithinMe(x, y))
-                    {
+                    if (this.whiteGroupList().StoneExistWithinMe(x, y)) {
                         this.abendIt("abendEngine", "balck exist in wrong group list");
                     }
                 }
-                if (this.whiteGroupList().StoneExistWithinMe(x, y))
-                {
+                if (this.whiteGroupList().StoneExistWithinMe(x, y)) {
                     white_stone_count1++;
 
-                    if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_WHITE_STONE)
-                    {
+                    if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_WHITE_STONE) {
                         this.abendIt("abendEngine", "black stone does not exist in theBoardArray");
                     }
                 }
             }
         }
 
-        if (black_stone_count != black_stone_count1)
-        {
+        if (black_stone_count != black_stone_count1) {
             this.abendIt("abendEngine", "black_stone_count does not match");
         }
-        if (white_stone_count != white_stone_count1)
-        {
+        if (white_stone_count != white_stone_count1) {
             this.abendIt("abendEngine", "white_stone_count does not match");
         }
 
-        if (this.blackGroupList().TotalStoneCount() != black_stone_count)
-        {
+        if (this.blackGroupList().TotalStoneCount() != black_stone_count) {
             //printf("abendEngine   %d\n", this->blackGroupList()->totalStoneCount());
             //printf("abendEngine   %d\n", black_stone_count);
             this.abendIt("abendEngine", "black_stone count does not match");
         }
-        if (this.whiteGroupList().TotalStoneCount() != white_stone_count)
-        {
+        if (this.whiteGroupList().TotalStoneCount() != white_stone_count) {
             //printf("abendEngine   %d\n", this->whiteGroupList()->totalStoneCount());
             //printf("abendEngine   %d\n", white_stone_count);
             this.abendIt("abendEngine", "white count does not match");
@@ -391,19 +370,7 @@ public class GoFightClass {
         this.whiteEmptyGroupList().AbendGroupList();
     }
 
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
-        if (on_off_val)
-            this.logitIt(str0_val, str1_val);
-    }
-
-    private void logitIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
-    }
-
-    private void abendIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
-    }
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
+    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
+    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
 }

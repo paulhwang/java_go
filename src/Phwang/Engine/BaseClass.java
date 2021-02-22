@@ -27,20 +27,17 @@ public class BaseClass {
     public String RoomIdStr() { return this.roomIdStr; }
     public String BaseIdStr() { return this.baseIdStr; }
 
-    public BaseClass(String room_id_str_val)
-    {
+    public BaseClass(String room_id_str_val) {
         this.roomIdStr = room_id_str_val;
     }
 
-    public void BindListEntry(ListEntryClass list_entry_objectg_val)
-    {
+    public void BindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.baseId = this.listEntryObject.Id();
         this.baseIdStr = EncodeNumberClass.EncodeNumber(this.baseId, ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
     }
 
-    public String SetupBase(String input_data_val)
-    {
+    public String SetupBase(String input_data_val) {
         String input_data = input_data_val.substring(1);
 
         switch (input_data_val.charAt(0)) {
@@ -55,8 +52,7 @@ public class BaseClass {
         }
     }
 
-    public String ProcessInputData(String input_data_val)
-    {
+    public String ProcessInputData(String input_data_val) {
         String input_data = input_data_val.substring(1);
 
         switch (input_data_val.charAt(0)) {
@@ -70,20 +66,8 @@ public class BaseClass {
                 return err_msg;
         }
     }
-    
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
-        if (on_off_val)
-            this.logitIt(str0_val, str1_val);
-    }
 
-    private void logitIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
-    }
-
-    private void abendIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
-    }
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
+    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
+    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
 }

@@ -32,8 +32,7 @@ public class GoBoardClass {
     public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
     public void SetLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
 
-    public GoBoardClass(GoRootClass root_object_val)
-    {
+    public GoBoardClass(GoRootClass root_object_val) {
         this.theRootObject = root_object_val;
         this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
@@ -42,21 +41,17 @@ public class GoBoardClass {
 
     private final char GO_PROTOCOL_GAME_INFO = 'G';
 
-    public void EncodeBoard()
-    {
+    public void EncodeBoard() {
         this.theBoardOutputBuffer = "";
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().TotalMoves(), 3);
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().NextColor(), 1);
 
         int board_size = this.ConfigObject().BoardSize();
-        for (int i = 0; i < board_size; i++)
-        {
-            for (int j = 0; j < board_size; j++)
-            {
+        for (int i = 0; i < board_size; i++) {
+            for (int j = 0; j < board_size; j++) {
                 char c = '0';
-                switch (this.theBoardArray[i][j])
-                {
+                switch (this.theBoardArray[i][j]) {
                     case 1: c = '1'; break;
                     case 2: c = '2'; break;
                 }
@@ -73,10 +68,8 @@ public class GoBoardClass {
         this.debugIt(false, "encodeBoard", this.theBoardOutputBuffer);
     }
 
-    public void AddStoneToBoard(int x_val, int y_val, int color_val)
-    {
-        if (!this.ConfigObject().IsValidCoordinates(x_val, y_val))
-        {
+    public void AddStoneToBoard(int x_val, int y_val, int color_val) {
+        if (!this.ConfigObject().IsValidCoordinates(x_val, y_val)) {
             this.abendIt("addStoneToBoard", "bad coordinate");
             return;
         }
@@ -84,47 +77,36 @@ public class GoBoardClass {
         this.theBoardArray[x_val][y_val] = color_val;
     }
 
-    private Boolean isEmptySpace(int x_val, int y_val)
-    {
-        if (!this.theRootObject.ConfigObject().IsValidCoordinates(x_val, y_val))
-        {
+    private Boolean isEmptySpace(int x_val, int y_val) {
+        if (!this.theRootObject.ConfigObject().IsValidCoordinates(x_val, y_val)) {
             return false;
         }
-        if (this.theBoardArray[x_val][y_val] != GoDefineClass.GO_EMPTY_STONE)
-        {
+        if (this.theBoardArray[x_val][y_val] != GoDefineClass.GO_EMPTY_STONE) {
             return false;
         }
         return true;
     }
 
-    public Boolean StoneHasAir(int x_val, int y_val)
-    {
-        if (this.isEmptySpace(x_val, y_val - 1))
-        {
+    public Boolean StoneHasAir(int x_val, int y_val) {
+        if (this.isEmptySpace(x_val, y_val - 1)) {
             return true;
         }
-        if (this.isEmptySpace(x_val, y_val + 1))
-        {
+        if (this.isEmptySpace(x_val, y_val + 1)) {
             return true;
         }
-        if (this.isEmptySpace(x_val - 1, y_val))
-        {
+        if (this.isEmptySpace(x_val - 1, y_val)) {
             return true;
         }
-        if (this.isEmptySpace(x_val + 1, y_val))
-        {
+        if (this.isEmptySpace(x_val + 1, y_val)) {
             return true;
         }
         return false;
     }
 
-    public void ResetBoardObjectData()
-    {
+    public void ResetBoardObjectData() {
         int board_size = this.ConfigObject().BoardSize();
-        for (int i = 0; i < board_size; i++)
-        {
-            for (int j = 0; j < board_size; j++)
-            {
+        for (int i = 0; i < board_size; i++) {
+            for (int j = 0; j < board_size; j++) {
                 this.theBoardArray[i][j] = GoDefineClass.GO_EMPTY_STONE;
                 this.theMarkedBoardArray[i][j] = GoDefineClass.GO_EMPTY_STONE;
             }
@@ -134,31 +116,16 @@ public class GoBoardClass {
         this.ClearLastDeadStone();
     }
 
-    public void ResetMarkedBoardObjectData()
-    {
+    public void ResetMarkedBoardObjectData() {
 
     }
 
-    public void ClearLastDeadStone()
-    {
+    public void ClearLastDeadStone() {
         this.theLastDeadX = 19;
         this.theLastDeadY = 19;
     }
 
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val)
-    {
-        if (on_off_val)
-            this.logitIt(str0_val, str1_val);
-    }
-
-    private void logitIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
-    }
-
-    private void abendIt(String str0_val, String str1_val)
-    {
-        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
-    }
-
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
+    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
+    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
 }
