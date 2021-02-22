@@ -10,7 +10,6 @@ package Phwang.Fabric.LinkMgr;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ListMgr.ListMgrInterface;
-import Phwang.Utils.ListMgr.CompareObjectInterface;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
