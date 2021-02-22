@@ -9,31 +9,46 @@
 package Phwang.FrontEnd;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
+import Phwang.Utils.Binder.BinderClass;
+import Phwang.Protocols.FabricFrontEndProtocolClass;
 
-public class FrontEndFabricClass {
-    private String objectName() {return "FrontEndFabricClass";}
+public class FrontEndFabricClass implements ThreadInterface {
+    private String objectName() {return "UFrontEndClass";}
+    private String receiveThreadName() { return "UFrontEndReceiveThread"; }
 
     private FrontEndRootClass frontEndRootObject;
-    //private PhwangUtils.BinderClass binderObject { get; }
+    private BinderClass binderObject;
     private FrontEndJobMgrClass frontEndJobMgrObject;
-    //private Thread receiveThread { get; set; }
     private boolean stopReceiveThreadFlag;
+    
+    public FrontEndRootClass FrontEndRootObject() { return this.frontEndRootObject; }
+    private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
 
-    public FrontEndFabricClass(FrontEndRootClass root_object_val)
-    {
+    public FrontEndFabricClass(FrontEndRootClass root_object_val) {
         this.debugIt(false, "FrontEndFabricClass", "init start");
         
         this.frontEndRootObject = root_object_val;
         this.stopReceiveThreadFlag = false;
-        //this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+        this.binderObject = new BinderClass(this.objectName());
         this.frontEndJobMgrObject = new FrontEndJobMgrClass(this);
-        //this.receiveThread = new Thread(this.receiveThreadFunc);
-        //this.receiveThread.Start();
-        //this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
-    public void StopReceiveThread()
-    {
+    public void startThreads() {
+    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
+     }
+    
+	public void ThreadCallbackFunction() {
+		this.UFrontEndReceiveThreadFunc();
+	}
+    
+    private void UFrontEndReceiveThreadFunc() {
+        this.debugIt(true, "UFrontEndReceiveThreadFunc", "start " + this.receiveThreadName());
+    }
+    
+    public void StopReceiveThread() {
         this.stopReceiveThreadFlag = true;
     }
 
