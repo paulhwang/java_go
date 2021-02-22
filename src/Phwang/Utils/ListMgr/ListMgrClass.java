@@ -34,8 +34,7 @@ public class ListMgrClass {
     public int MaxIndex() { return this.maxIndex; }
     public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
 
-    public ListMgrClass(String caller_name_val, int first_global_id_val)
-    {
+    public ListMgrClass(String caller_name_val, int first_global_id_val) {
         this.debugIt(false, "ListMgrClass", "init start (" + caller_name_val + ")");
 
         this.theCallerName = caller_name_val;
@@ -96,13 +95,11 @@ public class ListMgrClass {
                 return i;
             }
         }
-
         this.abendIt("allocEntryIndex", "out of entry_index");
         return -1;
     }
 
-    public void FreeEntry(ListEntryClass entry_val)
-    {
+    public void FreeEntry(ListEntryClass entry_val) {
         this.abendListMgrClass("before FreeEntry");
         this.theLock.lock();
         this.DoFreeEntry(entry_val);
@@ -124,7 +121,7 @@ public class ListMgrClass {
     	return entry;
     }
 
-    public ListEntryClass DoGetEntryById(int id_val) {
+    private ListEntryClass DoGetEntryById(int id_val) {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
@@ -136,30 +133,23 @@ public class ListMgrClass {
         return entry;
     }
 
-    //public delegate Boolean CompareStringFunc(object obj_val, String str_val);
-    @FunctionalInterface
-    public interface CompareStringFunc {
-        Boolean run(Object obj_val, String str_val);
-    }
-    
-    public ListEntryClass GetEntryByCompare(CompareStringFunc compare_func_val, String string_val) {
+    public ListEntryClass GetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
         this.abendListMgrClass("before GetEntryByCompare");
         this.theLock.lock();
-        ListEntryClass entry = DoGetEntryByCompare(compare_func_val, string_val);
+        ListEntryClass entry = DoGetEntryByCompare(calling_object_val, string_val);
         this.theLock.unlock();
         this.abendListMgrClass("after GetEntryByCompare");
     	return entry;
     }
     
-    public ListEntryClass DoGetEntryByCompare(CompareStringFunc compare_func_val, String string_val) {
+    private ListEntryClass DoGetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (compare_func_val.run(entryTableArray[i].Data(), string_val)) {
+            if (calling_object_val.CompareObjectFunc(entryTableArray[i].Data(), string_val)) {
                 entry = entryTableArray[i];
             }
         }
-
         return entry;
     }
 
@@ -197,5 +187,4 @@ public class ListMgrClass {
     public void abendIt(String str0_val, String str1_val) {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
-
 }
