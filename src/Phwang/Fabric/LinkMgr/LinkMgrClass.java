@@ -38,7 +38,7 @@ public class LinkMgrClass implements ListMgrInterface {
         LinkClass link = new LinkClass(my_name_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(link);
         link.BindListEntry(list_entry);
-        //this.nameListObject().UpdateNameList();
+        this.nameListObject().UpdateNameList();
         return link;
     }
 
