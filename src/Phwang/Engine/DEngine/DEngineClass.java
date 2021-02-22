@@ -79,8 +79,7 @@ public class DEngineClass {
     }
 }
 
-class DEngineReceiveRunnable implements Runnable
-{
+class DEngineReceiveRunnable implements Runnable {
 	DEngineClass theDEngineObject;
 	
 	public DEngineReceiveRunnable(DEngineClass d_engine_object_val) {
