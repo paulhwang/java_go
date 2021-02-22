@@ -16,13 +16,13 @@ public class FrontEndJobMgrClass {
 
     private static final int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
 
-    private FrontEndFabricClass frontEndFabricObject;
+    private UFrontClass frontEndFabricObject;
     private int nextAvailableJobId;
     private int maxAllowedJobId;
     private int maxJobArrayIndex;
     private FrontEndJobClass[] jobArray;
 
-    public FrontEndJobMgrClass(FrontEndFabricClass fabric_object_val) {
+    public FrontEndJobMgrClass(UFrontClass fabric_object_val) {
         this.debugIt(false, "FrontEndJobMgrClass", "init start");
 
         this.frontEndFabricObject = fabric_object_val;

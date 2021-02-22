@@ -15,18 +15,18 @@ public class FrontEndRootClass {
     private String objectName() {return "FrontEndRootClass";}
     
     private ThreadMgrClass threadMgrObject;
-    private FrontEndFabricClass uFrontEndObject;
+    private UFrontClass uFrontObject;
     
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    private FrontEndFabricClass UFrontEndObject() { return this.uFrontEndObject; }
+    private UFrontClass UFrontObject() { return this.uFrontObject; }
 
     public FrontEndRootClass() {
         this.debugIt(false, "FrontEndRootClass", "init start");
         
         this.threadMgrObject = new ThreadMgrClass();
-        this.uFrontEndObject = new FrontEndFabricClass(this);
+        this.uFrontObject = new UFrontClass(this);
         
-        this.UFrontEndObject().startThreads();
+        this.UFrontObject().startThreads();
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
