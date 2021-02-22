@@ -26,7 +26,7 @@ public class DEngineClass implements ThreadInterface {
     //private DEngineReceiveRunnable receiveRunable;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
-    public ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
+    private ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
     
     public DEngineClass(EngineRootClass engine_root_object_val) {
         this.debugIt(false, "DEngineClass", "init start");
