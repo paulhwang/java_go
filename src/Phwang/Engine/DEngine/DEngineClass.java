@@ -10,18 +10,20 @@ package Phwang.Engine.DEngine;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Engine.EngineRootClass;
 
-public class DEngineClass {
+public class DEngineClass implements ThreadInterface {
     private String objectName() {return "DEngineClass";}
+    private String receiveThreadName() { return "DEngineReceiveThread"; }
     
     private EngineRootClass engineRootObject;
     private DEngineParserClass dEngineParserObject;
     private BinderClass binderObject;
-    private Thread receiveThread;
-    private DEngineReceiveRunnable receiveRunable;
+    //private Thread receiveThread;
+    //private DEngineReceiveRunnable receiveRunable;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
     public ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
@@ -38,14 +40,18 @@ public class DEngineClass {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().CreateThreadObject("DEngineReceiveThread");
-        this.receiveRunable = new DEngineReceiveRunnable(this);
-        this.receiveThread = new Thread(this.receiveRunable);
-        this.receiveThread.start();
+    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
+        //this.receiveRunable = new DEngineReceiveRunnable(this);
+        //this.receiveThread = new Thread(this.receiveRunable);
+        //this.receiveThread.start();
      }
     
+	public void ThreadCallbackFunction() {
+		this.dEngineReceiveThreadFunc();
+	}
+    
     public void dEngineReceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start thread ***");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
 
         return;///////////////////////////////////////////////
         
@@ -81,7 +87,7 @@ public class DEngineClass {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
-
+/*
 class DEngineReceiveRunnable implements Runnable {
 	DEngineClass theDEngineObject;
 	
@@ -93,3 +99,4 @@ class DEngineReceiveRunnable implements Runnable {
 		this.theDEngineObject.dEngineReceiveThreadFunc();
 	}
 }
+*/

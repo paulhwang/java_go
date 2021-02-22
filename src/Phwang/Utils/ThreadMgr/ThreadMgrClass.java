@@ -18,10 +18,15 @@ public class ThreadMgrClass {
     	
     }
 
-    public ThreadClass CreateThreadObject(String thread_name_val) {
+    public ThreadClass CreateThreadObject(String thread_name_val, ThreadInterface calling_object_val) {
     	ThreadClass thread_object = new ThreadClass(thread_name_val);
-    	thread_object.StartThread();
+    	this.InsertToThreadList(thread_object);
+    	thread_object.StartThread(calling_object_val);
     	return thread_object;
+    }
+    
+    private void InsertToThreadList(ThreadClass thread_object_val) {
+    	
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
