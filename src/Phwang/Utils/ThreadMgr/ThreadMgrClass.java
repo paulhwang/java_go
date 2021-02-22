@@ -13,7 +13,16 @@ import Phwang.Utils.AbendClass;
 public class ThreadMgrClass {
     private String objectName() {return "ThreadMgrClass";}
 
+    public ThreadMgrClass() {
+        this.debugIt(false, "ThreadMgrClass", "init start");
+    	
+    }
 
+    public ThreadClass CreateThreadObject(String thread_name_val) {
+    	ThreadClass thread_class = new ThreadClass(thread_name_val);
+    	return thread_class;
+    }
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
         if (on_off_val)
             this.logitIt(str0_val, str1_val);

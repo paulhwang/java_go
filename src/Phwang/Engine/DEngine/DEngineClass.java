@@ -9,6 +9,7 @@
 package Phwang.Engine.DEngine;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Engine.EngineRootClass;
@@ -23,6 +24,7 @@ public class DEngineClass {
     private DEngineReceiveRunnable receiveRunable;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
+    public ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
     
     public DEngineClass(EngineRootClass engine_root_object_val) {
         this.debugIt(false, "DEngineClass", "init start");
@@ -36,6 +38,7 @@ public class DEngineClass {
     }
 
     public void startThreads() {
+    	this.ThreadMgrObject().CreateThreadObject("DEngineReceiveThread");
         this.receiveRunable = new DEngineReceiveRunnable(this);
         this.receiveThread = new Thread(this.receiveRunable);
         this.receiveThread.start();
