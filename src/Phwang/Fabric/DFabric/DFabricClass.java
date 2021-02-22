@@ -34,7 +34,7 @@ public class DFabricClass implements ThreadInterface {
         this.dFabricParserObject = new DFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
         
-        //this.binderObject.BindAsTcpServer(FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpServer(FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -46,7 +46,7 @@ public class DFabricClass implements ThreadInterface {
 	}
 
     public void dFabricRreceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         return;////////////////////////////////////////////
         

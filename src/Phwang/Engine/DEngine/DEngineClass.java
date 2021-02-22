@@ -46,7 +46,7 @@ public class DEngineClass implements ThreadInterface {
 	}
     
     public void dEngineReceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         return;///////////////////////////////////////////////
         

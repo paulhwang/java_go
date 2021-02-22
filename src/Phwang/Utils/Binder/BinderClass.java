@@ -16,11 +16,16 @@ import java.net.*;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Queue.ListQueueClass;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
+import Phwang.Utils.ThreadMgr.ThreadClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
 
-public class BinderClass {
+public class BinderClass implements ThreadInterface {
     private String objectName() {return "BinderClass";}
+    public String TcpServerThreadName() { return "TcpServerThread"; }
 
-    private String ownerObject;
+    private String ownerObjectName;
+    private ThreadClass tcpServerThreadObject;
     private Thread receiveThread;
     private Thread transmitThread;
     private BinderReceiveRunnable receiveRunable;
@@ -34,6 +39,7 @@ public class BinderClass {
     
     private ListQueueClass receiveQueue;
     
+    private String OwnerObjectName()  {return this.ownerObjectName; }
     public short Port() { return this.thePort; }
     public String ServerIpAddress() { return this.theServerIpAddress; }
     public Socket TcpConnection() { return this.theTcpConnection; }
@@ -43,8 +49,8 @@ public class BinderClass {
     public String TcpClientName() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostName() : ""; }
     public String TcpClientAddress() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostAddress() : ""; }
 
-    public BinderClass(String owner_object_var) {
-        this.ownerObject = owner_object_var;
+    public BinderClass(String owner_object_name_val) {
+        this.ownerObjectName = owner_object_name_val;
         this.receiveQueue = new ListQueueClass(true, 0);
     }
 
@@ -53,7 +59,7 @@ public class BinderClass {
 		this.theServerIpAddress = ip_addr_val;
     	try {
     		this.theTcpConnection = new Socket(this.ServerIpAddress(), this.Port());
-    		this.debugIt(true, "BindAsTcpClient", "connected!");
+    		this.debugIt(true, "BindAsTcpClient", this.OwnerObjectName() + " client connected");
             this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
     		createWorkingThreads();
@@ -66,21 +72,30 @@ public class BinderClass {
 
     public Boolean BindAsTcpServer(short port_val) {
 		this.thePort = port_val;
-        //TcpApiClass.MallocTcpServer(this, port_val, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
+    	this.tcpServerThreadObject = new ThreadClass(this.TcpServerThreadName(), this);
+    	return true;
+		//return BindAsTcpServer1();
+    }
+    
+	public void ThreadCallbackFunction() {
+		this.TcpServerThreadFunc();
+	}
+    
+    public void TcpServerThreadFunc() {
+        this.debugIt(false, "TcpServerThreadFunc", "start (" + this.OwnerObjectName() + " " + this.TcpServerThreadName() + ")");
+
     	try {
     		ServerSocket ss = new ServerSocket(this.Port());
     		this.theTcpConnection = ss.accept();
-    		this.debugIt(true, "BindAsTcpServer", "accepted!");
+    		this.debugIt(true, "BindAsTcpServer", this.OwnerObjectName() + " server accepted");
     		this.debugIt(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
     		this.debugIt(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
             this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
             this.createWorkingThreads();
             ss.close();
-            return true;
     	}
     	catch (Exception e) {
-    		return false;
     	}
     }
     

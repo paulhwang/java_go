@@ -33,7 +33,7 @@ public class UThemeClass implements ThreadInterface {
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
-        //this.binderObject.BindAsTcpServer(ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpServer(ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -45,7 +45,7 @@ public class UThemeClass implements ThreadInterface {
 	}
 
     public void uThemeRreceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         return;////////////////////////////////
         

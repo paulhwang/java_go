@@ -20,10 +20,11 @@ public class ThreadClass implements Runnable {
 	
     public String ThreadName( ) { return this.threadName; }
     
-    public ThreadClass(String thread_name_val) {
+    public ThreadClass(String thread_name_val, ThreadInterface calling_object_val) {
         this.debugIt(false, "ThreadClass", "init start");
     	
         this.threadName = thread_name_val;
+    	this.StartThread(calling_object_val);
     }
     
     public void StartThread(ThreadInterface calling_object_val) {

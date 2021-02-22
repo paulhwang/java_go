@@ -39,7 +39,7 @@ public class UFabricClass implements ThreadInterface {
         this.fabricRootObject = fabric_root_class_val;
         this.uFabricParserObject = new UFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
-        //this.binderObject.BindAsTcpServer(FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpServer(FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -51,7 +51,7 @@ public class UFabricClass implements ThreadInterface {
 	}
 
     public void uFabricRreceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         return;////////////////////////////////////
         
