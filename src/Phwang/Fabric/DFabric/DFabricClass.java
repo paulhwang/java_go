@@ -10,21 +10,23 @@ package Phwang.Fabric.DFabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Fabric.FabricRootClass;
 import Phwang.Fabric.UFabric.UFabricClass;
 
-public class DFabricClass {
+public class DFabricClass implements ThreadInterface {
     private String objectName() {return "DFabricClass";}
+    private String receiveThreadName() { return "DFabricReceiveThread"; }
     
     private FabricRootClass fabricRootObject;
     private DFabricParserClass dFabricParserObject;
     public BinderClass binderObject;
-    private Thread receiveThread;
-    private DFabricReceiveRunnable receiveRunable;
 
     public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
-    
+    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().ThreadMgrObject();}
+  
     public DFabricClass(FabricRootClass fabric_root_class_val) {
         this.debugIt(false, "DFabricClass", "init start");
         
@@ -36,13 +38,15 @@ public class DFabricClass {
     }
 
     public void startThreads() {
-        this.receiveRunable = new DFabricReceiveRunnable(this);
-        this.receiveThread = new Thread(this.receiveRunable);
-        this.receiveThread.start();
+    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
     }
+    
+	public void ThreadCallbackFunction() {
+		this.dFabricRreceiveThreadFunc();
+	}
 
     public void dFabricRreceiveThreadFunc() {
-        this.debugIt(true, "dFabricRreceiveThreadFunc", "start thread ***");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
 
         return;////////////////////////////////////////////
         
@@ -76,17 +80,4 @@ public class DFabricClass {
     public void abendIt(String str0_val, String str1_val) {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
-}
-
-class DFabricReceiveRunnable implements Runnable
-{
-	DFabricClass theDFabricObject;
-	
-	public DFabricReceiveRunnable(DFabricClass d_fabric_object_val) {
-		this.theDFabricObject = d_fabric_object_val;
-	}
-	
-	public void run() {
-		this.theDFabricObject.dFabricRreceiveThreadFunc();
-	}
 }

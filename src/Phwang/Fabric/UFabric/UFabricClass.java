@@ -10,12 +10,16 @@ package Phwang.Fabric.UFabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Fabric.FabricRootClass;
+import Phwang.Theme.ThemeRootClass;
 import Phwang.Theme.Utheme.UThemeClass;
 
-public class UFabricClass {
+public class UFabricClass implements ThreadInterface {
     private String objectName() {return "UFabricClass";}
+    private String receiveThreadName() { return "UFabricReceiveThread"; }
     
     private static final String FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
     
@@ -26,10 +30,9 @@ public class UFabricClass {
     private FabricRootClass fabricRootObject;
     private UFabricParserClass uFabricParserObject;
     public BinderClass binderObject;
-    private Thread receiveThread;
-    private UFabricReceiveRunnable receiveRunable;
-
+    
     public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
+    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().ThreadMgrObject();}
 
     public UFabricClass(FabricRootClass fabric_root_class_val) {
         this.debugIt(false, "UFabricClass", "init start");
@@ -40,13 +43,15 @@ public class UFabricClass {
     }
 
     public void startThreads() {
-        this.receiveRunable = new UFabricReceiveRunnable(this);
-        this.receiveThread = new Thread(this.receiveRunable);
-        this.receiveThread.start();
+    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
      }
+    
+	public void ThreadCallbackFunction() {
+		this.uFabricRreceiveThreadFunc();
+	}
 
     public void uFabricRreceiveThreadFunc() {
-        this.debugIt(true, "uFabricRreceiveThreadFunc", "start thread ***");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
 
         return;////////////////////////////////////
         
@@ -83,17 +88,3 @@ public class UFabricClass {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
-
-class UFabricReceiveRunnable implements Runnable
-{
-	UFabricClass theUFabricObject;
-	
-	public UFabricReceiveRunnable(UFabricClass u_fabric_object_val) {
-		this.theUFabricObject = u_fabric_object_val;
-	}
-	
-	public void run() {
-		this.theUFabricObject.uFabricRreceiveThreadFunc();
-	}
-}
-

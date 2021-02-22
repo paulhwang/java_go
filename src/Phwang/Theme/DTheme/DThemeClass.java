@@ -10,19 +10,21 @@ package Phwang.Theme.DTheme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Theme.ThemeRootClass;
 
-public class DThemeClass {
+public class DThemeClass implements ThreadInterface {
     private String objectName() {return "DThemeClass";}
+    private String receiveThreadName() { return "DThemeReceiveThread"; }
 
     private ThemeRootClass themeRootObject;
     private DThemeParserClass dThemeParserObject;
     private BinderClass binderObject;
-    private Thread receiveThread;
-    private DThemeReceiveRunnable receiveRunable;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
+    private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
 
     public DThemeClass(ThemeRootClass theme_root_object_val)
     {
@@ -36,14 +38,16 @@ public class DThemeClass {
     }
 
     public void startThreads() {
-        this.receiveRunable = new DThemeReceiveRunnable(this);
-        this.receiveThread = new Thread(this.receiveRunable);
-        this.receiveThread.start();
+    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
      }
+    
+	public void ThreadCallbackFunction() {
+		this.dThemeRreceiveThreadFunc();
+	}
 
     public void dThemeRreceiveThreadFunc()
     {
-        this.debugIt(true, "dThemeRreceiveThreadFunc", "start thread ***");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
 
         return;//////////////////////////////////////
         
@@ -84,17 +88,3 @@ public class DThemeClass {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
-
-class DThemeReceiveRunnable implements Runnable
-{
-	DThemeClass theDThemeObject;
-	
-	public DThemeReceiveRunnable(DThemeClass d_theme_object_val) {
-		this.theDThemeObject = d_theme_object_val;
-	}
-	
-	public void run() {
-		this.theDThemeObject.dThemeRreceiveThreadFunc();
-	}
-}
-

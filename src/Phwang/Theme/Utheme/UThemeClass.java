@@ -10,20 +10,22 @@ package Phwang.Theme.Utheme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Binder.BinderClass;
+import Phwang.Utils.ThreadMgr.ThreadInterface;
+import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Engine.DEngine.DEngineClass;
 import Phwang.Theme.ThemeRootClass;
 
-public class UThemeClass {
+public class UThemeClass implements ThreadInterface {
     private String objectName() {return "UThemeClass";}
+    private String receiveThreadName() { return "UThemeReceiveThread"; }
 
     private ThemeRootClass themeRootObject;
     private UThemeParserClass uThemeParserObject;
     public BinderClass binderObject;
-    private Thread receiveThread;
-    private UThemeReceiveRunnable receiveRunable;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
+    private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
 
     public UThemeClass(ThemeRootClass theme_root_object_val) {
         this.debugIt(false, "UThemeClass", "init start");
@@ -35,13 +37,15 @@ public class UThemeClass {
     }
 
     public void startThreads() {
-        this.receiveRunable = new UThemeReceiveRunnable(this);
-        this.receiveThread = new Thread(this.receiveRunable);
-        this.receiveThread.start();
+    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
      }
+    
+	public void ThreadCallbackFunction() {
+		this.uThemeRreceiveThreadFunc();
+	}
 
     public void uThemeRreceiveThreadFunc() {
-        this.debugIt(true, "uThemeRreceiveThreadFunc", "start thread ***");
+        this.debugIt(true, "dEngineReceiveThreadFunc", "start (" + this.receiveThreadName() + ")");
 
         return;////////////////////////////////
         
@@ -78,17 +82,3 @@ public class UThemeClass {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
-
-class UThemeReceiveRunnable implements Runnable
-{
-	UThemeClass theUThemeObject;
-	
-	public UThemeReceiveRunnable(UThemeClass u_theme_object_val) {
-		this.theUThemeObject = u_theme_object_val;
-	}
-	
-	public void run() {
-		this.theUThemeObject.uThemeRreceiveThreadFunc();
-	}
-}
-

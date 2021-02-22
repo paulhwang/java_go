@@ -22,8 +22,6 @@ public class DEngineClass implements ThreadInterface {
     private EngineRootClass engineRootObject;
     private DEngineParserClass dEngineParserObject;
     private BinderClass binderObject;
-    //private Thread receiveThread;
-    //private DEngineReceiveRunnable receiveRunable;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
@@ -41,9 +39,6 @@ public class DEngineClass implements ThreadInterface {
 
     public void startThreads() {
     	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
-        //this.receiveRunable = new DEngineReceiveRunnable(this);
-        //this.receiveThread = new Thread(this.receiveRunable);
-        //this.receiveThread.start();
      }
     
 	public void ThreadCallbackFunction() {
@@ -87,16 +82,3 @@ public class DEngineClass implements ThreadInterface {
         AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
     }
 }
-/*
-class DEngineReceiveRunnable implements Runnable {
-	DEngineClass theDEngineObject;
-	
-	public DEngineReceiveRunnable(DEngineClass d_engine_object_val) {
-		this.theDEngineObject = d_engine_object_val;
-	}
-	
-	public void run() {
-		this.theDEngineObject.dEngineReceiveThreadFunc();
-	}
-}
-*/
