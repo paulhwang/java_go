@@ -9,6 +9,7 @@
 package Phwang.Protocols;
 
 public class ThemeEngineProtocolClass {
+    public static final String BASE_MGR_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS = "127.0.0.1";
     public static final short BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8005;
 
     public static final int THEME_ROOM_ID_SIZE = 4;

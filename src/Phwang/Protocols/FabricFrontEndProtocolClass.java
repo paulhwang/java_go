@@ -9,6 +9,7 @@
 package Phwang.Protocols;
 
 public class FabricFrontEndProtocolClass {
+    public static final String LINK_MGR_PROTOCOL_SERVER_IP_ADDRESS = "127.0.0.1";
     public static final short LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8006;
 
     public static final int AJAX_MAPING_ID_SIZE = 3;

@@ -26,6 +26,7 @@ public class BinderClass implements ThreadInterface {
     public String TcpClientThreadName() { return "TcpClientThread"; }
 
     private String ownerObjectName;
+    private String bindAs = null;
     private ThreadClass tcpServerThreadObject;
     private ThreadClass tcpClientThreadObject;
     private Thread receiveThread;
@@ -57,6 +58,12 @@ public class BinderClass implements ThreadInterface {
     }
 
     public Boolean BindAsTcpServer(Boolean create_server_thread_val, short port_val) {
+    	if (this.bindAs != null) {
+            this.abendIt("BindAsTcpServer", "bindAs is not null");
+    		return false;
+    	}
+    	this.bindAs = "Server";
+    	
 		this.thePort = port_val;
 		
 		if (create_server_thread_val) {
@@ -69,7 +76,17 @@ public class BinderClass implements ThreadInterface {
     }
     
 	public void ThreadCallbackFunction() {
-		this.TcpServerThreadFunc();
+		if (this.bindAs == "Server") {
+			this.TcpServerThreadFunc();
+			return;
+		}
+		
+		if (this.bindAs == "Client") {
+			this.TcpClientThreadFunc();
+			return;
+		}
+		
+        this.abendIt("binderReceiveThreadFunc", "not server or client");
 	}
     
     public Boolean TcpServerThreadFunc() {
@@ -93,7 +110,13 @@ public class BinderClass implements ThreadInterface {
     }
 
     public Boolean BindAsTcpClient(Boolean create_client_thread_val, String ip_addr_val, short port_val) {
-		this.thePort = port_val;
+    	if (this.bindAs != null) {
+            this.abendIt("BindAsTcpServer", "bindAs is not null");
+    		return false;
+    	}
+    	this.bindAs = "Client";
+
+    	this.thePort = port_val;
 		this.theServerIpAddress = ip_addr_val;
 		
 		if (create_client_thread_val) {

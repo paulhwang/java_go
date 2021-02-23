@@ -13,6 +13,7 @@ import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
+import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Theme.ThemeRootClass;
 
@@ -34,7 +35,7 @@ public class DThemeClass implements ThreadInterface {
         this.dThemeParserObject = new DThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        this.binderObject.BindAsTcpClient(false, "127.0.0.1", FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpClient(true, FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_SERVER_IP_ADDRESS, FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
