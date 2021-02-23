@@ -23,9 +23,11 @@ import Phwang.Utils.ThreadMgr.ThreadInterface;
 public class BinderClass implements ThreadInterface {
     private String objectName() {return "BinderClass";}
     public String TcpServerThreadName() { return "TcpServerThread"; }
+    public String TcpClientThreadName() { return "TcpClientThread"; }
 
     private String ownerObjectName;
     private ThreadClass tcpServerThreadObject;
+    private ThreadClass tcpClientThreadObject;
     private Thread receiveThread;
     private Thread transmitThread;
     private BinderReceiveRunnable receiveRunable;
@@ -54,34 +56,23 @@ public class BinderClass implements ThreadInterface {
         this.receiveQueue = new ListQueueClass(true, 0);
     }
 
-    public Boolean BindAsTcpClient(String ip_addr_val, short port_val) {
+    public Boolean BindAsTcpServer(Boolean create_server_thread_val, short port_val) {
 		this.thePort = port_val;
-		this.theServerIpAddress = ip_addr_val;
-    	try {
-    		this.theTcpConnection = new Socket(this.ServerIpAddress(), this.Port());
-    		this.debugIt(true, "BindAsTcpClient", this.OwnerObjectName() + " client connected");
-            this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
-            this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
-    		createWorkingThreads();
-    		return true;
-    	}
-    	catch (Exception e) {
-    		return false;
-    	}
-    }
-
-    public Boolean BindAsTcpServer(short port_val) {
-		this.thePort = port_val;
-    	this.tcpServerThreadObject = new ThreadClass(this.TcpServerThreadName(), this);
-    	return true;
-		//return BindAsTcpServer1();
+		
+		if (create_server_thread_val) {
+			this.tcpServerThreadObject = new ThreadClass(this.TcpServerThreadName(), this);
+			return true;
+		}
+		else {
+			return TcpServerThreadFunc();
+		}
     }
     
 	public void ThreadCallbackFunction() {
 		this.TcpServerThreadFunc();
 	}
     
-    public void TcpServerThreadFunc() {
+    public Boolean TcpServerThreadFunc() {
         this.debugIt(false, "TcpServerThreadFunc", "start (" + this.OwnerObjectName() + " " + this.TcpServerThreadName() + ")");
 
     	try {
@@ -94,8 +85,37 @@ public class BinderClass implements ThreadInterface {
             this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
             this.createWorkingThreads();
             ss.close();
+            return true;
     	}
     	catch (Exception e) {
+    		return false;
+    	}
+    }
+
+    public Boolean BindAsTcpClient(Boolean create_client_thread_val, String ip_addr_val, short port_val) {
+		this.thePort = port_val;
+		this.theServerIpAddress = ip_addr_val;
+		
+		if (create_client_thread_val) {
+			this.tcpClientThreadObject = new ThreadClass(this.TcpClientThreadName(), this);
+			return true;
+		}
+		else {
+			return TcpClientThreadFunc();
+		}
+    }
+
+    public Boolean TcpClientThreadFunc() {
+    	try {
+    		this.theTcpConnection = new Socket(this.ServerIpAddress(), this.Port());
+    		this.debugIt(true, "BindAsTcpClient", this.OwnerObjectName() + " client connected");
+            this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
+            this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
+    		createWorkingThreads();
+    		return true;
+    	}
+    	catch (Exception e) {
+    		return false;
     	}
     }
     

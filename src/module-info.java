@@ -13,6 +13,7 @@ module java_go {
 	exports Phwang.Utils.Queue;
 	exports Phwang.Theme.Utheme;
 	exports Phwang.Fabric.UFabric;
+	exports Phwang.Utils.ThreadMgr;
 	exports Phwang.Utils.ListMgr;
 	exports Phwang.Fabric.DFabric;
 	exports Phwang.Fabric.GroupMgr;
