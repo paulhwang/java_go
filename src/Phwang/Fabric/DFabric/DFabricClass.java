@@ -9,6 +9,7 @@
 package Phwang.Fabric.DFabric;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
@@ -46,22 +47,19 @@ public class DFabricClass implements ThreadInterface {
 	}
 
     public void dFabricRreceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debugIt(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
-        return;////////////////////////////////////////////
-        
-        /*
         String data;
         while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null) {
-                this.abendIt("receiveThreadFunc", "null data");
+                //this.abendIt("dFabricRreceiveThreadFunc", "null data");
+            	UtilsClass.sleep(1000);
                 continue;
             }
-            this.debugIt(true, "receiveThreadFunc", "data = " + data);
+            this.debugIt(true, "dFabricRreceiveThreadFunc", "data = " + data);
             this.dFabricParserObject.parseInputPacket(data);
         }
-        */
     }
 
     public void TransmitData(String data_val) {

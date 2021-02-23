@@ -9,6 +9,7 @@
 package Phwang.Theme.Utheme;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
@@ -45,24 +46,20 @@ public class UThemeClass implements ThreadInterface {
 	}
 
     public void uThemeRreceiveThreadFunc() {
-        this.debugIt(true, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debugIt(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
-        return;////////////////////////////////
-        
-        /*
         String data;
-        while (true)
-        {
+        while (true) {
             data = this.binderObject.ReceiveData();
-            if (data == null)
-            {
-                this.abendIt("receiveThreadFunc", "null data");
+            if (data == null) {
+                //this.abendIt("uThemeRreceiveThreadFunc", "null data");
+            	UtilsClass.sleep(1000);
                 continue;
             }
-            this.debugIt(true, "receiveThreadFunc", "data = " + data);
+            
+            this.debugIt(true, "uThemeRreceiveThreadFunc", "data = " + data);
             this.uThemeParserObject.ParseInputPacket(data);
         }
-        */
     }
 
     public void TransmitData(String data_val) {
