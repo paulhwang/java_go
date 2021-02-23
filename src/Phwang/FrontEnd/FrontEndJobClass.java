@@ -9,6 +9,7 @@
 package Phwang.FrontEnd;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.UtilsClass;
 
 public class FrontEndJobClass {
     private String objectName() {return "FrontEndJobClass";}
@@ -26,8 +27,10 @@ public class FrontEndJobClass {
     public String ReadData() {
         //this.theSignal.WaitOne();
         String data = this.theData;
-        if (data == null) {
-            this.abendIt("ReceiveData", "null data");
+        while (data == null) {
+            //this.abendIt("ReceiveData", "null data");
+            UtilsClass.sleep(1000);
+            continue;
         }
         return data;
     }

@@ -28,8 +28,7 @@ public class DFabricParserClass {
     private LinkMgrClass LinkMgrObject() { return this.FabricRootObject().LinkMgrObject(); }
     private GroupMgrClass GroupMgrObject() { return this.FabricRootObject().GroupMgrObject(); }
 
-    public DFabricParserClass(DFabricClass dfabric_object_val)
-    {
+    public DFabricParserClass(DFabricClass dfabric_object_val) {
         this.debugIt(false, "DFabricParserClass", "init start");
 
         this.dFabricObject = dfabric_object_val;

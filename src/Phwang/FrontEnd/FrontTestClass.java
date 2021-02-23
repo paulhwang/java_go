@@ -8,6 +8,9 @@
 
 package Phwang.FrontEnd;
 
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.UtilsClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
@@ -45,7 +48,8 @@ public class FrontTestClass implements ThreadInterface {
     }
     
     private void DoTest() {
-    	//String ajex_response_str = this.UFrontObject().ProcessAjaxRequestPacket("aaa");
+    	//JSONObject json = new JSONObject();
+    	String ajex_response_str = this.UFrontObject().ProcessAjaxRequestPacket("aaa");
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
