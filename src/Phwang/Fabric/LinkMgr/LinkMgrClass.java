@@ -64,7 +64,7 @@ public class LinkMgrClass implements ListMgrInterface {
 
     private Boolean CompareMyNameFunc(Object object_val, String my_name_val) {
         LinkClass link = (LinkClass) object_val;
-        return (link.MyName() == my_name_val);
+        return (link.MyName().equals(my_name_val));
     }
     
     public Boolean CompareObjectFunc(Object obj_val, String str_val) {
