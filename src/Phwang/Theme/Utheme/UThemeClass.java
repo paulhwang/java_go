@@ -34,7 +34,7 @@ public class UThemeClass implements ThreadInterface {
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
-        this.binderObject.BindAsTcpServer(true, ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {

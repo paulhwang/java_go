@@ -34,7 +34,7 @@ public class DEngineClass implements ThreadInterface {
         this.dEngineParserObject = new DEngineParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        this.binderObject.BindAsTcpClient(true, ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debugIt(false, "DEngineClass", "init done");
     }
 

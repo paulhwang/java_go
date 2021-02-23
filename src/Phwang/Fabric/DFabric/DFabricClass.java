@@ -35,7 +35,7 @@ public class DFabricClass implements ThreadInterface {
         this.dFabricParserObject = new DFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
         
-        this.binderObject.BindAsTcpServer(true, FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpServer(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {

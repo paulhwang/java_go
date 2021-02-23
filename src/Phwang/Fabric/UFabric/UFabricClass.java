@@ -40,7 +40,7 @@ public class UFabricClass implements ThreadInterface {
         this.fabricRootObject = fabric_root_class_val;
         this.uFabricParserObject = new UFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
-        this.binderObject.BindAsTcpServer(true, FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {

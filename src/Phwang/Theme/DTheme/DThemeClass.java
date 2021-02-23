@@ -35,7 +35,7 @@ public class DThemeClass implements ThreadInterface {
         this.dThemeParserObject = new DThemeParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        this.binderObject.BindAsTcpClient(true, FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_SERVER_IP_ADDRESS, FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.BindAsTcpClient(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_SERVER_IP_ADDRESS, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
