@@ -6,6 +6,7 @@ module java_go {
 	exports Phwang.Engine;
 	exports Phwang.Fabric.SessionMgr;
 	exports Phwang.Utils.Encode;
+	exports org.json.simple;
 	exports Phwang.Fabric.NameList;
 	exports Phwang.Protocols;
 	exports Phwang.Theme.DTheme;
@@ -24,5 +25,8 @@ module java_go {
 	exports Phwang.Utils.Binder;
 	exports Phwang.Utils.Tcp;
 	exports Phwang.Utils;
+	exports org.json.simple.parser;
 	exports Phwang.Fabric.LinkMgr;
+
+	requires java.xml;
 }
