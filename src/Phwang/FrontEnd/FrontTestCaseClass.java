@@ -9,6 +9,8 @@
 package Phwang.FrontEnd;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
@@ -28,6 +30,10 @@ class FrontTestCaseClass implements ThreadInterface {
     
     private FrontTestClass frontTestObject;
     private String indexString;
+    private String myNameString;
+    private String password = "Tennis";
+    private JSONParser parserObject;
+    private String linkIdString;
     
     public FrontEndRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
@@ -38,6 +44,8 @@ class FrontTestCaseClass implements ThreadInterface {
         
         this.frontTestObject = FrontTestClass;
         this.indexString = EncodeNumberClass.EncodeNumber(index_val, 3);
+        this.myNameString = "Test_" + this.indexString;
+        this.parserObject = new JSONParser();
     }
     
     public void startTestTest() {
@@ -54,22 +62,49 @@ class FrontTestCaseClass implements ThreadInterface {
         }
         catch (Exception ignore) {}
     	
-    	this.doTest();
+    	this.doSetupLink();
+    	this.doSetupSession();
     }
     
-    private void doTest() {
+    private void doSetupLink() {
     	JSONObject json_data = new JSONObject();
-    	json_data.put("my_name", "Test_" + this.indexString);
-    	json_data.put("password", "tennis");
-    	String json_str_data = json_data.toJSONString();
+    	json_data.put("my_name", this.myNameString);
+    	json_data.put("password", this.password);
+    	String str_json_data = json_data.toJSONString();
     	
-    	JSONObject json = new JSONObject();
-    	json.put("command", "setup_link");
-    	json.put("data", json_str_data);
-    	String json_str = json.toJSONString();
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "setup_link");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
     	
-    	String ajex_response_str = this.UFrontObject().ProcessAjaxRequestPacket(json_str);
-        this.debugIt(true, "DoTest", "ajex_response data=" + ajex_response_str);
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doTest", "ajex_response data=" + str_json_ajex_response);
+    	
+        try {
+        	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
+
+            String name = (String) json_ajex_response.get("my_name");
+            this.linkIdString = (String) json_ajex_response.get("link_id");
+            if (!this.myNameString.equals(name)) {
+            	this.abendIt("doTest", "name not match");
+            }
+        } catch (Exception e) {
+        	this.abendIt("parseInputPacket", "***Exception***");
+        }
+    }
+    
+    private void doSetupSession() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "setup_session");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doTest", "ajex_response data=" + str_json_ajex_response);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

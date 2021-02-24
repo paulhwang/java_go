@@ -58,7 +58,7 @@ public class DFabricParserClass {
             ajax_fabric_request.command = (String) json.get("command");
             ajax_fabric_request.data = (String) json.get("data");
         
-        } catch (Exception EX) {
+        } catch (Exception e) {
         	this.abendIt("parseInputPacket", "***Exception***");
         }
         

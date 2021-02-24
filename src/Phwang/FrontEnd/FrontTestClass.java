@@ -46,8 +46,8 @@ public class FrontTestClass implements ThreadInterface {
         }
         catch (Exception ignore) {}
     	
-        for (int j = 0; j <10; j++) {
-        	for (int i = 0; i < 5; i++) {
+        for (int j = 0; j <1; j++) {
+        	for (int i = 0; i < 1; i++) {
         		FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
         		test_case.startTestTest();
         	}
