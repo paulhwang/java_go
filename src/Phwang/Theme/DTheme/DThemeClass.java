@@ -63,6 +63,7 @@ public class DThemeClass implements ThreadInterface {
     }
 
     public void TransmitData(String data_val) {
+        this.debugIt(true, "TransmitData", "data = " + data_val);
         this.binderObject.TransmitData(data_val);
     }
 

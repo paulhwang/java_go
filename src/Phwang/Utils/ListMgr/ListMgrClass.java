@@ -113,8 +113,11 @@ public class ListMgrClass {
     }
 
     public ListEntryClass GetEntryById(int id_val) {
+        this.debugIt(true, "GetEntryById", "id_val=" + id_val);
         this.abendListMgrClass("before GetEntryById");
+        this.debugIt(true, "GetEntryById", "aaaaaid_val=" + id_val);
         this.theLock.lock();
+        this.debugIt(true, "GetEntryById", "bbbbbid_val=" + id_val);
     	ListEntryClass entry = DoGetEntryById(id_val);
     	this.theLock.unlock();
     	this.abendListMgrClass("after GetEntryById");
@@ -157,7 +160,9 @@ public class ListMgrClass {
     	if (!this.abendListMgrClassIsOn)
     		return;
     	
+        this.debugIt(true, "abendListMgrClass", "before=");
     	this.theLock.lock();
+        this.debugIt(true, "abendListMgrClass", "after=");
     	this.DoAbendListMgrClass(msg_val);
     	this.theLock.lock();
     }

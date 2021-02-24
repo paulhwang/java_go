@@ -25,11 +25,11 @@ public class UThemeParserClass {
     public DThemeClass DThemeObject() { return this.ThemeRootObject().DThemeObject(); }
     public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
-    public UThemeParserClass(UThemeClass u_theme_object_val)
-    {
+    public UThemeParserClass(UThemeClass u_theme_object_val) {
         this.debugIt(false, "UThemeParserClass", "init start");
         this.uThemeObject = u_theme_object_val;
     }
+    
     public void ParseInputPacket(String input_data_val) {
         this.debugIt(true, "ParseInputPacket", input_data_val);
         String command = input_data_val.substring(0, 1);
@@ -48,18 +48,22 @@ public class UThemeParserClass {
         this.abendIt("exportedparseFunction", command);
     }
 
-    private void processSetupBaseResponse(String input_data_val)
-    {
+    private void processSetupBaseResponse(String input_data_val) {
         this.debugIt(true, "processSetupBaseResponse", input_data_val);
 
         String room_id_str = input_data_val.substring(0, 4);
-        String base_id_str = input_data_val.substring(4);
+        String base_id_str = input_data_val.substring(4, 8);
+        
+        this.debugIt(true, "processSetupBaseResponse", "room_id_str=" + room_id_str);
+        this.debugIt(true, "processSetupBaseResponse", "base_id_str=" + base_id_str);
 
         RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
+        this.debugIt(true, "00000processSetupBaseResponse", "room_id_str=" + room_id_str);
         room_object.PutBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
         downlink_data = downlink_data + room_object.GroupIdStr() + room_object.RoomIdStr();
         this.DThemeObject().TransmitData(downlink_data);
+        this.debugIt(true, "processSetupBaseResponse", "11111room_id_str=" + room_id_str);
 
         /*
         char* room_id_index_val = data_val;
@@ -92,15 +96,13 @@ public class UThemeParserClass {
         */
     }
 
-    private void processPutBaseDataResponse(String input_data_val)
-    {
+    private void processPutBaseDataResponse(String input_data_val) {
         this.debugIt(true, "processPutBaseDataResponse", input_data_val);
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
 
         RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
-        if (room_object == null)
-        {
+        if (room_object == null) {
             this.abendIt("processPutBaseDataResponse", "null room");
             return;
         }

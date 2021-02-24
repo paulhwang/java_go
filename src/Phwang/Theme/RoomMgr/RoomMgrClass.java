@@ -37,13 +37,16 @@ public class RoomMgrClass {
     }
 
     public RoomClass GetRoomByRoomIdStr(String room_id_str_val) {
+        this.debugIt(false, "GetRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
         int room_id = EncodeNumberClass.DecodeNumber(room_id_str_val);
 
         return this.GetRoomByRoomId(room_id);
      }
 
     public RoomClass GetRoomByRoomId(int id_val) {
+        this.debugIt(true, "GetRoomByRoomId", "id_val=" + id_val);
         ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        this.debugIt(true, "88888GetRoomByRoomId", "id_val=" + id_val);
         if (list_entry == null) {
             return null;
         }

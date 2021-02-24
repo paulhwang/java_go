@@ -25,8 +25,7 @@ public class GoRootClass {
     public GoParseClass ParseObject() { return this.parseObject; }
     public GoFightClass FightObject() { return this.fightObject; }
 
-    public GoRootClass()
-    {
+    public GoRootClass() {
         this.configObject = new GoConfigClass(this);
         this.boardObject = new GoBoardClass(this);
         this.gameObject = new GoGameClass(this);
@@ -34,14 +33,12 @@ public class GoRootClass {
         this.parseObject = new GoParseClass(this);
     }
 
-    public String DoSetup(String input_data_val)
-    {
+    public String DoSetup(String input_data_val) {
         this.configObject.ConfigIt(input_data_val);
-        return null;
+        return "";
     }
 
-    public String ProcessInputData(String input_data_val)
-    {
+    public String ProcessInputData(String input_data_val) {
         this.parseObject.ParseInputData(input_data_val);
         this.boardObject.EncodeBoard();
         this.debugIt(true, "transmitBoardData", this.boardObject.BoardOutputBuffer());
