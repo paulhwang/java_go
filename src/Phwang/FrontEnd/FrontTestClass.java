@@ -41,7 +41,7 @@ public class FrontTestClass implements ThreadInterface {
 	}
     
     private void frontTestThreadFunc() {
-        this.debugIt(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
+        this.debugIt(false, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
         try {
         	Thread.sleep(1000);
         }

@@ -22,17 +22,17 @@ import Phwang.Utils.ThreadMgr.ThreadInterface;
 
 public class BinderClass implements ThreadInterface {
     private String objectName() {return "BinderClass";}
-    public String TcpServerThreadName() { return "TcpServerThread"; }
-    public String TcpClientThreadName() { return "TcpClientThread"; }
+    public String binderServerThreadName() { return "BinderServerThread"; }
+    public String binderClientThreadName() { return "BinderClientThread"; }
+    public String binderTransmitThreadName() { return "BinderTransmitThread"; }
+    public String binderReceiveThreadName() { return "BinderReceiveThread"; }
 
     private String ownerObjectName;
     private String whichThread = null;
-    private ThreadClass tcpServerThreadObject;
-    private ThreadClass tcpClientThreadObject;
-    private Thread receiveThread;
-    private Thread transmitThread;
-    private BinderReceiveRunnable receiveRunable;
-    private BinderTransmitRunnable transmitRunable;
+    private ThreadClass binderServerThreadObject;
+    private ThreadClass binderClientThreadObject;
+    private ThreadClass binderReceiveThreadObject;
+    private ThreadClass binderTransmitThreadObject;
     
     private String theServerIpAddress;
     private short thePort;
@@ -58,13 +58,25 @@ public class BinderClass implements ThreadInterface {
     }
     
 	public void ThreadCallbackFunction() {
-		if (this.whichThread.equals(this.TcpServerThreadName())) {
+		if (this.whichThread.equals(this.binderServerThreadName())) {
 			this.TcpServerThreadFunc();
 			return;
 		}
 		
-		if (this.whichThread.equals(this.TcpClientThreadName())) {
+		if (this.whichThread.equals(this.binderClientThreadName())) {
 			this.TcpClientThreadFunc();
+			return;
+		}
+		
+		
+		if (this.whichThread.equals(this.binderReceiveThreadName())) {
+			this.binderReceiveThreadFunc();
+			return;
+		}
+		
+		
+		if (this.whichThread.equals(this.binderTransmitThreadName())) {
+			this.binderTransmitThreadFunc();
 			return;
 		}
 		
@@ -76,12 +88,12 @@ public class BinderClass implements ThreadInterface {
             this.abendIt("BindAsTcpServer", "bindAs is not null");
     		return false;
     	}
-    	this.whichThread = this.TcpServerThreadName();
     	
 		this.thePort = port_val;
 		
 		if (create_server_thread_val) {
-			this.tcpServerThreadObject = new ThreadClass(this.TcpServerThreadName(), this);
+	    	this.whichThread = this.binderServerThreadName();
+			this.binderServerThreadObject = new ThreadClass(this.binderServerThreadName(), this);
 			return true;
 		}
 		else {
@@ -90,7 +102,7 @@ public class BinderClass implements ThreadInterface {
     }
     
     public Boolean TcpServerThreadFunc() {
-        this.debugIt(false, "TcpServerThreadFunc", "start (" + this.OwnerObjectName() + " " + this.TcpServerThreadName() + ")");
+        this.debugIt(false, "TcpServerThreadFunc", "start (" + this.OwnerObjectName() + " " + this.binderServerThreadName() + ")");
         this.whichThread = null;
         
     	try {
@@ -115,13 +127,13 @@ public class BinderClass implements ThreadInterface {
             this.abendIt("BindAsTcpServer", "bindAs is not null");
     		return false;
     	}
-    	this.whichThread = this.TcpClientThreadName();
 
     	this.thePort = port_val;
 		this.theServerIpAddress = ip_addr_val;
 		
 		if (create_client_thread_val) {
-			this.tcpClientThreadObject = new ThreadClass(this.TcpClientThreadName(), this);
+	    	this.whichThread = this.binderClientThreadName();
+			this.binderClientThreadObject = new ThreadClass(this.binderClientThreadName(), this);
 			return true;
 		}
 		else {
@@ -130,7 +142,7 @@ public class BinderClass implements ThreadInterface {
     }
 
     public Boolean TcpClientThreadFunc() {
-        this.debugIt(false, "TcpClientThreadFunc", "start (" + this.OwnerObjectName() + " " + this.TcpClientThreadName() + ")");
+        this.debugIt(false, "TcpClientThreadFunc", "start (" + this.OwnerObjectName() + " " + this.binderClientThreadName() + ")");
         this.whichThread = null;
 
         try {
@@ -154,17 +166,19 @@ public class BinderClass implements ThreadInterface {
     }
 */
     private void createWorkingThreads() {
-        this.receiveRunable = new BinderReceiveRunnable(this);
-        this.receiveThread = new Thread(this.receiveRunable);
-        this.receiveThread.start();
+    	this.whichThread = this.binderReceiveThreadName();
+		this.binderReceiveThreadObject = new ThreadClass(this.binderReceiveThreadName(), this);
 
-        this.transmitRunable = new BinderTransmitRunnable(this);
-        this.transmitThread = new Thread(this.transmitRunable);
-        this.transmitThread.start();
+        //this.transmitRunable = new BinderTransmitRunnable(this);
+        //this.transmitThread = new Thread(this.transmitRunable);
+        //this.transmitThread.start();
     }
 
     public void binderReceiveThreadFunc() {
         this.debugIt(false, "binderReceiveThreadFunc", "start thread ***");
+        
+    	this.whichThread = this.binderTransmitThreadName();
+		this.binderTransmitThreadObject = new ThreadClass(this.binderTransmitThreadName(), this);
         
         if (this.TcpConnection() == null) {
             this.abendIt("binderReceiveThreadFunc", "null networkStream");
@@ -190,6 +204,7 @@ public class BinderClass implements ThreadInterface {
 
     public void binderTransmitThreadFunc() {
         this.debugIt(false, "binderTransmitThreadFunc", "start thread ***");
+        this.whichThread = null;
         
         if (this.TcpConnection() == null) {
             this.abendIt("binderTransmitThreadFunc", "null networkStream");
@@ -230,30 +245,4 @@ public class BinderClass implements ThreadInterface {
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
     private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
     public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
-}
-
-class BinderReceiveRunnable implements Runnable
-{
-	BinderClass theBinderObject;
-	
-	public BinderReceiveRunnable(BinderClass binder_object_val) {
-		this.theBinderObject = binder_object_val;
-	}
-	
-	public void run() {
-		this.theBinderObject.binderReceiveThreadFunc();
-	}
-}
-
-class BinderTransmitRunnable implements Runnable
-{
-	BinderClass theBinderObject;
-	
-	public BinderTransmitRunnable(BinderClass binder_object_val) {
-		this.theBinderObject = binder_object_val;
-	}
-	
-	public void run() {
-		this.theBinderObject.binderTransmitThreadFunc();
-	}
 }
