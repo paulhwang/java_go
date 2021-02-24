@@ -8,11 +8,10 @@
 
 package Phwang.FrontEnd;
 
-//import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 import Phwang.Utils.AbendClass;
-import Phwang.Utils.UtilsClass;
+import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 
@@ -49,12 +48,58 @@ public class FrontTestClass implements ThreadInterface {
         
         this.debugIt(true, "frontTestThreadFunc", "++++++++start " + this.frontTestThreadName());
     	
-    	this.DoTest();
+        for (int i = 0; i < 5; i++) {
+        	FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
+            test_case.startTestTest();
+        }
+    }
+
+    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
+    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
+    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+}
+
+class FrontTestCaseClass implements ThreadInterface {
+    private String objectName() {return "FrontTestClass";}
+    private String frontTestCaseThreadName() { return "FrontTestCaseThread"; }
+    
+    private FrontTestClass frontTestObject;
+    private String indexString;
+    
+    public FrontEndRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
+    private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
+    private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
+
+    public FrontTestCaseClass(FrontTestClass FrontTestClass, int index_val) {
+        this.debugIt(false, "FrontTestClass", "init start");
+        
+        this.frontTestObject = FrontTestClass;
+        this.indexString = EncodeNumberClass.EncodeNumber(index_val, 3);
     }
     
-    private void DoTest() {
+    public void startTestTest() {
+    	this.ThreadMgrObject().CreateThreadObject(this.frontTestCaseThreadName(), this);
+     }
+
+	public void ThreadCallbackFunction() {
+		this.frontTestCaseThreadFunc();
+	}
+    
+    private void frontTestCaseThreadFunc() {
+        this.debugIt(false, "frontTestThreadFunc", "*******start " + this.frontTestCaseThreadName());
+        try {
+        	Thread.sleep(1000);
+        }
+        catch (Exception ignore) {}
+        
+        this.debugIt(true, "frontTestThreadFunc", "++++++++start " + this.frontTestCaseThreadName());
+    	
+    	this.doTest();
+    }
+    
+    private void doTest() {
     	JSONObject json_data = new JSONObject();
-    	json_data.put("my_name", "phwang");
+    	json_data.put("my_name", "Test_" + this.indexString);
     	json_data.put("password", "Oaktree");
     	String json_str_data = json_data.toJSONString();
     	
@@ -71,3 +116,4 @@ public class FrontTestClass implements ThreadInterface {
     private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
     public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
 }
+
