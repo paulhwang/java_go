@@ -79,7 +79,7 @@ public class FrontEndJobMgrClass {
         var found = false;
         for (index = 0; index < this.maxJobArrayIndex; index++) {
             if (this.jobArray[index] != null) {
-                if (this.jobArray[index].ajaxIdStr == ajax_id_str_val) {
+                if (this.jobArray[index].ajaxIdStr.equals(ajax_id_str_val)) {
                     found = true;
                     break;
                 }

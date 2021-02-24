@@ -62,28 +62,12 @@ public class DFabricParserClass {
         	this.abendIt("parseInputPacket", "***Exception***");
         }
         
-        String response_data;
+        this.logitIt("parseInputPacket", "command = " + ajax_fabric_request.command);
+        String response_data = null;
         if (ajax_fabric_request.command.equals("setup_link")) {
-            this.logitIt("parseInputPacket", "command = " + ajax_fabric_request.command);
             response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
         }
-
-        return;/////////////////////////////////////////////////////
-        /***********************************************
-        using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
-        {
-            DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormatClass));
-            ajax_fabric_request = (AjaxFabricRequestFormatClass)deseralizer.ReadObject(ms);
-            this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_val);
-            this.debugIt(true, "ParseAjaxPacket", "command = " + ajax_fabric_request.command);
-            this.debugIt(true, "ParseAjaxPacket", "data = " + ajax_fabric_request.data);
-        }
-        
-        String response_data;
-        if (ajax_fabric_request.command == "setup_link")
-        {
-            response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
-        }
+        /*
         else if (ajax_fabric_request.command == "get_link_data")
         {
             response_data = this.processGetLinkDataRequest(ajax_fabric_request.data);
@@ -116,8 +100,9 @@ public class DFabricParserClass {
         {
             response_data = "command " + ajax_fabric_request.command + " not supported";
         }
-        this.dFabricObject.TransmitData(adax_id + response_data);
         */
+        
+        this.dFabricObject.TransmitData(adax_id + response_data);
     }
     
     public class SetupLinkRequestFormatClass {
@@ -125,7 +110,7 @@ public class DFabricParserClass {
         public String password;
     }
 
-   private String processSetupLinkRequest(String input_data_val) {
+    private String processSetupLinkRequest(String input_data_val) {
         this.debugIt(true, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
         SetupLinkRequestFormatClass format_data = new SetupLinkRequestFormatClass();
@@ -139,13 +124,54 @@ public class DFabricParserClass {
             this.debugIt(false, "processSetupLinkRequest", "password = " + format_data.password);
 
             LinkClass link = this.LinkMgrObject().MallocLink(format_data.my_name);
-            String response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link.LinkIdStr(), link.MyName());
+            String response_data = this.generateSetupLinkResponse(link.LinkIdStr(), link.MyName());
             return response_data;
         } catch (Exception e) {
             return null;
         }
     }
-    
+   
+    public String generateSetupLinkResponse(String link_id_val, String my_name_val) {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("my_name", my_name_val);
+    	json_data.put("link_id", link_id_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
+   /*
+   [DataContract]
+   private class SetupLinkResponseFormatClass
+   {
+       [DataMember]
+       public string my_name { get; set; }
+
+       [DataMember]
+       public string link_id { get; set; }
+   }
+
+   public string GenerateSetupLinkResponse(string link_id_var, string my_name_var)
+   {
+       SetupLinkResponseFormatClass raw_data = new SetupLinkResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
+
+       this.debugIt(true, "GenerateSetupLinkResponse", "");
+       DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupLinkResponseFormatClass));
+       MemoryStream msObj = new MemoryStream();
+
+       js.WriteObject(msObj, raw_data);
+       msObj.Position = 0;
+
+       StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
+       string data = sr.ReadToEnd();
+       sr.Close();
+       msObj.Close();
+
+       this.debugIt(true, "GenerateSetupLinkResponse", "data = " + data);
+       string response_data = this.EncodeResponse("setup_link", data);
+       return response_data;
+   }
+*/
+	   
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
     private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
     public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
