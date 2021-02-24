@@ -47,6 +47,10 @@ public class ListQueueClass {
     	this.theLock.lock();
         this.EnqueueEntry(entry);
     	this.theLock.unlock();
+    	if (this.pendingThread != null) {
+    		pendingThread.interrupt();
+    		this.pendingThread = null;
+    	}
         this.AbendQueue("enqueueData end");
     }
     
