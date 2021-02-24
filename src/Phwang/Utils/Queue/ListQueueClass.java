@@ -16,16 +16,17 @@ public class ListQueueClass {
 
     private int QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE = 1000;
     private Boolean abendQueueIsOn = true;
+    private Thread pendingThread;
     private int theQueueLength;
     private QueueEntryClass QueueHead;
     private QueueEntryClass QueueTail;
     private int MaxQueueLength;
     private Lock theLock;
 
+    public void setPendingThread(Thread thread_val) { this.pendingThread = thread_val; }
     public int QueueLength() { return this.theQueueLength; }
 
-    public ListQueueClass(Boolean do_suspend_val, int max_length_val)
-    {
+    public ListQueueClass(Boolean do_suspend_val, int max_length_val) {
         this.debugIt(false, "ListQueueClass", "init start");
         
         this.MaxQueueLength = max_length_val;

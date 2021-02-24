@@ -223,9 +223,11 @@ public class BinderClass implements ThreadInterface {
     		String data = (String) this.receiveQueue.DequeueData();
     		if (data == null) {
     			try {
+    				this.receiveQueue.setPendingThread(null);
     				Thread.sleep(5000);
     			}
-    			catch (Exception e) {
+    			catch (InterruptedException e) {
+    	    		this.debugIt(true, "ReceivData", "interrupted*****");
     			}
     			continue;
     		}
