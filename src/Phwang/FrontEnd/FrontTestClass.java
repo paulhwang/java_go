@@ -64,6 +64,7 @@ public class FrontTestClass implements ThreadInterface {
     	String json_str = json.toJSONString();
     	
     	String ajex_response_str = this.UFrontObject().ProcessAjaxRequestPacket(json_str);
+        this.debugIt(true, "DoTest", "ajex_response data=" + ajex_response_str);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

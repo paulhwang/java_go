@@ -41,10 +41,10 @@ public class UFrontClass implements ThreadInterface {
      }
     
 	public void ThreadCallbackFunction() {
-		this.UFrontReceiveThreadFunc();
+		this.uFrontReceiveThreadFunc();
 	}
     
-    private void UFrontReceiveThreadFunc() {
+    private void uFrontReceiveThreadFunc() {
         this.debugIt(false, "UFrontReceiveThreadFunc", "start " + this.receiveThreadName());
         
         while (true) {
@@ -58,7 +58,7 @@ public class UFrontClass implements ThreadInterface {
             	continue;
             }
 
-            this.debugIt(true, "UFrontReceiveThreadFunc", "received_data=" + received_data);
+            this.debugIt(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             String response_data = received_data.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
@@ -85,6 +85,7 @@ public class UFrontClass implements ThreadInterface {
         FrontEndJobClass job_entry = this.frontEndJobMgrObject.MallocJobObject();
         this.binderObject.TransmitData(job_entry.ajaxIdStr + input_data_val);
         String response_data = job_entry.ReadData();
+        
         this.debugIt(true, "ProcessAjaxRequestPacket", "response_data = " + response_data);
         return response_data;
     }
