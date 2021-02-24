@@ -28,17 +28,18 @@ public class GoConfigClass {
     }
 
     public void ConfigIt(String input_data_val) {
+    	this.debugIt(false, "ConfigIt", "input_data_val=" + input_data_val);
+    	
         String len_str = input_data_val.substring(0,3);
-        String board_size_str = input_data_val.substring(3, 2);
-        String handicap_str = input_data_val.substring(5, 2);
-        String komi_str = input_data_val.substring(7, 2);
+        String board_size_str = input_data_val.substring(3, 5);
+        String handicap_str = input_data_val.substring(5, 7);
+        String komi_str = input_data_val.substring(7, 9);
 
         this.boardSize = EncodeNumberClass.DecodeNumber(board_size_str);
         this.handicapPoint = EncodeNumberClass.DecodeNumber(handicap_str);
         this.komiPoint = EncodeNumberClass.DecodeNumber(komi_str);
-
-        int len = input_data_val.length();//to be deleted
-        String name = input_data_val.substring(10);//to be deleted
+        
+    	this.debugIt(false, "ConfigIt", "boardSize=" + boardSize);
     }
 
     private Boolean isValidCoordinate(int coordinate_val) {

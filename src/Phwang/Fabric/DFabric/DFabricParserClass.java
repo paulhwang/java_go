@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import Phwang.Utils.AbendClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
+import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Fabric.LinkMgr.LinkMgrClass;
 import Phwang.Fabric.SessionMgr.SessionClass;
 import Phwang.Fabric.GroupMgr.GroupClass;
@@ -181,26 +182,24 @@ public class DFabricParserClass {
             	this.abendIt("processSetupSessionRequest", "null group");
                 return this.errorProcessSetupSession(format_data.link_id, "null group");
             }
-            this.debugIt(true, "processSetupSessionRequest111", "********111group created");
             group.InsertSession(session);
-            this.debugIt(true, "processSetupSessionRequest222", "********222group created");
             session.BindGroup(group);
             
             this.debugIt(true, "processSetupSessionRequest333", "********333group created");
 
             if (format_data.his_name.equals(link.MyName())) {
-                //this.mallocRoom(group, theme_data);
+                this.mallocRoom(group, theme_data);
             }
             else {
                 LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(format_data.his_name);
                 if (his_link == null)
                 {
-                    //return this.errorProcessSetupSession(format_data.link_id, "his_link does not exist");
+                    return this.errorProcessSetupSession(format_data.link_id, "his_link does not exist");
                 }
                 SessionClass his_session = his_link.MallocSession();
                 if (his_session == null)
                 {
-                    //return this.errorProcessSetupSession(format_data.link_id, "null his_session");
+                    return this.errorProcessSetupSession(format_data.link_id, "null his_session");
                 }
 
                 group.InsertSession(his_session);
@@ -214,6 +213,14 @@ public class DFabricParserClass {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private void mallocRoom(GroupClass group_val, String theme_info_val) {
+        String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
+        uplink_data = uplink_data + group_val.GroupIdStr();
+        uplink_data = uplink_data + theme_info_val;
+        this.FabricRootObject().UFabricObject().TransmitData(uplink_data);
+
     }
 
     private String errorProcessSetupSession(String link_id_val, String error_msg_val) {

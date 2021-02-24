@@ -35,14 +35,12 @@ public class DThemeParserClass {
         String command = data_val.substring(0, 1);
         String data = data_val.substring(1);
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM)
-        {
+        if (command.equals(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM)) {
             this.processSetupRoom(data);
             return;
         }
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA)
-        {
+        if (command.equals(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA)) {
             this.processPutRoomData(data);
             return;
         }

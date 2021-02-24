@@ -39,7 +39,7 @@ public class ArrayMgrClass {
         switch (this.arrayType)
         {
             case 'o': // object
-                //this.objectArrayTable = new object[this.maxArraySize];
+                this.objectArrayTable = new Object[this.maxArraySize];
                 break;
 
             case 's': // string
@@ -69,7 +69,7 @@ public class ArrayMgrClass {
             }
             i++;
         }
-
+        
         if (this.arraySize < this.maxArraySize) {
             this.objectArrayTable[this.arraySize] = object_val;
             this.arraySize++;

@@ -32,12 +32,12 @@ public class DEngineParserClass {
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
 
-        if (command == ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE) {
+        if (command.equals(ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE)) {
             this.processSetupBase(input_data);
             return;
         }
 
-        if (command == ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA) {
+        if (command.equals(ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA)) {
             this.processPutBaseData(input_data);
             return;
         }
