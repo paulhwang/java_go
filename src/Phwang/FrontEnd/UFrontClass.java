@@ -57,7 +57,10 @@ public class UFrontClass implements ThreadInterface {
                 this.abendIt("UFrontReceiveThreadFunc", "null data");
             	continue;
             }
-            
+
+            this.debugIt(true, "UFrontReceiveThreadFunc", "************************************** " + this.receiveThreadName());
+            this.debugIt(true, "UFrontReceiveThreadFunc", "received_data=" + received_data);
+
             String ajax_id_str = received_data.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             String response_data = received_data.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
 

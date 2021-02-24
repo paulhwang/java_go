@@ -47,7 +47,7 @@ public class DFabricParserClass {
         public String data;
     }
 
-    public void parseInputPacket(String input_data_val)    {
+    public void parseInputPacket(String input_data_val) {
         String adax_id = input_data_val.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
         String toDes = input_data_val.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
 
@@ -59,7 +59,7 @@ public class DFabricParserClass {
             ajax_fabric_request.data = (String) json.get("data");
         
         } catch (Exception EX) {
-        	
+        	this.abendIt("parseInputPacket", "***Exception***");
         }
         
         String response_data;
@@ -126,7 +126,7 @@ public class DFabricParserClass {
     }
 
    private String processSetupLinkRequest(String input_data_val) {
-        this.debugIt(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
+        this.debugIt(true, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
         SetupLinkRequestFormatClass format_data = new SetupLinkRequestFormatClass();
         try {
@@ -135,13 +135,13 @@ public class DFabricParserClass {
         	format_data.my_name = (String) json.get("my_name");
         	format_data.password = (String) json.get("password");
         	
-            this.debugIt(true, "processSetupLinkRequest", "my_name = " + format_data.my_name);
-            this.debugIt(true, "processSetupLinkRequest", "password = " + format_data.password);
+            this.debugIt(false, "processSetupLinkRequest", "my_name = " + format_data.my_name);
+            this.debugIt(false, "processSetupLinkRequest", "password = " + format_data.password);
 
             LinkClass link = this.LinkMgrObject().MallocLink(format_data.my_name);
             String response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link.LinkIdStr(), link.MyName());
             return response_data;
-        } catch (Exception EX) {
+        } catch (Exception e) {
             return null;
         }
     }

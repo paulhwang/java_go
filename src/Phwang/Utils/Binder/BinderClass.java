@@ -110,7 +110,7 @@ public class BinderClass implements ThreadInterface {
     	try {
     		ServerSocket ss = new ServerSocket(this.Port());
     		this.theTcpConnection = ss.accept();
-    		this.debugIt(true, "BindAsTcpServer", this.OwnerObjectName() + " server accepted");
+    		this.debugIt(false, "BindAsTcpServer", this.OwnerObjectName() + " server accepted");
     		this.debugIt(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
     		this.debugIt(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
             this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
@@ -149,7 +149,7 @@ public class BinderClass implements ThreadInterface {
 
         try {
     		this.theTcpConnection = new Socket(this.ServerIpAddress(), this.Port());
-    		this.debugIt(true, "BindAsTcpClient", this.OwnerObjectName() + " client connected");
+    		this.debugIt(false, "BindAsTcpClient", this.OwnerObjectName() + " client connected");
             this.theOutputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.theInputStream = new DataInputStream(this.TcpConnection().getInputStream());
     		createWorkingThreads();
@@ -181,7 +181,7 @@ public class BinderClass implements ThreadInterface {
         	try {
         		data = this.InputStream().readUTF();
         		if (data != null) {
-        			this.debugIt(true, "binderReceiveThreadFunc", "data = " + data);
+        			this.debugIt(false, "binderReceiveThreadFunc", "data = " + data);
         			this.receiveQueue.EnqueueData(data);
         		}
         		else {
@@ -210,18 +210,13 @@ public class BinderClass implements ThreadInterface {
     			continue;
     		}
     		
-            try {
-            	this.OutputStream().writeUTF(data);
-            }
-            catch (Exception e) { }
-    		
-    		this.debugIt(true, "ReceivData", "data = " + data);
+    		this.debugIt(false, "ReceivData", "data = " + data);
     		return data;
     	}
     }
 
     public void binderTransmitThreadFunc() {
-        this.debugIt(true, "binderTransmitThreadFunc", "start thread ***");
+        this.debugIt(false, "binderTransmitThreadFunc", "start thread ***");
         this.whichThread = null;
         
         if (this.TcpConnection() == null) {
