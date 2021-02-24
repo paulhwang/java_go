@@ -41,6 +41,7 @@ public class BinderClass implements ThreadInterface {
     private DataOutputStream theOutputStream;
     
     private ListQueueClass receiveQueue;
+    private ListQueueClass transmitQueue;
     
     private String OwnerObjectName()  {return this.ownerObjectName; }
     public short Port() { return this.thePort; }
@@ -55,16 +56,17 @@ public class BinderClass implements ThreadInterface {
     public BinderClass(String owner_object_name_val) {
         this.ownerObjectName = owner_object_name_val;
         this.receiveQueue = new ListQueueClass(true, 0);
+        this.transmitQueue = new ListQueueClass(true, 0);
     }
     
 	public void ThreadCallbackFunction() {
 		if (this.whichThread.equals(this.binderServerThreadName())) {
-			this.TcpServerThreadFunc();
+			this.tcpServerThreadFunc();
 			return;
 		}
 		
 		if (this.whichThread.equals(this.binderClientThreadName())) {
-			this.TcpClientThreadFunc();
+			this.tcpClientThreadFunc();
 			return;
 		}
 		
@@ -97,11 +99,11 @@ public class BinderClass implements ThreadInterface {
 			return true;
 		}
 		else {
-			return TcpServerThreadFunc();
+			return tcpServerThreadFunc();
 		}
     }
     
-    public Boolean TcpServerThreadFunc() {
+    public Boolean tcpServerThreadFunc() {
         this.debugIt(false, "TcpServerThreadFunc", "start (" + this.OwnerObjectName() + " " + this.binderServerThreadName() + ")");
         this.whichThread = null;
         
@@ -137,11 +139,11 @@ public class BinderClass implements ThreadInterface {
 			return true;
 		}
 		else {
-			return TcpClientThreadFunc();
+			return tcpClientThreadFunc();
 		}
     }
 
-    public Boolean TcpClientThreadFunc() {
+    public Boolean tcpClientThreadFunc() {
         this.debugIt(false, "TcpClientThreadFunc", "start (" + this.OwnerObjectName() + " " + this.binderClientThreadName() + ")");
         this.whichThread = null;
 
@@ -157,14 +159,7 @@ public class BinderClass implements ThreadInterface {
     		return false;
     	}
     }
-    
-    /*
-    private void binderTcpServerAcceptFunc(Object d_fabric_object_val, NetworkStream netwrok_stream_val) {
-        this.debugIt(true, "binderTcpServerAcceptFunc", "accepted!");
-        //this.networkStream = netwrok_stream_val;
-        this.createWorkingThreads();
-    }
-*/
+
     private void createWorkingThreads() {
     	this.whichThread = this.binderReceiveThreadName();
 		this.binderReceiveThreadObject = new ThreadClass(this.binderReceiveThreadName(), this);
@@ -201,23 +196,6 @@ public class BinderClass implements ThreadInterface {
         }
     }
 
-    public void binderTransmitThreadFunc() {
-        this.debugIt(false, "binderTransmitThreadFunc", "start thread ***");
-        this.whichThread = null;
-        
-        if (this.TcpConnection() == null) {
-            this.abendIt("binderTransmitThreadFunc", "null networkStream");
-            return;
-        }
-        return;///////////////////////////////////
-        
-        /*
-        while (true) {
-            //Thread.Sleep(10000);
-        }
-        */
-    }
-
     public String ReceiveData() {
     	while (true) {
     		String data = (String) this.receiveQueue.DequeueData();
@@ -232,24 +210,48 @@ public class BinderClass implements ThreadInterface {
     			continue;
     		}
     		
+            try {
+            	this.OutputStream().writeUTF(data);
+            }
+            catch (Exception e) { }
+    		
     		this.debugIt(true, "ReceivData", "data = " + data);
     		return data;
     	}
     }
 
-    public void TransmitRawData(String data_val) {
-        this.debugIt(false, "TransmitRawData", "data = " + data_val);
-        try {
-        	this.OutputStream().writeUTF(data_val);
+    public void binderTransmitThreadFunc() {
+        this.debugIt(true, "binderTransmitThreadFunc", "start thread ***");
+        this.whichThread = null;
+        
+        if (this.TcpConnection() == null) {
+            this.abendIt("binderTransmitThreadFunc", "null networkStream");
+            return;
         }
-        catch (Exception e) { }
-
-        //TcpServerClass.TcpTransmitData(this.networkStream, data_var);
+        
+		while (true) {
+			String data = (String) this.transmitQueue.DequeueData();
+			if (data == null) {
+				try {
+    				this.transmitQueue.setPendingThread(Thread.currentThread());
+					Thread.sleep(5000);
+				}
+				catch (InterruptedException e) {
+    	    		this.debugIt(false, "binderTransmitThreadFunc", "interrupted*****");
+				}
+				continue;
+        	}
+			
+	        try {
+	        	this.OutputStream().writeUTF(data);
+	        }
+	        catch (Exception e) { }
+        }
     }
 
     public void TransmitData(String data_val) {
         this.debugIt(false, "TransmitData", "data = " + data_val);
-        this.TransmitRawData(data_val);
+        this.transmitQueue.EnqueueData(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
