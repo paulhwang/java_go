@@ -85,7 +85,7 @@ class FrontTestCaseClass implements ThreadInterface {
     
     private void frontTestCaseThreadFunc() {
         try {
-        	Thread.sleep(1000);
+        	Thread.sleep(100);
         }
         catch (Exception ignore) {}
     	

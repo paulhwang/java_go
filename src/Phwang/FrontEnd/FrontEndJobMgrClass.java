@@ -10,6 +10,10 @@ package Phwang.FrontEnd;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 
 public class FrontEndJobMgrClass {
@@ -22,11 +26,13 @@ public class FrontEndJobMgrClass {
     private int maxAllowedJobId;
     private int maxJobArrayIndex;
     private FrontEndJobClass[] jobArray;
+    private Lock theLock;
 
     public FrontEndJobMgrClass(UFrontClass fabric_object_val) {
         this.debugIt(false, "FrontEndJobMgrClass", "init start");
 
         this.frontEndFabricObject = fabric_object_val;
+        this.theLock = new ReentrantLock();
 
         this.nextAvailableJobId = 0;
         this.setMaxAllowedJobId(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
@@ -44,6 +50,13 @@ public class FrontEndJobMgrClass {
     }
 
     public FrontEndJobClass MallocJobObject() {
+    	this.theLock.lock();
+    	FrontEndJobClass front_jab_object = this.doMallocJobObject();
+    	this.theLock.unlock();
+    	return front_jab_object;
+    }
+
+    private FrontEndJobClass doMallocJobObject() {
         this.incrementNextAvailableJobId();
         String ajax_id_str = EncodeNumberClass.EncodeNumber(this.nextAvailableJobId, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
         FrontEndJobClass ajax_entry_object = new FrontEndJobClass(ajax_id_str);
@@ -58,7 +71,7 @@ public class FrontEndJobMgrClass {
         }
     }
 
-    public void putJobObject(FrontEndJobClass val) {
+    private void putJobObject(FrontEndJobClass val) {
         for (var i = 0; i < this.maxJobArrayIndex; i++) {
             if (this.jobArray[i] == null) {
                 this.jobArray[i] = val;
@@ -74,6 +87,13 @@ public class FrontEndJobMgrClass {
     }
 
     public FrontEndJobClass GetJobObject(String ajax_id_str_val) {
+    	this.theLock.lock();
+    	FrontEndJobClass front_job_object = this.doGetJobObject(ajax_id_str_val);
+    	this.theLock.unlock();
+    	return front_job_object;
+    }
+
+    private FrontEndJobClass doGetJobObject(String ajax_id_str_val) {
         int index;
 
         var found = false;
