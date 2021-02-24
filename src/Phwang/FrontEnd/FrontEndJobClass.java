@@ -25,7 +25,7 @@ public class FrontEndJobClass {
     public String ReadData() {
         while (this.theData == null) {
         	try {
-                this.debugIt(true, "ReceiveData", "***sleep");
+                this.debugIt(false, "ReceiveData", "***sleep");
                 this.pendingThread = Thread.currentThread();
         		Thread.sleep(10000);
         	}

@@ -40,13 +40,11 @@ public class FrontTestClass implements ThreadInterface {
 	}
     
     private void frontTestThreadFunc() {
-        this.debugIt(false, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
+        this.debugIt(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
         try {
         	Thread.sleep(1000);
         }
         catch (Exception ignore) {}
-        
-        this.debugIt(true, "frontTestThreadFunc", "++++++++start " + this.frontTestThreadName());
     	
         for (int i = 0; i < 5; i++) {
         	FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
@@ -86,13 +84,10 @@ class FrontTestCaseClass implements ThreadInterface {
 	}
     
     private void frontTestCaseThreadFunc() {
-        this.debugIt(false, "frontTestThreadFunc", "*******start " + this.frontTestCaseThreadName());
         try {
         	Thread.sleep(1000);
         }
         catch (Exception ignore) {}
-        
-        this.debugIt(true, "frontTestThreadFunc", "++++++++start " + this.frontTestCaseThreadName());
     	
     	this.doTest();
     }
@@ -100,7 +95,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private void doTest() {
     	JSONObject json_data = new JSONObject();
     	json_data.put("my_name", "Test_" + this.indexString);
-    	json_data.put("password", "Oaktree");
+    	json_data.put("password", "tennis");
     	String json_str_data = json_data.toJSONString();
     	
     	JSONObject json = new JSONObject();
