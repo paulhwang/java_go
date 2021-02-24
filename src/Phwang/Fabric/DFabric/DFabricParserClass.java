@@ -67,40 +67,30 @@ public class DFabricParserClass {
         if (ajax_fabric_request.command.equals("setup_link")) {
             response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
         }
-        /*
-        else if (ajax_fabric_request.command == "get_link_data")
-        {
+        else if (ajax_fabric_request.command.equals("get_link_data")) {
             response_data = this.processGetLinkDataRequest(ajax_fabric_request.data);
         }
-        else if (ajax_fabric_request.command == "get_name_list")
-        {
+        else if (ajax_fabric_request.command.equals("get_name_list")) {
             response_data = this.processGetNameListRequest(ajax_fabric_request.data);
         }
-        else if (ajax_fabric_request.command == "setup_session")
-        {
+        else if (ajax_fabric_request.command.equals("setup_session")) {
             response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
         }
-        else if (ajax_fabric_request.command == "setup_session2")
-        {
-            response_data = this.processSetupSession2Request(ajax_fabric_request.data);
+        else if (ajax_fabric_request.command.equals("setup_session2")) {
+            response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
         }
-        else if (ajax_fabric_request.command == "setup_session3")
-        {
+        else if (ajax_fabric_request.command.equals("setup_session3")) {
             response_data = this.processSetupSession3Request(ajax_fabric_request.data);
         }
-        else if (ajax_fabric_request.command == "put_session_data")
-        {
+        else if (ajax_fabric_request.command.equals("put_session_data")) {
             response_data = this.processPutSessionDataRequest(ajax_fabric_request.data);
         }
-        else if (ajax_fabric_request.command == "get_session_data")
-        {
+        else if (ajax_fabric_request.command.equals("get_session_data")) {
             response_data = this.processGetSessionDataRequest(ajax_fabric_request.data);
         }
-        else
-        {
+        else {
             response_data = "command " + ajax_fabric_request.command + " not supported";
         }
-        */
         
         this.dFabricObject.TransmitData(adax_id + response_data);
     }
@@ -131,12 +121,54 @@ public class DFabricParserClass {
         }
     }
    
-    public String generateSetupLinkResponse(String link_id_val, String my_name_val) {
+    private String generateSetupLinkResponse(String link_id_val, String my_name_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("my_name", my_name_val);
     	json_data.put("link_id", link_id_val);
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
+    }
+
+    private String processSetupSessionRequest(String input_data_val) {
+        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
+    }
+
+    private String processGetLinkDataRequest(String input_data_val) {
+        this.debugIt(true, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
+    }
+
+    private String processGetNameListRequest(String input_data_val) {
+        this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
+    }
+
+    private String processSetupSession2Request(String input_data_val) {
+        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
+    }
+
+    private String processSetupSession3Request(String input_data_val) {
+        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
+    }
+
+    private String processPutSessionDataRequest(String input_data_val) {
+        this.debugIt(true, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
+    }
+
+    private String processGetSessionDataRequest(String input_data_val) {
+        this.debugIt(true, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
+
+        return "junk";
     }
 
    /*
