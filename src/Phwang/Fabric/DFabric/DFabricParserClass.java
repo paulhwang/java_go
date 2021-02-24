@@ -14,7 +14,10 @@ import org.json.simple.parser.JSONParser;
 import Phwang.Utils.AbendClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Fabric.LinkMgr.LinkMgrClass;
+import Phwang.Fabric.SessionMgr.SessionClass;
+import Phwang.Fabric.GroupMgr.GroupClass;
 import Phwang.Fabric.GroupMgr.GroupMgrClass;
+import Phwang.Fabric.GroupMgr.GroupClass;
 import Phwang.Fabric.FabricRootClass;
 import Phwang.Fabric.UFabric.UFabricClass;
 import Phwang.Fabric.LinkMgr.LinkClass;
@@ -101,7 +104,7 @@ public class DFabricParserClass {
     }
 
     private String processSetupLinkRequest(String input_data_val) {
-        this.debugIt(true, "processSetupLinkRequest", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
         SetupLinkRequestFormatClass format_data = new SetupLinkRequestFormatClass();
         try {
@@ -120,7 +123,6 @@ public class DFabricParserClass {
             return null;
         }
     }
-   
     private String generateSetupLinkResponse(String link_id_val, String my_name_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("my_name", my_name_val);
@@ -128,13 +130,7 @@ public class DFabricParserClass {
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
-
-    private String processSetupSessionRequest(String input_data_val) {
-        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
-
-        return "junk";
-    }
-
+    
     private String processGetLinkDataRequest(String input_data_val) {
         this.debugIt(true, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
@@ -145,6 +141,87 @@ public class DFabricParserClass {
         this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
         return "junk";
+    }
+    
+    public class SetupSessionRequestFormat {
+        public String link_id;
+        public String his_name;
+        public String theme_data;
+    }
+
+    private String processSetupSessionRequest(String input_data_val) {
+        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+
+        SetupSessionRequestFormat format_data = new SetupSessionRequestFormat();
+        try {
+        	JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	format_data.link_id = (String) json.get("link_id");
+        	format_data.his_name = (String) json.get("his_name");
+        	format_data.theme_data = (String) json.get("theme_data");
+        	
+            this.debugIt(true, "processSetupSessionRequest", "link_id = " + format_data.link_id);
+            this.debugIt(true, "processSetupSessionRequest", "his_name = " + format_data.his_name);
+            this.debugIt(true, "processSetupSessionRequest", "theme_data = " + format_data.theme_data);
+
+            String theme_id_str = format_data.theme_data.substring(0, FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
+            String theme_data = format_data.theme_data.substring(FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
+
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
+            if (link == null) {
+                return this.errorProcessSetupSession(format_data.link_id, "null group");
+            }
+            
+            this.debugIt(true, "processSetupSessionRequest", "link found");
+            
+            SessionClass session = link.MallocSession();
+            session.SetBrowserThemeIdStr(theme_id_str);
+            GroupClass group = this.GroupMgrObject().MallocGroup(theme_data);
+            if (group == null) {
+            	this.abendIt("processSetupSessionRequest", "null group");
+                return this.errorProcessSetupSession(format_data.link_id, "null group");
+            }
+            this.debugIt(true, "processSetupSessionRequest111", "********111group created");
+            group.InsertSession(session);
+            this.debugIt(true, "processSetupSessionRequest222", "********222group created");
+            session.BindGroup(group);
+            
+            this.debugIt(true, "processSetupSessionRequest333", "********333group created");
+
+            if (format_data.his_name.equals(link.MyName())) {
+                //this.mallocRoom(group, theme_data);
+            }
+            else {
+                LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(format_data.his_name);
+                if (his_link == null)
+                {
+                    //return this.errorProcessSetupSession(format_data.link_id, "his_link does not exist");
+                }
+                SessionClass his_session = his_link.MallocSession();
+                if (his_session == null)
+                {
+                    //return this.errorProcessSetupSession(format_data.link_id, "null his_session");
+                }
+
+                group.InsertSession(his_session);
+                his_session.BindGroup(group);
+
+                his_link.SetPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), theme_data);
+            }
+
+            String response_data = this.GenerateSetupSessionResponse(link.LinkIdStr(), session.SessionIdStr());
+            return response_data;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String errorProcessSetupSession(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
+
+    public String GenerateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
+    	return "junk";
     }
 
     private String processSetupSession2Request(String input_data_val) {
