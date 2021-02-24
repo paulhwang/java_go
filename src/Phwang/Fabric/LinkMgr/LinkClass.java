@@ -73,6 +73,7 @@ public class LinkClass {
     public void SetPendingSessionSetup3(String browser_theme_id_str_val, String session_id_str_val, String theme_data_val) {
         String data = browser_theme_id_str_val + session_id_str_val + theme_data_val;
         this.pendingSessionSetupQueue3.EnqueueData(data);
+        this.debugIt(true, "********************SetPendingSessionSetup3", "data =" + data);
         /*
         char* buf, *data_ptr;
 

@@ -101,9 +101,11 @@ public class ListMgrClass {
 
     public void FreeEntry(ListEntryClass entry_val) {
         this.abendListMgrClass("before FreeEntry");
+        
         this.theLock.lock();
         this.DoFreeEntry(entry_val);
         this.theLock.unlock();
+        
         this.abendListMgrClass("after FreeEntry");
     }
 
@@ -113,13 +115,12 @@ public class ListMgrClass {
     }
 
     public ListEntryClass GetEntryById(int id_val) {
-        this.debugIt(true, "GetEntryById", "id_val=" + id_val);
         this.abendListMgrClass("before GetEntryById");
-        this.debugIt(true, "GetEntryById", "aaaaaid_val=" + id_val);
+        
         this.theLock.lock();
-        this.debugIt(true, "GetEntryById", "bbbbbid_val=" + id_val);
     	ListEntryClass entry = DoGetEntryById(id_val);
     	this.theLock.unlock();
+    	
     	this.abendListMgrClass("after GetEntryById");
     	return entry;
     }
@@ -138,9 +139,11 @@ public class ListMgrClass {
 
     public ListEntryClass GetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
         this.abendListMgrClass("before GetEntryByCompare");
+        
         this.theLock.lock();
         ListEntryClass entry = DoGetEntryByCompare(calling_object_val, string_val);
         this.theLock.unlock();
+        
         this.abendListMgrClass("after GetEntryByCompare");
     	return entry;
     }
@@ -160,11 +163,9 @@ public class ListMgrClass {
     	if (!this.abendListMgrClassIsOn)
     		return;
     	
-        this.debugIt(true, "abendListMgrClass", "before=");
     	this.theLock.lock();
-        this.debugIt(true, "abendListMgrClass", "after=");
     	this.DoAbendListMgrClass(msg_val);
-    	this.theLock.lock();
+    	this.theLock.unlock();
     }
     
     private void DoAbendListMgrClass(String msg_val) {

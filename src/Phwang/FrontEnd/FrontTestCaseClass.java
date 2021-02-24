@@ -32,7 +32,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String indexString;
     private String myNameString;
     private String password = "Tennis";
-    private String themeData = "0123G009090000";
+    private String themeData = "9999G009090000";
     private JSONParser parserObject;
     private String linkIdString;
     

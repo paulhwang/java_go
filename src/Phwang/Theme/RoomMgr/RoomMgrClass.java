@@ -44,9 +44,8 @@ public class RoomMgrClass {
      }
 
     public RoomClass GetRoomByRoomId(int id_val) {
-        this.debugIt(true, "GetRoomByRoomId", "id_val=" + id_val);
+        this.debugIt(false, "GetRoomByRoomId", "id_val=" + id_val);
         ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
-        this.debugIt(true, "88888GetRoomByRoomId", "id_val=" + id_val);
         if (list_entry == null) {
             return null;
         }

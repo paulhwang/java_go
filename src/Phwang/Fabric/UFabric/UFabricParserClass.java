@@ -28,18 +28,17 @@ public class UFabricParserClass {
     }
 
     public void parseInputPacket(String input_data_val) {
-        this.debugIt(true, "exportedParseFunction", input_data_val);
+        this.debugIt(true, "parseInputPacket", input_data_val);
+        
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM)
-        {
+        if (command.equals(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM)) {
             this.processSetupRoomResponse(input_data);
             return;
         }
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA)
-        {
+        if (command.equals(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA)) {
             this.processPutRoomDataResponse(input_data);
             return;
         }
@@ -48,12 +47,13 @@ public class UFabricParserClass {
     }
     
     private void processSetupRoomResponse(String input_data_val) {
+        this.debugIt(true, "processSetupRoomResponse", input_data_val);
+        
         String group_id_str = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String room_id_str = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
         GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
-        if (group != null)
-        {
+        if (group != null) {
             group.SetRoomIdStr(room_id_str);
             int session_array_size = group.GetSessionArraySize();
             Object[] session_array = group.GetSessionArray();

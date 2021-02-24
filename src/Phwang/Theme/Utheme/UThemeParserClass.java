@@ -54,16 +54,14 @@ public class UThemeParserClass {
         String room_id_str = input_data_val.substring(0, 4);
         String base_id_str = input_data_val.substring(4, 8);
         
-        this.debugIt(true, "processSetupBaseResponse", "room_id_str=" + room_id_str);
-        this.debugIt(true, "processSetupBaseResponse", "base_id_str=" + base_id_str);
+        this.debugIt(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
+        this.debugIt(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
 
         RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
-        this.debugIt(true, "00000processSetupBaseResponse", "room_id_str=" + room_id_str);
         room_object.PutBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
         downlink_data = downlink_data + room_object.GroupIdStr() + room_object.RoomIdStr();
         this.DThemeObject().TransmitData(downlink_data);
-        this.debugIt(true, "processSetupBaseResponse", "11111room_id_str=" + room_id_str);
 
         /*
         char* room_id_index_val = data_val;
