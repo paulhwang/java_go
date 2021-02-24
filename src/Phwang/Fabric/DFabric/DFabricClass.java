@@ -53,8 +53,7 @@ public class DFabricClass implements ThreadInterface {
         while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null) {
-                //this.abendIt("dFabricRreceiveThreadFunc", "null data");
-            	UtilsClass.sleep(1000);
+                this.abendIt("dFabricRreceiveThreadFunc", "null data");
                 continue;
             }
             this.debugIt(true, "dFabricRreceiveThreadFunc", "data = " + data);

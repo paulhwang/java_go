@@ -53,8 +53,7 @@ public class DThemeClass implements ThreadInterface {
         while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null) {
-                //this.abendIt("dThemeRreceiveThreadFunc", "null data");
-            	UtilsClass.sleep(1000);
+                this.abendIt("dThemeRreceiveThreadFunc", "null data");
                 continue;
             }
             

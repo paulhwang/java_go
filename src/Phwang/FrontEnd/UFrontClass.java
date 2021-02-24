@@ -54,8 +54,7 @@ public class UFrontClass implements ThreadInterface {
 
             String received_data = this.binderObject.ReceiveData();
             if (received_data == null) {
-                //this.abendIt("UFrontReceiveThreadFunc", "null data");
-            	UtilsClass.sleep(1000);
+                this.abendIt("UFrontReceiveThreadFunc", "null data");
             	continue;
             }
             

@@ -52,8 +52,7 @@ public class UThemeClass implements ThreadInterface {
         while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null) {
-                //this.abendIt("uThemeRreceiveThreadFunc", "null data");
-            	UtilsClass.sleep(1000);
+                this.abendIt("uThemeRreceiveThreadFunc", "null data");
                 continue;
             }
             

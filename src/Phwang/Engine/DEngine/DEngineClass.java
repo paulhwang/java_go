@@ -53,8 +53,7 @@ public class DEngineClass implements ThreadInterface {
         while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null) {
-                //this.abendIt("dEngineReceiveThreadFunc", "null data");
-            	UtilsClass.sleep(1000);
+                this.abendIt("dEngineReceiveThreadFunc", "null data");
                 continue;
             }
             

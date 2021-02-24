@@ -58,8 +58,7 @@ public class UFabricClass implements ThreadInterface {
         while (true) {
             data = this.binderObject.ReceiveData();
             if (data == null) {
-                //this.abendIt("uFabricRreceiveThreadFunc", "null data");
-            	UtilsClass.sleep(1000);
+                this.abendIt("uFabricRreceiveThreadFunc", "null data");
                 continue;
             }
             

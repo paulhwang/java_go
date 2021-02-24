@@ -168,10 +168,6 @@ public class BinderClass implements ThreadInterface {
     private void createWorkingThreads() {
     	this.whichThread = this.binderReceiveThreadName();
 		this.binderReceiveThreadObject = new ThreadClass(this.binderReceiveThreadName(), this);
-
-        //this.transmitRunable = new BinderTransmitRunnable(this);
-        //this.transmitThread = new Thread(this.transmitRunable);
-        //this.transmitThread.start();
     }
 
     public void binderReceiveThreadFunc() {
@@ -195,7 +191,10 @@ public class BinderClass implements ThreadInterface {
         		}
         		else {
         			this.abendIt("binderReceiveThreadFunc", "data is null=====================================");
-        			UtilsClass.sleep(1);
+        			try {
+        				Thread.sleep(1000);
+        			}
+        			catch (Exception e) {}
         		}
         	}
         	catch (Exception e) {}
@@ -220,11 +219,20 @@ public class BinderClass implements ThreadInterface {
     }
 
     public String ReceiveData() {
-        String data = (String) this.receiveQueue.DequeueData();
-        if (data != null) {
-            this.debugIt(true, "ReceivData", "data = " + data);
-        }
-        return data;
+    	while (true) {
+    		String data = (String) this.receiveQueue.DequeueData();
+    		if (data == null) {
+    			try {
+    				Thread.sleep(5000);
+    			}
+    			catch (Exception e) {
+    			}
+    			continue;
+    		}
+    		
+    		this.debugIt(true, "ReceivData", "data = " + data);
+    		return data;
+    	}
     }
 
     public void TransmitRawData(String data_val) {
