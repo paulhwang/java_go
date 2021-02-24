@@ -18,7 +18,7 @@ import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 
 public class FrontTestClass implements ThreadInterface {
     private String objectName() {return "FrontTestClass";}
-    private String FrontTestThreadName() { return "FrontTestThread"; }
+    private String frontTestThreadName() { return "FrontTestThread"; }
 
     private FrontEndRootClass frontEndRootObject;
     
@@ -33,16 +33,21 @@ public class FrontTestClass implements ThreadInterface {
     }
     
     public void StartTest() {
-    	this.ThreadMgrObject().CreateThreadObject(this.FrontTestThreadName(), this);
+    	this.ThreadMgrObject().CreateThreadObject(this.frontTestThreadName(), this);
      }
     
 	public void ThreadCallbackFunction() {
-		this.UFrontReceiveThreadFunc();
+		this.frontTestThreadFunc();
 	}
     
-    private void UFrontReceiveThreadFunc() {
-        this.debugIt(false, "UFrontReceiveThreadFunc", "start " + this.FrontTestThreadName());
-    	UtilsClass.sleep(2000);
+    private void frontTestThreadFunc() {
+        this.debugIt(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
+        try {
+        	Thread.sleep(1000);
+        }
+        catch (Exception ignore) {}
+        
+        this.debugIt(true, "frontTestThreadFunc", "++++++++start " + this.frontTestThreadName());
     	
     	this.DoTest();
     }
