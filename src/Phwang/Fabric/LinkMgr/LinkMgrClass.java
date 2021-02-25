@@ -34,25 +34,25 @@ public class LinkMgrClass implements ListMgrInterface {
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_LINK_ID);
     }
 
-    public LinkClass MallocLink(String my_name_val) {
+    public LinkClass mallocLink(String my_name_val) {
         LinkClass link = new LinkClass(my_name_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(link);
-        link.BindListEntry(list_entry);
-        this.nameListObject().UpdateNameList();
+        link.bindListEntry(list_entry);
+        this.nameListObject().updateNameList();
         return link;
     }
 
-    public void FreeLink(LinkClass link_val) {
+    public void freeLink(LinkClass link_val) {
 
     }
     
-    public LinkClass GetLinkByIdStr(String link_id_str_val) {
+    public LinkClass getLinkByIdStr(String link_id_str_val) {
         int link_id = EncodeNumberClass.DecodeNumber(link_id_str_val);
 
-        return this.GetLinkById(link_id);
+        return this.getLinkById(link_id);
     }
 
-    public LinkClass GetLinkById(int id_val) {
+    public LinkClass getLinkById(int id_val) {
         ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
         if (list_entry == null) {
             return null;
@@ -62,13 +62,13 @@ public class LinkMgrClass implements ListMgrInterface {
         return link;
     }
 
-    private Boolean CompareMyNameFunc(Object object_val, String my_name_val) {
+    private Boolean compareMyNameFunc(Object object_val, String my_name_val) {
         LinkClass link = (LinkClass) object_val;
         return (link.MyName().equals(my_name_val));
     }
     
     public Boolean CompareObjectFunc(Object obj_val, String str_val) {
-    	return CompareMyNameFunc(obj_val, str_val);
+    	return compareMyNameFunc(obj_val, str_val);
     }
 
     public LinkClass GetLinkByMyName(String my_name_val) {

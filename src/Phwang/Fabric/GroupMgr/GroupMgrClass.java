@@ -32,18 +32,18 @@ public class GroupMgrClass {
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_GROUP_ID);
     }
 
-    public GroupClass MallocGroup(String theme_data_val) {
+    public GroupClass mallocGroup(String theme_data_val) {
         GroupClass group = new GroupClass(theme_data_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(group);
         group.bindListEntry(list_entry);
         return group;
     }
 
-    public void FreeLink(LinkClass link_val) {
+    public void freeLink(LinkClass link_val) {
 
     }
 
-    public GroupClass GetGroupByGroupIdStr(String group_id_str_val) {
+    public GroupClass getGroupByGroupIdStr(String group_id_str_val) {
         int group_id = EncodeNumberClass.DecodeNumber(group_id_str_val);
 
         return this.GetGroupByGroupId(group_id);

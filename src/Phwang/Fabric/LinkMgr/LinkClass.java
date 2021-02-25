@@ -46,17 +46,17 @@ public class LinkClass {
         this.sessionMgrObject = new SessionMgrClass(this);
     }
 
-    public void BindListEntry(ListEntryClass list_entry_objectg_val) {
+    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.theLinkId = this.listEntryObject.Id();
         this.theLinkIdStr = EncodeNumberClass.EncodeNumber(this.theLinkId, FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
     }
 
-    public SessionClass MallocSession() {
+    public SessionClass mallocSession() {
         return this.sessionMgrObject.MallocSession();
     }
 
-    public void SetPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
+    public void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
         String data = link_session_id_str_val + theme_data_val;
         this.pendingSessionSetupQueue.EnqueueData(data);
         /*
@@ -70,7 +70,7 @@ public class LinkClass {
         */
     }
 
-    public void SetPendingSessionSetup3(String browser_theme_id_str_val, String session_id_str_val, String theme_data_val) {
+    public void setPendingSessionSetup3(String browser_theme_id_str_val, String session_id_str_val, String theme_data_val) {
         this.debugIt(false, "********************SetPendingSessionSetup3", "browser_theme_id_str_val =" + browser_theme_id_str_val);
         this.debugIt(false, "********************SetPendingSessionSetup3", "session_id_str_val =" + session_id_str_val);
         this.debugIt(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);

@@ -25,18 +25,18 @@ public class GroupSessionMgrClass {
         this.arrayMgrObject = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
     }
 
-    public void InsertSession(SessionClass session_val) {
+    public void insertSession(SessionClass session_val) {
         this.arrayMgrObject.InsertObjectElement(session_val);
     }
-    public void RemoveSession(SessionClass session_val) {
+    public void removeSession(SessionClass session_val) {
         this.arrayMgrObject.RemoveObjectElement(session_val);
     }
 
-    public int GetSessionArraySize() {
+    public int getSessionArraySize() {
         return this.arrayMgrObject.ArraySize();
     }
 
-    public Object[] GetSessionArray() {
+    public Object[] getSessionArray() {
         return this.arrayMgrObject.ObjectArrayTable();
     }
 

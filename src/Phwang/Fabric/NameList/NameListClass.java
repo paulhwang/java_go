@@ -36,7 +36,7 @@ public class NameListClass {
         this.fabricRootObject = root_fabric_object_val;
     }
     
-    public void UpdateNameList() {
+    public void updateNameList() {
         LinkMgrClass link_list_mgr = this.fabricRootObject.LinkMgrObject();
 
         int max_index = link_list_mgr.ListMgr().MaxIndex();
@@ -65,7 +65,7 @@ public class NameListClass {
         this.debugIt(false, "updateNameList", this.nameList);
     }
 
-    public String GetNameList(int tag_val) {
+    public String getNameList(int tag_val) {
         if (this.nameListTag == tag_val) {
             return null;
         }

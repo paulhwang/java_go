@@ -42,12 +42,12 @@ public class GroupClass {
         this.groupIdStr = EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
     }
 
-    public void InsertSession(SessionClass session_val) {
-        this.groupSessionMgrObject.InsertSession(session_val);
+    public void insertSession(SessionClass session_val) {
+        this.groupSessionMgrObject.insertSession(session_val);
     }
     
     public void removeSession(SessionClass session_val) {
-        this.groupSessionMgrObject.RemoveSession(session_val);
+        this.groupSessionMgrObject.removeSession(session_val);
     }
 
     public void setRoomIdStr(String room_id_str_val) {
@@ -55,11 +55,11 @@ public class GroupClass {
     }
 
     public int getSessionArraySize() {
-        return this.groupSessionMgrObject.GetSessionArraySize();
+        return this.groupSessionMgrObject.getSessionArraySize();
     }
 
     public Object[] getSessionArray() {
-        return this.groupSessionMgrObject.GetSessionArray();
+        return this.groupSessionMgrObject.getSessionArray();
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

@@ -52,7 +52,7 @@ public class UFabricParserClass {
         String group_id_str = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String room_id_str = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
-        GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
+        GroupClass group = this.GroupMgrObject().getGroupByGroupIdStr(group_id_str);
         if (group != null) {
             group.setRoomIdStr(room_id_str);
             int session_array_size = group.getSessionArraySize();
@@ -61,7 +61,7 @@ public class UFabricParserClass {
             //printf("++++++++++++++++++++++++++++++++++++++++++++%d\n", session_array_size);
             for (int i = 0; i < session_array_size; i++) {
                 SessionClass session = (SessionClass) session_array[i];
-                session.LinkObject().SetPendingSessionSetup3(session.BrowserThemeIdStr(), session.SessionIdStr(), "");
+                session.LinkObject().setPendingSessionSetup3(session.BrowserThemeIdStr(), session.SessionIdStr(), "");
             }
         }
     }
@@ -71,7 +71,7 @@ public class UFabricParserClass {
         
         String group_id_str = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
-        GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
+        GroupClass group = this.GroupMgrObject().getGroupByGroupIdStr(group_id_str);
         if (group != null) {
             int session_array_size = group.getSessionArraySize();
             Object[] session_array = group.getSessionArray();
