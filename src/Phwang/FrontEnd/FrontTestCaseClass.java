@@ -44,7 +44,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String sessionIdString;
     private String themeIdString = "3333";
     
-    public FrontEndRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
+    public FrontRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
     private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
 

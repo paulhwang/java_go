@@ -10,7 +10,7 @@ package Phwang.Main;
 
 import Phwang.Engine.EngineRootClass;
 import Phwang.Fabric.FabricRootClass;
-import Phwang.FrontEnd.FrontEndRootClass;
+import Phwang.FrontEnd.FrontRootClass;
 import Phwang.Models.ModelRootClass;
 import Phwang.Theme.ThemeRootClass;
 import Phwang.Utils.AbendClass;
@@ -19,7 +19,7 @@ import Phwang.Utils.Binder.BinderTestClass;
 public class GlobalVariableClass {
     private String objectName() {return "GlobalVariableClass";}
     
-    static public FrontEndRootClass frontEndRootObject;
+    static public FrontRootClass frontEndRootObject;
     static public FabricRootClass fabricRootObject;
     static public ThemeRootClass themeRootObject;
     static public EngineRootClass engineRootObject;
@@ -32,14 +32,14 @@ public class GlobalVariableClass {
     public static void Initilization() {
         if (frontEndRootObject == null) {
             fabricRootObject = new FabricRootClass();
-            frontEndRootObject = new FrontEndRootClass();
+            frontEndRootObject = new FrontRootClass();
             themeRootObject = new ThemeRootClass();
             engineRootObject = new EngineRootClass();
             modelRootObject = new ModelRootClass();
         }
     }
     
-    public static FrontEndRootClass getGoRoot() {
+    public static FrontRootClass getGoRoot() {
         Initilization();
         return frontEndRootObject;
     }

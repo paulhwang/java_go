@@ -19,13 +19,13 @@ public class FrontTestClass implements ThreadInterface {
     private String objectName() {return "FrontTestClass";}
     private String frontTestThreadName() { return "FrontTestThread"; }
 
-    private FrontEndRootClass frontEndRootObject;
+    private FrontRootClass frontEndRootObject;
     
-    public FrontEndRootClass FrontEndRootObject() { return this.frontEndRootObject; }
+    public FrontRootClass FrontEndRootObject() { return this.frontEndRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
     private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
 
-    public FrontTestClass(FrontEndRootClass root_object_val) {
+    public FrontTestClass(FrontRootClass root_object_val) {
         this.debugIt(false, "FrontTestClass", "init start");
         
         this.frontEndRootObject = root_object_val;
