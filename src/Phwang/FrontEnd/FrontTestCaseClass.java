@@ -69,6 +69,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	this.doSetupSession();
     	UtilsClass.sleep(1000);
     	this.doSetupSession3();
+    	this.doPutSessionData();
     }
     
     private void doSetupLink() {
@@ -141,6 +142,21 @@ class FrontTestCaseClass implements ThreadInterface {
         this.debugIt(true, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
     }
 
+    private void doPutSessionData() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	json_data.put("session_id", this.sessionIdString);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "put_session_data");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
+    }
+    
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
     private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
     public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
