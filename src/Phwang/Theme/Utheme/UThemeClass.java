@@ -57,11 +57,11 @@ public class UThemeClass implements ThreadInterface {
             }
             
             this.debugIt(false, "uThemeRreceiveThreadFunc", "data = " + data);
-            this.uThemeParserObject.ParseInputPacket(data);
+            this.uThemeParserObject.parseInputPacket(data);
         }
     }
 
-    public void TransmitData(String data_val) {
+    public void transmitData(String data_val) {
         this.binderObject.TransmitData(data_val);
     }
 

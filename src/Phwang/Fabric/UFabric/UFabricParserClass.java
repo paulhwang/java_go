@@ -54,9 +54,9 @@ public class UFabricParserClass {
 
         GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
         if (group != null) {
-            group.SetRoomIdStr(room_id_str);
-            int session_array_size = group.GetSessionArraySize();
-            Object[] session_array = group.GetSessionArray();
+            group.setRoomIdStr(room_id_str);
+            int session_array_size = group.getSessionArraySize();
+            Object[] session_array = group.getSessionArray();
             //group->setSessionTableArray((SessionClass**)phwangArrayMgrGetArrayTable(group->sessionArrayMgr(), &session_array_size));
             //printf("++++++++++++++++++++++++++++++++++++++++++++%d\n", session_array_size);
             for (int i = 0; i < session_array_size; i++) {
@@ -73,8 +73,8 @@ public class UFabricParserClass {
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
         if (group != null) {
-            int session_array_size = group.GetSessionArraySize();
-            Object[] session_array = group.GetSessionArray();
+            int session_array_size = group.getSessionArraySize();
+            Object[] session_array = group.getSessionArray();
             for (int i = 0; i < session_array_size; i++) {
                 SessionClass session = (SessionClass)session_array[i];
                 session.EnqueuePendingDownLinkData(input_data);

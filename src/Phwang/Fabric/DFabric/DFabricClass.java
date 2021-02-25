@@ -61,7 +61,7 @@ public class DFabricClass implements ThreadInterface {
         }
     }
 
-    public void TransmitData(String data_val) {
+    public void transmitData(String data_val) {
         this.binderObject.TransmitData(data_val);
     }
 

@@ -32,13 +32,13 @@ public class RoomClass {
         this.groupIdStr = group_id_str_val;
     }
 
-    public void BindListEntry(ListEntryClass list_entry_objectg_val) {
+    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.roomId = this.listEntryObject.Id();
         this.roomIdStr = EncodeNumberClass.EncodeNumber(this.roomId, FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
     }
 
-    public void PutBaseIdStr(String base_id_str_val) {
+    public void setBaseIdStr(String base_id_str_val) {
         this.baseIdStr = base_id_str_val;
     }
 

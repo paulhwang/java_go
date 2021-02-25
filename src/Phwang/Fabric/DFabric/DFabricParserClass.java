@@ -93,7 +93,7 @@ public class DFabricParserClass {
             this.abendIt("parseInputPacket", response_data);
         }
         
-        this.dFabricObject.TransmitData(adax_id + response_data);
+        this.dFabricObject.transmitData(adax_id + response_data);
     }
 
     private String processSetupLinkRequest(String input_data_val) {
@@ -271,7 +271,7 @@ public class DFabricParserClass {
                 his_link.SetPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), theme_data);
             }
 
-            String response_data = this.GenerateSetupSessionResponse(link.LinkIdStr(), session.SessionIdStr());
+            String response_data = this.generateSetupSessionResponse(link.LinkIdStr(), session.SessionIdStr());
             return response_data;
         } catch (Exception e) {
             return null;
@@ -289,7 +289,7 @@ public class DFabricParserClass {
         return error_msg_val;
     }
 
-    public String GenerateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
+    public String generateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str_val);
     	json_data.put("session_id", session_id_str_val);
@@ -395,7 +395,6 @@ public class DFabricParserClass {
         
     private String processPutSessionDataRequest(String input_data_val) {
         this.debugIt(false, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
-
        
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
@@ -475,7 +474,7 @@ public class DFabricParserClass {
             String data = session.GetPendingDownLinkData();
 
             /* send the response down */
-            String response_data = this.generatePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);
+            String response_data = this.generateGetSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);
             return response_data;
         } catch (Exception e) {
             return null;
@@ -486,7 +485,7 @@ public class DFabricParserClass {
         return error_msg_val;
     }
 
-    public String GenerateGetSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
+    public String generateGetSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str_val);
     	json_data.put("session_id", session_id_str_val);

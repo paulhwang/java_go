@@ -35,7 +35,7 @@ public class GroupMgrClass {
     public GroupClass MallocGroup(String theme_data_val) {
         GroupClass group = new GroupClass(theme_data_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(group);
-        group.BindListEntry(list_entry);
+        group.bindListEntry(list_entry);
         return group;
     }
 

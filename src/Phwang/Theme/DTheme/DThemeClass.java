@@ -58,12 +58,12 @@ public class DThemeClass implements ThreadInterface {
             }
             
             this.debugIt(false, "dThemeRreceiveThreadFunc", "data = " + data);
-            this.dThemeParserObject.ParseInputPacket(data);
+            this.dThemeParserObject.parseInputPacket(data);
         }
     }
 
-    public void TransmitData(String data_val) {
-        this.debugIt(false, "TransmitData", "data = " + data_val);
+    public void transmitData(String data_val) {
+        this.debugIt(false, "transmitData", "data=" + data_val);
         this.binderObject.TransmitData(data_val);
     }
 

@@ -36,7 +36,7 @@ public class GroupClass {
         this.groupSessionMgrObject = new GroupSessionMgrClass(this);
     }
 
-    public void BindListEntry(ListEntryClass list_entry_objectg_val) {
+    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.groupId = this.listEntryObject.Id();
         this.groupIdStr = EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
@@ -46,19 +46,19 @@ public class GroupClass {
         this.groupSessionMgrObject.InsertSession(session_val);
     }
     
-    public void RemoveSession(SessionClass session_val) {
+    public void removeSession(SessionClass session_val) {
         this.groupSessionMgrObject.RemoveSession(session_val);
     }
 
-    public void SetRoomIdStr(String room_id_str_val) {
+    public void setRoomIdStr(String room_id_str_val) {
         this.roomIdStr = room_id_str_val;
     }
 
-    public int GetSessionArraySize() {
+    public int getSessionArraySize() {
         return this.groupSessionMgrObject.GetSessionArraySize();
     }
 
-    public Object[] GetSessionArray() {
+    public Object[] getSessionArray() {
         return this.groupSessionMgrObject.GetSessionArray();
     }
 

@@ -30,8 +30,8 @@ public class DThemeParserClass {
         this.dThemeObject = d_theme_object_val;
     }
 
-    public void ParseInputPacket(String data_val) {
-        this.debugIt(false, "ParseInputPacket", data_val);
+    public void parseInputPacket(String data_val) {
+        this.debugIt(false, "parseInputPacket", data_val);
         String command = data_val.substring(0, 1);
         String data = data_val.substring(1);
 
@@ -45,19 +45,17 @@ public class DThemeParserClass {
             return;
         }
 
-        this.abendIt("ParseInputPacket", data_val);
+        this.abendIt("parseInputPacket", data_val);
     }
 
-    private void processSetupRoom(String input_data_val)
-    {
+    private void processSetupRoom(String input_data_val) {
         this.debugIt(false, "processSetupRoom", input_data_val);
 
         String group_id_index = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
         RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index);
-        if (room == null)
-        {
+        if (room == null) {
             //String downlink_data;
             this.abendIt("processSetupRoom", "null room");
             //downlink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSr");
@@ -79,25 +77,23 @@ public class DThemeParserClass {
         */
         String uplink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE;
         uplink_data = uplink_data + room.RoomIdStr() + input_data;
-        this.UThemeObject().TransmitData(uplink_data);
+        this.UThemeObject().transmitData(uplink_data);
     }
 
-    private void processPutRoomData(String input_data_val)
-    {
+    private void processPutRoomData(String input_data_val) {
         this.debugIt(false, "processPutRoomData", input_data_val);
 
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
-        RoomClass room = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
-        if (room == null)
-        {
+        RoomClass room = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
+        if (room == null) {
             this.abendIt("processPutRoomData", "null room");
             return;
         }
 
         String uplink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA;
         uplink_data = uplink_data + room.BaseIdStr() + input_data;
-        this.UThemeObject().TransmitData(uplink_data);
+        this.UThemeObject().transmitData(uplink_data);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

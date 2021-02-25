@@ -32,19 +32,19 @@ public class RoomMgrClass {
     public RoomClass MallocRoom(String group_id_str_val) {
         RoomClass room = new RoomClass(group_id_str_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(room);
-        room.BindListEntry(list_entry);
+        room.bindListEntry(list_entry);
         return room;
     }
 
-    public RoomClass GetRoomByRoomIdStr(String room_id_str_val) {
-        this.debugIt(false, "GetRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
+    public RoomClass getRoomByRoomIdStr(String room_id_str_val) {
+        this.debugIt(false, "getRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
         int room_id = EncodeNumberClass.DecodeNumber(room_id_str_val);
 
-        return this.GetRoomByRoomId(room_id);
+        return this.getRoomByRoomId(room_id);
      }
 
-    public RoomClass GetRoomByRoomId(int id_val) {
-        this.debugIt(false, "GetRoomByRoomId", "id_val=" + id_val);
+    public RoomClass getRoomByRoomId(int id_val) {
+        this.debugIt(false, "getRoomByRoomId", "id_val=" + id_val);
         ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
         if (list_entry == null) {
             return null;

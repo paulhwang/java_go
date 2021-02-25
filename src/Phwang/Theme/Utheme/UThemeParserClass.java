@@ -30,8 +30,8 @@ public class UThemeParserClass {
         this.uThemeObject = u_theme_object_val;
     }
     
-    public void ParseInputPacket(String input_data_val) {
-        this.debugIt(false, "ParseInputPacket", input_data_val);
+    public void parseInputPacket(String input_data_val) {
+        this.debugIt(false, "parseInputPacket", input_data_val);
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
 
@@ -45,7 +45,7 @@ public class UThemeParserClass {
             return;
         }
 
-        this.abendIt("exportedparseFunction", command);
+        this.abendIt("parseInputPacket", command);
     }
 
     private void processSetupBaseResponse(String input_data_val) {
@@ -57,11 +57,11 @@ public class UThemeParserClass {
         this.debugIt(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
         this.debugIt(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
 
-        RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
-        room_object.PutBaseIdStr(base_id_str);
+        RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
+        room_object.setBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
         downlink_data = downlink_data + room_object.GroupIdStr() + room_object.RoomIdStr();
-        this.DThemeObject().TransmitData(downlink_data);
+        this.DThemeObject().transmitData(downlink_data);
 
         /*
         char* room_id_index_val = data_val;
@@ -99,7 +99,7 @@ public class UThemeParserClass {
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
 
-        RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
+        RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
         if (room_object == null) {
             this.abendIt("processPutBaseDataResponse", "null room");
             return;
@@ -107,7 +107,7 @@ public class UThemeParserClass {
 
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA;
         downlink_data = downlink_data + room_object.GroupIdStr() + data;
-        this.DThemeObject().TransmitData(downlink_data);
+        this.DThemeObject().transmitData(downlink_data);
 
         /*
         char* downlink_data;
