@@ -6,13 +6,12 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.SessionMgr;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Fabric.LinkMgr.LinkClass;
 
 public class SessionMgrClass {
     private String objectName() {return "SessionMgrClass";}

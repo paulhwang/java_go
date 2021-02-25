@@ -6,12 +6,11 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.GroupMgr;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Fabric.SessionMgr.SessionClass;
 
 public class GroupClass {
     private String objectName() {return "GroupClass";}

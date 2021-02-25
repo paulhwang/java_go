@@ -6,11 +6,10 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.GroupMgr;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ArrayMgr.ArrayMgrClass;
-import Phwang.Fabric.SessionMgr.SessionClass;
 
 public class GroupSessionMgrClass {
     private String objectName() {return "GroupSessionMgrClass";}

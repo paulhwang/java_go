@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.DFabric;
+package Phwang.Fabric;
 
 //import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,13 +16,6 @@ import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
-import Phwang.Fabric.LinkMgr.LinkMgrClass;
-import Phwang.Fabric.SessionMgr.SessionClass;
-import Phwang.Fabric.GroupMgr.GroupClass;
-import Phwang.Fabric.GroupMgr.GroupMgrClass;
-import Phwang.Fabric.FabricRootClass;
-import Phwang.Fabric.UFabric.UFabricClass;
-import Phwang.Fabric.LinkMgr.LinkClass;
 
 public class DFabricParserClass {
     private String objectName() {return "DFabricParserClass";}

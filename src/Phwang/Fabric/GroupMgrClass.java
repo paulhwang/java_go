@@ -6,14 +6,12 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.GroupMgr;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
-import Phwang.Fabric.LinkMgr.LinkClass;
-import Phwang.Fabric.FabricRootClass;
 
 public class GroupMgrClass {
     private String objectName() {return "GroupMgrClass";}

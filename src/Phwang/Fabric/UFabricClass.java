@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.UFabric;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.UtilsClass;

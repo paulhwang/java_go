@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.LinkMgr;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
@@ -14,8 +14,6 @@ import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Utils.Queue.ListQueueClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
-import Phwang.Fabric.SessionMgr.SessionMgrClass;
-import Phwang.Fabric.SessionMgr.SessionClass;
 
 public class LinkClass {
     private String objectName() {return "LinkClass";}

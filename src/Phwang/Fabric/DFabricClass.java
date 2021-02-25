@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.DFabric;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.UtilsClass;
@@ -15,7 +15,6 @@ import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Fabric.FabricRootClass;
-import Phwang.Fabric.UFabric.UFabricClass;
 
 public class DFabricClass implements ThreadInterface {
     private String objectName() {return "DFabricClass";}

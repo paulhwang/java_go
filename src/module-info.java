@@ -3,27 +3,21 @@ module java_go {
 	exports Phwang.Utils.ArrayMgr;
 	exports Phwang.Engine.Go;
 	exports Phwang.FrontEnd;
+	exports Phwang.Theme;
 	exports Phwang.Engine;
-	exports Phwang.Fabric.SessionMgr;
+	exports Phwang.Engine.DEngine;
 	exports Phwang.Utils.Encode;
+	exports Phwang.Fabric;
 	exports org.json.simple;
-	exports Phwang.Fabric.NameList;
+	exports Phwang.Models;
+	exports Phwang.Utils.Binder;
 	exports Phwang.Protocols;
 	exports Phwang.Utils.Queue;
 	exports Phwang.Utils.tcp;
-	exports Phwang.Fabric.UFabric;
-	exports Phwang.Utils.ThreadMgr;
-	exports Phwang.Utils.ListMgr;
-	exports Phwang.Fabric.DFabric;
-	exports Phwang.Fabric.GroupMgr;
-	exports Phwang.Theme;
-	exports Phwang.Engine.DEngine;
-	exports Phwang.Fabric;
-	exports Phwang.Models;
-	exports Phwang.Utils.Binder;
 	exports Phwang.Utils;
 	exports org.json.simple.parser;
-	exports Phwang.Fabric.LinkMgr;
+	exports Phwang.Utils.ThreadMgr;
+	exports Phwang.Utils.ListMgr;
 
 	requires java.xml;
 }

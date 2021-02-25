@@ -6,15 +6,13 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.LinkMgr;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ListMgr.ListMgrInterface;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Fabric.FabricRootClass;
-import Phwang.Fabric.NameList.NameListClass;
 
 public class LinkMgrClass implements ListMgrInterface {
     private String objectName() {return "LinkMgrClass";}

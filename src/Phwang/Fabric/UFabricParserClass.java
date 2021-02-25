@@ -6,14 +6,11 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.UFabric;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Fabric.FabricRootClass;
-import Phwang.Fabric.GroupMgr.GroupMgrClass;
-import Phwang.Fabric.GroupMgr.GroupClass;
-import Phwang.Fabric.SessionMgr.SessionClass;
 
 public class UFabricParserClass {
     private String objectName() {return "UFabricParserClass";}

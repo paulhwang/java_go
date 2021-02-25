@@ -6,15 +6,12 @@
  ******************************************************************************
  */
 
-package Phwang.Fabric.NameList;
+package Phwang.Fabric;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
-import Phwang.Fabric.LinkMgr.LinkMgrClass;
-import Phwang.Fabric.LinkMgr.LinkClass;
-import Phwang.Fabric.FabricRootClass;
 
 public class NameListClass {
     private String objectName() {return "NameListClass";}
