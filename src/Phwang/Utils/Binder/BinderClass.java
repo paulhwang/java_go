@@ -59,7 +59,7 @@ public class BinderClass implements ThreadInterface {
         this.transmitQueue = new ListQueueClass(true, 0);
     }
     
-	public void ThreadCallbackFunction() {
+	public void threadCallbackFunction() {
 		if (this.whichThread.equals(this.binderServerThreadName())) {
 			this.tcpServerThreadFunc();
 			return;

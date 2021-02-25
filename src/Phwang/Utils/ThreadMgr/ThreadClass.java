@@ -35,7 +35,7 @@ public class ThreadClass implements Runnable {
     }
     
 	public void run() {
-		this.callingObject.ThreadCallbackFunction();
+		this.callingObject.threadCallbackFunction();
         this.debugIt(false, "run", this.ThreadName() + "exit");
 	}
 

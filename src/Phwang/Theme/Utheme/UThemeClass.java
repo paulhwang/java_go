@@ -41,7 +41,7 @@ public class UThemeClass implements ThreadInterface {
     	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
      }
     
-	public void ThreadCallbackFunction() {
+	public void threadCallbackFunction() {
 		this.uThemeRreceiveThreadFunc();
 	}
 

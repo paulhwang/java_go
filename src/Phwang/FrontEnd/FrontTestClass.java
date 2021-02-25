@@ -35,7 +35,7 @@ public class FrontTestClass implements ThreadInterface {
     	this.ThreadMgrObject().createThreadObject(this.frontTestThreadName(), this);
      }
     
-	public void ThreadCallbackFunction() {
+	public void threadCallbackFunction() {
 		this.frontTestThreadFunc();
 	}
     

@@ -42,7 +42,7 @@ public class DEngineClass implements ThreadInterface {
     	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
      }
     
-	public void ThreadCallbackFunction() {
+	public void threadCallbackFunction() {
 		this.dEngineReceiveThreadFunc();
 	}
     
