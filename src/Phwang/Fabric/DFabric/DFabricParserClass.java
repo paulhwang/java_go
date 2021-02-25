@@ -12,6 +12,7 @@ package Phwang.Fabric.DFabric;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
@@ -202,7 +203,40 @@ public class DFabricParserClass {
     private String processGetNameListRequest(String input_data_val) {
         this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
-        return "junk";
+        SetupSessionRequestFormat format_data = new SetupSessionRequestFormat();
+        try {
+        	JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	String link_id_str = (String) json.get("link_id");
+        	String name_list_tag_str = (String) json.get("name_list_tag");
+        	
+            this.debugIt(true, "processGetNameListRequest", "link_id = " + link_id_str);
+
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
+            if (link == null) {
+                return this.errorProcessGetNameList(format_data.link_id, "*************null link");
+            }
+
+            int name_list_tag = EncodeNumberClass.DecodeNumber(name_list_tag_str);
+            String name_list = this.FabricRootObject().NameListObject().GetNameList(name_list_tag);
+
+            String response_data = this.generateGetNameListResponse(link.LinkIdStr(), name_list);
+            return response_data;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String errorProcessGetNameList(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
+
+    public String generateGetNameListResponse(String link_id_str_val, String name_list_str_val) {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str_val);
+    	json_data.put("c_name_list", name_list_str_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
     }
     
     public class SetupSessionRequestFormat {
@@ -281,7 +315,6 @@ public class DFabricParserClass {
         uplink_data = uplink_data + group_val.GroupIdStr();
         uplink_data = uplink_data + theme_info_val;
         this.FabricRootObject().UFabricObject().TransmitData(uplink_data);
-
     }
 
     private String errorProcessSetupSession(String link_id_val, String error_msg_val) {

@@ -36,6 +36,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String themeData = "9999G009090000";
     private String xmtSeqString = "1111";
     private String goMoveString = "GM01021001";
+    private String nameListTagString = "000";///////////////////////////////////////////////////////different from brouser which is int
     private JSONParser parserObject;
     private String linkIdString;
     private String sessionIdString;
@@ -69,6 +70,9 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	this.doSetupLink();
     	
+    	UtilsClass.sleep(100);
+    	this.doGetLinkData();
+    	
     	this.doSetupSession();
     	
     	UtilsClass.sleep(1000);
@@ -80,7 +84,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	this.doGetSessionData();
     	
     	UtilsClass.sleep(1000);
-    	this.doGetLinkData();
+    	this.doGetNameList();
     }
     
     private void doSetupLink() {
@@ -122,6 +126,21 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doGetLinkData", "ajex_response data=" + str_json_ajex_response);
+    }
+    
+    private void doGetNameList() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	json_data.put("name_list_tag", this.nameListTagString);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "get_name_list");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doGetNameList", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doSetupSession() {
