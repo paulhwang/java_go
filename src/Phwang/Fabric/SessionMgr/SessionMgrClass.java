@@ -44,6 +44,12 @@ public class SessionMgrClass {
 
         return this.GetSessionBySessionId(session_id);
     }
+    
+    public SessionClass getSessionBySessionIdStr(String session_id_str_val) {
+        int session_id = EncodeNumberClass.DecodeNumber(session_id_str_val);
+
+        return this.GetSessionBySessionId(session_id);
+    }
 
     public SessionClass GetSessionBySessionId(int id_val) {
         ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);

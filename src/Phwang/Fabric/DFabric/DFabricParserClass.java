@@ -66,7 +66,7 @@ public class DFabricParserClass {
         	this.abendIt("parseInputPacket", "***Exception***");
         }
         
-        this.logitIt("parseInputPacket", "command = " + ajax_fabric_request.command);
+        this.debugIt(true, "parseInputPacket", "*********************command = " + ajax_fabric_request.command);
         String response_data = null;
         if (ajax_fabric_request.command.equals("setup_link")) {
             response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
@@ -170,7 +170,7 @@ public class DFabricParserClass {
 
             LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
             if (link == null) {
-                return this.errorProcessSetupSession(format_data.link_id, "null group");
+                return this.errorProcessSetupSession(format_data.link_id, "*************null link");
             }
             
             this.debugIt(true, "processSetupSessionRequest", "link found");
@@ -228,7 +228,11 @@ public class DFabricParserClass {
     }
 
     public String GenerateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
-    	return "junk";
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str_val);
+    	json_data.put("session_id", session_id_str_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
     }
 
     private String processSetupSession2Request(String input_data_val) {
@@ -238,11 +242,50 @@ public class DFabricParserClass {
     }
 
     private String processSetupSession3Request(String input_data_val) {
-        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+        this.debugIt(true, "processSetupSession3Request", "input_data_val = " + input_data_val);
+        
+        try {
+        	JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	String link_id = (String) json.get("link_id");
+        	String session_id = (String) json.get("session_id");
+        	
+            this.debugIt(false, "processSetupSession3Request", "link_id = " + link_id);
+            this.debugIt(false, "processSetupSession3Request", "session_id = " + session_id);
 
-        return "junk";
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id);
+            if (link == null) {
+                return this.errorProcessSetupSession3(link_id, "null link");
+            }
+            
+            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id);
+            if (session == null) {
+                return errorProcessSetupSession3(link_id, "null session");
+            }
+
+            String response_data = this.generateSetupSession3Response(link_id, session_id, session.BrowserThemeIdStr());
+            return response_data;
+            
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+
+    private String errorProcessSetupSession3(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
+
+    public String generateSetupSession3Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str_val);
+    	json_data.put("session_id", session_id_str_val);
+    	json_data.put("theme_id", theme_id_str_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+        
+        
     private String processPutSessionDataRequest(String input_data_val) {
         this.debugIt(true, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
 

@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Encode.EncodeNumberClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
@@ -35,6 +36,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String themeData = "9999G009090000";
     private JSONParser parserObject;
     private String linkIdString;
+    private String sessionIdString;
     
     public FrontEndRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
@@ -65,6 +67,8 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	this.doSetupLink();
     	this.doSetupSession();
+    	UtilsClass.sleep(1000);
+    	this.doSetupSession3();
     }
     
     private void doSetupLink() {
@@ -79,7 +83,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doTest", "ajex_response data=" + str_json_ajex_response);
+        this.debugIt(true, "doSetupLink", "ajex_response data=" + str_json_ajex_response);
     	
         try {
         	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
@@ -87,10 +91,10 @@ class FrontTestCaseClass implements ThreadInterface {
             String name = (String) json_ajex_response.get("my_name");
             this.linkIdString = (String) json_ajex_response.get("link_id");
             if (!this.myNameString.equals(name)) {
-            	this.abendIt("doTest", "name not match");
+            	this.abendIt("doSetupLink", "name not match");
             }
         } catch (Exception e) {
-        	this.abendIt("parseInputPacket", "***Exception***");
+        	this.abendIt("doSetupLink", "***Exception***");
         }
     }
     
@@ -107,7 +111,34 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doTest", "ajex_response data=" + str_json_ajex_response);
+        this.debugIt(true, "doSetupSession", "ajex_response data=" + str_json_ajex_response);
+    	
+        try {
+        	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
+
+            String link_id = (String) json_ajex_response.get("link_id");
+            this.sessionIdString = (String) json_ajex_response.get("session_id");
+            if (!this.linkIdString.equals(link_id)) {
+            	this.abendIt("doSetupSession", "link_id not match");
+            }
+        } catch (Exception e) {
+        	this.abendIt("doSetupSession", "***Exception***");
+        }
+    }
+    
+    private void doSetupSession3() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	json_data.put("session_id", this.sessionIdString);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "setup_session3");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
