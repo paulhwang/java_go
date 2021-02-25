@@ -19,13 +19,13 @@ public class ListEntryClass {
     public Object Data() { return this.theData; }
     public int Index() { return this.theIndex; }
 
-    public void SetData(int id_val, Object data_val, int index_val) {
+    public void setData(int id_val, Object data_val, int index_val) {
         this.theId = id_val;
         this.theData = data_val;
         this.theIndex = index_val;
     }
 
-    public void ResetData() {
+    public void resetData() {
         this.theData = null;
     }
 }

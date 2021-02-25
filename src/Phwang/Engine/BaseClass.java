@@ -34,7 +34,7 @@ public class BaseClass {
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.baseId = this.listEntryObject.Id();
-        this.baseIdStr = EncodeNumberClass.EncodeNumber(this.baseId, ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
+        this.baseIdStr = EncodeNumberClass.encodeNumber(this.baseId, ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
     }
 
     public String setupBase(String input_data_val) {

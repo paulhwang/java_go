@@ -52,7 +52,7 @@ class FrontTestCaseClass implements ThreadInterface {
         this.debugIt(false, "FrontTestClass", "init start");
         
         this.frontTestObject = FrontTestClass;
-        this.indexString = EncodeNumberClass.EncodeNumber(index_val, 3);
+        this.indexString = EncodeNumberClass.encodeNumber(index_val, 3);
         this.myNameString = "Test_" + this.indexString;
         this.parserObject = new JSONParser();
     }

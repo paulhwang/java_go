@@ -32,7 +32,7 @@ public class BaseMgrClass {
 
     public BaseClass MallocGoBase(String room_id_val) {
         BaseClass go_base = new BaseClass(room_id_val);
-        ListEntryClass list_entry = this.listMgr.MallocEntry(go_base);
+        ListEntryClass list_entry = this.listMgr.mallocEntry(go_base);
         go_base.bindListEntry(list_entry);
         return go_base;
     }
@@ -42,13 +42,13 @@ public class BaseMgrClass {
     }
     
     public BaseClass GetBaseByIdStr(String base_id_str_val) {
-        int base_id = EncodeNumberClass.DecodeNumber(base_id_str_val);
+        int base_id = EncodeNumberClass.decodeNumber(base_id_str_val);
 
         return this.GetBaseById(base_id);
     }
 
     public BaseClass GetBaseById(int id_val) {
-        ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
         if (list_entry == null) {
             return null;
         }

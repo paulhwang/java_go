@@ -31,21 +31,21 @@ public class RoomMgrClass {
     
     public RoomClass mallocRoom(String group_id_str_val) {
         RoomClass room = new RoomClass(group_id_str_val);
-        ListEntryClass list_entry = this.listMgr.MallocEntry(room);
+        ListEntryClass list_entry = this.listMgr.mallocEntry(room);
         room.bindListEntry(list_entry);
         return room;
     }
 
     public RoomClass getRoomByRoomIdStr(String room_id_str_val) {
         this.debugIt(false, "getRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
-        int room_id = EncodeNumberClass.DecodeNumber(room_id_str_val);
+        int room_id = EncodeNumberClass.decodeNumber(room_id_str_val);
 
         return this.getRoomByRoomId(room_id);
      }
 
     public RoomClass getRoomByRoomId(int id_val) {
         this.debugIt(false, "getRoomByRoomId", "id_val=" + id_val);
-        ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
         if (list_entry == null) {
             return null;
         }

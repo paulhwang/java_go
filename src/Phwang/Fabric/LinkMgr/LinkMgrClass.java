@@ -36,7 +36,7 @@ public class LinkMgrClass implements ListMgrInterface {
 
     public LinkClass mallocLink(String my_name_val) {
         LinkClass link = new LinkClass(my_name_val);
-        ListEntryClass list_entry = this.listMgr.MallocEntry(link);
+        ListEntryClass list_entry = this.listMgr.mallocEntry(link);
         link.bindListEntry(list_entry);
         this.nameListObject().updateNameList();
         return link;
@@ -47,13 +47,13 @@ public class LinkMgrClass implements ListMgrInterface {
     }
     
     public LinkClass getLinkByIdStr(String link_id_str_val) {
-        int link_id = EncodeNumberClass.DecodeNumber(link_id_str_val);
+        int link_id = EncodeNumberClass.decodeNumber(link_id_str_val);
 
         return this.getLinkById(link_id);
     }
 
     public LinkClass getLinkById(int id_val) {
-        ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
         if (list_entry == null) {
             return null;
         }
@@ -72,7 +72,7 @@ public class LinkMgrClass implements ListMgrInterface {
     }
 
     public LinkClass GetLinkByMyName(String my_name_val) {
-        ListEntryClass list_entry = this.listMgr.GetEntryByCompare(this, my_name_val);
+        ListEntryClass list_entry = this.listMgr.getEntryByCompare(this, my_name_val);
         if (list_entry == null) {
             return null;
         }

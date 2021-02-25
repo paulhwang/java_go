@@ -49,7 +49,7 @@ public class LinkClass {
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.theLinkId = this.listEntryObject.Id();
-        this.theLinkIdStr = EncodeNumberClass.EncodeNumber(this.theLinkId, FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
+        this.theLinkIdStr = EncodeNumberClass.encodeNumber(this.theLinkId, FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
     }
 
     public SessionClass mallocSession() {

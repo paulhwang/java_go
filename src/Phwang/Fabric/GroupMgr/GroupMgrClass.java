@@ -34,7 +34,7 @@ public class GroupMgrClass {
 
     public GroupClass mallocGroup(String theme_data_val) {
         GroupClass group = new GroupClass(theme_data_val);
-        ListEntryClass list_entry = this.listMgr.MallocEntry(group);
+        ListEntryClass list_entry = this.listMgr.mallocEntry(group);
         group.bindListEntry(list_entry);
         return group;
     }
@@ -44,13 +44,13 @@ public class GroupMgrClass {
     }
 
     public GroupClass getGroupByGroupIdStr(String group_id_str_val) {
-        int group_id = EncodeNumberClass.DecodeNumber(group_id_str_val);
+        int group_id = EncodeNumberClass.decodeNumber(group_id_str_val);
 
         return this.GetGroupByGroupId(group_id);
     }
 
     public GroupClass GetGroupByGroupId(int group_id_val) {
-        ListEntryClass list_entry = this.listMgr.GetEntryById(group_id_val);
+        ListEntryClass list_entry = this.listMgr.getEntryById(group_id_val);
         if (list_entry == null)
         {
             return null;
@@ -61,7 +61,7 @@ public class GroupMgrClass {
     }
 
     public LinkClass GetLinkById(int id_val) {
-        ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
         if (list_entry == null)
         {
             return null;

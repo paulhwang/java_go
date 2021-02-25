@@ -47,19 +47,19 @@ public class ListMgrClass {
         this.entryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
     }
 
-    public ListEntryClass MallocEntry(Object object_val) {
+    public ListEntryClass mallocEntry(Object object_val) {
         this.debugIt(false, "MallocEntry", "start");
     	
         this.abendListMgrClass("before MallocEntry");
         this.theLock.lock();
-        ListEntryClass entry = this.DoMallocEntry(object_val);
+        ListEntryClass entry = this.doMallocEntry(object_val);
     	this.theLock.unlock();
         this.abendListMgrClass("after MallocEntry");
         
         return entry;
     }
 
-    private ListEntryClass DoMallocEntry(Object object_val) {
+    private ListEntryClass doMallocEntry(Object object_val) {
         int id;
         int index;
 
@@ -73,7 +73,7 @@ public class ListMgrClass {
             this.abendIt("DoMallocEntry", "TBD");
         }
 
-        entry.SetData(id, object_val, index);
+        entry.setData(id, object_val, index);
         return entry;
     }
 
@@ -99,33 +99,33 @@ public class ListMgrClass {
         return -1;
     }
 
-    public void FreeEntry(ListEntryClass entry_val) {
+    public void freeEntry(ListEntryClass entry_val) {
         this.abendListMgrClass("before FreeEntry");
         
         this.theLock.lock();
-        this.DoFreeEntry(entry_val);
+        this.doFreeEntry(entry_val);
         this.theLock.unlock();
         
         this.abendListMgrClass("after FreeEntry");
     }
 
-    private void DoFreeEntry(ListEntryClass entry_val) {
+    private void doFreeEntry(ListEntryClass entry_val) {
         this.entryTableArray[entry_val.Index()] = null;
         this.entryCount--;
     }
 
-    public ListEntryClass GetEntryById(int id_val) {
+    public ListEntryClass getEntryById(int id_val) {
         this.abendListMgrClass("before GetEntryById");
         
         this.theLock.lock();
-    	ListEntryClass entry = DoGetEntryById(id_val);
+    	ListEntryClass entry = doGetEntryById(id_val);
     	this.theLock.unlock();
     	
     	this.abendListMgrClass("after GetEntryById");
     	return entry;
     }
 
-    private ListEntryClass DoGetEntryById(int id_val) {
+    private ListEntryClass doGetEntryById(int id_val) {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
@@ -137,18 +137,18 @@ public class ListMgrClass {
         return entry;
     }
 
-    public ListEntryClass GetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
+    public ListEntryClass getEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
         this.abendListMgrClass("before GetEntryByCompare");
         
         this.theLock.lock();
-        ListEntryClass entry = DoGetEntryByCompare(calling_object_val, string_val);
+        ListEntryClass entry = doGetEntryByCompare(calling_object_val, string_val);
         this.theLock.unlock();
         
         this.abendListMgrClass("after GetEntryByCompare");
     	return entry;
     }
     
-    private ListEntryClass DoGetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
+    private ListEntryClass doGetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
@@ -164,11 +164,11 @@ public class ListMgrClass {
     		return;
     	
     	this.theLock.lock();
-    	this.DoAbendListMgrClass(msg_val);
+    	this.doAbendListMgrClass(msg_val);
     	this.theLock.unlock();
     }
     
-    private void DoAbendListMgrClass(String msg_val) {
+    private void doAbendListMgrClass(String msg_val) {
         int count = 0;
         
         for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++) {

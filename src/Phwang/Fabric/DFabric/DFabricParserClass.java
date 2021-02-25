@@ -199,7 +199,7 @@ public class DFabricParserClass {
                 return this.errorProcessGetNameList(link_id_str, "*************null link");
             }
 
-            int name_list_tag = EncodeNumberClass.DecodeNumber(name_list_tag_str);
+            int name_list_tag = EncodeNumberClass.decodeNumber(name_list_tag_str);
             String name_list = this.FabricRootObject().NameListObject().getNameList(name_list_tag);
 
             String response_data = this.generateGetNameListResponse(link.LinkIdStr(), name_list);

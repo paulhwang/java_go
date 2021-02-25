@@ -44,8 +44,8 @@ public class GoBoardClass {
     public void encodeBoard() {
         this.theBoardOutputBuffer = "";
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().TotalMoves(), 3);
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().NextColor(), 1);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.GameObject().TotalMoves(), 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.GameObject().NextColor(), 1);
 
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++) {
@@ -59,11 +59,11 @@ public class GoBoardClass {
             }
         }
 
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theBlackCapturedStones, 3);
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theWhiteCapturedStones, 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.theBlackCapturedStones, 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.theWhiteCapturedStones, 3);
 
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theLastDeadX, 2);
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.theLastDeadY, 2);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.theLastDeadX, 2);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.theLastDeadY, 2);
 
         this.debugIt(false, "encodeBoard", this.theBoardOutputBuffer);
     }

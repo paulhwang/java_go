@@ -34,25 +34,25 @@ public class SessionMgrClass {
 
     public SessionClass mallocSession() {
         SessionClass session = new SessionClass(this.linkObject);
-        ListEntryClass list_entry = this.listMgr.MallocEntry(session);
+        ListEntryClass list_entry = this.listMgr.mallocEntry(session);
         session.bindListEntry(list_entry);
         return session;
     }
 
     public SessionClass getSessionByIdStr(String session_id_str_val) {
-        int session_id = EncodeNumberClass.DecodeNumber(session_id_str_val);
+        int session_id = EncodeNumberClass.decodeNumber(session_id_str_val);
 
         return this.getSessionBySessionId(session_id);
     }
     
     public SessionClass getSessionBySessionIdStr(String session_id_str_val) {
-        int session_id = EncodeNumberClass.DecodeNumber(session_id_str_val);
+        int session_id = EncodeNumberClass.decodeNumber(session_id_str_val);
 
         return this.getSessionBySessionId(session_id);
     }
 
     public SessionClass getSessionBySessionId(int id_val) {
-        ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
         if (list_entry == null) {
             return null;
         }

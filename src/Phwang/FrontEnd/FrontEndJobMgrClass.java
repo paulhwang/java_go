@@ -58,7 +58,7 @@ public class FrontEndJobMgrClass {
 
     private FrontEndJobClass doMallocJobObject() {
         this.incrementNextAvailableJobId();
-        String ajax_id_str = EncodeNumberClass.EncodeNumber(this.nextAvailableJobId, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+        String ajax_id_str = EncodeNumberClass.encodeNumber(this.nextAvailableJobId, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
         FrontEndJobClass ajax_entry_object = new FrontEndJobClass(ajax_id_str);
         this.putJobObject(ajax_entry_object);
         return ajax_entry_object;

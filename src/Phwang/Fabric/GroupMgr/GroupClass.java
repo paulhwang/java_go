@@ -39,7 +39,7 @@ public class GroupClass {
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.groupId = this.listEntryObject.Id();
-        this.groupIdStr = EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
+        this.groupIdStr = EncodeNumberClass.encodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
     }
 
     public void insertSession(SessionClass session_val) {

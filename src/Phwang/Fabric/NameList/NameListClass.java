@@ -46,13 +46,13 @@ public class NameListClass {
         if (this.nameListTag > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
             this.nameListTag = 1;
         }
-        this.nameListTagStr = EncodeNumberClass.EncodeNumber(this.nameListTag, NAME_LIST_CLASS_NAME_LIST_TAG_SIZE);
+        this.nameListTagStr = EncodeNumberClass.encodeNumber(this.nameListTag, NAME_LIST_CLASS_NAME_LIST_TAG_SIZE);
 
         this.nameList = "";
         for (int i = max_index; i >= 0; i--) {
             if (list_entry_array[i] != null) {
                 if (this.nameList.length() == 0) {
-                    this.nameList = EncodeNumberClass.EncodeNumber(this.nameListTag, NAME_LIST_CLASS_NAME_LIST_TAG_SIZE);
+                    this.nameList = EncodeNumberClass.encodeNumber(this.nameListTag, NAME_LIST_CLASS_NAME_LIST_TAG_SIZE);
                 }
                 else {
                     this.nameList = this.nameList + ",";
