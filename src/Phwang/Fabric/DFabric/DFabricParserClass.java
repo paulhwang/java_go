@@ -321,7 +321,7 @@ public class DFabricParserClass {
             /* transfer data up */
             String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA;
             uplink_data = uplink_data + room_id_str + data;
-            //this.UFabricObject().TransmitData(uplink_data);
+            this.UFabricObject().TransmitData(uplink_data);
 
             /* send the response down */
             String response_data = this.generatePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), "job is done");

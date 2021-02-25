@@ -18,8 +18,8 @@ public class GoGameClass {
     private int theTotalMoves;
     private int theMaxMove;
     private int theNextColor;
-    private Boolean thePassReceived;
-    private Boolean theGameIsOver;
+    private Boolean thePassReceived = false;
+    private Boolean theGameIsOver = false;
     private GoMoveClass[] theMovesArray;
 
     public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject();  }

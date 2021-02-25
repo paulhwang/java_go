@@ -35,8 +35,7 @@ public class GoGroupClass {
     public void SetIndexNumber(int val) { this.indexNumber = val; }
     public void SetGroupListObject(GoGroupListClass group_list_val) { this.theGroupListObject = group_list_val; }
 
-    public GoGroupClass(GoGroupListClass group_list_object_val)
-    {
+    public GoGroupClass(GoGroupListClass group_list_object_val) {
         this.theGroupListObject = group_list_object_val;
         this.indexNumber = this.theGroupListObject.GroupCount();
         this.myColor = this.theGroupListObject.MyColor();
@@ -49,36 +48,28 @@ public class GoGroupClass {
             : GoDefineClass.GetOppositeColor(this.myColor);
     }
 
-    public void InsertStoneToGroup(int x_val, int y_val, Boolean dead_val)
-    {
-        if (this.existMatrix[x_val][y_val])
-        {
+    public void InsertStoneToGroup(int x_val, int y_val, Boolean dead_val) {
+        if (this.existMatrix[x_val][y_val]) {
             this.abendIt("insertStoneToGroup", "stone already exists in group");
         }
 
-        if (this.stoneCount == 0)
-        {
+        if (this.stoneCount == 0) {
             this.maxX = x_val;
             this.minX = x_val;
             this.maxY = y_val;
             this.minY = y_val;
         }
-        else
-        {
-            if (x_val > this.maxX)
-            {
+        else {
+            if (x_val > this.maxX) {
                 this.maxX = x_val;
             }
-            if (x_val < this.minX)
-            {
+            if (x_val < this.minX) {
                 this.minX = x_val;
             }
-            if (y_val > this.maxY)
-            {
+            if (y_val > this.maxY) {
                 this.maxY = y_val;
             }
-            if (y_val < this.minY)
-            {
+            if (y_val < this.minY) {
                 this.minY = y_val;
             }
         }
@@ -110,8 +101,7 @@ public class GoGroupClass {
         return false;
     }
 
-    public void MergeWithOtherGroup(GoGroupClass group2)
-    {
+    public void MergeWithOtherGroup(GoGroupClass group2) {
         this.debugIt(false, "mergeWithOtherGroup", "");
         int i = group2.minX;
         while (i <= group2.maxX)
@@ -164,8 +154,7 @@ public class GoGroupClass {
         }
     }
 
-    public Boolean GroupHasAir()
-    {
+    public Boolean GroupHasAir() {
         int i = this.minX;
         while (i <= this.maxX)
         {
@@ -186,8 +175,7 @@ public class GoGroupClass {
         return false;
     }
 
-    public void RemoveDeadStoneFromBoard()
-    {
+    public void RemoveDeadStoneFromBoard() {
         int i = this.minX;
         while (i <= this.maxX)
         {
@@ -205,8 +193,7 @@ public class GoGroupClass {
         }
     }
 
-    public void MarkLastDeadInfo()
-    {
+    public void MarkLastDeadInfo() {
         this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
 
         if (this.maxX != this.minX)
@@ -223,8 +210,7 @@ public class GoGroupClass {
         }
     }
 
-    public void AbendGroup()
-    {
+    public void AbendGroup() {
         int count = 0;
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++)
@@ -243,8 +229,7 @@ public class GoGroupClass {
         }
     }
 
-    public void AbendOnGroupConflict(GoGroupClass other_group_val)
-    {
+    public void AbendOnGroupConflict(GoGroupClass other_group_val) {
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++)
         {

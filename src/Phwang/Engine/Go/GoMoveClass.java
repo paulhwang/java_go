@@ -21,13 +21,11 @@ public class GoMoveClass {
     public int TurnIndex() { return this.turnIndex; }
     public String MoveInfo() { return this.moveInfo; }
 
-    public GoMoveClass(String encoded_move_val)
-    {
+    public GoMoveClass(String encoded_move_val) {
         this.decodeMove(encoded_move_val);
     }
 
-    private void decodeMove(String encoded_move_val)
-    {
+    private void decodeMove(String encoded_move_val) {
         this.theX = (encoded_move_val.charAt(0) - '0') * 10 + (encoded_move_val.charAt(1) - '0');
         this.theY = (encoded_move_val.charAt(2) - '0') * 10 + (encoded_move_val.charAt(3) - '0');
         this.myColor = encoded_move_val.charAt(4) - '0';

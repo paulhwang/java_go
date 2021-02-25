@@ -34,6 +34,8 @@ class FrontTestCaseClass implements ThreadInterface {
     private String myNameString;
     private String password = "Tennis";
     private String themeData = "9999G009090000";
+    private String xmtSeqString = "1111";
+    private String goMoveString = "GM01021001";
     private JSONParser parserObject;
     private String linkIdString;
     private String sessionIdString;
@@ -146,6 +148,8 @@ class FrontTestCaseClass implements ThreadInterface {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", this.linkIdString);
     	json_data.put("session_id", this.sessionIdString);
+    	json_data.put("xmt_seq", this.xmtSeqString);
+    	json_data.put("data", this.goMoveString);
     	String str_json_data = json_data.toJSONString();
     	
     	JSONObject json_request = new JSONObject();
