@@ -12,6 +12,7 @@ module java_go {
 	exports Phwang.Theme.DTheme;
 	exports Phwang.Theme.RoomMgr;
 	exports Phwang.Utils.Queue;
+	exports Phwang.Utils.tcp;
 	exports Phwang.Theme.Utheme;
 	exports Phwang.Fabric.UFabric;
 	exports Phwang.Utils.ThreadMgr;
@@ -23,7 +24,6 @@ module java_go {
 	exports Phwang.Fabric;
 	exports Phwang.Models;
 	exports Phwang.Utils.Binder;
-	exports Phwang.Utils.Tcp;
 	exports Phwang.Utils;
 	exports org.json.simple.parser;
 	exports Phwang.Fabric.LinkMgr;
