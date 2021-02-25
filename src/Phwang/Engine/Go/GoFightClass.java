@@ -40,7 +40,7 @@ public class GoFightClass {
     }
 
     private void resetEngineObjectData() {
-        this.BoardObject().ResetBoardObjectData();
+        this.BoardObject().resetBoardObjectData();
 
         this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
         this.theGroupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
@@ -53,7 +53,7 @@ public class GoFightClass {
     private void resetMarkedGroupLists() {
         this.theGroupListArray[3] = new GoGroupListClass(this, 3, GoDefineClass.GO_BLACK_STONE, true, "black", "gray");
         this.theGroupListArray[4] = new GoGroupListClass(this, 4, GoDefineClass.GO_WHITE_STONE, true, "white", "gray");
-        this.BoardObject().ResetMarkedBoardObjectData();
+        this.BoardObject().resetMarkedBoardObjectData();
     }
 
     private void resetEmptyGroupLists() {
@@ -65,7 +65,7 @@ public class GoFightClass {
     public void EnterBattle(GoMoveClass move_val) {
         this.debugIt(false, "enterBattle", move_val.MoveInfo());
 
-        this.BoardObject().AddStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
+        this.BoardObject().addStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
         GoGroupClass my_group = this.insertStoneToGroupList(move_val);
         if (my_group == null) {
             this.abendIt("enterBattle", "fail in insertStoneToGroupList");
@@ -234,7 +234,7 @@ public class GoFightClass {
 
     public void ResetEngineObjectData()
     {
-        this.BoardObject().ResetBoardObjectData();
+        this.BoardObject().resetBoardObjectData();
 
         this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
         this.theGroupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);

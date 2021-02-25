@@ -170,7 +170,7 @@ public class GoGroupClass {
             {
                 if (this.existMatrix[i][j])
                 {
-                    if (this.theGroupListObject.FightObject().RootObject().BoardObject().StoneHasAir(i, j))
+                    if (this.theGroupListObject.FightObject().RootObject().BoardObject().stoneHasAir(i, j))
                     {
                         return true;
                     }

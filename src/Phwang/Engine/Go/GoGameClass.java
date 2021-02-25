@@ -53,7 +53,7 @@ public class GoGameClass {
         }
 
         this.thePassReceived = false;
-        this.BoardObject().ClearLastDeadStone();
+        this.BoardObject().clearLastDeadStone();
         this.insertMoveToMoveList(move_val);
         this.FightObject().EnterBattle(move_val);
         this.theNextColor = GoDefineClass.GetOppositeColor(move_val.MyColor());
@@ -118,7 +118,7 @@ public class GoGameClass {
     }
 
     private void processTheWholeMoveList() {
-        this.BoardObject().ResetBoardObjectData();
+        this.BoardObject().resetBoardObjectData();
         this.FightObject().ResetEngineObjectData();
         this.resetGameObjectPartialData();
 

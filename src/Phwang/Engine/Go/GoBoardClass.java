@@ -36,12 +36,12 @@ public class GoBoardClass {
         this.theRootObject = root_object_val;
         this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
-        this.ResetBoardObjectData();
+        this.resetBoardObjectData();
     }
 
     private final char GO_PROTOCOL_GAME_INFO = 'G';
 
-    public void EncodeBoard() {
+    public void encodeBoard() {
         this.theBoardOutputBuffer = "";
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.EncodeNumber(this.GameObject().TotalMoves(), 3);
@@ -68,7 +68,7 @@ public class GoBoardClass {
         this.debugIt(false, "encodeBoard", this.theBoardOutputBuffer);
     }
 
-    public void AddStoneToBoard(int x_val, int y_val, int color_val) {
+    public void addStoneToBoard(int x_val, int y_val, int color_val) {
         if (!this.ConfigObject().IsValidCoordinates(x_val, y_val)) {
             this.abendIt("addStoneToBoard", "bad coordinate");
             return;
@@ -87,7 +87,7 @@ public class GoBoardClass {
         return true;
     }
 
-    public Boolean StoneHasAir(int x_val, int y_val) {
+    public Boolean stoneHasAir(int x_val, int y_val) {
         if (this.isEmptySpace(x_val, y_val - 1)) {
             return true;
         }
@@ -103,7 +103,7 @@ public class GoBoardClass {
         return false;
     }
 
-    public void ResetBoardObjectData() {
+    public void resetBoardObjectData() {
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
@@ -113,14 +113,14 @@ public class GoBoardClass {
         }
         this.theBlackCapturedStones = 0;
         this.theWhiteCapturedStones = 0;
-        this.ClearLastDeadStone();
+        this.clearLastDeadStone();
     }
 
-    public void ResetMarkedBoardObjectData() {
+    public void resetMarkedBoardObjectData() {
 
     }
 
-    public void ClearLastDeadStone() {
+    public void clearLastDeadStone() {
         this.theLastDeadX = 19;
         this.theLastDeadY = 19;
     }
