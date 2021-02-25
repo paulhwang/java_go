@@ -34,12 +34,15 @@ class FrontTestCaseClass implements ThreadInterface {
     private String myNameString;
     private String password = "Tennis";
     private String themeData = "9999G009090000";
+    private String themeData2 = "G009090000";
+    private String acceptString = "Yes";
     private String xmtSeqString = "1111";
     private String goMoveString = "GM01021001";
     private String nameListTagString = "000";///////////////////////////////////////////////////////different from brouser which is int
     private JSONParser parserObject;
     private String linkIdString;
     private String sessionIdString;
+    private String themeIdString = "3333";
     
     public FrontEndRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
@@ -70,21 +73,24 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	this.doSetupLink();
     	
-    	UtilsClass.sleep(100);
-    	this.doGetLinkData();
+    	//UtilsClass.sleep(100);
+    	//this.doGetLinkData();
+    	
+    	//UtilsClass.sleep(100);
+    	//this.doGetNameList();
     	
     	this.doSetupSession();
     	
-    	UtilsClass.sleep(1000);
-    	this.doSetupSession3();
+    	//UtilsClass.sleep(1000);
+    	//this.doSetupSession3();
     	
-    	this.doPutSessionData();
+    	//this.doPutSessionData();
+    	
+    	//UtilsClass.sleep(1000);
+    	//this.doGetSessionData();
     	
     	UtilsClass.sleep(1000);
-    	this.doGetSessionData();
-    	
-    	UtilsClass.sleep(1000);
-    	this.doGetNameList();
+    	this.doSetupSession2();
     }
     
     private void doSetupLink() {
@@ -169,6 +175,24 @@ class FrontTestCaseClass implements ThreadInterface {
         } catch (Exception e) {
         	this.abendIt("doSetupSession", "***Exception***");
         }
+    }
+    
+    private void doSetupSession2() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	json_data.put("session_id", this.sessionIdString);
+    	json_data.put("theme_id_str", this.themeIdString);
+    	json_data.put("accept", this.acceptString);
+    	json_data.put("theme_data", this.themeData2);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "setup_session2");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doSetupSession3() {

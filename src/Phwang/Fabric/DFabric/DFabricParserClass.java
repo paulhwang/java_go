@@ -83,7 +83,7 @@ public class DFabricParserClass {
             response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
         }
         else if (ajax_fabric_request.command.equals("setup_session2")) {
-            response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
+            response_data = this.processSetupSession2Request(ajax_fabric_request.data);
         }
         else if (ajax_fabric_request.command.equals("setup_session3")) {
             response_data = this.processSetupSession3Request(ajax_fabric_request.data);
@@ -330,9 +330,56 @@ public class DFabricParserClass {
     }
 
     private String processSetupSession2Request(String input_data_val) {
-        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+        this.debugIt(true, "processSetupSession2Request", "input_data_val = " + input_data_val);
 
-        return "junk";
+        
+        try {
+        	JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	String link_id_str = (String) json.get("link_id");
+        	String session_id_str = (String) json.get("session_id");
+        	String theme_id_str = (String) json.get("theme_id");
+        	String accept_str = (String) json.get("accept");
+        	String theme_data_str = (String) json.get("theme_data");
+        	
+            this.debugIt(false, "processSetupSession2Request", "link_id = " + link_id_str);
+            this.debugIt(false, "processSetupSession2Request", "session_id = " + session_id_str);
+
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
+            if (link == null) {
+                return this.errorProcessSetupSession3(link_id_str, "null link");
+            }
+            
+            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id_str);
+            if (session == null) {
+                return errorProcessSetupSession3(link_id_str, "null session");
+            }
+
+            session.SetBrowserThemeIdStr(theme_id_str);
+            GroupClass group = session.GroupObject();
+            if (group == null) {
+                return errorProcessSetupSession2(link_id_str, "null group");
+            }
+            this.mallocRoom(group, theme_data_str);
+
+            String response_data = this.generateSetupSession2Response(link.LinkIdStr(), session.SessionIdStr(), session.BrowserThemeIdStr());
+            return response_data;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String errorProcessSetupSession2(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
+
+    public String generateSetupSession2Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str_val);
+    	json_data.put("session_id", session_id_str_val);
+    	json_data.put("theme_id", theme_id_str_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
     }
 
     private String processSetupSession3Request(String input_data_val) {
