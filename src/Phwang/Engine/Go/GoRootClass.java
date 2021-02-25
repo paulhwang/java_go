@@ -33,13 +33,13 @@ public class GoRootClass {
         this.parseObject = new GoParseClass(this);
     }
 
-    public String DoSetup(String input_data_val) {
+    public String doSetup(String input_data_val) {
         this.configObject.ConfigIt(input_data_val);
         return "";
     }
 
-    public String ProcessInputData(String input_data_val) {
-        this.parseObject.ParseInputData(input_data_val);
+    public String processInputData(String input_data_val) {
+        this.parseObject.parseInputData(input_data_val);
         this.boardObject.encodeBoard();
         this.debugIt(false, "transmitBoardData", this.boardObject.BoardOutputBuffer());
         return this.boardObject.BoardOutputBuffer();

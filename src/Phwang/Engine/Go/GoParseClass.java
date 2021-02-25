@@ -22,7 +22,7 @@ public class GoParseClass {
         this.theRootObject = go_root_object_val;
     }
 
-    public void ParseInputData(String input_data_val)
+    public void parseInputData(String input_data_val)
     {
         int len = input_data_val.length();//to be deleted
         switch (input_data_val.charAt(0))

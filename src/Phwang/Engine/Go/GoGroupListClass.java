@@ -52,8 +52,7 @@ public class GoGroupListClass {
         this.isMarkedDead = 0;
     }
 
-    public int TotalStoneCount()
-    {
+    public int totalStoneCount() {
         int count = 0;
         for (int i = 0; i < this.groupCount; i++)
         {
@@ -62,16 +61,14 @@ public class GoGroupListClass {
         return count;
     }
 
-    public void InsertGroupToGroupList(GoGroupClass group_val)
-    {
+    public void insertGroupToGroupList(GoGroupClass group_val) {
         this.groupArray[this.groupCount] = group_val;
         group_val.SetIndexNumber(this.groupCount);
         this.groupCount++;
         group_val.SetGroupListObject(this);
     }
 
-    public GoGroupClass FindCandidateGroup(int x_val, int y_val)
-    {
+    public GoGroupClass findCandidateGroup(int x_val, int y_val) {
         int i = 0;
         while (i < this.groupCount)
         {
@@ -84,8 +81,7 @@ public class GoGroupListClass {
         return null;
     }
 
-    public GoGroupClass FindOtherCandidateGroup(GoGroupClass group_val, int x_val, int y_val)
-    {
+    public GoGroupClass findOtherCandidateGroup(GoGroupClass group_val, int x_val, int y_val) {
         int i = 0;
         while (i < this.groupCount)
         {
@@ -101,8 +97,7 @@ public class GoGroupListClass {
         return null;
     }
 
-    public void RemoveGroupFromGroupList(GoGroupClass group_val)
-    {
+    public void removeGroupFromGroupList(GoGroupClass group_val) {
         this.groupCount--;
         if (group_val.IndexNumber() != this.groupCount)
         {
@@ -112,8 +107,7 @@ public class GoGroupListClass {
         this.groupArray[this.groupCount] = null;
     }
 
-    public Boolean StoneExistWithinMe(int x_val, int y_val)
-    {
+    public Boolean stoneExistWithinMe(int x_val, int y_val) {
         int i = 0;
         while (i < this.groupCount)
         {
@@ -127,8 +121,7 @@ public class GoGroupListClass {
         return false;
     }
 
-    public void AbendGroupList()
-    {
+    public void abendGroupList() {
         int i = 0;
         while (i < this.groupCount)
         {

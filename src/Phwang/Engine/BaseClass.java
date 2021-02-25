@@ -43,7 +43,7 @@ public class BaseClass {
         switch (input_data_val.charAt(0)) {
             case 'G':
                 this.goRootObject = new GoRootClass();
-                return this.goRootObject.DoSetup(input_data);
+                return this.goRootObject.doSetup(input_data);
 
             default:
                 String err_msg = "command " + input_data_val.charAt(0) + " not supported";
@@ -57,7 +57,7 @@ public class BaseClass {
 
         switch (input_data_val.charAt(0)) {
             case 'G':
-                String output_data = this.goRootObject.ProcessInputData(input_data);
+                String output_data = this.goRootObject.processInputData(input_data);
                 return output_data;
 
             default:
