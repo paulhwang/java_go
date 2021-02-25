@@ -74,7 +74,7 @@ public class GoFightClass {
 
         int dead_count = this.killOtherColorGroups(move_val, my_group);
 
-        if (!my_group.GroupHasAir()) {
+        if (!my_group.groupHasAir()) {
             this.removeDeadGroup(my_group);
         }
 
@@ -109,12 +109,12 @@ public class GoFightClass {
         GoGroupClass group = g_list.findCandidateGroup(move_val.X(), move_val.Y());
         if (group == null) {
             group = new GoGroupClass(g_list);
-            group.InsertStoneToGroup(move_val.X(), move_val.Y(), false);
+            group.insertStoneToGroup(move_val.X(), move_val.Y(), false);
             g_list.insertGroupToGroupList(group);
             return group;
         }
 
-        group.InsertStoneToGroup(move_val.X(), move_val.Y(), false);
+        group.insertStoneToGroup(move_val.X(), move_val.Y(), false);
 
         int dummy_count = 0;
         GoGroupClass group2;
@@ -124,7 +124,7 @@ public class GoFightClass {
                 break;
             }
             dummy_count += 1;
-            group.MergeWithOtherGroup(group2);
+            group.mergeWithOtherGroup(group2);
             g_list.removeGroupFromGroupList(group2);
         }
         if (dummy_count > 3) {
@@ -162,7 +162,7 @@ public class GoFightClass {
             return 0;
         }
 
-        if (his_group.GroupHasAir())
+        if (his_group.groupHasAir())
         {
             return 0;
         }
@@ -170,7 +170,7 @@ public class GoFightClass {
         int dead_count = his_group.StoneCount();
         if ((my_group_val.StoneCount() == 1) && (his_group.StoneCount() == 1))
         {
-            his_group.MarkLastDeadInfo();
+            his_group.markLastDeadInfo();
         }
 
         this.removeDeadGroup(his_group);
@@ -201,7 +201,7 @@ public class GoFightClass {
 
     private void removeDeadGroup(GoGroupClass group)
     {
-        group.RemoveDeadStoneFromBoard();
+        group.removeDeadStoneFromBoard();
         if (group.MyColor() == GoDefineClass.GO_BLACK_STONE)
         {
             this.blackGroupList().removeGroupFromGroupList(group);

@@ -72,7 +72,7 @@ public class GoGroupListClass {
         int i = 0;
         while (i < this.groupCount)
         {
-            if (this.groupArray[i].IsCandidateGroup(x_val, y_val))
+            if (this.groupArray[i].isCandidateGroup(x_val, y_val))
             {
                 return this.groupArray[i];
             }
@@ -87,7 +87,7 @@ public class GoGroupListClass {
         {
             if (this.groupArray[i] != group_val)
             {
-                if (this.groupArray[i].IsCandidateGroup(x_val, y_val))
+                if (this.groupArray[i].isCandidateGroup(x_val, y_val))
                 {
                     return this.groupArray[i];
                 }
@@ -142,12 +142,12 @@ public class GoGroupListClass {
                 return;
             }
 
-            group.AbendGroup();
+            group.abendGroup();
 
             int j = i + 1;
             while (j < this.groupCount)
             {
-                group.AbendOnGroupConflict(this.groupArray[j]);
+                group.abendOnGroupConflict(this.groupArray[j]);
                 j = j + 1;
             }
             i += 1;

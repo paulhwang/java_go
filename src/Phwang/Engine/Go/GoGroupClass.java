@@ -55,7 +55,7 @@ public class GoGroupClass {
             : GoDefineClass.GetOppositeColor(this.myColor);
     }
 
-    public void InsertStoneToGroup(int x_val, int y_val, Boolean dead_val) {
+    public void insertStoneToGroup(int x_val, int y_val, Boolean dead_val) {
         if (this.existMatrix[x_val][y_val]) {
             this.abendIt("insertStoneToGroup", "stone already exists in group");
         }
@@ -86,7 +86,7 @@ public class GoGroupClass {
         this.deadMatrix[x_val] [y_val] = dead_val;
     }
 
-    public Boolean IsCandidateGroup(int x_val, int y_val) {
+    public Boolean isCandidateGroup(int x_val, int y_val) {
         int i = this.minX;
         while (i <= this.maxX)
         {
@@ -108,7 +108,7 @@ public class GoGroupClass {
         return false;
     }
 
-    public void MergeWithOtherGroup(GoGroupClass group2) {
+    public void mergeWithOtherGroup(GoGroupClass group2) {
         this.debugIt(false, "mergeWithOtherGroup", "");
         int i = group2.minX;
         while (i <= group2.maxX)
@@ -161,7 +161,7 @@ public class GoGroupClass {
         }
     }
 
-    public Boolean GroupHasAir() {
+    public Boolean groupHasAir() {
         int i = this.minX;
         while (i <= this.maxX)
         {
@@ -182,7 +182,7 @@ public class GoGroupClass {
         return false;
     }
 
-    public void RemoveDeadStoneFromBoard() {
+    public void removeDeadStoneFromBoard() {
         int i = this.minX;
         while (i <= this.maxX)
         {
@@ -200,7 +200,7 @@ public class GoGroupClass {
         }
     }
 
-    public void MarkLastDeadInfo() {
+    public void markLastDeadInfo() {
         this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
 
         if (this.maxX != this.minX)
@@ -217,7 +217,7 @@ public class GoGroupClass {
         }
     }
 
-    public void AbendGroup() {
+    public void abendGroup() {
         int count = 0;
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++)
@@ -236,7 +236,7 @@ public class GoGroupClass {
         }
     }
 
-    public void AbendOnGroupConflict(GoGroupClass other_group_val) {
+    public void abendOnGroupConflict(GoGroupClass other_group_val) {
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++)
         {
