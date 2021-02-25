@@ -38,7 +38,7 @@ public class UThemeClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().CreateThreadObject(this.receiveThreadName(), this);
+    	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
      }
     
 	public void ThreadCallbackFunction() {

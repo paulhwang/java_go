@@ -54,11 +54,11 @@ public class SessionClass {
     }
 
     public void enqueuePendingDownLinkData(String data_val) {
-        this.pendingDownLinkDataQueue.EnqueueData(data_val);
+        this.pendingDownLinkDataQueue.enqueueData(data_val);
     }
 
     public String getPendingDownLinkData() {
-        return (String) this.pendingDownLinkDataQueue.DequeueData();
+        return (String) this.pendingDownLinkDataQueue.dequeueData();
     }
 
     public int getPendingDownLinkDataCount() {

@@ -58,7 +58,7 @@ class FrontTestCaseClass implements ThreadInterface {
     }
     
     public void startTestTest() {
-    	this.ThreadMgrObject().CreateThreadObject(this.frontTestCaseThreadName(), this);
+    	this.ThreadMgrObject().createThreadObject(this.frontTestCaseThreadName(), this);
      }
 
 	public void ThreadCallbackFunction() {

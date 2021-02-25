@@ -18,14 +18,14 @@ public class ThreadMgrClass {
     	
     }
 
-    public ThreadClass CreateThreadObject(String thread_name_val, ThreadInterface calling_object_val) {
+    public ThreadClass createThreadObject(String thread_name_val, ThreadInterface calling_object_val) {
     	ThreadClass thread_object = new ThreadClass(thread_name_val, calling_object_val);
     	
-    	this.InsertToThreadList(thread_object);
+    	this.insertToThreadList(thread_object);
     	return thread_object;
     }
     
-    private void InsertToThreadList(ThreadClass thread_object_val) {
+    private void insertToThreadList(ThreadClass thread_object_val) {
     	
     }
 

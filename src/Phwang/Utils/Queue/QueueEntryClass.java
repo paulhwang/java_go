@@ -13,7 +13,7 @@ public class QueueEntryClass {
     public QueueEntryClass prev;
     public Object data;
     
-    public void ResetQueueEntry() {
+    public void resetQueueEntry() {
     	this.next = null;
     	this.prev = null;
     	this.data = null;

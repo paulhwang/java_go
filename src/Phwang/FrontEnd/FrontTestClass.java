@@ -32,7 +32,7 @@ public class FrontTestClass implements ThreadInterface {
     }
     
     public void startTest() {
-    	this.ThreadMgrObject().CreateThreadObject(this.frontTestThreadName(), this);
+    	this.ThreadMgrObject().createThreadObject(this.frontTestThreadName(), this);
      }
     
 	public void ThreadCallbackFunction() {
