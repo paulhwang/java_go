@@ -46,55 +46,50 @@ public class DFabricParserClass {
         this.parserObject = new JSONParser();
     }
 
-    public class AjaxFabricRequestFormatClass {
-        public String command;
-        public int packet_id;
-        public String data;
-    }
-
     public void parseInputPacket(String input_data_val) {
         String adax_id = input_data_val.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
         String toDes = input_data_val.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-
-        AjaxFabricRequestFormatClass ajax_fabric_request = new AjaxFabricRequestFormatClass();
+        String command = null;
+        String data = null;
+        
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(toDes);
 
-            ajax_fabric_request.command = (String) json.get("command");
-            ajax_fabric_request.data = (String) json.get("data");
+            command = (String) json.get("command");
+            data = (String) json.get("data");
         
         } catch (Exception e) {
         	this.abendIt("parseInputPacket", "***Exception***");
         }
         
-        this.debugIt(false, "parseInputPacket", "*********************command = " + ajax_fabric_request.command);
+        this.debugIt(false, "parseInputPacket", "*********************command = " + command);
         String response_data = null;
-        if (ajax_fabric_request.command.equals("setup_link")) {
-            response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
+        if (command.equals("setup_link")) {
+            response_data = this.processSetupLinkRequest(data);
         }
-        else if (ajax_fabric_request.command.equals("get_link_data")) {
-            response_data = this.processGetLinkDataRequest(ajax_fabric_request.data);
+        else if (command.equals("get_link_data")) {
+            response_data = this.processGetLinkDataRequest(data);
         }
-        else if (ajax_fabric_request.command.equals("get_name_list")) {
-            response_data = this.processGetNameListRequest(ajax_fabric_request.data);
+        else if (command.equals("get_name_list")) {
+            response_data = this.processGetNameListRequest(data);
         }
-        else if (ajax_fabric_request.command.equals("setup_session")) {
-            response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
+        else if (command.equals("setup_session")) {
+            response_data = this.processSetupSessionRequest(data);
         }
-        else if (ajax_fabric_request.command.equals("setup_session2")) {
-            response_data = this.processSetupSession2Request(ajax_fabric_request.data);
+        else if (command.equals("setup_session2")) {
+            response_data = this.processSetupSession2Request(data);
         }
-        else if (ajax_fabric_request.command.equals("setup_session3")) {
-            response_data = this.processSetupSession3Request(ajax_fabric_request.data);
+        else if (command.equals("setup_session3")) {
+            response_data = this.processSetupSession3Request(data);
         }
-        else if (ajax_fabric_request.command.equals("put_session_data")) {
-            response_data = this.processPutSessionDataRequest(ajax_fabric_request.data);
+        else if (command.equals("put_session_data")) {
+            response_data = this.processPutSessionDataRequest(data);
         }
-        else if (ajax_fabric_request.command.equals("get_session_data")) {
-            response_data = this.processGetSessionDataRequest(ajax_fabric_request.data);
+        else if (command.equals("get_session_data")) {
+            response_data = this.processGetSessionDataRequest(data);
         }
         else {
-            response_data = "command " + ajax_fabric_request.command + " not supported";
+            response_data = "command " + command + " not supported";
             this.abendIt("parseInputPacket", response_data);
         }
         
@@ -105,8 +100,7 @@ public class DFabricParserClass {
         this.debugIt(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String my_name = (String) json.get("my_name");
         	String password = (String) json.get("password");
         	
@@ -132,8 +126,7 @@ public class DFabricParserClass {
         this.debugIt(false, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	
             this.debugIt(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
@@ -197,8 +190,7 @@ public class DFabricParserClass {
         this.debugIt(false, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String name_list_tag_str = (String) json.get("name_list_tag");
         	
@@ -233,8 +225,7 @@ public class DFabricParserClass {
         this.debugIt(false, "processSetupSessionRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String his_name = (String) json.get("his_name");
         	String theme_data_str = (String) json.get("theme_data");
@@ -311,8 +302,7 @@ public class DFabricParserClass {
 
         
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	String theme_id_str = (String) json.get("theme_id");
@@ -363,8 +353,7 @@ public class DFabricParserClass {
         this.debugIt(false, "processSetupSession3Request", "input_data_val = " + input_data_val);
         
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	
@@ -409,8 +398,7 @@ public class DFabricParserClass {
 
        
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	String data = (String) json.get("data");
@@ -467,8 +455,7 @@ public class DFabricParserClass {
 
         
         try {
-        	JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	
