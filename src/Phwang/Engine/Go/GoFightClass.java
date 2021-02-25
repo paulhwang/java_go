@@ -16,7 +16,7 @@ public class GoFightClass {
     private static final int GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE = 7;
 
     private GoRootClass theRootObject;
-    private Boolean abendEngineOn;
+    private Boolean abendEngineOn = false;
     GoGroupListClass[] theGroupListArray;
     String theCaptureCount;
     String theLastDeadStone;

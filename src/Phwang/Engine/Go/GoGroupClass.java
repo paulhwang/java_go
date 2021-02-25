@@ -43,6 +43,13 @@ public class GoGroupClass {
 
         this.existMatrix = new Boolean[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         this.deadMatrix = new Boolean[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
+        for (int i = 0; i < GoDefineClass.MAX_BOARD_SIZE; i++) {
+        	for (int j = 0; j < GoDefineClass.MAX_BOARD_SIZE; j++) {
+        		this.existMatrix[i][j] = false;
+        		this.deadMatrix[i][j] = false;
+        	}
+        }
+        
         this.hisColor = (this.myColor == GoDefineClass.GO_EMPTY_STONE)
             ? GoDefineClass.GO_EMPTY_STONE
             : GoDefineClass.GetOppositeColor(this.myColor);
