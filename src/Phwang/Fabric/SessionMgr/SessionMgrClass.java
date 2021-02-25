@@ -32,26 +32,26 @@ public class SessionMgrClass {
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_SESSION_ID);
     }
 
-    public SessionClass MallocSession() {
+    public SessionClass mallocSession() {
         SessionClass session = new SessionClass(this.linkObject);
         ListEntryClass list_entry = this.listMgr.MallocEntry(session);
-        session.BindListEntry(list_entry);
+        session.bindListEntry(list_entry);
         return session;
     }
 
-    public SessionClass GetSessionByIdStr(String session_id_str_val) {
+    public SessionClass getSessionByIdStr(String session_id_str_val) {
         int session_id = EncodeNumberClass.DecodeNumber(session_id_str_val);
 
-        return this.GetSessionBySessionId(session_id);
+        return this.getSessionBySessionId(session_id);
     }
     
     public SessionClass getSessionBySessionIdStr(String session_id_str_val) {
         int session_id = EncodeNumberClass.DecodeNumber(session_id_str_val);
 
-        return this.GetSessionBySessionId(session_id);
+        return this.getSessionBySessionId(session_id);
     }
 
-    public SessionClass GetSessionBySessionId(int id_val) {
+    public SessionClass getSessionBySessionId(int id_val) {
         ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
         if (list_entry == null) {
             return null;

@@ -63,7 +63,7 @@ public class UFrontClass implements ThreadInterface {
             String ajax_id_str = received_data.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             String response_data = received_data.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
 
-            FrontEndJobClass job_entry = this.frontEndJobMgrObject.GetJobObject(ajax_id_str);
+            FrontEndJobClass job_entry = this.frontEndJobMgrObject.getJobObject(ajax_id_str);
             if (job_entry == null) {
                 this.abendIt("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;
@@ -79,14 +79,14 @@ public class UFrontClass implements ThreadInterface {
         this.stopReceiveThreadFlag = true;
     }
 
-    public String ProcessAjaxRequestPacket(String input_data_val) {
-        this.debugIt(false, "ProcessAjaxRequestPacket", "input_data_val = " + input_data_val);
+    public String processAjaxRequestPacket(String input_data_val) {
+        this.debugIt(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
         
-        FrontEndJobClass job_entry = this.frontEndJobMgrObject.MallocJobObject();
+        FrontEndJobClass job_entry = this.frontEndJobMgrObject.mallocJobObject();
         this.binderObject.TransmitData(job_entry.ajaxIdStr + input_data_val);
-        String response_data = job_entry.ReadData();
+        String response_data = job_entry.readData();
         
-        this.debugIt(false, "ProcessAjaxRequestPacket", "response_data = " + response_data);
+        this.debugIt(false, "processAjaxRequestPacket", "response_data = " + response_data);
         return response_data;
     }
 

@@ -31,7 +31,7 @@ public class FrontTestClass implements ThreadInterface {
         this.frontEndRootObject = root_object_val;
     }
     
-    public void StartTest() {
+    public void startTest() {
     	this.ThreadMgrObject().CreateThreadObject(this.frontTestThreadName(), this);
      }
     

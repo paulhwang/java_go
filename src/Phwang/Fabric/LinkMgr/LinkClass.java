@@ -53,7 +53,7 @@ public class LinkClass {
     }
 
     public SessionClass mallocSession() {
-        return this.sessionMgrObject.MallocSession();
+        return this.sessionMgrObject.mallocSession();
     }
 
     public void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {

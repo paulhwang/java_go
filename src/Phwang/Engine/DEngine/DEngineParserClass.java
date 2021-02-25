@@ -57,7 +57,7 @@ public class DEngineParserClass {
             return;
         }
 
-        String output_data = go_base_object.SetupBase(input_data);
+        String output_data = go_base_object.setupBase(input_data);
 
         String downlink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
         downlink_data = downlink_data + go_base_object.RoomIdStr() + go_base_object.BaseIdStr() + output_data;
@@ -75,7 +75,7 @@ public class DEngineParserClass {
             return;
         }
 
-        String output_data = go_base_object.ProcessInputData(input_data);
+        String output_data = go_base_object.processInputData(input_data);
 
         String downlink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_PUT_BASE_DATA;
         downlink_data = downlink_data + go_base_object.RoomIdStr() + output_data;

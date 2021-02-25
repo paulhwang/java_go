@@ -49,7 +49,7 @@ public class FrontEndJobMgrClass {
         this.maxAllowedJobId -= 1;
     }
 
-    public FrontEndJobClass MallocJobObject() {
+    public FrontEndJobClass mallocJobObject() {
     	this.theLock.lock();
     	FrontEndJobClass front_jab_object = this.doMallocJobObject();
     	this.theLock.unlock();
@@ -86,7 +86,7 @@ public class FrontEndJobMgrClass {
         this.maxJobArrayIndex++;
     }
 
-    public FrontEndJobClass GetJobObject(String ajax_id_str_val) {
+    public FrontEndJobClass getJobObject(String ajax_id_str_val) {
     	this.theLock.lock();
     	FrontEndJobClass front_job_object = this.doGetJobObject(ajax_id_str_val);
     	this.theLock.unlock();
@@ -107,7 +107,7 @@ public class FrontEndJobMgrClass {
         }
 
         if (!found) {
-            this.abendIt("getAjaxEntryObject", "not found" + ajax_id_str_val);
+            this.abendIt("doGetJobObject", "not found" + ajax_id_str_val);
             return null;
         }
 

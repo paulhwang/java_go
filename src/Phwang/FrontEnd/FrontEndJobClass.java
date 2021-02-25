@@ -22,10 +22,10 @@ public class FrontEndJobClass {
         this.ajaxIdStr = ajax_id_str_val;
     }
 
-    public String ReadData() {
+    public String readData() {
         while (this.theData == null) {
         	try {
-                this.debugIt(false, "ReceiveData", "***sleep");
+                this.debugIt(false, "readData", "***sleep");
                 this.pendingThread = Thread.currentThread();
         		Thread.sleep(10000);
         	}
@@ -33,7 +33,7 @@ public class FrontEndJobClass {
         	}
             continue;
         }
-        this.debugIt(false, "ReceiveData", "theData=" + this.theData);
+        this.debugIt(false, "readData", "theData=" + this.theData);
         return this.theData;
     }
 

@@ -54,7 +54,7 @@ public class DThemeParserClass {
         String group_id_index = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
-        RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index);
+        RoomClass room = this.RoomMgrObject().mallocRoom(group_id_index);
         if (room == null) {
             //String downlink_data;
             this.abendIt("processSetupRoom", "null room");

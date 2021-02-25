@@ -29,7 +29,7 @@ public class RoomMgrClass {
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_ROOM_ID);
     }
     
-    public RoomClass MallocRoom(String group_id_str_val) {
+    public RoomClass mallocRoom(String group_id_str_val) {
         RoomClass room = new RoomClass(group_id_str_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(room);
         room.bindListEntry(list_entry);

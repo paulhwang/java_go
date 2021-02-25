@@ -33,7 +33,7 @@ public class BaseMgrClass {
     public BaseClass MallocGoBase(String room_id_val) {
         BaseClass go_base = new BaseClass(room_id_val);
         ListEntryClass list_entry = this.listMgr.MallocEntry(go_base);
-        go_base.BindListEntry(list_entry);
+        go_base.bindListEntry(list_entry);
         return go_base;
     }
 

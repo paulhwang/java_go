@@ -31,13 +31,13 @@ public class BaseClass {
         this.roomIdStr = room_id_str_val;
     }
 
-    public void BindListEntry(ListEntryClass list_entry_objectg_val) {
+    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.baseId = this.listEntryObject.Id();
         this.baseIdStr = EncodeNumberClass.EncodeNumber(this.baseId, ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
     }
 
-    public String SetupBase(String input_data_val) {
+    public String setupBase(String input_data_val) {
         String input_data = input_data_val.substring(1);
 
         switch (input_data_val.charAt(0)) {
@@ -47,12 +47,12 @@ public class BaseClass {
 
             default:
                 String err_msg = "command " + input_data_val.charAt(0) + " not supported";
-                this.abendIt("ProcessInputData", err_msg);
+                this.abendIt("setupBase", err_msg);
                 return err_msg;
         }
     }
 
-    public String ProcessInputData(String input_data_val) {
+    public String processInputData(String input_data_val) {
         String input_data = input_data_val.substring(1);
 
         switch (input_data_val.charAt(0)) {

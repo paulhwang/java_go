@@ -77,7 +77,7 @@ public class UFabricParserClass {
             Object[] session_array = group.getSessionArray();
             for (int i = 0; i < session_array_size; i++) {
                 SessionClass session = (SessionClass)session_array[i];
-                session.EnqueuePendingDownLinkData(input_data);
+                session.enqueuePendingDownLinkData(input_data);
             }
         }
     }

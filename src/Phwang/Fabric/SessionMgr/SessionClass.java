@@ -39,29 +39,29 @@ public class SessionClass {
         this.pendingDownLinkDataQueue = new ListQueueClass(false, 0);
     }
 
-    public void BindListEntry(ListEntryClass list_entry_objectg_val) {
+    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.sessionId = this.listEntryObject.Id();
         this.sessionIdStr = EncodeNumberClass.EncodeNumber(this.sessionId, FabricFrontEndProtocolClass.FABRIC_SESSION_ID_SIZE);
     }
 
-    public void BindGroup(GroupClass group_object_val) {
+    public void bindGroup(GroupClass group_object_val) {
         this.groupObject = group_object_val;
     }
 
-    public void SetBrowserThemeIdStr(String str_val) {
+    public void setBrowserThemeIdStr(String str_val) {
         this.browserThemeIdStr = str_val;
     }
 
-    public void EnqueuePendingDownLinkData(String data_val) {
+    public void enqueuePendingDownLinkData(String data_val) {
         this.pendingDownLinkDataQueue.EnqueueData(data_val);
     }
 
-    public String GetPendingDownLinkData() {
+    public String getPendingDownLinkData() {
         return (String) this.pendingDownLinkDataQueue.DequeueData();
     }
 
-    public int GetPendingDownLinkDataCount() {
+    public int getPendingDownLinkDataCount() {
         return this.pendingDownLinkDataQueue.QueueLength();
     }
 

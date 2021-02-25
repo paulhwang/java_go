@@ -145,7 +145,7 @@ public class DFabricParserClass {
                 ListEntryClass list_entry = session_table_array[i];
                 SessionClass session = (SessionClass)list_entry.Data();
                 if (session != null) {
-                   if (session.GetPendingDownLinkDataCount() > 0) {
+                   if (session.getPendingDownLinkDataCount() > 0) {
                         downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.LinkIdStr() + session.SessionIdStr();
                     }
                 }
@@ -243,14 +243,14 @@ public class DFabricParserClass {
             }
             
             SessionClass session = link.mallocSession();
-            session.SetBrowserThemeIdStr(theme_id_str);
+            session.setBrowserThemeIdStr(theme_id_str);
             GroupClass group = this.GroupMgrObject().mallocGroup(theme_data);
             if (group == null) {
             	this.abendIt("processSetupSessionRequest", "null group");
                 return this.errorProcessSetupSession(link_id_str, "null group");
             }
             group.insertSession(session);
-            session.BindGroup(group);
+            session.bindGroup(group);
             
             if (his_name.equals(link.MyName())) {
                 this.mallocRoom(group, theme_data);
@@ -266,7 +266,7 @@ public class DFabricParserClass {
                 }
 
                 group.insertSession(his_session);
-                his_session.BindGroup(group);
+                his_session.bindGroup(group);
 
                 his_link.setPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), theme_data);
             }
@@ -282,7 +282,7 @@ public class DFabricParserClass {
         String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
         uplink_data = uplink_data + group_val.GroupIdStr();
         uplink_data = uplink_data + theme_info_val;
-        this.FabricRootObject().UFabricObject().TransmitData(uplink_data);
+        this.FabricRootObject().UFabricObject().transmitData(uplink_data);
     }
 
     private String errorProcessSetupSession(String link_id_val, String error_msg_val) {
@@ -322,7 +322,7 @@ public class DFabricParserClass {
                 return errorProcessSetupSession3(link_id_str, "null session");
             }
 
-            session.SetBrowserThemeIdStr(theme_id_str);
+            session.setBrowserThemeIdStr(theme_id_str);
             GroupClass group = session.GroupObject();
             if (group == null) {
                 return errorProcessSetupSession2(link_id_str, "null group");
@@ -426,7 +426,7 @@ public class DFabricParserClass {
             /* transfer data up */
             String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA;
             uplink_data = uplink_data + room_id_str + data;
-            this.UFabricObject().TransmitData(uplink_data);
+            this.UFabricObject().transmitData(uplink_data);
 
             /* send the response down */
             String response_data = this.generatePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), "job is done");
@@ -471,7 +471,7 @@ public class DFabricParserClass {
                 return errorProcessSetupSession3(link_id_str, "null session");
             }
             
-            String data = session.GetPendingDownLinkData();
+            String data = session.getPendingDownLinkData();
 
             /* send the response down */
             String response_data = this.generateGetSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);

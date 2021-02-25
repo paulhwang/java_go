@@ -104,7 +104,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doSetupLink", "ajex_response data=" + str_json_ajex_response);
     	
         try {
@@ -130,7 +130,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doGetLinkData", "ajex_response data=" + str_json_ajex_response);
     }
     
@@ -145,7 +145,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doGetNameList", "ajex_response data=" + str_json_ajex_response);
     }
     
@@ -161,7 +161,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doSetupSession", "ajex_response data=" + str_json_ajex_response);
     	
         try {
@@ -191,7 +191,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
     }
     
@@ -206,7 +206,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
     }
 
@@ -223,7 +223,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
     }
 
@@ -238,7 +238,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
     }
     
