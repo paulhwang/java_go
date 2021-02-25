@@ -289,7 +289,7 @@ public class DFabricParserClass {
     private String processPutSessionDataRequest(String input_data_val) {
         this.debugIt(true, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
 
-        
+       
         try {
         	JSONParser parser = new JSONParser();
         	JSONObject json = (JSONObject) parser.parse(input_data_val);
@@ -339,7 +339,7 @@ public class DFabricParserClass {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str_val);
     	json_data.put("session_id", session_id_str_val);
-    	json_data.put("c+data", c_data_val);
+    	json_data.put("c_data", c_data_val);
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
@@ -347,41 +347,48 @@ public class DFabricParserClass {
     private String processGetSessionDataRequest(String input_data_val) {
         this.debugIt(true, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
 
-        return "junk";
+        
+        try {
+        	JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	String link_id_str = (String) json.get("link_id");
+        	String session_id_str = (String) json.get("session_id");
+        	
+            this.debugIt(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
+            this.debugIt(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
+
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
+            if (link == null) {
+                return this.errorProcessSetupSession3(link_id_str, "null link");
+            }
+            
+            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id_str);
+            if (session == null) {
+                return errorProcessSetupSession3(link_id_str, "null session");
+            }
+            
+            String data = session.GetPendingDownLinkData();
+
+            /* send the response down */
+            String response_data = this.generatePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);
+            return response_data;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-   /*
-   [DataContract]
-   private class SetupLinkResponseFormatClass
-   {
-       [DataMember]
-       public string my_name { get; set; }
+    private String errorProcessGetSessionData(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
 
-       [DataMember]
-       public string link_id { get; set; }
-   }
-
-   public string GenerateSetupLinkResponse(string link_id_var, string my_name_var)
-   {
-       SetupLinkResponseFormatClass raw_data = new SetupLinkResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
-
-       this.debugIt(true, "GenerateSetupLinkResponse", "");
-       DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupLinkResponseFormatClass));
-       MemoryStream msObj = new MemoryStream();
-
-       js.WriteObject(msObj, raw_data);
-       msObj.Position = 0;
-
-       StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
-       string data = sr.ReadToEnd();
-       sr.Close();
-       msObj.Close();
-
-       this.debugIt(true, "GenerateSetupLinkResponse", "data = " + data);
-       string response_data = this.EncodeResponse("setup_link", data);
-       return response_data;
-   }
-*/
+    public String GenerateGetSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str_val);
+    	json_data.put("session_id", session_id_str_val);
+    	json_data.put("c_data", c_data_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
 	   
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
     private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }

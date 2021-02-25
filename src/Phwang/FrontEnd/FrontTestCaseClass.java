@@ -72,6 +72,8 @@ class FrontTestCaseClass implements ThreadInterface {
     	UtilsClass.sleep(1000);
     	this.doSetupSession3();
     	this.doPutSessionData();
+    	UtilsClass.sleep(1000);
+    	this.doGetSessionData();
     }
     
     private void doSetupLink() {
@@ -159,6 +161,21 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
         this.debugIt(true, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
+    }
+
+    private void doGetSessionData() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	json_data.put("session_id", this.sessionIdString);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "get_session_data");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

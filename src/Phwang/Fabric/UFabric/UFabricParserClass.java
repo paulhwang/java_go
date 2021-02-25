@@ -67,6 +67,8 @@ public class UFabricParserClass {
     }
     
     private void processPutRoomDataResponse(String input_data_val) {
+        this.debugIt(true, "processPutRoomDataResponse", input_data_val);
+        
         String group_id_str = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
