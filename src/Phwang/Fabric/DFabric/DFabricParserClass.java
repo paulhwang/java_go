@@ -12,6 +12,7 @@ package Phwang.Fabric.DFabric;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import Phwang.Utils.AbendClass;
+import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Fabric.LinkMgr.LinkMgrClass;
@@ -135,9 +136,69 @@ public class DFabricParserClass {
     private String processGetLinkDataRequest(String input_data_val) {
         this.debugIt(true, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
-        return "junk";
+        SetupSessionRequestFormat format_data = new SetupSessionRequestFormat();
+        try {
+        	JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
+        	format_data.link_id = (String) json.get("link_id");
+        	
+            this.debugIt(false, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
+
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
+            if (link == null) {
+                return this.errorProcessGetLinkData(format_data.link_id, "*************null link");
+            }
+
+            String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
+
+            int max_session_table_array_index = link.GetSessionArrayMaxIndex();
+            ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
+            String pending_session_data = "";
+            for (int i = 0; i <= max_session_table_array_index; i++) {
+                ListEntryClass list_entry = session_table_array[i];
+                SessionClass session = (SessionClass)list_entry.Data();
+                if (session != null) {
+                   if (session.GetPendingDownLinkDataCount() > 0) {
+                        downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.LinkIdStr() + session.SessionIdStr();
+                    }
+                }
+            }
+           
+            String pending_session_setup = "";
+            String pending_session_str = link.getPendingSessionSetup();
+            if (pending_session_str != null) {
+                pending_session_setup = pending_session_setup + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION;
+                pending_session_setup = pending_session_setup + pending_session_str;
+            }
+
+            String pending_session_str3 = link.getPendingSessionSetup3();
+            if (pending_session_str3 != null) {
+                pending_session_setup = pending_session_setup + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3;
+                pending_session_setup = pending_session_setup + pending_session_str3;
+            }
+
+            downlink_data = downlink_data + pending_session_setup;
+
+            String response_data = this.generateGetLinkDataResponse(link.LinkIdStr(), downlink_data, pending_session_setup);
+            return response_data;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+    private String errorProcessGetLinkData(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
+
+    public String generateGetLinkDataResponse(String link_id_str_val, String data_val, String pending_session_setup_val) {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str_val);
+    	json_data.put("data", data_val);
+    	json_data.put("pending_session_setup", pending_session_setup_val);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+    
     private String processGetNameListRequest(String input_data_val) {
         this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
 

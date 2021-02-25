@@ -68,12 +68,19 @@ class FrontTestCaseClass implements ThreadInterface {
         catch (Exception ignore) {}
     	
     	this.doSetupLink();
+    	
     	this.doSetupSession();
+    	
     	UtilsClass.sleep(1000);
     	this.doSetupSession3();
+    	
     	this.doPutSessionData();
+    	
     	UtilsClass.sleep(1000);
     	this.doGetSessionData();
+    	
+    	UtilsClass.sleep(1000);
+    	this.doGetLinkData();
     }
     
     private void doSetupLink() {
@@ -101,6 +108,20 @@ class FrontTestCaseClass implements ThreadInterface {
         } catch (Exception e) {
         	this.abendIt("doSetupLink", "***Exception***");
         }
+    }
+    
+    private void doGetLinkData() {
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", this.linkIdString);
+    	String str_json_data = json_data.toJSONString();
+    	
+    	JSONObject json_request = new JSONObject();
+    	json_request.put("command", "get_link_data");
+    	json_request.put("data", str_json_data);
+    	String str_json_request = json_request.toJSONString();
+    	
+    	String str_json_ajex_response = this.UFrontObject().ProcessAjaxRequestPacket(str_json_request);
+        this.debugIt(true, "doGetLinkData", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doSetupSession() {
