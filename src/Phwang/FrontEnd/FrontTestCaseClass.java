@@ -73,11 +73,11 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	this.doSetupLink();
     	
-    	//UtilsClass.sleep(100);
-    	//this.doGetLinkData();
+    	UtilsClass.sleep(100);
+    	this.doGetLinkData();
     	
-    	//UtilsClass.sleep(100);
-    	//this.doGetNameList();
+    	UtilsClass.sleep(100);
+    	this.doGetNameList();
     	
     	this.doSetupSession();
     	
@@ -89,8 +89,8 @@ class FrontTestCaseClass implements ThreadInterface {
     	UtilsClass.sleep(1000);
     	this.doGetSessionData();
     	
-    	//UtilsClass.sleep(1000);
-    	//this.doSetupSession2();
+    	UtilsClass.sleep(1000);
+    	this.doSetupSession2();
     }
     
     private void doSetupLink() {

@@ -129,7 +129,7 @@ public class DFabricParserClass {
     }
     
     private String processGetLinkDataRequest(String input_data_val) {
-        this.debugIt(true, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
         try {
         	JSONParser parser = new JSONParser();
@@ -194,7 +194,7 @@ public class DFabricParserClass {
     }
     
     private String processGetNameListRequest(String input_data_val) {
-        this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
         try {
         	JSONParser parser = new JSONParser();
@@ -202,8 +202,6 @@ public class DFabricParserClass {
         	String link_id_str = (String) json.get("link_id");
         	String name_list_tag_str = (String) json.get("name_list_tag");
         	
-            this.debugIt(true, "processGetNameListRequest", "link_id = " + link_id_str);
-
             LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
             if (link == null) {
                 return this.errorProcessGetNameList(link_id_str, "*************null link");
