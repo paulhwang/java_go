@@ -9,11 +9,8 @@ module java_go {
 	exports org.json.simple;
 	exports Phwang.Fabric.NameList;
 	exports Phwang.Protocols;
-	exports Phwang.Theme.DTheme;
-	exports Phwang.Theme.RoomMgr;
 	exports Phwang.Utils.Queue;
 	exports Phwang.Utils.tcp;
-	exports Phwang.Theme.Utheme;
 	exports Phwang.Fabric.UFabric;
 	exports Phwang.Utils.ThreadMgr;
 	exports Phwang.Utils.ListMgr;

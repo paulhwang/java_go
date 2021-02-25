@@ -15,8 +15,6 @@ import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
 import Phwang.Fabric.FabricRootClass;
-import Phwang.Theme.ThemeRootClass;
-import Phwang.Theme.Utheme.UThemeClass;
 
 public class UFabricClass implements ThreadInterface {
     private String objectName() {return "UFabricClass";}

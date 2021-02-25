@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Theme.RoomMgr;
+package Phwang.Theme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.Encode.EncodeNumberClass;

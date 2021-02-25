@@ -10,9 +10,6 @@ package Phwang.Theme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
-import Phwang.Theme.DTheme.DThemeClass;
-import Phwang.Theme.RoomMgr.RoomMgrClass;
-import Phwang.Theme.Utheme.UThemeClass;
 
 public class ThemeRootClass {
     private String objectName() {return "ThemeRootClass";}

@@ -6,15 +6,11 @@
  ******************************************************************************
  */
 
-package Phwang.Theme.Utheme;
+package Phwang.Theme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
-import Phwang.Theme.ThemeRootClass;
-import Phwang.Theme.DTheme.DThemeClass;
-import Phwang.Theme.RoomMgr.RoomMgrClass;
-import Phwang.Theme.RoomMgr.RoomClass;
 
 public class UThemeParserClass {
     private String objectName() {return "UThemeParserClass";}
