@@ -62,7 +62,7 @@ public class NameListClass {
             }
         }
 
-        this.debugIt(true, "updateNameList", this.nameList);
+        this.debugIt(false, "updateNameList", this.nameList);
     }
 
     public String GetNameList(int tag_val) {

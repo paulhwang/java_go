@@ -63,7 +63,7 @@ public class GoFightClass {
     }
 
     public void EnterBattle(GoMoveClass move_val) {
-        this.debugIt(true, "enterBattle", move_val.MoveInfo());
+        this.debugIt(false, "enterBattle", move_val.MoveInfo());
 
         this.BoardObject().AddStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
         GoGroupClass my_group = this.insertStoneToGroupList(move_val);

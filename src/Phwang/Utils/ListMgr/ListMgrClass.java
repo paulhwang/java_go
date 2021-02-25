@@ -48,7 +48,7 @@ public class ListMgrClass {
     }
 
     public ListEntryClass MallocEntry(Object object_val) {
-        this.debugIt(true, "MallocEntry", "start");
+        this.debugIt(false, "MallocEntry", "start");
     	
         this.abendListMgrClass("before MallocEntry");
         this.theLock.lock();

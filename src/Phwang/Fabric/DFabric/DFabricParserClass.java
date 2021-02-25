@@ -20,7 +20,6 @@ import Phwang.Fabric.LinkMgr.LinkMgrClass;
 import Phwang.Fabric.SessionMgr.SessionClass;
 import Phwang.Fabric.GroupMgr.GroupClass;
 import Phwang.Fabric.GroupMgr.GroupMgrClass;
-import Phwang.Fabric.GroupMgr.GroupClass;
 import Phwang.Fabric.FabricRootClass;
 import Phwang.Fabric.UFabric.UFabricClass;
 import Phwang.Fabric.LinkMgr.LinkClass;
@@ -68,7 +67,7 @@ public class DFabricParserClass {
         	this.abendIt("parseInputPacket", "***Exception***");
         }
         
-        this.debugIt(true, "parseInputPacket", "*********************command = " + ajax_fabric_request.command);
+        this.debugIt(false, "parseInputPacket", "*********************command = " + ajax_fabric_request.command);
         String response_data = null;
         if (ajax_fabric_request.command.equals("setup_link")) {
             response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
@@ -96,30 +95,25 @@ public class DFabricParserClass {
         }
         else {
             response_data = "command " + ajax_fabric_request.command + " not supported";
+            this.abendIt("parseInputPacket", response_data);
         }
         
         this.dFabricObject.TransmitData(adax_id + response_data);
-    }
-    
-    public class SetupLinkRequestFormatClass {
-        public String my_name;
-        public String password;
     }
 
     private String processSetupLinkRequest(String input_data_val) {
         this.debugIt(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
-        SetupLinkRequestFormatClass format_data = new SetupLinkRequestFormatClass();
         try {
         	JSONParser parser = new JSONParser();
         	JSONObject json = (JSONObject) parser.parse(input_data_val);
-        	format_data.my_name = (String) json.get("my_name");
-        	format_data.password = (String) json.get("password");
+        	String my_name = (String) json.get("my_name");
+        	String password = (String) json.get("password");
         	
-            this.debugIt(false, "processSetupLinkRequest", "my_name = " + format_data.my_name);
-            this.debugIt(false, "processSetupLinkRequest", "password = " + format_data.password);
+            this.debugIt(false, "processSetupLinkRequest", "my_name = " + my_name);
+            this.debugIt(false, "processSetupLinkRequest", "password = " + password);
 
-            LinkClass link = this.LinkMgrObject().MallocLink(format_data.my_name);
+            LinkClass link = this.LinkMgrObject().MallocLink(my_name);
             String response_data = this.generateSetupLinkResponse(link.LinkIdStr(), link.MyName());
             return response_data;
         } catch (Exception e) {
@@ -137,17 +131,16 @@ public class DFabricParserClass {
     private String processGetLinkDataRequest(String input_data_val) {
         this.debugIt(true, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
-        SetupSessionRequestFormat format_data = new SetupSessionRequestFormat();
         try {
         	JSONParser parser = new JSONParser();
         	JSONObject json = (JSONObject) parser.parse(input_data_val);
-        	format_data.link_id = (String) json.get("link_id");
+        	String link_id_str = (String) json.get("link_id");
         	
-            this.debugIt(false, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
+            this.debugIt(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
-            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
             if (link == null) {
-                return this.errorProcessGetLinkData(format_data.link_id, "*************null link");
+                return this.errorProcessGetLinkData(link_id_str, "*************null link");
             }
 
             String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
@@ -203,7 +196,6 @@ public class DFabricParserClass {
     private String processGetNameListRequest(String input_data_val) {
         this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
-        SetupSessionRequestFormat format_data = new SetupSessionRequestFormat();
         try {
         	JSONParser parser = new JSONParser();
         	JSONObject json = (JSONObject) parser.parse(input_data_val);
@@ -214,7 +206,7 @@ public class DFabricParserClass {
 
             LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
             if (link == null) {
-                return this.errorProcessGetNameList(format_data.link_id, "*************null link");
+                return this.errorProcessGetNameList(link_id_str, "*************null link");
             }
 
             int name_list_tag = EncodeNumberClass.DecodeNumber(name_list_tag_str);
@@ -238,63 +230,50 @@ public class DFabricParserClass {
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
-    
-    public class SetupSessionRequestFormat {
-        public String link_id;
-        public String his_name;
-        public String theme_data;
-    }
 
     private String processSetupSessionRequest(String input_data_val) {
-        this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processSetupSessionRequest", "input_data_val = " + input_data_val);
 
-        SetupSessionRequestFormat format_data = new SetupSessionRequestFormat();
         try {
         	JSONParser parser = new JSONParser();
         	JSONObject json = (JSONObject) parser.parse(input_data_val);
-        	format_data.link_id = (String) json.get("link_id");
-        	format_data.his_name = (String) json.get("his_name");
-        	format_data.theme_data = (String) json.get("theme_data");
+        	String link_id_str = (String) json.get("link_id");
+        	String his_name = (String) json.get("his_name");
+        	String theme_data_str = (String) json.get("theme_data");
         	
-            this.debugIt(true, "processSetupSessionRequest", "link_id = " + format_data.link_id);
-            this.debugIt(true, "processSetupSessionRequest", "his_name = " + format_data.his_name);
-            this.debugIt(true, "processSetupSessionRequest", "theme_data = " + format_data.theme_data);
+            this.debugIt(false, "processSetupSessionRequest", "link_id = " + link_id_str);
+            this.debugIt(false, "processSetupSessionRequest", "his_name = " + his_name);
+            this.debugIt(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-            String theme_id_str = format_data.theme_data.substring(0, FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
-            String theme_data = format_data.theme_data.substring(FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
+            String theme_id_str = theme_data_str.substring(0, FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
+            String theme_data = theme_data_str.substring(FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
 
-            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
             if (link == null) {
-                return this.errorProcessSetupSession(format_data.link_id, "*************null link");
+                return this.errorProcessSetupSession(link_id_str, "*************null link");
             }
-            
-            this.debugIt(true, "processSetupSessionRequest", "link found");
             
             SessionClass session = link.MallocSession();
             session.SetBrowserThemeIdStr(theme_id_str);
             GroupClass group = this.GroupMgrObject().MallocGroup(theme_data);
             if (group == null) {
             	this.abendIt("processSetupSessionRequest", "null group");
-                return this.errorProcessSetupSession(format_data.link_id, "null group");
+                return this.errorProcessSetupSession(link_id_str, "null group");
             }
             group.InsertSession(session);
             session.BindGroup(group);
             
-            this.debugIt(true, "processSetupSessionRequest333", "********333group created");
-
-            if (format_data.his_name.equals(link.MyName())) {
+            if (his_name.equals(link.MyName())) {
                 this.mallocRoom(group, theme_data);
             }
             else {
-                LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(format_data.his_name);
-                if (his_link == null)
-                {
-                    return this.errorProcessSetupSession(format_data.link_id, "his_link does not exist");
+                LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(his_name);
+                if (his_link == null) {
+                    return this.errorProcessSetupSession(link_id_str, "his_link does not exist");
                 }
                 SessionClass his_session = his_link.MallocSession();
-                if (his_session == null)
-                {
-                    return this.errorProcessSetupSession(format_data.link_id, "null his_session");
+                if (his_session == null) {
+                    return this.errorProcessSetupSession(link_id_str, "null his_session");
                 }
 
                 group.InsertSession(his_session);
@@ -330,7 +309,7 @@ public class DFabricParserClass {
     }
 
     private String processSetupSession2Request(String input_data_val) {
-        this.debugIt(true, "processSetupSession2Request", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processSetupSession2Request", "input_data_val = " + input_data_val);
 
         
         try {
@@ -383,7 +362,7 @@ public class DFabricParserClass {
     }
 
     private String processSetupSession3Request(String input_data_val) {
-        this.debugIt(true, "processSetupSession3Request", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processSetupSession3Request", "input_data_val = " + input_data_val);
         
         try {
         	JSONParser parser = new JSONParser();
@@ -428,7 +407,7 @@ public class DFabricParserClass {
         
         
     private String processPutSessionDataRequest(String input_data_val) {
-        this.debugIt(true, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
 
        
         try {
@@ -486,7 +465,7 @@ public class DFabricParserClass {
     }
 
     private String processGetSessionDataRequest(String input_data_val) {
-        this.debugIt(true, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
+        this.debugIt(false, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
 
         
         try {

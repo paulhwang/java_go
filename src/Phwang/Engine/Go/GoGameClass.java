@@ -40,7 +40,7 @@ public class GoGameClass {
     }
 
     public void AddNewMoveAndFight(GoMoveClass move_val) {
-        this.debugIt(true, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
+        this.debugIt(false, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
 
         if (move_val.TurnIndex() != this.theTotalMoves + 1) {
             this.logitIt("AddNewMoveAndFight", "duplicated move received *****************");

@@ -41,7 +41,7 @@ public class GoRootClass {
     public String ProcessInputData(String input_data_val) {
         this.parseObject.ParseInputData(input_data_val);
         this.boardObject.EncodeBoard();
-        this.debugIt(true, "transmitBoardData", this.boardObject.BoardOutputBuffer());
+        this.debugIt(false, "transmitBoardData", this.boardObject.BoardOutputBuffer());
         return this.boardObject.BoardOutputBuffer();
     }
 

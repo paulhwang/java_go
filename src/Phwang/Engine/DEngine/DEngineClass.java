@@ -57,7 +57,7 @@ public class DEngineClass implements ThreadInterface {
                 continue;
             }
             
-            this.debugIt(true, "dEngineReceiveThreadFunc", "data = " + data);
+            this.debugIt(false, "dEngineReceiveThreadFunc", "data = " + data);
             this.dEngineParserObject.ParseInputPacket(data);
         }
     }

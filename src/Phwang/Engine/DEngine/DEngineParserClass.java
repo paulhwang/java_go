@@ -27,7 +27,7 @@ public class DEngineParserClass {
     }
 
     public void ParseInputPacket(String input_data_val) {
-        this.debugIt(true, "ParseInputPacket", "data=" + input_data_val);
+        this.debugIt(false, "ParseInputPacket", "data=" + input_data_val);
 
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
@@ -46,7 +46,7 @@ public class DEngineParserClass {
     }
 
     private void processSetupBase(String input_data_val) {
-        this.debugIt(true, "processSetupBase", "data=" + input_data_val);
+        this.debugIt(false, "processSetupBase", "data=" + input_data_val);
 
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
@@ -65,7 +65,7 @@ public class DEngineParserClass {
     }
 
     private void processPutBaseData(String input_data_val) {
-        this.debugIt(true, "processPutBaseData", "data=" + input_data_val);
+        this.debugIt(false, "processPutBaseData", "data=" + input_data_val);
         String base_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
 

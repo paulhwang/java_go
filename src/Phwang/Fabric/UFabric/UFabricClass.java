@@ -62,7 +62,7 @@ public class UFabricClass implements ThreadInterface {
                 continue;
             }
             
-            this.debugIt(true, "uFabricRreceiveThreadFunc", "data = " + data);
+            this.debugIt(false, "uFabricRreceiveThreadFunc", "data = " + data);
             this.uFabricParserObject.parseInputPacket(data);
         }
     }

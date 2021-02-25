@@ -26,7 +26,7 @@ public class SessionMgrClass {
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr.EntryTableArray(); }
 
     public SessionMgrClass(LinkClass link_object_val) {
-        this.debugIt(true, "SessionMgrClass", "init start");
+        this.debugIt(false, "SessionMgrClass", "init start");
         
         this.linkObject = link_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_SESSION_ID);

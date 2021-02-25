@@ -27,7 +27,7 @@ public class RoomClass {
     public String BaseIdStr() { return this.baseIdStr; }
 
     public RoomClass(String group_id_str_val) {
-        this.debugIt(true, "RoomClass", "init start");
+        this.debugIt(false, "RoomClass", "init start");
         
         this.groupIdStr = group_id_str_val;
     }

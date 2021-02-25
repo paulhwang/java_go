@@ -31,7 +31,7 @@ public class DThemeParserClass {
     }
 
     public void ParseInputPacket(String data_val) {
-        this.debugIt(true, "ParseInputPacket", data_val);
+        this.debugIt(false, "ParseInputPacket", data_val);
         String command = data_val.substring(0, 1);
         String data = data_val.substring(1);
 
@@ -50,7 +50,7 @@ public class DThemeParserClass {
 
     private void processSetupRoom(String input_data_val)
     {
-        this.debugIt(true, "processSetupRoom", input_data_val);
+        this.debugIt(false, "processSetupRoom", input_data_val);
 
         String group_id_index = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
@@ -84,7 +84,7 @@ public class DThemeParserClass {
 
     private void processPutRoomData(String input_data_val)
     {
-        this.debugIt(true, "processPutRoomData", input_data_val);
+        this.debugIt(false, "processPutRoomData", input_data_val);
 
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);

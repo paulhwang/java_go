@@ -28,7 +28,7 @@ public class ArrayMgrClass {
     public char[] CharArrayTable() { return this.charArrayTable; }
 
     public ArrayMgrClass(String owner_object_name_val, char array_type_val, int max_array_size_val) {
-        this.debugIt(true, "ArrayMgrClass", "init start");
+        this.debugIt(false, "ArrayMgrClass", "init start");
         
         this.arrayType = array_type_val;
         this.maxArraySize = max_array_size_val;

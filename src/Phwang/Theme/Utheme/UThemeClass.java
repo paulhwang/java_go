@@ -56,7 +56,7 @@ public class UThemeClass implements ThreadInterface {
                 continue;
             }
             
-            this.debugIt(true, "uThemeRreceiveThreadFunc", "data = " + data);
+            this.debugIt(false, "uThemeRreceiveThreadFunc", "data = " + data);
             this.uThemeParserObject.ParseInputPacket(data);
         }
     }

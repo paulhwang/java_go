@@ -30,7 +30,7 @@ public class GroupClass {
     public String RoomIdStr() { return this.roomIdStr; }
 
     public GroupClass(String theme_data_val) {
-        this.debugIt(true, "GroupClass", "init start");
+        this.debugIt(false, "GroupClass", "init start");
         
         this.themeData = theme_data_val;
         this.groupSessionMgrObject = new GroupSessionMgrClass(this);
