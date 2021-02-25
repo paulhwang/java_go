@@ -34,7 +34,7 @@ public class GoRootClass {
     }
 
     public String doSetup(String input_data_val) {
-        this.configObject.ConfigIt(input_data_val);
+        this.configObject.configIt(input_data_val);
         return "";
     }
 

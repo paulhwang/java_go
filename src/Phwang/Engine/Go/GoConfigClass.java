@@ -27,7 +27,7 @@ public class GoConfigClass {
         this.theRootObject = root_object_val;
     }
 
-    public void ConfigIt(String input_data_val) {
+    public void configIt(String input_data_val) {
     	this.debugIt(false, "ConfigIt", "input_data_val=" + input_data_val);
     	
         String len_str = input_data_val.substring(0,3);

@@ -60,7 +60,7 @@ public class ArrayMgrClass {
         }
     }
     
-    public void InsertObjectElement(Object object_val) {
+    public void insertObjectElement(Object object_val) {
         int i = 0;
         while (i < this.arraySize) {
             if (this.objectArrayTable[i] == null) {
@@ -79,7 +79,7 @@ public class ArrayMgrClass {
         this.abendIt("insertObjectElement", "table is full");
     }
 
-    public void RemoveObjectElement(Object object_val) {
+    public void removeObjectElement(Object object_val) {
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

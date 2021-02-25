@@ -67,9 +67,9 @@ class BinderServerTestClass {
         
         if (this.useBinder) {
         	this.theBinderObject = new BinderClass("BinderTestServer");
-        	if (this.BinderObject().BindAsTcpServer(true, this.Port())) {
-        		this.BinderObject().TransmitData("Welcome!!");
-        		String data = this.BinderObject().ReceiveData();
+        	if (this.BinderObject().bindAsTcpServer(true, this.Port())) {
+        		this.BinderObject().transmitData("Welcome!!");
+        		String data = this.BinderObject().receiveData();
                 this.debugIt(true, "binderTestServerThreadFunc", "received data = " + data);
         	}
         }
@@ -161,9 +161,9 @@ class BinderClientTestClass {
     	
         if (this.useBinder) {
         	this.theBinderObject = new BinderClass("BinderTestServer");
-        	if (this.theBinderObject.BindAsTcpClient(false, this.Host(), this.Port())) {
-        		this.BinderObject().TransmitData("Hello!!");
-        		String data = this.BinderObject().ReceiveData();
+        	if (this.theBinderObject.bindAsTcpClient(false, this.Host(), this.Port())) {
+        		this.BinderObject().transmitData("Hello!!");
+        		String data = this.BinderObject().receiveData();
                 this.debugIt(true, "binderTestClientThreadFunc", "received data = " + data);
         	}
       	

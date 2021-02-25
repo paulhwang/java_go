@@ -33,7 +33,7 @@ public class UFrontClass implements ThreadInterface {
         this.frontEndRootObject = root_object_val;
         this.binderObject = new BinderClass(this.objectName());
         this.frontEndJobMgrObject = new FrontEndJobMgrClass(this);
-        this.binderObject.BindAsTcpClient(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.bindAsTcpClient(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -52,7 +52,7 @@ public class UFrontClass implements ThreadInterface {
                 break;
             }
 
-            String received_data = this.binderObject.ReceiveData();
+            String received_data = this.binderObject.receiveData();
             if (received_data == null) {
                 this.abendIt("UFrontReceiveThreadFunc", "null data");
             	continue;
@@ -83,7 +83,7 @@ public class UFrontClass implements ThreadInterface {
         this.debugIt(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
         
         FrontEndJobClass job_entry = this.frontEndJobMgrObject.mallocJobObject();
-        this.binderObject.TransmitData(job_entry.ajaxIdStr + input_data_val);
+        this.binderObject.transmitData(job_entry.ajaxIdStr + input_data_val);
         String response_data = job_entry.readData();
         
         this.debugIt(false, "processAjaxRequestPacket", "response_data = " + response_data);

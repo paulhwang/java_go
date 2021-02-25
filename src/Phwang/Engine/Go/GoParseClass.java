@@ -29,23 +29,23 @@ public class GoParseClass {
         {
             case GoProtocolClass.GO_PROTOCOL_MOVE_COMMAND:
                 GoMoveClass move = new GoMoveClass(input_data_val.substring(1, 9));
-                this.GameObject().AddNewMoveAndFight(move);
+                this.GameObject().addNewMoveAndFight(move);
                 return;
 
             case GoProtocolClass.GO_PROTOCOL_BACKWARD_COMMAND:
-                this.GameObject().ProcessBackwardMove();
+                this.GameObject().processBackwardMove();
                 return;
 
             case GoProtocolClass.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
-                this.GameObject().ProcessDoubleBackwardMove();
+                this.GameObject().processDoubleBackwardMove();
                 return;
 
             case GoProtocolClass.GO_PROTOCOL_FORWARD_COMMAND:
-                this.GameObject().ProcessForwardMove();
+                this.GameObject().processForwardMove();
                 return;
 
             case GoProtocolClass.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
-                this.GameObject().ProcessDoubleForwardMove();
+                this.GameObject().processDoubleForwardMove();
                 return;
 
             case GoProtocolClass.GO_PROTOCOL_PASS_COMMAND:
@@ -53,7 +53,7 @@ public class GoParseClass {
 
             default:
                 String err_msg = "command " + input_data_val.charAt(1) + " not supported";
-                this.abendIt("ParseInputData", err_msg);
+                this.abendIt("parseInputData", err_msg);
                 return;
         }
     }

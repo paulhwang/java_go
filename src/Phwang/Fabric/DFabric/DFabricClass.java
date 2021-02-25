@@ -35,7 +35,7 @@ public class DFabricClass implements ThreadInterface {
         this.dFabricParserObject = new DFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
         
-        this.binderObject.BindAsTcpServer(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.bindAsTcpServer(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -51,7 +51,7 @@ public class DFabricClass implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.binderObject.ReceiveData();
+            data = this.binderObject.receiveData();
             if (data == null) {
                 this.abendIt("dFabricRreceiveThreadFunc", "null data");
                 continue;
@@ -62,7 +62,7 @@ public class DFabricClass implements ThreadInterface {
     }
 
     public void transmitData(String data_val) {
-        this.binderObject.TransmitData(data_val);
+        this.binderObject.transmitData(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

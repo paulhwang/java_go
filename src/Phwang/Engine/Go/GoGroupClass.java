@@ -52,7 +52,7 @@ public class GoGroupClass {
         
         this.hisColor = (this.myColor == GoDefineClass.GO_EMPTY_STONE)
             ? GoDefineClass.GO_EMPTY_STONE
-            : GoDefineClass.GetOppositeColor(this.myColor);
+            : GoDefineClass.getOppositeColor(this.myColor);
     }
 
     public void insertStoneToGroup(int x_val, int y_val, Boolean dead_val) {

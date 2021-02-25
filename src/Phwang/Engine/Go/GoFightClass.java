@@ -39,7 +39,7 @@ public class GoFightClass {
         this.resetEngineObjectData();
     }
 
-    private void resetEngineObjectData() {
+    public void resetEngineObjectData() {
         this.BoardObject().resetBoardObjectData();
 
         this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
@@ -50,6 +50,7 @@ public class GoFightClass {
         this.theCaptureCount = null;
         this.theLastDeadStone = null;
     }
+    
     private void resetMarkedGroupLists() {
         this.theGroupListArray[3] = new GoGroupListClass(this, 3, GoDefineClass.GO_BLACK_STONE, true, "black", "gray");
         this.theGroupListArray[4] = new GoGroupListClass(this, 4, GoDefineClass.GO_WHITE_STONE, true, "white", "gray");
@@ -62,7 +63,7 @@ public class GoFightClass {
         this.theGroupListArray[6] = new GoGroupListClass(this, 6, GoDefineClass.GO_EMPTY_STONE, false, null, "white");
     }
 
-    public void EnterBattle(GoMoveClass move_val) {
+    public void enterBattle(GoMoveClass move_val) {
         this.debugIt(false, "enterBattle", move_val.MoveInfo());
 
         this.BoardObject().addStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
@@ -177,8 +178,7 @@ public class GoFightClass {
         return dead_count;
     }
 
-    private GoGroupClass getGroupByCoordinate(int x_val, int y_val, int color_val)
-    {
+    private GoGroupClass getGroupByCoordinate(int x_val, int y_val, int color_val) {
         GoGroupListClass g_list;
         if ((color_val == GoDefineClass.GO_BLACK_STONE) || (color_val == GoDefineClass.GO_MARKED_DEAD_BLACK_STONE))
         {
@@ -230,19 +230,6 @@ public class GoFightClass {
             this->abend("markLastDeadInfo", "exist_matrix");
         }
         */
-    }
-
-    public void ResetEngineObjectData()
-    {
-        this.BoardObject().resetBoardObjectData();
-
-        this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
-        this.theGroupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
-        this.resetMarkedGroupLists();
-        this.resetEmptyGroupLists();
-
-        this.theCaptureCount = null;
-        this.theLastDeadStone = null;
     }
 
     private void abendEngine() {

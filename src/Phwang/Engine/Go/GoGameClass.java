@@ -39,7 +39,7 @@ public class GoGameClass {
         this.theGameIsOver = false;
     }
 
-    public void AddNewMoveAndFight(GoMoveClass move_val) {
+    public void addNewMoveAndFight(GoMoveClass move_val) {
         this.debugIt(false, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
 
         if (move_val.TurnIndex() != this.theTotalMoves + 1) {
@@ -55,8 +55,8 @@ public class GoGameClass {
         this.thePassReceived = false;
         this.BoardObject().clearLastDeadStone();
         this.insertMoveToMoveList(move_val);
-        this.FightObject().EnterBattle(move_val);
-        this.theNextColor = GoDefineClass.GetOppositeColor(move_val.MyColor());
+        this.FightObject().enterBattle(move_val);
+        this.theNextColor = GoDefineClass.getOppositeColor(move_val.MyColor());
     }
 
     private void insertMoveToMoveList(GoMoveClass move_val) {
@@ -65,7 +65,7 @@ public class GoGameClass {
         this.theMaxMove = this.theTotalMoves;
     }
 
-    public void ProcessBackwardMove() {
+    public void processBackwardMove() {
         this.debugIt(true, "ProcessBackwardMove", "");
 
         this.thePassReceived = false;
@@ -76,7 +76,7 @@ public class GoGameClass {
         this.processTheWholeMoveList();
     }
 
-    public void ProcessDoubleBackwardMove() {
+    public void processDoubleBackwardMove() {
         this.debugIt(true, "ProcessDoubleBackwardMove", "");
 
         this.thePassReceived = false;
@@ -87,7 +87,7 @@ public class GoGameClass {
         this.processTheWholeMoveList();
     }
 
-    public void ProcessForwardMove() {
+    public void processForwardMove() {
         this.debugIt(true, "ProcessForwardMove", "");
 
         this.thePassReceived = false;
@@ -102,7 +102,7 @@ public class GoGameClass {
         this.processTheWholeMoveList();
     }
 
-    public void ProcessDoubleForwardMove() {
+    public void processDoubleForwardMove() {
         this.debugIt(true, "ProcessDoubleForwardMove", "");
 
         this.thePassReceived = false;
@@ -119,14 +119,14 @@ public class GoGameClass {
 
     private void processTheWholeMoveList() {
         this.BoardObject().resetBoardObjectData();
-        this.FightObject().ResetEngineObjectData();
+        this.FightObject().resetEngineObjectData();
         this.resetGameObjectPartialData();
 
         int i = 0;
         while (i < this.theTotalMoves) {
             GoMoveClass move = this.theMovesArray[i];
-            this.FightObject().EnterBattle(move);
-            this.theNextColor = GoDefineClass.GetOppositeColor(move.MyColor());
+            this.FightObject().enterBattle(move);
+            this.theNextColor = GoDefineClass.getOppositeColor(move.MyColor());
             i += 1;
         }
     }

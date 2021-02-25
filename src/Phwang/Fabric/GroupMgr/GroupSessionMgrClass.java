@@ -26,10 +26,10 @@ public class GroupSessionMgrClass {
     }
 
     public void insertSession(SessionClass session_val) {
-        this.arrayMgrObject.InsertObjectElement(session_val);
+        this.arrayMgrObject.insertObjectElement(session_val);
     }
     public void removeSession(SessionClass session_val) {
-        this.arrayMgrObject.RemoveObjectElement(session_val);
+        this.arrayMgrObject.removeObjectElement(session_val);
     }
 
     public int getSessionArraySize() {

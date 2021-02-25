@@ -34,7 +34,7 @@ public class DEngineClass implements ThreadInterface {
         this.dEngineParserObject = new DEngineParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
 
-        this.binderObject.BindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.binderObject.bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debugIt(false, "DEngineClass", "init done");
     }
 
@@ -51,7 +51,7 @@ public class DEngineClass implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.binderObject.ReceiveData();
+            data = this.binderObject.receiveData();
             if (data == null) {
                 this.abendIt("dEngineReceiveThreadFunc", "null data");
                 continue;
@@ -63,7 +63,7 @@ public class DEngineClass implements ThreadInterface {
     }
 
     public void TransmitData(String data_val) {
-        this.binderObject.TransmitData(data_val);
+        this.binderObject.transmitData(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

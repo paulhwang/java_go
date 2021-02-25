@@ -85,7 +85,7 @@ public class BinderClass implements ThreadInterface {
         this.abendIt("binderReceiveThreadFunc", "not server or client");
 	}
 
-    public Boolean BindAsTcpServer(Boolean create_server_thread_val, short port_val) {
+    public Boolean bindAsTcpServer(Boolean create_server_thread_val, short port_val) {
     	if (this.whichThread != null) {
             this.abendIt("BindAsTcpServer", "bindAs is not null");
     		return false;
@@ -124,7 +124,7 @@ public class BinderClass implements ThreadInterface {
     	}
     }
 
-    public Boolean BindAsTcpClient(Boolean create_client_thread_val, String ip_addr_val, short port_val) {
+    public Boolean bindAsTcpClient(Boolean create_client_thread_val, String ip_addr_val, short port_val) {
     	if (this.whichThread != null) {
             this.abendIt("BindAsTcpServer", "bindAs is not null");
     		return false;
@@ -196,7 +196,7 @@ public class BinderClass implements ThreadInterface {
         }
     }
 
-    public String ReceiveData() {
+    public String receiveData() {
     	while (true) {
     		String data = (String) this.receiveQueue.DequeueData();
     		if (data == null) {
@@ -244,7 +244,7 @@ public class BinderClass implements ThreadInterface {
         }
     }
 
-    public void TransmitData(String data_val) {
+    public void transmitData(String data_val) {
         this.debugIt(false, "TransmitData", "data = " + data_val);
         this.transmitQueue.EnqueueData(data_val);
     }
