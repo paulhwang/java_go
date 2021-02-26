@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.Queue;
+package Phwang.Utils;
 
 import java.util.concurrent.locks.*;
 import Phwang.Utils.AbendClass;

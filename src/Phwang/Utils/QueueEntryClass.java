@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.Queue;
+package Phwang.Utils;
 
 public class QueueEntryClass {
     public QueueEntryClass next;
