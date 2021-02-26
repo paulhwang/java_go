@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.engine.Go;
+package Phwang.go;
 
 public class GoStaticClass {
     public static Boolean isNeighborStone(int x1_val, int y1_val, int x2_val, int y2_val)

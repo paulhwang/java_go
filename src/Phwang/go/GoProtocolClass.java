@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.engine.Go;
+package Phwang.go;
 
 public class GoProtocolClass {
     public static final char GO_PROTOCOL_MOVE_COMMAND = 'M';

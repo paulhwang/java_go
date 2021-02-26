@@ -11,7 +11,7 @@ package Phwang.engine;
 import Phwang.Utils.*;
 import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.protocols.ThemeEngineProtocolClass;
-import Phwang.engine.Go.GoRootClass;
+import Phwang.go.GoRootClass;
 
 public class BaseClass {
     private String objectName() {return "BaseClass";}

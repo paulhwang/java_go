@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.engine.Go;
+package Phwang.go;
 
 import Phwang.Utils.*;
 

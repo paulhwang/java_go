@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.engine.Go;
+package Phwang.go;
 
 public class GoDefineClass {
     public static final int MAX_BOARD_SIZE = 19;
