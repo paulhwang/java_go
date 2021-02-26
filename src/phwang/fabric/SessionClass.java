@@ -57,7 +57,7 @@ public class SessionClass {
     }
 
     public int getPendingDownLinkDataCount() {
-        return this.pendingDownLinkDataQueue.QueueLength();
+        return this.pendingDownLinkDataQueue.length();
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

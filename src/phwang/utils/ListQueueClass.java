@@ -17,23 +17,23 @@ public class ListQueueClass {
     private int QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE = 1000;
     private Boolean abendQueueIsOn = true;
     private Thread pendingThread;
-    private int theQueueLength;
+    private int length_;
     private QueueEntryClass QueueHead;
     private QueueEntryClass QueueTail;
-    private int MaxQueueLength;
+    private int maxLength;
     private Lock theLock;
 
     public void setPendingThread(Thread thread_val) { this.pendingThread = thread_val; }
-    public int QueueLength() { return this.theQueueLength; }
+    public int length() { return this.length_; }
 
     public ListQueueClass(Boolean do_suspend_val, int max_length_val) {
         this.debugIt(false, "ListQueueClass", "init start");
         
-        this.MaxQueueLength = max_length_val;
+        this.maxLength = max_length_val;
         this.theLock = new ReentrantLock();
 
-        if (this.MaxQueueLength == 0) {
-            this.MaxQueueLength = QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE;
+        if (this.maxLength == 0) {
+            this.maxLength = QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE;
         }
     }
 
@@ -45,7 +45,7 @@ public class ListQueueClass {
         
         this.abendQueue("enqueueData begin");
     	this.theLock.lock();
-        this.enqueueEntry(entry);
+        this.enqueue_(entry);
     	this.theLock.unlock();
     	if (this.pendingThread != null) {
     		pendingThread.interrupt();
@@ -54,20 +54,20 @@ public class ListQueueClass {
         this.abendQueue("enqueueData end");
     }
     
-    private void enqueueEntry(QueueEntryClass entry_val) {
+    private void enqueue_(QueueEntryClass entry_val) {
         if (this.QueueHead == null) {
         	entry_val.next = null;
         	entry_val.prev = null;
             this.QueueHead = entry_val;
             this.QueueTail = entry_val;
-            this.theQueueLength = 1;
+            this.length_ = 1;
         }
         else {
         	entry_val.next = null;
         	entry_val.prev = this.QueueTail;
             this.QueueTail.next = entry_val;
             this.QueueTail = entry_val;
-            this.theQueueLength++;
+            this.length_++;
         }
     }
 
@@ -76,7 +76,7 @@ public class ListQueueClass {
 
         this.abendQueue("dequeueData start");
     	this.theLock.lock();
-    	entry = this.dequeueEntry();
+    	entry = this.dequeue_();
     	this.theLock.unlock();
         this.abendQueue("dequeueData end");
     	
@@ -92,24 +92,24 @@ public class ListQueueClass {
         }
     }
 
-    private QueueEntryClass dequeueEntry() {
+    private QueueEntryClass dequeue_() {
         QueueEntryClass entry;
 
-        if (this.theQueueLength == 0) {
+        if (this.length_ == 0) {
             return null;
         }
 
-        if (this.theQueueLength == 1) {
+        if (this.length_ == 1) {
             entry = this.QueueHead;
             this.QueueHead = this.QueueTail = null;
-            this.theQueueLength = 0;
+            this.length_ = 0;
             return entry;
         }
 
         entry = this.QueueHead;
         this.QueueHead = this.QueueHead.next;
         this.QueueHead.prev = null;
-        this.theQueueLength--;
+        this.length_--;
 
         return entry;
     }
@@ -117,24 +117,24 @@ public class ListQueueClass {
     private void flushQueue() {
         this.abendQueue("flushQueue start");
     	this.theLock.lock();
-    	this.doFlushQueue();
+    	this.flush_();
     	this.theLock.unlock();
         this.abendQueue("flushQueue end");
     }
 
-    private void doFlushQueue() {
+    private void flush_() {
         QueueEntryClass entry, entry_next;
 
         entry = this.QueueHead;
         while (entry != null) {
             entry_next = entry.next;
             entry.resetQueueEntry();
-            this.theQueueLength--;
+            this.length_--;
             entry = entry_next;
         }
         this.QueueHead = this.QueueTail = null;
 
-        if (this.theQueueLength != 0) {
+        if (this.length_ != 0) {
             this.abendIt("doFlushQueue", "theQueueSize");
         }
     }
@@ -152,7 +152,7 @@ public class ListQueueClass {
         QueueEntryClass entry;
         int length;
 
-        if (this.theQueueLength == 0) {
+        if (this.length_ == 0) {
             if ((this.QueueHead != null) || (this.QueueTail != null)) {
                 this.abendIt("doAbendQueue", "theQueueSize == 0");
             }
@@ -166,7 +166,7 @@ public class ListQueueClass {
             entry = entry.next;
         }
 
-        if (length != this.theQueueLength) {
+        if (length != this.length_) {
             this.abendIt("doAbendQueue", "from head: bad length");
         }
 
@@ -176,7 +176,7 @@ public class ListQueueClass {
             length++;
             entry = entry.prev;
         }
-        if (length != this.theQueueLength) {
+        if (length != this.length_) {
            this.abendIt("doAbendQueue", "from tail: bad length");
         }
     }
