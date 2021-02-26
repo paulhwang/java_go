@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.Binder;
+package Phwang.Utils;
 
 import java.net.*;
 import java.io.*;

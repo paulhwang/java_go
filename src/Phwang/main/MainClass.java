@@ -8,7 +8,7 @@
 
 package Phwang.main;
 
-import Phwang.Utils.Binder.BinderTestClass;
+import Phwang.Utils.*;
 
 public class MainClass {
 	static public GlobalVariableClass globalVariableObject;

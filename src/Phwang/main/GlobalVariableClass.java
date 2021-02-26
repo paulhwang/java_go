@@ -8,13 +8,12 @@
 
 package Phwang.main;
 
+import Phwang.Utils.*;
 import Phwang.engine.EngineRootClass;
 import Phwang.fabric.FabricRootClass;
 import Phwang.front.FrontRootClass;
 import Phwang.models.ModelRootClass;
 import Phwang.theme.ThemeRootClass;
-import Phwang.Utils.*;
-import Phwang.Utils.Binder.BinderTestClass;
 
 public class GlobalVariableClass {
     private String objectName() {return "GlobalVariableClass";}
