@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.ListMgr;
+package Phwang.Utils;
 
 @FunctionalInterface
 public interface ListMgrInterface {

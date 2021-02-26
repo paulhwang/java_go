@@ -9,7 +9,6 @@
 package Phwang.fabric;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ListMgr.ListEntryClass;
 import Phwang.protocols.FabricFrontEndProtocolClass;
 
 public class NameListClass {

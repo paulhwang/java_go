@@ -9,9 +9,6 @@
 package Phwang.fabric;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ListMgr.ListMgrInterface;
-import Phwang.Utils.ListMgr.ListMgrClass;
-import Phwang.Utils.ListMgr.ListEntryClass;
 
 public class LinkMgrClass implements ListMgrInterface {
     private String objectName() {return "LinkMgrClass";}

@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.ListMgr;
+package Phwang.Utils;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

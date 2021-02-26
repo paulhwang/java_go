@@ -9,8 +9,6 @@
 package Phwang.engine;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ListMgr.ListMgrClass;
-import Phwang.Utils.ListMgr.ListEntryClass;
 
 public class BaseMgrClass {
     private String objectName() {return "BaseMgrClass";}

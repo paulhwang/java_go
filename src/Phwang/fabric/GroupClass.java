@@ -9,7 +9,6 @@
 package Phwang.fabric;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ListMgr.ListEntryClass;
 
 public class GroupClass {
     private String objectName() {return "GroupClass";}
