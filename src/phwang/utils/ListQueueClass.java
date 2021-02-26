@@ -185,3 +185,15 @@ public class ListQueueClass {
     private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
     public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
 }
+
+class QueueEntryClass {
+    public QueueEntryClass next;
+    public QueueEntryClass prev;
+    public Object data;
+    
+    public void resetQueueEntry() {
+    	this.next = null;
+    	this.prev = null;
+    	this.data = null;
+    }
+}
