@@ -49,11 +49,11 @@ public class SessionClass {
     }
 
     public void enqueuePendingDownLinkData(String data_val) {
-        this.pendingDownLinkDataQueue.enqueueData(data_val);
+        this.pendingDownLinkDataQueue.enqueue(data_val);
     }
 
     public String getPendingDownLinkData() {
-        return (String) this.pendingDownLinkDataQueue.dequeueData();
+        return (String) this.pendingDownLinkDataQueue.dequeue();
     }
 
     public int getPendingDownLinkDataCount() {

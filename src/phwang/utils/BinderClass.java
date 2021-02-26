@@ -175,7 +175,7 @@ public class BinderClass implements ThreadInterface {
         		data = this.InputStream().readUTF();
         		if (data != null) {
         			this.debugIt(false, "binderReceiveThreadFunc", "data = " + data);
-        			this.receiveQueue.enqueueData(data);
+        			this.receiveQueue.enqueue(data);
         		}
         		else {
         			this.abendIt("binderReceiveThreadFunc", "data is null=====================================");
@@ -191,7 +191,7 @@ public class BinderClass implements ThreadInterface {
 
     public String receiveData() {
     	while (true) {
-    		String data = (String) this.receiveQueue.dequeueData();
+    		String data = (String) this.receiveQueue.dequeue();
     		if (data == null) {
     			try {
     				this.receiveQueue.setPendingThread(Thread.currentThread());
@@ -218,7 +218,7 @@ public class BinderClass implements ThreadInterface {
         }
         
 		while (true) {
-			String data = (String) this.transmitQueue.dequeueData();
+			String data = (String) this.transmitQueue.dequeue();
 			if (data == null) {
 				try {
     				this.transmitQueue.setPendingThread(Thread.currentThread());
@@ -239,7 +239,7 @@ public class BinderClass implements ThreadInterface {
 
     public void transmitData(String data_val) {
         this.debugIt(false, "TransmitData", "data = " + data_val);
-        this.transmitQueue.enqueueData(data_val);
+        this.transmitQueue.enqueue(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

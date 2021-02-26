@@ -52,7 +52,7 @@ public class LinkClass {
 
     public void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
         String data = link_session_id_str_val + theme_data_val;
-        this.pendingSessionSetupQueue.enqueueData(data);
+        this.pendingSessionSetupQueue.enqueue(data);
         /*
         char* buf, *data_ptr;
 
@@ -69,7 +69,7 @@ public class LinkClass {
         this.debugIt(false, "********************SetPendingSessionSetup3", "session_id_str_val =" + session_id_str_val);
         this.debugIt(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);
         String data = browser_theme_id_str_val + session_id_str_val + theme_data_val;
-        this.pendingSessionSetupQueue3.enqueueData(data);
+        this.pendingSessionSetupQueue3.enqueue(data);
         this.debugIt(true, "********************SetPendingSessionSetup3", "data =" + data);
         /*
         char* buf, *data_ptr;
@@ -84,11 +84,11 @@ public class LinkClass {
     }
     
     public String getPendingSessionSetup() {
-        return (String) this.pendingSessionSetupQueue.dequeueData();
+        return (String) this.pendingSessionSetupQueue.dequeue();
     }
 
     public String getPendingSessionSetup3() {
-        return (String) this.pendingSessionSetupQueue3.dequeueData();
+        return (String) this.pendingSessionSetupQueue3.dequeue();
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
