@@ -1,15 +1,15 @@
 module java_go {
-	exports Phwang.Main;
 	exports Phwang.Utils.ArrayMgr;
-	exports Phwang.Engine.Go;
-	exports Phwang.FrontEnd;
+	exports Phwang.protocols;
+	exports Phwang.engine;
+	exports Phwang.front;
 	exports Phwang.theme;
-	exports Phwang.Engine;
-	exports Phwang.Fabric;
+	exports Phwang.fabric;
+	exports Phwang.engine.Go;
 	exports org.json.simple;
-	exports Phwang.Models;
 	exports Phwang.Utils.Binder;
-	exports Phwang.Protocols;
+	exports Phwang.main;
+	exports Phwang.models;
 	exports Phwang.Utils.Queue;
 	exports Phwang.Utils.tcp;
 	exports Phwang.Utils;

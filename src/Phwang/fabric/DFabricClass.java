@@ -6,56 +6,55 @@
  ******************************************************************************
  */
 
-package Phwang.theme;
+package Phwang.fabric;
 
 import Phwang.Utils.*;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
-import Phwang.protocols.ThemeEngineProtocolClass;
-import Phwang.engine.DEngineClass;
+import Phwang.protocols.FabricFrontEndProtocolClass;
 
-public class UThemeClass implements ThreadInterface {
-    private String objectName() {return "UThemeClass";}
-    private String receiveThreadName() { return "UThemeReceiveThread"; }
-
-    private ThemeRootClass themeRootObject;
-    private UThemeParserClass uThemeParserObject;
+public class DFabricClass implements ThreadInterface {
+    private String objectName() {return "DFabricClass";}
+    private String receiveThreadName() { return "DFabricReceiveThread"; }
+    
+    private FabricRootClass fabricRootObject;
+    private DFabricParserClass dFabricParserObject;
     public BinderClass binderObject;
 
-    public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
-    private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
-
-    public UThemeClass(ThemeRootClass theme_root_object_val) {
-        this.debugIt(false, "UThemeClass", "init start");
-
-        this.themeRootObject = theme_root_object_val;
-        this.uThemeParserObject = new UThemeParserClass(this);
+    public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
+    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().ThreadMgrObject();}
+  
+    public DFabricClass(FabricRootClass fabric_root_class_val) {
+        this.debugIt(false, "DFabricClass", "init start");
+        
+        this.fabricRootObject = fabric_root_class_val;
+        this.dFabricParserObject = new DFabricParserClass(this);
         this.binderObject = new BinderClass(this.objectName());
-        this.binderObject.bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        
+        this.binderObject.bindAsTcpServer(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
     	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
-     }
+    }
     
 	public void threadCallbackFunction() {
-		this.uThemeRreceiveThreadFunc();
+		this.dFabricRreceiveThreadFunc();
 	}
 
-    public void uThemeRreceiveThreadFunc() {
+    public void dFabricRreceiveThreadFunc() {
         this.debugIt(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
         while (true) {
             data = this.binderObject.receiveData();
             if (data == null) {
-                this.abendIt("uThemeRreceiveThreadFunc", "null data");
+                this.abendIt("dFabricRreceiveThreadFunc", "null data");
                 continue;
             }
-            
-            this.debugIt(false, "uThemeRreceiveThreadFunc", "data = " + data);
-            this.uThemeParserObject.parseInputPacket(data);
+            this.debugIt(false, "dFabricRreceiveThreadFunc", "data = " + data);
+            this.dFabricParserObject.parseInputPacket(data);
         }
     }
 

@@ -13,8 +13,8 @@ import Phwang.Utils.UtilsClass;
 import Phwang.Utils.Binder.BinderClass;
 import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
-import Phwang.Protocols.FabricFrontEndProtocolClass;
-import Phwang.Protocols.FabricThemeProtocolClass;
+import Phwang.protocols.FabricFrontEndProtocolClass;
+import Phwang.protocols.FabricThemeProtocolClass;
 
 public class DThemeClass implements ThreadInterface {
     private String objectName() {return "DThemeClass";}
