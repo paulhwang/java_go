@@ -24,7 +24,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String objectName() {return "FrontTestClass";}
     private String frontTestCaseThreadName() { return "FrontTestCaseThread"; }
     
-    private FrontTestClass frontTestObject;
+    private FrontTestClass frontTestObject_;
     private String indexString;
     private String myNameString;
     private String password = "Tennis";
@@ -39,14 +39,15 @@ class FrontTestCaseClass implements ThreadInterface {
     private String sessionIdString;
     private String themeIdString = "3333";
     
-    public FrontRootClass FrontEndRootObject() { return this.frontTestObject.FrontEndRootObject(); }
+    private FrontTestClass frontTestObject() { return this.frontTestObject_; }
+    public FrontRootClass FrontEndRootObject() { return this.frontTestObject().FrontEndRootObject(); }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
     private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
 
-    public FrontTestCaseClass(FrontTestClass FrontTestClass, int index_val) {
+    public FrontTestCaseClass(FrontTestClass front_test_object_val, int index_val) {
         this.debug(false, "FrontTestClass", "init start");
         
-        this.frontTestObject = FrontTestClass;
+        this.frontTestObject_ = front_test_object_val;
         this.indexString = EncodeNumberClass.encodeNumber(index_val, 3);
         this.myNameString = "Test_" + this.indexString;
         this.parserObject = new JSONParser();
@@ -57,7 +58,9 @@ class FrontTestCaseClass implements ThreadInterface {
      }
 
 	public void threadCallbackFunction() {
+		this.frontTestObject().setThreadCount(true);
 		this.frontTestCaseThreadFunc();
+		this.frontTestObject().setThreadCount(false);
 	}
     
     private void frontTestCaseThreadFunc() {

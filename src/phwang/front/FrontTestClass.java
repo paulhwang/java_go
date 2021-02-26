@@ -8,6 +8,8 @@
 
 package phwang.front;
 
+import java.util.concurrent.locks.*;
+import phwang.utils.*;
 import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
@@ -17,15 +19,30 @@ public class FrontTestClass implements ThreadInterface {
     private String frontTestThreadName() { return "FrontTestThread"; }
 
     private FrontRootClass frontEndRootObject;
+    private int threadCount = 0;
+    private Lock threadCountLock;
     
     public FrontRootClass FrontEndRootObject() { return this.frontEndRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
     private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
 
     public FrontTestClass(FrontRootClass root_object_val) {
-        this.debugIt(false, "FrontTestClass", "init start");
+        this.debug(false, "FrontTestClass", "init start");
         
         this.frontEndRootObject = root_object_val;
+        this.threadCountLock= new ReentrantLock();
+    }
+    
+    public void setThreadCount(boolean add) {
+    	this.threadCountLock.lock();
+    	if (add) {
+    		this.threadCount++;
+    	}
+    	else {
+    		this.threadCount--;
+    	}
+    	this.threadCountLock.unlock();
+    	this.debug(true, "setThreadCount", "*************************" + this.threadCount);
     }
     
     public void startTest() {
@@ -33,11 +50,13 @@ public class FrontTestClass implements ThreadInterface {
      }
     
 	public void threadCallbackFunction() {
+		this.setThreadCount(true);
 		this.frontTestThreadFunc();
+		this.setThreadCount(false);
 	}
     
     private void frontTestThreadFunc() {
-        this.debugIt(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
+        this.debug(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
         try {
         	Thread.sleep(1000);
         }
@@ -55,8 +74,8 @@ public class FrontTestClass implements ThreadInterface {
         	catch (Exception ignore) {}
         }
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
