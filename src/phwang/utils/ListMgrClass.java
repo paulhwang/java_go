@@ -51,14 +51,14 @@ public class ListMgrClass {
     	
         this.abendListMgrClass("before MallocEntry");
         this.theLock.lock();
-        ListEntryClass entry = this.doMallocEntry(object_val);
+        ListEntryClass entry = this.mallocEntry_(object_val);
     	this.theLock.unlock();
         this.abendListMgrClass("after MallocEntry");
         
         return entry;
     }
 
-    private ListEntryClass doMallocEntry(Object object_val) {
+    private ListEntryClass mallocEntry_(Object object_val) {
         int id;
         int index;
 
@@ -69,7 +69,6 @@ public class ListMgrClass {
             this.entryTableArray[index] = entry;
         }
         else {
-            this.abendIt("DoMallocEntry", "TBD");
         }
 
         entry.setData(id, object_val, index);
@@ -94,7 +93,6 @@ public class ListMgrClass {
                 return i;
             }
         }
-        this.abendIt("allocEntryIndex", "out of entry_index");
         return -1;
     }
 

@@ -2,7 +2,12 @@ package phwang.utils;
 
 public class AbendClass
 {
+	static Boolean logStopped = false;
+	static Boolean crashHere;
+	
     static public void log(String s0, String s1) {
+    	if (logStopped)
+    		return;
         System.out.println(s0 + " " + s1);
     }
 
@@ -10,12 +15,13 @@ public class AbendClass
     	System.out.println("abend+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     	System.out.println(s0 + " " + s1);
     	System.out.println("abend+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        Junk junk = null;
-        junk.data = 1;
+    	forceCrash();
     }
     
     static public void phwangLogit(String str0_val, String str1_val)
     {
+    	if (logStopped)
+    		return;
         System.out.println(str0_val + " " + str1_val);
     }
 
@@ -24,12 +30,13 @@ public class AbendClass
     	System.out.println("Abend+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     	System.out.println(str0_val + " " + str1_val);
     	System.out.println("Abend+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        Junk junk = null;
-        junk.data = 1;
+    	forceCrash();
     }
     
-    private class Junk
-    {
-        public int data;
+    static private void forceCrash() {
+    	logStopped = true;
+    	
+    	if (crashHere)
+    		return;
     }
 }
