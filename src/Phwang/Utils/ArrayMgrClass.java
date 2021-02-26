@@ -6,9 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.ArrayMgr;
-
-import Phwang.Utils.AbendClass;
+package Phwang.Utils;
 
 public class ArrayMgrClass {
     private String objectName() {return "ArrayMgrClass";}

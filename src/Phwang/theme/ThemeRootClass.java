@@ -8,8 +8,7 @@
 
 package Phwang.theme;
 
-import Phwang.Utils.AbendClass;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
+import Phwang.Utils.*;
 
 public class ThemeRootClass {
     private String objectName() {return "ThemeRootClass";}

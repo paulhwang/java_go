@@ -9,8 +9,6 @@
 package Phwang.engine;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
-import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.protocols.ThemeEngineProtocolClass;
 
 public class DEngineClass implements ThreadInterface {

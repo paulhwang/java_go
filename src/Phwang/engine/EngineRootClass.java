@@ -9,7 +9,6 @@
 package Phwang.engine;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 
 public class EngineRootClass {
     private String objectName() {return "EngineRootClass";}

@@ -10,10 +10,7 @@ package Phwang.front;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadInterface;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 
 /*
  ******************************************************************************

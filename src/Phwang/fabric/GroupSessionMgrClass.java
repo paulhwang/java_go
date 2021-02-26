@@ -9,7 +9,6 @@
 package Phwang.fabric;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ArrayMgr.ArrayMgrClass;
 
 public class GroupSessionMgrClass {
     private String objectName() {return "GroupSessionMgrClass";}

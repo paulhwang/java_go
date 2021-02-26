@@ -1,4 +1,4 @@
-package Phwang.Utils.ThreadMgr;
+package Phwang.Utils;
 
 @FunctionalInterface
 public interface ThreadInterface {

@@ -9,7 +9,6 @@
 package Phwang.fabric;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 
 public class FabricRootClass {
     private String objectName() {return "FabricRootClass";}

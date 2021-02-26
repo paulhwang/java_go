@@ -9,8 +9,6 @@
 package Phwang.fabric;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadInterface;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.protocols.FabricFrontEndProtocolClass;
 
 public class DFabricClass implements ThreadInterface {

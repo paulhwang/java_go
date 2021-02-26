@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.ThreadMgr;
+package Phwang.Utils;
 
 import Phwang.Utils.*;
 

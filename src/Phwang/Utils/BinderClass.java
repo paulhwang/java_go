@@ -12,9 +12,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.*;
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
-import Phwang.Utils.ThreadMgr.ThreadClass;
-import Phwang.Utils.ThreadMgr.ThreadInterface;
 
 public class BinderClass implements ThreadInterface {
     private String objectName() {return "BinderClass";}

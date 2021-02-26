@@ -9,7 +9,6 @@
 package Phwang.front;
 
 import Phwang.Utils.*;
-import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 
 public class FrontRootClass {
     private String objectName() {return "FrontRootClass";}

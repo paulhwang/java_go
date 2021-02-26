@@ -6,9 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.ThreadMgr;
-
-import Phwang.Utils.AbendClass;
+package Phwang.Utils;
 
 public class ThreadMgrClass {
     private String objectName() {return "ThreadMgrClass";}

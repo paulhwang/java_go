@@ -1,5 +1,4 @@
 module java_go {
-	exports Phwang.Utils.ArrayMgr;
 	exports Phwang.protocols;
 	exports Phwang.engine;
 	exports Phwang.front;
@@ -12,7 +11,6 @@ module java_go {
 	exports Phwang.Utils;
 	exports org.json.simple.parser;
 	exports Phwang.go;
-	exports Phwang.Utils.ThreadMgr;
 	exports Phwang.Utils.ListMgr;
 
 	requires java.xml;
