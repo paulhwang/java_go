@@ -66,12 +66,9 @@ public class FrontTestClass implements ThreadInterface {
         	for (int i = 0; i < 10; i++) {
         		FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
         		test_case.startTestTest();
+        		
+        		UtilsClass.sleep(1);
         	}
-        	
-        	try {
-        		Thread.sleep(1000);
-        	}
-        	catch (Exception ignore) {}
         }
     }
     
