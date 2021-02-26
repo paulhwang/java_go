@@ -3,7 +3,7 @@ module java_go {
 	exports Phwang.Utils.ArrayMgr;
 	exports Phwang.Engine.Go;
 	exports Phwang.FrontEnd;
-	exports Phwang.Theme;
+	exports Phwang.theme;
 	exports Phwang.Engine;
 	exports Phwang.Fabric;
 	exports org.json.simple;

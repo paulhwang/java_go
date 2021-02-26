@@ -6,13 +6,12 @@
  ******************************************************************************
  */
 
-package Phwang.Theme;
+package Phwang.theme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.*;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Theme.ThemeRootClass;
 
 public class RoomMgrClass {
     private String objectName() {return "RoomMgrClass";}

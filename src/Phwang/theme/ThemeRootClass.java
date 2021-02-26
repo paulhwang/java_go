@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Theme;
+package Phwang.theme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;

@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Theme;
+package Phwang.theme;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.UtilsClass;
@@ -15,7 +15,6 @@ import Phwang.Utils.ThreadMgr.ThreadInterface;
 import Phwang.Utils.ThreadMgr.ThreadMgrClass;
 import Phwang.Protocols.FabricFrontEndProtocolClass;
 import Phwang.Protocols.FabricThemeProtocolClass;
-import Phwang.Theme.ThemeRootClass;
 
 public class DThemeClass implements ThreadInterface {
     private String objectName() {return "DThemeClass";}
