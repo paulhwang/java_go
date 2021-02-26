@@ -6,7 +6,6 @@ module java_go {
 	exports Phwang.theme;
 	exports Phwang.main;
 	exports Phwang.models;
-	exports Phwang.Utils.tcp;
 	exports Phwang.Utils;
 	exports org.json.simple.parser;
 	exports Phwang.fabric;
