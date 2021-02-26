@@ -44,7 +44,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
 
     public FrontTestCaseClass(FrontTestClass FrontTestClass, int index_val) {
-        this.debugIt(false, "FrontTestClass", "init start");
+        this.debug(false, "FrontTestClass", "init start");
         
         this.frontTestObject = FrontTestClass;
         this.indexString = EncodeNumberClass.encodeNumber(index_val, 3);
@@ -100,7 +100,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doSetupLink", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doSetupLink", "ajex_response data=" + str_json_ajex_response);
     	
         try {
         	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
@@ -108,10 +108,10 @@ class FrontTestCaseClass implements ThreadInterface {
             String name = (String) json_ajex_response.get("my_name");
             this.linkIdString = (String) json_ajex_response.get("link_id");
             if (!this.myNameString.equals(name)) {
-            	this.abendIt("doSetupLink", "name not match");
+            	this.abend("doSetupLink", "name not match");
             }
         } catch (Exception e) {
-        	this.abendIt("doSetupLink", "***Exception***");
+        	this.abend("doSetupLink", "***Exception***");
         }
     }
     
@@ -126,7 +126,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doGetLinkData", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doGetLinkData", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doGetNameList() {
@@ -141,7 +141,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doGetNameList", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doGetNameList", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doSetupSession() {
@@ -157,7 +157,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doSetupSession", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doSetupSession", "ajex_response data=" + str_json_ajex_response);
     	
         try {
         	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
@@ -165,10 +165,10 @@ class FrontTestCaseClass implements ThreadInterface {
             String link_id = (String) json_ajex_response.get("link_id");
             this.sessionIdString = (String) json_ajex_response.get("session_id");
             if (!this.linkIdString.equals(link_id)) {
-            	this.abendIt("doSetupSession", "link_id not match");
+            	this.abend("doSetupSession", "link_id not match");
             }
         } catch (Exception e) {
-        	this.abendIt("doSetupSession", "***Exception***");
+        	this.abend("doSetupSession", "***Exception***");
         }
     }
     
@@ -187,7 +187,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doSetupSession3() {
@@ -202,7 +202,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
     }
 
     private void doPutSessionData() {
@@ -219,7 +219,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
     }
 
     private void doGetSessionData() {
@@ -234,11 +234,11 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debugIt(true, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
     }
     
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 
