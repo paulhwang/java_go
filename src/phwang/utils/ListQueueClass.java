@@ -22,6 +22,8 @@ public class ListQueueClass {
     private QueueEntryClass tail;
     private int maxLength;
     private Lock theLock;
+    private Lock theMallocLock;
+    private QueueEntryClass freeEntryList;
 
     public void setPendingThread(Thread thread_val) { this.pendingThread = thread_val; }
     public int length() { return this.length_; }
@@ -31,6 +33,7 @@ public class ListQueueClass {
         
         this.maxLength = max_length_val;
         this.theLock = new ReentrantLock();
+        this.theMallocLock = new ReentrantLock();
 
         if (this.maxLength == 0) {
             this.maxLength = DEFAULT_MAX_LENGTH;
@@ -40,7 +43,7 @@ public class ListQueueClass {
     public void enqueue(Object data_val) {
         this.debugIt(false, "enqueue", (String) data_val);
 
-        QueueEntryClass entry = new QueueEntryClass();
+        QueueEntryClass entry = this.malloc();
         entry.data = data_val;
         
         this.abendQueue("enqueue begin");
@@ -85,7 +88,7 @@ public class ListQueueClass {
         }
         else {
             Object data = entry.data;
-            entry.resetQueueEntry();
+            this.free(entry);
 
             this.debugIt(false, "dequeue", "data=" + (String)data);
             return data;
@@ -139,6 +142,34 @@ public class ListQueueClass {
         }
     }
 
+    private QueueEntryClass malloc() {
+        QueueEntryClass entry;
+        
+    	this.theMallocLock.lock();
+    	if (this.freeEntryList != null) {
+    		entry = this.freeEntryList;
+    		this.freeEntryList = this.freeEntryList.next;
+    	}
+    	else {
+    		entry = null;
+    	}
+    	this.theMallocLock.unlock();
+    	
+    	if (entry != null) {
+    		return entry;
+    	}
+    	else {
+    		return new QueueEntryClass();
+    	}
+    }
+    
+    private void free(QueueEntryClass entry_val) {
+    	this.theMallocLock.lock();
+    	entry_val.next = this.freeEntryList;
+    	this.freeEntryList = entry_val;
+    	this.theMallocLock.unlock();
+    }
+    
     private void abendQueue (String msg_val) {
     	if (!this.abendQueueIsOn)
     		return;
