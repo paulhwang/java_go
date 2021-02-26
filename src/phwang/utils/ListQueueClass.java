@@ -14,7 +14,8 @@ import phwang.utils.*;
 public class ListQueueClass {
     private String objectName() {return "ListQueueClass";}
 
-    private int DEFAULT_MAX_LENGTH = 1000;
+    private int DEFAULT_MAX_QUEUE_LENGTH = 1000;
+    private int MAX_FREE_LIST_LENGTH = 100;
     private Boolean abendQueueIsOn = true;
     private Thread pendingThread;
     private int length_;
@@ -24,6 +25,7 @@ public class ListQueueClass {
     private Lock theLock;
     private Lock theMallocLock;
     private QueueEntryClass freeEntryList;
+    private int freeListLength;
 
     public void setPendingThread(Thread thread_val) { this.pendingThread = thread_val; }
     public int length() { return this.length_; }
@@ -36,7 +38,7 @@ public class ListQueueClass {
         this.theMallocLock = new ReentrantLock();
 
         if (this.maxLength == 0) {
-            this.maxLength = DEFAULT_MAX_LENGTH;
+            this.maxLength = DEFAULT_MAX_QUEUE_LENGTH;
         }
     }
 
@@ -131,14 +133,14 @@ public class ListQueueClass {
         entry = this.head;
         while (entry != null) {
             entry_next = entry.next;
-            entry.resetQueueEntry();
+            entry.clear();
             this.length_--;
             entry = entry_next;
         }
         this.head = this.tail = null;
 
         if (this.length_ != 0) {
-            this.abendIt("doFlushQueue", "theQueueSize");
+            this.abendIt("flush_", "length is not 0");
         }
     }
 
@@ -149,6 +151,7 @@ public class ListQueueClass {
     	if (this.freeEntryList != null) {
     		entry = this.freeEntryList;
     		this.freeEntryList = this.freeEntryList.next;
+    		this.freeListLength--;
     	}
     	else {
     		entry = null;
@@ -163,11 +166,29 @@ public class ListQueueClass {
     	}
     }
     
-    private void free(QueueEntryClass entry_val) {
+    private void free(QueueEntryClass entry) {
+    	if (this.freeListLength > MAX_FREE_LIST_LENGTH) {
+    		entry.clear();
+    		return;
+    	}
+    	
     	this.theMallocLock.lock();
-    	entry_val.next = this.freeEntryList;
-    	this.freeEntryList = entry_val;
+    	entry.next = this.freeEntryList;
+    	this.freeEntryList = entry;
+    	this.freeListLength++;
     	this.theMallocLock.unlock();
+    }
+    
+    private void releaseFreeEntryList() {
+    	while (this.freeEntryList != null) {
+    		QueueEntryClass entry = this.freeEntryList;
+    		this.freeEntryList = this.freeEntryList.next;
+    		entry.clear();
+    	}
+    }
+    
+    public void destructQueue() {
+    	this.releaseFreeEntryList();
     }
     
     private void abendQueue (String msg_val) {
@@ -175,17 +196,17 @@ public class ListQueueClass {
     		return;
     	
     	this.theLock.lock();
-    	this.abendQueue_();
+    	this.abendQueue_(msg_val);
     	this.theLock.unlock();
     }
 
-    private void abendQueue_() {
+    private void abendQueue_(String msg_val) {
         QueueEntryClass entry;
         int length;
 
         if (this.length_ == 0) {
             if ((this.head != null) || (this.tail != null)) {
-                this.abendIt("abendQueue_", "length_ == 0");
+                this.abendIt("abendQueue_", msg_val + " length_ == 0");
             }
             return;
         }
@@ -198,7 +219,7 @@ public class ListQueueClass {
         }
 
         if (length != this.length_) {
-            this.abendIt("abendQueue_", "from head: bad length");
+            this.abendIt("abendQueue_", msg_val + " from head: bad length");
         }
 
         length = 0;
@@ -208,7 +229,7 @@ public class ListQueueClass {
             entry = entry.prev;
         }
         if (length != this.length_) {
-           this.abendIt("abendQueue_", "from tail: bad length");
+           this.abendIt("abendQueue_", msg_val + " from tail: bad length");
         }
     }
 
@@ -222,7 +243,7 @@ class QueueEntryClass {
     public QueueEntryClass prev;
     public Object data;
     
-    public void resetQueueEntry() {
+    public void clear() {
     	this.next = null;
     	this.prev = null;
     	this.data = null;
