@@ -8,8 +8,7 @@
 
 package Phwang.Engine.Go;
 
-import Phwang.Utils.AbendClass;
-import Phwang.Utils.Encode.EncodeNumberClass;
+import Phwang.Utils.*;
 
 public class GoConfigClass {
     private String objectName() {return "GoConfigClass";}

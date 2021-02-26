@@ -10,7 +10,7 @@ package Phwang.Engine;
 
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Utils.Encode.EncodeNumberClass;
+import Phwang.Utils.*;
 import Phwang.Protocols.ThemeEngineProtocolClass;
 import Phwang.Engine.Go.GoRootClass;
 import Phwang.Engine.Go.GoRootClass;

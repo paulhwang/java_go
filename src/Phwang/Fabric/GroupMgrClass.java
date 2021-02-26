@@ -8,10 +8,9 @@
 
 package Phwang.Fabric;
 
-import Phwang.Utils.AbendClass;
+import Phwang.Utils.*;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Utils.Encode.EncodeNumberClass;
 
 public class GroupMgrClass {
     private String objectName() {return "GroupMgrClass";}

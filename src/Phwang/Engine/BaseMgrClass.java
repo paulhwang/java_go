@@ -11,7 +11,7 @@ package Phwang.Engine;
 import Phwang.Utils.AbendClass;
 import Phwang.Utils.ListMgr.ListMgrClass;
 import Phwang.Utils.ListMgr.ListEntryClass;
-import Phwang.Utils.Encode.EncodeNumberClass;
+import Phwang.Utils.*;
 
 public class BaseMgrClass {
     private String objectName() {return "BaseMgrClass";}

@@ -5,8 +5,6 @@ module java_go {
 	exports Phwang.FrontEnd;
 	exports Phwang.Theme;
 	exports Phwang.Engine;
-	exports Phwang.Engine.DEngine;
-	exports Phwang.Utils.Encode;
 	exports Phwang.Fabric;
 	exports org.json.simple;
 	exports Phwang.Models;

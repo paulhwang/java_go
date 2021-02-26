@@ -8,8 +8,7 @@
 
 package Phwang.Utils.ThreadMgr;
 
-import Phwang.Engine.DEngine.DEngineClass;
-import Phwang.Utils.AbendClass;
+import Phwang.Utils.*;
 
 public class ThreadClass implements Runnable {
     private String objectName() {return "ThreadClass";}

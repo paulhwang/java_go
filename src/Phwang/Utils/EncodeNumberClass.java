@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package Phwang.Utils.Encode;
+package Phwang.Utils;
 
 public class EncodeNumberClass {
     public static String encodeNumber(int number_val, int size_val) {

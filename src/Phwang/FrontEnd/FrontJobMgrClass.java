@@ -8,8 +8,7 @@
 
 package Phwang.FrontEnd;
 
-import Phwang.Utils.AbendClass;
-import Phwang.Utils.Encode.EncodeNumberClass;
+import Phwang.Utils.*;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
