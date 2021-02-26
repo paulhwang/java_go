@@ -1,15 +1,15 @@
 module java_go {
 	exports org.json.simple;
-	exports Phwang.protocols;
-	exports Phwang.engine;
-	exports Phwang.front;
-	exports Phwang.theme;
-	exports Phwang.main;
-	exports Phwang.models;
-	exports Phwang.Utils;
+	exports phwang.front;
+	exports phwang.utils;
+	exports phwang.models;
 	exports org.json.simple.parser;
-	exports Phwang.fabric;
-	exports Phwang.go;
+	exports phwang.fabric;
+	exports phwang.protocols;
+	exports phwang.engine;
+	exports phwang.main;
+	exports phwang.theme;
+	exports phwang.go;
 
 	requires java.xml;
 }
