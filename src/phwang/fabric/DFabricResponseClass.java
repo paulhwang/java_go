@@ -14,7 +14,7 @@ public class DFabricResponseClass {
     private String objectName() {return "DFabricResponseClass";}
     
     private DFabricParserClass dFabricParserObject;
-    private FabricRootClass fabricRootObject() { return this.dFabricParserObject.FabricRootObject(); }
+    private FabricRootClass fabricRootObject() { return this.dFabricParserObject.fabricRootObject(); }
 
     public DFabricResponseClass(DFabricParserClass dfabric_parser_object_val) {
         this.debugIt(false, "DFabricResponseClass", "init start");

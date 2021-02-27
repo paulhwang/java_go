@@ -15,19 +15,20 @@ public class DFabricClass implements ThreadInterface {
     private String objectName() {return "DFabricClass";}
     private String receiveThreadName() { return "DFabricReceiveThread"; }
     
-    private FabricRootClass fabricRootObject;
-    private DFabricParserClass dFabricParserObject;
+    private FabricRootClass fabricRootObject_;
+    private DFabricParserClass dFabricParserObject_;
     public BinderClass dBinderObject_;
 
-    public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
-    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().ThreadMgrObject();}
+    public FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().ThreadMgrObject();}
+    private DFabricParserClass dFabricParserObject() { return this.dFabricParserObject_; }
     private BinderClass dBinderObject() { return this.dBinderObject_; }
   
     public DFabricClass(FabricRootClass fabric_root_class_val) {
         this.debugIt(false, "DFabricClass", "init start");
         
-        this.fabricRootObject = fabric_root_class_val;
-        this.dFabricParserObject = new DFabricParserClass(this);
+        this.fabricRootObject_ = fabric_root_class_val;
+        this.dFabricParserObject_ = new DFabricParserClass(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
         
         this.dBinderObject().bindAsTcpServer(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
@@ -52,7 +53,7 @@ public class DFabricClass implements ThreadInterface {
                 continue;
             }
             this.debugIt(false, "dFabricRreceiveThreadFunc", "data = " + data);
-            this.dFabricParserObject.parseInputPacket(data);
+            this.dFabricParserObject().parseInputPacket(data);
         }
     }
 
