@@ -36,7 +36,7 @@ public class FrontJobMgrClass {
         this.theLock = new ReentrantLock();
 
         this.nextAvailableJobId = 0;
-        this.setMaxAllowedJobId(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+        this.setMaxAllowedJobId(FrontDefineClass.FRONT_JOB_ID_SIZE);
 
         this.maxJobArrayIndex = 0;
         this.jobArray = new FrontJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
@@ -59,7 +59,7 @@ public class FrontJobMgrClass {
 
     private FrontJobClass doMallocJobObject() {
         this.incrementNextAvailableJobId();
-        String ajax_id_str = EncodeNumberClass.encodeNumber(this.nextAvailableJobId, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+        String ajax_id_str = EncodeNumberClass.encodeNumber(this.nextAvailableJobId, FrontDefineClass.FRONT_JOB_ID_SIZE);
         FrontJobClass ajax_entry_object = new FrontJobClass(ajax_id_str);
         this.putJobObject(ajax_entry_object);
         return ajax_entry_object;

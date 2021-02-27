@@ -29,7 +29,7 @@ public class FrontJobClass {
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.jobId = this.listEntryObject.Id();
-        this.jobIdStr = EncodeNumberClass.encodeNumber(this.jobId, FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
+        this.jobIdStr = EncodeNumberClass.encodeNumber(this.jobId, FrontDefineClass.FRONT_JOB_ID_SIZE);
     }
 
     public String readData() {

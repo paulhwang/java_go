@@ -37,8 +37,8 @@ public class DFabricParserClass {
     }
 
     public void parseInputPacket(String input_data_val) {
-        String adax_id = input_data_val.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-        String toDes = input_data_val.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+        String job_id_str = input_data_val.substring(0, FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
+        String toDes = input_data_val.substring(FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
         String command = null;
         String data = null;
         
@@ -83,7 +83,7 @@ public class DFabricParserClass {
             this.abendIt("parseInputPacket", response_data);
         }
         
-        this.dFabricObject.transmitData(adax_id + response_data);
+        this.dFabricObject.transmitData(job_id_str + response_data);
     }
 
     private String processSetupLinkRequest(String input_data_val) {
