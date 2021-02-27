@@ -1,12 +1,11 @@
 package phwang.utils;
 
-public class AbendClass
-{
-	static Boolean logStopped = false;
+public class AbendClass {
+	static LockBooleanClass logStopped = new LockBooleanClass();
 	static Boolean crashHere;
 	
     static public void log(String s0, String s1) {
-    	if (logStopped)
+    	if (logStopped.get())
     		return;
         System.out.println(s0 + " " + s1);
     }
@@ -20,7 +19,7 @@ public class AbendClass
     
     static public void phwangLogit(String str0_val, String str1_val)
     {
-    	if (logStopped)
+    	if (logStopped.get())
     		return;
         System.out.println(str0_val + " " + str1_val);
     }
@@ -34,7 +33,7 @@ public class AbendClass
     }
     
     static private void forceCrash() {
-    	logStopped = true;
+    	logStopped.set(true);
     	
     	if (crashHere)
     		return;

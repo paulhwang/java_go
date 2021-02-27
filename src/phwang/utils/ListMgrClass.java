@@ -69,6 +69,7 @@ public class ListMgrClass {
             this.entryTableArray[index] = entry;
         }
         else {
+        	this.abendIt("mallocEntry_", "index too small");
         }
 
         entry.setData(id, object_val, index);
