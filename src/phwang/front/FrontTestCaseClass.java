@@ -103,7 +103,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.UFrontObject().processAjaxRequestPacket(str_json_request);
-        this.debug(true, "doSetupLink", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
     	
         try {
         	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
@@ -114,7 +114,7 @@ class FrontTestCaseClass implements ThreadInterface {
             	this.abend("doSetupLink", "name not match");
             }
         } catch (Exception e) {
-        	this.abend("doSetupLink", "***Exception***");
+        	this.abend("doSetupLink", "***Exception*** str_json_ajex_response=" + str_json_ajex_response);
         }
     }
     

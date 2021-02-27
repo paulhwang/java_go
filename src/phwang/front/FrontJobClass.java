@@ -9,16 +9,27 @@
 package phwang.front;
 
 import phwang.utils.*;
+import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class FrontJobClass {
     private String objectName() {return "FrontJobClass";}
 
+    private ListEntryClass listEntryObject;
+    private int jobId;
+    private String jobIdStr;
+    
     public String ajaxIdStr;
     private String theData;
     private Thread pendingThread;
 
     public FrontJobClass(String ajax_id_str_val) {
         this.ajaxIdStr = ajax_id_str_val;
+    }
+
+    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
+        this.listEntryObject = list_entry_objectg_val;
+        this.jobId = this.listEntryObject.Id();
+        this.jobIdStr = EncodeNumberClass.encodeNumber(this.jobId, FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
     }
 
     public String readData() {

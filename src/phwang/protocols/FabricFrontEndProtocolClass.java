@@ -24,5 +24,7 @@ public class FabricFrontEndProtocolClass {
     public static final int FABRIC_LINK_ID_SIZE = 4;
 
     public static final int FABRIC_SESSION_ID_SIZE = 4;
+    
+    public static final int FRONT_JOB_ID_SIZE = 4;////////////////////////for now
 
 }
