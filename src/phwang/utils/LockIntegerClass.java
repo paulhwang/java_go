@@ -14,8 +14,9 @@ public class LockIntegerClass {
 	private Lock lock;
 	private int it;
 	
-	public LockIntegerClass() {
+	public LockIntegerClass(int val) {
         this.lock= new ReentrantLock();
+        this.it = val;
 	}
 	
 	public int get() { return this.it; }

@@ -58,9 +58,9 @@ class FrontTestCaseClass implements ThreadInterface {
      }
 
 	public void threadCallbackFunction() {
-		this.frontTestObject().setThreadCount(true);
+		this.frontTestObject().incrementThreadCount();
 		this.frontTestCaseThreadFunc();
-		this.frontTestObject().setThreadCount(false);
+		this.frontTestObject().decrementThreadCount();
 	}
     
     private void frontTestCaseThreadFunc() {

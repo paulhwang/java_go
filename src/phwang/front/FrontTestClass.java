@@ -19,8 +19,7 @@ public class FrontTestClass implements ThreadInterface {
     private String frontTestThreadName() { return "FrontTestThread"; }
 
     private FrontRootClass frontEndRootObject;
-    private int threadCount = 0;
-    private Lock threadCountLock;
+    private LockIntegerClass threadCount;
     
     public FrontRootClass FrontEndRootObject() { return this.frontEndRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
@@ -30,19 +29,20 @@ public class FrontTestClass implements ThreadInterface {
         this.debug(false, "FrontTestClass", "init start");
         
         this.frontEndRootObject = root_object_val;
-        this.threadCountLock= new ReentrantLock();
+        this.threadCount = new LockIntegerClass(0);
     }
     
-    public void setThreadCount(boolean add) {
-    	this.threadCountLock.lock();
-    	if (add) {
-    		this.threadCount++;
+    public void incrementThreadCount() {
+  		this.threadCount.increment();
+    	this.debug(true, "incrementThreadCount", "*************************" + this.threadCount.get());
+    }
+    
+    public void decrementThreadCount() {
+  		this.threadCount.decrement();
+    	this.debug(true, "decrementThreadCount", "*************************" + this.threadCount.get());
+    	if (this.threadCount.get() < 0) {
+    		this.abend("decrementThreadCount", "smaller than 0");
     	}
-    	else {
-    		this.threadCount--;
-    	}
-    	this.threadCountLock.unlock();
-    	this.debug(true, "setThreadCount", "*************************" + this.threadCount);
     }
     
     public void startTest() {
@@ -50,9 +50,9 @@ public class FrontTestClass implements ThreadInterface {
      }
     
 	public void threadCallbackFunction() {
-		this.setThreadCount(true);
+		this.incrementThreadCount();
 		this.frontTestThreadFunc();
-		this.setThreadCount(false);
+		this.decrementThreadCount();
 	}
     
     private void frontTestThreadFunc() {
