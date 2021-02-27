@@ -12,7 +12,9 @@ package phwang.fabric;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
-import phwang.protocols.*;
+import phwang.browser.BrowserDefine;
+import phwang.protocols.FabricFrontEndProtocolClass;
+import phwang.protocols.FabricThemeProtocolClass;
 
 public class DFabricParserClass {
     private String objectName() {return "DFabricParserClass";}
@@ -224,8 +226,8 @@ public class DFabricParserClass {
             this.debugIt(false, "processSetupSessionRequest", "his_name = " + his_name);
             this.debugIt(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-            String theme_id_str = theme_data_str.substring(0, FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
-            String theme_data = theme_data_str.substring(FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
+            String theme_id_str = theme_data_str.substring(0, BrowserDefine.BROWSER_THEME_ID_SIZE);
+            String theme_data = theme_data_str.substring(BrowserDefine.BROWSER_THEME_ID_SIZE);
 
             LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
             if (link == null) {
