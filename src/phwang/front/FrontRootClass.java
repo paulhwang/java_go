@@ -38,6 +38,7 @@ public class FrontRootClass {
         this.frontTestObject_ = new FrontTestClass(this);
         
         this.uFrontObject().startThreads();
+        
         this.frontTestObject().startTest();
     }
 
