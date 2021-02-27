@@ -17,7 +17,7 @@ public class DFrontClass {
     private FrontRootClass frontRootObject_;
     
     public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
-    FrontJobMgrClass frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
+    private FrontJobMgrClass frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
     private UFrontClass uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
     

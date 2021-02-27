@@ -1,6 +1,7 @@
 module java_go {
 	exports org.json.simple;
 	exports phwang.front;
+	exports phwang.test;
 	exports phwang.utils;
 	exports phwang.models;
 	exports org.json.simple.parser;

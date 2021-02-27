@@ -13,18 +13,19 @@ import phwang.utils.AbendClass;
 public class FrontExportClass  implements FrontExportInterface {
     private String objectName() {return "FrontExportClass";}
     
-    private FrontRootClass frontRootObject;
+    private FrontRootClass frontRootObject_;
     
-    public FrontRootClass FrontRootObject() { return this.frontRootObject; }
+    private FrontRootClass frontRootObject() { return this.frontRootObject_; }
+    private DFrontClass dFrontObject() { return this.frontRootObject().dFrontObject(); }
     
     public FrontExportClass(FrontRootClass root_object_val) {
         this.debug(false, "FrontExternalClass", "init start");
         
-        this.frontRootObject = root_object_val;
+        this.frontRootObject_ = root_object_val;
     }
  	
 	public String processHttpRequestPacket(String request_val) {
-		return this.FrontRootObject().dFrontObject().processHttpRequestPacket(request_val);
+		return this.dFrontObject().processHttpRequestPacket(request_val);
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
