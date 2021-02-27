@@ -36,7 +36,7 @@ public class FrontRootClass {
         this.dFrontObject_ = new DFrontClass(this);
         this.frontJobMgrObject_ = new FrontJobMgrClass(this);
         this.frontExportObject_ = new FrontExportClass(this);
-        this.frontTestObject_ = new FrontTestClass(this);
+        this.frontTestObject_ = new FrontTestClass(this.frontExportObject());
         
         this.uFrontObject().startThreads();
         
