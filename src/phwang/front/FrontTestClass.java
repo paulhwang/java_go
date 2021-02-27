@@ -34,7 +34,7 @@ public class FrontTestClass implements ThreadInterface {
     
     public void incrementThreadCount() {
   		this.threadCount.increment();
-    	this.debug(true, "incrementThreadCount", "*************************" + this.threadCount.get());
+    	this.debug(false, "incrementThreadCount", "*************************" + this.threadCount.get());
     }
     
     public void decrementThreadCount() {
@@ -59,7 +59,7 @@ public class FrontTestClass implements ThreadInterface {
         this.debug(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
         UtilsClass.sleep(1000);  
         
-        for (int j = 0; j < 9; j++) {
+        for (int j = 0; j < 99; j++) {
         	for (int i = 0; i < 10; i++) {
         		FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
         		test_case.startTestTest();

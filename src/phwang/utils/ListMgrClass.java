@@ -69,7 +69,7 @@ public class ListMgrClass {
             this.entryTableArray[index] = entry;
         }
         else {
-        	this.abendIt("mallocEntry_", "index too small");
+        	this.abendIt("mallocEntry_", "index too small ");
         }
 
         entry.setData(id, object_val, index);
@@ -94,6 +94,7 @@ public class ListMgrClass {
                 return i;
             }
         }
+        this.abendIt("allocIndex", "run out");
         return -1;
     }
 
