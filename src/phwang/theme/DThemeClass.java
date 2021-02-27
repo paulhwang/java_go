@@ -17,19 +17,20 @@ public class DThemeClass implements ThreadInterface {
 
     private ThemeRootClass themeRootObject;
     private DThemeParserClass dThemeParserObject;
-    private BinderClass binderObject;
+    private BinderClass dBinderObject_;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
+    private BinderClass dBinderObject() { return this.dBinderObject_; }
 
     public DThemeClass(ThemeRootClass theme_root_object_val) {
         this.debugIt(false, "DThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.dThemeParserObject = new DThemeParserClass(this);
-        this.binderObject = new BinderClass(this.objectName());
+        this.dBinderObject_ = new BinderClass(this.objectName());
 
-        this.binderObject.bindAsTcpClient(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_SERVER_IP_ADDRESS, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.dBinderObject().bindAsTcpClient(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_SERVER_IP_ADDRESS, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -45,7 +46,7 @@ public class DThemeClass implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.binderObject.receiveData();
+            data = this.dBinderObject().receiveData();
             if (data == null) {
                 this.abendIt("dThemeRreceiveThreadFunc", "null data");
                 continue;
@@ -58,7 +59,7 @@ public class DThemeClass implements ThreadInterface {
 
     public void transmitData(String data_val) {
         this.debugIt(false, "transmitData", "data=" + data_val);
-        this.binderObject.transmitData(data_val);
+        this.dBinderObject().transmitData(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

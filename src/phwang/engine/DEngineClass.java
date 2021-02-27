@@ -17,19 +17,20 @@ public class DEngineClass implements ThreadInterface {
     
     private EngineRootClass engineRootObject;
     private DEngineParserClass dEngineParserObject;
-    private BinderClass binderObject;
+    private BinderClass dBinderObject_;
 
     public EngineRootClass EngineRootObject() { return this.engineRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
+    private BinderClass dBinderObject() { return this.dBinderObject_; }
     
     public DEngineClass(EngineRootClass engine_root_object_val) {
         this.debugIt(false, "DEngineClass", "init start");
         
         this.engineRootObject = engine_root_object_val;
         this.dEngineParserObject = new DEngineParserClass(this);
-        this.binderObject = new BinderClass(this.objectName());
+        this.dBinderObject_ = new BinderClass(this.objectName());
 
-        this.binderObject.bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.dBinderObject().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debugIt(false, "DEngineClass", "init done");
     }
 
@@ -46,7 +47,7 @@ public class DEngineClass implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.binderObject.receiveData();
+            data = this.dBinderObject().receiveData();
             if (data == null) {
                 this.abendIt("dEngineReceiveThreadFunc", "null data");
                 continue;
@@ -58,7 +59,7 @@ public class DEngineClass implements ThreadInterface {
     }
 
     public void TransmitData(String data_val) {
-        this.binderObject.transmitData(data_val);
+        this.dBinderObject().transmitData(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }

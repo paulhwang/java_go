@@ -17,18 +17,19 @@ public class UThemeClass implements ThreadInterface {
 
     private ThemeRootClass themeRootObject;
     private UThemeParserClass uThemeParserObject;
-    public BinderClass binderObject;
+    public BinderClass uBinderObject_;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
+    private BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UThemeClass(ThemeRootClass theme_root_object_val) {
         this.debugIt(false, "UThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);
-        this.binderObject = new BinderClass(this.objectName());
-        this.binderObject.bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.uBinderObject_ = new BinderClass(this.objectName());
+        this.uBinderObject().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -44,7 +45,7 @@ public class UThemeClass implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.binderObject.receiveData();
+            data = this.uBinderObject().receiveData();
             if (data == null) {
                 this.abendIt("uThemeRreceiveThreadFunc", "null data");
                 continue;
@@ -56,7 +57,7 @@ public class UThemeClass implements ThreadInterface {
     }
 
     public void transmitData(String data_val) {
-        this.binderObject.transmitData(data_val);
+        this.uBinderObject().transmitData(data_val);
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
