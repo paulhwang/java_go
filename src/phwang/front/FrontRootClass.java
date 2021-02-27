@@ -15,10 +15,12 @@ public class FrontRootClass {
     
     private ThreadMgrClass threadMgrObject;
     private UFrontClass uFrontObject;
+    private FrontExternalClass theFrontExternalObject;
     private FrontTestClass theFrontTestObject;
     
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
     public UFrontClass UFrontObject() { return this.uFrontObject; }
+    public FrontExternalClass FrontExternalObject() { return this.theFrontExternalObject; }
     private FrontTestClass FrontTestObject() { return theFrontTestObject; }
 
     public FrontRootClass() {
@@ -26,6 +28,7 @@ public class FrontRootClass {
         
         this.threadMgrObject = new ThreadMgrClass();
         this.uFrontObject = new UFrontClass(this);
+        this.theFrontExternalObject = new FrontExternalClass(this);
         this.theFrontTestObject = new FrontTestClass(this);
         
         this.UFrontObject().startThreads();

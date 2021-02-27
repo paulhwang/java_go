@@ -75,7 +75,7 @@ public class UFrontClass implements ThreadInterface {
         this.stopReceiveThreadFlag = true;
     }
 
-    public String processAjaxRequestPacket(String input_data_val) {
+    public String processHttpRequestPacket(String input_data_val) {
         this.debugIt(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
         
         FrontJobClass job_entry = this.frontJobMgrObject.mallocJobObject();
