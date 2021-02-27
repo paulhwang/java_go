@@ -34,7 +34,7 @@ public class ListMgrClass {
     public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
 
     public ListMgrClass(String caller_name_val, int first_global_id_val) {
-        this.debugIt(false, "ListMgrClass", "init start (" + caller_name_val + ")");
+        this.debug(false, "ListMgrClass", "init start (" + caller_name_val + ")");
 
         this.theCallerName = caller_name_val;
         this.globalId = first_global_id_val;
@@ -47,7 +47,7 @@ public class ListMgrClass {
     }
 
     public ListEntryClass mallocEntry(Object object_val) {
-        this.debugIt(false, "MallocEntry", "start");
+        this.debug(false, "MallocEntry", "start");
     	
         this.abendListMgrClass("before MallocEntry");
         this.theLock.lock();
@@ -69,7 +69,7 @@ public class ListMgrClass {
             this.entryTableArray[index] = entry;
         }
         else {
-        	this.abendIt("mallocEntry_", "index too small ");
+        	this.abend("mallocEntry_", "index too small ");
         }
 
         entry.setData(id, object_val, index);
@@ -94,7 +94,7 @@ public class ListMgrClass {
                 return i;
             }
         }
-        this.abendIt("allocIndex", "run out");
+        this.abend("allocIndex", "run out");
         return -1;
     }
 
@@ -176,11 +176,11 @@ public class ListMgrClass {
             }
         }
         if (this.entryCount != count) {
-            this.abendIt("DoAbendListMgrClass", "count not match");
+            this.abend("DoAbendListMgrClass", "count not match");
         }
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
