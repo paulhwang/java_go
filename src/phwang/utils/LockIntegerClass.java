@@ -10,11 +10,11 @@ package phwang.utils;
 
 import java.util.concurrent.locks.*;
 
-public class LockNumberClass {
+public class LockIntegerClass {
 	private Lock lock;
 	private int it;
 	
-	public LockNumberClass() {
+	public LockIntegerClass() {
         this.lock= new ReentrantLock();
 	}
 	
