@@ -8,6 +8,8 @@
 
 package phwang.protocols;
 
+import phwang.fabric.FabricDefineClass;
+
 public class FabricFrontEndProtocolClass {
     public static final String FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS = "127.0.0.1";
     public static final short FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER = 8006;
@@ -21,10 +23,6 @@ public class FabricFrontEndProtocolClass {
     public static final String WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST = "N";
 
     public static final int BROWSER_THEME_ID_SIZE = 4;
-    public static final int FABRIC_LINK_ID_SIZE = 4;
-
-    public static final int FABRIC_SESSION_ID_SIZE = 4;
-    
     public static final int FRONT_JOB_ID_SIZE = 4;////////////////////////for now
 
 }

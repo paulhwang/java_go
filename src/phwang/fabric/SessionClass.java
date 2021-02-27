@@ -9,7 +9,6 @@
 package phwang.fabric;
 
 import phwang.utils.*;
-import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class SessionClass {
     private String objectName() {return "SessionClass";}
@@ -37,7 +36,7 @@ public class SessionClass {
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
         this.sessionId = this.listEntryObject.Id();
-        this.sessionIdStr = EncodeNumberClass.encodeNumber(this.sessionId, FabricFrontEndProtocolClass.FABRIC_SESSION_ID_SIZE);
+        this.sessionIdStr = EncodeNumberClass.encodeNumber(this.sessionId, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
     }
 
     public void bindGroup(GroupClass group_object_val) {
