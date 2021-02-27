@@ -10,22 +10,21 @@ package phwang.front;
 
 import phwang.utils.AbendClass;
 
-public class FrontExternalClass implements FrontExportInterface {
-    private String objectName() {return "FrontExternalClass";}
+public class FrontExportClass  implements FrontExportInterface {
+    private String objectName() {return "FrontExportClass";}
     
     private FrontRootClass frontRootObject;
     
-    private FrontRootClass FrontRootObject() { return this.frontRootObject; }
-    private DFrontClass dFrontObject() { return this.FrontRootObject().dFrontObject(); }
+    public FrontRootClass FrontRootObject() { return this.frontRootObject; }
     
-    public FrontExternalClass(FrontRootClass root_object_val) {
+    public FrontExportClass(FrontRootClass root_object_val) {
         this.debug(false, "FrontExternalClass", "init start");
         
         this.frontRootObject = root_object_val;
     }
  	
 	public String processHttpRequestPacket(String request_val) {
-		return this.dFrontObject().processHttpRequestPacket(request_val);
+		return this.FrontRootObject().dFrontObject().processHttpRequestPacket(request_val);
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

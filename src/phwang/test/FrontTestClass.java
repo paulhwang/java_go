@@ -8,27 +8,30 @@
 
 package phwang.test;
 
-import java.util.concurrent.locks.*;
-import phwang.utils.*;
-import org.json.simple.JSONObject;
+//import java.util.concurrent.locks.*;
+//import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
-import phwang.front.*;
+import phwang.front.FrontRootClass;
+import phwang.front.FrontExportClass;
 
 public class FrontTestClass implements ThreadInterface {
     private String objectName() {return "FrontTestClass";}
     private String frontTestThreadName() { return "FrontTestThread"; }
 
     private FrontRootClass frontEndRootObject_;
+    private ThreadMgrClass threadMgrObject_;
     private LockIntegerClass threadCount;
     
     public FrontRootClass frontEndRootObject() { return this.frontEndRootObject_; }
-    private ThreadMgrClass threadMgrObject() { return this.frontEndRootObject().threadMgrObject();}
+    public FrontExportClass frontExportObject() { return this.frontEndRootObject().frontExportObject();}
+    public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
 
     public FrontTestClass(FrontRootClass root_object_val) {
         this.debug(false, "FrontTestClass", "init start");
         
         this.frontEndRootObject_ = root_object_val;
+        this.threadMgrObject_ = new ThreadMgrClass();
         this.threadCount = new LockIntegerClass(0);
     }
     

@@ -9,6 +9,7 @@
 package phwang.front;
 
 import phwang.utils.*;
+import phwang.test.FrontTestClass;
 
 public class FrontRootClass {
     private String objectName() {return "FrontRootClass";}
@@ -17,14 +18,14 @@ public class FrontRootClass {
     private FrontJobMgrClass frontJobMgrObject_;
     private UFrontClass uFrontObject_;
     private DFrontClass dFrontObject_;
-    private FrontExternalClass frontExternalObject_;
+    private FrontExportClass frontExportObject_;
     private FrontTestClass frontTestObject_;
     
     public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
     public UFrontClass uFrontObject() { return this.uFrontObject_; }
     public DFrontClass dFrontObject() { return this.dFrontObject_; }
     public FrontJobMgrClass frontJobMgrObject() { return this.frontJobMgrObject_; }
-    public FrontExternalClass frontExternalObject() { return this.frontExternalObject_; }
+    public FrontExportClass frontExportObject() { return this.frontExportObject_; }
     private FrontTestClass frontTestObject() { return frontTestObject_; }
 
     public FrontRootClass() {
@@ -34,7 +35,7 @@ public class FrontRootClass {
         this.uFrontObject_ = new UFrontClass(this);
         this.dFrontObject_ = new DFrontClass(this);
         this.frontJobMgrObject_ = new FrontJobMgrClass(this);
-        this.frontExternalObject_ = new FrontExternalClass(this);
+        this.frontExportObject_ = new FrontExportClass(this);
         this.frontTestObject_ = new FrontTestClass(this);
         
         this.uFrontObject().startThreads();
