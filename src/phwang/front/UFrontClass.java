@@ -17,11 +17,11 @@ public class UFrontClass implements ThreadInterface {
 
     private FrontRootClass frontRootObject_;
     private BinderClass uBinderObject_;
-    private FrontJobMgrClass frontJobMgrObject;
     private Boolean stopReceiveThreadFlag = false;
     
-    public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
-    private ThreadMgrClass threadMgrObject() { return this.frontEndRootObject().threadMgrObject();}
+    public FrontRootClass frontRootObject() { return this.frontRootObject_; }
+    private FrontJobMgrClass frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
+    private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UFrontClass(FrontRootClass root_object_val) {
@@ -29,7 +29,6 @@ public class UFrontClass implements ThreadInterface {
         
         this.frontRootObject_ = root_object_val;
         this.uBinderObject_ = new BinderClass(this.objectName());
-        this.frontJobMgrObject = new FrontJobMgrClass(this.frontEndRootObject());
         this.uBinderObject().bindAsTcpClient(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
@@ -60,7 +59,7 @@ public class UFrontClass implements ThreadInterface {
             String ajax_id_str = received_data.substring(0, FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             String response_data = received_data.substring(FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
 
-            FrontJobClass job_entry = this.frontJobMgrObject.getJobObject(ajax_id_str);
+            FrontJobClass job_entry = this.frontJobMgrObject().getJobObject(ajax_id_str);
             if (job_entry == null) {
                 this.abendIt("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;
@@ -74,17 +73,6 @@ public class UFrontClass implements ThreadInterface {
 
     public void StopReceiveThread() {
         this.stopReceiveThreadFlag = true;
-    }
-
-    public String processHttpRequestPacket(String input_data_val) {
-        this.debugIt(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
-        
-        FrontJobClass job_entry = this.frontJobMgrObject.mallocJobObject();
-        this.uBinderObject().transmitData(job_entry.ajaxIdStr + input_data_val);
-        String response_data = job_entry.readData();
-        
-        this.debugIt(false, "processAjaxRequestPacket", "response_data = " + response_data);
-        return response_data;
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
