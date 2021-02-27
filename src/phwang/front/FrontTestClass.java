@@ -18,17 +18,16 @@ public class FrontTestClass implements ThreadInterface {
     private String objectName() {return "FrontTestClass";}
     private String frontTestThreadName() { return "FrontTestThread"; }
 
-    private FrontRootClass frontEndRootObject;
+    private FrontRootClass frontEndRootObject_;
     private LockIntegerClass threadCount;
     
-    public FrontRootClass FrontEndRootObject() { return this.frontEndRootObject; }
-    private ThreadMgrClass ThreadMgrObject() { return this.FrontEndRootObject().ThreadMgrObject();}
-    private UFrontClass UFrontObject() { return this.FrontEndRootObject().UFrontObject();}
+    public FrontRootClass frontEndRootObject() { return this.frontEndRootObject_; }
+    private ThreadMgrClass threadMgrObject() { return this.frontEndRootObject().threadMgrObject();}
 
     public FrontTestClass(FrontRootClass root_object_val) {
         this.debug(false, "FrontTestClass", "init start");
         
-        this.frontEndRootObject = root_object_val;
+        this.frontEndRootObject_ = root_object_val;
         this.threadCount = new LockIntegerClass(0);
     }
     
@@ -46,7 +45,7 @@ public class FrontTestClass implements ThreadInterface {
     }
     
     public void startTest() {
-    	this.ThreadMgrObject().createThreadObject(this.frontTestThreadName(), this);
+    	this.threadMgrObject().createThreadObject(this.frontTestThreadName(), this);
      }
     
 	public void threadCallbackFunction() {

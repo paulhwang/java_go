@@ -24,7 +24,7 @@ public class FrontExternalClass {
     }
  	
 	public String processHttpRequestPacket(String request_val) {
-		return this.FrontRootObject().UFrontObject().processHttpRequestPacket(request_val);
+		return this.FrontRootObject().uFrontObject().processHttpRequestPacket(request_val);
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

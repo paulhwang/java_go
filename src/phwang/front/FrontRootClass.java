@@ -13,26 +13,26 @@ import phwang.utils.*;
 public class FrontRootClass {
     private String objectName() {return "FrontRootClass";}
     
-    private ThreadMgrClass threadMgrObject;
-    private UFrontClass uFrontObject;
-    private FrontExternalClass theFrontExternalObject;
-    private FrontTestClass theFrontTestObject;
+    private ThreadMgrClass threadMgrObject_;
+    private UFrontClass uFrontObject_;
+    private FrontExternalClass frontExternalObject_;
+    private FrontTestClass frontTestObject_;
     
-    public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    public UFrontClass UFrontObject() { return this.uFrontObject; }
-    public FrontExternalClass FrontExternalObject() { return this.theFrontExternalObject; }
-    private FrontTestClass FrontTestObject() { return theFrontTestObject; }
+    public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
+    public UFrontClass uFrontObject() { return this.uFrontObject_; }
+    public FrontExternalClass frontExternalObject() { return this.frontExternalObject_; }
+    private FrontTestClass frontTestObject() { return frontTestObject_; }
 
     public FrontRootClass() {
         this.debugIt(false, "FrontRootClass", "init start");
         
-        this.threadMgrObject = new ThreadMgrClass();
-        this.uFrontObject = new UFrontClass(this);
-        this.theFrontExternalObject = new FrontExternalClass(this);
-        this.theFrontTestObject = new FrontTestClass(this);
+        this.threadMgrObject_ = new ThreadMgrClass();
+        this.uFrontObject_ = new UFrontClass(this);
+        this.frontExternalObject_ = new FrontExternalClass(this);
+        this.frontTestObject_ = new FrontTestClass(this);
         
-        this.UFrontObject().startThreads();
-        this.FrontTestObject().startTest();
+        this.uFrontObject().startThreads();
+        this.frontTestObject().startTest();
     }
 
     private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
