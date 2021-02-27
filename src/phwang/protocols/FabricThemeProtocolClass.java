@@ -20,5 +20,5 @@ public class FabricThemeProtocolClass {
     public static final String FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA = "d";
 
 	public static final int FABRIC_LINK_ID_SIZE = FabricDefineClass.FABRIC_LINK_ID_SIZE;
-    public static final int FABRIC_GROUP_ID_SIZE = 4;
+    public static final int FABRIC_GROUP_ID_SIZE = FabricDefineClass.FABRIC_GROUP_ID_SIZE;
 }
