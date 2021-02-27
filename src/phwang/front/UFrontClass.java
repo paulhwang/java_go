@@ -15,22 +15,22 @@ public class UFrontClass implements ThreadInterface {
     private String objectName() {return "UFrontClass";}
     private String receiveThreadName() { return "UFrontReceiveThread"; }
 
-    private FrontRootClass frontEndRootObject_;
-    private BinderClass binderObject_;
+    private FrontRootClass frontRootObject_;
+    private BinderClass uBinderObject_;
     private FrontJobMgrClass frontJobMgrObject;
     private Boolean stopReceiveThreadFlag = false;
     
-    public FrontRootClass frontEndRootObject() { return this.frontEndRootObject_; }
+    public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
     private ThreadMgrClass threadMgrObject() { return this.frontEndRootObject().threadMgrObject();}
-    private BinderClass binderObject() { return this.binderObject_; }
+    public BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UFrontClass(FrontRootClass root_object_val) {
         this.debugIt(false, "UFrontClass", "init start");
         
-        this.frontEndRootObject_ = root_object_val;
-        this.binderObject_ = new BinderClass(this.objectName());
-        this.frontJobMgrObject = new FrontJobMgrClass(this);
-        this.binderObject().bindAsTcpClient(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.frontRootObject_ = root_object_val;
+        this.uBinderObject_ = new BinderClass(this.objectName());
+        this.frontJobMgrObject = new FrontJobMgrClass(this.frontEndRootObject());
+        this.uBinderObject().bindAsTcpClient(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -49,7 +49,7 @@ public class UFrontClass implements ThreadInterface {
                 break;
             }
 
-            String received_data = this.binderObject().receiveData();
+            String received_data = this.uBinderObject().receiveData();
             if (received_data == null) {
                 this.abendIt("UFrontReceiveThreadFunc", "null data");
             	continue;
@@ -80,7 +80,7 @@ public class UFrontClass implements ThreadInterface {
         this.debugIt(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
         
         FrontJobClass job_entry = this.frontJobMgrObject.mallocJobObject();
-        this.binderObject().transmitData(job_entry.ajaxIdStr + input_data_val);
+        this.uBinderObject().transmitData(job_entry.ajaxIdStr + input_data_val);
         String response_data = job_entry.readData();
         
         this.debugIt(false, "processAjaxRequestPacket", "response_data = " + response_data);

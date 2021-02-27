@@ -19,7 +19,7 @@ public class FrontJobMgrClass {
     private static final int FIRST_JOB_ID = 0;
     private static final int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
 
-    private UFrontClass frontEndFabricObject;
+    private FrontRootClass frontRootObject_;
     private int nextAvailableJobId;
     private int maxAllowedJobId;
     private int maxJobArrayIndex;
@@ -27,13 +27,11 @@ public class FrontJobMgrClass {
     private Lock theLock;
     private ListMgrClass listMgr;
 
-    public FrontJobMgrClass(UFrontClass fabric_object_val) {
+    public FrontJobMgrClass(FrontRootClass front_root_object_val) {
         this.debugIt(false, "FrontJobMgrClass", "init start");
 
-        this.frontEndFabricObject = fabric_object_val;
+        this.frontRootObject_ = front_root_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_JOB_ID);
-        
-        
         
         this.theLock = new ReentrantLock();
 
