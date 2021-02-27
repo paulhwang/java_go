@@ -9,5 +9,6 @@
 package phwang.theme;
 
 public class ThemeDefineClass {
+    public static final int THEME_ROOM_ID_SIZE = 4;
 
 }

@@ -9,5 +9,6 @@
 package phwang.engine;
 
 public class EngineDefineClass {
+    public static final int ENGINE_BASE_ID_SIZE = 4;
 
 }

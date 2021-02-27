@@ -47,8 +47,8 @@ public class UThemeParserClass {
     private void processSetupBaseResponse(String input_data_val) {
         this.debugIt(false, "processSetupBaseResponse", input_data_val);
 
-        String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
-        String base_id_str = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+        String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
+        String base_id_str = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
         
         this.debugIt(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
         this.debugIt(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
@@ -92,8 +92,8 @@ public class UThemeParserClass {
 
     private void processPutBaseDataResponse(String input_data_val) {
         this.debugIt(false, "processPutBaseDataResponse", input_data_val);
-        String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
-        String data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+        String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
+        String data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
 
         RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
         if (room_object == null) {
