@@ -52,7 +52,7 @@ public class LinkMgrClass implements ListMgrInterface {
         if (list_entry == null) {
             return null;
         }
-        LinkClass link = (LinkClass) list_entry.Data();
+        LinkClass link = (LinkClass) list_entry.data();
 
         return link;
     }
@@ -71,7 +71,7 @@ public class LinkMgrClass implements ListMgrInterface {
         if (list_entry == null) {
             return null;
         }
-        LinkClass link = (LinkClass)list_entry.Data();
+        LinkClass link = (LinkClass)list_entry.data();
 
         return link;
     }

@@ -29,7 +29,7 @@ public class BaseClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
-        this.baseId = this.listEntryObject.Id();
+        this.baseId = this.listEntryObject.id();
         this.baseIdStr = EncodeNumberClass.encodeNumber(this.baseId, EngineDefineClass.ENGINE_BASE_ID_SIZE);
     }
 

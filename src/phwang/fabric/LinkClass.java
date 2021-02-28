@@ -43,7 +43,7 @@ public class LinkClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject_ = list_entry_objectg_val;
-        this.theLinkId = this.listEntryObject().Id();
+        this.theLinkId = this.listEntryObject().id();
         this.theLinkIdStr = EncodeNumberClass.encodeNumber(this.theLinkId, FabricDefineClass.FABRIC_LINK_ID_SIZE);
     }
 

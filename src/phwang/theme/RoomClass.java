@@ -32,7 +32,7 @@ public class RoomClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
-        this.roomId = this.listEntryObject.Id();
+        this.roomId = this.listEntryObject.id();
         this.roomIdStr = EncodeNumberClass.encodeNumber(this.roomId, FabricThemeProtocolClass.FABRIC_LINK_ID_SIZE);
     }
 

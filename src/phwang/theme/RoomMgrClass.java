@@ -45,7 +45,7 @@ public class RoomMgrClass {
         if (list_entry == null) {
             return null;
         }
-        RoomClass room_object = (RoomClass)list_entry.Data();
+        RoomClass room_object = (RoomClass)list_entry.data();
 
         return room_object;
     }

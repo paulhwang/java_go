@@ -52,7 +52,7 @@ public class SessionMgrClass {
         if (list_entry == null) {
             return null;
         }
-        SessionClass session = (SessionClass)list_entry.Data();
+        SessionClass session = (SessionClass)list_entry.data();
 
         return session;
     }

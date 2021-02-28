@@ -135,7 +135,7 @@ public class DFabricParserClass {
             String pending_session_data = "";
             for (int i = 0; i <= max_session_table_array_index; i++) {
                 ListEntryClass list_entry = session_table_array[i];
-                SessionClass session = (SessionClass)list_entry.Data();
+                SessionClass session = (SessionClass)list_entry.data();
                 if (session != null) {
                    if (session.getPendingDownLinkDataCount() > 0) {
                         downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.SessionIdStr();

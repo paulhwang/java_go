@@ -50,7 +50,7 @@ public class GroupMgrClass {
         {
             return null;
         }
-        GroupClass room_object = (GroupClass)list_entry.Data();
+        GroupClass room_object = (GroupClass)list_entry.data();
 
         return room_object;
     }
@@ -61,7 +61,7 @@ public class GroupMgrClass {
         {
             return null;
         }
-        LinkClass link = (LinkClass)list_entry.Data();
+        LinkClass link = (LinkClass)list_entry.data();
 
         return link;
     }

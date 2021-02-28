@@ -128,7 +128,7 @@ public class ListMgrClass {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (entryTableArray[i].Id() == id_val) {
+            if (entryTableArray[i].id() == id_val) {
                 entry = entryTableArray[i];
                 break;
             }
@@ -151,7 +151,7 @@ public class ListMgrClass {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (calling_object_val.compareObjectFunc(entryTableArray[i].Data(), string_val)) {
+            if (calling_object_val.compareObjectFunc(entryTableArray[i].data(), string_val)) {
                 entry = entryTableArray[i];
             }
         }

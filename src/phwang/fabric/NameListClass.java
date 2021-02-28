@@ -52,7 +52,7 @@ public class NameListClass {
                 else {
                     this.nameList = this.nameList + ",";
                 }
-                LinkClass link = (LinkClass) list_entry_array[i].Data();
+                LinkClass link = (LinkClass) list_entry_array[i].data();
                 this.nameList = this.nameList + '"' + link.myName() + '"';
             }
         }

@@ -49,7 +49,7 @@ public class BaseMgrClass {
         if (list_entry == null) {
             return null;
         }
-        BaseClass base_object = (BaseClass)list_entry.Data();
+        BaseClass base_object = (BaseClass)list_entry.data();
 
         return base_object;
     }

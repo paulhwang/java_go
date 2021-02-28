@@ -35,7 +35,7 @@ public class GroupClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject = list_entry_objectg_val;
-        this.groupId = this.listEntryObject.Id();
+        this.groupId = this.listEntryObject.id();
         this.groupIdStr = EncodeNumberClass.encodeNumber(this.groupId, FabricDefineClass.FABRIC_GROUP_ID_SIZE);
     }
 
