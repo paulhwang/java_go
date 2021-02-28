@@ -31,8 +31,8 @@ public class ListEntryClass {
     public void setData(int id_val, Object data_val, int id_size_val) {
         this.id_ = id_val;
         this.data_ = data_val;
-        this.id_str_ = EncodeNumberClass.encodeNumber(this.id(), this.id_size);
     	this.id_size = id_size_val;
+        this.id_str_ = EncodeNumberClass.encodeNumber(this.id(), this.id_size);
     }
 
     public void resetData() {

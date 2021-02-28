@@ -19,7 +19,7 @@ public class FrontJobMgrClass {
     private String objectName() {return "FrontJobMgrClass";}
 
     private static final int LIST_MGR_ARRAY_SIZE = 100;
-    private static final int FIRST_JOB_ID = 1000;
+    private static final int FIRST_JOB_ID = 0;
 
     private FrontRootClass frontRootObject_;
     private ListMgrClass listMgr_;
