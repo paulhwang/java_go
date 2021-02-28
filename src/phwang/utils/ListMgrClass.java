@@ -72,32 +72,33 @@ public class ListMgrClass {
         int id;
         int index;
 
-        ListEntryClass entry = new ListEntryClass(this.idSize());
         id = this.allocId();
-        index = this.allocIndex();
-        if (index != -1) {
-            this.entryArray[index] = entry;
-        }
-        else {
-        	this.abend("malloc_", "index too small ");
+        ListEntryClass entry = this.allocEntry();
+        if (entry == null) {
+        	this.abend("malloc_", "null");
+        	return null;
         }
 
-        entry.setData(id, object_val, index);
+        entry.setData(id, object_val);
         return entry;
     }
 
-    private int allocIndex() {
+    private ListEntryClass allocEntry() {
         for (int i = 0; i < this.arraySize; i++) {
             if (this.entryArray[i] == null) {
+            	this.entryArray[i] = new ListEntryClass(i, this.idSize());
                 if (i > this.maxIndex) {
                     this.maxIndex = i;
                 }
+                else {
+                    this.abend("allocIndex", "maxIndex");
+                }
                 this.entryCount++;
-                return i;
+                return this.entryArray[i];
             }
         }
         this.abend("allocIndex", "run out");
-        return -1;
+        return null;
     }
 
     public void free(ListEntryClass entry_val) {
