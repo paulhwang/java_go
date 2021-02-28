@@ -30,7 +30,7 @@ public class GroupMgrClass {
 
     public GroupClass mallocGroup(String theme_data_val) {
         GroupClass group = new GroupClass(theme_data_val);
-        ListEntryClass list_entry = this.listMgr().mallocEntry(group);
+        ListEntryClass list_entry = this.listMgr().malloc(group);
         group.bindListEntry(list_entry);
         return group;
     }

@@ -31,7 +31,7 @@ public class LinkMgrClass implements ListMgrInterface {
 
     public LinkClass mallocLink(String my_name_val) {
         LinkClass link = new LinkClass(my_name_val);
-        ListEntryClass list_entry = this.listMgr().mallocEntry(link);
+        ListEntryClass list_entry = this.listMgr().malloc(link);
         link.bindListEntry(list_entry);
         this.nameListObject().updateNameList();
         return link;

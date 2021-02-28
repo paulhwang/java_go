@@ -20,10 +20,7 @@ public class ListMgrClass {
 
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
-    private String theCallerName;
-    private int IdSize;
-    private int IndexSize;
-    ///////////////int theIdIndexSize;
+    private String callerName;
     private int globalId;
     int MaxIdIndexTableIndex;
     private int maxIndex;
@@ -39,7 +36,7 @@ public class ListMgrClass {
         this.debug(false, "ListMgrClass", "init start (" + caller_name_val + ")");
 
         this.idSize_ = id_size_val;
-        this.theCallerName = caller_name_val;
+        this.callerName = caller_name_val;
         this.globalId = first_global_id_val;
         this.entryCount = 0;
         this.MaxIdIndexTableIndex = 0;
@@ -49,19 +46,19 @@ public class ListMgrClass {
         this.entryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
     }
 
-    public ListEntryClass mallocEntry(Object object_val) {
-        this.debug(false, "MallocEntry", "start");
+    public ListEntryClass malloc(Object object_val) {
+        this.debug(false, "malloc", "start");
     	
-        this.abendListMgrClass("before MallocEntry");
+        this.abendListMgrClass("before malloc");
         this.theLock.lock();
-        ListEntryClass entry = this.mallocEntry_(object_val);
+        ListEntryClass entry = this.malloc_(object_val);
     	this.theLock.unlock();
-        this.abendListMgrClass("after MallocEntry");
+        this.abendListMgrClass("after malloc");
         
         return entry;
     }
 
-    private ListEntryClass mallocEntry_(Object object_val) {
+    private ListEntryClass malloc_(Object object_val) {
         int id;
         int index;
 
@@ -72,7 +69,7 @@ public class ListMgrClass {
             this.entryTableArray[index] = entry;
         }
         else {
-        	this.abend("mallocEntry_", "index too small ");
+        	this.abend("malloc_", "index too small ");
         }
 
         entry.setData(id, object_val, index);
@@ -101,17 +98,17 @@ public class ListMgrClass {
         return -1;
     }
 
-    public void freeEntry(ListEntryClass entry_val) {
-        this.abendListMgrClass("before FreeEntry");
+    public void free(ListEntryClass entry_val) {
+        this.abendListMgrClass("before free");
         
         this.theLock.lock();
-        this.doFreeEntry(entry_val);
+        this.free_(entry_val);
         this.theLock.unlock();
         
-        this.abendListMgrClass("after FreeEntry");
+        this.abendListMgrClass("after free");
     }
 
-    private void doFreeEntry(ListEntryClass entry_val) {
+    private void free_(ListEntryClass entry_val) {
         this.entryTableArray[entry_val.Index()] = null;
         this.entryCount--;
     }

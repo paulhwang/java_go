@@ -31,7 +31,7 @@ public class SessionMgrClass {
 
     public SessionClass mallocSession() {
         SessionClass session = new SessionClass(this.linkObject());
-        ListEntryClass list_entry = this.listMgr().mallocEntry(session);
+        ListEntryClass list_entry = this.listMgr().malloc(session);
         session.bindListEntry(list_entry);
         return session;
     }

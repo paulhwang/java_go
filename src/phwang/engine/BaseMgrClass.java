@@ -29,7 +29,7 @@ public class BaseMgrClass {
 
     public BaseClass MallocGoBase(String room_id_val) {
         BaseClass go_base = new BaseClass(room_id_val);
-        ListEntryClass list_entry = this.listMgr.mallocEntry(go_base);
+        ListEntryClass list_entry = this.listMgr.malloc(go_base);
         go_base.bindListEntry(list_entry);
         return go_base;
     }
