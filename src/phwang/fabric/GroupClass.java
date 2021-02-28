@@ -14,13 +14,14 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class GroupClass {
     private String objectName() {return "GroupClass";}
 
-    private ListEntryClass listEntryObject;
+    private ListEntryClass listEntryObject_;
     private int groupId;
     private String groupIdStr;
     private String roomIdStr;
     private String themeData_;
     private GroupSessionMgrClass groupSessionMgrObject_;
 
+    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public String ThemeData() { return this.themeData_; }
     public int GroupId() { return this.groupId; }
     public String GroupIdStr() { return this.groupIdStr; }
@@ -35,8 +36,8 @@ public class GroupClass {
     }
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
-        this.listEntryObject = list_entry_objectg_val;
-        this.groupId = this.listEntryObject.id();
+        this.listEntryObject_ = list_entry_objectg_val;
+        this.groupId = this.listEntryObject().id();
         this.groupIdStr = EncodeNumberClass.encodeNumber(this.groupId, FabricDefineClass.FABRIC_GROUP_ID_SIZE);
     }
 
