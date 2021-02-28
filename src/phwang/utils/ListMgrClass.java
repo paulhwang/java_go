@@ -75,14 +75,14 @@ public class ListMgrClass {
         	return null;
         }
 
-        entry.setData(id, object_val);
+        entry.setData(id, object_val, this.idSize());
         return entry;
     }
 
     private ListEntryClass allocEntry() {
         for (int i = 0; i < this.arraySize; i++) {
             if (this.entryArray[i] == null) {
-            	this.entryArray[i] = new ListEntryClass(i, this.idSize());
+            	this.entryArray[i] = new ListEntryClass(i);
                 if (i > this.maxIndex) {
                     this.maxIndex = i;
                 }
@@ -90,6 +90,11 @@ public class ListMgrClass {
                     this.abend("allocIndex", "maxIndex");
                 }
                 this.entryCount++;
+                return this.entryArray[i];
+            }
+            
+            if (this.entryArray[i].data() == null) {
+            	
                 return this.entryArray[i];
             }
         }
@@ -105,7 +110,7 @@ public class ListMgrClass {
         this.maxIndex = this.arraySize;
         this.entryCount = this.arraySize + 1;
         this.arraySize = this.arraySize * 2;
-    	this.entryArray[this.maxIndex] = new ListEntryClass(this.maxIndex, this.idSize());
+    	this.entryArray[this.maxIndex] = new ListEntryClass(this.maxIndex);
         return this.entryArray[this.maxIndex];
     }
 
