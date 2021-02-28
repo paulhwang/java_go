@@ -15,7 +15,6 @@ public class LinkClass {
     private String objectName() {return "LinkClass";}
 
     private ListEntryClass listEntryObject_;
-    private String theLinkIdStr;
     private String myName_;
     private SessionMgrClass sessionMgrObject_;
     private ListQueueClass pendingSessionSetupQueue;
@@ -23,7 +22,7 @@ public class LinkClass {
 
     public String myName() { return this.myName_; }
     public int linkId() { return this.listEntryObject().id(); }
-    public String linkIdStr() { return this.theLinkIdStr; }
+    public String linkIdStr() { return this.listEntryObject().idStr(); }
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public SessionMgrClass sessionMgrObject() { return this.sessionMgrObject_; }
 
@@ -42,7 +41,6 @@ public class LinkClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject_ = list_entry_objectg_val;
-        this.theLinkIdStr = EncodeNumberClass.encodeNumber(this.linkId(), FabricDefineClass.FABRIC_LINK_ID_SIZE);
     }
 
     public SessionClass mallocSession() {

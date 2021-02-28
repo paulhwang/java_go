@@ -16,13 +16,12 @@ public class BaseClass {
 
     private ListEntryClass listEntryObject_;
     private String roomIdStr_;
-    private String baseIdStr;
     private GoRootClass goRootObject;
 
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public int baseId() { return this.listEntryObject().id(); }
+    public String BaseIdStr() { return this.listEntryObject().idStr(); }
     public String roomIdStr() { return this.roomIdStr_; }
-    public String BaseIdStr() { return this.baseIdStr; }
 
     public BaseClass(String room_id_str_val) {
         this.roomIdStr_ = room_id_str_val;
@@ -30,7 +29,6 @@ public class BaseClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject_ = list_entry_objectg_val;
-        this.baseIdStr = EncodeNumberClass.encodeNumber(this.baseId(), EngineDefineClass.ENGINE_BASE_ID_SIZE);
     }
 
     public String setupBase(String input_data_val) {

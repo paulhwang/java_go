@@ -15,7 +15,6 @@ public class GroupClass {
     private String objectName() {return "GroupClass";}
 
     private ListEntryClass listEntryObject_;
-    private String groupIdStr;
     private String roomIdStr;
     private String themeData_;
     private GroupSessionMgrClass groupSessionMgrObject_;
@@ -23,7 +22,7 @@ public class GroupClass {
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public String ThemeData() { return this.themeData_; }
     public int groupId() { return this.listEntryObject().id(); }
-    public String GroupIdStr() { return this.groupIdStr; }
+    public String GroupIdStr() { return this.listEntryObject().idStr(); }
     public String RoomIdStr() { return this.roomIdStr; }
     private GroupSessionMgrClass groupSessionMgrObject() { return this.groupSessionMgrObject_; }
 
@@ -36,7 +35,6 @@ public class GroupClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject_ = list_entry_objectg_val;
-        this.groupIdStr = EncodeNumberClass.encodeNumber(this.groupId(), FabricDefineClass.FABRIC_GROUP_ID_SIZE);
     }
 
     public void insertSession(SessionClass session_val) {

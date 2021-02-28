@@ -88,7 +88,7 @@ public class DThemeParserClass {
         }
 
         String uplink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA;
-        uplink_data = uplink_data + room.BaseIdStr() + input_data;
+        uplink_data = uplink_data + room.baseIdStr() + input_data;
         this.UThemeObject().transmitData(uplink_data);
     }
 
