@@ -23,7 +23,7 @@ public class GroupClass {
 
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public String ThemeData() { return this.themeData_; }
-    public int GroupId() { return this.groupId; }
+    public int GroupId() { return this.listEntryObject().id(); }
     public String GroupIdStr() { return this.groupIdStr; }
     public String RoomIdStr() { return this.roomIdStr; }
     private GroupSessionMgrClass groupSessionMgrObject() { return this.groupSessionMgrObject_; }

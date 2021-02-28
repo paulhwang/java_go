@@ -14,12 +14,13 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class RoomClass {
     private String objectName() {return "RoomClass";}
 
-    private ListEntryClass listEntryObject;
+    private ListEntryClass listEntryObject_;
     private String groupIdStr;
     private int roomId;
     private String roomIdStr;
     private String baseIdStr;
 
+    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public String RoomIdStr() { return this.roomIdStr; }
     public String GroupIdStr() { return this.groupIdStr; }
     public String BaseIdStr() { return this.baseIdStr; }
@@ -31,8 +32,8 @@ public class RoomClass {
     }
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
-        this.listEntryObject = list_entry_objectg_val;
-        this.roomId = this.listEntryObject.id();
+        this.listEntryObject_ = list_entry_objectg_val;
+        this.roomId = this.listEntryObject().id();
         this.roomIdStr = EncodeNumberClass.encodeNumber(this.roomId, FabricThemeProtocolClass.FABRIC_LINK_ID_SIZE);
     }
 

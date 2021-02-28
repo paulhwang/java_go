@@ -14,12 +14,13 @@ import phwang.go.GoRootClass;
 public class BaseClass {
     private String objectName() {return "BaseClass";}
 
-    private ListEntryClass listEntryObject;
+    private ListEntryClass listEntryObject_;
     private String roomIdStr;
     private int baseId;
     private String baseIdStr;
     private GoRootClass goRootObject;
 
+    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public String RoomIdStr() { return this.roomIdStr; }
     public String BaseIdStr() { return this.baseIdStr; }
 
@@ -28,8 +29,8 @@ public class BaseClass {
     }
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
-        this.listEntryObject = list_entry_objectg_val;
-        this.baseId = this.listEntryObject.id();
+        this.listEntryObject_ = list_entry_objectg_val;
+        this.baseId = this.listEntryObject().id();
         this.baseIdStr = EncodeNumberClass.encodeNumber(this.baseId, EngineDefineClass.ENGINE_BASE_ID_SIZE);
     }
 

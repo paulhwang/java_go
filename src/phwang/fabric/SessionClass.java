@@ -15,7 +15,6 @@ public class SessionClass {
 
     private LinkClass linkObject_;
     private ListEntryClass listEntryObject_;
-    private int sessionId;
     private String sessionIdStr;
     private String browserThemeIdStr;
     private GroupClass groupObject;
@@ -23,7 +22,7 @@ public class SessionClass {
 
     public LinkClass linkObject() { return this.linkObject_; }
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
-    public int SessionId() { return this.sessionId; }
+    public int sessionId() { return this.listEntryObject().id(); }
     public String SessionIdStr() { return this.sessionIdStr; }
     public String BrowserThemeIdStr() { return this.browserThemeIdStr; }
     public GroupClass GroupObject() { return this.groupObject; }
@@ -36,8 +35,7 @@ public class SessionClass {
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject_ = list_entry_objectg_val;
-        this.sessionId = this.listEntryObject_.id();
-        this.sessionIdStr = EncodeNumberClass.encodeNumber(this.sessionId, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        this.sessionIdStr = EncodeNumberClass.encodeNumber(this.sessionId(), FabricDefineClass.FABRIC_SESSION_ID_SIZE);
     }
 
     public void bindGroup(GroupClass group_object_val) {
