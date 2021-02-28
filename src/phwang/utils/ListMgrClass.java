@@ -15,8 +15,8 @@ import phwang.utils.*;
 public class ListMgrClass {
     private String objectName() {return "ListMgrClass";}
     
-    private static final int MAX_GLOBAL_ENTRY_ID = 99999;
-    private static final int LIST_MGR_ID_INDEX_ARRAY_SIZE = 100;
+    private static final int MAX_GLOBAL_ID = 99999;
+    private static final int ENTRY_TABLE_ARRAY_SIZE = 100;
 
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
@@ -25,12 +25,13 @@ public class ListMgrClass {
     int MaxIdIndexTableIndex;
     private int maxIndex;
     int entryCount;
-    private ListEntryClass[] entryTableArray;
+    private ListEntryClass[] entryArray;
+    private int arraySize;
     private Lock theLock;
 
     public int idSize() { return this.idSize_; }
     public int MaxIndex() { return this.maxIndex; }
-    public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
+    public ListEntryClass[] EntryTableArray() { return this.entryArray; }
 
     public ListMgrClass(int id_size_val, String caller_name_val, int first_global_id_val) {
         this.debug(false, "ListMgrClass", "init start (" + caller_name_val + ")");
@@ -42,8 +43,17 @@ public class ListMgrClass {
         this.MaxIdIndexTableIndex = 0;
         this.maxIndex = -1;
         this.theLock = new ReentrantLock();
+        this.arraySize = ENTRY_TABLE_ARRAY_SIZE;
 
-        this.entryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
+        this.entryArray = new ListEntryClass[this.arraySize];
+    }
+
+    private int allocId() {
+        if (this.globalId >= MAX_GLOBAL_ID) {
+            this.globalId = 0;
+        }
+        this.globalId++;
+        return this.globalId;
     }
 
     public ListEntryClass malloc(Object object_val) {
@@ -66,7 +76,7 @@ public class ListMgrClass {
         id = this.allocId();
         index = this.allocIndex();
         if (index != -1) {
-            this.entryTableArray[index] = entry;
+            this.entryArray[index] = entry;
         }
         else {
         	this.abend("malloc_", "index too small ");
@@ -76,17 +86,9 @@ public class ListMgrClass {
         return entry;
     }
 
-    private int allocId() {
-        if (this.globalId >= MAX_GLOBAL_ENTRY_ID) {
-            this.globalId = 0;
-        }
-        this.globalId++;
-        return this.globalId;
-    }
-
     private int allocIndex() {
-        for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++) {
-            if (this.entryTableArray[i] == null) {
+        for (int i = 0; i < this.arraySize; i++) {
+            if (this.entryArray[i] == null) {
                 if (i > this.maxIndex) {
                     this.maxIndex = i;
                 }
@@ -109,7 +111,7 @@ public class ListMgrClass {
     }
 
     private void free_(ListEntryClass entry_val) {
-        this.entryTableArray[entry_val.Index()] = null;
+        this.entryArray[entry_val.Index()] = null;
         this.entryCount--;
         entry_val.resetData();
     }
@@ -126,8 +128,8 @@ public class ListMgrClass {
 
     public void flush_() {
         for (int i = 0; i <= this.maxIndex; i++) {
-            this.entryTableArray[i].resetData();
-            this.entryTableArray[i] = null;
+            this.entryArray[i].resetData();
+            this.entryArray[i] = null;
         }
         this.entryCount = 0;
     }
@@ -147,8 +149,8 @@ public class ListMgrClass {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= this.maxIndex; i++) {
-            if (this.entryTableArray[i].id() == id_val) {
-                entry = this.entryTableArray[i];
+            if (this.entryArray[i].id() == id_val) {
+                entry = this.entryArray[i];
                 break;
             }
         }
@@ -170,8 +172,8 @@ public class ListMgrClass {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (calling_object_val.compareObjectFunc(this.entryTableArray[i].data(), string_val)) {
-                entry = this.entryTableArray[i];
+            if (calling_object_val.compareObjectFunc(this.entryArray[i].data(), string_val)) {
+                entry = this.entryArray[i];
                 break;
             }
         }
@@ -190,8 +192,8 @@ public class ListMgrClass {
     private void abendListMgr_(String msg_val) {
         int count = 0;
         
-        for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++) {
-            if (this.entryTableArray[i] != null) {
+        for (int i = 0; i < this.arraySize; i++) {
+            if (this.entryArray[i] != null) {
                 count++;
             }
         }
