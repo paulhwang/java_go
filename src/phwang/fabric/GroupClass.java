@@ -18,19 +18,20 @@ public class GroupClass {
     private int groupId;
     private String groupIdStr;
     private String roomIdStr;
-    private String themeData;
-    private GroupSessionMgrClass groupSessionMgrObject;
+    private String themeData_;
+    private GroupSessionMgrClass groupSessionMgrObject_;
 
-    public String ThemeData() { return this.themeData; }
+    public String ThemeData() { return this.themeData_; }
     public int GroupId() { return this.groupId; }
     public String GroupIdStr() { return this.groupIdStr; }
     public String RoomIdStr() { return this.roomIdStr; }
+    private GroupSessionMgrClass groupSessionMgrObject() { return this.groupSessionMgrObject_; }
 
     public GroupClass(String theme_data_val) {
         this.debug(false, "GroupClass", "init start");
         
-        this.themeData = theme_data_val;
-        this.groupSessionMgrObject = new GroupSessionMgrClass(this);
+        this.themeData_ = theme_data_val;
+        this.groupSessionMgrObject_ = new GroupSessionMgrClass(this);
     }
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
@@ -40,11 +41,11 @@ public class GroupClass {
     }
 
     public void insertSession(SessionClass session_val) {
-        this.groupSessionMgrObject.insertSession(session_val);
+        this.groupSessionMgrObject().insertSession(session_val);
     }
     
     public void removeSession(SessionClass session_val) {
-        this.groupSessionMgrObject.removeSession(session_val);
+        this.groupSessionMgrObject().removeSession(session_val);
     }
 
     public void setRoomIdStr(String room_id_str_val) {
@@ -52,11 +53,11 @@ public class GroupClass {
     }
 
     public int getSessionArraySize() {
-        return this.groupSessionMgrObject.getSessionArraySize();
+        return this.groupSessionMgrObject().getSessionArraySize();
     }
 
     public Object[] getSessionArray() {
-        return this.groupSessionMgrObject.getSessionArray();
+        return this.groupSessionMgrObject().getSessionArray();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

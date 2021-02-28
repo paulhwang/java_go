@@ -15,21 +15,22 @@ public class GroupMgrClass {
 
     private static final int FIRST_GROUP_ID = 5000;
 
-    private FabricRootClass fabricRootObject;
-    private ListMgrClass listMgr;
+    private FabricRootClass fabricRootObject_;
+    private ListMgrClass listMgr_;
 
-    public ListMgrClass ListMgr() { return this.listMgr; }
+    private FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    private ListMgrClass listMgr() { return this.listMgr_; }
 
     public GroupMgrClass(FabricRootClass root_fabric_object_val) {
-        this.debugIt(false, "GroupMgrClass", "init start");
+        this.debug(false, "GroupMgrClass", "init start");
         
-        this.fabricRootObject = root_fabric_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_GROUP_ID);
+        this.fabricRootObject_ = root_fabric_object_val;
+        this.listMgr_ = new ListMgrClass(this.objectName(), FIRST_GROUP_ID);
     }
 
     public GroupClass mallocGroup(String theme_data_val) {
         GroupClass group = new GroupClass(theme_data_val);
-        ListEntryClass list_entry = this.listMgr.mallocEntry(group);
+        ListEntryClass list_entry = this.listMgr().mallocEntry(group);
         group.bindListEntry(list_entry);
         return group;
     }
@@ -45,7 +46,7 @@ public class GroupMgrClass {
     }
 
     public GroupClass GetGroupByGroupId(int group_id_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryById(group_id_val);
+        ListEntryClass list_entry = this.listMgr().getEntryById(group_id_val);
         if (list_entry == null)
         {
             return null;
@@ -56,7 +57,7 @@ public class GroupMgrClass {
     }
 
     public LinkClass GetLinkById(int id_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
         if (list_entry == null)
         {
             return null;
@@ -71,8 +72,8 @@ public class GroupMgrClass {
 
         return link;
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
