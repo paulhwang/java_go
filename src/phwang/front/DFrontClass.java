@@ -22,23 +22,23 @@ public class DFrontClass {
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
     
     public DFrontClass(FrontRootClass root_object_val) {
-        this.debugIt(false, "DFrontClass", "init start");
+        this.debug(false, "DFrontClass", "init start");
         
         this.frontRootObject_ = root_object_val;
     }
 
     public String processHttpRequestPacket(String input_data_val) {
-        this.debugIt(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
+        this.debug(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
         
         FrontJobClass job_entry = this.frontJobMgrObject().mallocJobObject();
         this.uBinderObject().transmitData(job_entry.ajaxIdStr + input_data_val);
         String response_data = job_entry.readData();
         
-        this.debugIt(false, "processAjaxRequestPacket", "response_data = " + response_data);
+        this.debug(false, "processAjaxRequestPacket", "response_data = " + response_data);
         return response_data;
     }
     
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

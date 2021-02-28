@@ -24,14 +24,14 @@ public class DEngineClass implements ThreadInterface {
     private BinderClass dBinderObject() { return this.dBinderObject_; }
     
     public DEngineClass(EngineRootClass engine_root_object_val) {
-        this.debugIt(false, "DEngineClass", "init start");
+        this.debug(false, "DEngineClass", "init start");
         
         this.engineRootObject = engine_root_object_val;
         this.dEngineParserObject = new DEngineParserClass(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
 
         this.dBinderObject().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
-        this.debugIt(false, "DEngineClass", "init done");
+        this.debug(false, "DEngineClass", "init done");
     }
 
     public void startThreads() {
@@ -43,17 +43,17 @@ public class DEngineClass implements ThreadInterface {
 	}
     
     public void dEngineReceiveThreadFunc() {
-        this.debugIt(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
         while (true) {
             data = this.dBinderObject().receiveData();
             if (data == null) {
-                this.abendIt("dEngineReceiveThreadFunc", "null data");
+                this.abend("dEngineReceiveThreadFunc", "null data");
                 continue;
             }
             
-            this.debugIt(false, "dEngineReceiveThreadFunc", "data = " + data);
+            this.debug(false, "dEngineReceiveThreadFunc", "data = " + data);
             this.dEngineParserObject.ParseInputPacket(data);
         }
     }
@@ -61,8 +61,8 @@ public class DEngineClass implements ThreadInterface {
     public void TransmitData(String data_val) {
         this.dBinderObject().transmitData(data_val);
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

@@ -24,7 +24,7 @@ public class UThemeClass implements ThreadInterface {
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UThemeClass(ThemeRootClass theme_root_object_val) {
-        this.debugIt(false, "UThemeClass", "init start");
+        this.debug(false, "UThemeClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);
@@ -41,17 +41,17 @@ public class UThemeClass implements ThreadInterface {
 	}
 
     public void uThemeRreceiveThreadFunc() {
-        this.debugIt(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
         while (true) {
             data = this.uBinderObject().receiveData();
             if (data == null) {
-                this.abendIt("uThemeRreceiveThreadFunc", "null data");
+                this.abend("uThemeRreceiveThreadFunc", "null data");
                 continue;
             }
             
-            this.debugIt(false, "uThemeRreceiveThreadFunc", "data = " + data);
+            this.debug(false, "uThemeRreceiveThreadFunc", "data = " + data);
             this.uThemeParserObject.parseInputPacket(data);
         }
     }
@@ -59,8 +59,8 @@ public class UThemeClass implements ThreadInterface {
     public void transmitData(String data_val) {
         this.uBinderObject().transmitData(data_val);
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

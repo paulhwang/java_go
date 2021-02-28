@@ -22,12 +22,12 @@ public class DThemeParserClass {
     public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
     public DThemeParserClass(DThemeClass d_theme_object_val) {
-        this.debugIt(false, "DThemeParserClass", "init start");
+        this.debug(false, "DThemeParserClass", "init start");
         this.dThemeObject = d_theme_object_val;
     }
 
     public void parseInputPacket(String data_val) {
-        this.debugIt(false, "parseInputPacket", data_val);
+        this.debug(false, "parseInputPacket", data_val);
         String command = data_val.substring(0, 1);
         String data = data_val.substring(1);
 
@@ -41,11 +41,11 @@ public class DThemeParserClass {
             return;
         }
 
-        this.abendIt("parseInputPacket", data_val);
+        this.abend("parseInputPacket", data_val);
     }
 
     private void processSetupRoom(String input_data_val) {
-        this.debugIt(false, "processSetupRoom", input_data_val);
+        this.debug(false, "processSetupRoom", input_data_val);
 
         String group_id_index = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
@@ -53,7 +53,7 @@ public class DThemeParserClass {
         RoomClass room = this.RoomMgrObject().mallocRoom(group_id_index);
         if (room == null) {
             //String downlink_data;
-            this.abendIt("processSetupRoom", "null room");
+            this.abend("processSetupRoom", "null room");
             //downlink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSr");
             //*data_ptr++ = FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
             //strcpy(data_ptr, "null room");
@@ -77,13 +77,13 @@ public class DThemeParserClass {
     }
 
     private void processPutRoomData(String input_data_val) {
-        this.debugIt(false, "processPutRoomData", input_data_val);
+        this.debug(false, "processPutRoomData", input_data_val);
 
         String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
         RoomClass room = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
         if (room == null) {
-            this.abendIt("processPutRoomData", "null room");
+            this.abend("processPutRoomData", "null room");
             return;
         }
 
@@ -91,8 +91,8 @@ public class DThemeParserClass {
         uplink_data = uplink_data + room.baseIdStr() + input_data;
         this.UThemeObject().transmitData(uplink_data);
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

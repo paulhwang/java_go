@@ -24,7 +24,7 @@ public class DEngineParserClass {
     }
 
     public void ParseInputPacket(String input_data_val) {
-        this.debugIt(false, "ParseInputPacket", "data=" + input_data_val);
+        this.debug(false, "ParseInputPacket", "data=" + input_data_val);
 
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
@@ -39,18 +39,18 @@ public class DEngineParserClass {
             return;
         }
 
-        this.abendIt("ParseInputPacket", input_data_val);
+        this.abend("ParseInputPacket", input_data_val);
     }
 
     private void processSetupBase(String input_data_val) {
-        this.debugIt(false, "processSetupBase", "data=" + input_data_val);
+        this.debug(false, "processSetupBase", "data=" + input_data_val);
 
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
 
         BaseClass go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
         if (go_base_object == null) {
-            this.abendIt("processSetupBase", "null go_base");
+            this.abend("processSetupBase", "null go_base");
             return;
         }
 
@@ -62,13 +62,13 @@ public class DEngineParserClass {
     }
 
     private void processPutBaseData(String input_data_val) {
-        this.debugIt(false, "processPutBaseData", "data=" + input_data_val);
+        this.debug(false, "processPutBaseData", "data=" + input_data_val);
         String base_id_str = input_data_val.substring(0, EngineDefineClass.ENGINE_BASE_ID_SIZE);
         String input_data = input_data_val.substring(EngineDefineClass.ENGINE_BASE_ID_SIZE);
 
         BaseClass go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
         if (go_base_object == null) {
-            this.abendIt("processPutBaseData", "null go_base");
+            this.abend("processPutBaseData", "null go_base");
             return;
         }
 
@@ -78,8 +78,8 @@ public class DEngineParserClass {
         downlink_data = downlink_data + go_base_object.roomIdStr() + output_data;
         this.dEngineObject.TransmitData(downlink_data);
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

@@ -26,7 +26,7 @@ public class NameListClass {
     public String NameList() { return this.nameList; }
 
     public NameListClass(FabricRootClass root_fabric_object_val) {
-        this.debugIt(false, "NameListClass", "init start");
+        this.debug(false, "NameListClass", "init start");
         
         this.fabricRootObject = root_fabric_object_val;
     }
@@ -57,7 +57,7 @@ public class NameListClass {
             }
         }
 
-        this.debugIt(false, "updateNameList", this.nameList);
+        this.debug(false, "updateNameList", this.nameList);
     }
 
     public String getNameList(int tag_val) {
@@ -66,8 +66,8 @@ public class NameListClass {
         }
         return this.nameList;
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

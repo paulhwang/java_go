@@ -28,7 +28,7 @@ public class FrontJobMgrClass {
     private ListMgrClass listMgr;
 
     public FrontJobMgrClass(FrontRootClass front_root_object_val) {
-        this.debugIt(false, "FrontJobMgrClass", "init start");
+        this.debug(false, "FrontJobMgrClass", "init start");
 
         this.frontRootObject_ = front_root_object_val;
         this.listMgr = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, this.objectName(), FIRST_JOB_ID);
@@ -108,7 +108,7 @@ public class FrontJobMgrClass {
         }
 
         if (!found) {
-            this.abendIt("doGetJobObject", "not found" + ajax_id_str_val);
+            this.abend("doGetJobObject", "not found" + ajax_id_str_val);
             return null;
         }
 
@@ -116,8 +116,8 @@ public class FrontJobMgrClass {
         this.jobArray[index] = null;
         return element;
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
