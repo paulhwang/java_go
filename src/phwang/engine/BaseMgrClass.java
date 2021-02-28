@@ -14,7 +14,7 @@ public class BaseMgrClass {
     private String objectName() {return "BaseMgrClass";}
     
     private static final int FIRST_BASE_ID = 9000;
-    private static final int LIST_MGR_ARRAY_SIZE = 100;
+    private static final int LIST_MGR_ARRAY_SIZE = 128;
 
     private EngineRootClass engineRootObject;
     private ListMgrClass listMgr;

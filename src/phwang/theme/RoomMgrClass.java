@@ -14,7 +14,7 @@ import phwang.utils.*;
 public class RoomMgrClass {
     private String objectName() {return "RoomMgrClass";}
 
-    private static final int LIST_MGR_ARRAY_SIZE = 100;
+    private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_ROOM_ID = 7000;
 
     private ThemeRootClass themeRootObject;

@@ -13,7 +13,7 @@ import phwang.utils.*;
 public class GroupMgrClass {
     private String objectName() {return "GroupMgrClass";}
 
-    private static final int LIST_MGR_ARRAY_SIZE = 100;
+    private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_GROUP_ID = 5000;
 
     private FabricRootClass fabricRootObject_;

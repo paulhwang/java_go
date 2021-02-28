@@ -20,14 +20,8 @@ public class FrontJobMgrClass {
 
     private static final int LIST_MGR_ARRAY_SIZE = 100;
     private static final int FIRST_JOB_ID = 1000;
-    private static final int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
 
     private FrontRootClass frontRootObject_;
-    private int nextAvailableJobId;
-    private int maxAllowedJobId;
-    private int maxJobArrayIndex;
-    private FrontJobClass[] jobArray;
-    private Lock theLock;
     private ListMgrClass listMgr_;
 
     private ListMgrClass listMgr() { return this.listMgr_; }
@@ -37,14 +31,6 @@ public class FrontJobMgrClass {
 
         this.frontRootObject_ = front_root_object_val;
         this.listMgr_ = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
-        
-        this.theLock = new ReentrantLock();
-
-        this.nextAvailableJobId = 0;
-        //this.setMaxAllowedJobId(FrontDefineClass.FRONT_JOB_ID_SIZE);
-
-        this.maxJobArrayIndex = 0;
-        this.jobArray = new FrontJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
     }
 
 

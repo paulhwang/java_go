@@ -13,7 +13,7 @@ import phwang.utils.*;
 public class SessionMgrClass {
     private String objectName() {return "SessionMgrClass";}
     
-    private static final int LIST_MGR_ARRAY_SIZE = 10;
+    private static final int LIST_MGR_ARRAY_SIZE = 8;
     private static final int FIRST_SESSION_ID = 3000;
 
     private LinkClass linkObject_;

@@ -13,7 +13,7 @@ import phwang.utils.*;
 public class LinkMgrClass implements ListMgrInterface {
     private String objectName() {return "LinkMgrClass";}
 
-    private static final int LIST_MGR_ARRAY_SIZE = 200;
+    private static final int LIST_MGR_ARRAY_SIZE = 256;
     private static final int FIRST_LINK_ID = 1000;
 
     private FabricRootClass fabricRootObject_;
