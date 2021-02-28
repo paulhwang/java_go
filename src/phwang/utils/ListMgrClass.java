@@ -69,9 +69,7 @@ public class ListMgrClass {
     }
 
     private ListEntryClass malloc_(Object object_val) {
-        int id;
-
-        id = this.allocId();
+        int id = this.allocId();
         ListEntryClass entry = this.allocEntry();
         if (entry == null) {
         	this.abend("malloc_", "null");
@@ -96,8 +94,20 @@ public class ListMgrClass {
                 return this.entryArray[i];
             }
         }
+        
         this.abend("allocIndex", "run out");
-        return null;
+        
+        ListEntryClass[] new_array = new ListEntryClass[this.arraySize * 2];
+        for (int i = 0; i < this.arraySize; i++) {
+        	new_array[i] = this.entryArray[i];
+        	this.entryArray[i] = null;;
+        }
+        this.entryArray = new_array;
+        this.maxIndex = this.arraySize;
+        this.entryCount = this.arraySize + 1;
+        this.arraySize = this.arraySize * 2;
+    	this.entryArray[this.maxIndex] = new ListEntryClass(this.maxIndex, this.idSize());
+        return this.entryArray[this.maxIndex];
     }
 
     public void free(ListEntryClass entry_val) {
