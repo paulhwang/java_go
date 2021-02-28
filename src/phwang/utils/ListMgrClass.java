@@ -65,7 +65,7 @@ public class ListMgrClass {
         int id;
         int index;
 
-        ListEntryClass entry = new ListEntryClass();
+        ListEntryClass entry = new ListEntryClass(this.idSize());
         id = this.allocId();
         index = this.allocIndex();
         if (index != -1) {

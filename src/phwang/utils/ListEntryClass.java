@@ -10,12 +10,21 @@ package phwang.utils;
 
 import java.util.concurrent.locks.*;
 
+import phwang.fabric.FabricDefineClass;
+
 public class ListEntryClass {
     private int id_;
+    private String id_str_;
     private Object data_;
     private int index_;
+    private int id_size;
 
+    public ListEntryClass(int id_size_val) {
+    	this.id_size = id_size_val;
+    }
+    
     public int id() { return this.id_; }
+    public String idStr() { return this.id_str_; }
     public Object data() { return this.data_; }
     public int Index() { return this.index_; }
 
@@ -23,6 +32,7 @@ public class ListEntryClass {
         this.id_ = id_val;
         this.data_ = data_val;
         this.index_ = index_val;
+        this.id_str_ = EncodeNumberClass.encodeNumber(this.id(), this.id_size);
     }
 
     public void resetData() {
