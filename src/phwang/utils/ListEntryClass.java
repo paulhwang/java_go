@@ -18,7 +18,6 @@ public class ListEntryClass {
     private Object data_;
     private int index_;
     private int id_size;
-    //private Boolean inUse_ = false;
 
     public ListEntryClass(int index_val) {
         this.index_ = index_val;
