@@ -31,7 +31,7 @@ public class DFabricParserClass {
     private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
     public DFabricParserClass(DFabricClass dfabric_object_val) {
-        this.debugIt(false, "DFabricParserClass", "init start");
+        this.debug(false, "DFabricParserClass", "init start");
 
         this.dFabricObject = dfabric_object_val;
         this.dFabricResponseObject = new DFabricResponseClass(this);
@@ -51,10 +51,10 @@ public class DFabricParserClass {
             data = (String) json.get("data");
         
         } catch (Exception e) {
-        	this.abendIt("parseInputPacket", "***Exception***");
+        	this.abend("parseInputPacket", "***Exception***");
         }
         
-        this.debugIt(false, "parseInputPacket", "*********************command = " + command);
+        this.debug(false, "parseInputPacket", "*********************command = " + command);
         String response_data = null;
         if (command.equals("setup_link")) {
             response_data = this.processSetupLinkRequest(data);
@@ -82,22 +82,22 @@ public class DFabricParserClass {
         }
         else {
             response_data = "command " + command + " not supported";
-            this.abendIt("parseInputPacket", response_data);
+            this.abend("parseInputPacket", response_data);
         }
         
         this.dFabricObject.transmitData(job_id_str + response_data);
     }
 
     private String processSetupLinkRequest(String input_data_val) {
-        this.debugIt(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
+        this.debug(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String my_name = (String) json.get("my_name");
         	String password = (String) json.get("password");
         	
-            this.debugIt(false, "processSetupLinkRequest", "my_name = " + my_name);
-            this.debugIt(false, "processSetupLinkRequest", "password = " + password);
+            this.debug(false, "processSetupLinkRequest", "my_name = " + my_name);
+            this.debug(false, "processSetupLinkRequest", "password = " + password);
 
             LinkClass link = this.LinkMgrObject().mallocLink(my_name);
             String response_data = this.generateSetupLinkResponse(link.linkIdStr(), link.myName());
@@ -115,13 +115,13 @@ public class DFabricParserClass {
     }
     
     private String processGetLinkDataRequest(String input_data_val) {
-        this.debugIt(false, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
+        this.debug(false, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	
-            this.debugIt(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
+            this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
             LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
             if (link == null) {
@@ -179,7 +179,7 @@ public class DFabricParserClass {
     }
     
     private String processGetNameListRequest(String input_data_val) {
-        this.debugIt(false, "processGetNameListRequest", "input_data_val = " + input_data_val);
+        this.debug(false, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
@@ -214,7 +214,7 @@ public class DFabricParserClass {
     }
 
     private String processSetupSessionRequest(String input_data_val) {
-        this.debugIt(false, "processSetupSessionRequest", "input_data_val = " + input_data_val);
+        this.debug(false, "processSetupSessionRequest", "input_data_val = " + input_data_val);
 
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
@@ -222,9 +222,9 @@ public class DFabricParserClass {
         	String his_name = (String) json.get("his_name");
         	String theme_data_str = (String) json.get("theme_data");
         	
-            this.debugIt(false, "processSetupSessionRequest", "link_id = " + link_id_str);
-            this.debugIt(false, "processSetupSessionRequest", "his_name = " + his_name);
-            this.debugIt(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
+            this.debug(false, "processSetupSessionRequest", "link_id = " + link_id_str);
+            this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
+            this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
             String theme_id_str = theme_data_str.substring(0, BrowserDefine.BROWSER_THEME_ID_SIZE);
             String theme_data = theme_data_str.substring(BrowserDefine.BROWSER_THEME_ID_SIZE);
@@ -238,7 +238,7 @@ public class DFabricParserClass {
             session.setBrowserThemeIdStr(theme_id_str);
             GroupClass group = this.GroupMgrObject().mallocGroup(theme_data);
             if (group == null) {
-            	this.abendIt("processSetupSessionRequest", "null group");
+            	this.abend("processSetupSessionRequest", "null group");
                 return this.errorProcessSetupSession(link_id_str, "null group");
             }
             group.insertSession(session);
@@ -290,7 +290,7 @@ public class DFabricParserClass {
     }
 
     private String processSetupSession2Request(String input_data_val) {
-        this.debugIt(false, "processSetupSession2Request", "input_data_val = " + input_data_val);
+        this.debug(false, "processSetupSession2Request", "input_data_val = " + input_data_val);
 
         
         try {
@@ -301,8 +301,8 @@ public class DFabricParserClass {
         	String accept_str = (String) json.get("accept");
         	String theme_data_str = (String) json.get("theme_data");
         	
-            this.debugIt(false, "processSetupSession2Request", "link_id = " + link_id_str);
-            this.debugIt(false, "processSetupSession2Request", "session_id = " + session_id_str);
+            this.debug(false, "processSetupSession2Request", "link_id = " + link_id_str);
+            this.debug(false, "processSetupSession2Request", "session_id = " + session_id_str);
 
             LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
             if (link == null) {
@@ -342,15 +342,15 @@ public class DFabricParserClass {
     }
 
     private String processSetupSession3Request(String input_data_val) {
-        this.debugIt(false, "processSetupSession3Request", "input_data_val = " + input_data_val);
+        this.debug(false, "processSetupSession3Request", "input_data_val = " + input_data_val);
         
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	
-            this.debugIt(false, "processSetupSession3Request", "link_id = " + link_id_str);
-            this.debugIt(false, "processSetupSession3Request", "session_id = " + session_id_str);
+            this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
+            this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
 
             LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
             if (link == null) {
@@ -386,7 +386,7 @@ public class DFabricParserClass {
         
         
     private String processPutSessionDataRequest(String input_data_val) {
-        this.debugIt(false, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
+        this.debug(false, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
        
         try {
         	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
@@ -395,10 +395,10 @@ public class DFabricParserClass {
         	String data = (String) json.get("data");
         	String xmt_seq_str = (String) json.get("xmt_seq");
         	
-            this.debugIt(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
-            this.debugIt(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
-            this.debugIt(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
-            this.debugIt(false, "processPutSessionDataRequest", "data = " + data);
+            this.debug(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
+            this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
+            this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
+            this.debug(false, "processPutSessionDataRequest", "data = " + data);
 
             LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
             if (link == null) {
@@ -442,7 +442,7 @@ public class DFabricParserClass {
     }
 
     private String processGetSessionDataRequest(String input_data_val) {
-        this.debugIt(false, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
+        this.debug(false, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
 
         
         try {
@@ -450,8 +450,8 @@ public class DFabricParserClass {
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	
-            this.debugIt(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
-            this.debugIt(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
+            this.debug(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
+            this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
 
             LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
             if (link == null) {
@@ -485,8 +485,8 @@ public class DFabricParserClass {
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
-	   
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

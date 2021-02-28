@@ -32,7 +32,7 @@ public class LinkClass {
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().GetSessionArrayEntryTable(); }
 
     public LinkClass(String my_name_val) {
-        this.debugIt(false, "LinkClass", "init start");
+        this.debug(false, "LinkClass", "init start");
         
         this.myName_ = my_name_val;
 
@@ -66,12 +66,12 @@ public class LinkClass {
     }
 
     public void setPendingSessionSetup3(String browser_theme_id_str_val, String session_id_str_val, String theme_data_val) {
-        this.debugIt(false, "********************SetPendingSessionSetup3", "browser_theme_id_str_val =" + browser_theme_id_str_val);
-        this.debugIt(false, "********************SetPendingSessionSetup3", "session_id_str_val =" + session_id_str_val);
-        this.debugIt(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);
+        this.debug(false, "********************SetPendingSessionSetup3", "browser_theme_id_str_val =" + browser_theme_id_str_val);
+        this.debug(false, "********************SetPendingSessionSetup3", "session_id_str_val =" + session_id_str_val);
+        this.debug(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);
         String data = browser_theme_id_str_val + session_id_str_val + theme_data_val;
         this.pendingSessionSetupQueue3.enqueue(data);
-        this.debugIt(true, "********************SetPendingSessionSetup3", "data =" + data);
+        this.debug(true, "********************SetPendingSessionSetup3", "data =" + data);
         /*
         char* buf, *data_ptr;
 
@@ -91,8 +91,8 @@ public class LinkClass {
     public String getPendingSessionSetup3() {
         return (String) this.pendingSessionSetupQueue3.dequeue();
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
