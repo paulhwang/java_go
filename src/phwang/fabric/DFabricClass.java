@@ -20,7 +20,7 @@ public class DFabricClass implements ThreadInterface {
     public BinderClass dBinderObject_;
 
     public FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
-    private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().ThreadMgrObject();}
+    private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().threadMgrObject();}
     private DFabricParserClass dFabricParserObject() { return this.dFabricParserObject_; }
     private BinderClass dBinderObject() { return this.dBinderObject_; }
   

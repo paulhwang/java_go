@@ -13,35 +13,35 @@ import phwang.utils.*;
 public class FabricRootClass {
     private String objectName() {return "FabricRootClass";}
     
-    private ThreadMgrClass threadMgrObject;
-    private UFabricClass uFabricObject;
-    private DFabricClass dFabricObject;
-    private LinkMgrClass linkMgrObject;
-    private GroupMgrClass groupMgrObject;
-    private NameListClass nameListObject;
+    private ThreadMgrClass threadMgrObject_;
+    private UFabricClass uFabricObject_;
+    private DFabricClass dFabricObject_;
+    private LinkMgrClass linkMgrObject_;
+    private GroupMgrClass groupMgrObject_;
+    private NameListClass nameListObject_;
 
-    public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    public UFabricClass UFabricObject() { return this.uFabricObject; }
-    public DFabricClass DFabricObject() { return this.dFabricObject; }
-    public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
-    public GroupMgrClass GroupMgrObject() { return this.groupMgrObject; }
-    public NameListClass NameListObject() { return this.nameListObject; }
+    public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
+    public UFabricClass uFabricObject() { return this.uFabricObject_; }
+    public DFabricClass dFabricObject() { return this.dFabricObject_; }
+    public LinkMgrClass linkMgrObject() { return this.linkMgrObject_; }
+    public GroupMgrClass groupMgrObject() { return this.groupMgrObject_; }
+    public NameListClass nameListObject() { return this.nameListObject_; }
 
     public FabricRootClass () {
-        this.debugIt(false, "FabricRootClass", "init start");
+        this.debug(false, "FabricRootClass", "init start");
         
-        this.threadMgrObject = new ThreadMgrClass();
-        this.uFabricObject = new UFabricClass(this);
-        this.dFabricObject = new DFabricClass(this);
-        this.linkMgrObject = new LinkMgrClass(this);
-        this.groupMgrObject = new GroupMgrClass(this);
-        this.nameListObject = new NameListClass(this);
+        this.threadMgrObject_ = new ThreadMgrClass();
+        this.uFabricObject_ = new UFabricClass(this);
+        this.dFabricObject_ = new DFabricClass(this);
+        this.linkMgrObject_ = new LinkMgrClass(this);
+        this.groupMgrObject_ = new GroupMgrClass(this);
+        this.nameListObject_ = new NameListClass(this);
         
-        this.UFabricObject().startThreads();
-        this.DFabricObject().startThreads();
+        this.uFabricObject().startThreads();
+        this.dFabricObject().startThreads();
 	}
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

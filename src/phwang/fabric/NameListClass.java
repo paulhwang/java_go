@@ -32,10 +32,10 @@ public class NameListClass {
     }
     
     public void updateNameList() {
-        LinkMgrClass link_list_mgr = this.fabricRootObject.LinkMgrObject();
+        LinkMgrClass link_list_mgr = this.fabricRootObject.linkMgrObject();
 
-        int max_index = link_list_mgr.ListMgr().MaxIndex();
-        ListEntryClass[] list_entry_array = link_list_mgr.ListMgr().EntryTableArray();
+        int max_index = link_list_mgr.listMgr().MaxIndex();
+        ListEntryClass[] list_entry_array = link_list_mgr.listMgr().EntryTableArray();
 
         this.nameListTag++;
         if (this.nameListTag > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {

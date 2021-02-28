@@ -26,7 +26,7 @@ public class UFabricClass implements ThreadInterface {
     public BinderClass uBinderObject_;
     
     public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
-    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().ThreadMgrObject();}
+    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().threadMgrObject();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UFabricClass(FabricRootClass fabric_root_class_val) {

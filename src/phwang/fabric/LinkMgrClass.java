@@ -15,22 +15,23 @@ public class LinkMgrClass implements ListMgrInterface {
 
     private static final int FIRST_LINK_ID = 1000;
 
-    private FabricRootClass fabricRootObject;
-    private ListMgrClass listMgr;
+    private FabricRootClass fabricRootObject_;
+    private ListMgrClass listMgr_;
 
-    public ListMgrClass ListMgr() { return this.listMgr; }
-    private NameListClass nameListObject() { return this.fabricRootObject.NameListObject(); }
+    private FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    public ListMgrClass listMgr() { return this.listMgr_; }
+    private NameListClass nameListObject() { return this.fabricRootObject().nameListObject(); }
 
     public LinkMgrClass(FabricRootClass root_fabric_object_val) {
         this.debugIt(false, "LinkMgrClass", "init start");
         
-        this.fabricRootObject = root_fabric_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_LINK_ID);
+        this.fabricRootObject_ = root_fabric_object_val;
+        this.listMgr_ = new ListMgrClass(this.objectName(), FIRST_LINK_ID);
     }
 
     public LinkClass mallocLink(String my_name_val) {
         LinkClass link = new LinkClass(my_name_val);
-        ListEntryClass list_entry = this.listMgr.mallocEntry(link);
+        ListEntryClass list_entry = this.listMgr().mallocEntry(link);
         link.bindListEntry(list_entry);
         this.nameListObject().updateNameList();
         return link;
@@ -47,7 +48,7 @@ public class LinkMgrClass implements ListMgrInterface {
     }
 
     public LinkClass getLinkById(int id_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
         if (list_entry == null) {
             return null;
         }
@@ -66,7 +67,7 @@ public class LinkMgrClass implements ListMgrInterface {
     }
 
     public LinkClass GetLinkByMyName(String my_name_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryByCompare(this, my_name_val);
+        ListEntryClass list_entry = this.listMgr().getEntryByCompare(this, my_name_val);
         if (list_entry == null) {
             return null;
         }

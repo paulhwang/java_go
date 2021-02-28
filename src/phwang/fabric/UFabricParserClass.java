@@ -18,7 +18,7 @@ public class UFabricParserClass {
     private UFabricClass uFabricObject;
 
     public FabricRootClass FabricRootObject() { return this.uFabricObject.FabricRootObject();}
-    public GroupMgrClass GroupMgrObject() { return this.FabricRootObject().GroupMgrObject(); }
+    public GroupMgrClass GroupMgrObject() { return this.FabricRootObject().groupMgrObject(); }
 
     public UFabricParserClass(UFabricClass ufabric_object_val) {
         this.uFabricObject = ufabric_object_val;

@@ -26,9 +26,9 @@ public class DFabricParserClass {
     private JSONParser parserObject;
 
     public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
-    private UFabricClass UFabricObject() { return this.fabricRootObject().UFabricObject(); }
-    private LinkMgrClass LinkMgrObject() { return this.fabricRootObject().LinkMgrObject(); }
-    private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().GroupMgrObject(); }
+    private UFabricClass UFabricObject() { return this.fabricRootObject().uFabricObject(); }
+    private LinkMgrClass LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
+    private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
     public DFabricParserClass(DFabricClass dfabric_object_val) {
         this.debugIt(false, "DFabricParserClass", "init start");
@@ -128,7 +128,7 @@ public class DFabricParserClass {
                 return this.errorProcessGetLinkData(link_id_str, "*************null link");
             }
 
-            String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRootObject().NameListObject().NameListTagStr();
+            String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRootObject().nameListObject().NameListTagStr();
 
             int max_session_table_array_index = link.GetSessionArrayMaxIndex();
             ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
@@ -192,7 +192,7 @@ public class DFabricParserClass {
             }
 
             int name_list_tag = EncodeNumberClass.decodeNumber(name_list_tag_str);
-            String name_list = this.fabricRootObject().NameListObject().getNameList(name_list_tag);
+            String name_list = this.fabricRootObject().nameListObject().getNameList(name_list_tag);
 
             String response_data = this.generateGetNameListResponse(link.linkIdStr(), name_list);
             return response_data;
@@ -274,7 +274,7 @@ public class DFabricParserClass {
         String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
         uplink_data = uplink_data + group_val.GroupIdStr();
         uplink_data = uplink_data + theme_info_val;
-        this.fabricRootObject().UFabricObject().transmitData(uplink_data);
+        this.fabricRootObject().uFabricObject().transmitData(uplink_data);
     }
 
     private String errorProcessSetupSession(String link_id_val, String error_msg_val) {
