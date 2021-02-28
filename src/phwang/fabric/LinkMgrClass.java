@@ -26,7 +26,7 @@ public class LinkMgrClass implements ListMgrInterface {
         this.debug(false, "LinkMgrClass", "init start");
         
         this.fabricRootObject_ = root_fabric_object_val;
-        this.listMgr_ = new ListMgrClass(this.objectName(), FIRST_LINK_ID);
+        this.listMgr_ = new ListMgrClass(FabricDefineClass.FABRIC_LINK_ID_SIZE, this.objectName(), FIRST_LINK_ID);
     }
 
     public LinkClass mallocLink(String my_name_val) {

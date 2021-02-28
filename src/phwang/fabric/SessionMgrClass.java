@@ -26,7 +26,7 @@ public class SessionMgrClass {
         this.debug(false, "SessionMgrClass", "init start");
         
         this.linkObject_ = link_object_val;
-        this.listMgr_ = new ListMgrClass(this.objectName(), FIRST_SESSION_ID);
+        this.listMgr_ = new ListMgrClass(FabricDefineClass.FABRIC_SESSION_ID_SIZE, this.objectName(), FIRST_SESSION_ID);
     }
 
     public SessionClass mallocSession() {

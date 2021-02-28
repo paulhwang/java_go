@@ -8,6 +8,7 @@
 
 package phwang.theme;
 
+import phwang.fabric.FabricDefineClass;
 import phwang.utils.*;
 
 public class RoomMgrClass {
@@ -22,7 +23,7 @@ public class RoomMgrClass {
         this.debug(false, "RoomMgrClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_ROOM_ID);
+        this.listMgr = new ListMgrClass(ThemeDefineClass.THEME_ROOM_ID_SIZE, this.objectName(), FIRST_ROOM_ID);
     }
     
     public RoomClass mallocRoom(String group_id_str_val) {

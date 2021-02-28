@@ -24,7 +24,7 @@ public class BaseMgrClass {
         this.debugIt(false, "BaseMgrClass", "init start");
 
         this.engineRootObject = engine_root_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_BASE_ID);
+        this.listMgr = new ListMgrClass(EngineDefineClass.ENGINE_BASE_ID_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
     public BaseClass MallocGoBase(String room_id_val) {

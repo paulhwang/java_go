@@ -31,7 +31,7 @@ public class FrontJobMgrClass {
         this.debugIt(false, "FrontJobMgrClass", "init start");
 
         this.frontRootObject_ = front_root_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_JOB_ID);
+        this.listMgr = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, this.objectName(), FIRST_JOB_ID);
         
         this.theLock = new ReentrantLock();
 

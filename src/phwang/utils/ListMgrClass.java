@@ -19,6 +19,7 @@ public class ListMgrClass {
     private static final int LIST_MGR_ID_INDEX_ARRAY_SIZE = 1000;
 
     private Boolean abendListMgrClassIsOn = true;
+    private int idSize_;
     private String theCallerName;
     private int IdSize;
     private int IndexSize;
@@ -30,12 +31,14 @@ public class ListMgrClass {
     private ListEntryClass[] entryTableArray;
     private Lock theLock;
 
+    public int idSize() { return this.idSize_; }
     public int MaxIndex() { return this.maxIndex; }
     public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
 
-    public ListMgrClass(String caller_name_val, int first_global_id_val) {
+    public ListMgrClass(int id_size_val, String caller_name_val, int first_global_id_val) {
         this.debug(false, "ListMgrClass", "init start (" + caller_name_val + ")");
 
+        this.idSize_ = id_size_val;
         this.theCallerName = caller_name_val;
         this.globalId = first_global_id_val;
         this.entryCount = 0;
