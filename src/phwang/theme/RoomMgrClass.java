@@ -14,6 +14,7 @@ import phwang.utils.*;
 public class RoomMgrClass {
     private String objectName() {return "RoomMgrClass";}
 
+    private static final int LIST_MGR_ARRAY_SIZE = 100;
     private static final int FIRST_ROOM_ID = 7000;
 
     private ThemeRootClass themeRootObject;
@@ -23,7 +24,7 @@ public class RoomMgrClass {
         this.debug(false, "RoomMgrClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
-        this.listMgr = new ListMgrClass(ThemeDefineClass.THEME_ROOM_ID_SIZE, this.objectName(), FIRST_ROOM_ID);
+        this.listMgr = new ListMgrClass(ThemeDefineClass.THEME_ROOM_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);
     }
     
     public RoomClass mallocRoom(String group_id_str_val) {

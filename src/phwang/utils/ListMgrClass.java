@@ -16,7 +16,6 @@ public class ListMgrClass {
     private String objectName() {return "ListMgrClass";}
     
     private static final int MAX_GLOBAL_ID = 99999;
-    private static final int ENTRY_TABLE_ARRAY_SIZE = 100;
 
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
@@ -33,7 +32,7 @@ public class ListMgrClass {
     public int MaxIndex() { return this.maxIndex; }
     public ListEntryClass[] EntryTableArray() { return this.entryArray; }
 
-    public ListMgrClass(int id_size_val, String caller_name_val, int first_global_id_val) {
+    public ListMgrClass(int id_size_val, int array_size_val, String caller_name_val, int first_global_id_val) {
         this.debug(false, "ListMgrClass", "init start (" + caller_name_val + ")");
 
         this.idSize_ = id_size_val;
@@ -43,7 +42,7 @@ public class ListMgrClass {
         this.MaxIdIndexTableIndex = 0;
         this.maxIndex = -1;
         this.theLock = new ReentrantLock();
-        this.arraySize = ENTRY_TABLE_ARRAY_SIZE;
+        this.arraySize = array_size_val;
 
         this.entryArray = new ListEntryClass[this.arraySize];
     }
@@ -95,7 +94,7 @@ public class ListMgrClass {
             }
         }
         
-        this.abend("allocIndex", "run out");
+        //this.abend("allocIndex", "run out");
         
         ListEntryClass[] new_array = new ListEntryClass[this.arraySize * 2];
         for (int i = 0; i < this.arraySize; i++) {

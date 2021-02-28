@@ -16,6 +16,7 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FrontJobMgrClass {
     private String objectName() {return "FrontJobMgrClass";}
 
+    private static final int LIST_MGR_ARRAY_SIZE = 100;
     private static final int FIRST_JOB_ID = 0;
     private static final int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
 
@@ -31,7 +32,7 @@ public class FrontJobMgrClass {
         this.debug(false, "FrontJobMgrClass", "init start");
 
         this.frontRootObject_ = front_root_object_val;
-        this.listMgr = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, this.objectName(), FIRST_JOB_ID);
+        this.listMgr = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
         
         this.theLock = new ReentrantLock();
 

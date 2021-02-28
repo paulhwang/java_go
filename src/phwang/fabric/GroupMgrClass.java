@@ -13,6 +13,7 @@ import phwang.utils.*;
 public class GroupMgrClass {
     private String objectName() {return "GroupMgrClass";}
 
+    private static final int LIST_MGR_ARRAY_SIZE = 100;
     private static final int FIRST_GROUP_ID = 5000;
 
     private FabricRootClass fabricRootObject_;
@@ -25,7 +26,7 @@ public class GroupMgrClass {
         this.debug(false, "GroupMgrClass", "init start");
         
         this.fabricRootObject_ = root_fabric_object_val;
-        this.listMgr_ = new ListMgrClass(FabricDefineClass.FABRIC_GROUP_ID_SIZE, this.objectName(), FIRST_GROUP_ID);
+        this.listMgr_ = new ListMgrClass(FabricDefineClass.FABRIC_GROUP_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_GROUP_ID);
     }
 
     public GroupClass mallocGroup(String theme_data_val) {

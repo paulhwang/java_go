@@ -14,6 +14,7 @@ public class BaseMgrClass {
     private String objectName() {return "BaseMgrClass";}
     
     private static final int FIRST_BASE_ID = 9000;
+    private static final int LIST_MGR_ARRAY_SIZE = 100;
 
     private EngineRootClass engineRootObject;
     private ListMgrClass listMgr;
@@ -24,7 +25,7 @@ public class BaseMgrClass {
         this.debug(false, "BaseMgrClass", "init start");
 
         this.engineRootObject = engine_root_object_val;
-        this.listMgr = new ListMgrClass(EngineDefineClass.ENGINE_BASE_ID_SIZE, this.objectName(), FIRST_BASE_ID);
+        this.listMgr = new ListMgrClass(EngineDefineClass.ENGINE_BASE_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
     public BaseClass MallocGoBase(String room_id_val) {
