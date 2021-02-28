@@ -14,23 +14,24 @@ public class SessionMgrClass {
     private String objectName() {return "SessionMgrClass";}
     private static final int FIRST_SESSION_ID = 3000;
 
-    private LinkClass linkObject;
-    private ListMgrClass listMgr;
+    private LinkClass linkObject_;
+    private ListMgrClass listMgr_;
 
-    public ListMgrClass ListMgr() { return this.listMgr; }
-    public int GetSessionArrayMaxIndex() { return this.listMgr.MaxIndex(); }
-    public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr.EntryTableArray(); }
+    private LinkClass linkObject() { return this.linkObject_; }
+    public ListMgrClass listMgr() { return this.listMgr_; }
+    public int GetSessionArrayMaxIndex() { return this.listMgr_.MaxIndex(); }
+    public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr().EntryTableArray(); }
 
     public SessionMgrClass(LinkClass link_object_val) {
         this.debug(false, "SessionMgrClass", "init start");
         
-        this.linkObject = link_object_val;
-        this.listMgr = new ListMgrClass(this.objectName(), FIRST_SESSION_ID);
+        this.linkObject_ = link_object_val;
+        this.listMgr_ = new ListMgrClass(this.objectName(), FIRST_SESSION_ID);
     }
 
     public SessionClass mallocSession() {
-        SessionClass session = new SessionClass(this.linkObject);
-        ListEntryClass list_entry = this.listMgr.mallocEntry(session);
+        SessionClass session = new SessionClass(this.linkObject());
+        ListEntryClass list_entry = this.listMgr().mallocEntry(session);
         session.bindListEntry(list_entry);
         return session;
     }
@@ -48,7 +49,7 @@ public class SessionMgrClass {
     }
 
     public SessionClass getSessionBySessionId(int id_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
         if (list_entry == null) {
             return null;
         }

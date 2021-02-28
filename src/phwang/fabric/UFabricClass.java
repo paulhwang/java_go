@@ -21,17 +21,17 @@ public class UFabricClass implements ThreadInterface {
     //////////////////#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
     ///////////////#define FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA 'd'
 
-    private FabricRootClass fabricRootObject;
+    private FabricRootClass fabricRootObject_;
     private UFabricParserClass uFabricParserObject;
     public BinderClass uBinderObject_;
     
-    public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
-    private ThreadMgrClass ThreadMgrObject() { return this.FabricRootObject().threadMgrObject();}
+    public FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().threadMgrObject();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UFabricClass(FabricRootClass fabric_root_class_val) {
         this.debug(false, "UFabricClass", "init start");
-        this.fabricRootObject = fabric_root_class_val;
+        this.fabricRootObject_ = fabric_root_class_val;
         this.uFabricParserObject = new UFabricParserClass(this);
         this.uBinderObject_ = new BinderClass(this.objectName());
         this.uBinderObject().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
