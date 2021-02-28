@@ -147,15 +147,15 @@ public class ListMgrClass {
     }
 
     private ListEntryClass getEntryById_(int id_val) {
-        ListEntryClass entry = null;
+        ListEntryClass entry;
 
         for (int i = 0; i <= this.maxIndex; i++) {
-            if (this.entryArray[i].id() == id_val) {
-                entry = this.entryArray[i];
-                break;
+            entry = this.entryArray[i];
+            if (entry.inUse() && entry.id() == id_val) {
+                return entry;
             }
         }
-        return entry;
+        return null;
     }
 
     public ListEntryClass getEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
@@ -170,15 +170,15 @@ public class ListMgrClass {
     }
     
     private ListEntryClass getEntryByCompare_(ListMgrInterface calling_object_val, String string_val) {
-        ListEntryClass entry = null;
+        ListEntryClass entry;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (calling_object_val.compareObjectFunc(this.entryArray[i].data(), string_val)) {
-                entry = this.entryArray[i];
-                break;
+            entry = this.entryArray[i];
+            if (entry.inUse() && calling_object_val.compareObjectFunc(entry.data(), string_val)) {
+                return entry;
             }
         }
-        return entry;
+        return null;
     }
 
     private void abendListMgr(String msg_val) {

@@ -18,6 +18,7 @@ public class ListEntryClass {
     private Object data_;
     private int index_;
     private int id_size;
+    private Boolean inUse_ = false;
 
     public ListEntryClass(int index_val, int id_size_val) {
         this.index_ = index_val;
@@ -28,8 +29,10 @@ public class ListEntryClass {
     public int id() { return this.id_; }
     public String idStr() { return this.id_str_; }
     public Object data() { return this.data_; }
+    public Boolean inUse() { return this.inUse_; }
 
     public void setData(int id_val, Object data_val) {
+    	this.inUse_ = true;
         this.id_ = id_val;
         this.data_ = data_val;
         this.id_str_ = EncodeNumberClass.encodeNumber(this.id(), this.id_size);
