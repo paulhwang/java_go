@@ -70,7 +70,6 @@ public class ListMgrClass {
 
     private ListEntryClass malloc_(Object object_val) {
         int id;
-        int index;
 
         id = this.allocId();
         ListEntryClass entry = this.allocEntry();
@@ -112,9 +111,8 @@ public class ListMgrClass {
     }
 
     private void free_(ListEntryClass entry_val) {
-        this.entryArray[entry_val.Index()] = null;
+        this.entryArray[entry_val.Index()].resetData();
         this.entryCount--;
-        entry_val.resetData();
     }
 
     public void flush() {
@@ -151,7 +149,7 @@ public class ListMgrClass {
 
         for (int i = 0; i <= this.maxIndex; i++) {
             entry = this.entryArray[i];
-            if (entry.inUse() && entry.id() == id_val) {
+            if ((entry.data() != null) && entry.id() == id_val) {
                 return entry;
             }
         }
@@ -174,7 +172,7 @@ public class ListMgrClass {
 
         for (int i = 0; i <= maxIndex; i++) {
             entry = this.entryArray[i];
-            if (entry.inUse() && calling_object_val.compareObjectFunc(entry.data(), string_val)) {
+            if ((entry.data() != null) && calling_object_val.compareObjectFunc(entry.data(), string_val)) {
                 return entry;
             }
         }
@@ -194,7 +192,7 @@ public class ListMgrClass {
         int count = 0;
         
         for (int i = 0; i < this.arraySize; i++) {
-            if (this.entryArray[i] != null) {
+            if ((this.entryArray[i] != null) && (this.entryArray[i].data() != null)) {
                 count++;
             }
         }
