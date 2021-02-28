@@ -15,23 +15,22 @@ public class BaseClass {
     private String objectName() {return "BaseClass";}
 
     private ListEntryClass listEntryObject_;
-    private String roomIdStr;
-    private int baseId;
+    private String roomIdStr_;
     private String baseIdStr;
     private GoRootClass goRootObject;
 
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
-    public String RoomIdStr() { return this.roomIdStr; }
+    public int baseId() { return this.listEntryObject().id(); }
+    public String roomIdStr() { return this.roomIdStr_; }
     public String BaseIdStr() { return this.baseIdStr; }
 
     public BaseClass(String room_id_str_val) {
-        this.roomIdStr = room_id_str_val;
+        this.roomIdStr_ = room_id_str_val;
     }
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
         this.listEntryObject_ = list_entry_objectg_val;
-        this.baseId = this.listEntryObject().id();
-        this.baseIdStr = EncodeNumberClass.encodeNumber(this.baseId, EngineDefineClass.ENGINE_BASE_ID_SIZE);
+        this.baseIdStr = EncodeNumberClass.encodeNumber(this.baseId(), EngineDefineClass.ENGINE_BASE_ID_SIZE);
     }
 
     public String setupBase(String input_data_val) {
@@ -44,7 +43,7 @@ public class BaseClass {
 
             default:
                 String err_msg = "command " + input_data_val.charAt(0) + " not supported";
-                this.abendIt("setupBase", err_msg);
+                this.abend("setupBase", err_msg);
                 return err_msg;
         }
     }
@@ -59,12 +58,12 @@ public class BaseClass {
 
             default:
                 String err_msg = "command " + input_data_val.charAt(0) + " not supported";
-                this.abendIt("ProcessInputData", err_msg);
+                this.abend("ProcessInputData", err_msg);
                 return err_msg;
         }
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

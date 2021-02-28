@@ -22,12 +22,12 @@ public class UThemeParserClass {
     public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
     public UThemeParserClass(UThemeClass u_theme_object_val) {
-        this.debugIt(false, "UThemeParserClass", "init start");
+        this.debug(false, "UThemeParserClass", "init start");
         this.uThemeObject = u_theme_object_val;
     }
     
     public void parseInputPacket(String input_data_val) {
-        this.debugIt(false, "parseInputPacket", input_data_val);
+        this.debug(false, "parseInputPacket", input_data_val);
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
 
@@ -41,22 +41,22 @@ public class UThemeParserClass {
             return;
         }
 
-        this.abendIt("parseInputPacket", command);
+        this.abend("parseInputPacket", command);
     }
 
     private void processSetupBaseResponse(String input_data_val) {
-        this.debugIt(false, "processSetupBaseResponse", input_data_val);
+        this.debug(false, "processSetupBaseResponse", input_data_val);
 
         String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
         String base_id_str = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
         
-        this.debugIt(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
-        this.debugIt(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
+        this.debug(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
+        this.debug(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
 
         RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
         room_object.setBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
-        downlink_data = downlink_data + room_object.GroupIdStr() + room_object.RoomIdStr();
+        downlink_data = downlink_data + room_object.groupIdStr() + room_object.RoomIdStr();
         this.DThemeObject().transmitData(downlink_data);
 
         /*
@@ -91,18 +91,18 @@ public class UThemeParserClass {
     }
 
     private void processPutBaseDataResponse(String input_data_val) {
-        this.debugIt(false, "processPutBaseDataResponse", input_data_val);
+        this.debug(false, "processPutBaseDataResponse", input_data_val);
         String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
         String data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
 
         RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
         if (room_object == null) {
-            this.abendIt("processPutBaseDataResponse", "null room");
+            this.abend("processPutBaseDataResponse", "null room");
             return;
         }
 
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA;
-        downlink_data = downlink_data + room_object.GroupIdStr() + data;
+        downlink_data = downlink_data + room_object.groupIdStr() + data;
         this.DThemeObject().transmitData(downlink_data);
 
         /*
@@ -134,8 +134,8 @@ public class UThemeParserClass {
         }
         */
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
