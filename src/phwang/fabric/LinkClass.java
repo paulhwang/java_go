@@ -39,8 +39,8 @@ public class LinkClass {
         this.sessionMgrObject_ = new SessionMgrClass(this);
     }
 
-    public void bindListEntry(ListEntryClass list_entry_objectg_val) {
-        this.listEntryObject_ = list_entry_objectg_val;
+    public void bindListEntry(ListEntryClass list_entry_object_val) {
+        this.listEntryObject_ = list_entry_object_val;
     }
 
     public SessionClass mallocSession() {

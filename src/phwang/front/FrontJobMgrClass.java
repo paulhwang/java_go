@@ -11,6 +11,8 @@ package phwang.front;
 import phwang.utils.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import phwang.fabric.LinkClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class FrontJobMgrClass {
@@ -26,13 +28,15 @@ public class FrontJobMgrClass {
     private int maxJobArrayIndex;
     private FrontJobClass[] jobArray;
     private Lock theLock;
-    private ListMgrClass listMgr;
+    private ListMgrClass listMgr_;
+
+    private ListMgrClass listMgr() { return this.listMgr_; }
 
     public FrontJobMgrClass(FrontRootClass front_root_object_val) {
         this.debug(false, "FrontJobMgrClass", "init start");
 
         this.frontRootObject_ = front_root_object_val;
-        this.listMgr = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
+        this.listMgr_ = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
         
         this.theLock = new ReentrantLock();
 
@@ -43,6 +47,43 @@ public class FrontJobMgrClass {
         this.jobArray = new FrontJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
     }
 
+
+    public FrontJobClass mallocLink(String my_name_val) {
+    	FrontJobClass job = new FrontJobClass(my_name_val);
+        ListEntryClass list_entry = this.listMgr().malloc(job);
+        job.bindListEntry123(list_entry);
+        return job;
+    }
+
+    public void freeLink(LinkClass link_val) {
+
+    }
+    
+    public FrontJobClass getLinkByIdStr(String job_id_str_val) {
+        int job_id = EncodeNumberClass.decodeNumber(job_id_str_val);
+
+        return this.getLinkById(job_id);
+    }
+
+    public FrontJobClass getLinkById(int id_val) {
+    	ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
+        if (list_entry == null) {
+            return null;
+        }
+        FrontJobClass job = (FrontJobClass) list_entry.data();
+
+        return job;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void setMaxAllowedJobId(int ajax_id_size_val) {
         this.maxAllowedJobId = 1;
         for (var i = 0; i < ajax_id_size_val; i++) {

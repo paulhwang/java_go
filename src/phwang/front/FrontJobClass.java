@@ -14,21 +14,26 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FrontJobClass {
     private String objectName() {return "FrontJobClass";}
 
-    private ListEntryClass listEntryObject;
+    private ListEntryClass listEntryObject_;
     private int jobId;
     private String jobIdStr;
     
     public String ajaxIdStr;
     private String theData;
     private Thread pendingThread;
+    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
 
     public FrontJobClass(String ajax_id_str_val) {
         this.ajaxIdStr = ajax_id_str_val;
     }
 
+    public void bindListEntry123(ListEntryClass list_entry_object_val) {
+        this.listEntryObject_ = list_entry_object_val;
+    }
+
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
-        this.listEntryObject = list_entry_objectg_val;
-        this.jobId = this.listEntryObject.id();
+        this.listEntryObject_ = list_entry_objectg_val;
+        this.jobId = this.listEntryObject().id();
         this.jobIdStr = EncodeNumberClass.encodeNumber(this.jobId, FrontDefineClass.FRONT_JOB_ID_SIZE);
     }
 
