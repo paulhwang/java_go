@@ -100,7 +100,7 @@ public class DFabricParserClass {
             this.debugIt(false, "processSetupLinkRequest", "password = " + password);
 
             LinkClass link = this.LinkMgrObject().mallocLink(my_name);
-            String response_data = this.generateSetupLinkResponse(link.LinkIdStr(), link.MyName());
+            String response_data = this.generateSetupLinkResponse(link.linkIdStr(), link.myName());
             return response_data;
         } catch (Exception e) {
             return null;
@@ -138,7 +138,7 @@ public class DFabricParserClass {
                 SessionClass session = (SessionClass)list_entry.Data();
                 if (session != null) {
                    if (session.getPendingDownLinkDataCount() > 0) {
-                        downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.LinkIdStr() + session.SessionIdStr();
+                        downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.SessionIdStr();
                     }
                 }
             }
@@ -158,7 +158,7 @@ public class DFabricParserClass {
 
             downlink_data = downlink_data + pending_session_setup;
 
-            String response_data = this.generateGetLinkDataResponse(link.LinkIdStr(), downlink_data, pending_session_setup);
+            String response_data = this.generateGetLinkDataResponse(link.linkIdStr(), downlink_data, pending_session_setup);
             return response_data;
         } catch (Exception e) {
             return null;
@@ -194,7 +194,7 @@ public class DFabricParserClass {
             int name_list_tag = EncodeNumberClass.decodeNumber(name_list_tag_str);
             String name_list = this.fabricRootObject().NameListObject().getNameList(name_list_tag);
 
-            String response_data = this.generateGetNameListResponse(link.LinkIdStr(), name_list);
+            String response_data = this.generateGetNameListResponse(link.linkIdStr(), name_list);
             return response_data;
         } catch (Exception e) {
             return null;
@@ -244,7 +244,7 @@ public class DFabricParserClass {
             group.insertSession(session);
             session.bindGroup(group);
             
-            if (his_name.equals(link.MyName())) {
+            if (his_name.equals(link.myName())) {
                 this.mallocRoom(group, theme_data);
             }
             else {
@@ -260,10 +260,10 @@ public class DFabricParserClass {
                 group.insertSession(his_session);
                 his_session.bindGroup(group);
 
-                his_link.setPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), theme_data);
+                his_link.setPendingSessionSetup(his_link.linkIdStr() + his_session.SessionIdStr(), theme_data);
             }
 
-            String response_data = this.generateSetupSessionResponse(link.LinkIdStr(), session.SessionIdStr());
+            String response_data = this.generateSetupSessionResponse(link.linkIdStr(), session.SessionIdStr());
             return response_data;
         } catch (Exception e) {
             return null;
@@ -309,7 +309,7 @@ public class DFabricParserClass {
                 return this.errorProcessSetupSession3(link_id_str, "null link");
             }
             
-            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id_str);
+            SessionClass session = link.sessionMgrObject().getSessionBySessionIdStr(session_id_str);
             if (session == null) {
                 return errorProcessSetupSession3(link_id_str, "null session");
             }
@@ -321,7 +321,7 @@ public class DFabricParserClass {
             }
             this.mallocRoom(group, theme_data_str);
 
-            String response_data = this.generateSetupSession2Response(link.LinkIdStr(), session.SessionIdStr(), session.BrowserThemeIdStr());
+            String response_data = this.generateSetupSession2Response(link.linkIdStr(), session.SessionIdStr(), session.BrowserThemeIdStr());
             return response_data;
         } catch (Exception e) {
             return null;
@@ -357,7 +357,7 @@ public class DFabricParserClass {
                 return this.errorProcessSetupSession3(link_id_str, "null link");
             }
             
-            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id_str);
+            SessionClass session = link.sessionMgrObject().getSessionBySessionIdStr(session_id_str);
             if (session == null) {
                 return errorProcessSetupSession3(link_id_str, "null session");
             }
@@ -405,7 +405,7 @@ public class DFabricParserClass {
                 return this.errorProcessSetupSession3(link_id_str, "null link");
             }
             
-            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id_str);
+            SessionClass session = link.sessionMgrObject().getSessionBySessionIdStr(session_id_str);
             if (session == null) {
                 return errorProcessSetupSession3(link_id_str, "null session");
             }
@@ -421,7 +421,7 @@ public class DFabricParserClass {
             this.UFabricObject().transmitData(uplink_data);
 
             /* send the response down */
-            String response_data = this.generatePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), "job is done");
+            String response_data = this.generatePutSessionDataResponse(link.linkIdStr(), session.SessionIdStr(), "job is done");
             return response_data;
         } catch (Exception e) {
             return null;
@@ -458,7 +458,7 @@ public class DFabricParserClass {
                 return this.errorProcessSetupSession3(link_id_str, "null link");
             }
             
-            SessionClass session = link.SessionMgrObject().getSessionBySessionIdStr(session_id_str);
+            SessionClass session = link.sessionMgrObject().getSessionBySessionIdStr(session_id_str);
             if (session == null) {
                 return errorProcessSetupSession3(link_id_str, "null session");
             }
@@ -466,7 +466,7 @@ public class DFabricParserClass {
             String data = session.getPendingDownLinkData();
 
             /* send the response down */
-            String response_data = this.generateGetSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);
+            String response_data = this.generateGetSessionDataResponse(link.linkIdStr(), session.SessionIdStr(), data);
             return response_data;
         } catch (Exception e) {
             return null;

@@ -14,40 +14,41 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class LinkClass {
     private String objectName() {return "LinkClass";}
 
-    private ListEntryClass listEntryObject;
+    private ListEntryClass listEntryObject_;
     private int theLinkId;
     private String theLinkIdStr;
-    private String myName;
-    private SessionMgrClass sessionMgrObject;
+    private String myName_;
+    private SessionMgrClass sessionMgrObject_;
     private ListQueueClass pendingSessionSetupQueue;
     private ListQueueClass pendingSessionSetupQueue3;
 
-    public String MyName() { return this.myName; }
-    public int LinkId() { return this.theLinkId; }
-    public String LinkIdStr() { return this.theLinkIdStr; }
-    public SessionMgrClass SessionMgrObject() { return this.sessionMgrObject; }
+    public String myName() { return this.myName_; }
+    public int linkId() { return this.theLinkId; }
+    public String linkIdStr() { return this.theLinkIdStr; }
+    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
+    public SessionMgrClass sessionMgrObject() { return this.sessionMgrObject_; }
 
-    public int GetSessionArrayMaxIndex() { return this.sessionMgrObject.GetSessionArrayMaxIndex(); }
-    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject.GetSessionArrayEntryTable(); }
+    public int GetSessionArrayMaxIndex() { return this.sessionMgrObject().GetSessionArrayMaxIndex(); }
+    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().GetSessionArrayEntryTable(); }
 
     public LinkClass(String my_name_val) {
         this.debugIt(false, "LinkClass", "init start");
         
-        this.myName = my_name_val;
+        this.myName_ = my_name_val;
 
         this.pendingSessionSetupQueue = new ListQueueClass(false, 0);
         this.pendingSessionSetupQueue3 = new ListQueueClass(false, 0);
-        this.sessionMgrObject = new SessionMgrClass(this);
+        this.sessionMgrObject_ = new SessionMgrClass(this);
     }
 
     public void bindListEntry(ListEntryClass list_entry_objectg_val) {
-        this.listEntryObject = list_entry_objectg_val;
-        this.theLinkId = this.listEntryObject.Id();
+        this.listEntryObject_ = list_entry_objectg_val;
+        this.theLinkId = this.listEntryObject().Id();
         this.theLinkIdStr = EncodeNumberClass.encodeNumber(this.theLinkId, FabricDefineClass.FABRIC_LINK_ID_SIZE);
     }
 
     public SessionClass mallocSession() {
-        return this.sessionMgrObject.mallocSession();
+        return this.sessionMgrObject().mallocSession();
     }
 
     public void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
