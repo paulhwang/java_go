@@ -15,14 +15,13 @@ import phwang.utils.*;
 public class ListMgrClass {
     private String objectName() {return "ListMgrClass";}
     
-    private static final int MAX_GLOBAL_ID = 99999;
-
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
     private String callerName;
     private int globalId;
     int MaxIdIndexTableIndex;
     private int maxIndex;
+    private int maxGlobalId;
     int entryCount;
     private ListEntryClass[] entryArray;
     private int arraySize;
@@ -43,13 +42,19 @@ public class ListMgrClass {
         this.maxIndex = -1;
         this.theLock = new ReentrantLock();
         this.arraySize = array_size_val;
-
+        
+        this.maxGlobalId = 1;
+        for (int i = 0; i < this.idSize_; i++) {
+        	this.maxGlobalId *= 10;
+        }
+        this.maxGlobalId -= 1;
+        
         this.entryArray = new ListEntryClass[this.arraySize];
     }
 
     private int allocId() {
-        if (this.globalId >= MAX_GLOBAL_ID) {
-            this.globalId = 0;
+        if (this.globalId >= this.maxGlobalId) {
+            this.globalId = -1;
         }
         this.globalId++;
         return this.globalId;
