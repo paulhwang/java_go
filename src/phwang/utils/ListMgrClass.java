@@ -15,8 +15,8 @@ import phwang.utils.*;
 public class ListMgrClass {
     private String objectName() {return "ListMgrClass";}
     
-    private static final int LIST_MGR_MAX_GLOBAL_LIST_ID = 9999;
-    private static final int LIST_MGR_ID_INDEX_ARRAY_SIZE = 1000;
+    private static final int LIST_MGR_MAX_GLOBAL_LIST_ID = 999;
+    private static final int LIST_MGR_ID_INDEX_ARRAY_SIZE = 100;
 
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
@@ -49,11 +49,11 @@ public class ListMgrClass {
     public ListEntryClass malloc(Object object_val) {
         this.debug(false, "malloc", "start");
     	
-        this.abendListMgrClass("before malloc");
+        this.abendListMgr("before malloc");
         this.theLock.lock();
         ListEntryClass entry = this.malloc_(object_val);
     	this.theLock.unlock();
-        this.abendListMgrClass("after malloc");
+        this.abendListMgr("after malloc");
         
         return entry;
     }
@@ -99,37 +99,55 @@ public class ListMgrClass {
     }
 
     public void free(ListEntryClass entry_val) {
-        this.abendListMgrClass("before free");
+        this.abendListMgr("before free");
         
         this.theLock.lock();
         this.free_(entry_val);
         this.theLock.unlock();
         
-        this.abendListMgrClass("after free");
+        this.abendListMgr("after free");
     }
 
     private void free_(ListEntryClass entry_val) {
         this.entryTableArray[entry_val.Index()] = null;
         this.entryCount--;
+        entry_val.resetData();
     }
 
-    public ListEntryClass getEntryById(int id_val) {
-        this.abendListMgrClass("before GetEntryById");
+    public void flush() {
+        this.abendListMgr("before flush");
         
         this.theLock.lock();
-    	ListEntryClass entry = doGetEntryById(id_val);
+        this.flush_();
+        this.theLock.unlock();
+        
+        this.abendListMgr("after flush");
+    }
+
+    public void flush_() {
+        for (int i = 0; i <= this.maxIndex; i++) {
+            this.entryTableArray[i].resetData();
+            this.entryTableArray[i] = null;
+        }
+    }
+    
+    public ListEntryClass getEntryById(int id_val) {
+        this.abendListMgr("before getEntryById");
+        
+        this.theLock.lock();
+    	ListEntryClass entry = getEntryById_(id_val);
     	this.theLock.unlock();
     	
-    	this.abendListMgrClass("after GetEntryById");
+    	this.abendListMgr("after getEntryById");
     	return entry;
     }
 
-    private ListEntryClass doGetEntryById(int id_val) {
+    private ListEntryClass getEntryById_(int id_val) {
         ListEntryClass entry = null;
 
-        for (int i = 0; i <= maxIndex; i++) {
-            if (entryTableArray[i].id() == id_val) {
-                entry = entryTableArray[i];
+        for (int i = 0; i <= this.maxIndex; i++) {
+            if (this.entryTableArray[i].id() == id_val) {
+                entry = this.entryTableArray[i];
                 break;
             }
         }
@@ -137,37 +155,38 @@ public class ListMgrClass {
     }
 
     public ListEntryClass getEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
-        this.abendListMgrClass("before GetEntryByCompare");
+        this.abendListMgr("before getEntryByCompare");
         
         this.theLock.lock();
-        ListEntryClass entry = doGetEntryByCompare(calling_object_val, string_val);
+        ListEntryClass entry = getEntryByCompare_(calling_object_val, string_val);
         this.theLock.unlock();
         
-        this.abendListMgrClass("after GetEntryByCompare");
+        this.abendListMgr("after getEntryByCompare");
     	return entry;
     }
     
-    private ListEntryClass doGetEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
+    private ListEntryClass getEntryByCompare_(ListMgrInterface calling_object_val, String string_val) {
         ListEntryClass entry = null;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (calling_object_val.compareObjectFunc(entryTableArray[i].data(), string_val)) {
-                entry = entryTableArray[i];
+            if (calling_object_val.compareObjectFunc(this.entryTableArray[i].data(), string_val)) {
+                entry = this.entryTableArray[i];
+                break;
             }
         }
         return entry;
     }
 
-    private void abendListMgrClass(String msg_val) {
+    private void abendListMgr(String msg_val) {
     	if (!this.abendListMgrClassIsOn)
     		return;
     	
     	this.theLock.lock();
-    	this.doAbendListMgrClass(msg_val);
+    	this.abendListMgr_(msg_val);
     	this.theLock.unlock();
     }
     
-    private void doAbendListMgrClass(String msg_val) {
+    private void abendListMgr_(String msg_val) {
         int count = 0;
         
         for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++) {
@@ -176,7 +195,7 @@ public class ListMgrClass {
             }
         }
         if (this.entryCount != count) {
-            this.abend("DoAbendListMgrClass", "count not match");
+            this.abend("abendListMgr_", "count not match");
         }
     }
     
