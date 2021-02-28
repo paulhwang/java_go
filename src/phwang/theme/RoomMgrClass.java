@@ -19,7 +19,7 @@ public class RoomMgrClass {
     private ListMgrClass listMgr;
 
     public RoomMgrClass(ThemeRootClass theme_root_object_val) {
-        this.debugIt(false, "RoomMgrClass", "init start");
+        this.debug(false, "RoomMgrClass", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.listMgr = new ListMgrClass(this.objectName(), FIRST_ROOM_ID);
@@ -33,14 +33,14 @@ public class RoomMgrClass {
     }
 
     public RoomClass getRoomByRoomIdStr(String room_id_str_val) {
-        this.debugIt(false, "getRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
+        this.debug(false, "getRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
         int room_id = EncodeNumberClass.decodeNumber(room_id_str_val);
 
         return this.getRoomByRoomId(room_id);
      }
 
     public RoomClass getRoomByRoomId(int id_val) {
-        this.debugIt(false, "getRoomByRoomId", "id_val=" + id_val);
+        this.debug(false, "getRoomByRoomId", "id_val=" + id_val);
         ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
         if (list_entry == null) {
             return null;
@@ -49,8 +49,8 @@ public class RoomMgrClass {
 
         return room_object;
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
