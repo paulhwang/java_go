@@ -15,7 +15,7 @@ import phwang.utils.*;
 public class ListMgrClass {
     private String objectName() {return "ListMgrClass";}
     
-    private static final int LIST_MGR_MAX_GLOBAL_LIST_ID = 999;
+    private static final int MAX_GLOBAL_ENTRY_ID = 99999;
     private static final int LIST_MGR_ID_INDEX_ARRAY_SIZE = 100;
 
     private Boolean abendListMgrClassIsOn = true;
@@ -77,7 +77,7 @@ public class ListMgrClass {
     }
 
     private int allocId() {
-        if (this.globalId >= LIST_MGR_MAX_GLOBAL_LIST_ID) {
+        if (this.globalId >= MAX_GLOBAL_ENTRY_ID) {
             this.globalId = 0;
         }
         this.globalId++;
@@ -129,6 +129,7 @@ public class ListMgrClass {
             this.entryTableArray[i].resetData();
             this.entryTableArray[i] = null;
         }
+        this.entryCount = 0;
     }
     
     public ListEntryClass getEntryById(int id_val) {
