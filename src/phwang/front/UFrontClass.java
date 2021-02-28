@@ -59,7 +59,7 @@ public class UFrontClass implements ThreadInterface {
             String ajax_id_str = received_data.substring(0, FrontDefineClass.FRONT_JOB_ID_SIZE);
             String response_data = received_data.substring(FrontDefineClass.FRONT_JOB_ID_SIZE);
 
-            FrontJobClass job_entry = this.frontJobMgrObject().getJobObject(ajax_id_str);
+            FrontJobClass job_entry = this.frontJobMgrObject().getLinkByIdStr(ajax_id_str);
             if (job_entry == null) {
                 this.abendIt("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;

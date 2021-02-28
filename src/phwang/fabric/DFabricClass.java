@@ -52,7 +52,7 @@ public class DFabricClass implements ThreadInterface {
                 this.abend("dFabricRreceiveThreadFunc", "null data");
                 continue;
             }
-            this.debug(false, "dFabricRreceiveThreadFunc", "data = " + data);
+            this.debug(false, "dFabricRreceiveThreadFunc", "data=" + data);
             this.dFabricParserObject().parseInputPacket(data);
         }
     }
