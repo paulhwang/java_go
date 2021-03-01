@@ -15,6 +15,8 @@ public class UThemeClass implements ThreadInterface {
     private String objectName() {return "UThemeClass";}
     private String receiveThreadName() { return "UThemeReceiveThread"; }
 
+	private static final int NUMBER_OF_D_WORK_THREADS = 5;
+
     private ThemeRootClass themeRootObject;
     private UThemeParserClass uThemeParserObject;
     public BinderClass uBinderObject_;
@@ -33,7 +35,9 @@ public class UThemeClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	for (int i = 0; i < NUMBER_OF_D_WORK_THREADS; i++) {
+    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	}
      }
     
 	public void threadCallbackFunction() {

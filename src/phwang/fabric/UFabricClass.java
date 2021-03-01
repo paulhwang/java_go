@@ -15,7 +15,8 @@ public class UFabricClass implements ThreadInterface {
     private String objectName() {return "UFabricClass";}
     private String receiveThreadName() { return "UFabricReceiveThread"; }
     
-    private static final String FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
+	private static final int NUMBER_OF_D_WORK_THREADS = 5;
+    //private static final String FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
     
     ///////////////#define FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM 'r'
     //////////////////#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
@@ -38,7 +39,9 @@ public class UFabricClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	for (int i = 0; i < NUMBER_OF_D_WORK_THREADS; i++) {
+    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	}
      }
     
 	public void threadCallbackFunction() {

@@ -14,6 +14,8 @@ import phwang.protocols.*;
 public class DThemeClass implements ThreadInterface {
     private String objectName() {return "DThemeClass";}
     private String receiveThreadName() { return "DThemeReceiveThread"; }
+    
+	private static final int NUMBER_OF_U_WORK_THREADS = 5;
 
     private ThemeRootClass themeRootObject;
     private DThemeParserClass dThemeParserObject;
@@ -34,7 +36,9 @@ public class DThemeClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	for (int i = 0; i < NUMBER_OF_U_WORK_THREADS; i++) {
+    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	}
      }
     
 	public void threadCallbackFunction() {

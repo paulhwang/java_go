@@ -15,6 +15,8 @@ public class DEngineClass implements ThreadInterface {
     private String objectName() {return "DEngineClass";}
     private String receiveThreadName() { return "DEngineReceiveThread"; }
     
+	private static final int NUMBER_OF_U_WORK_THREADS = 5;
+    
     private EngineRootClass engineRootObject;
     private DEngineParserClass dEngineParserObject;
     private BinderClass dBinderObject_;
@@ -35,7 +37,9 @@ public class DEngineClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	for (int i = 0; i < NUMBER_OF_U_WORK_THREADS; i++) {
+    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	}
      }
     
 	public void threadCallbackFunction() {

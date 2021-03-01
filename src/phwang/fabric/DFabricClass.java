@@ -13,6 +13,8 @@ import phwang.protocols.*;
 
 public class DFabricClass implements ThreadInterface {
     private String objectName() {return "DFabricClass";}
+    
+	private static final int NUMBER_OF_U_WORK_THREADS = 5;
     private String receiveThreadName() { return "DFabricReceiveThread"; }
     
     private FabricRootClass fabricRootObject_;
@@ -35,7 +37,9 @@ public class DFabricClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	for (int i = 0; i < NUMBER_OF_U_WORK_THREADS; i++) {
+    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName() + Integer.toString(i), this);
+    	}
     }
     
 	public void threadCallbackFunction() {

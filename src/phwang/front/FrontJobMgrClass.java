@@ -18,7 +18,7 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FrontJobMgrClass {
     private String objectName() {return "FrontJobMgrClass";}
 
-    private static final int LIST_MGR_ARRAY_SIZE = 100;
+    private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_JOB_ID = 0;
 
     private FrontRootClass frontRootObject_;

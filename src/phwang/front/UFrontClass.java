@@ -14,6 +14,8 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class UFrontClass implements ThreadInterface {
     private String objectName() {return "UFrontClass";}
     private String receiveThreadName() { return "UFrontReceiveThread"; }
+    
+	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
     private FrontRootClass frontRootObject_;
     private BinderClass uBinderObject_;
@@ -33,7 +35,9 @@ public class UFrontClass implements ThreadInterface {
     }
 
     public void startThreads() {
-    	this.threadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	for (int i = 0; i < NUMBER_OF_D_WORK_THREADS; i++) {
+    		this.threadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    	}
      }
     
 	public void threadCallbackFunction() {
