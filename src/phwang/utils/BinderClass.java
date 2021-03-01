@@ -10,6 +10,8 @@ package phwang.utils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.*;
 import phwang.utils.*;
 
@@ -30,8 +32,11 @@ public class BinderClass implements ThreadInterface {
     private String serverIpAddr_;
     private short port_;
     private Socket theTcpConnection;
-    private DataInputStream inputStream_;
-    private DataOutputStream outputStream_;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
+    private InputStreamReader inputReader;
+    private OutputStreamWriter outputWriter;
+    private Boolean useIOnotReaderWriter = true;
     
     private ListQueueClass receiveQueue;
     private ListQueueClass transmitQueue;
@@ -40,8 +45,6 @@ public class BinderClass implements ThreadInterface {
     public short port() { return this.port_; }
     public String serverIpAddr() { return this.serverIpAddr_; }
     public Socket TcpConnection() { return this.theTcpConnection; }
-    private DataInputStream InputStream() { return this.inputStream_; }
-    private DataOutputStream OutputStream() { return this.outputStream_; }
     
     public String TcpClientName() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostName() : ""; }
     public String TcpClientAddress() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostAddress() : ""; }
@@ -106,8 +109,10 @@ public class BinderClass implements ThreadInterface {
     		this.debug(false, "BindAsTcpServer", this.ownerObjectName() + " server accepted");
     		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
     		this.debug(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
-            this.outputStream_ = new DataOutputStream(this.TcpConnection().getOutputStream());
-            this.inputStream_ = new DataInputStream(this.TcpConnection().getInputStream());
+            this.outputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
+            this.inputStream = new DataInputStream(this.TcpConnection().getInputStream());
+            this.outputWriter = new OutputStreamWriter(this.TcpConnection().getOutputStream());  
+            this.inputReader = new InputStreamReader(this.TcpConnection().getInputStream());  
             this.createWorkingThreads();
             ss.close();
             return true;
@@ -143,8 +148,10 @@ public class BinderClass implements ThreadInterface {
         try {
     		this.theTcpConnection = new Socket(this.serverIpAddr(), this.port());
     		this.debug(false, "BindAsTcpClient", this.ownerObjectName() + " client connected");
-            this.outputStream_ = new DataOutputStream(this.TcpConnection().getOutputStream());
-            this.inputStream_ = new DataInputStream(this.TcpConnection().getInputStream());
+            this.outputStream = new DataOutputStream(this.TcpConnection().getOutputStream());
+            this.inputStream = new DataInputStream(this.TcpConnection().getInputStream());
+            this.outputWriter = new OutputStreamWriter(this.TcpConnection().getOutputStream());  
+            this.inputReader = new InputStreamReader(this.TcpConnection().getInputStream());  
     		this.createWorkingThreads();
     		return true;
     	}
@@ -172,7 +179,14 @@ public class BinderClass implements ThreadInterface {
         String data;
         while (true) {
         	try {
-        		data = this.InputStream().readUTF();
+        		if (this.useIOnotReaderWriter) {
+        			data = this.inputStream.readUTF();
+        		}
+        		else {
+        			data = this.inputStream.readUTF();
+        			//data = this.inputReader.read();
+        		}
+        		
         		if (data != null) {
         			this.debug(false, "binderReceiveThreadFunc", "data = " + data);
         			this.receiveQueue.enqueue(data);
@@ -231,7 +245,13 @@ public class BinderClass implements ThreadInterface {
         	}
 			
 	        try {
-	        	this.OutputStream().writeUTF(data);
+        		if (this.useIOnotReaderWriter) {
+    	        	this.outputStream.writeUTF(data);
+        		}
+        		else {
+        			this.outputWriter.write(data);
+        			this.outputWriter.flush();
+        		}
 	        }
 	        catch (Exception e) { }
         }

@@ -54,12 +54,12 @@ public class DFabricParserClass {
         }
         catch(ParseException pe) {
         	this.log("parseInputPacket", "position: " + pe.getPosition());
-        	this.abend("parseInputPacket", "ParseException: " + pe + " json_str=" + json_str);
+        	this.abend("parseInputPacket", "ParseException: " + pe + " json_str=" + json_str + "   input_data=" + input_data_val);
             this.dFabricObject.transmitData(job_id_str + "***ParseException***");
         	return;
         }
         catch (Exception e) {
-        	this.abend("parseInputPacket", "Exception: " + e + " json_str=" + json_str);
+        	this.abend("parseInputPacket", "Exception: " + e + " json_str=" + json_str + "   input_data=" + input_data_val);
             this.dFabricObject.transmitData(job_id_str + "***Exception***");
         	return;
         }
