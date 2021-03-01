@@ -34,7 +34,7 @@ public class FrontJobMgrClass {
     }
 
 
-    public FrontJobClass mallocLink() {
+    public FrontJobClass mallocJob() {
     	FrontJobClass job = new FrontJobClass();
         ListEntryClass list_entry = this.listMgr().malloc(job);
         job.bindListEntry(list_entry);

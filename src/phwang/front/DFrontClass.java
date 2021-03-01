@@ -30,7 +30,7 @@ public class DFrontClass {
     public String processHttpRequestPacket(String input_data_val) {
         this.debug(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
         
-        FrontJobClass job_entry = this.frontJobMgrObject().mallocLink();
+        FrontJobClass job_entry = this.frontJobMgrObject().mallocJob();
         this.uBinderObject().transmitData(job_entry.jobIdStr() + input_data_val);
         String response_data = job_entry.readData();
         
