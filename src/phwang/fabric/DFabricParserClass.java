@@ -52,6 +52,8 @@ public class DFabricParserClass {
         
         } catch (Exception e) {
         	this.abend("parseInputPacket", "***Exception***");
+            this.dFabricObject.transmitData(job_id_str + "not processed");
+        	return;
         }
         
         this.debug(false, "parseInputPacket", "*********************command = " + command);
