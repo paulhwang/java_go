@@ -44,11 +44,11 @@ public class DFrontParserClass {
         }
         catch(ParseException pe) {
         	this.log("parseInputPacket", "position: " + pe.getPosition());
-        	this.abend("parseInputPacket", "ParseException: " + pe + " json_str=" + json_str + "   input_data=" + input_data_val);
+        	this.abend("parseInputPacket", "ParseException: " + pe + " json_str=" + json_str);
         	return "ParseException";
         }
         catch (Exception e) {
-        	this.abend("parseInputPacket", "Exception: " + e + " json_str=" + json_str + "   input_data=" + input_data_val);
+        	this.abend("parseInputPacket", "Exception: " + e + " json_str=" + json_str);
         	return "ParseException";
         }
         

@@ -32,7 +32,6 @@ class FrontTestCaseClass implements ThreadInterface {
     private String xmtSeqString = "1111";
     private String goMoveString = "GM01021001";
     private String nameListTagString = "000";///////////////////////////////////////////////////////different from brouser which is int
-    private JSONParser parserObject;
     private String linkIdString;
     private String sessionIdString;
     private String themeIdString = "3333";
@@ -47,7 +46,6 @@ class FrontTestCaseClass implements ThreadInterface {
         this.frontTestObject_ = front_test_object_val;
         this.indexString = EncodeNumberClass.encodeNumber(index_val, 3);
         this.myNameString = "Test_" + this.indexString;
-        this.parserObject = new JSONParser();
     }
     
     public void startTestTest() {
@@ -103,7 +101,8 @@ class FrontTestCaseClass implements ThreadInterface {
         this.debug(true, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
     	
         try {
-        	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
+            JSONParser parser = new JSONParser();
+        	JSONObject json_ajex_response = (JSONObject) parser.parse(str_json_ajex_response);
 
             String name = (String) json_ajex_response.get("my_name");
             this.linkIdString = (String) json_ajex_response.get("link_id");
@@ -160,7 +159,8 @@ class FrontTestCaseClass implements ThreadInterface {
         this.debug(true, "doSetupSession", "ajex_response data=" + str_json_ajex_response);
     	
         try {
-        	JSONObject json_ajex_response = (JSONObject) this.parserObject.parse(str_json_ajex_response);
+            JSONParser parser = new JSONParser();
+        	JSONObject json_ajex_response = (JSONObject) parser.parse(str_json_ajex_response);
 
             String link_id = (String) json_ajex_response.get("link_id");
             this.sessionIdString = (String) json_ajex_response.get("session_id");
