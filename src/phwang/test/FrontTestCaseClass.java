@@ -44,7 +44,7 @@ class FrontTestCaseClass implements ThreadInterface {
         this.debug(false, "FrontTestClass", "init start");
         
         this.frontTestObject_ = front_test_object_val;
-        this.indexString = EncodeNumberClass.encodeNumber(index_val, 5);
+        this.indexString = EncodeNumberClass.encodeNumber(index_val, 6);
         this.myNameString = "Test_" + this.indexString;
     }
     

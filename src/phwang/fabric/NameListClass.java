@@ -54,6 +54,10 @@ public class NameListClass {
                 }
                 LinkClass link = (LinkClass) list_entry_array[i].data();
                 this.nameList = this.nameList + '"' + link.myName() + '"';
+                
+                if (this.nameList.length() > 1000) {
+                	return;/////////////////////////////////////for now
+                }
             }
         }
 
