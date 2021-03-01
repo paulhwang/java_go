@@ -96,7 +96,7 @@ public class BinderClass implements ThreadInterface {
 		}
     }
     
-    public Boolean tcpServerThreadFunc() {
+    private Boolean tcpServerThreadFunc() {
         this.debug(false, "TcpServerThreadFunc", "start (" + this.ownerObjectName() + " " + this.binderServerThreadName() + ")");
         this.whichThread = null;
         
@@ -136,7 +136,7 @@ public class BinderClass implements ThreadInterface {
 		}
     }
 
-    public Boolean tcpClientThreadFunc() {
+    private Boolean tcpClientThreadFunc() {
         this.debug(false, "TcpClientThreadFunc", "start (" + this.ownerObjectName() + " " + this.binderClientThreadName() + ")");
         this.whichThread = null;
 
@@ -145,7 +145,7 @@ public class BinderClass implements ThreadInterface {
     		this.debug(false, "BindAsTcpClient", this.ownerObjectName() + " client connected");
             this.outputStream_ = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.inputStream_ = new DataInputStream(this.TcpConnection().getInputStream());
-    		createWorkingThreads();
+    		this.createWorkingThreads();
     		return true;
     	}
     	catch (Exception e) {

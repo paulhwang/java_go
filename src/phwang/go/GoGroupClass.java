@@ -111,16 +111,12 @@ public class GoGroupClass {
     public void mergeWithOtherGroup(GoGroupClass group2) {
         this.debug(false, "mergeWithOtherGroup", "");
         int i = group2.minX;
-        while (i <= group2.maxX)
-        {
+        while (i <= group2.maxX) {
             int j = group2.minY;
-            while (j <= group2.maxY)
-            {
-                if (group2.existMatrix[i][j])
-                {
+            while (j <= group2.maxY) {
+                if (group2.existMatrix[i][j]) {
                     //this.debug(false, "mergeWithOtherGroup", "i=" + i + " j=" + j);
-                    if (this.existMatrix[i][j])
-                    {
+                    if (this.existMatrix[i][j]) {
                         this.abend("mergeWithOtherGroup", "already exist");
                     }
                     this.existMatrix[i][j] = group2.existMatrix[i][j];
@@ -133,45 +129,35 @@ public class GoGroupClass {
             }
             i += 1;
         }
-        if (group2.stoneCount != 0)
-        {
+        if (group2.stoneCount != 0) {
             this.abend("mergeWithOtherGroup", "theStoneCount");
         }
 
-        if (this.maxX < group2.maxX)
-        {
+        if (this.maxX < group2.maxX) {
             this.maxX = group2.maxX;
         }
-        if (this.minX > group2.minX)
-        {
+        if (this.minX > group2.minX) {
             this.minX = group2.minX;
         }
-        if (this.maxY < group2.maxY)
-        {
+        if (this.maxY < group2.maxY) {
             this.maxY = group2.maxY;
         }
-        if (this.minY > group2.minY)
-        {
+        if (this.minY > group2.minY) {
             this.minY = group2.minY;
         }
 
-        if (group2.theGroupListObject.GroupArray(group2.indexNumber) != group2)
-        {
+        if (group2.theGroupListObject.GroupArray(group2.indexNumber) != group2) {
             this.abend("mergeWithOtherGroup", "group2");
         }
     }
 
     public Boolean groupHasAir() {
         int i = this.minX;
-        while (i <= this.maxX)
-        {
+        while (i <= this.maxX) {
             int j = this.minY;
-            while (j <= this.maxY)
-            {
-                if (this.existMatrix[i][j])
-                {
-                    if (this.theGroupListObject.FightObject().RootObject().BoardObject().stoneHasAir(i, j))
-                    {
+            while (j <= this.maxY) {
+                if (this.existMatrix[i][j]) {
+                    if (this.theGroupListObject.FightObject().RootObject().BoardObject().stoneHasAir(i, j)) {
                         return true;
                     }
                 }
@@ -184,13 +170,10 @@ public class GoGroupClass {
 
     public void removeDeadStoneFromBoard() {
         int i = this.minX;
-        while (i <= this.maxX)
-        {
+        while (i <= this.maxX) {
             int j = this.minY;
-            while (j <= this.maxY)
-            {
-                if (this.existMatrix[i][j])
-                {
+            while (j <= this.maxY) {
+                if (this.existMatrix[i][j]) {
                     this.theGroupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefineClass.GO_EMPTY_STONE);
                     //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
                 }
@@ -203,16 +186,13 @@ public class GoGroupClass {
     public void markLastDeadInfo() {
         this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
 
-        if (this.maxX != this.minX)
-        {
+        if (this.maxX != this.minX) {
             this.abend("MarkLastDeadInfo", "bad x");
         }
-        if (this.maxY != this.minY)
-        {
+        if (this.maxY != this.minY) {
             this.abend("MarkLastDeadInfo", "bad y");
         }
-        if (!this.existMatrix[this.maxX][this.maxY])
-        {
+        if (!this.existMatrix[this.maxX][this.maxY]) {
             this.abend("MarkLastDeadInfo", "exist_matrix");
         }
     }
@@ -220,32 +200,24 @@ public class GoGroupClass {
     public void abendGroup() {
         int count = 0;
         int board_size = this.ConfigObject().BoardSize();
-        for (int i = 0; i < board_size; i++)
-        {
-            for (int j = 0; j < board_size; j++)
-            {
-                if (this.existMatrix[i][j])
-                {
+        for (int i = 0; i < board_size; i++) {
+            for (int j = 0; j < board_size; j++) {
+                if (this.existMatrix[i][j]) {
                     count++;
                 }
             }
         }
-        if (this.stoneCount != count)
-        {
+        if (this.stoneCount != count) {
             this.abend("AbendGroup", "stone count");
         }
     }
 
     public void abendOnGroupConflict(GoGroupClass other_group_val) {
         int board_size = this.ConfigObject().BoardSize();
-        for (int i = 0; i < board_size; i++)
-        {
-            for (int j = 0; j < board_size; j++)
-            {
-                if (this.existMatrix[i][j])
-                {
-                    if (other_group_val.existMatrix[i][j])
-                    {
+        for (int i = 0; i < board_size; i++) {
+            for (int j = 0; j < board_size; j++) {
+                if (this.existMatrix[i][j]) {
+                    if (other_group_val.existMatrix[i][j]) {
                         this.abend("AbendOnGroupConflict", "stone  exists in 2 groups");
                         //this->abend("abendOnGroupConflict", "stone (" + i + "," + j + ") exists in 2 groups: (" + this.myColor() + ":" + this.indexNumber() + ":" + this.stoneCount() + ") ("
                         //    + other_group_val.myColor() + ":" + other_group_val.indexNumber() + ":" + other_group_val.stoneCount() + ")");

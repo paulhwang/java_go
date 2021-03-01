@@ -54,8 +54,7 @@ public class GoGroupListClass {
 
     public int totalStoneCount() {
         int count = 0;
-        for (int i = 0; i < this.groupCount; i++)
-        {
+        for (int i = 0; i < this.groupCount; i++) {
             count += this.groupArray[i].StoneCount();
         }
         return count;
@@ -70,10 +69,8 @@ public class GoGroupListClass {
 
     public GoGroupClass findCandidateGroup(int x_val, int y_val) {
         int i = 0;
-        while (i < this.groupCount)
-        {
-            if (this.groupArray[i].isCandidateGroup(x_val, y_val))
-            {
+        while (i < this.groupCount) {
+            if (this.groupArray[i].isCandidateGroup(x_val, y_val)) {
                 return this.groupArray[i];
             }
             i += 1;
@@ -83,12 +80,9 @@ public class GoGroupListClass {
 
     public GoGroupClass findOtherCandidateGroup(GoGroupClass group_val, int x_val, int y_val) {
         int i = 0;
-        while (i < this.groupCount)
-        {
-            if (this.groupArray[i] != group_val)
-            {
-                if (this.groupArray[i].isCandidateGroup(x_val, y_val))
-                {
+        while (i < this.groupCount) {
+            if (this.groupArray[i] != group_val) {
+                if (this.groupArray[i].isCandidateGroup(x_val, y_val)) {
                     return this.groupArray[i];
                 }
             }
@@ -99,8 +93,7 @@ public class GoGroupListClass {
 
     public void removeGroupFromGroupList(GoGroupClass group_val) {
         this.groupCount--;
-        if (group_val.IndexNumber() != this.groupCount)
-        {
+        if (group_val.IndexNumber() != this.groupCount) {
             this.groupArray[this.groupCount].SetIndexNumber(group_val.IndexNumber());
             this.groupArray[group_val.IndexNumber()] = this.groupArray[this.groupCount];
         }
@@ -109,11 +102,9 @@ public class GoGroupListClass {
 
     public Boolean stoneExistWithinMe(int x_val, int y_val) {
         int i = 0;
-        while (i < this.groupCount)
-        {
+        while (i < this.groupCount) {
             GoGroupClass group = this.groupArray[i];
-            if (group.ExistMatrix(x_val, y_val))
-            {
+            if (group.ExistMatrix(x_val, y_val)) {
                 return true;
             }
             i += 1;
@@ -123,21 +114,17 @@ public class GoGroupListClass {
 
     public void abendGroupList() {
         int i = 0;
-        while (i < this.groupCount)
-        {
+        while (i < this.groupCount) {
             GoGroupClass group = this.groupArray[i];
-            if (group == null)
-            {
+            if (group == null) {
                 this.abend("abendGroupList", "null group");
                 return;
             }
-            if (group.GroupListObject() != this)
-            {
+            if (group.GroupListObject() != this) {
                 this.abend("abendGroupList", "groupListObject");
                 return;
             }
-            if (group.IndexNumber() != i)
-            {
+            if (group.IndexNumber() != i) {
                 this.abend("abendGroupList", "index ");
                 return;
             }
@@ -145,8 +132,7 @@ public class GoGroupListClass {
             group.abendGroup();
 
             int j = i + 1;
-            while (j < this.groupCount)
-            {
+            while (j < this.groupCount) {
                 group.abendOnGroupConflict(this.groupArray[j]);
                 j = j + 1;
             }
