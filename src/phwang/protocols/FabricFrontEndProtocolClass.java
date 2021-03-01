@@ -8,7 +8,7 @@
 
 package phwang.protocols;
 
-//import phwang.fabric.FabricDefineClass;
+import phwang.fabric.FabricDefineClass;
 import phwang.front.FrontDefineClass;
 
 public class FabricFrontEndProtocolClass {
@@ -20,6 +20,14 @@ public class FabricFrontEndProtocolClass {
     public static final String WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA = "D";
     public static final String WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST = "N";
 
-    public static final int FRONT_JOB_ID_SIZE = FrontDefineClass.FRONT_JOB_ID_SIZE;
     public static final int WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE = 4;
+
+    public static final int FRONT_JOB_ID_SIZE = FrontDefineClass.FRONT_JOB_ID_SIZE;
+	
+	public static final int FABRIC_LINK_ID_SIZE    = FabricDefineClass.FABRIC_LINK_ID_SIZE;
+	public static final int FABRIC_SESSION_ID_SIZE = FabricDefineClass.FABRIC_SESSION_ID_SIZE;
+	
+	public static final int COMMAND_DATA_LENGTH_SIZE = FabricDefineClass.COMMAND_DATA_LENGTH_SIZE;
+	public static final String LINK_SETUP_COMMAND    = FabricDefineClass.LINK_SETUP_COMMAND;
+
 }
