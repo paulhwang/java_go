@@ -15,6 +15,7 @@ import phwang.utils.*;
 import phwang.browser.BrowserDefine;
 import phwang.protocols.FabricFrontEndProtocolClass;
 import phwang.protocols.FabricThemeProtocolClass;
+import org.json.simple.parser.ParseException;
 
 public class DFabricParserClass {
     private String objectName() {return "DFabricParserClass";}
@@ -40,19 +41,26 @@ public class DFabricParserClass {
 
     public void parseInputPacket(String input_data_val) {
         String job_id_str = input_data_val.substring(0, FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
-        String toDes = input_data_val.substring(FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
+        String json_str = input_data_val.substring(FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
         String command = null;
         String data = null;
         
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(toDes);
+        	JSONObject json = (JSONObject) this.parserObject.parse(json_str);
 
             command = (String) json.get("command");
             data = (String) json.get("data");
         
-        } catch (Exception e) {
-        	this.abend("parseInputPacket", "***Exception***");
-            this.dFabricObject.transmitData(job_id_str + "not processed");
+        }
+        catch(ParseException pe) {
+        	this.log("parseInputPacket", "position: " + pe.getPosition());
+        	this.abend("parseInputPacket", "ParseException: " + pe + " data=" + json_str);
+            this.dFabricObject.transmitData(job_id_str + "***ParseException***");
+        	return;
+        }
+        catch (Exception e) {
+        	this.abend("parseInputPacket", "Exception: " + e);
+            this.dFabricObject.transmitData(job_id_str + "***Exception***");
         	return;
         }
         
