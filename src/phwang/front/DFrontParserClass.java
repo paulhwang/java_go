@@ -11,9 +11,11 @@ package phwang.front;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import phwang.protocols.FabricFrontEndProtocolClass;
 import phwang.utils.AbendClass;
 import phwang.utils.ListMgrClass;
+import phwang.utils.EncodeNumberClass;
+import phwang.fabric.LinkClass;
+import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class DFrontParserClass {
     private String objectName() {return "DFrontParserClass";}
@@ -55,7 +57,7 @@ public class DFrontParserClass {
         this.debug(false, "parseInputPacket", "*********************command = " + command);
         String response_data = null;
         if (command.equals("setup_link")) {
-            //response_data = this.processSetupLinkRequest(data);
+            response_data = this.processSetupLinkRequest(data);
         }
         else if (command.equals("get_link_data")) {
             //response_data = this.processGetLinkDataRequest(data);
@@ -84,6 +86,37 @@ public class DFrontParserClass {
         }
         
         return(response_data);
+    }
+
+    private String processSetupLinkRequest(String json_str_val) {
+        this.debug(false, "processSetupLinkRequest", "json_str_val = " + json_str_val);
+    	String my_name;
+    	String password;
+
+        try {
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str_val);
+        	my_name = (String) json.get("my_name");
+        	password = (String) json.get("password");
+        }
+        catch(ParseException pe) {
+        	this.abend("processSetupLinkRequest", "ParseException: " + pe + " json_str=" + json_str_val);
+        	return "ParseException";
+        }
+        catch (Exception e) {
+        	this.abend("processSetupLinkRequest", "Exception: " + e + " json_str=" + json_str_val);
+        	return "Exception";
+        }
+    	
+        this.debug(true, "processSetupLinkRequest", "my_name = " + my_name);
+        this.debug(true, "processSetupLinkRequest", "password = " + password);
+
+        StringBuilder response_buf = new StringBuilder("L"); 
+        response_buf.append(EncodeNumberClass.encodeNumber(my_name.length(), 2));
+        response_buf.append(my_name);
+        response_buf.append(EncodeNumberClass.encodeNumber(password.length(), 2));
+        response_buf.append(password);
+        return response_buf.toString();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

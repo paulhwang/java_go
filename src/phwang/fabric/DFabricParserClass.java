@@ -12,6 +12,7 @@ package phwang.fabric;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
+import phwang.utils.EncodeNumberClass;
 import phwang.browser.BrowserDefine;
 import phwang.protocols.FabricFrontEndProtocolClass;
 import phwang.protocols.FabricThemeProtocolClass;
@@ -42,6 +43,19 @@ public class DFabricParserClass {
         String json_str = input_data_val.substring(FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
         String command = null;
         String data = null;
+        String response_data = null;
+        
+        this.debug(true, "parseInputPacket", "*****input_data_val = " + input_data_val);
+        
+        if (json_str.charAt(0) == 'L') {
+            response_data = this.processSetupLinkRequest(json_str.substring(1));
+            if (response_data == null) {
+            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            }
+            this.dFabricObject.transmitData(job_id_str + response_data);
+        	return;
+        }
+        
         
         try {
             JSONParser parser = new JSONParser();
@@ -64,9 +78,8 @@ public class DFabricParserClass {
         }
         
         this.debug(false, "parseInputPacket", "*********************command = " + command);
-        String response_data = null;
         if (command.equals("setup_link")) {
-            response_data = this.processSetupLinkRequest(data);
+            //response_data = this.processSetupLinkRequest(data);
         }
         else if (command.equals("get_link_data")) {
             response_data = this.processGetLinkDataRequest(data);
@@ -100,7 +113,29 @@ public class DFabricParserClass {
         this.dFabricObject.transmitData(job_id_str + response_data);
     }
 
-    private String processSetupLinkRequest(String json_str_val) {
+    private String processSetupLinkRequest(String input_str_val) {
+        this.debug(false, "processSetupLinkRequest", "input_str_val = " + input_str_val);
+        
+        int my_name_len = EncodeNumberClass.decodeNumber(input_str_val.substring(0, 2));
+    	String my_name = input_str_val.substring(2, 2 + my_name_len);
+    	String rest_str = input_str_val.substring(2 + my_name_len);
+    	
+        int password_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, 2));
+    	String password = rest_str.substring(2, 2 + password_len);
+    	
+        this.debug(true, "processSetupLinkRequest", "my_name = " + my_name);
+        this.debug(true, "processSetupLinkRequest", "password = " + password);
+
+        LinkClass link = this.LinkMgrObject().mallocLink(my_name);
+        if (link == null) {
+        	this.abend("processSetupLinkRequest", "link is null");
+        	return null;
+        }
+        String response_data = this.generateSetupLinkResponse(link.linkIdStr(), link.myName());
+        return response_data;
+    }
+
+    private String processSetupLinkRequest00000(String json_str_val) {
         this.debug(false, "processSetupLinkRequest", "json_str_val = " + json_str_val);
     	String my_name;
     	String password;
@@ -131,6 +166,7 @@ public class DFabricParserClass {
         String response_data = this.generateSetupLinkResponse(link.linkIdStr(), link.myName());
         return response_data;
     }
+    
     private String generateSetupLinkResponse(String link_id_val, String my_name_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("my_name", my_name_val);
