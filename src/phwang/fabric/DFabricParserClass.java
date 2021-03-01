@@ -24,7 +24,6 @@ public class DFabricParserClass {
 
     private DFabricClass dFabricObject;
     private DFabricResponseClass dFabricResponseObject;
-    private JSONParser parserObject;
 
     public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
     private UFabricClass UFabricObject() { return this.fabricRootObject().uFabricObject(); }
@@ -36,7 +35,6 @@ public class DFabricParserClass {
 
         this.dFabricObject = dfabric_object_val;
         this.dFabricResponseObject = new DFabricResponseClass(this);
-        this.parserObject = new JSONParser();
     }
 
     public void parseInputPacket(String input_data_val) {
@@ -46,7 +44,8 @@ public class DFabricParserClass {
         String data = null;
         
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(json_str);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str);
 
             command = (String) json.get("command");
             data = (String) json.get("data");
@@ -102,7 +101,8 @@ public class DFabricParserClass {
         this.debug(false, "processSetupLinkRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String my_name = (String) json.get("my_name");
         	String password = (String) json.get("password");
         	
@@ -128,7 +128,8 @@ public class DFabricParserClass {
         this.debug(false, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	
             this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
@@ -192,7 +193,8 @@ public class DFabricParserClass {
         this.debug(false, "processGetNameListRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String name_list_tag_str = (String) json.get("name_list_tag");
         	
@@ -227,7 +229,8 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSessionRequest", "input_data_val = " + input_data_val);
 
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String his_name = (String) json.get("his_name");
         	String theme_data_str = (String) json.get("theme_data");
@@ -304,7 +307,8 @@ public class DFabricParserClass {
 
         
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	String theme_id_str = (String) json.get("theme_id");
@@ -355,7 +359,8 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSession3Request", "input_data_val = " + input_data_val);
         
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	
@@ -399,7 +404,8 @@ public class DFabricParserClass {
         this.debug(false, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
        
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	String data = (String) json.get("data");
@@ -456,7 +462,8 @@ public class DFabricParserClass {
 
         
         try {
-        	JSONObject json = (JSONObject) this.parserObject.parse(input_data_val);
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(input_data_val);
         	String link_id_str = (String) json.get("link_id");
         	String session_id_str = (String) json.get("session_id");
         	
