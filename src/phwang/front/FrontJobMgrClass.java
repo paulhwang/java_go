@@ -33,7 +33,6 @@ public class FrontJobMgrClass {
         this.listMgr_ = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
     }
 
-
     public FrontJobClass mallocJob() {
     	FrontJobClass job = new FrontJobClass();
         ListEntryClass list_entry = this.listMgr().malloc(job);
