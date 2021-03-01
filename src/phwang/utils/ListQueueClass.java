@@ -31,7 +31,7 @@ public class ListQueueClass {
     public int length() { return this.length_; }
 
     public ListQueueClass(Boolean do_suspend_val, int max_length_val) {
-        this.debugIt(false, "ListQueueClass", "init start");
+        this.debug(false, "ListQueueClass", "init start");
         
         this.maxLength = max_length_val;
         this.theLock = new ReentrantLock();
@@ -43,7 +43,7 @@ public class ListQueueClass {
     }
 
     public void enqueue(Object data_val) {
-        this.debugIt(false, "enqueue", (String) data_val);
+        this.debug(false, "enqueue", (String) data_val);
 
         QueueEntryClass entry = this.malloc();
         entry.data = data_val;
@@ -92,7 +92,7 @@ public class ListQueueClass {
             Object data = entry.data;
             this.free(entry);
 
-            this.debugIt(false, "dequeue", "data=" + (String)data);
+            this.debug(false, "dequeue", "data=" + (String)data);
             return data;
         }
     }
@@ -140,7 +140,7 @@ public class ListQueueClass {
         this.head = this.tail = null;
 
         if (this.length_ != 0) {
-            this.abendIt("flush_", "length is not 0");
+            this.abend("flush_", "length is not 0");
         }
     }
 
@@ -206,7 +206,7 @@ public class ListQueueClass {
 
         if (this.length_ == 0) {
             if ((this.head != null) || (this.tail != null)) {
-                this.abendIt("abendQueue_", msg_val + " length_ == 0");
+                this.abend("abendQueue_", msg_val + " length_ == 0");
             }
             return;
         }
@@ -219,7 +219,7 @@ public class ListQueueClass {
         }
 
         if (length != this.length_) {
-            this.abendIt("abendQueue_", msg_val + " from head: bad length");
+            this.abend("abendQueue_", msg_val + " from head: bad length");
         }
 
         length = 0;
@@ -229,13 +229,13 @@ public class ListQueueClass {
             entry = entry.prev;
         }
         if (length != this.length_) {
-           this.abendIt("abendQueue_", msg_val + " from tail: bad length");
+           this.abend("abendQueue_", msg_val + " from tail: bad length");
         }
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 
 class QueueEntryClass {

@@ -27,7 +27,7 @@ public class UFrontClass implements ThreadInterface {
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public UFrontClass(FrontRootClass root_object_val) {
-        this.debugIt(false, "UFrontClass", "init start");
+        this.debug(false, "UFrontClass", "init start");
         
         this.frontRootObject_ = root_object_val;
         this.uBinderObject_ = new BinderClass(this.objectName());
@@ -45,7 +45,7 @@ public class UFrontClass implements ThreadInterface {
 	}
     
     private void uFrontReceiveThreadFunc() {
-        this.debugIt(false, "UFrontReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "UFrontReceiveThreadFunc", "start " + this.receiveThreadName());
         
         while (true) {
             if (this.stopReceiveThreadFlag) {
@@ -54,32 +54,32 @@ public class UFrontClass implements ThreadInterface {
 
             String received_data = this.uBinderObject().receiveData();
             if (received_data == null) {
-                this.abendIt("UFrontReceiveThreadFunc", "null data");
+                this.abend("UFrontReceiveThreadFunc", "null data");
             	continue;
             }
 
-            this.debugIt(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
+            this.debug(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FrontDefineClass.FRONT_JOB_ID_SIZE);
             String response_data = received_data.substring(FrontDefineClass.FRONT_JOB_ID_SIZE);
 
             FrontJobClass job_entry = this.frontJobMgrObject().getLinkByIdStr(ajax_id_str);
             if (job_entry == null) {
-                this.abendIt("UFrontReceiveThreadFunc", "null ajax_entry");
+                this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;
             }
 
             job_entry.WriteData(response_data);
         }
 
-        this.debugIt(true, "UFrontReceiveThreadFunc", "exit");
+        this.debug(true, "UFrontReceiveThreadFunc", "exit");
     }
 
     public void StopReceiveThread() {
         this.stopReceiveThreadFlag = true;
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

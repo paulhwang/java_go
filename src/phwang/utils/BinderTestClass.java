@@ -48,7 +48,7 @@ class BinderServerTestClass {
     private BinderClass BinderObject() { return this.theBinderObject; }
 
     public BinderServerTestClass(Boolean use_binder_val, short port_val) {
-        this.debugIt(false, "BinderServerTestClass", "init start");
+        this.debug(false, "BinderServerTestClass", "init start");
         
         this.useBinder = use_binder_val;
         this.thePort = port_val;
@@ -62,30 +62,30 @@ class BinderServerTestClass {
     }
     
     public void binderTestServerThreadFunc() {
-        this.debugIt(true, "binderTestServerThreadFunc", "start thread ***");
+        this.debug(true, "binderTestServerThreadFunc", "start thread ***");
         
         if (this.useBinder) {
         	this.theBinderObject = new BinderClass("BinderTestServer");
         	if (this.BinderObject().bindAsTcpServer(true, this.Port())) {
         		this.BinderObject().transmitData("Welcome!!");
         		String data = this.BinderObject().receiveData();
-                this.debugIt(true, "binderTestServerThreadFunc", "received data = " + data);
+                this.debug(true, "binderTestServerThreadFunc", "received data = " + data);
         	}
         }
         else {
         	try {
         		ServerSocket ss = new ServerSocket(this.Port());
         		Socket connection = ss.accept();
-        		this.debugIt(true, "binderTestServerThreadFunc", "accepted");
+        		this.debug(true, "binderTestServerThreadFunc", "accepted");
         		this.clientName = connection.getInetAddress().getHostName();
         		this.clientAddress = connection.getInetAddress().getHostAddress();
-        		this.debugIt(true, "binderTestServerThreadFunc", "clientAddress = " + this.clientAddress);
-        		this.debugIt(true, "binderTestServerThreadFunc", "clientName = " + this.clientName);
+        		this.debug(true, "binderTestServerThreadFunc", "clientAddress = " + this.clientAddress);
+        		this.debug(true, "binderTestServerThreadFunc", "clientName = " + this.clientName);
                 ss.close();
 
                 inputStream = new DataInputStream(connection.getInputStream());
                 String data = inputStream.readUTF();
-                this.debugIt(true, "binderTestServerThreadFunc", "received data = " + data);
+                this.debug(true, "binderTestServerThreadFunc", "received data = " + data);
                 outputStream = new DataOutputStream(connection.getOutputStream());
                 outputStream.writeUTF("Welcome!");
         	}
@@ -94,18 +94,9 @@ class BinderServerTestClass {
         }
     }
     
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) {
-        if (on_off_val)
-            this.logitIt(str0_val, str1_val);
-    }
-
-    private void logitIt(String str0_val, String str1_val) {
-        AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val);
-    }
-
-    public void abendIt(String str0_val, String str1_val) {
-        AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val);
-    }
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 
 class BinderTestServerRunnable implements Runnable {
@@ -141,7 +132,7 @@ class BinderClientTestClass {
     private BinderClass BinderObject() { return this.theBinderObject; }
 
     public BinderClientTestClass(Boolean use_binder_val, String host_val, short port_val) {
-        this.debugIt(false, "BinderClientTestClass", "init start");
+        this.debug(false, "BinderClientTestClass", "init start");
         
         this.useBinder = use_binder_val;
         this.theHost = host_val;
@@ -156,37 +147,37 @@ class BinderClientTestClass {
     }
     
     public void binderTestClientThreadFunc() {
-        this.debugIt(true, "binderTestClientThreadFunc", "start thread ***");
+        this.debug(true, "binderTestClientThreadFunc", "start thread ***");
     	
         if (this.useBinder) {
         	this.theBinderObject = new BinderClass("BinderTestServer");
         	if (this.theBinderObject.bindAsTcpClient(false, this.Host(), this.Port())) {
         		this.BinderObject().transmitData("Hello!!");
         		String data = this.BinderObject().receiveData();
-                this.debugIt(true, "binderTestClientThreadFunc", "received data = " + data);
+                this.debug(true, "binderTestClientThreadFunc", "received data = " + data);
         	}
       	
         }
         else {
         	try {
         		Socket connection = new Socket(this.Host(), this.Port());
-        		this.debugIt(true, "binderTestClientThreadFunc", "cconnected");
+        		this.debug(true, "binderTestClientThreadFunc", "cconnected");
         		
                 outputStream = new DataOutputStream(connection.getOutputStream());
                 outputStream.writeUTF("Hello!");
                 inputStream = new DataInputStream(connection.getInputStream());
                 String data = inputStream.readUTF();
-                this.debugIt(true, "binderTestClientThreadFunc", "received data = " + data);
+                this.debug(true, "binderTestClientThreadFunc", "received data = " + data);
                 
         	}
         	catch (Exception e) {
         	}
         }
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 
 class BinderTestClientRunnable implements Runnable {

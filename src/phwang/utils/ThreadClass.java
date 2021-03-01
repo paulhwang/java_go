@@ -20,14 +20,14 @@ public class ThreadClass implements Runnable {
     public String ThreadName( ) { return this.threadName; }
     
     public ThreadClass(String thread_name_val, ThreadInterface calling_object_val) {
-        this.debugIt(false, "ThreadClass", "init start");
+        this.debug(false, "ThreadClass", "init start");
     	
         this.threadName = thread_name_val;
     	this.StartThread(calling_object_val);
     }
     
     public void StartThread(ThreadInterface calling_object_val) {
-        this.debugIt(false, "StartThread", "Create thread (" + this.ThreadName() + ")");
+        this.debug(false, "StartThread", "Create thread (" + this.ThreadName() + ")");
         this.callingObject = calling_object_val;
         this.theThread = new Thread(this);
         this.theThread.start();
@@ -35,10 +35,10 @@ public class ThreadClass implements Runnable {
     
 	public void run() {
 		this.callingObject.threadCallbackFunction();
-        this.debugIt(false, "run", this.ThreadName() + "exit");
+        this.debug(false, "run", this.ThreadName() + "exit");
 	}
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

@@ -64,12 +64,12 @@ public class GoFightClass {
     }
 
     public void enterBattle(GoMoveClass move_val) {
-        this.debugIt(false, "enterBattle", move_val.MoveInfo());
+        this.debug(false, "enterBattle", move_val.MoveInfo());
 
         this.BoardObject().addStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
         GoGroupClass my_group = this.insertStoneToGroupList(move_val);
         if (my_group == null) {
-            this.abendIt("enterBattle", "fail in insertStoneToGroupList");
+            this.abend("enterBattle", "fail in insertStoneToGroupList");
             return;
         }
 
@@ -87,7 +87,7 @@ public class GoFightClass {
                 this.BoardObject().AddWhiteCapturedStones(dead_count);
             }
             else {
-                this.abendIt("enterBattle", "bad color");
+                this.abend("enterBattle", "bad color");
             }
         }
         this.abendEngine();
@@ -103,7 +103,7 @@ public class GoFightClass {
             g_list = this.whiteGroupList();
         }
         else {
-            this.abendIt("insertStoneToGroupList", move_val.MoveInfo());
+            this.abend("insertStoneToGroupList", move_val.MoveInfo());
             return null;
         }
 
@@ -129,7 +129,7 @@ public class GoFightClass {
             g_list.removeGroupFromGroupList(group2);
         }
         if (dummy_count > 3) {
-            this.abendIt("insertStoneToGroupList", "dummy_count");
+            this.abend("insertStoneToGroupList", "dummy_count");
         }
         return group;
     }
@@ -159,7 +159,7 @@ public class GoFightClass {
         if (his_group == null)
         {
             //this.debugIt(true, "killOtherColorGroup", "my_color=" + this.myColor + " his_color=" + this.hisColor);
-            this.abendIt("killOtherColorGroup", "null his_group");
+            this.abend("killOtherColorGroup", "null his_group");
             return 0;
         }
 
@@ -236,7 +236,7 @@ public class GoFightClass {
         if (!this.abendEngineOn) {
             return;
         }
-        this.debugIt(false, "abendEngine", "is ON ***");
+        this.debug(false, "abendEngine", "is ON ***");
 
         /*
         int stones_count = 0;
@@ -258,19 +258,19 @@ public class GoFightClass {
                 if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_BLACK_STONE) {
                     black_stone_count++;
                     if (!this.blackGroupList().stoneExistWithinMe(x, y)) {
-                        this.abendIt("abendEngine", "black stone does not exist in blackGroupList");
+                        this.abend("abendEngine", "black stone does not exist in blackGroupList");
                     }
                 }
                 else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_WHITE_STONE) {
                     white_stone_count++;
                     if (!this.whiteGroupList().stoneExistWithinMe(x, y)) {
-                        this.abendIt("abendEngine", "white stone does not exist in whiteGroupList");
+                        this.abend("abendEngine", "white stone does not exist in whiteGroupList");
                     }
                 }
                 else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_EMPTY_STONE) {
                 }
                 else {
-                    this.abendIt("abendEngine", "bad color in theBoardArray");
+                    this.abend("abendEngine", "bad color in theBoardArray");
                 }
             }
         }
@@ -283,39 +283,39 @@ public class GoFightClass {
                     black_stone_count1++;
 
                     if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_BLACK_STONE) {
-                        this.abendIt("abendEngine", "black stone does not exist in theBoardArray");
+                        this.abend("abendEngine", "black stone does not exist in theBoardArray");
                     }
 
                     if (this.whiteGroupList().stoneExistWithinMe(x, y)) {
-                        this.abendIt("abendEngine", "balck exist in wrong group list");
+                        this.abend("abendEngine", "balck exist in wrong group list");
                     }
                 }
                 if (this.whiteGroupList().stoneExistWithinMe(x, y)) {
                     white_stone_count1++;
 
                     if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_WHITE_STONE) {
-                        this.abendIt("abendEngine", "black stone does not exist in theBoardArray");
+                        this.abend("abendEngine", "black stone does not exist in theBoardArray");
                     }
                 }
             }
         }
 
         if (black_stone_count != black_stone_count1) {
-            this.abendIt("abendEngine", "black_stone_count does not match");
+            this.abend("abendEngine", "black_stone_count does not match");
         }
         if (white_stone_count != white_stone_count1) {
-            this.abendIt("abendEngine", "white_stone_count does not match");
+            this.abend("abendEngine", "white_stone_count does not match");
         }
 
         if (this.blackGroupList().totalStoneCount() != black_stone_count) {
             //printf("abendEngine   %d\n", this->blackGroupList()->totalStoneCount());
             //printf("abendEngine   %d\n", black_stone_count);
-            this.abendIt("abendEngine", "black_stone count does not match");
+            this.abend("abendEngine", "black_stone count does not match");
         }
         if (this.whiteGroupList().totalStoneCount() != white_stone_count) {
             //printf("abendEngine   %d\n", this->whiteGroupList()->totalStoneCount());
             //printf("abendEngine   %d\n", white_stone_count);
-            this.abendIt("abendEngine", "white count does not match");
+            this.abend("abendEngine", "white count does not match");
         }
         /*
 
@@ -334,8 +334,8 @@ public class GoFightClass {
         this.blackEmptyGroupList().abendGroupList();
         this.whiteEmptyGroupList().abendGroupList();
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

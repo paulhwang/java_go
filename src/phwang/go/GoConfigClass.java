@@ -27,7 +27,7 @@ public class GoConfigClass {
     }
 
     public void configIt(String input_data_val) {
-    	this.debugIt(false, "ConfigIt", "input_data_val=" + input_data_val);
+    	this.debug(false, "ConfigIt", "input_data_val=" + input_data_val);
     	
         String len_str = input_data_val.substring(0,3);
         String board_size_str = input_data_val.substring(3, 5);
@@ -38,7 +38,7 @@ public class GoConfigClass {
         this.handicapPoint = EncodeNumberClass.decodeNumber(handicap_str);
         this.komiPoint = EncodeNumberClass.decodeNumber(komi_str);
         
-    	this.debugIt(false, "ConfigIt", "boardSize=" + boardSize);
+    	this.debug(false, "ConfigIt", "boardSize=" + boardSize);
     }
 
     private Boolean isValidCoordinate(int coordinate_val) {
@@ -48,8 +48,8 @@ public class GoConfigClass {
     public Boolean IsValidCoordinates(int x_val, int y_val) {
         return this.isValidCoordinate(x_val) && this.isValidCoordinate(y_val);
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

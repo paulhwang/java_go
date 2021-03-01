@@ -57,7 +57,7 @@ public class GoGroupClass {
 
     public void insertStoneToGroup(int x_val, int y_val, Boolean dead_val) {
         if (this.existMatrix[x_val][y_val]) {
-            this.abendIt("insertStoneToGroup", "stone already exists in group");
+            this.abend("insertStoneToGroup", "stone already exists in group");
         }
 
         if (this.stoneCount == 0) {
@@ -109,7 +109,7 @@ public class GoGroupClass {
     }
 
     public void mergeWithOtherGroup(GoGroupClass group2) {
-        this.debugIt(false, "mergeWithOtherGroup", "");
+        this.debug(false, "mergeWithOtherGroup", "");
         int i = group2.minX;
         while (i <= group2.maxX)
         {
@@ -121,7 +121,7 @@ public class GoGroupClass {
                     //this.debug(false, "mergeWithOtherGroup", "i=" + i + " j=" + j);
                     if (this.existMatrix[i][j])
                     {
-                        this.abendIt("mergeWithOtherGroup", "already exist");
+                        this.abend("mergeWithOtherGroup", "already exist");
                     }
                     this.existMatrix[i][j] = group2.existMatrix[i][j];
                     this.stoneCount++;
@@ -135,7 +135,7 @@ public class GoGroupClass {
         }
         if (group2.stoneCount != 0)
         {
-            this.abendIt("mergeWithOtherGroup", "theStoneCount");
+            this.abend("mergeWithOtherGroup", "theStoneCount");
         }
 
         if (this.maxX < group2.maxX)
@@ -157,7 +157,7 @@ public class GoGroupClass {
 
         if (group2.theGroupListObject.GroupArray(group2.indexNumber) != group2)
         {
-            this.abendIt("mergeWithOtherGroup", "group2");
+            this.abend("mergeWithOtherGroup", "group2");
         }
     }
 
@@ -205,15 +205,15 @@ public class GoGroupClass {
 
         if (this.maxX != this.minX)
         {
-            this.abendIt("MarkLastDeadInfo", "bad x");
+            this.abend("MarkLastDeadInfo", "bad x");
         }
         if (this.maxY != this.minY)
         {
-            this.abendIt("MarkLastDeadInfo", "bad y");
+            this.abend("MarkLastDeadInfo", "bad y");
         }
         if (!this.existMatrix[this.maxX][this.maxY])
         {
-            this.abendIt("MarkLastDeadInfo", "exist_matrix");
+            this.abend("MarkLastDeadInfo", "exist_matrix");
         }
     }
 
@@ -232,7 +232,7 @@ public class GoGroupClass {
         }
         if (this.stoneCount != count)
         {
-            this.abendIt("AbendGroup", "stone count");
+            this.abend("AbendGroup", "stone count");
         }
     }
 
@@ -246,7 +246,7 @@ public class GoGroupClass {
                 {
                     if (other_group_val.existMatrix[i][j])
                     {
-                        this.abendIt("AbendOnGroupConflict", "stone  exists in 2 groups");
+                        this.abend("AbendOnGroupConflict", "stone  exists in 2 groups");
                         //this->abend("abendOnGroupConflict", "stone (" + i + "," + j + ") exists in 2 groups: (" + this.myColor() + ":" + this.indexNumber() + ":" + this.stoneCount() + ") ("
                         //    + other_group_val.myColor() + ":" + other_group_val.indexNumber() + ":" + other_group_val.stoneCount() + ")");
                     }
@@ -254,8 +254,8 @@ public class GoGroupClass {
             }
         }
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }

@@ -75,12 +75,12 @@ public class BinderClass implements ThreadInterface {
 			return;
 		}
 		
-        this.abendIt("binderReceiveThreadFunc", "not server or client");
+        this.abend("binderReceiveThreadFunc", "not server or client");
 	}
 
     public Boolean bindAsTcpServer(Boolean create_server_thread_val, short port_val) {
     	if (this.whichThread != null) {
-            this.abendIt("BindAsTcpServer", "bindAs is not null");
+            this.abend("BindAsTcpServer", "bindAs is not null");
     		return false;
     	}
     	
@@ -97,15 +97,15 @@ public class BinderClass implements ThreadInterface {
     }
     
     public Boolean tcpServerThreadFunc() {
-        this.debugIt(false, "TcpServerThreadFunc", "start (" + this.ownerObjectName() + " " + this.binderServerThreadName() + ")");
+        this.debug(false, "TcpServerThreadFunc", "start (" + this.ownerObjectName() + " " + this.binderServerThreadName() + ")");
         this.whichThread = null;
         
     	try {
     		ServerSocket ss = new ServerSocket(this.port());
     		this.theTcpConnection = ss.accept();
-    		this.debugIt(false, "BindAsTcpServer", this.ownerObjectName() + " server accepted");
-    		this.debugIt(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
-    		this.debugIt(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
+    		this.debug(false, "BindAsTcpServer", this.ownerObjectName() + " server accepted");
+    		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
+    		this.debug(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
             this.outputStream_ = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.inputStream_ = new DataInputStream(this.TcpConnection().getInputStream());
             this.createWorkingThreads();
@@ -119,7 +119,7 @@ public class BinderClass implements ThreadInterface {
 
     public Boolean bindAsTcpClient(Boolean create_client_thread_val, String ip_addr_val, short port_val) {
     	if (this.whichThread != null) {
-            this.abendIt("BindAsTcpServer", "bindAs is not null");
+            this.abend("BindAsTcpServer", "bindAs is not null");
     		return false;
     	}
 
@@ -137,12 +137,12 @@ public class BinderClass implements ThreadInterface {
     }
 
     public Boolean tcpClientThreadFunc() {
-        this.debugIt(false, "TcpClientThreadFunc", "start (" + this.ownerObjectName() + " " + this.binderClientThreadName() + ")");
+        this.debug(false, "TcpClientThreadFunc", "start (" + this.ownerObjectName() + " " + this.binderClientThreadName() + ")");
         this.whichThread = null;
 
         try {
     		this.theTcpConnection = new Socket(this.serverIpAddr(), this.port());
-    		this.debugIt(false, "BindAsTcpClient", this.ownerObjectName() + " client connected");
+    		this.debug(false, "BindAsTcpClient", this.ownerObjectName() + " client connected");
             this.outputStream_ = new DataOutputStream(this.TcpConnection().getOutputStream());
             this.inputStream_ = new DataInputStream(this.TcpConnection().getInputStream());
     		createWorkingThreads();
@@ -159,13 +159,13 @@ public class BinderClass implements ThreadInterface {
     }
 
     public void binderReceiveThreadFunc() {
-        this.debugIt(false, "binderReceiveThreadFunc", "start thread ***");
+        this.debug(false, "binderReceiveThreadFunc", "start thread ***");
         
     	this.whichThread = this.binderTransmitThreadName();
 		this.binderTransmitThreadObject = new ThreadClass(this.binderTransmitThreadName(), this);
         
         if (this.TcpConnection() == null) {
-            this.abendIt("binderReceiveThreadFunc", "null networkStream");
+            this.abend("binderReceiveThreadFunc", "null networkStream");
             return;
         }
         
@@ -174,11 +174,11 @@ public class BinderClass implements ThreadInterface {
         	try {
         		data = this.InputStream().readUTF();
         		if (data != null) {
-        			this.debugIt(false, "binderReceiveThreadFunc", "data = " + data);
+        			this.debug(false, "binderReceiveThreadFunc", "data = " + data);
         			this.receiveQueue.enqueue(data);
         		}
         		else {
-        			this.abendIt("binderReceiveThreadFunc", "data is null=====================================");
+        			this.abend("binderReceiveThreadFunc", "data is null=====================================");
         			try {
         				Thread.sleep(1000);
         			}
@@ -198,22 +198,22 @@ public class BinderClass implements ThreadInterface {
     				Thread.sleep(5000);
     			}
     			catch (InterruptedException e) {
-    	    		this.debugIt(false, "ReceivData", "interrupted*****");
+    	    		this.debug(false, "ReceivData", "interrupted*****");
     			}
     			continue;
     		}
     		
-    		this.debugIt(false, "ReceivData", "data = " + data);
+    		this.debug(false, "ReceivData", "data = " + data);
     		return data;
     	}
     }
 
     public void binderTransmitThreadFunc() {
-        this.debugIt(false, "binderTransmitThreadFunc", "start thread ***");
+        this.debug(false, "binderTransmitThreadFunc", "start thread ***");
         this.whichThread = null;
         
         if (this.TcpConnection() == null) {
-            this.abendIt("binderTransmitThreadFunc", "null networkStream");
+            this.abend("binderTransmitThreadFunc", "null networkStream");
             return;
         }
         
@@ -225,7 +225,7 @@ public class BinderClass implements ThreadInterface {
 					Thread.sleep(5000);
 				}
 				catch (InterruptedException e) {
-    	    		this.debugIt(false, "binderTransmitThreadFunc", "interrupted*****");
+    	    		this.debug(false, "binderTransmitThreadFunc", "interrupted*****");
 				}
 				continue;
         	}
@@ -238,11 +238,11 @@ public class BinderClass implements ThreadInterface {
     }
 
     public void transmitData(String data_val) {
-        this.debugIt(false, "TransmitData", "data = " + data_val);
+        this.debug(false, "TransmitData", "data = " + data_val);
         this.transmitQueue.enqueue(data_val);
     }
-
-    private void debugIt(Boolean on_off_val, String str0_val, String str1_val) { if (on_off_val) this.logitIt(str0_val, str1_val); }
-    private void logitIt(String str0_val, String str1_val) { AbendClass.phwangLogit(this.objectName() + "." + str0_val + "()", str1_val); }
-    public void abendIt(String str0_val, String str1_val) { AbendClass.phwangAbend(this.objectName() + "." + str0_val + "()", str1_val); }
+    
+    private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
+    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
 }
