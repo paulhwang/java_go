@@ -158,7 +158,7 @@ public class BinderClass implements ThreadInterface {
 		this.binderReceiveThreadObject = new ThreadClass(this.binderReceiveThreadName(), this);
     }
 
-    public void binderReceiveThreadFunc() {
+    private void binderReceiveThreadFunc() {
         this.debug(false, "binderReceiveThreadFunc", "start thread ***");
         
     	this.whichThread = this.binderTransmitThreadName();
@@ -208,7 +208,7 @@ public class BinderClass implements ThreadInterface {
     	}
     }
 
-    public void binderTransmitThreadFunc() {
+    private void binderTransmitThreadFunc() {
         this.debug(false, "binderTransmitThreadFunc", "start thread ***");
         this.whichThread = null;
         
