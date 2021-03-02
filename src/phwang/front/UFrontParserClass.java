@@ -10,7 +10,6 @@ package phwang.front;
 
 import org.json.simple.JSONObject;
 
-import phwang.fabric.FabricDefineClass;
 import phwang.protocols.ProtocolDefineClass;
 import phwang.utils.AbendClass;
 import phwang.utils.EncodeNumberClass;
@@ -36,6 +35,12 @@ public class UFrontParserClass {
     		json_response_data = parserSetupLinkResponse(input_data_val.substring(1));
     		return json_response_data;
     	}	
+    	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
+    		json_response_data = parserSetupSessionResponse(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
 		return null;
     }
     
@@ -43,8 +48,8 @@ public class UFrontParserClass {
     	this.debug(false, "parserSetupLinkResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
         
         int my_name_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
@@ -57,7 +62,24 @@ public class UFrontParserClass {
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
-    
+
+    public String parserSetupSessionResponse(String input_str_val) {
+    	this.debug(false, "generateSetupSessionResponse", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+
+        String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+    	
+    	JSONObject json_data = new JSONObject();
+    	json_data.put("link_id", link_id_str);
+    	json_data.put("session_id", session_id_str);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
     public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }

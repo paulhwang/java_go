@@ -72,7 +72,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	UtilsClass.sleep(100);
     	//this.doGetNameList();
     	
-    	//this.doSetupSession();
+    	this.doSetupSession();
     	
     	UtilsClass.sleep(1000);
     	//this.doSetupSession3();

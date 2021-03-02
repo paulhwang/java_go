@@ -325,11 +325,10 @@ public class DFabricParserClass {
     }
 
     public String generateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
-    	JSONObject json_data = new JSONObject();
-    	json_data.put("link_id", link_id_str_val);
-    	json_data.put("session_id", session_id_str_val);
-   		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION); 
+        response_buf.append(link_id_str_val);
+        response_buf.append(session_id_str_val);
+        return response_buf.toString();
     }
 
     private String processSetupSession2Request1(String input_str_val) {
