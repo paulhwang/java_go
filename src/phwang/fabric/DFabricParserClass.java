@@ -66,6 +66,15 @@ public class DFabricParserClass {
         	return;
         }
         
+        if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
+            response_data = this.processGetSessionDataRequest1(json_str.substring(1));
+            if (response_data == null) {
+            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            }
+            this.dFabricObject.transmitData(job_id_str + response_data);
+        	return;
+        }
+        
         
         try {
             JSONParser parser = new JSONParser();
@@ -290,9 +299,9 @@ public class DFabricParserClass {
         String theme_data_str = rest_str.substring(0, theme_data_len);
     	//rest_str = rest_str.substring(theme_data_len);
     	
-        this.debug(true, "processSetupSessionRequest", "link_id = " + link_id_str);
-        this.debug(true, "processSetupSessionRequest", "his_name = " + his_name);
-        this.debug(true, "processSetupSessionRequest", "theme_data = " + theme_data_str);
+        this.debug(false, "processSetupSessionRequest", "link_id = " + link_id_str);
+        this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
+        this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
         String theme_id_str = theme_data_str.substring(0, BrowserDefine.BROWSER_THEME_ID_SIZE);
         String theme_data = theme_data_str.substring(BrowserDefine.BROWSER_THEME_ID_SIZE);
@@ -556,6 +565,36 @@ public class DFabricParserClass {
     	
         this.debug(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
         this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
+
+        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        if (link == null) {
+            return this.errorProcessSetupSession3(link_id_str, "null link");
+        }
+        
+        SessionClass session = link.sessionMgrObject().getSessionBySessionIdStr(session_id_str);
+        if (session == null) {
+            return errorProcessSetupSession3(link_id_str, "null session");
+        }
+        
+        String data = session.getPendingDownLinkData();
+
+        /* send the response down */
+        String response_data = this.generateGetSessionDataResponse(link.linkIdStr(), session.SessionIdStr(), data);
+        return response_data;
+    }
+
+    private String processGetSessionDataRequest1(String input_str_val) {
+        this.debug(false, "processGetSessionDataRequest", "input_str_val = " + input_str_val);
+        
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        
+        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+    	
+        this.debug(true, "processPutSessionDataRequest", "link_id = " + link_id_str);
+        this.debug(true, "processPutSessionDataRequest", "session_id = " + session_id_str);
 
         LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
