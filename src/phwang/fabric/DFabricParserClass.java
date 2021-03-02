@@ -48,7 +48,7 @@ public class DFabricParserClass {
         
         this.debug(true, "parseInputPacket", "*****input_data_val = " + input_data_val);
         
-        if (json_str.charAt(0) == FabricDefineClass.COMMAND_SETUP_LINK.charAt(0)) {
+        if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_LINK.charAt(0)) {
             response_data = this.processSetupLinkRequest(json_str.substring(1));
             if (response_data == null) {
             	this.abend("parseInputPacket", "response_data is null, command=" + command);

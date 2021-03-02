@@ -112,7 +112,7 @@ public class DFrontParserClass {
         this.debug(true, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(true, "processSetupLinkRequest", "password = " + password);
 
-        StringBuilder response_buf = new StringBuilder(FabricFrontEndProtocolClass.COMMAND_SETUP_LINK); 
+        StringBuilder response_buf = new StringBuilder(FabricFrontEndProtocolClass.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(EncodeNumberClass.encodeNumber(my_name.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(my_name);
         response_buf.append(EncodeNumberClass.encodeNumber(password.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
