@@ -98,7 +98,7 @@ public class DFabricParserClass {
             response_data = this.processGetNameListRequest(data);
         }
         else if (command.equals("setup_session")) {
-            response_data = this.processSetupSessionRequest(data);
+            //response_data = this.processSetupSessionRequest(data);
         }
         else if (command.equals("setup_session2")) {
             response_data = this.processSetupSession2Request(data);
@@ -123,72 +123,12 @@ public class DFabricParserClass {
         this.dFabricObject.transmitData(job_id_str + response_data);
     }
 
-    private String processSetupSessionRequest1(String input_str_val) {
-        this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
-        
-        String link_id_str = input_str_val.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        String rest_str = input_str_val.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        
-        int his_name_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = input_str_val.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
-        String his_name = rest_str.substring(0, his_name_len);
-    	rest_str = rest_str.substring(his_name_len);
-        
-        int theme_data_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = input_str_val.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
-        String theme_data_str = rest_str.substring(0, theme_data_len);
-    	//rest_str = rest_str.substring(theme_data_len);
-    	
-        this.debug(true, "processSetupSessionRequest", "link_id = " + link_id_str);
-        this.debug(true, "processSetupSessionRequest", "his_name = " + his_name);
-        this.debug(true, "processSetupSessionRequest", "theme_data = " + theme_data_str);
-
-        String theme_id_str = theme_data_str.substring(0, BrowserDefine.BROWSER_THEME_ID_SIZE);
-        String theme_data = theme_data_str.substring(BrowserDefine.BROWSER_THEME_ID_SIZE);
-
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
-        if (link == null) {
-            return this.errorProcessSetupSession(link_id_str, "*************null link");
-        }
-        
-        SessionClass session = link.mallocSession();
-        session.setBrowserThemeIdStr(theme_id_str);
-        GroupClass group = this.GroupMgrObject().mallocGroup(theme_data);
-        if (group == null) {
-        	this.abend("processSetupSessionRequest", "null group");
-            return this.errorProcessSetupSession(link_id_str, "null group");
-        }
-        group.insertSession(session);
-        session.bindGroup(group);
-        
-        if (his_name.equals(link.myName())) {
-            this.mallocRoom(group, theme_data);
-        }
-        else {
-            LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(his_name);
-            if (his_link == null) {
-                return this.errorProcessSetupSession(link_id_str, "his_link does not exist");
-            }
-            SessionClass his_session = his_link.mallocSession();
-            if (his_session == null) {
-                return this.errorProcessSetupSession(link_id_str, "null his_session");
-            }
-
-            group.insertSession(his_session);
-            his_session.bindGroup(group);
-
-            his_link.setPendingSessionSetup(his_link.linkIdStr() + his_session.SessionIdStr(), theme_data);
-        }
-
-        String response_data = this.generateSetupSessionResponse(link.linkIdStr(), session.SessionIdStr());
-        return response_data;
-    }
-
     private String processSetupLinkRequest(String input_str_val) {
         this.debug(false, "processSetupLinkRequest", "input_str_val=" + input_str_val);
         
-        int my_name_len = EncodeNumberClass.decodeNumber(input_str_val.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        String rest_str = input_str_val.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String rest_str = input_str_val;
+        int my_name_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         String my_name = rest_str.substring(0, my_name_len);
     	rest_str = rest_str.substring(my_name_len);
     	
@@ -333,31 +273,26 @@ public class DFabricParserClass {
    		return json_str_data;
     }
 
-    private String processSetupSessionRequest(String json_str_val) {
-        this.debug(false, "processSetupSessionRequest", "json_str_val = " + json_str_val);
-    	String link_id_str;
-    	String his_name;
-    	String theme_data_str;
+    private String processSetupSessionRequest1(String input_str_val) {
+        this.debug(true, "processSetupSessionRequest", "input_str_val=" + input_str_val);
+        
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
 
-        try {
-            JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(json_str_val);
-        	link_id_str = (String) json.get("link_id");
-        	his_name = (String) json.get("his_name");
-        	theme_data_str = (String) json.get("theme_data");
-        } 
-        catch(ParseException pe) {
-        	this.abend("processSetupSessionRequest", "ParseException: " + pe + " json_str=" + json_str_val);
-        	return "ParseException";
-        }
-        catch (Exception e) {
-        	this.abend("processSetupSessionRequest", "Exception: " + e + " json_str=" + json_str_val);
-        	return "Exception";
-        }
+        int his_name_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String his_name = rest_str.substring(0, his_name_len);
+    	rest_str = rest_str.substring(his_name_len);
+        
+        int theme_data_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String theme_data_str = rest_str.substring(0, theme_data_len);
+    	//rest_str = rest_str.substring(theme_data_len);
     	
-        this.debug(false, "processSetupSessionRequest", "link_id = " + link_id_str);
-        this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
-        this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
+        this.debug(true, "processSetupSessionRequest", "link_id = " + link_id_str);
+        this.debug(true, "processSetupSessionRequest", "his_name = " + his_name);
+        this.debug(true, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
         String theme_id_str = theme_data_str.substring(0, BrowserDefine.BROWSER_THEME_ID_SIZE);
         String theme_data = theme_data_str.substring(BrowserDefine.BROWSER_THEME_ID_SIZE);
