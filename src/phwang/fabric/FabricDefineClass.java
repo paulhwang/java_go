@@ -12,6 +12,7 @@ public class FabricDefineClass {
 	public static final int FABRIC_LINK_ID_SIZE = 4;
 	public static final int FABRIC_SESSION_ID_SIZE = 4;
 	public static final int FABRIC_GROUP_ID_SIZE = 4;
+    public static final int NAME_LIST_TAG_SIZE = 4;
 	
 	public static final String FABRIC_COMMAND_SETUP_LINK = "L";
 	public static final String FABRIC_COMMAND_GET_LINK_DATA = "D";

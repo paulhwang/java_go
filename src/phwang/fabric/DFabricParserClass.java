@@ -66,6 +66,15 @@ public class DFabricParserClass {
         	return;
         }
         
+        if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
+            response_data = this.processGetNameListRequest1(json_str.substring(1));
+            if (response_data == null) {
+            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            }
+            this.dFabricObject.transmitData(job_id_str + response_data);
+        	return;
+        }
+        
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
             response_data = this.processSetupSessionRequest(json_str.substring(1));
             if (response_data == null) {
@@ -131,7 +140,7 @@ public class DFabricParserClass {
             //response_data = this.processGetLinkDataRequest(data);
         }
         else if (command.equals("get_name_list")) {
-            response_data = this.processGetNameListRequest(data);
+            //response_data = this.processGetNameListRequest(data);
         }
         else if (command.equals("setup_session")) {
             //response_data = this.processSetupSessionRequest(data);
@@ -254,25 +263,15 @@ public class DFabricParserClass {
    		return json_str_data;
     }
     
-    private String processGetNameListRequest(String json_str_val) {
-        this.debug(false, "processGetNameListRequest", "json_str_val = " + json_str_val);
-    	String link_id_str;
-    	String name_list_tag_str;
+    private String processGetNameListRequest1(String input_str_val) {
+        this.debug(false, "processGetNameListRequest", "input_str_val = " + input_str_val);
+        
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
 
-        try {
-            JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(json_str_val);
-        	link_id_str = (String) json.get("link_id");
-        	name_list_tag_str = (String) json.get("name_list_tag");
-        } 
-        catch(ParseException pe) {
-        	this.abend("processGetNameListRequest", "ParseException: " + pe + " json_str=" + json_str_val);
-        	return "ParseException";
-        }
-        catch (Exception e) {
-        	this.abend("processGetNameListRequest", "Exception: " + e + " json_str=" + json_str_val);
-        	return "Exception";
-        }
+        String name_list_tag_str = rest_str.substring(0, FabricDefineClass.NAME_LIST_TAG_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.NAME_LIST_TAG_SIZE);
     	
         LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {

@@ -67,7 +67,7 @@ public class DFrontParserClass {
             response_data = this.processGetLinkDataRequest(data);
         }
         else if (command.equals("get_name_list")) {
-            //response_data = this.processGetNameListRequest(data);
+            response_data = this.processGetNameListRequest(data);
         }
         else if (command.equals("setup_session")) {
             response_data = this.processSetupSessionRequest(data);
@@ -145,6 +145,32 @@ public class DFrontParserClass {
 
         StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str);
+        return response_buf.toString();
+    }
+    
+    private String processGetNameListRequest(String json_str_val) {
+        this.debug(false, "processGetNameListRequest", "json_str_val = " + json_str_val);
+    	String link_id_str;
+    	String name_list_tag_str;
+
+        try {
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str_val);
+        	link_id_str = (String) json.get("link_id");
+        	name_list_tag_str = (String) json.get("name_list_tag");
+        } 
+        catch(ParseException pe) {
+        	this.abend("processGetNameListRequest", "ParseException: " + pe + " json_str=" + json_str_val);
+        	return "ParseException";
+        }
+        catch (Exception e) {
+        	this.abend("processGetNameListRequest", "Exception: " + e + " json_str=" + json_str_val);
+        	return "Exception";
+        }
+
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
+        response_buf.append(link_id_str);
+        response_buf.append(name_list_tag_str);
         return response_buf.toString();
     }
 

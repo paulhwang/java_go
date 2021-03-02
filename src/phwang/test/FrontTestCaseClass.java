@@ -31,7 +31,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String acceptString = "Yes";
     private String xmtSeqString = "1111";
     private String goMoveString = "GM01021001";
-    private String nameListTagString = "000";///////////////////////////////////////////////////////different from brouser which is int
+    private String nameListTagString = "0000";///////////////////////////////////////////////////////different from brouser which is int
     private String linkIdString;
     private String sessionIdString;
     private String themeIdString = "3333";
