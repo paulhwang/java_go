@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import phwang.utils.*;
 import phwang.utils.EncodeNumberClass;
 import phwang.browser.BrowserDefine;
+import phwang.front.FabricImportClass;
 import phwang.protocols.ProtocolDefineClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 import phwang.protocols.FabricThemeProtocolClass;
@@ -42,8 +43,6 @@ public class DFabricParserClass {
     public void parseInputPacket(String input_data_val) {
         String job_id_str = input_data_val.substring(0, FrontImportClass.FRONT_JOB_ID_SIZE);
         String json_str = input_data_val.substring(FrontImportClass.FRONT_JOB_ID_SIZE);
-        String command = null;
-        String data = null;
         String response_data = null;
         
         this.debug(true, "parseInputPacket", "*****input_data_val = " + input_data_val);
@@ -51,7 +50,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_LINK.charAt(0)) {
             response_data = this.processSetupLinkRequest(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -60,7 +59,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
             response_data = this.processGetLinkDataRequest(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -69,7 +68,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
             response_data = this.processGetNameListRequest1(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -78,7 +77,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
             response_data = this.processSetupSessionRequest(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -87,7 +86,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
             response_data = this.processSetupSession2Request1(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -96,7 +95,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
             response_data = this.processSetupSession3Request(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -105,7 +104,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
             response_data = this.processPutSessionDataRequest(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -114,7 +113,7 @@ public class DFabricParserClass {
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
             response_data = this.processGetSessionDataRequest(json_str.substring(1));
             if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
             this.dFabricObject.transmitData(job_id_str + response_data);
         	return;
@@ -147,6 +146,14 @@ public class DFabricParserClass {
         }
         String response_data = this.generateSetupLinkResponse(link.linkIdStr(), link.myName());
         return response_data;
+    }
+    
+    private String generateSetupLinkResponse111(String link_id_str_val, String my_name_val) {
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
+        response_buf.append(link_id_str_val);
+        response_buf.append(EncodeNumberClass.encodeNumber(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(my_name_val);
+        return response_buf.toString();
     }
     
     private String generateSetupLinkResponse(String link_id_val, String my_name_val) {
