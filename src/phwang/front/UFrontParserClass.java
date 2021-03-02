@@ -36,8 +36,38 @@ public class UFrontParserClass {
     		return json_response_data;
     	}	
     	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
+    		json_response_data = parserGetLinkDataResponse(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
+    		json_response_data = parserGetNameListResponse(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
     	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
     		json_response_data = parserSetupSessionResponse(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
+    		json_response_data = parserSetupSession2Response(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
+    		json_response_data = parserSetupSession3Response(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
+    		json_response_data = parserPutSessionDataResponse(input_data_val.substring(1));
+    		return json_response_data;
+    	}	
+    	
+    	if (input_data_val.charAt(0) == FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
+    		json_response_data = parserGetSessionDataResponse(input_data_val.substring(1));
     		return json_response_data;
     	}	
     	
@@ -63,6 +93,28 @@ public class UFrontParserClass {
    		return json_str_data;
     }
 
+    public String parserGetLinkDataResponse(String input_str_val) {
+    	this.debug(false, "parserGetLinkDataResponse", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+    	
+    	JSONObject json_data = new JSONObject();
+
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
+    public String parserGetNameListResponse(String input_str_val) {
+    	this.debug(false, "parserGetNameListResponse", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+    	
+    	JSONObject json_data = new JSONObject();
+
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
     public String parserSetupSessionResponse(String input_str_val) {
     	this.debug(false, "generateSetupSessionResponse", "input_str_val=" + input_str_val);
     	
@@ -76,6 +128,50 @@ public class UFrontParserClass {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
     	json_data.put("session_id", session_id_str);
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
+    public String parserSetupSession2Response(String input_str_val) {
+    	this.debug(false, "parserSetupSession2Response", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+    	
+    	JSONObject json_data = new JSONObject();
+
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
+    public String parserSetupSession3Response(String input_str_val) {
+    	this.debug(false, "generateSetupSession3Response", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+    	
+    	JSONObject json_data = new JSONObject();
+
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
+    public String parserPutSessionDataResponse(String input_str_val) {
+    	this.debug(false, "parserPutSessionDataResponse", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+    	
+    	JSONObject json_data = new JSONObject();
+
+   		String json_str_data = json_data.toJSONString();
+   		return json_str_data;
+    }
+
+    public String parserGetSessionDataResponse(String input_str_val) {
+    	this.debug(false, "parserGetSessionDataResponse", "input_str_val=" + input_str_val);
+    	
+        String rest_str = input_str_val;
+    	
+    	JSONObject json_data = new JSONObject();
+
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
