@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -58,7 +58,7 @@ public class UFrontClass implements ThreadInterface {
             	continue;
             }
 
-            this.debug(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
+            this.debug(true, "((((((((()))))))))))))UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FrontDefineClass.FRONT_JOB_ID_SIZE);
             String response_data = received_data.substring(FrontDefineClass.FRONT_JOB_ID_SIZE);

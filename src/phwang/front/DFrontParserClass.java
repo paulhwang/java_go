@@ -85,8 +85,8 @@ public class DFrontParserClass {
             response_data = this.processGetSessionDataRequest(data);
         }
         else {
-            //response_data = "command " + command + " not supported";
-            //this.abend("parseInputPacket", response_data);
+            response_data = "command " + command + " not supported";
+            this.abend("parseInputPacket", response_data);
         }
         
         return(response_data);
