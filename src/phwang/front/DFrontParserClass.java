@@ -15,6 +15,7 @@ import phwang.utils.AbendClass;
 import phwang.utils.ListMgrClass;
 import phwang.utils.EncodeNumberClass;
 import phwang.fabric.LinkClass;
+import phwang.protocols.ProtocolDefineClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class DFrontParserClass {
@@ -111,10 +112,10 @@ public class DFrontParserClass {
         this.debug(true, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(true, "processSetupLinkRequest", "password = " + password);
 
-        StringBuilder response_buf = new StringBuilder(FabricFrontEndProtocolClass.LINK_SETUP_COMMAND); 
-        response_buf.append(EncodeNumberClass.encodeNumber(my_name.length(), FabricFrontEndProtocolClass.COMMAND_DATA_LENGTH_SIZE));
+        StringBuilder response_buf = new StringBuilder(FabricFrontEndProtocolClass.COMMAND_SETUP_LINK); 
+        response_buf.append(EncodeNumberClass.encodeNumber(my_name.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(my_name);
-        response_buf.append(EncodeNumberClass.encodeNumber(password.length(), FabricFrontEndProtocolClass.COMMAND_DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumberClass.encodeNumber(password.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(password);
         return response_buf.toString();
     }

@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -13,6 +13,12 @@ public class FabricDefineClass {
 	public static final int FABRIC_SESSION_ID_SIZE = 4;
 	public static final int FABRIC_GROUP_ID_SIZE = 4;
 	
-	public static final int COMMAND_DATA_LENGTH_SIZE = 2;
-	public static final String LINK_SETUP_COMMAND = "L";
+	public static final String COMMAND_SETUP_LINK = "L";
+	public static final String COMMAND_GET_LINK_DATA = "D";
+	public static final String COMMAND_GET_NAME_LIST = "N";
+	public static final String COMMAND_SETUP_SESSION = "S";
+	public static final String COMMAND_SETUP_SESSION2 = "s";
+	public static final String COMMAND_SETUP_SESSION3 = "T";
+	public static final String COMMAND_PUT_SESSION_DATA = "P";
+	public static final String COMMAND_GET_SESSION_DATA = "G";
 }

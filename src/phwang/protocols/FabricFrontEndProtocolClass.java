@@ -27,7 +27,12 @@ public class FabricFrontEndProtocolClass {
 	public static final int FABRIC_LINK_ID_SIZE    = FabricDefineClass.FABRIC_LINK_ID_SIZE;
 	public static final int FABRIC_SESSION_ID_SIZE = FabricDefineClass.FABRIC_SESSION_ID_SIZE;
 	
-	public static final int COMMAND_DATA_LENGTH_SIZE = FabricDefineClass.COMMAND_DATA_LENGTH_SIZE;
-	public static final String LINK_SETUP_COMMAND    = FabricDefineClass.LINK_SETUP_COMMAND;
-
+	public static final String COMMAND_SETUP_LINK = FabricDefineClass.COMMAND_SETUP_LINK;
+	public static final String COMMAND_GET_LINK_DATA = FabricDefineClass.COMMAND_GET_LINK_DATA;
+	public static final String COMMAND_GET_NAME_LIST = FabricDefineClass.COMMAND_GET_NAME_LIST;
+	public static final String COMMAND_SETUP_SESSION = FabricDefineClass.COMMAND_SETUP_SESSION;
+	public static final String COMMAND_SETUP_SESSION2 = FabricDefineClass.COMMAND_SETUP_SESSION2;
+	public static final String COMMAND_SETUP_SESSION3 = FabricDefineClass.COMMAND_SETUP_SESSION3;
+	public static final String COMMAND_PUT_SESSION_DATA = FabricDefineClass.COMMAND_PUT_SESSION_DATA;
+	public static final String COMMAND_GET_SESSION_DATA = FabricDefineClass.COMMAND_GET_SESSION_DATA;
 }

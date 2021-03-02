@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
 import phwang.utils.EncodeNumberClass;
 import phwang.browser.BrowserDefine;
+import phwang.protocols.ProtocolDefineClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 import phwang.protocols.FabricThemeProtocolClass;
 import org.json.simple.parser.ParseException;
@@ -47,7 +48,7 @@ public class DFabricParserClass {
         
         this.debug(true, "parseInputPacket", "*****input_data_val = " + input_data_val);
         
-        if (json_str.charAt(0) == FabricDefineClass.LINK_SETUP_COMMAND.charAt(0)) {
+        if (json_str.charAt(0) == FabricDefineClass.COMMAND_SETUP_LINK.charAt(0)) {
             response_data = this.processSetupLinkRequest(json_str.substring(1));
             if (response_data == null) {
             	this.abend("parseInputPacket", "response_data is null, command=" + command);
@@ -116,14 +117,14 @@ public class DFabricParserClass {
     private String processSetupLinkRequest(String input_str_val) {
         this.debug(false, "processSetupLinkRequest", "input_str_val = " + input_str_val);
         
-        int my_name_len = EncodeNumberClass.decodeNumber(input_str_val.substring(0, FabricDefineClass.COMMAND_DATA_LENGTH_SIZE));
-        String rest_str = input_str_val.substring(FabricDefineClass.COMMAND_DATA_LENGTH_SIZE);
+        int my_name_len = EncodeNumberClass.decodeNumber(input_str_val.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        String rest_str = input_str_val.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         
         String my_name = rest_str.substring(0, my_name_len);
     	rest_str = rest_str.substring(my_name_len);
     	
-        int password_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, FabricDefineClass.COMMAND_DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(FabricDefineClass.COMMAND_DATA_LENGTH_SIZE);
+        int password_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         
     	String password = rest_str.substring(0, password_len);
     	
