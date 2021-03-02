@@ -81,10 +81,9 @@ class FrontTestCaseClass implements ThreadInterface {
     	
     	UtilsClass.sleep(1000);
     	this.doGetSessionData();
-
     	
-    	//UtilsClass.sleep(1000);
-    	//this.doSetupSession2();
+    	UtilsClass.sleep(1000);
+    	this.doSetupSession2();
     }
     
     private void doSetupLink() {
@@ -177,7 +176,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", this.linkIdString);
     	json_data.put("session_id", this.sessionIdString);
-    	json_data.put("theme_id_str", this.themeIdString);
+    	json_data.put("theme_id", this.themeIdString);
     	json_data.put("accept", this.acceptString);
     	json_data.put("theme_data", this.themeData2);
     	String str_json_data = json_data.toJSONString();

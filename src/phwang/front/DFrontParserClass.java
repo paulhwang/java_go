@@ -73,7 +73,7 @@ public class DFrontParserClass {
             response_data = this.processSetupSessionRequest(data);
         }
         else if (command.equals("setup_session2")) {
-            //response_data = this.processSetupSession2Request(data);
+            response_data = this.processSetupSession2Request(data);
         }
         else if (command.equals("setup_session3")) {
             response_data = this.processSetupSession3Request(data);
@@ -209,6 +209,45 @@ public class DFrontParserClass {
         return response_buf.toString();
     }
 
+    private String processSetupSession2Request(String json_str_val) {
+        this.debug(false, "processSetupSession2Request", "json_str_val = " + json_str_val);
+    	String link_id_str;
+    	String session_id_str;
+    	String theme_id_str;
+    	String accept_str;
+    	String theme_data_str;
+
+        try {
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str_val);
+        	link_id_str = (String) json.get("link_id");
+        	session_id_str = (String) json.get("session_id");
+        	theme_id_str = (String) json.get("theme_id");
+        	accept_str = (String) json.get("accept");
+        	theme_data_str = (String) json.get("theme_data");
+        } 
+        catch(ParseException pe) {
+        	this.abend("processSetupSession2Request", "ParseException: " + pe + " json_str=" + json_str_val);
+        	return "ParseException";
+        }
+        catch (Exception e) {
+        	this.abend("processSetupSession2Request", "Exception: " + e + " json_str=" + json_str_val);
+        	return "Exception";
+        }
+        
+        this.debug(false, "processSetupSession2Request", "link_id = " + link_id_str);
+        this.debug(false, "processSetupSession2Request", "theme_id_str = " + theme_id_str);
+        this.debug(false, "processSetupSession2Request", "theme_data = " + theme_data_str);
+
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2); 
+        response_buf.append(link_id_str);
+        response_buf.append(session_id_str);
+        response_buf.append(theme_id_str);
+        response_buf.append(EncodeNumberClass.encodeNumber(theme_data_str.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(theme_data_str);
+        return response_buf.toString();
+    }
+
     private String processSetupSession3Request(String json_str_val) {
         this.debug(false, "processSetupSession3Request", "json_str_val = " + json_str_val);
     	String link_id_str;
@@ -221,11 +260,11 @@ public class DFrontParserClass {
         	session_id_str = (String) json.get("session_id");
         } 
         catch(ParseException pe) {
-        	this.abend("processSetupSessionRequest", "ParseException: " + pe + " json_str=" + json_str_val);
+        	this.abend("processSetupSession3Request", "ParseException: " + pe + " json_str=" + json_str_val);
         	return "ParseException";
         }
         catch (Exception e) {
-        	this.abend("processSetupSessionRequest", "Exception: " + e + " json_str=" + json_str_val);
+        	this.abend("processSetupSession3Request", "Exception: " + e + " json_str=" + json_str_val);
         	return "Exception";
         }
     	

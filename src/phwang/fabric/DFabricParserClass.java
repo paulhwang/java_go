@@ -10,7 +10,7 @@ package phwang.fabric;
 
 //import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+//import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
 import phwang.utils.EncodeNumberClass;
 import phwang.browser.BrowserDefine;
@@ -84,6 +84,15 @@ public class DFabricParserClass {
         	return;
         }
         
+        if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
+            response_data = this.processSetupSession2Request1(json_str.substring(1));
+            if (response_data == null) {
+            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            }
+            this.dFabricObject.transmitData(job_id_str + response_data);
+        	return;
+        }
+        
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
             response_data = this.processSetupSession3Request(json_str.substring(1));
             if (response_data == null) {
@@ -111,61 +120,7 @@ public class DFabricParserClass {
         	return;
         }
         
-        
-        try {
-            JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(json_str);
-
-            command = (String) json.get("command");
-            data = (String) json.get("data");
-        
-        }
-        catch(ParseException pe) {
-        	this.log("parseInputPacket", "position: " + pe.getPosition());
-        	this.abend("parseInputPacket", "ParseException: " + pe + " json_str=" + json_str + "   input_data=" + input_data_val);
-            this.dFabricObject.transmitData(job_id_str + "***ParseException***");
-        	return;
-        }
-        catch (Exception e) {
-        	this.abend("parseInputPacket", "Exception: " + e + " json_str=" + json_str + "   input_data=" + input_data_val);
-            this.dFabricObject.transmitData(job_id_str + "***Exception***");
-        	return;
-        }
-        
-        this.debug(false, "parseInputPacket", "*********************command = " + command);
-        if (command.equals("setup_link")) {
-            //response_data = this.processSetupLinkRequest(data);
-        }
-        else if (command.equals("get_link_data")) {
-            //response_data = this.processGetLinkDataRequest(data);
-        }
-        else if (command.equals("get_name_list")) {
-            //response_data = this.processGetNameListRequest(data);
-        }
-        else if (command.equals("setup_session")) {
-            //response_data = this.processSetupSessionRequest(data);
-        }
-        else if (command.equals("setup_session2")) {
-            response_data = this.processSetupSession2Request(data);
-        }
-        else if (command.equals("setup_session3")) {
-            //response_data = this.processSetupSession3Request(data);
-        }
-        else if (command.equals("put_session_data")) {
-            //response_data = this.processPutSessionDataRequest(data);
-        }
-        else if (command.equals("get_session_data")) {
-            //response_data = this.processGetSessionDataRequest(data);
-        }
-        else {
-            response_data = "command " + command + " not supported";
-            this.abend("parseInputPacket", response_data);
-        }
-        
-        if (response_data == null) {
-        	this.abend("parseInputPacket", "response_data is null, command=" + command);
-        }
-        this.dFabricObject.transmitData(job_id_str + response_data);
+    	this.abend("parseInputPacket", "should not reach here" + json_str);
     }
 
     private String processSetupLinkRequest(String input_str_val) {
@@ -378,31 +333,24 @@ public class DFabricParserClass {
    		return json_str_data;
     }
 
-    private String processSetupSession2Request(String json_str_val) {
-        this.debug(false, "processSetupSession2Request", "json_str_val = " + json_str_val);
-    	String link_id_str;
-    	String session_id_str;
-    	String theme_id_str;
-    	String accept_str;
-    	String theme_data_str;
-
-        try {
-            JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(json_str_val);
-        	link_id_str = (String) json.get("link_id");
-        	session_id_str = (String) json.get("session_id");
-        	theme_id_str = (String) json.get("theme_id");
-        	accept_str = (String) json.get("accept");
-        	theme_data_str = (String) json.get("theme_data");
-        } 
-        catch(ParseException pe) {
-        	this.abend("processSetupSessionRequest", "ParseException: " + pe + " json_str=" + json_str_val);
-        	return "ParseException";
-        }
-        catch (Exception e) {
-        	this.abend("processSetupSessionRequest", "Exception: " + e + " json_str=" + json_str_val);
-        	return "Exception";
-        }
+    private String processSetupSession2Request1(String input_str_val) {
+        this.debug(false, "processSetupSession2Request", "input_str_val = " + input_str_val);
+    	/////String accept_str;
+        
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        
+        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        
+        String theme_id_str = rest_str.substring(0, FabricThemeProtocolClass.THEME_ROOM_ID_SIZE);//////////////////////
+        rest_str = rest_str.substring(FabricThemeProtocolClass.THEME_ROOM_ID_SIZE);///////////////////////
+        
+        int theme_data_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String theme_data_str = rest_str.substring(0, theme_data_len);
+    	rest_str = rest_str.substring(theme_data_len);
     	
         this.debug(false, "processSetupSession2Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession2Request", "session_id = " + session_id_str);
