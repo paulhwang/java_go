@@ -40,8 +40,8 @@ public class DFabricParserClass {
     }
 
     public void parseInputPacket(String input_data_val) {
-        String job_id_str = input_data_val.substring(0, FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
-        String json_str = input_data_val.substring(FabricFrontEndProtocolClass.FRONT_JOB_ID_SIZE);
+        String job_id_str = input_data_val.substring(0, FrontImportClass.FRONT_JOB_ID_SIZE);
+        String json_str = input_data_val.substring(FrontImportClass.FRONT_JOB_ID_SIZE);
         String command = null;
         String data = null;
         String response_data = null;
