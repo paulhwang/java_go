@@ -57,8 +57,17 @@ public class DFabricParserClass {
         	return;
         }
         
+        if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
+            response_data = this.processGetLinkDataRequest(json_str.substring(1));
+            if (response_data == null) {
+            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            }
+            this.dFabricObject.transmitData(job_id_str + response_data);
+        	return;
+        }
+        
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
-            response_data = this.processSetupSessionRequest1(json_str.substring(1));
+            response_data = this.processSetupSessionRequest(json_str.substring(1));
             if (response_data == null) {
             	this.abend("parseInputPacket", "response_data is null, command=" + command);
             }
@@ -119,7 +128,7 @@ public class DFabricParserClass {
             //response_data = this.processSetupLinkRequest(data);
         }
         else if (command.equals("get_link_data")) {
-            response_data = this.processGetLinkDataRequest(data);
+            //response_data = this.processGetLinkDataRequest(data);
         }
         else if (command.equals("get_name_list")) {
             response_data = this.processGetNameListRequest(data);
@@ -184,25 +193,14 @@ public class DFabricParserClass {
    		return json_str_data;
     }
     
-    private String processGetLinkDataRequest(String json_str_val) {
-        this.debug(false, "processGetLinkDataRequest", "json_str_val = " + json_str_val);
-    	String link_id_str;
-
-        try {
-            JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(json_str_val);
-        	link_id_str = (String) json.get("link_id");
-        }
-        catch(ParseException pe) {
-        	this.abend("processGetLinkDataRequest", "ParseException: " + pe + " json_str=" + json_str_val);
-        	return "ParseException";
-        }
-        catch (Exception e) {
-        	this.abend("processGetLinkDataRequest", "Exception: " + e + " json_str=" + json_str_val);
-        	return "Exception";
-        }
+    private String processGetLinkDataRequest(String input_str_val) {
+        this.debug(true, "processGetLinkDataRequest", "input_str_val = " + input_str_val);
+        
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
     	
-        this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
+        this.debug(true, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
         LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
@@ -300,7 +298,7 @@ public class DFabricParserClass {
    		return json_str_data;
     }
 
-    private String processSetupSessionRequest1(String input_str_val) {
+    private String processSetupSessionRequest(String input_str_val) {
         this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;

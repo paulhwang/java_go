@@ -64,7 +64,7 @@ public class DFrontParserClass {
             response_data = this.processSetupLinkRequest(data);
         }
         else if (command.equals("get_link_data")) {
-            //response_data = this.processGetLinkDataRequest(data);
+            response_data = this.processGetLinkDataRequest(data);
         }
         else if (command.equals("get_name_list")) {
             //response_data = this.processGetNameListRequest(data);
@@ -120,6 +120,31 @@ public class DFrontParserClass {
         response_buf.append(my_name);
         response_buf.append(EncodeNumberClass.encodeNumber(password.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(password);
+        return response_buf.toString();
+    }
+    
+    private String processGetLinkDataRequest(String json_str_val) {
+        this.debug(false, "processGetLinkDataRequest", "json_str_val = " + json_str_val);
+    	String link_id_str;
+
+        try {
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str_val);
+        	link_id_str = (String) json.get("link_id");
+        }
+        catch(ParseException pe) {
+        	this.abend("processGetLinkDataRequest", "ParseException: " + pe + " json_str=" + json_str_val);
+        	return "ParseException";
+        }
+        catch (Exception e) {
+        	this.abend("processGetLinkDataRequest", "Exception: " + e + " json_str=" + json_str_val);
+        	return "Exception";
+        }
+    	
+        this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
+
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        response_buf.append(link_id_str);
         return response_buf.toString();
     }
 
