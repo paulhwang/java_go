@@ -66,8 +66,17 @@ public class DFabricParserClass {
         	return;
         }
         
+        if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
+            response_data = this.processSetupSession3Request(json_str.substring(1));
+            if (response_data == null) {
+            	this.abend("parseInputPacket", "response_data is null, command=" + command);
+            }
+            this.dFabricObject.transmitData(job_id_str + response_data);
+        	return;
+        }
+        
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
-            response_data = this.processPutSessionDataRequest1(json_str.substring(1));
+            response_data = this.processPutSessionDataRequest(json_str.substring(1));
             if (response_data == null) {
             	this.abend("parseInputPacket", "response_data is null, command=" + command);
             }
@@ -122,7 +131,7 @@ public class DFabricParserClass {
             response_data = this.processSetupSession2Request(data);
         }
         else if (command.equals("setup_session3")) {
-            response_data = this.processSetupSession3Request(data);
+            //response_data = this.processSetupSession3Request(data);
         }
         else if (command.equals("put_session_data")) {
             //response_data = this.processPutSessionDataRequest(data);
@@ -292,7 +301,7 @@ public class DFabricParserClass {
     }
 
     private String processSetupSessionRequest1(String input_str_val) {
-        this.debug(true, "processSetupSessionRequest", "input_str_val=" + input_str_val);
+        this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
@@ -435,25 +444,16 @@ public class DFabricParserClass {
    		return json_str_data;
     }
 
-    private String processSetupSession3Request(String json_str_val) {
-        this.debug(false, "processSetupSession3Request", "json_str_val = " + json_str_val);
-    	String link_id_str;
-    	String session_id_str;
+    private String processSetupSession3Request(String input_str_val) {
+        this.debug(false, "processSetupSession3Request", "input_str_val = " + input_str_val);
         
-        try {
-            JSONParser parser = new JSONParser();
-        	JSONObject json = (JSONObject) parser.parse(json_str_val);
-        	link_id_str = (String) json.get("link_id");
-        	session_id_str = (String) json.get("session_id");
-        } 
-        catch(ParseException pe) {
-        	this.abend("processSetupSessionRequest", "ParseException: " + pe + " json_str=" + json_str_val);
-        	return "ParseException";
-        }
-        catch (Exception e) {
-        	this.abend("processSetupSessionRequest", "Exception: " + e + " json_str=" + json_str_val);
-        	return "Exception";
-        }
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        
+        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        
     	
         this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
@@ -472,7 +472,6 @@ public class DFabricParserClass {
         return response_data;
     }
 
-
     private String errorProcessSetupSession3(String link_id_val, String error_msg_val) {
         return error_msg_val;
     }
@@ -486,7 +485,7 @@ public class DFabricParserClass {
    		return json_str_data;
     }
 
-    private String processPutSessionDataRequest1(String input_str_val) {
+    private String processPutSessionDataRequest(String input_str_val) {
         this.debug(false, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
     	//String xmt_seq_str = null;
         

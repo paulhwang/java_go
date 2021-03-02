@@ -76,7 +76,7 @@ public class DFrontParserClass {
             //response_data = this.processSetupSession2Request(data);
         }
         else if (command.equals("setup_session3")) {
-            //response_data = this.processSetupSession3Request(data);
+            response_data = this.processSetupSession3Request(data);
         }
         else if (command.equals("put_session_data")) {
             response_data = this.processPutSessionDataRequest(data);
@@ -158,6 +158,35 @@ public class DFrontParserClass {
         return response_buf.toString();
     }
 
+    private String processSetupSession3Request(String json_str_val) {
+        this.debug(false, "processSetupSession3Request", "json_str_val = " + json_str_val);
+    	String link_id_str;
+    	String session_id_str;
+        
+        try {
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str_val);
+        	link_id_str = (String) json.get("link_id");
+        	session_id_str = (String) json.get("session_id");
+        } 
+        catch(ParseException pe) {
+        	this.abend("processSetupSessionRequest", "ParseException: " + pe + " json_str=" + json_str_val);
+        	return "ParseException";
+        }
+        catch (Exception e) {
+        	this.abend("processSetupSessionRequest", "Exception: " + e + " json_str=" + json_str_val);
+        	return "Exception";
+        }
+    	
+        this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
+        this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
+
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
+        response_buf.append(link_id_str);
+        response_buf.append(session_id_str);
+        return response_buf.toString();
+    }
+    
     private String processPutSessionDataRequest(String json_str_val) {
         this.debug(false, "processPutSessionDataRequest", "json_str_val = " + json_str_val);
     	String link_id_str;
