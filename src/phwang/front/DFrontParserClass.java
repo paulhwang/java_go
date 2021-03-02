@@ -79,7 +79,7 @@ public class DFrontParserClass {
             //response_data = this.processSetupSession3Request(data);
         }
         else if (command.equals("put_session_data")) {
-            //response_data = this.processPutSessionDataRequest(data);
+            response_data = this.processPutSessionDataRequest(data);
         }
         else if (command.equals("get_session_data")) {
             response_data = this.processGetSessionDataRequest(data);
@@ -158,6 +158,43 @@ public class DFrontParserClass {
         return response_buf.toString();
     }
 
+    private String processPutSessionDataRequest(String json_str_val) {
+        this.debug(false, "processPutSessionDataRequest", "json_str_val = " + json_str_val);
+    	String link_id_str;
+    	String session_id_str;
+    	String data;
+    	//String xmt_seq_str;
+       
+        try {
+            JSONParser parser = new JSONParser();
+        	JSONObject json = (JSONObject) parser.parse(json_str_val);
+        	link_id_str = (String) json.get("link_id");
+        	session_id_str = (String) json.get("session_id");
+        	data = (String) json.get("data");
+        	//xmt_seq_str = (String) json.get("xmt_seq");
+        } 
+        catch(ParseException pe) {
+        	this.abend("processPutSessionDataRequest", "ParseException: " + pe + " json_str=" + json_str_val);
+        	return "ParseException";
+        }
+        catch (Exception e) {
+        	this.abend("processPutSessionDataRequest", "Exception: " + e + " json_str=" + json_str_val);
+        	return "Exception";
+        }
+    	
+        this.debug(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
+        this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
+        //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
+        this.debug(false, "processPutSessionDataRequest", "data = " + data);
+
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA); 
+        response_buf.append(link_id_str);
+        response_buf.append(session_id_str);
+        response_buf.append(EncodeNumberClass.encodeNumber(data.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(data);
+        return response_buf.toString();
+    }
+    
     private String processGetSessionDataRequest(String json_str_val) {
         this.debug(false, "processGetSessionDataRequest", "json_str_val = " + json_str_val);
     	String link_id_str;
