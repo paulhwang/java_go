@@ -21,6 +21,7 @@ public class UFrontClass implements ThreadInterface {
     private BinderClass uBinderObject_;
     private Boolean stopReceiveThreadFlag = false;
     
+    private UFrontParserClass uFrontParserObject() { return this.frontRootObject().uFrontParserObject(); }
     public FrontRootClass frontRootObject() { return this.frontRootObject_; }
     private FrontJobMgrClass frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
@@ -58,10 +59,12 @@ public class UFrontClass implements ThreadInterface {
             	continue;
             }
 
-            this.debug(true, "((((((((()))))))))))))UFrontReceiveThreadFunc", "received_data=" + received_data);
+            this.debug(true, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FrontDefineClass.FRONT_JOB_ID_SIZE);
             String response_data = received_data.substring(FrontDefineClass.FRONT_JOB_ID_SIZE);
+            
+            String Data = this.uFrontParserObject().parserResponseData(response_data);
 
             FrontJobClass job_entry = this.frontJobMgrObject().getLinkByIdStr(ajax_id_str);
             if (job_entry == null) {

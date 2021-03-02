@@ -19,6 +19,7 @@ public class FrontRootClass {
     private UFrontClass uFrontObject_;
     private DFrontClass dFrontObject_;
     private DFrontParserClass dFrontParserObject_;
+    private UFrontParserClass uFrontParserObject_;
     private FrontExportClass frontExportObject_;
     private FrontTestClass frontTestObject_;
     
@@ -27,6 +28,7 @@ public class FrontRootClass {
     public DFrontClass dFrontObject() { return this.dFrontObject_; }
     public FrontJobMgrClass frontJobMgrObject() { return this.frontJobMgrObject_; }
     public DFrontParserClass dFrontParserObject() { return this.dFrontParserObject_; }
+    public UFrontParserClass uFrontParserObject() { return this.uFrontParserObject_; }
     public FrontExportClass frontExportObject() { return this.frontExportObject_; }
     private FrontTestClass frontTestObject() { return frontTestObject_; }
 
@@ -37,6 +39,7 @@ public class FrontRootClass {
         this.uFrontObject_ = new UFrontClass(this);
         this.dFrontObject_ = new DFrontClass(this);
         this.dFrontParserObject_ = new DFrontParserClass(this);
+        this.uFrontParserObject_ = new UFrontParserClass(this);
         this.frontJobMgrObject_ = new FrontJobMgrClass(this);
         this.frontExportObject_ = new FrontExportClass(this);
         this.frontTestObject_ = new FrontTestClass(this.frontExportObject());
