@@ -525,6 +525,9 @@ public class DFabricParserClass {
         StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
+        if (c_data_val == null) {//////////////////////////////////for now
+        	c_data_val = "";
+        }
         response_buf.append(EncodeNumberClass.encodeNumber(c_data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(c_data_val);
         return response_buf.toString();

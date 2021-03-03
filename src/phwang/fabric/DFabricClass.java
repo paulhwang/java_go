@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -9,7 +9,6 @@
 package phwang.fabric;
 
 import phwang.utils.*;
-import phwang.protocols.*;
 
 public class DFabricClass implements ThreadInterface {
     private String objectName() {return "DFabricClass";}
@@ -33,7 +32,7 @@ public class DFabricClass implements ThreadInterface {
         this.dFabricParserObject_ = new DFabricParserClass(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
         
-        this.dBinderObject().bindAsTcpServer(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.dBinderObject().bindAsTcpServer(true, FabricDefineClass.FABRIC_FRONT_PORT);
     }
 
     public void startThreads() {

@@ -9,7 +9,6 @@
 package phwang.front;
 
 import phwang.utils.*;
-import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class UFrontClass implements ThreadInterface {
     private String objectName() {return "UFrontClass";}
@@ -32,7 +31,7 @@ public class UFrontClass implements ThreadInterface {
         
         this.frontRootObject_ = root_object_val;
         this.uBinderObject_ = new BinderClass(this.objectName());
-        this.uBinderObject().bindAsTcpClient(true, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_SERVER_IP_ADDRESS, FabricFrontEndProtocolClass.FABRIC_FRONT_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.uBinderObject().bindAsTcpClient(true, FabricImportClass.FABRIC_FRONT_SERVER_IP_ADDRESS, FabricImportClass.FABRIC_FRONT_PORT);
     }
 
     public void startThreads() {

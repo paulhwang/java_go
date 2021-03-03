@@ -9,6 +9,9 @@
 package phwang.fabric;
 
 public class FabricDefineClass {
+    public static final String FABRIC_FRONT_SERVER_IP_ADDRESS = "127.0.0.1";
+    public static final short FABRIC_FRONT_PORT = 8006;
+	
 	public static final int FABRIC_LINK_ID_SIZE = 4;
 	public static final int FABRIC_SESSION_ID_SIZE = 4;
 	public static final int FABRIC_GROUP_ID_SIZE = 4;
