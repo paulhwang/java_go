@@ -12,7 +12,7 @@ import phwang.fabric.FabricDefineClass;
 import phwang.theme.ThemeDefineClass;
 
 public class FabricImportClass {
-    public static final String FABRIC_FRONT_SERVER_IP_ADDRESS = FabricDefineClass.FABRIC_FRONT_SERVER_IP_ADDRESS;
+    public static final String FABRIC_FRONT_SERVER_IP_ADDRESS = "127.0.0.1";
     public static final short FABRIC_FRONT_PORT = FabricDefineClass.FABRIC_FRONT_PORT;
     
 	public static final int THEME_ROOM_ID_SIZE = ThemeDefineClass.THEME_ROOM_ID_SIZE;
