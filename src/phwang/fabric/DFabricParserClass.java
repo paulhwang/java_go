@@ -208,6 +208,16 @@ public class DFabricParserClass {
         return error_msg_val;
     }
 
+    public String generateGetLinkDataResponse111(String link_id_str_val, String data_val, String pending_session_setup_val) {
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        response_buf.append(link_id_str_val);
+        response_buf.append(EncodeNumberClass.encodeNumber(data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(data_val);
+        response_buf.append(EncodeNumberClass.encodeNumber(pending_session_setup_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(pending_session_setup_val);
+        return response_buf.toString();
+    }
+
     public String generateGetLinkDataResponse(String link_id_str_val, String data_val, String pending_session_setup_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str_val);

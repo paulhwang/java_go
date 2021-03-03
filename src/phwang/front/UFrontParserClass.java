@@ -94,12 +94,27 @@ public class UFrontParserClass {
     }
 
     public String parserGetLinkDataResponse(String input_str_val) {
-    	this.debug(false, "parserGetLinkDataResponse", "input_str_val=" + input_str_val);
+    	this.debug(true, "(((((((((((((((((((((parserGetLinkDataResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+        
+        int data_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String data = rest_str.substring(0, data_len);
+    	rest_str = rest_str.substring(data_len);
+        
+        int pending_session_setup_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String pending_session_setup = rest_str.substring(0, pending_session_setup_len);
+    	rest_str = rest_str.substring(pending_session_setup_len);
+    	
     	
     	JSONObject json_data = new JSONObject();
-
+    	json_data.put("link_id", link_id_str);
+    	json_data.put("data", data);
+    	json_data.put("pending_session_setup", pending_session_setup);
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
