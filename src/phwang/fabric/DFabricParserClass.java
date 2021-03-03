@@ -245,11 +245,11 @@ public class DFabricParserClass {
     }
 
     public String generateGetNameListResponse(String link_id_str_val, String name_list_str_val) {
-    	JSONObject json_data = new JSONObject();
-    	json_data.put("link_id", link_id_str_val);
-    	json_data.put("c_name_list", name_list_str_val);
-   		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
+        response_buf.append(link_id_str_val);
+        response_buf.append(EncodeNumberClass.encodeNumber(name_list_str_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(name_list_str_val);
+        return response_buf.toString();
     }
 
     private String processSetupSessionRequest(String input_str_val) {

@@ -94,7 +94,7 @@ public class UFrontParserClass {
     }
 
     public String parserGetLinkDataResponse(String input_str_val) {
-    	this.debug(true, "(((((((((((((((((((((parserGetLinkDataResponse", "input_str_val=" + input_str_val);
+    	this.debug(false, "parserGetLinkDataResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
@@ -123,9 +123,17 @@ public class UFrontParserClass {
     	this.debug(false, "parserGetNameListResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
-    	
+        String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+        
+        int name_list_str_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        String name_list_str = rest_str.substring(0, name_list_str_len);
+    	rest_str = rest_str.substring(name_list_str_len);
+        
     	JSONObject json_data = new JSONObject();
-
+    	json_data.put("link_id", link_id_str);
+    	json_data.put("c_name_list", name_list_str);
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
