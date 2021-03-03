@@ -17,6 +17,7 @@ public class FabricDefineClass {
     public static final int NAME_LIST_TAG_SIZE = 4;
 	
 	public static final String FABRIC_COMMAND_SETUP_LINK = "L";
+	public static final String FABRIC_COMMAND_REMOVE_LINK = "l";
 	public static final String FABRIC_COMMAND_GET_LINK_DATA = "D";
 	public static final String FABRIC_COMMAND_GET_NAME_LIST = "N";
 	public static final String FABRIC_COMMAND_SETUP_SESSION = "S";

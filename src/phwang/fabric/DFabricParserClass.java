@@ -45,82 +45,46 @@ public class DFabricParserClass {
         String json_str = input_data_val.substring(FrontImportClass.FRONT_JOB_ID_SIZE);
         String response_data = null;
         
-        this.debug(true, "parseInputPacket", "*****input_data_val = " + input_data_val);
+        this.debug(false, "parseInputPacket", "input_data_val = " + input_data_val);
         
         char command = json_str.charAt(0);
+        
         if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_LINK.charAt(0)) {
             response_data = this.processSetupLinkRequest(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_REMOVE_LINK.charAt(0)) {
+            response_data = this.processRemoveLinkRequest(json_str.substring(1));
+        }
+        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
             response_data = this.processGetLinkDataRequest(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
             response_data = this.processGetNameListRequest(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
             response_data = this.processSetupSessionRequest(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
             response_data = this.processSetupSession2Request1(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
             response_data = this.processSetupSession3Request(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
             response_data = this.processPutSessionDataRequest(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
         }
-        
-        if (command == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
             response_data = this.processGetSessionDataRequest(json_str.substring(1));
-            if (response_data == null) {
-            	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
-            }
-            this.dFabricObject.transmitData(job_id_str + response_data);
-        	return;
+        }
+        else {
+        	this.abend("parseInputPacket", "should not reach here, data=" + input_data_val);
         }
         
-    	this.abend("parseInputPacket", "should not reach here" + json_str);
+        if (response_data == null) {
+        	this.abend("parseInputPacket", "response_data is null, data=" + input_data_val);
+        }
+        
+        this.dFabricObject.transmitData(job_id_str + response_data);
     }
 
     private String processSetupLinkRequest(String input_str_val) {
@@ -156,6 +120,37 @@ public class DFabricParserClass {
         response_buf.append(my_name_val);
         return response_buf.toString();
     }
+    
+    private String processRemoveLinkRequest(String input_str_val) {
+        this.debug(false, "processRemoveLinkRequest", "input_str_val = " + input_str_val);
+        
+        String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+    	
+        this.debug(false, "processRemoveLinkRequest", "link_id = " + link_id_str);
+
+        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        if (link == null) {
+            return this.errorProcessRemoveLink(link_id_str, "*************null link");
+        }
+
+        String response_data = this.generateRemoveLinkResponse(link.linkIdStr(), "Succeed");
+        return response_data;
+    }
+
+    private String errorProcessRemoveLink(String link_id_val, String error_msg_val) {
+        return error_msg_val;
+    }
+
+    public String generateRemoveLinkResponse(String link_id_str_val, String result_val) {
+        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        response_buf.append(link_id_str_val);
+        response_buf.append(EncodeNumberClass.encodeNumber(result_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(result_val);
+        return response_buf.toString();
+    }
+    
     
     private String processGetLinkDataRequest(String input_str_val) {
         this.debug(false, "processGetLinkDataRequest", "input_str_val = " + input_str_val);

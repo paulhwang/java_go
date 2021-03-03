@@ -22,6 +22,7 @@ public class FabricImportClass {
 	
 	
 	public static final String FABRIC_COMMAND_SETUP_LINK       = FabricDefineClass.FABRIC_COMMAND_SETUP_LINK;
+	public static final String FABRIC_COMMAND_REMOVE_LINK       = FabricDefineClass.FABRIC_COMMAND_REMOVE_LINK;
 	public static final String FABRIC_COMMAND_GET_LINK_DATA    = FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA;
 	public static final String FABRIC_COMMAND_GET_NAME_LIST    = FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST;
 	public static final String FABRIC_COMMAND_SETUP_SESSION    = FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION;
