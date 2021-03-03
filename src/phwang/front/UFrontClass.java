@@ -62,31 +62,25 @@ public class UFrontClass implements ThreadInterface {
             this.debug(true, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FrontDefineClass.FRONT_JOB_ID_SIZE);
-            String response_data = received_data.substring(FrontDefineClass.FRONT_JOB_ID_SIZE);
-            
-            String json_response_data = this.uFrontParserObject().parserResponseData(response_data);
-            if (json_response_data != null) {
-                FrontJobClass job_entry = this.frontJobMgrObject().getJobByIdStr(ajax_id_str);
-                if (job_entry == null) {
-                    this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
-                    continue;
-                }
-                job_entry.WriteData(json_response_data);
-                return;
-            }
-            
             FrontJobClass job_entry = this.frontJobMgrObject().getJobByIdStr(ajax_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;
             }
 
-            job_entry.WriteData(response_data);
+            String response_data = received_data.substring(FrontDefineClass.FRONT_JOB_ID_SIZE);
+            String json_response_data = this.uFrontParserObject().parserResponseData(response_data);
+            if (json_response_data != null) {
+                job_entry.WriteData(json_response_data);
+            }
+            else {
+            	job_entry.WriteData(response_data);
+            }
         }
 
         this.debug(true, "UFrontReceiveThreadFunc", "exit");
     }
-
+    
     public void StopReceiveThread() {
         this.stopReceiveThreadFlag = true;
     }
