@@ -66,7 +66,7 @@ public class DFabricParserClass {
         }
         
         if (json_str.charAt(0) == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
-            response_data = this.processGetNameListRequest1(json_str.substring(1));
+            response_data = this.processGetNameListRequest(json_str.substring(1));
             if (response_data == null) {
             	this.abend("parseInputPacket", "response_data is null, command=" + input_data_val);
             }
@@ -217,7 +217,7 @@ public class DFabricParserClass {
    		return json_str_data;
     }
     
-    private String processGetNameListRequest1(String input_str_val) {
+    private String processGetNameListRequest(String input_str_val) {
         this.debug(false, "processGetNameListRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
@@ -411,7 +411,7 @@ public class DFabricParserClass {
             return errorProcessSetupSession3(link_id_str, "null session");
         }
 
-        String response_data = this.generateSetupSession3Response111(link_id_str, session_id_str, session.BrowserThemeIdStr());
+        String response_data = this.generateSetupSession3Response(link_id_str, session_id_str, session.BrowserThemeIdStr());
         return response_data;
     }
 
@@ -419,21 +419,12 @@ public class DFabricParserClass {
         return error_msg_val;
     }
 
-    public String generateSetupSession3Response111(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
+    public String generateSetupSession3Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
         StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
         response_buf.append(theme_id_str_val);
         return response_buf.toString();
-    }
-
-    public String generateSetupSession3Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
-    	JSONObject json_data = new JSONObject();
-    	json_data.put("link_id", link_id_str_val);
-    	json_data.put("session_id", session_id_str_val);
-    	json_data.put("theme_id", theme_id_str_val);
-   		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
     }
 
     private String processPutSessionDataRequest(String input_str_val) {

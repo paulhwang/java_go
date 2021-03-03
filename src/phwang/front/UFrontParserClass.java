@@ -122,8 +122,8 @@ public class UFrontParserClass {
         String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_SESSION_ID_SIZE);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -150,8 +150,8 @@ public class UFrontParserClass {
         String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_SESSION_ID_SIZE);
 
         String theme_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
