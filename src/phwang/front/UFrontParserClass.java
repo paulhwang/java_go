@@ -153,8 +153,8 @@ public class UFrontParserClass {
         String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FabricImportClass.FABRIC_SESSION_ID_SIZE);
 
-        String theme_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+        String theme_id_str = rest_str.substring(0, FabricImportClass.THEME_ROOM_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.THEME_ROOM_ID_SIZE);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);

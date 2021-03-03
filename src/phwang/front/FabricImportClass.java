@@ -9,10 +9,14 @@
 package phwang.front;
 
 import phwang.fabric.FabricDefineClass;
+import phwang.theme.ThemeDefineClass;
 
 public class FabricImportClass {
+	public static final int THEME_ROOM_ID_SIZE = ThemeDefineClass.THEME_ROOM_ID_SIZE;
+	
 	public static final int FABRIC_LINK_ID_SIZE    = FabricDefineClass.FABRIC_LINK_ID_SIZE;
 	public static final int FABRIC_SESSION_ID_SIZE = FabricDefineClass.FABRIC_SESSION_ID_SIZE;
+	
 	
 	public static final String FABRIC_COMMAND_SETUP_LINK       = FabricDefineClass.FABRIC_COMMAND_SETUP_LINK;
 	public static final String FABRIC_COMMAND_GET_LINK_DATA    = FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA;
