@@ -147,9 +147,19 @@ public class UFrontParserClass {
     	this.debug(false, "generateSetupSession3Response", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
+        String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+
+        String session_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
+
+        String theme_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricImportClass.FABRIC_LINK_ID_SIZE);
     	
     	JSONObject json_data = new JSONObject();
-
+    	json_data.put("link_id", link_id_str);
+    	json_data.put("session_id", session_id_str);
+    	json_data.put("theme_id", theme_id_str);
    		String json_str_data = json_data.toJSONString();
    		return json_str_data;
     }
