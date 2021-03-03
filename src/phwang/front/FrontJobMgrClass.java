@@ -40,17 +40,17 @@ public class FrontJobMgrClass {
         return job;
     }
 
-    public void freeLink(LinkClass link_val) {
+    public void freeJob(FrontJobClass job_val) {
 
     }
     
-    public FrontJobClass getLinkByIdStr(String job_id_str_val) {
+    public FrontJobClass getJobByIdStr(String job_id_str_val) {
         int job_id = EncodeNumberClass.decodeNumber(job_id_str_val);
 
-        return this.getLinkById(job_id);
+        return this.getJobById(job_id);
     }
 
-    public FrontJobClass getLinkById(int id_val) {
+    public FrontJobClass getJobById(int id_val) {
     	ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
         if (list_entry == null) {
             return null;

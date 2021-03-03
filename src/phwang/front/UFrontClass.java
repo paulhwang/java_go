@@ -66,7 +66,7 @@ public class UFrontClass implements ThreadInterface {
             
             String json_response_data = this.uFrontParserObject().parserResponseData(response_data);
             if (json_response_data != null) {
-                FrontJobClass job_entry = this.frontJobMgrObject().getLinkByIdStr(ajax_id_str);
+                FrontJobClass job_entry = this.frontJobMgrObject().getJobByIdStr(ajax_id_str);
                 if (job_entry == null) {
                     this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
                     continue;
@@ -75,7 +75,7 @@ public class UFrontClass implements ThreadInterface {
                 return;
             }
             
-            FrontJobClass job_entry = this.frontJobMgrObject().getLinkByIdStr(ajax_id_str);
+            FrontJobClass job_entry = this.frontJobMgrObject().getJobByIdStr(ajax_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;
