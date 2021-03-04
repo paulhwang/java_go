@@ -20,7 +20,7 @@ public class UFrontClass implements ThreadInterface {
     private BinderClass uBinderObject_;
     private Boolean stopReceiveThreadFlag = false;
     
-    private UFrontParserClass uFrontParserObject() { return this.frontRootObject().uFrontParserObject(); }
+    private FrontDParser uFrontParserObject() { return this.frontRootObject().frontDParser(); }
     public FrontRootClass frontRootObject() { return this.frontRootObject_; }
     private FrontJobMgrClass frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}

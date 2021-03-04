@@ -204,7 +204,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
-        this.debug(true, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
+        this.debug(false, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
     }
 
     private void doPutSessionData() {

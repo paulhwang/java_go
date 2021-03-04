@@ -20,7 +20,7 @@ public class DFrontClass {
     private FrontJobMgrClass frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
     private UFrontClass uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
-    private FrontUParser dFrontParserObject() { return this.frontEndRootObject().dFrontParserObject(); }
+    private FrontUParser frontUParser() { return this.frontEndRootObject().frontUParser(); }
     
     public DFrontClass(FrontRootClass root_object_val) {
         this.debug(false, "DFrontClass", "init start");
@@ -31,7 +31,7 @@ public class DFrontClass {
     public String processHttpRequestPacket(String input_data_val) {
         this.debug(false, "processHttpRequestPacket", "input_data_val = " + input_data_val);
         
-        String output_str = this.dFrontParserObject().parseInputPacket(input_data_val);
+        String output_str = this.frontUParser().parseInputPacket(input_data_val);
         
         FrontJobClass job_entry = this.frontJobMgrObject().mallocJob();
         

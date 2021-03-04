@@ -27,7 +27,7 @@ public class FrontUParser {
     private FrontRootClass frontRootObject_;
     
     public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
-    public FrontUParser dFrontParserObject() { return this.frontEndRootObject().dFrontParserObject(); }
+    public FrontUParser frontUParser() { return this.frontEndRootObject().frontUParser(); }
     
     public FrontUParser(FrontRootClass front_root_object_val) {
         this.debug(false, "DFrontParserClass", "init start");
