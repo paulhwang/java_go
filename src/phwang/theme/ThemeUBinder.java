@@ -18,7 +18,7 @@ public class ThemeUBinder implements ThreadInterface {
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
     private ThemeRootClass themeRootObject;
-    private UThemeParserClass uThemeParserObject;
+    private ThemeDParser uThemeParserObject;
     public BinderClass uBinderObject_;
 
     public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
@@ -29,7 +29,7 @@ public class ThemeUBinder implements ThreadInterface {
         this.debug(false, "ThemeUBinder", "init start");
 
         this.themeRootObject = theme_root_object_val;
-        this.uThemeParserObject = new UThemeParserClass(this);
+        this.uThemeParserObject = new ThemeDParser(this);
         this.uBinderObject_ = new BinderClass(this.objectName());
         this.uBinderObject().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
