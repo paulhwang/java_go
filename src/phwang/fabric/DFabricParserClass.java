@@ -114,7 +114,8 @@ public class DFabricParserClass {
     }
     
     private String generateSetupLinkResponse(String link_id_str_val, String my_name_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(link_id_str_val);
         response_buf.append(EncodeNumberClass.encodeNumber(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(my_name_val);
@@ -144,7 +145,8 @@ public class DFabricParserClass {
     }
 
     public String generateRemoveLinkResponse(String link_id_str_val, String result_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(EncodeNumberClass.encodeNumber(result_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(result_val);
@@ -205,7 +207,8 @@ public class DFabricParserClass {
     }
 
     public String generateGetLinkDataResponse(String link_id_str_val, String data_val, String pending_session_setup_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(EncodeNumberClass.encodeNumber(data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(data_val);
@@ -241,7 +244,8 @@ public class DFabricParserClass {
     }
 
     public String generateGetNameListResponse(String link_id_str_val, String name_list_str_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
         response_buf.append(link_id_str_val);
         response_buf.append(EncodeNumberClass.encodeNumber(name_list_str_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(name_list_str_val);
@@ -322,7 +326,8 @@ public class DFabricParserClass {
     }
 
     public String generateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
         return response_buf.toString();
@@ -417,7 +422,8 @@ public class DFabricParserClass {
     }
 
     public String generateSetupSession3Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
         response_buf.append(theme_id_str_val);
@@ -475,7 +481,8 @@ public class DFabricParserClass {
     }
 
     public String generatePutSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
         response_buf.append(EncodeNumberClass.encodeNumber(c_data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
@@ -518,7 +525,8 @@ public class DFabricParserClass {
     }
 
     public String generateGetSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
         if (c_data_val == null) {//////////////////////////////////for now

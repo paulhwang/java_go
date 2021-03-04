@@ -115,7 +115,8 @@ public class DFrontParserClass {
         this.debug(true, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(true, "processSetupLinkRequest", "password = " + password);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(EncodeNumberClass.encodeNumber(my_name.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(my_name);
         response_buf.append(EncodeNumberClass.encodeNumber(password.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
@@ -143,7 +144,8 @@ public class DFrontParserClass {
     	
         this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str);
         return response_buf.toString();
     }
@@ -168,7 +170,8 @@ public class DFrontParserClass {
         	return "Exception";
         }
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
         response_buf.append(link_id_str);
         response_buf.append(name_list_tag_str);
         return response_buf.toString();
@@ -200,7 +203,8 @@ public class DFrontParserClass {
         this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
         this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION); 
         response_buf.append(link_id_str);
         response_buf.append(EncodeNumberClass.encodeNumber(his_name.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(his_name);
@@ -239,7 +243,8 @@ public class DFrontParserClass {
         this.debug(false, "processSetupSession2Request", "theme_id_str = " + theme_id_str);
         this.debug(false, "processSetupSession2Request", "theme_data = " + theme_data_str);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         response_buf.append(theme_id_str);
@@ -271,7 +276,8 @@ public class DFrontParserClass {
         this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         return response_buf.toString();
@@ -306,7 +312,8 @@ public class DFrontParserClass {
         //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
         this.debug(false, "processPutSessionDataRequest", "data = " + data);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         response_buf.append(EncodeNumberClass.encodeNumber(data.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
@@ -336,7 +343,8 @@ public class DFrontParserClass {
         this.debug(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
         this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
 
-        StringBuilder response_buf = new StringBuilder(FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA); 
+        StringBuilder response_buf = new StringBuilder();
+        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         return response_buf.toString();
