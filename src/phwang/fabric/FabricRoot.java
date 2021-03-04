@@ -14,14 +14,14 @@ public class FabricRoot {
     private String objectName() {return "FabricRoot";}
     
     private ThreadMgrClass threadMgrObject_;
-    private FabricUBinder uFabricObject_;
+    private FabricUBinder fabricUBinder_;
     private FabricDBinder dFabricObject_;
     private FabricLinkMgr linkMgrObject_;
     private FabricGroupMgr groupMgrObject_;
     private FabricNameList nameListObject_;
 
     public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
-    public FabricUBinder uFabricObject() { return this.uFabricObject_; }
+    public FabricUBinder fabricUBinder() { return this.fabricUBinder_; }
     public FabricDBinder dFabricObject() { return this.dFabricObject_; }
     public FabricLinkMgr linkMgrObject() { return this.linkMgrObject_; }
     public FabricGroupMgr groupMgrObject() { return this.groupMgrObject_; }
@@ -31,13 +31,13 @@ public class FabricRoot {
         this.debug(false, "FabricRoot", "init start");
         
         this.threadMgrObject_ = new ThreadMgrClass();
-        this.uFabricObject_ = new FabricUBinder(this);
+        this.fabricUBinder_ = new FabricUBinder(this);
         this.dFabricObject_ = new FabricDBinder(this);
         this.linkMgrObject_ = new FabricLinkMgr(this);
         this.groupMgrObject_ = new FabricGroupMgr(this);
         this.nameListObject_ = new FabricNameList(this);
         
-        this.uFabricObject().startThreads();
+        this.fabricUBinder().startThreads();
         this.dFabricObject().startThreads();
 	}
     

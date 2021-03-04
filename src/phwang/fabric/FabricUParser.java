@@ -21,7 +21,7 @@ public class FabricUParser {
     private FabricDBinder dFabricObject;
 
     public FabricRoot fabricRoot() { return this.dFabricObject.fabricRoot(); }
-    private FabricUBinder UFabricObject() { return this.fabricRoot().uFabricObject(); }
+    private FabricUBinder fabricUBinder() { return this.fabricRoot().fabricUBinder(); }
     private FabricLinkMgr LinkMgrObject() { return this.fabricRoot().linkMgrObject(); }
     private FabricGroupMgr GroupMgrObject() { return this.fabricRoot().groupMgrObject(); }
 
@@ -314,7 +314,7 @@ public class FabricUParser {
         data_buf.append(group_val.GroupIdStr());
         data_buf.append(theme_info_val);
         String uplink_data = data_buf.toString();
-        this.fabricRoot().uFabricObject().transmitData(uplink_data);
+        this.fabricRoot().fabricUBinder().transmitData(uplink_data);
     }
 
     private String errorProcessSetupSession(String link_id_val, String error_msg_val) {
@@ -465,7 +465,7 @@ public class FabricUParser {
         /* transfer data up */
         String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA;
         uplink_data = uplink_data + room_id_str + data;
-        this.UFabricObject().transmitData(uplink_data);
+        this.fabricUBinder().transmitData(uplink_data);
 
         /* send the response down */
         String response_data = this.generatePutSessionDataResponse(link.linkIdStr(), session.SessionIdStr(), "job is done");
