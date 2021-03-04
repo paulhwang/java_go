@@ -33,7 +33,7 @@ public class DFrontClass {
         
         String output_str = this.frontUParser().parseInputPacket(input_data_val);
         
-        FrontJobClass job_entry = this.frontJobMgrObject().mallocJob();
+        FrontJob job_entry = this.frontJobMgrObject().mallocJob();
         
         if (output_str != null) {
             this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);

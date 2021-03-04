@@ -36,23 +36,23 @@ public class FrontJobMgrClass {
         this.listMgr_ = new ListMgrClass(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
     }
 
-    public FrontJobClass mallocJob() {
-    	FrontJobClass job = new FrontJobClass();
+    public FrontJob mallocJob() {
+    	FrontJob job = new FrontJob();
         ListEntryClass list_entry = this.listMgr().malloc(job);
         job.bindListEntry(list_entry);
         return job;
     }
 
-    public void freeJob(FrontJobClass job_val) {
+    public void freeJob(FrontJob job_val) {
 
     }
     
-    public FrontJobClass getJobByIdStr(String job_id_str_val) {
+    public FrontJob getJobByIdStr(String job_id_str_val) {
      	ListEntryClass list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (FrontJobClass) list_entry.data();
+        return (FrontJob) list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
