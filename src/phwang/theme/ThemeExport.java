@@ -1,14 +1,14 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
 
 package phwang.theme;
 
-public class ThemeDefineClass {
+public class ThemeExport {
     public static final int THEME_ROOM_ID_SIZE = ThemeRoomMgr.THEME_ROOM_ID_SIZE;
 
 }

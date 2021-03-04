@@ -47,8 +47,8 @@ public class ThemeDParser {
     private void processSetupBaseResponse(String input_data_val) {
         this.debug(false, "processSetupBaseResponse", input_data_val);
 
-        String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
-        String base_id_str = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
+        String room_id_str = input_data_val.substring(0, ThemeExport.THEME_ROOM_ID_SIZE);
+        String base_id_str = input_data_val.substring(ThemeExport.THEME_ROOM_ID_SIZE);
         
         this.debug(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
         this.debug(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
@@ -92,8 +92,8 @@ public class ThemeDParser {
 
     private void processPutBaseDataResponse(String input_data_val) {
         this.debug(false, "processPutBaseDataResponse", input_data_val);
-        String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
-        String data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
+        String room_id_str = input_data_val.substring(0, ThemeExport.THEME_ROOM_ID_SIZE);
+        String data = input_data_val.substring(ThemeExport.THEME_ROOM_ID_SIZE);
 
         ThemeRoom room_object = this.RoomMgrObject().getRoomByIdStr(room_id_str);
         if (room_object == null) {

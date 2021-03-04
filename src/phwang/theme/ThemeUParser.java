@@ -79,8 +79,8 @@ public class ThemeUParser {
     private void processPutRoomData(String input_data_val) {
         this.debug(false, "processPutRoomData", input_data_val);
 
-        String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
-        String input_data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
+        String room_id_str = input_data_val.substring(0, ThemeExport.THEME_ROOM_ID_SIZE);
+        String input_data = input_data_val.substring(ThemeExport.THEME_ROOM_ID_SIZE);
         ThemeRoom room = this.RoomMgrObject().getRoomByIdStr(room_id_str);
         if (room == null) {
             this.abend("processPutRoomData", "null room");

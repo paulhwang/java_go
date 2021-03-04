@@ -9,13 +9,13 @@
 package phwang.front;
 
 import phwang.fabric.FabricExport;
-import phwang.theme.ThemeDefineClass;
+import phwang.theme.ThemeExport;
 
 public class FrontImport {
     public static final String FABRIC_FRONT_SERVER_IP_ADDRESS = "127.0.0.1";
     public static final short FABRIC_FRONT_PORT = FabricExport.FABRIC_FRONT_PORT;
     
-	public static final int THEME_ROOM_ID_SIZE = ThemeDefineClass.THEME_ROOM_ID_SIZE;
+	public static final int THEME_ROOM_ID_SIZE = ThemeExport.THEME_ROOM_ID_SIZE;
 	
 	public static final int FABRIC_LINK_ID_SIZE    = FabricExport.FABRIC_LINK_ID_SIZE;
 	public static final int FABRIC_SESSION_ID_SIZE = FabricExport.FABRIC_SESSION_ID_SIZE;
