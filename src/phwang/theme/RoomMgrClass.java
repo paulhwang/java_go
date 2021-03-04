@@ -8,7 +8,6 @@
 
 package phwang.theme;
 
-import phwang.fabric.FabricDefineClass;
 import phwang.utils.*;
 
 public class RoomMgrClass {

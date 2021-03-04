@@ -10,8 +10,6 @@ package phwang.utils;
 
 import java.util.concurrent.locks.*;
 
-import phwang.fabric.FabricDefineClass;
-
 public class ListEntryClass {
     private int id_;
     private String id_str_;

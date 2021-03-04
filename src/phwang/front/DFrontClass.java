@@ -20,7 +20,7 @@ public class DFrontClass {
     private FrontJobMgrClass frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
     private UFrontClass uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
-    private DFrontParserClass dFrontParserObject() { return this.frontEndRootObject().dFrontParserObject(); }
+    private FrontUParser dFrontParserObject() { return this.frontEndRootObject().dFrontParserObject(); }
     
     public DFrontClass(FrontRootClass root_object_val) {
         this.debug(false, "DFrontClass", "init start");
