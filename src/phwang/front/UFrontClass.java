@@ -31,7 +31,7 @@ public class UFrontClass implements ThreadInterface {
         
         this.frontRootObject_ = root_object_val;
         this.uBinderObject_ = new BinderClass(this.objectName());
-        this.uBinderObject().bindAsTcpClient(true, FabricImportClass.FABRIC_FRONT_SERVER_IP_ADDRESS, FabricImportClass.FABRIC_FRONT_PORT);
+        this.uBinderObject().bindAsTcpClient(true, FrontImport.FABRIC_FRONT_SERVER_IP_ADDRESS, FrontImport.FABRIC_FRONT_PORT);
     }
 
     public void startThreads() {

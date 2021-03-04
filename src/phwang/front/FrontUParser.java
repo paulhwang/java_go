@@ -116,7 +116,7 @@ public class FrontUParser {
         this.debug(false, "processSetupLinkRequest", "password = " + password);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(EncodeNumberClass.encodeNumber(my_name.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(my_name);
         response_buf.append(EncodeNumberClass.encodeNumber(password.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
@@ -145,7 +145,7 @@ public class FrontUParser {
         this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str);
         return response_buf.toString();
     }
@@ -171,7 +171,7 @@ public class FrontUParser {
         }
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_GET_NAME_LIST); 
         response_buf.append(link_id_str);
         response_buf.append(name_list_tag_str);
         return response_buf.toString();
@@ -204,7 +204,7 @@ public class FrontUParser {
         this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_SESSION); 
         response_buf.append(link_id_str);
         response_buf.append(EncodeNumberClass.encodeNumber(his_name.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         response_buf.append(his_name);
@@ -244,7 +244,7 @@ public class FrontUParser {
         this.debug(false, "processSetupSession2Request", "theme_data = " + theme_data_str);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_SESSION2); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         response_buf.append(theme_id_str);
@@ -277,7 +277,7 @@ public class FrontUParser {
         this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_SESSION3); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         return response_buf.toString();
@@ -313,7 +313,7 @@ public class FrontUParser {
         this.debug(false, "processPutSessionDataRequest", "data = " + data);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         response_buf.append(EncodeNumberClass.encodeNumber(data.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
@@ -344,7 +344,7 @@ public class FrontUParser {
         this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
 
         StringBuilder response_buf = new StringBuilder();
-        response_buf.append(FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA); 
+        response_buf.append(FrontImport.FABRIC_COMMAND_GET_SESSION_DATA); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         return response_buf.toString();
