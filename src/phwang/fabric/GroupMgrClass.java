@@ -42,32 +42,12 @@ public class GroupMgrClass {
 
     }
 
-    public GroupClass getGroupByGroupIdStr(String group_id_str_val) {
-        int group_id = EncodeNumberClass.decodeNumber(group_id_str_val);
-
-        return this.GetGroupByGroupId(group_id);
-    }
-
-    public GroupClass GetGroupByGroupId(int group_id_val) {
-        ListEntryClass list_entry = this.listMgr().getEntryById(group_id_val);
-        if (list_entry == null)
-        {
+    public GroupClass getGroupByIdStr(String group_id_str_val) {
+        ListEntryClass list_entry = this.listMgr().getEntryByIdStr(group_id_str_val);
+        if (list_entry == null) {
             return null;
         }
-        GroupClass room_object = (GroupClass)list_entry.data();
-
-        return room_object;
-    }
-
-    public LinkClass GetLinkById(int id_val) {
-        ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
-        if (list_entry == null)
-        {
-            return null;
-        }
-        LinkClass link = (LinkClass)list_entry.data();
-
-        return link;
+        return (GroupClass)list_entry.data();
     }
 
     public LinkClass GetLinkByMyName(String my_name_val) {

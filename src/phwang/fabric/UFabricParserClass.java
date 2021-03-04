@@ -50,7 +50,7 @@ public class UFabricParserClass {
         String group_id_str = input_data_val.substring(0, FabricExport.FABRIC_GROUP_ID_SIZE);
         String room_id_str = input_data_val.substring(FabricExport.FABRIC_GROUP_ID_SIZE);
 
-        GroupClass group = this.groupMgrObject().getGroupByGroupIdStr(group_id_str);
+        GroupClass group = this.groupMgrObject().getGroupByIdStr(group_id_str);
         if (group != null) {
             group.setRoomIdStr(room_id_str);
             int session_array_size = group.getSessionArraySize();
@@ -69,7 +69,7 @@ public class UFabricParserClass {
         
         String group_id_str = input_data_val.substring(0, FabricExport.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricExport.FABRIC_GROUP_ID_SIZE);
-        GroupClass group = this.groupMgrObject().getGroupByGroupIdStr(group_id_str);
+        GroupClass group = this.groupMgrObject().getGroupByIdStr(group_id_str);
         if (group != null) {
             int session_array_size = group.getSessionArraySize();
             Object[] session_array = group.getSessionArray();
