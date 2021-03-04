@@ -17,10 +17,12 @@ public class ListEntryClass {
     private String id_str_;
     private Object data_;
     private int index_;
-    private int id_size;
+    private int id_size_;
+    private String indexStr_;
 
     public ListEntryClass(int index_val) {
         this.index_ = index_val;
+        this.indexStr_ = EncodeNumberClass.encodeNumber(this.index_, this.id_size_);
     }
     
     public int Index() { return this.index_; }
@@ -31,8 +33,9 @@ public class ListEntryClass {
     public void setData(int id_val, Object data_val, int id_size_val) {
         this.id_ = id_val;
         this.data_ = data_val;
-    	this.id_size = id_size_val;
-        this.id_str_ = EncodeNumberClass.encodeNumber(this.id(), this.id_size);
+    	this.id_size_ = id_size_val;
+        StringBuilder id_str_buf = new StringBuilder(EncodeNumberClass.encodeNumber(this.id(), this.id_size_));
+        this.id_str_ = id_str_buf.toString();
     }
 
     public void resetData() {

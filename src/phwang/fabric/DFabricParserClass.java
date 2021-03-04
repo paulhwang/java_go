@@ -8,9 +8,6 @@
 
 package phwang.fabric;
 
-//import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
 import phwang.utils.EncodeNumberClass;
 import phwang.browser.BrowserDefine;
@@ -18,7 +15,6 @@ import phwang.front.FabricImportClass;
 import phwang.protocols.ProtocolDefineClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 import phwang.protocols.FabricThemeProtocolClass;
-import org.json.simple.parser.ParseException;
 
 public class DFabricParserClass {
     private String objectName() {return "DFabricParserClass";}
