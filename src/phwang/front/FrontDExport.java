@@ -14,19 +14,18 @@ import phwang.utils.BinderClass;
 public class FrontDExport  implements FrontDExportInterface {
     private String objectName() {return "FrontDExport";}
     
-    private FrontRoot frontRootObject_;
+    private FrontRoot frontRoot_;
     
-    private FrontRoot frontRootObject() { return this.frontRootObject_; }
-    public FrontRoot frontEndRootObject() { return this.frontRootObject_; }
-    private FrontJobMgr frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
-    private FrontUBinder uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
+    private FrontRoot frontRoot() { return this.frontRoot_; }
+    private FrontJobMgr frontJobMgr() { return this.frontRoot().frontJobMgr(); }
+    private FrontUBinder uFrontObject() { return this.frontRoot().frontUBinder(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
-    private FrontUParser frontUParser() { return this.frontEndRootObject().frontUParser(); }
+    private FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
     
-    public FrontDExport(FrontRoot root_object_val) {
+    public FrontDExport(FrontRoot front_root_val) {
         this.debug(false, "FrontDExport", "init start");
         
-        this.frontRootObject_ = root_object_val;
+        this.frontRoot_ = front_root_val;
     }
  	
     public String processHttpRequestPacket(String input_data_val) {
@@ -34,7 +33,7 @@ public class FrontDExport  implements FrontDExportInterface {
         
         String output_str = this.frontUParser().parseInputPacket(input_data_val);
         
-        FrontJob job_entry = this.frontJobMgrObject().mallocJob();
+        FrontJob job_entry = this.frontJobMgr().mallocJob();
         
         if (output_str != null) {
             this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);

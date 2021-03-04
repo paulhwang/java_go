@@ -16,20 +16,20 @@ public class FrontUBinder implements ThreadInterface {
     
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
-    private FrontRoot frontRootObject_;
+    private FrontRoot frontRoot_;
     private BinderClass uBinderObject_;
     private Boolean stopReceiveThreadFlag = false;
     
     private FrontDParser uFrontParserObject() { return this.frontRootObject().frontDParser(); }
-    public FrontRoot frontRootObject() { return this.frontRootObject_; }
-    private FrontJobMgr frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
+    public FrontRoot frontRootObject() { return this.frontRoot_; }
+    private FrontJobMgr frontJobMgr() { return this.frontRootObject().frontJobMgr(); }
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public FrontUBinder(FrontRoot root_object_val) {
         this.debug(false, "FrontUBinder", "init start");
         
-        this.frontRootObject_ = root_object_val;
+        this.frontRoot_ = root_object_val;
         this.uBinderObject_ = new BinderClass(this.objectName());
         this.uBinderObject().bindAsTcpClient(true, FrontImport.FABRIC_FRONT_SERVER_IP_ADDRESS, FrontImport.FABRIC_FRONT_PORT);
     }
@@ -61,7 +61,7 @@ public class FrontUBinder implements ThreadInterface {
             this.debug(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FrontExport.FRONT_JOB_ID_SIZE);
-            FrontJob job_entry = this.frontJobMgrObject().getJobByIdStr(ajax_id_str);
+            FrontJob job_entry = this.frontJobMgr().getJobByIdStr(ajax_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;

@@ -24,7 +24,7 @@ public class FrontJobMgr {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_JOB_ID = 0;
 
-    private FrontRoot frontRootObject_;
+    private FrontRoot frontRoot_;
     private ListMgrClass listMgr_;
 
     private ListMgrClass listMgr() { return this.listMgr_; }
@@ -32,7 +32,7 @@ public class FrontJobMgr {
     public FrontJobMgr(FrontRoot front_root_object_val) {
         this.debug(false, "FrontJobMgr", "init start");
 
-        this.frontRootObject_ = front_root_object_val;
+        this.frontRoot_ = front_root_object_val;
         this.listMgr_ = new ListMgrClass(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
     }
 
