@@ -1,14 +1,14 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
 
 package phwang.front;
 
-public class FrontDefineClass {
+public class FrontExport {
    public static final int FRONT_JOB_ID_SIZE = FrontJobMgr.FRONT_JOB_ID_SIZE;
 
 }

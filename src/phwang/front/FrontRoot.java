@@ -17,7 +17,7 @@ public class FrontRoot {
     private ThreadMgrClass threadMgrObject_;
     private FrontJobMgr frontJobMgrObject_;
     private FrontUBinder uFrontObject_;
-    private DFrontClass dFrontObject_;
+    private FrontDExport dFrontObject_;
     private FrontUParser frontUParser_;
     private FrontDParser uFrontParserObject_;
     private FrontDExport frontExportObject_;
@@ -25,7 +25,7 @@ public class FrontRoot {
     
     public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
     public FrontUBinder uFrontObject() { return this.uFrontObject_; }
-    public DFrontClass dFrontObject() { return this.dFrontObject_; }
+    public FrontDExport dFrontObject() { return this.dFrontObject_; }
     public FrontJobMgr frontJobMgrObject() { return this.frontJobMgrObject_; }
     public FrontUParser frontUParser() { return this.frontUParser_; }
     public FrontDParser frontDParser() { return this.uFrontParserObject_; }
@@ -37,7 +37,7 @@ public class FrontRoot {
         
         this.threadMgrObject_ = new ThreadMgrClass();
         this.uFrontObject_ = new FrontUBinder(this);
-        this.dFrontObject_ = new DFrontClass(this);
+        this.dFrontObject_ = new FrontDExport(this);
         this.frontUParser_ = new FrontUParser(this);
         this.uFrontParserObject_ = new FrontDParser(this);
         this.frontJobMgrObject_ = new FrontJobMgr(this);
