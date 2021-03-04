@@ -61,6 +61,7 @@ public class UThemeClass implements ThreadInterface {
     }
 
     public void transmitData(String data_val) {
+        this.debug(false, "transmitData", "data=" + data_val);
         this.uBinderObject().transmitData(data_val);
     }
     

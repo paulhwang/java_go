@@ -26,7 +26,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String indexString;
     private String myNameString;
     private String password = "Tennis";
-    private String themeData = "9999G009090000";
+    private String themeData = "88889999G009090000";///////////////////
     private String themeData2 = "G009090000";
     private String acceptString = "Yes";
     private String xmtSeqString = "1111";
@@ -34,7 +34,7 @@ class FrontTestCaseClass implements ThreadInterface {
     private String nameListTagString = "0000";///////////////////////////////////////////////////////different from brouser which is int
     private String linkIdString;
     private String sessionIdString;
-    private String themeIdString = "3333";
+    private String themeIdString = "33333333";///////////////////////////////////////////////
     
     private FrontTestClass frontTestObject() { return this.frontTestObject_; }
     private ThreadMgrClass threadMgrObject() { return this.frontTestObject().threadMgrObject();}
@@ -75,16 +75,16 @@ class FrontTestCaseClass implements ThreadInterface {
     	//UtilsClass.sleep(100);
     	this.doSetupSession();
     	
-    	UtilsClass.sleep(1000);
+    	UtilsClass.sleep(100);
     	this.doSetupSession3();
     	
-    	UtilsClass.sleep(1000);
+    	UtilsClass.sleep(100);
     	this.doPutSessionData();
     	
-    	UtilsClass.sleep(1000);
+    	UtilsClass.sleep(100);
     	this.doGetSessionData();
     	
-    	UtilsClass.sleep(1000);
+    	UtilsClass.sleep(100);
     	this.doSetupSession2();
     }
     
@@ -100,7 +100,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
-        this.debug(true, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
+        this.debug(false, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
     	
         try {
             JSONParser parser = new JSONParser();

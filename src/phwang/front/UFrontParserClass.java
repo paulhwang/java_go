@@ -167,7 +167,7 @@ public class UFrontParserClass {
     }
 
     public String parserSetupSession3Response(String input_str_val) {
-    	this.debug(false, "generateSetupSession3Response", "input_str_val=" + input_str_val);
+    	this.debug(true, "parserSetupSession3Response", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, FabricImportClass.FABRIC_LINK_ID_SIZE);

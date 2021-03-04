@@ -13,6 +13,9 @@ import phwang.utils.*;
 public class BaseMgrClass {
     private String objectName() {return "BaseMgrClass";}
     
+    public static final int ENGINE_BASE_ID_SIZE_ = 4;
+    public static final int ENGINE_BASE_ID_SIZE = ENGINE_BASE_ID_SIZE_ * 2;
+    
     private static final int FIRST_BASE_ID = 9000;
     private static final int LIST_MGR_ARRAY_SIZE = 128;
 
@@ -25,7 +28,7 @@ public class BaseMgrClass {
         this.debug(false, "BaseMgrClass", "init start");
 
         this.engineRootObject = engine_root_object_val;
-        this.listMgr = new ListMgrClass(EngineDefineClass.ENGINE_BASE_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
+        this.listMgr = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
     public BaseClass MallocGoBase(String room_id_val) {

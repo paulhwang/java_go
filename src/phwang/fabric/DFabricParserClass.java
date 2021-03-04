@@ -42,6 +42,7 @@ public class DFabricParserClass {
         String response_data = null;
         
         this.debug(false, "parseInputPacket", "input_data_val = " + input_data_val);
+        this.debug(false, "parseInputPacket", "json_str = " + json_str);
         
         char command = json_str.charAt(0);
         
@@ -61,7 +62,7 @@ public class DFabricParserClass {
             response_data = this.processSetupSessionRequest(json_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION2) {
-            response_data = this.processSetupSession2Request1(json_str.substring(1));
+            response_data = this.processSetupSession2Request(json_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION3) {
             response_data = this.processSetupSession3Request(json_str.substring(1));
@@ -269,8 +270,8 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
         this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-        String theme_id_str = theme_data_str.substring(0, BrowserDefine.BROWSER_THEME_ID_SIZE);
-        String theme_data = theme_data_str.substring(BrowserDefine.BROWSER_THEME_ID_SIZE);
+        String theme_id_str = theme_data_str.substring(0, FrontImportClass.THEME_ROOM_ID_SIZE);
+        String theme_data = theme_data_str.substring(FrontImportClass.THEME_ROOM_ID_SIZE);
 
         LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
@@ -311,6 +312,8 @@ public class DFabricParserClass {
     }
 
     private void mallocRoom(GroupClass group_val, String theme_info_val) {
+        this.debug(true, "mallocRoom", "theme_info_val=" + theme_info_val);
+    	
         String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
         uplink_data = uplink_data + group_val.GroupIdStr();
         uplink_data = uplink_data + theme_info_val;
@@ -329,8 +332,8 @@ public class DFabricParserClass {
         return response_buf.toString();
     }
 
-    private String processSetupSession2Request1(String input_str_val) {
-        this.debug(false, "processSetupSession2Request", "input_str_val = " + input_str_val);
+    private String processSetupSession2Request(String input_str_val) {
+        this.debug(true, "processSetupSession2Request", "input_str_val = " + input_str_val);
     	/////String accept_str;
         
         String rest_str = input_str_val;
@@ -427,7 +430,7 @@ public class DFabricParserClass {
     }
 
     private String processPutSessionDataRequest(String input_str_val) {
-        this.debug(false, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
+        this.debug(true, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
     	//String xmt_seq_str = null;
         
         String rest_str = input_str_val;

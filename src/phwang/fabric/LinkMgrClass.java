@@ -13,7 +13,8 @@ import phwang.utils.*;
 public class LinkMgrClass implements ListMgrInterface {
     private String objectName() {return "LinkMgrClass";}
 
-	public static final int FABRIC_LINK_ID_SIZE = 4;
+	public static final int FABRIC_LINK_ID_SIZE_ = 4;
+	public static final int FABRIC_LINK_ID_SIZE = FABRIC_LINK_ID_SIZE_ * 2;
 	
     private static final int LIST_MGR_ARRAY_SIZE = 256;
     private static final int FIRST_LINK_ID = 1000;
@@ -29,7 +30,7 @@ public class LinkMgrClass implements ListMgrInterface {
         this.debug(false, "LinkMgrClass", "init start");
         
         this.fabricRootObject_ = root_fabric_object_val;
-        this.listMgr_ = new ListMgrClass(FabricExport.FABRIC_LINK_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
+        this.listMgr_ = new ListMgrClass(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
     }
 
     public LinkClass mallocLink(String my_name_val) {

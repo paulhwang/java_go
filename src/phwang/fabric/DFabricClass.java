@@ -46,7 +46,7 @@ public class DFabricClass implements ThreadInterface {
 	}
 
     public void dFabricRreceiveThreadFunc() {
-        this.debug(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "dFabricRreceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
         while (true) {

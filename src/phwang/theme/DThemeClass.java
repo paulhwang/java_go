@@ -46,7 +46,7 @@ public class DThemeClass implements ThreadInterface {
 	}
 
     public void dThemeRreceiveThreadFunc() {
-        this.debug(false, "dEngineReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "dThemeRreceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
         while (true) {

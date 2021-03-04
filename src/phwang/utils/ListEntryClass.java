@@ -19,22 +19,22 @@ public class ListEntryClass {
     private int index_;
     private int id_size_;
     private String indexStr_;
-
-    public ListEntryClass(int index_val) {
-        this.index_ = index_val;
-        this.indexStr_ = EncodeNumberClass.encodeNumber(this.index_, this.id_size_);
-    }
     
     public int Index() { return this.index_; }
     public int id() { return this.id_; }
     public String idStr() { return this.id_str_; }
     public Object data() { return this.data_; }
 
+    public ListEntryClass(int index_val) {
+        this.index_ = index_val;
+    }
+
     public void setData(int id_val, Object data_val, int id_size_val) {
         this.id_ = id_val;
         this.data_ = data_val;
     	this.id_size_ = id_size_val;
-        StringBuilder id_str_buf = new StringBuilder(EncodeNumberClass.encodeNumber(this.id(), this.id_size_));
+        StringBuilder id_str_buf = new StringBuilder(EncodeNumberClass.encodeNumber(this.id_, this.id_size_));
+        id_str_buf.append(EncodeNumberClass.encodeNumber(this.index_, this.id_size_));
         this.id_str_ = id_str_buf.toString();
     }
 

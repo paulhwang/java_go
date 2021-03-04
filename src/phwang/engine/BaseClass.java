@@ -32,6 +32,7 @@ public class BaseClass {
     }
 
     public String setupBase(String input_data_val) {
+    	this.debug(false, "setupBase", "input_data_val=" + input_data_val);
         String input_data = input_data_val.substring(1);
 
         switch (input_data_val.charAt(0)) {

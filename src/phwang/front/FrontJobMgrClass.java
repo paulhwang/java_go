@@ -18,6 +18,9 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FrontJobMgrClass {
     private String objectName() {return "FrontJobMgrClass";}
 
+    public static final int FRONT_JOB_ID_SIZE_ = 4;
+    public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
+
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_JOB_ID = 0;
 
@@ -30,7 +33,7 @@ public class FrontJobMgrClass {
         this.debug(false, "FrontJobMgrClass", "init start");
 
         this.frontRootObject_ = front_root_object_val;
-        this.listMgr_ = new ListMgrClass(FrontDefineClass.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
+        this.listMgr_ = new ListMgrClass(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
     }
 
     public FrontJobClass mallocJob() {
