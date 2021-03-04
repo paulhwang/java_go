@@ -33,28 +33,28 @@ public class UFrontParserClass {
     	
     	char command = input_data_val.charAt(0);
     	
-    	if (command == FabricImportClass.FABRIC_COMMAND_SETUP_LINK.charAt(0)) {
+    	if (command == FabricImportClass.FABRIC_COMMAND_SETUP_LINK) {
     		json_response_data = parserSetupLinkResponse(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_GET_LINK_DATA) {
     		json_response_data = parserGetLinkDataResponse(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_GET_NAME_LIST) {
     		json_response_data = parserGetNameListResponse(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION) {
     		json_response_data = parserSetupSessionResponse(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION2) {
     		json_response_data = parserSetupSession2Response(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_SETUP_SESSION3) {
     		json_response_data = parserSetupSession3Response(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_PUT_SESSION_DATA) {
     		json_response_data = parserPutSessionDataResponse(input_data_val.substring(1));
     	}	
-    	else if (command == FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
+    	else if (command == FabricImportClass.FABRIC_COMMAND_GET_SESSION_DATA) {
     		json_response_data = parserGetSessionDataResponse(input_data_val.substring(1));
     	}
     	else {

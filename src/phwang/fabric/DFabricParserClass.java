@@ -49,31 +49,31 @@ public class DFabricParserClass {
         
         char command = json_str.charAt(0);
         
-        if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_LINK.charAt(0)) {
+        if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_LINK) {
             response_data = this.processSetupLinkRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_REMOVE_LINK.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_REMOVE_LINK) {
             response_data = this.processRemoveLinkRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA) {
             response_data = this.processGetLinkDataRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST) {
             response_data = this.processGetNameListRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION) {
             response_data = this.processSetupSessionRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2) {
             response_data = this.processSetupSession2Request1(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3) {
             response_data = this.processSetupSession3Request(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA) {
             response_data = this.processPutSessionDataRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA.charAt(0)) {
+        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA) {
             response_data = this.processGetSessionDataRequest(json_str.substring(1));
         }
         else {
