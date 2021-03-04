@@ -14,6 +14,8 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class NameListClass {
     private String objectName() {return "NameListClass";}
 
+    public static final int NAME_LIST_TAG_SIZE = 4;
+
     final int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
 
     private FabricRootClass fabricRootObject;
@@ -40,13 +42,13 @@ public class NameListClass {
         if (this.nameListTag > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
             this.nameListTag = 1;
         }
-        this.nameListTagStr = EncodeNumberClass.encodeNumber(this.nameListTag, FabricDefineClass.NAME_LIST_TAG_SIZE);
+        this.nameListTagStr = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
 
         this.nameList = "";
         for (int i = max_index; i >= 0; i--) {
             if (list_entry_array[i] != null) {
                 if (this.nameList.length() == 0) {
-                    this.nameList = EncodeNumberClass.encodeNumber(this.nameListTag, FabricDefineClass.NAME_LIST_TAG_SIZE);
+                    this.nameList = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
                 }
                 else {
                     this.nameList = this.nameList + ",";

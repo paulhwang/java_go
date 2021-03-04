@@ -49,31 +49,31 @@ public class DFabricParserClass {
         
         char command = json_str.charAt(0);
         
-        if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_LINK) {
+        if (command == FabricExport.FABRIC_COMMAND_SETUP_LINK) {
             response_data = this.processSetupLinkRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_REMOVE_LINK) {
+        else if (command == FabricExport.FABRIC_COMMAND_REMOVE_LINK) {
             response_data = this.processRemoveLinkRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_LINK_DATA) {
+        else if (command == FabricExport.FABRIC_COMMAND_GET_LINK_DATA) {
             response_data = this.processGetLinkDataRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_NAME_LIST) {
+        else if (command == FabricExport.FABRIC_COMMAND_GET_NAME_LIST) {
             response_data = this.processGetNameListRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION) {
+        else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION) {
             response_data = this.processSetupSessionRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION2) {
+        else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION2) {
             response_data = this.processSetupSession2Request1(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_SETUP_SESSION3) {
+        else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION3) {
             response_data = this.processSetupSession3Request(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_PUT_SESSION_DATA) {
+        else if (command == FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA) {
             response_data = this.processPutSessionDataRequest(json_str.substring(1));
         }
-        else if (command == FabricDefineClass.FABRIC_COMMAND_GET_SESSION_DATA) {
+        else if (command == FabricExport.FABRIC_COMMAND_GET_SESSION_DATA) {
             response_data = this.processGetSessionDataRequest(json_str.substring(1));
         }
         else {
@@ -126,8 +126,8 @@ public class DFabricParserClass {
         this.debug(false, "processRemoveLinkRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
     	
         this.debug(false, "processRemoveLinkRequest", "link_id = " + link_id_str);
 
@@ -158,8 +158,8 @@ public class DFabricParserClass {
         this.debug(false, "processGetLinkDataRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
     	
         this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
@@ -221,11 +221,11 @@ public class DFabricParserClass {
         this.debug(false, "processGetNameListRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
 
-        String name_list_tag_str = rest_str.substring(0, FabricDefineClass.NAME_LIST_TAG_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.NAME_LIST_TAG_SIZE);
+        String name_list_tag_str = rest_str.substring(0, FabricExport.NAME_LIST_TAG_SIZE);
+        rest_str = rest_str.substring(FabricExport.NAME_LIST_TAG_SIZE);
     	
         LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
@@ -256,8 +256,8 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
 
         int his_name_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
@@ -338,11 +338,11 @@ public class DFabricParserClass {
     	/////String accept_str;
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
         
-        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_SESSION_ID_SIZE);
         
         String theme_id_str = rest_str.substring(0, FabricThemeProtocolClass.THEME_ROOM_ID_SIZE);//////////////////////
         rest_str = rest_str.substring(FabricThemeProtocolClass.THEME_ROOM_ID_SIZE);///////////////////////
@@ -393,11 +393,11 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSession3Request", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
         
-        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_SESSION_ID_SIZE);
         
     	
         this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
@@ -435,11 +435,11 @@ public class DFabricParserClass {
     	//String xmt_seq_str = null;
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
         
-        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_SESSION_ID_SIZE);
 
         int data_len = EncodeNumberClass.decodeNumber(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
@@ -494,11 +494,11 @@ public class DFabricParserClass {
         this.debug(false, "processGetSessionDataRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_LINK_ID_SIZE);
+        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
         
-        String session_id_str = rest_str.substring(0, FabricDefineClass.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricDefineClass.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FabricExport.FABRIC_SESSION_ID_SIZE);
     	
         this.debug(false, "processGetSessionDataRequest", "link_id = " + link_id_str);
         this.debug(false, "processGetSessionDataRequest", "session_id = " + session_id_str);

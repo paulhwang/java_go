@@ -8,7 +8,7 @@
 
 package phwang.protocols;
 
-import phwang.fabric.FabricDefineClass;
+import phwang.fabric.FabricExport;
 import phwang.theme.ThemeDefineClass;
 
 public class FabricThemeProtocolClass {
@@ -22,6 +22,6 @@ public class FabricThemeProtocolClass {
     
 	public static final int THEME_ROOM_ID_SIZE = ThemeDefineClass.THEME_ROOM_ID_SIZE;
 
-	public static final int FABRIC_LINK_ID_SIZE = FabricDefineClass.FABRIC_LINK_ID_SIZE;
-    public static final int FABRIC_GROUP_ID_SIZE = FabricDefineClass.FABRIC_GROUP_ID_SIZE;
+	public static final int FABRIC_LINK_ID_SIZE = FabricExport.FABRIC_LINK_ID_SIZE;
+    public static final int FABRIC_GROUP_ID_SIZE = FabricExport.FABRIC_GROUP_ID_SIZE;
 }

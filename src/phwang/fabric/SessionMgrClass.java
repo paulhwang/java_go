@@ -13,7 +13,9 @@ import phwang.utils.*;
 public class SessionMgrClass {
     private String objectName() {return "SessionMgrClass";}
     
-    private static final int LIST_MGR_ARRAY_SIZE = 8;
+	public static final int FABRIC_SESSION_ID_SIZE = 4;
+
+	private static final int LIST_MGR_ARRAY_SIZE = 8;
     private static final int FIRST_SESSION_ID = 3000;
 
     private LinkClass linkObject_;
@@ -28,7 +30,7 @@ public class SessionMgrClass {
         this.debug(false, "SessionMgrClass", "init start");
         
         this.linkObject_ = link_object_val;
-        this.listMgr_ = new ListMgrClass(FabricDefineClass.FABRIC_SESSION_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
+        this.listMgr_ = new ListMgrClass(FabricExport.FABRIC_SESSION_ID_SIZE, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
     }
 
     public SessionClass mallocSession() {

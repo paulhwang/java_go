@@ -32,7 +32,7 @@ public class DFabricClass implements ThreadInterface {
         this.dFabricParserObject_ = new DFabricParserClass(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
         
-        this.dBinderObject().bindAsTcpServer(true, FabricDefineClass.FABRIC_FRONT_PORT);
+        this.dBinderObject().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
     }
 
     public void startThreads() {
