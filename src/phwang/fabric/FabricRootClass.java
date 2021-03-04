@@ -17,14 +17,14 @@ public class FabricRootClass {
     private FabricUBinder uFabricObject_;
     private FabricDBinder dFabricObject_;
     private FabricLinkMgr linkMgrObject_;
-    private GroupMgrClass groupMgrObject_;
+    private FabricGroupMgr groupMgrObject_;
     private NameListClass nameListObject_;
 
     public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
     public FabricUBinder uFabricObject() { return this.uFabricObject_; }
     public FabricDBinder dFabricObject() { return this.dFabricObject_; }
     public FabricLinkMgr linkMgrObject() { return this.linkMgrObject_; }
-    public GroupMgrClass groupMgrObject() { return this.groupMgrObject_; }
+    public FabricGroupMgr groupMgrObject() { return this.groupMgrObject_; }
     public NameListClass nameListObject() { return this.nameListObject_; }
 
     public FabricRootClass () {
@@ -34,7 +34,7 @@ public class FabricRootClass {
         this.uFabricObject_ = new FabricUBinder(this);
         this.dFabricObject_ = new FabricDBinder(this);
         this.linkMgrObject_ = new FabricLinkMgr(this);
-        this.groupMgrObject_ = new GroupMgrClass(this);
+        this.groupMgrObject_ = new FabricGroupMgr(this);
         this.nameListObject_ = new NameListClass(this);
         
         this.uFabricObject().startThreads();

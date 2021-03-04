@@ -23,7 +23,7 @@ public class DFabricParserClass {
     public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
     private FabricUBinder UFabricObject() { return this.fabricRootObject().uFabricObject(); }
     private FabricLinkMgr LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
-    private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
+    private FabricGroupMgr GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
     public DFabricParserClass(FabricDBinder dfabric_object_val) {
         this.debug(false, "DFabricParserClass", "init start");

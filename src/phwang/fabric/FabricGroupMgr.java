@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class GroupMgrClass {
-    private String objectName() {return "GroupMgrClass";}
+public class FabricGroupMgr {
+    private String objectName() {return "FabricGroupMgr";}
 
 	public static final int FABRIC_GROUP_ID_SIZE_ = 4;
 	public static final int FABRIC_GROUP_ID_SIZE = FABRIC_GROUP_ID_SIZE_ * 2;
@@ -25,8 +25,8 @@ public class GroupMgrClass {
     private FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
     private ListMgrClass listMgr() { return this.listMgr_; }
 
-    public GroupMgrClass(FabricRootClass root_fabric_object_val) {
-        this.debug(false, "GroupMgrClass", "init start");
+    public FabricGroupMgr(FabricRootClass root_fabric_object_val) {
+        this.debug(false, "FabricGroupMgr", "init start");
         
         this.fabricRootObject_ = root_fabric_object_val;
         this.listMgr_ = new ListMgrClass(FABRIC_GROUP_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_GROUP_ID);
