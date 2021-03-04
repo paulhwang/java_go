@@ -14,7 +14,7 @@ public class FabricExport {
 	public static final int FABRIC_LINK_ID_SIZE = FabricLinkMgr.FABRIC_LINK_ID_SIZE;
 	public static final int FABRIC_SESSION_ID_SIZE = FabricSessionMgr.FABRIC_SESSION_ID_SIZE;
 	public static final int FABRIC_GROUP_ID_SIZE = FabricGroupMgr.FABRIC_GROUP_ID_SIZE;
-    public static final int NAME_LIST_TAG_SIZE = NameListClass.NAME_LIST_TAG_SIZE;
+    public static final int NAME_LIST_TAG_SIZE = FabricNameList.NAME_LIST_TAG_SIZE;
 	
 	public static final char FABRIC_COMMAND_SETUP_LINK = 'L';
 	public static final char FABRIC_COMMAND_REMOVE_LINK = 'l';

@@ -24,7 +24,7 @@ public class FabricLinkMgr implements ListMgrInterface {
 
     private FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
     public ListMgrClass listMgr() { return this.listMgr_; }
-    private NameListClass nameListObject() { return this.fabricRootObject().nameListObject(); }
+    private FabricNameList nameListObject() { return this.fabricRootObject().nameListObject(); }
 
     public FabricLinkMgr(FabricRootClass root_fabric_object_val) {
         this.debug(false, "FabricLinkMgr", "init start");

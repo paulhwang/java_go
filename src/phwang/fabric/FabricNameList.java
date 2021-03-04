@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.fabric;
 import phwang.utils.*;
 import phwang.protocols.FabricFrontEndProtocolClass;
 
-public class NameListClass {
-    private String objectName() {return "NameListClass";}
+public class FabricNameList {
+    private String objectName() {return "FabricNameList";}
 
     public static final int NAME_LIST_TAG_SIZE = 4;
 
@@ -26,8 +26,8 @@ public class NameListClass {
     public String NameListTagStr() { return this.nameListTagStr; }
     public String NameList() { return this.nameList; }
 
-    public NameListClass(FabricRootClass root_fabric_object_val) {
-        this.debug(false, "NameListClass", "init start");
+    public FabricNameList(FabricRootClass root_fabric_object_val) {
+        this.debug(false, "FabricNameList", "init start");
         
         this.fabricRootObject = root_fabric_object_val;
     }
