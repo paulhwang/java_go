@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -15,8 +15,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import phwang.fabric.LinkClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 
-public class FrontJobMgrClass {
-    private String objectName() {return "FrontJobMgrClass";}
+public class FrontJobMgr {
+    private String objectName() {return "FrontJobMgr";}
 
     public static final int FRONT_JOB_ID_SIZE_ = 4;
     public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
@@ -29,8 +29,8 @@ public class FrontJobMgrClass {
 
     private ListMgrClass listMgr() { return this.listMgr_; }
 
-    public FrontJobMgrClass(FrontRoot front_root_object_val) {
-        this.debug(false, "FrontJobMgrClass", "init start");
+    public FrontJobMgr(FrontRoot front_root_object_val) {
+        this.debug(false, "FrontJobMgr", "init start");
 
         this.frontRootObject_ = front_root_object_val;
         this.listMgr_ = new ListMgrClass(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);

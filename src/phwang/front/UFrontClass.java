@@ -22,7 +22,7 @@ public class UFrontClass implements ThreadInterface {
     
     private FrontDParser uFrontParserObject() { return this.frontRootObject().frontDParser(); }
     public FrontRoot frontRootObject() { return this.frontRootObject_; }
-    private FrontJobMgrClass frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
+    private FrontJobMgr frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
