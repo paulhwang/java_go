@@ -24,12 +24,12 @@ public class FrontJobMgrClass {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_JOB_ID = 0;
 
-    private FrontRootClass frontRootObject_;
+    private FrontRoot frontRootObject_;
     private ListMgrClass listMgr_;
 
     private ListMgrClass listMgr() { return this.listMgr_; }
 
-    public FrontJobMgrClass(FrontRootClass front_root_object_val) {
+    public FrontJobMgrClass(FrontRoot front_root_object_val) {
         this.debug(false, "FrontJobMgrClass", "init start");
 
         this.frontRootObject_ = front_root_object_val;

@@ -16,17 +16,17 @@ public class UFrontClass implements ThreadInterface {
     
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
-    private FrontRootClass frontRootObject_;
+    private FrontRoot frontRootObject_;
     private BinderClass uBinderObject_;
     private Boolean stopReceiveThreadFlag = false;
     
     private FrontDParser uFrontParserObject() { return this.frontRootObject().frontDParser(); }
-    public FrontRootClass frontRootObject() { return this.frontRootObject_; }
+    public FrontRoot frontRootObject() { return this.frontRootObject_; }
     private FrontJobMgrClass frontJobMgrObject() { return this.frontRootObject().frontJobMgrObject(); }
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
-    public UFrontClass(FrontRootClass root_object_val) {
+    public UFrontClass(FrontRoot root_object_val) {
         this.debug(false, "UFrontClass", "init start");
         
         this.frontRootObject_ = root_object_val;

@@ -11,14 +11,14 @@ package phwang.main;
 import phwang.utils.*;
 import phwang.engine.EngineRootClass;
 import phwang.fabric.FabricRootClass;
-import phwang.front.FrontRootClass;
+import phwang.front.FrontRoot;
 import phwang.models.ModelRootClass;
 import phwang.theme.ThemeRootClass;
 
 public class GlobalVariableClass {
     private String objectName() {return "GlobalVariableClass";}
     
-    static public FrontRootClass frontEndRootObject;
+    static public FrontRoot frontEndRootObject;
     static public FabricRootClass fabricRootObject;
     static public ThemeRootClass themeRootObject;
     static public EngineRootClass engineRootObject;
@@ -31,14 +31,14 @@ public class GlobalVariableClass {
     public static void Initilization() {
         if (frontEndRootObject == null) {
             fabricRootObject = new FabricRootClass();
-            frontEndRootObject = new FrontRootClass();
+            frontEndRootObject = new FrontRoot();
             themeRootObject = new ThemeRootClass();
             engineRootObject = new EngineRootClass();
             modelRootObject = new ModelRootClass();
         }
     }
     
-    public static FrontRootClass getGoRoot() {
+    public static FrontRoot getGoRoot() {
         Initilization();
         return frontEndRootObject;
     }

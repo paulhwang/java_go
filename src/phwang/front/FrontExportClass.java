@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -13,12 +13,12 @@ import phwang.utils.AbendClass;
 public class FrontExportClass  implements FrontExportInterface {
     private String objectName() {return "FrontExportClass";}
     
-    private FrontRootClass frontRootObject_;
+    private FrontRoot frontRootObject_;
     
-    private FrontRootClass frontRootObject() { return this.frontRootObject_; }
+    private FrontRoot frontRootObject() { return this.frontRootObject_; }
     private DFrontClass dFrontObject() { return this.frontRootObject().dFrontObject(); }
     
-    public FrontExportClass(FrontRootClass root_object_val) {
+    public FrontExportClass(FrontRoot root_object_val) {
         this.debug(false, "FrontExternalClass", "init start");
         
         this.frontRootObject_ = root_object_val;

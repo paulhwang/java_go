@@ -24,13 +24,13 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FrontUParser {
     private String objectName() {return "FrontUParser";}
     
-    private FrontRootClass frontRootObject_;
+    private FrontRoot frontRootObject_;
     
-    public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
+    public FrontRoot frontEndRootObject() { return this.frontRootObject_; }
     public FrontUParser frontUParser() { return this.frontEndRootObject().frontUParser(); }
     
-    public FrontUParser(FrontRootClass front_root_object_val) {
-        this.debug(false, "DFrontParserClass", "init start");
+    public FrontUParser(FrontRoot front_root_object_val) {
+        this.debug(false, "FrontUParser", "init start");
 
         this.frontRootObject_ = front_root_object_val;
     }

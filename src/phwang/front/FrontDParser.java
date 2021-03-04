@@ -17,12 +17,12 @@ import phwang.utils.EncodeNumberClass;
 public class FrontDParser {
     private String objectName() {return "FrontDParser";}
     
-    private FrontRootClass frontRootObject_;
+    private FrontRoot frontRootObject_;
     
-    public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
+    public FrontRoot frontEndRootObject() { return this.frontRootObject_; }
     
-    public FrontDParser(FrontRootClass front_root_object_val) {
-        this.debug(false, "UFrontParserClass", "init start");
+    public FrontDParser(FrontRoot front_root_object_val) {
+        this.debug(false, "FrontDParser", "init start");
 
         this.frontRootObject_ = front_root_object_val;
     }

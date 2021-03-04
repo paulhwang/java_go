@@ -14,15 +14,15 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class DFrontClass {
     private String objectName() {return "DFrontClass";}
 
-    private FrontRootClass frontRootObject_;
+    private FrontRoot frontRootObject_;
     
-    public FrontRootClass frontEndRootObject() { return this.frontRootObject_; }
+    public FrontRoot frontEndRootObject() { return this.frontRootObject_; }
     private FrontJobMgrClass frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
     private UFrontClass uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
     private FrontUParser frontUParser() { return this.frontEndRootObject().frontUParser(); }
     
-    public DFrontClass(FrontRootClass root_object_val) {
+    public DFrontClass(FrontRoot root_object_val) {
         this.debug(false, "DFrontClass", "init start");
         
         this.frontRootObject_ = root_object_val;
