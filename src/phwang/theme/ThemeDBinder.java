@@ -17,18 +17,18 @@ public class ThemeDBinder implements ThreadInterface {
     
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
 
-    private ThemeRoot themeRoot;
+    private ThemeRoot themeRoot_;
     private ThemeUParser themeUParser;
     private BinderClass dBinderObject_;
 
-    public ThemeRoot ThemeRootObject() { return this.themeRoot; }
-    private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
+    public ThemeRoot themeRoot() { return this.themeRoot_; }
+    private ThreadMgrClass ThreadMgrObject() { return this.themeRoot().ThreadMgrObject();}
     private BinderClass dBinderObject() { return this.dBinderObject_; }
 
     public ThemeDBinder(ThemeRoot theme_root_object_val) {
         this.debug(false, "ThemeDBinder", "init start");
 
-        this.themeRoot = theme_root_object_val;
+        this.themeRoot_ = theme_root_object_val;
         this.themeUParser = new ThemeUParser(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
 
