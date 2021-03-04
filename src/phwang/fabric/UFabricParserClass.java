@@ -15,13 +15,13 @@ import phwang.fabric.FabricRootClass;
 public class UFabricParserClass {
     private String objectName() {return "UFabricParserClass";}
 
-    private UFabricClass uFabricObject_;
+    private FabricUBinder uFabricObject_;
 
-    private UFabricClass uFabricObject() { return this.uFabricObject_; }
+    private FabricUBinder uFabricObject() { return this.uFabricObject_; }
     public FabricRootClass fabricRootObject() { return this.uFabricObject().fabricRootObject();}
     public GroupMgrClass groupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
-    public UFabricParserClass(UFabricClass ufabric_object_val) {
+    public UFabricParserClass(FabricUBinder ufabric_object_val) {
         this.uFabricObject_ = ufabric_object_val;
     }
 

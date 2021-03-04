@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.fabric;
 import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 
-public class UFabricClass implements ThreadInterface {
-    private String objectName() {return "UFabricClass";}
+public class FabricUBinder implements ThreadInterface {
+    private String objectName() {return "FabricUBinder";}
     private String receiveThreadName() { return "UFabricReceiveThread"; }
     
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
@@ -30,8 +30,8 @@ public class UFabricClass implements ThreadInterface {
     private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().threadMgrObject();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
-    public UFabricClass(FabricRootClass fabric_root_class_val) {
-        this.debug(false, "UFabricClass", "init start");
+    public FabricUBinder(FabricRootClass fabric_root_class_val) {
+        this.debug(false, "FabricUBinder", "init start");
         this.fabricRootObject_ = fabric_root_class_val;
         this.uFabricParserObject = new UFabricParserClass(this);
         this.uBinderObject_ = new BinderClass(this.objectName());

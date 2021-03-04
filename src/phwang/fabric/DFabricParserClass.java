@@ -21,7 +21,7 @@ public class DFabricParserClass {
     private FabricDBinder dFabricObject;
 
     public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
-    private UFabricClass UFabricObject() { return this.fabricRootObject().uFabricObject(); }
+    private FabricUBinder UFabricObject() { return this.fabricRootObject().uFabricObject(); }
     private FabricLinkMgr LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
     private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
