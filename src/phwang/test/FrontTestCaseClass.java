@@ -85,7 +85,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	this.doGetSessionData();
     	
     	UtilsClass.sleep(100);
-    	this.doSetupSession2();
+    	//this.doSetupSession2();
     }
     
     private void doSetupLink() {

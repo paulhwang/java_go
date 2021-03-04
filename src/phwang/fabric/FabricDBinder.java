@@ -17,19 +17,19 @@ public class FabricDBinder implements ThreadInterface {
     private String receiveThreadName() { return "DFabricReceiveThread"; }
     
     private FabricRoot fabricRoot_;
-    private FabricUParser dFabricParserObject_;
+    private FabricUParser fabricUParser_;
     public BinderClass dBinder_;
 
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ThreadMgrClass ThreadMgrObject() { return this.fabricRoot().threadMgrObject();}
-    private FabricUParser dFabricParserObject() { return this.dFabricParserObject_; }
+    private FabricUParser fabricUParser() { return this.fabricUParser_; }
     private BinderClass dBinderObject() { return this.dBinder_; }
   
     public FabricDBinder(FabricRoot fabric_root_class_val) {
         this.debug(false, "FabricDBinder", "init start");
         
         this.fabricRoot_ = fabric_root_class_val;
-        this.dFabricParserObject_ = new FabricUParser(this);
+        this.fabricUParser_ = new FabricUParser(this);
         this.dBinder_ = new BinderClass(this.objectName());
         
         this.dBinderObject().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
@@ -56,7 +56,7 @@ public class FabricDBinder implements ThreadInterface {
                 continue;
             }
             this.debug(false, "dFabricRreceiveThreadFunc", "data=" + data);
-            this.dFabricParserObject().parseInputPacket(data);
+            this.fabricUParser().parseInputPacket(data);
         }
     }
 
