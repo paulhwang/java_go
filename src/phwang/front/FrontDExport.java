@@ -17,7 +17,7 @@ public class FrontDExport  implements FrontDExportInterface {
     private FrontRoot frontRoot_;
     
     private FrontRoot frontRoot() { return this.frontRoot_; }
-    private FrontJobMgr frontJobMgr() { return this.frontRoot().frontJobMgr(); }
+    private FrontJobMgr JobMgr() { return this.frontRoot().JobMgr(); }
     private FrontUBinder uFrontObject() { return this.frontRoot().frontUBinder(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
     private FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
@@ -33,7 +33,7 @@ public class FrontDExport  implements FrontDExportInterface {
         
         String output_str = this.frontUParser().parseInputPacket(input_data_val);
         
-        FrontJob job_entry = this.frontJobMgr().mallocJob();
+        FrontJob job_entry = this.JobMgr().mallocJob();
         
         if (output_str != null) {
             this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);

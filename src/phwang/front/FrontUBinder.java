@@ -22,7 +22,7 @@ public class FrontUBinder implements ThreadInterface {
     
     private FrontDParser uFrontParserObject() { return this.frontRootObject().frontDParser(); }
     public FrontRoot frontRootObject() { return this.frontRoot_; }
-    private FrontJobMgr frontJobMgr() { return this.frontRootObject().frontJobMgr(); }
+    private FrontJobMgr frontJobMgr() { return this.frontRootObject().JobMgr(); }
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
