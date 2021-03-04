@@ -19,7 +19,7 @@ public class ThemeUParser {
 
     public ThemeRootClass ThemeRootObject() { return this.dThemeObject.ThemeRootObject(); }
     public ThemeUBinder UThemeObject() { return this.ThemeRootObject().UThemeObject(); }
-    public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
+    public ThemeRoomMgr RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
     public ThemeUParser(ThemeDBinder d_theme_object_val) {
         this.debug(false, "ThemeUParser", "init start");

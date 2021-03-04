@@ -63,8 +63,8 @@ public class DEngineParserClass {
 
     private void processPutBaseData(String input_data_val) {
         this.debug(false, "processPutBaseData", "data=" + input_data_val);
-        String base_id_str = input_data_val.substring(0, EngineDefineClass.ENGINE_BASE_ID_SIZE);
-        String input_data = input_data_val.substring(EngineDefineClass.ENGINE_BASE_ID_SIZE);
+        String base_id_str = input_data_val.substring(0, EngineExport.ENGINE_BASE_ID_SIZE);
+        String input_data = input_data_val.substring(EngineExport.ENGINE_BASE_ID_SIZE);
 
         EngineBase go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
         if (go_base_object == null) {

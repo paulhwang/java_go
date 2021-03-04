@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.theme;
 
 import phwang.utils.*;
 
-public class RoomMgrClass {
-    private String objectName() {return "RoomMgrClass";}
+public class ThemeRoomMgr {
+    private String objectName() {return "ThemeRoomMgr";}
 
     public static final int THEME_ROOM_ID_SIZE_ = 4;
     public static final int THEME_ROOM_ID_SIZE = THEME_ROOM_ID_SIZE_ * 2;
@@ -22,8 +22,8 @@ public class RoomMgrClass {
     private ThemeRootClass themeRootObject;
     private ListMgrClass listMgr;
 
-    public RoomMgrClass(ThemeRootClass theme_root_object_val) {
-        this.debug(false, "RoomMgrClass", "init start");
+    public ThemeRoomMgr(ThemeRootClass theme_root_object_val) {
+        this.debug(false, "ThemeRoomMgr", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.listMgr = new ListMgrClass(THEME_ROOM_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);

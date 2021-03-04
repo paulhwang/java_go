@@ -9,6 +9,6 @@
 package phwang.theme;
 
 public class ThemeDefineClass {
-    public static final int THEME_ROOM_ID_SIZE = RoomMgrClass.THEME_ROOM_ID_SIZE;
+    public static final int THEME_ROOM_ID_SIZE = ThemeRoomMgr.THEME_ROOM_ID_SIZE;
 
 }

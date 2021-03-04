@@ -16,12 +16,12 @@ public class ThemeRootClass {
     private ThreadMgrClass threadMgrObject;
     private ThemeUBinder uThemeObject;
     private ThemeDBinder dThemeObject;
-    private RoomMgrClass roomMgrObject;
+    private ThemeRoomMgr roomMgrObject;
 
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
     public ThemeUBinder UThemeObject() { return this.uThemeObject; }
     public ThemeDBinder DThemeObject() { return this.dThemeObject; }
-    public RoomMgrClass RoomMgrObject() { return this.roomMgrObject; }
+    public ThemeRoomMgr RoomMgrObject() { return this.roomMgrObject; }
 
 
     public ThemeRootClass() {
@@ -30,7 +30,7 @@ public class ThemeRootClass {
         this.threadMgrObject = new ThreadMgrClass();
         this.uThemeObject = new ThemeUBinder(this);
         this.dThemeObject = new ThemeDBinder(this);
-        this.roomMgrObject = new RoomMgrClass(this);
+        this.roomMgrObject = new ThemeRoomMgr(this);
         this.UThemeObject().startThreads();
         this.DThemeObject().startThreads();
     }
