@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.theme;
 
 import phwang.utils.*;
 
-public class ThemeRootClass {
-    private String objectName() {return "ThemeRootClass";}
+public class ThemeRoot {
+    private String objectName() {return "ThemeRoot";}
 
     private ThreadMgrClass threadMgrObject;
     private ThemeUBinder uThemeObject;
@@ -24,8 +24,8 @@ public class ThemeRootClass {
     public ThemeRoomMgr RoomMgrObject() { return this.roomMgrObject; }
 
 
-    public ThemeRootClass() {
-        this.debug(false, "ThemeRootClass", "init start");
+    public ThemeRoot() {
+        this.debug(false, "ThemeRoot", "init start");
 
         this.threadMgrObject = new ThreadMgrClass();
         this.uThemeObject = new ThemeUBinder(this);

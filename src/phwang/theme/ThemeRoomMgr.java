@@ -19,10 +19,10 @@ public class ThemeRoomMgr {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_ROOM_ID = 7000;
 
-    private ThemeRootClass themeRootObject;
+    private ThemeRoot themeRootObject;
     private ListMgrClass listMgr;
 
-    public ThemeRoomMgr(ThemeRootClass theme_root_object_val) {
+    public ThemeRoomMgr(ThemeRoot theme_root_object_val) {
         this.debug(false, "ThemeRoomMgr", "init start");
 
         this.themeRootObject = theme_root_object_val;

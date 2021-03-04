@@ -17,15 +17,15 @@ public class ThemeUBinder implements ThreadInterface {
 
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
-    private ThemeRootClass themeRootObject;
+    private ThemeRoot themeRootObject;
     private ThemeDParser uThemeParserObject;
     public BinderClass uBinderObject_;
 
-    public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
+    public ThemeRoot ThemeRootObject() { return this.themeRootObject; }
     private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
-    public ThemeUBinder(ThemeRootClass theme_root_object_val) {
+    public ThemeUBinder(ThemeRoot theme_root_object_val) {
         this.debug(false, "ThemeUBinder", "init start");
 
         this.themeRootObject = theme_root_object_val;

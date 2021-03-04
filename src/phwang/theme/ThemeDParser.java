@@ -17,7 +17,7 @@ public class ThemeDParser {
     
     private ThemeUBinder uThemeObject;
 
-    public ThemeRootClass ThemeRootObject() { return this.uThemeObject.ThemeRootObject(); }
+    public ThemeRoot ThemeRootObject() { return this.uThemeObject.ThemeRootObject(); }
     public ThemeDBinder DThemeObject() { return this.ThemeRootObject().DThemeObject(); }
     public ThemeRoomMgr RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
