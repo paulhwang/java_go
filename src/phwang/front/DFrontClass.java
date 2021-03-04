@@ -29,14 +29,14 @@ public class DFrontClass {
     }
 
     public String processHttpRequestPacket(String input_data_val) {
-        this.debug(false, "processAjaxRequestPacket", "input_data_val = " + input_data_val);
+        this.debug(false, "processHttpRequestPacket", "input_data_val = " + input_data_val);
         
         String output_str = this.dFrontParserObject().parseInputPacket(input_data_val);
         
         FrontJobClass job_entry = this.frontJobMgrObject().mallocJob();
         
         if (output_str != null) {
-            this.debug(true, "processAjaxRequestPacket", "output_str=" + output_str);
+            this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);
         	this.uBinderObject().transmitData(job_entry.jobIdStr() + output_str);
         }
         else {
@@ -45,7 +45,7 @@ public class DFrontClass {
         
         String response_data = job_entry.readData();
         
-        this.debug(false, "processAjaxRequestPacket", "response_data = " + response_data);
+        this.debug(false, "processHttpRequestPacket", "response_data = " + response_data);
         return response_data;
     }
     

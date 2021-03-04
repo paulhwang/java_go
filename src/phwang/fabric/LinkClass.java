@@ -67,7 +67,7 @@ public class LinkClass {
         this.debug(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);
         String data = browser_theme_id_str_val + session_id_str_val + theme_data_val;
         this.pendingSessionSetupQueue3.enqueue(data);
-        this.debug(true, "********************SetPendingSessionSetup3", "data =" + data);
+        this.debug(false, "********************SetPendingSessionSetup3", "data =" + data);
         /*
         char* buf, *data_ptr;
 

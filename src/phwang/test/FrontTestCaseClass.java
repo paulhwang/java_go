@@ -84,7 +84,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	this.doGetSessionData();
     	
     	UtilsClass.sleep(1000);
-    	//this.doSetupSession2();
+    	this.doSetupSession2();
     }
     
     private void doSetupLink() {
@@ -188,7 +188,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
-        this.debug(true, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
+        this.debug(false, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void doSetupSession3() {
@@ -220,7 +220,7 @@ class FrontTestCaseClass implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
-        this.debug(true, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
+        this.debug(false, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
     }
 
     private void doGetSessionData() {

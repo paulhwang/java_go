@@ -58,10 +58,10 @@ public class FrontTestClass implements ThreadInterface {
     
     private void frontTestThreadFunc() {
         this.debug(true, "frontTestThreadFunc", "*******start " + this.frontTestThreadName());
-        UtilsClass.sleep(1000);  
+        UtilsClass.sleep(100);  
         
-        for (int j = 0; j < 10; j++) {
-        	for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 2; j++) {
+        	for (int i = 0; i < 5; i++) {
         		FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
         		test_case.startTestTest();
         		

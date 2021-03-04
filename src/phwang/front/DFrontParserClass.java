@@ -112,8 +112,8 @@ public class DFrontParserClass {
         	return "Exception";
         }
     	
-        this.debug(true, "processSetupLinkRequest", "my_name = " + my_name);
-        this.debug(true, "processSetupLinkRequest", "password = " + password);
+        this.debug(false, "processSetupLinkRequest", "my_name = " + my_name);
+        this.debug(false, "processSetupLinkRequest", "password = " + password);
 
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricImportClass.FABRIC_COMMAND_SETUP_LINK); 
