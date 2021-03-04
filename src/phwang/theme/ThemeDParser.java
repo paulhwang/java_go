@@ -18,7 +18,7 @@ public class ThemeDParser {
     private ThemeUBinder uThemeObject;
 
     public ThemeRoot ThemeRootObject() { return this.uThemeObject.ThemeRootObject(); }
-    public ThemeDBinder DThemeObject() { return this.ThemeRootObject().DThemeObject(); }
+    public ThemeDBinder themeDBinder() { return this.ThemeRootObject().themeDBinder(); }
     public ThemeRoomMgr roomMgr() { return this.ThemeRootObject().roomMgr(); }
 
     public ThemeDParser(ThemeUBinder u_theme_object_val) {
@@ -57,7 +57,7 @@ public class ThemeDParser {
         room_object.setBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
         downlink_data = downlink_data + room_object.groupIdStr() + room_object.RoomIdStr();
-        this.DThemeObject().transmitData(downlink_data);
+        this.themeDBinder().transmitData(downlink_data);
 
         /*
         char* room_id_index_val = data_val;
@@ -103,7 +103,7 @@ public class ThemeDParser {
 
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA;
         downlink_data = downlink_data + room_object.groupIdStr() + data;
-        this.DThemeObject().transmitData(downlink_data);
+        this.themeDBinder().transmitData(downlink_data);
 
         /*
         char* downlink_data;
