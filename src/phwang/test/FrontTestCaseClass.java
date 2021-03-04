@@ -8,7 +8,7 @@ package phwang.test;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
-import phwang.front.FrontExportInterface;
+import phwang.front.FrontDExportInterface;
 
 /*
  ******************************************************************************
@@ -38,7 +38,7 @@ class FrontTestCaseClass implements ThreadInterface {
     
     private FrontTestClass frontTestObject() { return this.frontTestObject_; }
     private ThreadMgrClass threadMgrObject() { return this.frontTestObject().threadMgrObject();}
-    private FrontExportInterface frontExportInterface() { return this.frontTestObject().frontExportInterface();}
+    private FrontDExportInterface frontExportInterface() { return this.frontTestObject().frontExportInterface();}
 
     public FrontTestCaseClass(FrontTestClass front_test_object_val, int index_val) {
         this.debug(false, "FrontTestClass", "init start");

@@ -1,13 +1,13 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
 
 package phwang.front;
 
-public interface FrontExportInterface {
+public interface FrontDExportInterface {
 	public String processHttpRequestPacket(String request_val);
 }

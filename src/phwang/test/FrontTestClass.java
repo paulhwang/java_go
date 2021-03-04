@@ -12,20 +12,20 @@ package phwang.test;
 //import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
-import phwang.front.FrontExportInterface;
+import phwang.front.FrontDExportInterface;
 
 public class FrontTestClass implements ThreadInterface {
     private String objectName() {return "FrontTestClass";}
     private String frontTestThreadName() { return "FrontTestThread"; }
 
-    private FrontExportInterface frontExportIntervace_;
+    private FrontDExportInterface frontExportIntervace_;
     private ThreadMgrClass threadMgrObject_;
     private LockIntegerClass threadCount;
     
-    public FrontExportInterface frontExportInterface() { return this.frontExportIntervace_;}
+    public FrontDExportInterface frontExportInterface() { return this.frontExportIntervace_;}
     public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
 
-    public FrontTestClass(FrontExportInterface front_export_interface_val) {
+    public FrontTestClass(FrontDExportInterface front_export_interface_val) {
         this.debug(false, "FrontTestClass", "init start");
         
         this.frontExportIntervace_ = front_export_interface_val;

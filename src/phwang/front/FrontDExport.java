@@ -10,16 +10,16 @@ package phwang.front;
 
 import phwang.utils.AbendClass;
 
-public class FrontExportClass  implements FrontExportInterface {
-    private String objectName() {return "FrontExportClass";}
+public class FrontDExport  implements FrontDExportInterface {
+    private String objectName() {return "FrontDExport";}
     
     private FrontRoot frontRootObject_;
     
     private FrontRoot frontRootObject() { return this.frontRootObject_; }
     private DFrontClass dFrontObject() { return this.frontRootObject().dFrontObject(); }
     
-    public FrontExportClass(FrontRoot root_object_val) {
-        this.debug(false, "FrontExternalClass", "init start");
+    public FrontDExport(FrontRoot root_object_val) {
+        this.debug(false, "FrontDExport", "init start");
         
         this.frontRootObject_ = root_object_val;
     }
