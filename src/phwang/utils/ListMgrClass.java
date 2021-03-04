@@ -78,7 +78,7 @@ public class ListMgrClass {
         int id = this.allocId();
         for (int i = 0; i < this.arraySize; i++) {
             if (this.entryArray[i] == null) {
-            	this.entryArray[i] = new ListEntryClass(i);
+            	this.entryArray[i] = new ListEntryClass(i, this.idSize());
                 if (i > this.maxIndex) {
                     this.maxIndex = i;
                 }
@@ -86,12 +86,12 @@ public class ListMgrClass {
                     this.abend("allocIndex", "maxIndex");
                 }
                 this.entryCount++;
-                this.entryArray[i].setData(id, object_val, this.idSize());
+                this.entryArray[i].setData(id, object_val);
                 return this.entryArray[i];
             }
             
             if (this.entryArray[i].data() == null) {
-                this.entryArray[i].setData(id, object_val, this.idSize());
+                this.entryArray[i].setData(id, object_val);
                 return this.entryArray[i];
             }
         }
@@ -107,8 +107,8 @@ public class ListMgrClass {
         this.maxIndex = this.arraySize;
         this.entryCount = this.arraySize + 1;
         this.arraySize = this.arraySize * 2;
-    	this.entryArray[this.maxIndex] = new ListEntryClass(this.maxIndex);
-        this.entryArray[this.maxIndex].setData(id, object_val, this.idSize());
+    	this.entryArray[this.maxIndex] = new ListEntryClass(this.maxIndex, this.idSize());
+        this.entryArray[this.maxIndex].setData(id, object_val);
         return this.entryArray[this.maxIndex];
     }
 
@@ -145,7 +145,7 @@ public class ListMgrClass {
         this.entryCount = 0;
     }
     
-    public ListEntryClass getEntryByIdStr111(String id_str_val) {
+    public ListEntryClass getEntryByIdStr(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
     	String index_str = id_str_val.substring(idSize_);
         int id = EncodeNumberClass.decodeNumber(id_str);
@@ -158,7 +158,7 @@ public class ListMgrClass {
         return entry;
     }
     
-    public ListEntryClass getEntryByIdStr(String id_str_val) {
+    public ListEntryClass getEntryByIdStrOld(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
         int id = EncodeNumberClass.decodeNumber(id_str);
 

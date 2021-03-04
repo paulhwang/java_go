@@ -25,16 +25,18 @@ public class ListEntryClass {
     public String idStr() { return this.id_str_; }
     public Object data() { return this.data_; }
 
-    public ListEntryClass(int index_val) {
+
+    public ListEntryClass(int index_val, int id_size_val) {
         this.index_ = index_val;
+    	this.id_size_ = id_size_val;
+    	this.indexStr_ = EncodeNumberClass.encodeNumber(this.index_, this.id_size_);
     }
 
-    public void setData(int id_val, Object data_val, int id_size_val) {
+    public void setData(int id_val, Object data_val) {
         this.id_ = id_val;
         this.data_ = data_val;
-    	this.id_size_ = id_size_val;
         StringBuilder id_str_buf = new StringBuilder(EncodeNumberClass.encodeNumber(this.id_, this.id_size_));
-        id_str_buf.append(EncodeNumberClass.encodeNumber(this.index_, this.id_size_));
+        id_str_buf.append(this.indexStr_);
         this.id_str_ = id_str_buf.toString();
     }
 
