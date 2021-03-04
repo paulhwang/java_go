@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -18,7 +18,7 @@ public class DFrontClass {
     
     public FrontRoot frontEndRootObject() { return this.frontRootObject_; }
     private FrontJobMgr frontJobMgrObject() { return this.frontEndRootObject().frontJobMgrObject(); }
-    private UFrontClass uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
+    private FrontUBinder uFrontObject() { return this.frontEndRootObject().uFrontObject(); }
     private BinderClass uBinderObject() { return this.uFrontObject().uBinderObject(); }
     private FrontUParser frontUParser() { return this.frontEndRootObject().frontUParser(); }
     

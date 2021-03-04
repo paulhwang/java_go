@@ -10,8 +10,8 @@ package phwang.front;
 
 import phwang.utils.*;
 
-public class UFrontClass implements ThreadInterface {
-    private String objectName() {return "UFrontClass";}
+public class FrontUBinder implements ThreadInterface {
+    private String objectName() {return "FrontUBinder";}
     private String receiveThreadName() { return "UFrontReceiveThread"; }
     
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
@@ -26,8 +26,8 @@ public class UFrontClass implements ThreadInterface {
     private ThreadMgrClass threadMgrObject() { return this.frontRootObject().threadMgrObject();}
     public BinderClass uBinderObject() { return this.uBinderObject_; }
 
-    public UFrontClass(FrontRoot root_object_val) {
-        this.debug(false, "UFrontClass", "init start");
+    public FrontUBinder(FrontRoot root_object_val) {
+        this.debug(false, "FrontUBinder", "init start");
         
         this.frontRootObject_ = root_object_val;
         this.uBinderObject_ = new BinderClass(this.objectName());
