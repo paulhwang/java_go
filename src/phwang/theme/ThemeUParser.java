@@ -17,9 +17,9 @@ public class ThemeUParser {
     
     private ThemeDBinder dThemeObject;
 
-    public ThemeRoot ThemeRootObject() { return this.dThemeObject.themeRoot(); }
-    public ThemeUBinder UThemeObject() { return this.ThemeRootObject().UThemeObject(); }
-    public ThemeRoomMgr RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
+    public ThemeRoot themeRoot() { return this.dThemeObject.themeRoot(); }
+    public ThemeUBinder UThemeObject() { return this.themeRoot().UThemeObject(); }
+    public ThemeRoomMgr roomMgr() { return this.themeRoot().roomMgr(); }
 
     public ThemeUParser(ThemeDBinder d_theme_object_val) {
         this.debug(false, "ThemeUParser", "init start");
@@ -50,7 +50,7 @@ public class ThemeUParser {
         String group_id_index = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
-        ThemeRoom room = this.RoomMgrObject().mallocRoom(group_id_index);
+        ThemeRoom room = this.roomMgr().mallocRoom(group_id_index);
         if (room == null) {
             //String downlink_data;
             this.abend("processSetupRoom", "null room");
@@ -81,7 +81,7 @@ public class ThemeUParser {
 
         String room_id_str = input_data_val.substring(0, ThemeExport.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeExport.THEME_ROOM_ID_SIZE);
-        ThemeRoom room = this.RoomMgrObject().getRoomByIdStr(room_id_str);
+        ThemeRoom room = this.roomMgr().getRoomByIdStr(room_id_str);
         if (room == null) {
             this.abend("processPutRoomData", "null room");
             return;
