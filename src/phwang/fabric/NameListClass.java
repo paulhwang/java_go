@@ -33,7 +33,7 @@ public class NameListClass {
     }
     
     public void updateNameList() {
-        LinkMgrClass link_list_mgr = this.fabricRootObject.linkMgrObject();
+    	FabricLinkMgr link_list_mgr = this.fabricRootObject.linkMgrObject();
 
         int max_index = link_list_mgr.listMgr().MaxIndex();
         ListEntryClass[] list_entry_array = link_list_mgr.listMgr().EntryTableArray();

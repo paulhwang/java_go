@@ -22,7 +22,7 @@ public class DFabricParserClass {
 
     public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
     private UFabricClass UFabricObject() { return this.fabricRootObject().uFabricObject(); }
-    private LinkMgrClass LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
+    private FabricLinkMgr LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
     private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
     public DFabricParserClass(DFabricClass dfabric_object_val) {

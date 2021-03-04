@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class LinkMgrClass implements ListMgrInterface {
-    private String objectName() {return "LinkMgrClass";}
+public class FabricLinkMgr implements ListMgrInterface {
+    private String objectName() {return "FabricLinkMgr";}
 
 	public static final int FABRIC_LINK_ID_SIZE_ = 4;
 	public static final int FABRIC_LINK_ID_SIZE = FABRIC_LINK_ID_SIZE_ * 2;
@@ -26,8 +26,8 @@ public class LinkMgrClass implements ListMgrInterface {
     public ListMgrClass listMgr() { return this.listMgr_; }
     private NameListClass nameListObject() { return this.fabricRootObject().nameListObject(); }
 
-    public LinkMgrClass(FabricRootClass root_fabric_object_val) {
-        this.debug(false, "LinkMgrClass", "init start");
+    public FabricLinkMgr(FabricRootClass root_fabric_object_val) {
+        this.debug(false, "FabricLinkMgr", "init start");
         
         this.fabricRootObject_ = root_fabric_object_val;
         this.listMgr_ = new ListMgrClass(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
