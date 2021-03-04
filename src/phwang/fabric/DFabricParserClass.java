@@ -275,7 +275,7 @@ public class DFabricParserClass {
         
         FabricSession session = link.mallocSession();
         session.setBrowserThemeIdStr(theme_id_str);
-        GroupClass group = this.GroupMgrObject().mallocGroup(theme_data);
+        FabricGroup group = this.GroupMgrObject().mallocGroup(theme_data);
         if (group == null) {
         	this.abend("processSetupSessionRequest", "null group");
             return this.errorProcessSetupSession(link_id_str, "null group");
@@ -306,7 +306,7 @@ public class DFabricParserClass {
         return response_data;
     }
 
-    private void mallocRoom(GroupClass group_val, String theme_info_val) {
+    private void mallocRoom(FabricGroup group_val, String theme_info_val) {
         this.debug(false, "mallocRoom", "theme_info_val=" + theme_info_val);
     	
         StringBuilder data_buf = new StringBuilder();
@@ -362,7 +362,7 @@ public class DFabricParserClass {
         }
 
         session.setBrowserThemeIdStr(theme_id_str);
-        GroupClass group = session.GroupObject();
+        FabricGroup group = session.GroupObject();
         if (group == null) {
             return errorProcessSetupSession2(link_id_str, "null group");
         }

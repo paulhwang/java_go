@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.fabric;
 import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 
-public class GroupClass {
-    private String objectName() {return "GroupClass";}
+public class FabricGroup {
+    private String objectName() {return "FabricGroup";}
 
     private ListEntryClass listEntryObject_;
     private String roomIdStr;
@@ -26,8 +26,8 @@ public class GroupClass {
     public String RoomIdStr() { return this.roomIdStr; }
     private GroupSessionMgrClass groupSessionMgrObject() { return this.groupSessionMgrObject_; }
 
-    public GroupClass(String theme_data_val) {
-        this.debug(false, "GroupClass", "init start");
+    public FabricGroup(String theme_data_val) {
+        this.debug(false, "FabricGroup", "init start");
         
         this.themeData_ = theme_data_val;
         this.groupSessionMgrObject_ = new GroupSessionMgrClass(this);

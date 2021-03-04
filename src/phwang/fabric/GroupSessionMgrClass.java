@@ -15,10 +15,10 @@ public class GroupSessionMgrClass {
 
     private static final int MAX_SESSION_ARRAY_SIZE = 10;
 
-    private GroupClass groupObject;
+    private FabricGroup groupObject;
     private ArrayMgrClass arrayMgrObject;
 
-    public GroupSessionMgrClass(GroupClass group_object_val) {
+    public GroupSessionMgrClass(FabricGroup group_object_val) {
         this.groupObject = group_object_val;
         this.arrayMgrObject = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
     }

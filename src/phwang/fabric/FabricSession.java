@@ -16,7 +16,7 @@ public class FabricSession {
     private FabricLink linkObject_;
     private ListEntryClass listEntryObject_;
     private String browserThemeIdStr;
-    private GroupClass groupObject;
+    private FabricGroup groupObject;
     ListQueueClass pendingDownLinkDataQueue_;
 
     public FabricLink linkObject() { return this.linkObject_; }
@@ -24,7 +24,7 @@ public class FabricSession {
     public int sessionId() { return this.listEntryObject().id(); }
     public String SessionIdStr() { return this.listEntryObject().idStr(); }
     public String BrowserThemeIdStr() { return this.browserThemeIdStr; }
-    public GroupClass GroupObject() { return this.groupObject; }
+    public FabricGroup GroupObject() { return this.groupObject; }
     ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
     public FabricSession(FabricLink link_object_val) {
@@ -36,7 +36,7 @@ public class FabricSession {
         this.listEntryObject_ = list_entry_object_val;
     }
 
-    public void bindGroup(GroupClass group_object_val) {
+    public void bindGroup(FabricGroup group_object_val) {
         this.groupObject = group_object_val;
     }
 

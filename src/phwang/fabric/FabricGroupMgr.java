@@ -32,8 +32,8 @@ public class FabricGroupMgr {
         this.listMgr_ = new ListMgrClass(FABRIC_GROUP_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_GROUP_ID);
     }
 
-    public GroupClass mallocGroup(String theme_data_val) {
-        GroupClass group = new GroupClass(theme_data_val);
+    public FabricGroup mallocGroup(String theme_data_val) {
+    	FabricGroup group = new FabricGroup(theme_data_val);
         ListEntryClass list_entry = this.listMgr().malloc(group);
         group.bindListEntry(list_entry);
         return group;
@@ -43,12 +43,12 @@ public class FabricGroupMgr {
 
     }
 
-    public GroupClass getGroupByIdStr(String group_id_str_val) {
+    public FabricGroup getGroupByIdStr(String group_id_str_val) {
         ListEntryClass list_entry = this.listMgr().getEntryByIdStr(group_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (GroupClass)list_entry.data();
+        return (FabricGroup)list_entry.data();
     }
 
     public FabricLink GetLinkByMyName(String my_name_val) {
