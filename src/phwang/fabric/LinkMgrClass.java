@@ -47,16 +47,12 @@ public class LinkMgrClass implements ListMgrInterface {
     public LinkClass getLinkByIdStr(String link_id_str_val) {
         int link_id = EncodeNumberClass.decodeNumber(link_id_str_val);
 
-        return this.getLinkById(link_id);
-    }
-
-    public LinkClass getLinkById(int id_val) {
-        ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr().getEntryByIdStr(link_id_str_val);
         if (list_entry == null) {
             return null;
         }
         LinkClass link = (LinkClass) list_entry.data();
-
+        
         return link;
     }
 

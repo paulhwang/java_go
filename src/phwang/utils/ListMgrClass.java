@@ -10,6 +10,8 @@ package phwang.utils;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import phwang.fabric.LinkClass;
 import phwang.utils.*;
 
 public class ListMgrClass {
@@ -141,6 +143,12 @@ public class ListMgrClass {
             this.entryArray[i] = null;
         }
         this.entryCount = 0;
+    }
+    
+    public ListEntryClass getEntryByIdStr(String id_str_val) {
+        int id = EncodeNumberClass.decodeNumber(id_str_val);
+
+        return this.getEntryById(id);
     }
     
     public ListEntryClass getEntryById(int id_val) {
