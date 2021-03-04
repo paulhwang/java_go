@@ -10,8 +10,8 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class DFabricClass implements ThreadInterface {
-    private String objectName() {return "DFabricClass";}
+public class FabricDBinder implements ThreadInterface {
+    private String objectName() {return "FabricDBinder";}
     
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
     private String receiveThreadName() { return "DFabricReceiveThread"; }
@@ -25,8 +25,8 @@ public class DFabricClass implements ThreadInterface {
     private DFabricParserClass dFabricParserObject() { return this.dFabricParserObject_; }
     private BinderClass dBinderObject() { return this.dBinderObject_; }
   
-    public DFabricClass(FabricRootClass fabric_root_class_val) {
-        this.debug(false, "DFabricClass", "init start");
+    public FabricDBinder(FabricRootClass fabric_root_class_val) {
+        this.debug(false, "FabricDBinder", "init start");
         
         this.fabricRootObject_ = fabric_root_class_val;
         this.dFabricParserObject_ = new DFabricParserClass(this);

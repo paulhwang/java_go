@@ -18,14 +18,14 @@ public class DFabricParserClass {
 
     private String RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
 
-    private DFabricClass dFabricObject;
+    private FabricDBinder dFabricObject;
 
     public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
     private UFabricClass UFabricObject() { return this.fabricRootObject().uFabricObject(); }
     private FabricLinkMgr LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
     private GroupMgrClass GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
-    public DFabricParserClass(DFabricClass dfabric_object_val) {
+    public DFabricParserClass(FabricDBinder dfabric_object_val) {
         this.debug(false, "DFabricParserClass", "init start");
 
         this.dFabricObject = dfabric_object_val;
