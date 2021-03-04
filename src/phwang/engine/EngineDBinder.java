@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.engine;
 import phwang.utils.*;
 import phwang.protocols.*;
 
-public class DEngineClass implements ThreadInterface {
-    private String objectName() {return "DEngineClass";}
+public class EngineDBinder implements ThreadInterface {
+    private String objectName() {return "EngineDBinder";}
     private String receiveThreadName() { return "DEngineReceiveThread"; }
     
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
@@ -25,8 +25,8 @@ public class DEngineClass implements ThreadInterface {
     private ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
     private BinderClass dBinderObject() { return this.dBinderObject_; }
     
-    public DEngineClass(EngineRootClass engine_root_object_val) {
-        this.debug(false, "DEngineClass", "init start");
+    public EngineDBinder(EngineRootClass engine_root_object_val) {
+        this.debug(false, "EngineDBinder", "init start");
         
         this.engineRootObject = engine_root_object_val;
         this.dEngineParserObject = new DEngineParserClass(this);

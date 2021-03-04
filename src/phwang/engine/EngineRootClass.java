@@ -14,7 +14,7 @@ public class EngineRootClass {
     private String objectName() {return "EngineRootClass";}
 
     private ThreadMgrClass threadMgrObject;
-    private DEngineClass dEngineObject;
+    private EngineDBinder dEngineObject;
     private BaseMgrClass baseMgrObject;
     
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
@@ -25,7 +25,7 @@ public class EngineRootClass {
         this.debug(false, "EngineRootClass", "init start");
 
         this.threadMgrObject = new ThreadMgrClass();
-        this.dEngineObject = new DEngineClass(this);
+        this.dEngineObject = new EngineDBinder(this);
         this.baseMgrObject = new BaseMgrClass(this);
         this.dEngineObject.startThreads();
 	}
