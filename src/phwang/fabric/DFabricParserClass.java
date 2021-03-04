@@ -312,11 +312,13 @@ public class DFabricParserClass {
     }
 
     private void mallocRoom(GroupClass group_val, String theme_info_val) {
-        this.debug(true, "mallocRoom", "theme_info_val=" + theme_info_val);
+        this.debug(false, "mallocRoom", "theme_info_val=" + theme_info_val);
     	
-        String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
-        uplink_data = uplink_data + group_val.GroupIdStr();
-        uplink_data = uplink_data + theme_info_val;
+        StringBuilder data_buf = new StringBuilder();
+        data_buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM);
+        data_buf.append(group_val.GroupIdStr());
+        data_buf.append(theme_info_val);
+        String uplink_data = data_buf.toString();
         this.fabricRootObject().uFabricObject().transmitData(uplink_data);
     }
 
