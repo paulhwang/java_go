@@ -19,12 +19,12 @@ public class EngineBaseMgr {
     private static final int FIRST_BASE_ID = 9000;
     private static final int LIST_MGR_ARRAY_SIZE = 128;
 
-    private EngineRootClass engineRootObject;
+    private EngineRoot engineRootObject;
     private ListMgrClass listMgr;
 
     public ListMgrClass ListMgr() { return this.listMgr; }
   
-    public EngineBaseMgr(EngineRootClass engine_root_object_val) {
+    public EngineBaseMgr(EngineRoot engine_root_object_val) {
         this.debug(false, "EngineBaseMgr", "init start");
 
         this.engineRootObject = engine_root_object_val;

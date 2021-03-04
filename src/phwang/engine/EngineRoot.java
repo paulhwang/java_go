@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.engine;
 
 import phwang.utils.*;
 
-public class EngineRootClass {
-    private String objectName() {return "EngineRootClass";}
+public class EngineRoot {
+    private String objectName() {return "EngineRoot";}
 
     private ThreadMgrClass threadMgrObject;
     private EngineDBinder dEngineObject;
@@ -21,8 +21,8 @@ public class EngineRootClass {
     public EngineBaseMgr BaseMgrObject() { return this.baseMgrObject; }
 
 
-    public EngineRootClass() {
-        this.debug(false, "EngineRootClass", "init start");
+    public EngineRoot() {
+        this.debug(false, "EngineRoot", "init start");
 
         this.threadMgrObject = new ThreadMgrClass();
         this.dEngineObject = new EngineDBinder(this);

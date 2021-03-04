@@ -16,7 +16,7 @@ public class DEngineParserClass {
 
     private EngineDBinder dEngineObject;
 
-    public EngineRootClass EngineRootObject() { return this.dEngineObject.EngineRootObject(); }
+    public EngineRoot EngineRootObject() { return this.dEngineObject.EngineRootObject(); }
     public EngineBaseMgr BaseMgrObject() { return this.EngineRootObject().BaseMgrObject(); }
 
     public DEngineParserClass(EngineDBinder d_engine_object_val) {
