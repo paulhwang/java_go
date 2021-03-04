@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.engine;
 
 import phwang.utils.*;
 
-public class BaseMgrClass {
-    private String objectName() {return "BaseMgrClass";}
+public class EngineBaseMgr {
+    private String objectName() {return "EngineBaseMgr";}
     
     public static final int ENGINE_BASE_ID_SIZE_ = 4;
     public static final int ENGINE_BASE_ID_SIZE = ENGINE_BASE_ID_SIZE_ * 2;
@@ -24,8 +24,8 @@ public class BaseMgrClass {
 
     public ListMgrClass ListMgr() { return this.listMgr; }
   
-    public BaseMgrClass(EngineRootClass engine_root_object_val) {
-        this.debug(false, "BaseMgrClass", "init start");
+    public EngineBaseMgr(EngineRootClass engine_root_object_val) {
+        this.debug(false, "EngineBaseMgr", "init start");
 
         this.engineRootObject = engine_root_object_val;
         this.listMgr = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);

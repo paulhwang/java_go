@@ -15,10 +15,10 @@ public class EngineRootClass {
 
     private ThreadMgrClass threadMgrObject;
     private EngineDBinder dEngineObject;
-    private BaseMgrClass baseMgrObject;
+    private EngineBaseMgr baseMgrObject;
     
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    public BaseMgrClass BaseMgrObject() { return this.baseMgrObject; }
+    public EngineBaseMgr BaseMgrObject() { return this.baseMgrObject; }
 
 
     public EngineRootClass() {
@@ -26,7 +26,7 @@ public class EngineRootClass {
 
         this.threadMgrObject = new ThreadMgrClass();
         this.dEngineObject = new EngineDBinder(this);
-        this.baseMgrObject = new BaseMgrClass(this);
+        this.baseMgrObject = new EngineBaseMgr(this);
         this.dEngineObject.startThreads();
 	}
     

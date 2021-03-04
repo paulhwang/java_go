@@ -9,6 +9,6 @@
 package phwang.engine;
 
 public class EngineDefineClass {
-    public static final int ENGINE_BASE_ID_SIZE = BaseMgrClass.ENGINE_BASE_ID_SIZE;
+    public static final int ENGINE_BASE_ID_SIZE = EngineBaseMgr.ENGINE_BASE_ID_SIZE;
 
 }
