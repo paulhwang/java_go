@@ -29,19 +29,19 @@ public class RoomMgrClass {
         this.listMgr = new ListMgrClass(THEME_ROOM_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);
     }
     
-    public RoomClass mallocRoom(String group_id_str_val) {
-        RoomClass room = new RoomClass(group_id_str_val);
+    public ThemeRoom mallocRoom(String group_id_str_val) {
+    	ThemeRoom room = new ThemeRoom(group_id_str_val);
         ListEntryClass list_entry = this.listMgr.malloc(room);
         room.bindListEntry(list_entry);
         return room;
     }
 
-    public RoomClass getRoomByIdStr(String room_id_str_val) {
+    public ThemeRoom getRoomByIdStr(String room_id_str_val) {
         ListEntryClass list_entry = this.listMgr.getEntryByIdStr(room_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (RoomClass)list_entry.data();
+        return (ThemeRoom)list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.theme;
 import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 
-public class RoomClass {
-    private String objectName() {return "RoomClass";}
+public class ThemeRoom {
+    private String objectName() {return "ThemeRoom";}
 
     private ListEntryClass listEntryObject_;
     private String groupIdStr_;
@@ -24,8 +24,8 @@ public class RoomClass {
     public String groupIdStr() { return this.groupIdStr_; }
     public String baseIdStr() { return this.baseIdStr_; }
 
-    public RoomClass(String group_id_str_val) {
-        this.debug(false, "RoomClass", "init start");
+    public ThemeRoom(String group_id_str_val) {
+        this.debug(false, "ThemeRoom", "init start");
         
         this.groupIdStr_ = group_id_str_val;
     }

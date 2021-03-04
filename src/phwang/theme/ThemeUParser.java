@@ -50,7 +50,7 @@ public class ThemeUParser {
         String group_id_index = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
         String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
-        RoomClass room = this.RoomMgrObject().mallocRoom(group_id_index);
+        ThemeRoom room = this.RoomMgrObject().mallocRoom(group_id_index);
         if (room == null) {
             //String downlink_data;
             this.abend("processSetupRoom", "null room");
@@ -81,7 +81,7 @@ public class ThemeUParser {
 
         String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
-        RoomClass room = this.RoomMgrObject().getRoomByIdStr(room_id_str);
+        ThemeRoom room = this.RoomMgrObject().getRoomByIdStr(room_id_str);
         if (room == null) {
             this.abend("processPutRoomData", "null room");
             return;
