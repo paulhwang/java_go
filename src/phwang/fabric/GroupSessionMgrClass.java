@@ -23,10 +23,10 @@ public class GroupSessionMgrClass {
         this.arrayMgrObject = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
     }
 
-    public void insertSession(SessionClass session_val) {
+    public void insertSession(FabricSession session_val) {
         this.arrayMgrObject.insertObjectElement(session_val);
     }
-    public void removeSession(SessionClass session_val) {
+    public void removeSession(FabricSession session_val) {
         this.arrayMgrObject.removeObjectElement(session_val);
     }
 

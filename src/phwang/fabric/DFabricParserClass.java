@@ -167,7 +167,7 @@ public class DFabricParserClass {
         String pending_session_data = "";
         for (int i = 0; i <= max_session_table_array_index; i++) {
             ListEntryClass list_entry = session_table_array[i];
-            SessionClass session = (SessionClass)list_entry.data();
+            FabricSession session = (FabricSession)list_entry.data();
             if (session != null) {
                if (session.getPendingDownLinkDataCount() > 0) {
                     downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.SessionIdStr();
@@ -273,7 +273,7 @@ public class DFabricParserClass {
             return this.errorProcessSetupSession(link_id_str, "*************null link");
         }
         
-        SessionClass session = link.mallocSession();
+        FabricSession session = link.mallocSession();
         session.setBrowserThemeIdStr(theme_id_str);
         GroupClass group = this.GroupMgrObject().mallocGroup(theme_data);
         if (group == null) {
@@ -291,7 +291,7 @@ public class DFabricParserClass {
             if (his_link == null) {
                 return this.errorProcessSetupSession(link_id_str, "his_link does not exist");
             }
-            SessionClass his_session = his_link.mallocSession();
+            FabricSession his_session = his_link.mallocSession();
             if (his_session == null) {
                 return this.errorProcessSetupSession(link_id_str, "null his_session");
             }
@@ -356,7 +356,7 @@ public class DFabricParserClass {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
         
-        SessionClass session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
+        FabricSession session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
         if (session == null) {
             return errorProcessSetupSession3(link_id_str, "null session");
         }
@@ -404,7 +404,7 @@ public class DFabricParserClass {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
         
-        SessionClass session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
+        FabricSession session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
         if (session == null) {
             return errorProcessSetupSession3(link_id_str, "null session");
         }
@@ -452,7 +452,7 @@ public class DFabricParserClass {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
         
-        SessionClass session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
+        FabricSession session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
         if (session == null) {
             return errorProcessSetupSession3(link_id_str, "null session");
         }
@@ -504,7 +504,7 @@ public class DFabricParserClass {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
         
-        SessionClass session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
+        FabricSession session = link.sessionMgrObject().getSessionByIdStr(session_id_str);
         if (session == null) {
             return errorProcessSetupSession3(link_id_str, "null session");
         }

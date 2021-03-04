@@ -17,7 +17,7 @@ import phwang.utils.EncodeNumberClass;
 import phwang.browser.BrowserDefine;
 import phwang.fabric.GroupClass;
 import phwang.fabric.FabricLink;
-import phwang.fabric.SessionClass;
+import phwang.fabric.FabricSession;
 import phwang.protocols.ProtocolDefineClass;
 import phwang.protocols.FabricFrontEndProtocolClass;
 

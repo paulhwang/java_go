@@ -37,11 +37,11 @@ public class GroupClass {
         this.listEntryObject_ = list_entry_object_val;
     }
 
-    public void insertSession(SessionClass session_val) {
+    public void insertSession(FabricSession session_val) {
         this.groupSessionMgrObject().insertSession(session_val);
     }
     
-    public void removeSession(SessionClass session_val) {
+    public void removeSession(FabricSession session_val) {
         this.groupSessionMgrObject().removeSession(session_val);
     }
 

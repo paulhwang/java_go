@@ -58,7 +58,7 @@ public class UFabricParserClass {
             //group->setSessionTableArray((SessionClass**)phwangArrayMgrGetArrayTable(group->sessionArrayMgr(), &session_array_size));
             //printf("++++++++++++++++++++++++++++++++++++++++++++%d\n", session_array_size);
             for (int i = 0; i < session_array_size; i++) {
-                SessionClass session = (SessionClass) session_array[i];
+            	FabricSession session = (FabricSession) session_array[i];
                 session.linkObject().setPendingSessionSetup3(session.BrowserThemeIdStr(), session.SessionIdStr(), "");
             }
         }
@@ -74,7 +74,7 @@ public class UFabricParserClass {
             int session_array_size = group.getSessionArraySize();
             Object[] session_array = group.getSessionArray();
             for (int i = 0; i < session_array_size; i++) {
-                SessionClass session = (SessionClass)session_array[i];
+            	FabricSession session = (FabricSession)session_array[i];
                 session.enqueuePendingDownLinkData(input_data);
             }
         }

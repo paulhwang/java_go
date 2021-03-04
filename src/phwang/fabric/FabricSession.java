@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class SessionClass {
-    private String objectName() {return "SessionClass";}
+public class FabricSession {
+    private String objectName() {return "FabricSession";}
 
     private FabricLink linkObject_;
     private ListEntryClass listEntryObject_;
@@ -27,7 +27,7 @@ public class SessionClass {
     public GroupClass GroupObject() { return this.groupObject; }
     ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
-    public SessionClass(FabricLink link_object_val) {
+    public FabricSession(FabricLink link_object_val) {
         this.linkObject_ = link_object_val;
         this.pendingDownLinkDataQueue_ = new ListQueueClass(false, 0);
     }

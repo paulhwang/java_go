@@ -34,19 +34,19 @@ public class SessionMgrClass {
         this.listMgr_ = new ListMgrClass(FABRIC_SESSION_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
     }
 
-    public SessionClass mallocSession() {
-        SessionClass session = new SessionClass(this.linkObject());
+    public FabricSession mallocSession() {
+    	FabricSession session = new FabricSession(this.linkObject());
         ListEntryClass list_entry = this.listMgr().malloc(session);
         session.bindListEntry(list_entry);
         return session;
     }
 
-    public SessionClass getSessionByIdStr(String session_id_str_val) {
+    public FabricSession getSessionByIdStr(String session_id_str_val) {
         ListEntryClass list_entry = this.listMgr().getEntryByIdStr(session_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (SessionClass)list_entry.data();
+        return (FabricSession)list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

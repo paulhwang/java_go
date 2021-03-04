@@ -43,7 +43,7 @@ public class FabricLink {
         this.listEntryObject_ = list_entry_object_val;
     }
 
-    public SessionClass mallocSession() {
+    public FabricSession mallocSession() {
         return this.sessionMgrObject().mallocSession();
     }
 
