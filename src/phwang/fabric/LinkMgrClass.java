@@ -45,15 +45,11 @@ public class LinkMgrClass implements ListMgrInterface {
     }
     
     public LinkClass getLinkByIdStr(String link_id_str_val) {
-        int link_id = EncodeNumberClass.decodeNumber(link_id_str_val);
-
         ListEntryClass list_entry = this.listMgr().getEntryByIdStr(link_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        LinkClass link = (LinkClass) list_entry.data();
-        
-        return link;
+        return (LinkClass) list_entry.data();
     }
 
     private Boolean compareMyNameFunc(Object object_val, String my_name_val) {

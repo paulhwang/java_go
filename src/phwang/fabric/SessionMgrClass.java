@@ -41,25 +41,11 @@ public class SessionMgrClass {
     }
 
     public SessionClass getSessionByIdStr(String session_id_str_val) {
-        int session_id = EncodeNumberClass.decodeNumber(session_id_str_val);
-
-        return this.getSessionBySessionId(session_id);
-    }
-    
-    public SessionClass getSessionBySessionIdStr(String session_id_str_val) {
-        int session_id = EncodeNumberClass.decodeNumber(session_id_str_val);
-
-        return this.getSessionBySessionId(session_id);
-    }
-
-    public SessionClass getSessionBySessionId(int id_val) {
-        ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
+        ListEntryClass list_entry = this.listMgr().getEntryByIdStr(session_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        SessionClass session = (SessionClass)list_entry.data();
-
-        return session;
+        return (SessionClass)list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
