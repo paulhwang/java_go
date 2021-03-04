@@ -20,10 +20,10 @@ public class FabricUParser {
 
     private FabricDBinder dFabricObject;
 
-    public FabricRoot fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
-    private FabricUBinder UFabricObject() { return this.fabricRootObject().uFabricObject(); }
-    private FabricLinkMgr LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
-    private FabricGroupMgr GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
+    public FabricRoot fabricRoot() { return this.dFabricObject.fabricRoot(); }
+    private FabricUBinder UFabricObject() { return this.fabricRoot().uFabricObject(); }
+    private FabricLinkMgr LinkMgrObject() { return this.fabricRoot().linkMgrObject(); }
+    private FabricGroupMgr GroupMgrObject() { return this.fabricRoot().groupMgrObject(); }
 
     public FabricUParser(FabricDBinder dfabric_object_val) {
         this.debug(false, "FabricUParser", "init start");
@@ -160,7 +160,7 @@ public class FabricUParser {
             return this.errorProcessGetLinkData(link_id_str, "*************null link");
         }
 
-        String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRootObject().nameListObject().NameListTagStr();
+        String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRoot().nameListObject().NameListTagStr();
 
         int max_session_table_array_index = link.GetSessionArrayMaxIndex();
         ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
@@ -225,7 +225,7 @@ public class FabricUParser {
         }
 
         int name_list_tag = EncodeNumberClass.decodeNumber(name_list_tag_str);
-        String name_list = this.fabricRootObject().nameListObject().getNameList(name_list_tag);
+        String name_list = this.fabricRoot().nameListObject().getNameList(name_list_tag);
 
         String response_data = this.generateGetNameListResponse(link.linkIdStr(), name_list);
         return response_data;
@@ -314,7 +314,7 @@ public class FabricUParser {
         data_buf.append(group_val.GroupIdStr());
         data_buf.append(theme_info_val);
         String uplink_data = data_buf.toString();
-        this.fabricRootObject().uFabricObject().transmitData(uplink_data);
+        this.fabricRoot().uFabricObject().transmitData(uplink_data);
     }
 
     private String errorProcessSetupSession(String link_id_val, String error_msg_val) {
