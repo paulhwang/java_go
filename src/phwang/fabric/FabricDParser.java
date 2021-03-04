@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -12,8 +12,8 @@ import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 import phwang.fabric.FabricRootClass;
 
-public class UFabricParserClass {
-    private String objectName() {return "UFabricParserClass";}
+public class FabricDParser {
+    private String objectName() {return "FabricDParser";}
 
     private FabricUBinder uFabricObject_;
 
@@ -21,7 +21,7 @@ public class UFabricParserClass {
     public FabricRootClass fabricRootObject() { return this.uFabricObject().fabricRootObject();}
     public FabricGroupMgr groupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
-    public UFabricParserClass(FabricUBinder ufabric_object_val) {
+    public FabricDParser(FabricUBinder ufabric_object_val) {
         this.uFabricObject_ = ufabric_object_val;
     }
 
