@@ -15,13 +15,13 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class UThemeParserClass {
     private String objectName() {return "UThemeParserClass";}
     
-    private UThemeClass uThemeObject;
+    private ThemeUBinder uThemeObject;
 
     public ThemeRootClass ThemeRootObject() { return this.uThemeObject.ThemeRootObject(); }
-    public DThemeClass DThemeObject() { return this.ThemeRootObject().DThemeObject(); }
+    public ThemeDBinder DThemeObject() { return this.ThemeRootObject().DThemeObject(); }
     public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
-    public UThemeParserClass(UThemeClass u_theme_object_val) {
+    public UThemeParserClass(ThemeUBinder u_theme_object_val) {
         this.debug(false, "UThemeParserClass", "init start");
         this.uThemeObject = u_theme_object_val;
     }

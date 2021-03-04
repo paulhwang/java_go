@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.theme;
 import phwang.utils.*;
 import phwang.protocols.ThemeEngineProtocolClass;
 
-public class UThemeClass implements ThreadInterface {
-    private String objectName() {return "UThemeClass";}
+public class ThemeUBinder implements ThreadInterface {
+    private String objectName() {return "ThemeUBinder";}
     private String receiveThreadName() { return "UThemeReceiveThread"; }
 
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
@@ -25,8 +25,8 @@ public class UThemeClass implements ThreadInterface {
     private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
-    public UThemeClass(ThemeRootClass theme_root_object_val) {
-        this.debug(false, "UThemeClass", "init start");
+    public ThemeUBinder(ThemeRootClass theme_root_object_val) {
+        this.debug(false, "ThemeUBinder", "init start");
 
         this.themeRootObject = theme_root_object_val;
         this.uThemeParserObject = new UThemeParserClass(this);

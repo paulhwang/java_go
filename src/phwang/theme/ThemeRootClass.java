@@ -14,13 +14,13 @@ public class ThemeRootClass {
     private String objectName() {return "ThemeRootClass";}
 
     private ThreadMgrClass threadMgrObject;
-    private UThemeClass uThemeObject;
-    private DThemeClass dThemeObject;
+    private ThemeUBinder uThemeObject;
+    private ThemeDBinder dThemeObject;
     private RoomMgrClass roomMgrObject;
 
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    public UThemeClass UThemeObject() { return this.uThemeObject; }
-    public DThemeClass DThemeObject() { return this.dThemeObject; }
+    public ThemeUBinder UThemeObject() { return this.uThemeObject; }
+    public ThemeDBinder DThemeObject() { return this.dThemeObject; }
     public RoomMgrClass RoomMgrObject() { return this.roomMgrObject; }
 
 
@@ -28,8 +28,8 @@ public class ThemeRootClass {
         this.debug(false, "ThemeRootClass", "init start");
 
         this.threadMgrObject = new ThreadMgrClass();
-        this.uThemeObject = new UThemeClass(this);
-        this.dThemeObject = new DThemeClass(this);
+        this.uThemeObject = new ThemeUBinder(this);
+        this.dThemeObject = new ThemeDBinder(this);
         this.roomMgrObject = new RoomMgrClass(this);
         this.UThemeObject().startThreads();
         this.DThemeObject().startThreads();
