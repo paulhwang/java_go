@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -12,8 +12,8 @@ import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 import phwang.protocols.ThemeEngineProtocolClass;
 
-public class DThemeParserClass {
-    private String objectName() {return "DThemeParserClass";}
+public class ThemeUParser {
+    private String objectName() {return "ThemeUParser";}
     
     private ThemeDBinder dThemeObject;
 
@@ -21,8 +21,8 @@ public class DThemeParserClass {
     public ThemeUBinder UThemeObject() { return this.ThemeRootObject().UThemeObject(); }
     public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
-    public DThemeParserClass(ThemeDBinder d_theme_object_val) {
-        this.debug(false, "DThemeParserClass", "init start");
+    public ThemeUParser(ThemeDBinder d_theme_object_val) {
+        this.debug(false, "ThemeUParser", "init start");
         this.dThemeObject = d_theme_object_val;
     }
 
