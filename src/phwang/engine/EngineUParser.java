@@ -16,8 +16,8 @@ public class EngineUParser {
 
     private EngineDBinder dEngineObject;
 
-    public EngineRoot EngineRootObject() { return this.dEngineObject.EngineRootObject(); }
-    public EngineBaseMgr BaseMgrObject() { return this.EngineRootObject().BaseMgrObject(); }
+    public EngineRoot engineRoot() { return this.dEngineObject.engineRoot(); }
+    public EngineBaseMgr BaseMgr() { return this.engineRoot().BaseMgr(); }
 
     public EngineUParser(EngineDBinder d_engine_object_val) {
         this.dEngineObject = d_engine_object_val;
@@ -48,7 +48,7 @@ public class EngineUParser {
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
 
-        EngineBase go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
+        EngineBase go_base_object = this.BaseMgr().MallocGoBase(room_id_str);
         if (go_base_object == null) {
             this.abend("processSetupBase", "null go_base");
             return;
@@ -66,7 +66,7 @@ public class EngineUParser {
         String base_id_str = input_data_val.substring(0, EngineExport.ENGINE_BASE_ID_SIZE);
         String input_data = input_data_val.substring(EngineExport.ENGINE_BASE_ID_SIZE);
 
-        EngineBase go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
+        EngineBase go_base_object = this.BaseMgr().GetBaseByIdStr(base_id_str);
         if (go_base_object == null) {
             this.abend("processPutBaseData", "null go_base");
             return;

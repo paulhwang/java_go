@@ -17,18 +17,18 @@ public class EngineDBinder implements ThreadInterface {
     
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
     
-    private EngineRoot engineRootObject;
+    private EngineRoot engineRoot_;
     private EngineUParser dEngineParserObject;
     private BinderClass dBinderObject_;
 
-    public EngineRoot EngineRootObject() { return this.engineRootObject; }
-    private ThreadMgrClass ThreadMgrObject() { return this.EngineRootObject().ThreadMgrObject();}
+    public EngineRoot engineRoot() { return this.engineRoot_; }
+    private ThreadMgrClass ThreadMgrObject() { return this.engineRoot().ThreadMgrObject();}
     private BinderClass dBinderObject() { return this.dBinderObject_; }
     
     public EngineDBinder(EngineRoot engine_root_object_val) {
         this.debug(false, "EngineDBinder", "init start");
         
-        this.engineRootObject = engine_root_object_val;
+        this.engineRoot_ = engine_root_object_val;
         this.dEngineParserObject = new EngineUParser(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
 
