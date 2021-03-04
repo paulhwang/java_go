@@ -16,7 +16,7 @@ public class FabricLink {
 
     private ListEntryClass listEntryObject_;
     private String myName_;
-    private SessionMgrClass sessionMgrObject_;
+    private FabricSessionMgr sessionMgrObject_;
     private ListQueueClass pendingSessionSetupQueue;
     private ListQueueClass pendingSessionSetupQueue3;
 
@@ -24,7 +24,7 @@ public class FabricLink {
     public int linkId() { return this.listEntryObject().id(); }
     public String linkIdStr() { return this.listEntryObject().idStr(); }
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
-    public SessionMgrClass sessionMgrObject() { return this.sessionMgrObject_; }
+    public FabricSessionMgr sessionMgrObject() { return this.sessionMgrObject_; }
 
     public int GetSessionArrayMaxIndex() { return this.sessionMgrObject().GetSessionArrayMaxIndex(); }
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().GetSessionArrayEntryTable(); }
@@ -36,7 +36,7 @@ public class FabricLink {
 
         this.pendingSessionSetupQueue = new ListQueueClass(false, 0);
         this.pendingSessionSetupQueue3 = new ListQueueClass(false, 0);
-        this.sessionMgrObject_ = new SessionMgrClass(this);
+        this.sessionMgrObject_ = new FabricSessionMgr(this);
     }
 
     public void bindListEntry(ListEntryClass list_entry_object_val) {

@@ -12,7 +12,7 @@ public class FabricExport {
     public static final short FABRIC_FRONT_PORT = 8006;
 	
 	public static final int FABRIC_LINK_ID_SIZE = FabricLinkMgr.FABRIC_LINK_ID_SIZE;
-	public static final int FABRIC_SESSION_ID_SIZE = SessionMgrClass.FABRIC_SESSION_ID_SIZE;
+	public static final int FABRIC_SESSION_ID_SIZE = FabricSessionMgr.FABRIC_SESSION_ID_SIZE;
 	public static final int FABRIC_GROUP_ID_SIZE = GroupMgrClass.FABRIC_GROUP_ID_SIZE;
     public static final int NAME_LIST_TAG_SIZE = NameListClass.NAME_LIST_TAG_SIZE;
 	

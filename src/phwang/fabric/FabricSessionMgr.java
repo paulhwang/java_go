@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class SessionMgrClass {
-    private String objectName() {return "SessionMgrClass";}
+public class FabricSessionMgr {
+    private String objectName() {return "FabricSessionMgr";}
     
 	public static final int FABRIC_SESSION_ID_SIZE_ = 4;
 	public static final int FABRIC_SESSION_ID_SIZE = FABRIC_SESSION_ID_SIZE_ * 2;
@@ -27,8 +27,8 @@ public class SessionMgrClass {
     public int GetSessionArrayMaxIndex() { return this.listMgr_.MaxIndex(); }
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr().EntryTableArray(); }
 
-    public SessionMgrClass(FabricLink link_object_val) {
-        this.debug(false, "SessionMgrClass", "init start");
+    public FabricSessionMgr(FabricLink link_object_val) {
+        this.debug(false, "FabricSessionMgr", "init start");
         
         this.linkObject_ = link_object_val;
         this.listMgr_ = new ListMgrClass(FABRIC_SESSION_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
