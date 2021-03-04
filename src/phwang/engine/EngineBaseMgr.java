@@ -31,23 +31,23 @@ public class EngineBaseMgr {
         this.listMgr = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
-    public BaseClass MallocGoBase(String room_id_val) {
-        BaseClass go_base = new BaseClass(room_id_val);
+    public EngineBase MallocGoBase(String room_id_val) {
+    	EngineBase go_base = new EngineBase(room_id_val);
         ListEntryClass list_entry = this.listMgr.malloc(go_base);
         go_base.bindListEntry(list_entry);
         return go_base;
     }
 
-    public void FreeGoBase(BaseClass link_val) {
+    public void FreeGoBase(EngineBase link_val) {
 
     }
     
-    public BaseClass GetBaseByIdStr(String base_id_str_val) {
+    public EngineBase GetBaseByIdStr(String base_id_str_val) {
         ListEntryClass list_entry = this.listMgr.getEntryByIdStr(base_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (BaseClass)list_entry.data();
+        return (EngineBase)list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

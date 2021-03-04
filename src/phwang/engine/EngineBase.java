@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.engine;
 import phwang.utils.*;
 import phwang.go.GoRootClass;
 
-public class BaseClass {
-    private String objectName() {return "BaseClass";}
+public class EngineBase {
+    private String objectName() {return "EngineBase";}
 
     private ListEntryClass listEntryObject_;
     private String roomIdStr_;
@@ -23,7 +23,7 @@ public class BaseClass {
     public String BaseIdStr() { return this.listEntryObject().idStr(); }
     public String roomIdStr() { return this.roomIdStr_; }
 
-    public BaseClass(String room_id_str_val) {
+    public EngineBase(String room_id_str_val) {
         this.roomIdStr_ = room_id_str_val;
     }
 

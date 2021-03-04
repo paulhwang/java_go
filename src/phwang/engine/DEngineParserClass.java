@@ -48,7 +48,7 @@ public class DEngineParserClass {
         String room_id_str = input_data_val.substring(0, ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
 
-        BaseClass go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
+        EngineBase go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
         if (go_base_object == null) {
             this.abend("processSetupBase", "null go_base");
             return;
@@ -66,7 +66,7 @@ public class DEngineParserClass {
         String base_id_str = input_data_val.substring(0, EngineDefineClass.ENGINE_BASE_ID_SIZE);
         String input_data = input_data_val.substring(EngineDefineClass.ENGINE_BASE_ID_SIZE);
 
-        BaseClass go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
+        EngineBase go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
         if (go_base_object == null) {
             this.abend("processPutBaseData", "null go_base");
             return;
