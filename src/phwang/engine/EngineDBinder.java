@@ -18,7 +18,7 @@ public class EngineDBinder implements ThreadInterface {
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
     
     private EngineRoot engineRootObject;
-    private DEngineParserClass dEngineParserObject;
+    private EngineUParser dEngineParserObject;
     private BinderClass dBinderObject_;
 
     public EngineRoot EngineRootObject() { return this.engineRootObject; }
@@ -29,7 +29,7 @@ public class EngineDBinder implements ThreadInterface {
         this.debug(false, "EngineDBinder", "init start");
         
         this.engineRootObject = engine_root_object_val;
-        this.dEngineParserObject = new DEngineParserClass(this);
+        this.dEngineParserObject = new EngineUParser(this);
         this.dBinderObject_ = new BinderClass(this.objectName());
 
         this.dBinderObject().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);

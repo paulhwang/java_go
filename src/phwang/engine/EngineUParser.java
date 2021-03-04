@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,15 +11,15 @@ package phwang.engine;
 import phwang.utils.*;
 import phwang.protocols.ThemeEngineProtocolClass;
 
-public class DEngineParserClass {
-    private String objectName() {return "DEngineParserClass";}
+public class EngineUParser {
+    private String objectName() {return "EngineUParser";}
 
     private EngineDBinder dEngineObject;
 
     public EngineRoot EngineRootObject() { return this.dEngineObject.EngineRootObject(); }
     public EngineBaseMgr BaseMgrObject() { return this.EngineRootObject().BaseMgrObject(); }
 
-    public DEngineParserClass(EngineDBinder d_engine_object_val) {
+    public EngineUParser(EngineDBinder d_engine_object_val) {
         this.dEngineObject = d_engine_object_val;
     }
 
