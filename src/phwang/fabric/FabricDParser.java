@@ -15,14 +15,14 @@ import phwang.fabric.FabricRoot;
 public class FabricDParser {
     private String objectName() {return "FabricDParser";}
 
-    private FabricUBinder uFabricObject_;
+    private FabricUBinder fabricUBinder_;
 
-    private FabricUBinder uFabricObject() { return this.uFabricObject_; }
-    public FabricRoot fabricRootObject() { return this.uFabricObject().fabricRootObject();}
-    public FabricGroupMgr groupMgr() { return this.fabricRootObject().groupMgr(); }
+    private FabricUBinder fabricUBinder() { return this.fabricUBinder_; }
+    public FabricRoot fabricRoot() { return this.fabricUBinder().fabricRoot();}
+    public FabricGroupMgr groupMgr() { return this.fabricRoot().groupMgr(); }
 
     public FabricDParser(FabricUBinder ufabric_object_val) {
-        this.uFabricObject_ = ufabric_object_val;
+        this.fabricUBinder_ = ufabric_object_val;
     }
 
     public void parseInputPacket(String input_data_val) {

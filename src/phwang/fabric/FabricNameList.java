@@ -18,7 +18,7 @@ public class FabricNameList {
 
     final int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
 
-    private FabricRoot fabricRootObject;
+    private FabricRoot fabricRoot;
     private int nameListTag;
     private String nameListTagStr;
     private String nameList;
@@ -29,11 +29,11 @@ public class FabricNameList {
     public FabricNameList(FabricRoot root_fabric_object_val) {
         this.debug(false, "FabricNameList", "init start");
         
-        this.fabricRootObject = root_fabric_object_val;
+        this.fabricRoot = root_fabric_object_val;
     }
     
     public void updateNameList() {
-    	FabricLinkMgr link_list_mgr = this.fabricRootObject.linkMgr();
+    	FabricLinkMgr link_list_mgr = this.fabricRoot.linkMgr();
 
         int max_index = link_list_mgr.listMgr().MaxIndex();
         ListEntryClass[] list_entry_array = link_list_mgr.listMgr().EntryTableArray();
