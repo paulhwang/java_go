@@ -145,8 +145,22 @@ public class ListMgrClass {
         this.entryCount = 0;
     }
     
+    public ListEntryClass getEntryByIdStr111(String id_str_val) {
+    	String id_str = id_str_val.substring(0, idSize_);
+    	String index_str = id_str_val.substring(idSize_);
+        int id = EncodeNumberClass.decodeNumber(id_str);
+        int index = EncodeNumberClass.decodeNumber(index_str);
+    	
+        ListEntryClass entry = this.entryArray[index];
+        if (entry.id() != id) {
+        	this.abend("ListEntryClass", "id not match");
+        }
+        return entry;
+    }
+    
     public ListEntryClass getEntryByIdStr(String id_str_val) {
-        int id = EncodeNumberClass.decodeNumber(id_str_val);
+    	String id_str = id_str_val.substring(0, idSize_);
+        int id = EncodeNumberClass.decodeNumber(id_str);
 
         return this.getEntryById(id);
     }
