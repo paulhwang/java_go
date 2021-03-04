@@ -13,13 +13,13 @@ import phwang.utils.*;
 public class SessionClass {
     private String objectName() {return "SessionClass";}
 
-    private LinkClass linkObject_;
+    private FabricLink linkObject_;
     private ListEntryClass listEntryObject_;
     private String browserThemeIdStr;
     private GroupClass groupObject;
     ListQueueClass pendingDownLinkDataQueue_;
 
-    public LinkClass linkObject() { return this.linkObject_; }
+    public FabricLink linkObject() { return this.linkObject_; }
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public int sessionId() { return this.listEntryObject().id(); }
     public String SessionIdStr() { return this.listEntryObject().idStr(); }
@@ -27,7 +27,7 @@ public class SessionClass {
     public GroupClass GroupObject() { return this.groupObject; }
     ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
-    public SessionClass(LinkClass link_object_val) {
+    public SessionClass(FabricLink link_object_val) {
         this.linkObject_ = link_object_val;
         this.pendingDownLinkDataQueue_ = new ListQueueClass(false, 0);
     }

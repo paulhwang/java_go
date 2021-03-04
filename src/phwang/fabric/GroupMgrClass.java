@@ -39,7 +39,7 @@ public class GroupMgrClass {
         return group;
     }
 
-    public void freeLink(LinkClass link_val) {
+    public void freeLink(FabricLink link_val) {
 
     }
 
@@ -51,8 +51,8 @@ public class GroupMgrClass {
         return (GroupClass)list_entry.data();
     }
 
-    public LinkClass GetLinkByMyName(String my_name_val) {
-        LinkClass link = null;
+    public FabricLink GetLinkByMyName(String my_name_val) {
+    	FabricLink link = null;
 
         return link;
     }

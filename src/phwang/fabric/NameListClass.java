@@ -53,7 +53,7 @@ public class NameListClass {
                 else {
                     this.nameList = this.nameList + ",";
                 }
-                LinkClass link = (LinkClass) list_entry_array[i].data();
+                FabricLink link = (FabricLink) list_entry_array[i].data();
                 this.nameList = this.nameList + '"' + link.myName() + '"';
                 
                 if (this.nameList.length() > 1000) {

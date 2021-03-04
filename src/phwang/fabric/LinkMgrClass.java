@@ -33,28 +33,28 @@ public class LinkMgrClass implements ListMgrInterface {
         this.listMgr_ = new ListMgrClass(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
     }
 
-    public LinkClass mallocLink(String my_name_val) {
-        LinkClass link = new LinkClass(my_name_val);
+    public FabricLink mallocLink(String my_name_val) {
+    	FabricLink link = new FabricLink(my_name_val);
         ListEntryClass list_entry = this.listMgr().malloc(link);
         link.bindListEntry(list_entry);
         this.nameListObject().updateNameList();
         return link;
     }
 
-    public void freeLink(LinkClass link_val) {
+    public void freeLink(FabricLink link_val) {
 
     }
     
-    public LinkClass getLinkByIdStr(String link_id_str_val) {
+    public FabricLink getLinkByIdStr(String link_id_str_val) {
         ListEntryClass list_entry = this.listMgr().getEntryByIdStr(link_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (LinkClass) list_entry.data();
+        return (FabricLink) list_entry.data();
     }
 
     private Boolean compareMyNameFunc(Object object_val, String my_name_val) {
-        LinkClass link = (LinkClass) object_val;
+    	FabricLink link = (FabricLink) object_val;
         return (link.myName().equals(my_name_val));
     }
     
@@ -62,12 +62,12 @@ public class LinkMgrClass implements ListMgrInterface {
     	return compareMyNameFunc(obj_val, str_val);
     }
 
-    public LinkClass GetLinkByMyName(String my_name_val) {
+    public FabricLink GetLinkByMyName(String my_name_val) {
         ListEntryClass list_entry = this.listMgr().getEntryByCompare(this, my_name_val);
         if (list_entry == null) {
             return null;
         }
-        LinkClass link = (LinkClass)list_entry.data();
+        FabricLink link = (FabricLink)list_entry.data();
 
         return link;
     }

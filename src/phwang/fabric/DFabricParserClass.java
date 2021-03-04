@@ -96,7 +96,7 @@ public class DFabricParserClass {
         this.debug(false, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(false, "processSetupLinkRequest", "password = " + password);
 
-        LinkClass link = this.LinkMgrObject().mallocLink(my_name);
+        FabricLink link = this.LinkMgrObject().mallocLink(my_name);
         if (link == null) {
         	this.abend("processSetupLinkRequest", "link is null");
         	return null;
@@ -123,7 +123,7 @@ public class DFabricParserClass {
     	
         this.debug(false, "processRemoveLinkRequest", "link_id = " + link_id_str);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessRemoveLink(link_id_str, "*************null link");
         }
@@ -155,7 +155,7 @@ public class DFabricParserClass {
     	
         this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessGetLinkData(link_id_str, "*************null link");
         }
@@ -219,7 +219,7 @@ public class DFabricParserClass {
         String name_list_tag_str = rest_str.substring(0, FabricExport.NAME_LIST_TAG_SIZE);
         rest_str = rest_str.substring(FabricExport.NAME_LIST_TAG_SIZE);
     	
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessGetNameList(link_id_str, "*************null link");
         }
@@ -268,7 +268,7 @@ public class DFabricParserClass {
         String theme_id_str = theme_data_str.substring(0, FrontImportClass.THEME_ROOM_ID_SIZE);
         String theme_data = theme_data_str.substring(FrontImportClass.THEME_ROOM_ID_SIZE);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession(link_id_str, "*************null link");
         }
@@ -287,7 +287,7 @@ public class DFabricParserClass {
             this.mallocRoom(group, theme_data);
         }
         else {
-            LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(his_name);
+        	FabricLink his_link = this.LinkMgrObject().GetLinkByMyName(his_name);
             if (his_link == null) {
                 return this.errorProcessSetupSession(link_id_str, "his_link does not exist");
             }
@@ -351,7 +351,7 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSession2Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession2Request", "session_id = " + session_id_str);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
@@ -399,7 +399,7 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
@@ -447,7 +447,7 @@ public class DFabricParserClass {
         //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
         this.debug(false, "processPutSessionDataRequest", "data = " + data);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
@@ -499,7 +499,7 @@ public class DFabricParserClass {
         this.debug(false, "processGetSessionDataRequest", "link_id = " + link_id_str);
         this.debug(false, "processGetSessionDataRequest", "session_id = " + session_id_str);
 
-        LinkClass link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
+        FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }

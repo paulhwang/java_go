@@ -19,15 +19,15 @@ public class SessionMgrClass {
 	private static final int LIST_MGR_ARRAY_SIZE = 8;
     private static final int FIRST_SESSION_ID = 3000;
 
-    private LinkClass linkObject_;
+    private FabricLink linkObject_;
     private ListMgrClass listMgr_;
 
-    private LinkClass linkObject() { return this.linkObject_; }
+    private FabricLink linkObject() { return this.linkObject_; }
     public ListMgrClass listMgr() { return this.listMgr_; }
     public int GetSessionArrayMaxIndex() { return this.listMgr_.MaxIndex(); }
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr().EntryTableArray(); }
 
-    public SessionMgrClass(LinkClass link_object_val) {
+    public SessionMgrClass(FabricLink link_object_val) {
         this.debug(false, "SessionMgrClass", "init start");
         
         this.linkObject_ = link_object_val;

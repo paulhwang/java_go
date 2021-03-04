@@ -12,7 +12,7 @@ import phwang.utils.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import phwang.fabric.LinkClass;
+import phwang.fabric.FabricLink;
 import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class FrontJobMgr {

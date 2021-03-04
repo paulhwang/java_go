@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.fabric;
 import phwang.utils.*;
 import phwang.protocols.FabricFrontEndProtocolClass;
 
-public class LinkClass {
-    private String objectName() {return "LinkClass";}
+public class FabricLink {
+    private String objectName() {return "FabricLink";}
 
     private ListEntryClass listEntryObject_;
     private String myName_;
@@ -29,8 +29,8 @@ public class LinkClass {
     public int GetSessionArrayMaxIndex() { return this.sessionMgrObject().GetSessionArrayMaxIndex(); }
     public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().GetSessionArrayEntryTable(); }
 
-    public LinkClass(String my_name_val) {
-        this.debug(false, "LinkClass", "init start");
+    public FabricLink(String my_name_val) {
+        this.debug(false, "FabricLink", "init start");
         
         this.myName_ = my_name_val;
 
