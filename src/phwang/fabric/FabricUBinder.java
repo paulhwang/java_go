@@ -22,15 +22,15 @@ public class FabricUBinder implements ThreadInterface {
     //////////////////#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
     ///////////////#define FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA 'd'
 
-    private FabricRootClass fabricRootObject_;
+    private FabricRoot fabricRootObject_;
     private FabricDParser uFabricParserObject;
     public BinderClass uBinderObject_;
     
-    public FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    public FabricRoot fabricRootObject() { return this.fabricRootObject_; }
     private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().threadMgrObject();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
-    public FabricUBinder(FabricRootClass fabric_root_class_val) {
+    public FabricUBinder(FabricRoot fabric_root_class_val) {
         this.debug(false, "FabricUBinder", "init start");
         this.fabricRootObject_ = fabric_root_class_val;
         this.uFabricParserObject = new FabricDParser(this);

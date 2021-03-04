@@ -10,7 +10,7 @@ package phwang.main;
 
 import phwang.utils.*;
 import phwang.engine.EngineRoot;
-import phwang.fabric.FabricRootClass;
+import phwang.fabric.FabricRoot;
 import phwang.front.FrontRoot;
 import phwang.models.ModelRootClass;
 import phwang.theme.ThemeRoot;
@@ -19,7 +19,7 @@ public class GlobalVariableClass {
     private String objectName() {return "GlobalVariableClass";}
     
     static public FrontRoot frontEndRootObject;
-    static public FabricRootClass fabricRootObject;
+    static public FabricRoot fabricRootObject;
     static public ThemeRoot themeRootObject;
     static public EngineRoot engineRootObject;
     static public ModelRootClass modelRootObject;
@@ -30,7 +30,7 @@ public class GlobalVariableClass {
     
     public static void Initilization() {
         if (frontEndRootObject == null) {
-            fabricRootObject = new FabricRootClass();
+            fabricRootObject = new FabricRoot();
             frontEndRootObject = new FrontRoot();
             themeRootObject = new ThemeRoot();
             engineRootObject = new EngineRoot();

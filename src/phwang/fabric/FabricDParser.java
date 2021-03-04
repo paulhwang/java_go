@@ -10,7 +10,7 @@ package phwang.fabric;
 
 import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
-import phwang.fabric.FabricRootClass;
+import phwang.fabric.FabricRoot;
 
 public class FabricDParser {
     private String objectName() {return "FabricDParser";}
@@ -18,7 +18,7 @@ public class FabricDParser {
     private FabricUBinder uFabricObject_;
 
     private FabricUBinder uFabricObject() { return this.uFabricObject_; }
-    public FabricRootClass fabricRootObject() { return this.uFabricObject().fabricRootObject();}
+    public FabricRoot fabricRootObject() { return this.uFabricObject().fabricRootObject();}
     public FabricGroupMgr groupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
 
     public FabricDParser(FabricUBinder ufabric_object_val) {

@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class FabricRootClass {
-    private String objectName() {return "FabricRootClass";}
+public class FabricRoot {
+    private String objectName() {return "FabricRoot";}
     
     private ThreadMgrClass threadMgrObject_;
     private FabricUBinder uFabricObject_;
@@ -27,8 +27,8 @@ public class FabricRootClass {
     public FabricGroupMgr groupMgrObject() { return this.groupMgrObject_; }
     public FabricNameList nameListObject() { return this.nameListObject_; }
 
-    public FabricRootClass () {
-        this.debug(false, "FabricRootClass", "init start");
+    public FabricRoot () {
+        this.debug(false, "FabricRoot", "init start");
         
         this.threadMgrObject_ = new ThreadMgrClass();
         this.uFabricObject_ = new FabricUBinder(this);

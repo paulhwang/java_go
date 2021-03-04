@@ -18,7 +18,7 @@ public class FabricNameList {
 
     final int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
 
-    private FabricRootClass fabricRootObject;
+    private FabricRoot fabricRootObject;
     private int nameListTag;
     private String nameListTagStr;
     private String nameList;
@@ -26,7 +26,7 @@ public class FabricNameList {
     public String NameListTagStr() { return this.nameListTagStr; }
     public String NameList() { return this.nameList; }
 
-    public FabricNameList(FabricRootClass root_fabric_object_val) {
+    public FabricNameList(FabricRoot root_fabric_object_val) {
         this.debug(false, "FabricNameList", "init start");
         
         this.fabricRootObject = root_fabric_object_val;

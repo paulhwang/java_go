@@ -16,16 +16,16 @@ public class FabricDBinder implements ThreadInterface {
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
     private String receiveThreadName() { return "DFabricReceiveThread"; }
     
-    private FabricRootClass fabricRootObject_;
+    private FabricRoot fabricRootObject_;
     private FabricUParser dFabricParserObject_;
     public BinderClass dBinderObject_;
 
-    public FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    public FabricRoot fabricRootObject() { return this.fabricRootObject_; }
     private ThreadMgrClass ThreadMgrObject() { return this.fabricRootObject().threadMgrObject();}
     private FabricUParser dFabricParserObject() { return this.dFabricParserObject_; }
     private BinderClass dBinderObject() { return this.dBinderObject_; }
   
-    public FabricDBinder(FabricRootClass fabric_root_class_val) {
+    public FabricDBinder(FabricRoot fabric_root_class_val) {
         this.debug(false, "FabricDBinder", "init start");
         
         this.fabricRootObject_ = fabric_root_class_val;

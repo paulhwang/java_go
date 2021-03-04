@@ -19,13 +19,13 @@ public class FabricGroupMgr {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_GROUP_ID = 5000;
 
-    private FabricRootClass fabricRootObject_;
+    private FabricRoot fabricRootObject_;
     private ListMgrClass listMgr_;
 
-    private FabricRootClass fabricRootObject() { return this.fabricRootObject_; }
+    private FabricRoot fabricRootObject() { return this.fabricRootObject_; }
     private ListMgrClass listMgr() { return this.listMgr_; }
 
-    public FabricGroupMgr(FabricRootClass root_fabric_object_val) {
+    public FabricGroupMgr(FabricRoot root_fabric_object_val) {
         this.debug(false, "FabricGroupMgr", "init start");
         
         this.fabricRootObject_ = root_fabric_object_val;

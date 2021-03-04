@@ -20,7 +20,7 @@ public class FabricUParser {
 
     private FabricDBinder dFabricObject;
 
-    public FabricRootClass fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
+    public FabricRoot fabricRootObject() { return this.dFabricObject.fabricRootObject(); }
     private FabricUBinder UFabricObject() { return this.fabricRootObject().uFabricObject(); }
     private FabricLinkMgr LinkMgrObject() { return this.fabricRootObject().linkMgrObject(); }
     private FabricGroupMgr GroupMgrObject() { return this.fabricRootObject().groupMgrObject(); }
