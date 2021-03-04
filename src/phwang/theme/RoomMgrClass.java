@@ -34,22 +34,12 @@ public class RoomMgrClass {
         return room;
     }
 
-    public RoomClass getRoomByRoomIdStr(String room_id_str_val) {
-        this.debug(false, "getRoomByRoomIdStr", "room_id_str_val=" + room_id_str_val);
-        int room_id = EncodeNumberClass.decodeNumber(room_id_str_val);
-
-        return this.getRoomByRoomId(room_id);
-     }
-
-    public RoomClass getRoomByRoomId(int id_val) {
-        this.debug(false, "getRoomByRoomId", "id_val=" + id_val);
-        ListEntryClass list_entry = this.listMgr.getEntryById(id_val);
+    public RoomClass getRoomByIdStr(String room_id_str_val) {
+        ListEntryClass list_entry = this.listMgr.getEntryByIdStr(room_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        RoomClass room_object = (RoomClass)list_entry.data();
-
-        return room_object;
+        return (RoomClass)list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

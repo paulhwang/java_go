@@ -53,7 +53,7 @@ public class UThemeParserClass {
         this.debug(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
         this.debug(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
 
-        RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
+        RoomClass room_object = this.RoomMgrObject().getRoomByIdStr(room_id_str);
         room_object.setBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
         downlink_data = downlink_data + room_object.groupIdStr() + room_object.RoomIdStr();
@@ -95,7 +95,7 @@ public class UThemeParserClass {
         String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
         String data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
 
-        RoomClass room_object = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
+        RoomClass room_object = this.RoomMgrObject().getRoomByIdStr(room_id_str);
         if (room_object == null) {
             this.abend("processPutBaseDataResponse", "null room");
             return;

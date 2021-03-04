@@ -81,7 +81,7 @@ public class DThemeParserClass {
 
         String room_id_str = input_data_val.substring(0, ThemeDefineClass.THEME_ROOM_ID_SIZE);
         String input_data = input_data_val.substring(ThemeDefineClass.THEME_ROOM_ID_SIZE);
-        RoomClass room = this.RoomMgrObject().getRoomByRoomIdStr(room_id_str);
+        RoomClass room = this.RoomMgrObject().getRoomByIdStr(room_id_str);
         if (room == null) {
             this.abend("processPutRoomData", "null room");
             return;

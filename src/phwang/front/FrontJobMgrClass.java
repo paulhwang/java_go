@@ -45,19 +45,11 @@ public class FrontJobMgrClass {
     }
     
     public FrontJobClass getJobByIdStr(String job_id_str_val) {
-        int job_id = EncodeNumberClass.decodeNumber(job_id_str_val);
-
-        return this.getJobById(job_id);
-    }
-
-    public FrontJobClass getJobById(int id_val) {
-    	ListEntryClass list_entry = this.listMgr().getEntryById(id_val);
+     	ListEntryClass list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        FrontJobClass job = (FrontJobClass) list_entry.data();
-
-        return job;
+        return (FrontJobClass) list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
