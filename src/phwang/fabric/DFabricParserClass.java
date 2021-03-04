@@ -32,8 +32,8 @@ public class DFabricParserClass {
     }
 
     public void parseInputPacket(String input_data_val) {
-        String job_id_str = input_data_val.substring(0, FrontImportClass.FRONT_JOB_ID_SIZE);
-        String json_str = input_data_val.substring(FrontImportClass.FRONT_JOB_ID_SIZE);
+        String job_id_str = input_data_val.substring(0, FabricImport.FRONT_JOB_ID_SIZE);
+        String json_str = input_data_val.substring(FabricImport.FRONT_JOB_ID_SIZE);
         String response_data = null;
         
         this.debug(false, "parseInputPacket", "input_data_val = " + input_data_val);
@@ -265,8 +265,8 @@ public class DFabricParserClass {
         this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
         this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-        String theme_id_str = theme_data_str.substring(0, FrontImportClass.THEME_ROOM_ID_SIZE);
-        String theme_data = theme_data_str.substring(FrontImportClass.THEME_ROOM_ID_SIZE);
+        String theme_id_str = theme_data_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);
+        String theme_data = theme_data_str.substring(FabricImport.THEME_ROOM_ID_SIZE);
 
         FabricLink link = this.LinkMgrObject().getLinkByIdStr(link_id_str);
         if (link == null) {
