@@ -22,7 +22,7 @@ public class FabricDBinder implements ThreadInterface {
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
     private FabricUParser fabricUParser() { return this.fabricRoot().fabricUParser(); }
-    private BinderClass dBinderObject() { return this.dBinder_; }
+    private BinderClass dBinder() { return this.dBinder_; }
   
     public FabricDBinder(FabricRoot root_val) {
         this.debug(false, "FabricDBinder", "init start");
@@ -30,7 +30,7 @@ public class FabricDBinder implements ThreadInterface {
         this.fabricRoot_ = root_val;
         this.dBinder_ = new BinderClass(this.objectName());
         
-        this.dBinderObject().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
+        this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
     }
 
     public void startThreads() {
@@ -48,7 +48,7 @@ public class FabricDBinder implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.dBinderObject().receiveData();
+            data = this.dBinder().receiveData();
             if (data == null) {
                 this.abend("dFabricRreceiveThreadFunc", "null data");
                 continue;
@@ -59,7 +59,7 @@ public class FabricDBinder implements ThreadInterface {
     }
 
     public void transmitData(String data_val) {
-        this.dBinderObject().transmitData(data_val);
+        this.dBinder().transmitData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

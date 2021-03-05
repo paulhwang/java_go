@@ -18,18 +18,18 @@ public class FabricUBinder implements ThreadInterface {
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
     private FabricRoot fabricRoot_;
-    public BinderClass uBinderObject_;
+    public BinderClass uBinder_;
     
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     public FabricDParser fabricDParser() { return this.fabricRoot().fabricDParser(); }
     private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
-    private BinderClass uBinderObject() { return this.uBinderObject_; }
+    private BinderClass uBinder() { return this.uBinder_; }
 
     public FabricUBinder(FabricRoot root_val) {
         this.debug(false, "FabricUBinder", "init start");
         this.fabricRoot_ = root_val;
-        this.uBinderObject_ = new BinderClass(this.objectName());
-        this.uBinderObject().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.uBinder_ = new BinderClass(this.objectName());
+        this.uBinder().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -47,7 +47,7 @@ public class FabricUBinder implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.uBinderObject().receiveData();
+            data = this.uBinder().receiveData();
             if (data == null) {
                 this.abend("uFabricRreceiveThreadFunc", "null data");
                 continue;
@@ -60,7 +60,7 @@ public class FabricUBinder implements ThreadInterface {
 
     public void transmitData(String data_val) {
         this.debug(false, "transmitData", "data=" + data_val);
-        this.uBinderObject().transmitData(data_val);
+        this.uBinder().transmitData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
