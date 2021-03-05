@@ -26,7 +26,7 @@ public class GoGroup {
     private Boolean[][] deadMatrix;
 
     public GoGroupList goGroupList() { return this.goGroupList_; }
-    public GoConfig goConfig() { return this.goGroupList_.goConfig(); }
+    public GoConfig goConfig() { return this.goGroupList().goConfig(); }
     public int HisColor() { return this.hisColor; }
     public int MyColor() { return this.myColor; }
     public int StoneCount() { return this.stoneCount; }
@@ -213,7 +213,7 @@ public class GoGroup {
 
     public void abendGroup() {
         int count = 0;
-        int board_size = this.goConfig().BoardSize();
+        int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
                 if (this.existMatrix[i][j]) {
@@ -227,7 +227,7 @@ public class GoGroup {
     }
 
     public void abendOnGroupConflict(GoGroup other_group_val) {
-        int board_size = this.goConfig().BoardSize();
+        int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
                 if (this.existMatrix[i][j]) {

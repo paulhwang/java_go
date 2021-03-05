@@ -15,7 +15,7 @@ public class GoParse {
 
     private GoRoot theRootObject;
 
-    public GoGame GameObject() { return this.theRootObject.goGame(); }
+    public GoGame goGame() { return this.theRootObject.goGame(); }
 
 
     public GoParse(GoRoot go_root_object_val) {
@@ -29,23 +29,23 @@ public class GoParse {
         {
             case GoExport.GO_PROTOCOL_MOVE_COMMAND:
             	GoMove move = new GoMove(input_data_val.substring(1, 9));
-                this.GameObject().addNewMoveAndFight(move);
+                this.goGame().addNewMoveAndFight(move);
                 return;
 
             case GoExport.GO_PROTOCOL_BACKWARD_COMMAND:
-                this.GameObject().processBackwardMove();
+                this.goGame().processBackwardMove();
                 return;
 
             case GoExport.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
-                this.GameObject().processDoubleBackwardMove();
+                this.goGame().processDoubleBackwardMove();
                 return;
 
             case GoExport.GO_PROTOCOL_FORWARD_COMMAND:
-                this.GameObject().processForwardMove();
+                this.goGame().processForwardMove();
                 return;
 
             case GoExport.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
-                this.GameObject().processDoubleForwardMove();
+                this.goGame().processDoubleForwardMove();
                 return;
 
             case GoExport.GO_PROTOCOL_PASS_COMMAND:

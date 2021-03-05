@@ -69,7 +69,7 @@ public class GoGame {
         this.debug(true, "ProcessBackwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves <= this.goConfig().HandicapPoint()) {
+        if (this.theTotalMoves <= this.goConfig().handicapPoint()) {
             return;
         }
         this.theTotalMoves--;
@@ -80,10 +80,10 @@ public class GoGame {
         this.debug(true, "ProcessDoubleBackwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves <= this.goConfig().HandicapPoint()) {
+        if (this.theTotalMoves <= this.goConfig().handicapPoint()) {
             return;
         }
-        this.theTotalMoves = this.goConfig().HandicapPoint();
+        this.theTotalMoves = this.goConfig().handicapPoint();
         this.processTheWholeMoveList();
     }
 

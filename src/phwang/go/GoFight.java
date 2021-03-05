@@ -251,7 +251,7 @@ public class GoFight {
         /* check if a stone exist in both black and white group_lists */
         int black_stone_count = 0;
         int white_stone_count = 0;
-        int board_size = this.goConfig().BoardSize();
+        int board_size = this.goConfig().boardSize();
 
         for (int x = 0; x < board_size; x++) {
             for (int y = 0; y < board_size; y++) {

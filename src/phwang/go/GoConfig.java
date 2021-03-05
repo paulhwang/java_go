@@ -13,17 +13,17 @@ import phwang.utils.*;
 public class GoConfig {
     private String objectName() {return "GoConfig";}
 
-    private GoRoot theRootObject;
-    private int boardSize;
-    private int handicapPoint;
-    private int komiPoint;
+    private GoRoot goRoot_;
+    private int boardSize_;
+    private int handicapPoint_;
+    private int komiPoint_;
 
-    public int BoardSize() { return this.boardSize; }
-    public int HandicapPoint() { return this.handicapPoint; }
-    public int KomiPoint() { return this.komiPoint; }
+    public int boardSize() { return this.boardSize_; }
+    public int handicapPoint() { return this.handicapPoint_; }
+    public int komiPoint() { return this.komiPoint_; }
 
-    public GoConfig(GoRoot root_object_val) {
-        this.theRootObject = root_object_val;
+    public GoConfig(GoRoot root_val) {
+        this.goRoot_ = root_val;
     }
 
     public void configIt(String input_data_val) {
@@ -34,15 +34,15 @@ public class GoConfig {
         String handicap_str = input_data_val.substring(5, 7);
         String komi_str = input_data_val.substring(7, 9);
 
-        this.boardSize = EncodeNumberClass.decodeNumber(board_size_str);
-        this.handicapPoint = EncodeNumberClass.decodeNumber(handicap_str);
-        this.komiPoint = EncodeNumberClass.decodeNumber(komi_str);
+        this.boardSize_ = EncodeNumberClass.decodeNumber(board_size_str);
+        this.handicapPoint_ = EncodeNumberClass.decodeNumber(handicap_str);
+        this.komiPoint_ = EncodeNumberClass.decodeNumber(komi_str);
         
-    	this.debug(false, "ConfigIt", "boardSize=" + boardSize);
+    	this.debug(false, "ConfigIt", "boardSize=" + boardSize());
     }
 
     private Boolean isValidCoordinate(int coordinate_val) {
-        return (0 <= coordinate_val) && (coordinate_val < this.boardSize);
+        return (0 <= coordinate_val) && (coordinate_val < this.boardSize());
     }
     
     public Boolean IsValidCoordinates(int x_val, int y_val) {

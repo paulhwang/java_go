@@ -20,10 +20,10 @@ public class GoBoard {
     int theWhiteCapturedStones;
     int theLastDeadX;
     int theLastDeadY;
-    private GoRoot theRootObject;
+    private GoRoot goRoot_;
 
-    public GoConfig goConfig() { return this.theRootObject.goConfig(); }
-    public GoGame goGame() { return this.theRootObject.goGame(); }
+    public GoConfig goConfig() { return this.goRoot_.goConfig(); }
+    public GoGame goGame() { return this.goRoot_.goGame(); }
     public String BoardOutputBuffer() { return this.theBoardOutputBuffer; }
     public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
     public void AddBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }
@@ -31,8 +31,8 @@ public class GoBoard {
     public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
     public void SetLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
 
-    public GoBoard(GoRoot root_object_val) {
-        this.theRootObject = root_object_val;
+    public GoBoard(GoRoot root_val) {
+        this.goRoot_ = root_val;
         this.theBoardArray = new int[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
         this.theMarkedBoardArray = new int[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
         this.resetBoardObjectData();
@@ -46,7 +46,7 @@ public class GoBoard {
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().TotalMoves(), 3);
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().NextColor(), 1);
 
-        int board_size = this.goConfig().BoardSize();
+        int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
                 char c = '0';
@@ -77,7 +77,7 @@ public class GoBoard {
     }
 
     private Boolean isEmptySpace(int x_val, int y_val) {
-        if (!this.theRootObject.goConfig().IsValidCoordinates(x_val, y_val)) {
+        if (!this.goRoot_.goConfig().IsValidCoordinates(x_val, y_val)) {
             return false;
         }
         if (this.theBoardArray[x_val][y_val] != GoDefine.GO_EMPTY_STONE) {
@@ -103,7 +103,7 @@ public class GoBoard {
     }
 
     public void resetBoardObjectData() {
-        int board_size = this.goConfig().BoardSize();
+        int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
                 this.theBoardArray[i][j] = GoDefine.GO_EMPTY_STONE;
