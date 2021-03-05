@@ -43,17 +43,17 @@ public class FabricUBinder implements ThreadInterface {
 	}
 
     private void uBinderRreceiveThreadFunc() {
-        this.debug(false, "uFabricRreceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "uBinderRreceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
         while (true) {
             data = this.uBinder().receiveData();
             if (data == null) {
-                this.abend("uFabricRreceiveThreadFunc", "null data");
+                this.abend("uBinderRreceiveThreadFunc", "null data");
                 continue;
             }
             
-            this.debug(false, "uFabricRreceiveThreadFunc", "data=" + data);
+            this.debug(false, "uBinderRreceiveThreadFunc", "data=" + data);
             this.fabricDParser().parseInputPacket(data);
         }
     }
