@@ -33,8 +33,8 @@ public class GoBoard {
 
     public GoBoard(GoRoot root_object_val) {
         this.theRootObject = root_object_val;
-        this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
-        this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
+        this.theBoardArray = new int[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
+        this.theMarkedBoardArray = new int[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
         this.resetBoardObjectData();
     }
 
@@ -80,7 +80,7 @@ public class GoBoard {
         if (!this.theRootObject.ConfigObject().IsValidCoordinates(x_val, y_val)) {
             return false;
         }
-        if (this.theBoardArray[x_val][y_val] != GoDefineClass.GO_EMPTY_STONE) {
+        if (this.theBoardArray[x_val][y_val] != GoDefine.GO_EMPTY_STONE) {
             return false;
         }
         return true;
@@ -106,8 +106,8 @@ public class GoBoard {
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
-                this.theBoardArray[i][j] = GoDefineClass.GO_EMPTY_STONE;
-                this.theMarkedBoardArray[i][j] = GoDefineClass.GO_EMPTY_STONE;
+                this.theBoardArray[i][j] = GoDefine.GO_EMPTY_STONE;
+                this.theMarkedBoardArray[i][j] = GoDefine.GO_EMPTY_STONE;
             }
         }
         this.theBlackCapturedStones = 0;

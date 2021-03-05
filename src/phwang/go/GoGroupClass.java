@@ -41,18 +41,18 @@ public class GoGroupClass {
         this.myColor = this.theGroupListObject.MyColor();
         this.stoneCount = 0;
 
-        this.existMatrix = new Boolean[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
-        this.deadMatrix = new Boolean[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
-        for (int i = 0; i < GoDefineClass.MAX_BOARD_SIZE; i++) {
-        	for (int j = 0; j < GoDefineClass.MAX_BOARD_SIZE; j++) {
+        this.existMatrix = new Boolean[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
+        this.deadMatrix = new Boolean[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
+        for (int i = 0; i < GoDefine.MAX_BOARD_SIZE; i++) {
+        	for (int j = 0; j < GoDefine.MAX_BOARD_SIZE; j++) {
         		this.existMatrix[i][j] = false;
         		this.deadMatrix[i][j] = false;
         	}
         }
         
-        this.hisColor = (this.myColor == GoDefineClass.GO_EMPTY_STONE)
-            ? GoDefineClass.GO_EMPTY_STONE
-            : GoDefineClass.getOppositeColor(this.myColor);
+        this.hisColor = (this.myColor == GoDefine.GO_EMPTY_STONE)
+            ? GoDefine.GO_EMPTY_STONE
+            : GoDefine.getOppositeColor(this.myColor);
     }
 
     public void insertStoneToGroup(int x_val, int y_val, Boolean dead_val) {
@@ -188,7 +188,7 @@ public class GoGroupClass {
             int j = this.minY;
             while (j <= this.maxY) {
                 if (this.existMatrix[i][j]) {
-                    this.theGroupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefineClass.GO_EMPTY_STONE);
+                    this.theGroupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
                     //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
                 }
                 j += 1;
