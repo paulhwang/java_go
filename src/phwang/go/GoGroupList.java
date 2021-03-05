@@ -15,7 +15,7 @@ public class GoGroupList {
 
     private static final int GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE = 400;
 
-    private GoFight theFightObject;
+    private GoFight goFight_;
     private int indexNumber;
     private int myColor;
     int theHisColor;
@@ -26,8 +26,8 @@ public class GoGroupList {
     private int groupCount;
     private GoGroup[] groupArray;
 
-    public GoFight FightObject() { return this.theFightObject; }
-    public GoRoot goRoot() { return this.theFightObject.goRoot(); }
+    public GoFight goFight() { return this.goFight_; }
+    public GoRoot goRoot() { return this.goFight_.goRoot(); }
     public GoBoard goBoard() { return goRoot().goBoard(); }
     public GoConfig goConfig() { return goRoot().goConfig(); }
     public int MyColor() { return this.myColor; }
@@ -41,7 +41,7 @@ public class GoGroupList {
                    String big_stone_val,
                    String small_stone_val)
     {
-        this.theFightObject = fight_object_val;
+        this.goFight_ = fight_object_val;
         this.groupArray = new GoGroup[GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE];
         this.indexNumber = index_val;
         this.myColor = color_val;
@@ -120,7 +120,7 @@ public class GoGroupList {
                 this.abend("abendGroupList", "null group");
                 return;
             }
-            if (group.GroupListObject() != this) {
+            if (group.goGroupList() != this) {
                 this.abend("abendGroupList", "groupListObject");
                 return;
             }
