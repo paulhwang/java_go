@@ -160,7 +160,7 @@ public class FabricUParser {
             return this.errorProcessGetLinkData(link_id_str, "*************null link");
         }
 
-        String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRoot().nameListObject().NameListTagStr();
+        String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRoot().nameListObject().nameListTagStr();
 
         int max_session_table_array_index = link.GetSessionArrayMaxIndex();
         ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
@@ -311,7 +311,7 @@ public class FabricUParser {
     	
         StringBuilder data_buf = new StringBuilder();
         data_buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM);
-        data_buf.append(group_val.GroupIdStr());
+        data_buf.append(group_val.groupIdStr());
         data_buf.append(theme_info_val);
         String uplink_data = data_buf.toString();
         this.fabricRoot().fabricUBinder().transmitData(uplink_data);
@@ -362,7 +362,7 @@ public class FabricUParser {
         }
 
         session.setBrowserThemeIdStr(theme_id_str);
-        FabricGroup group = session.GroupObject();
+        FabricGroup group = session.fabricGroup();
         if (group == null) {
             return errorProcessSetupSession2(link_id_str, "null group");
         }
@@ -457,7 +457,7 @@ public class FabricUParser {
             return errorProcessSetupSession3(link_id_str, "null session");
         }
 
-        String room_id_str = session.GroupObject().RoomIdStr();
+        String room_id_str = session.fabricGroup().roomIdStr();
         if (room_id_str == null) {
             return this.errorProcessPutSessionData(link_id_str, "null room");
         }

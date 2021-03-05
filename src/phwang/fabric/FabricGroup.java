@@ -15,15 +15,15 @@ public class FabricGroup {
     private String objectName() {return "FabricGroup";}
 
     private ListEntryClass listEntryObject_;
-    private String roomIdStr;
+    private String roomIdStr_;
     private String themeData_;
     private GroupSessionMgrClass groupSessionMgrObject_;
 
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
-    public String ThemeData() { return this.themeData_; }
+    public String themeData() { return this.themeData_; }
     public int groupId() { return this.listEntryObject().id(); }
-    public String GroupIdStr() { return this.listEntryObject().idStr(); }
-    public String RoomIdStr() { return this.roomIdStr; }
+    public String groupIdStr() { return this.listEntryObject().idStr(); }
+    public String roomIdStr() { return this.roomIdStr_; }
     private GroupSessionMgrClass groupSessionMgrObject() { return this.groupSessionMgrObject_; }
 
     public FabricGroup(String theme_data_val) {
@@ -46,7 +46,7 @@ public class FabricGroup {
     }
 
     public void setRoomIdStr(String room_id_str_val) {
-        this.roomIdStr = room_id_str_val;
+        this.roomIdStr_ = room_id_str_val;
     }
 
     public int getSessionArraySize() {

@@ -18,7 +18,7 @@ public class FabricDBinder implements ThreadInterface {
     
     private FabricRoot fabricRoot_;
     private FabricUParser fabricUParser_;
-    public BinderClass dBinder_;
+    private BinderClass dBinder_;
 
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ThreadMgrClass ThreadMgrObject() { return this.fabricRoot().threadMgrObject();}

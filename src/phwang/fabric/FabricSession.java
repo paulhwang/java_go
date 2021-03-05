@@ -16,15 +16,15 @@ public class FabricSession {
     private FabricLink linkObject_;
     private ListEntryClass listEntryObject_;
     private String browserThemeIdStr;
-    private FabricGroup groupObject;
-    ListQueueClass pendingDownLinkDataQueue_;
+    private FabricGroup fabricGroup_;
+    private ListQueueClass pendingDownLinkDataQueue_;
 
     public FabricLink linkObject() { return this.linkObject_; }
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public int sessionId() { return this.listEntryObject().id(); }
     public String SessionIdStr() { return this.listEntryObject().idStr(); }
     public String BrowserThemeIdStr() { return this.browserThemeIdStr; }
-    public FabricGroup GroupObject() { return this.groupObject; }
+    public FabricGroup fabricGroup() { return this.fabricGroup_; }
     ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
     public FabricSession(FabricLink link_object_val) {
@@ -37,7 +37,7 @@ public class FabricSession {
     }
 
     public void bindGroup(FabricGroup group_object_val) {
-        this.groupObject = group_object_val;
+        this.fabricGroup_ = group_object_val;
     }
 
     public void setBrowserThemeIdStr(String str_val) {

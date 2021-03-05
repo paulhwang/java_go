@@ -20,11 +20,11 @@ public class FabricNameList {
 
     private FabricRoot fabricRoot;
     private int nameListTag;
-    private String nameListTagStr;
-    private String nameList;
+    private String nameListTagStr_;
+    private String nameList_;
 
-    public String NameListTagStr() { return this.nameListTagStr; }
-    public String NameList() { return this.nameList; }
+    public String nameListTagStr() { return this.nameListTagStr_; }
+    public String nameList() { return this.nameList_; }
 
     public FabricNameList(FabricRoot root_fabric_object_val) {
         this.debug(false, "FabricNameList", "init start");
@@ -42,34 +42,34 @@ public class FabricNameList {
         if (this.nameListTag > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
             this.nameListTag = 1;
         }
-        this.nameListTagStr = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
+        this.nameListTagStr_ = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
 
-        this.nameList = "";
+        this.nameList_ = "";
         for (int i = max_index; i >= 0; i--) {
             if (list_entry_array[i] != null) {
-                if (this.nameList.length() == 0) {
-                    this.nameList = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
+                if (this.nameList_.length() == 0) {
+                    this.nameList_ = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
                 }
                 else {
-                    this.nameList = this.nameList + ",";
+                    this.nameList_ = this.nameList_ + ",";
                 }
                 FabricLink link = (FabricLink) list_entry_array[i].data();
-                this.nameList = this.nameList + '"' + link.myName() + '"';
+                this.nameList_ = this.nameList_ + '"' + link.myName() + '"';
                 
-                if (this.nameList.length() > 1000) {
+                if (this.nameList_.length() > 1000) {
                 	return;/////////////////////////////////////for now
                 }
             }
         }
 
-        this.debug(false, "updateNameList", this.nameList);
+        this.debug(false, "updateNameList", this.nameList_);
     }
 
     public String getNameList(int tag_val) {
         if (this.nameListTag == tag_val) {
             return null;
         }
-        return this.nameList;
+        return this.nameList_;
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
