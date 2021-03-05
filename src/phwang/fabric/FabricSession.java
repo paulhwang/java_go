@@ -15,17 +15,17 @@ public class FabricSession {
 
     private FabricLink linkObject_;
     private ListEntryClass listEntryObject_;
-    private String browserThemeIdStr;
+    private String browserThemeIdStr_;
     private FabricGroup fabricGroup_;
     private ListQueueClass pendingDownLinkDataQueue_;
 
     public FabricLink linkObject() { return this.linkObject_; }
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public int sessionId() { return this.listEntryObject().id(); }
-    public String SessionIdStr() { return this.listEntryObject().idStr(); }
-    public String BrowserThemeIdStr() { return this.browserThemeIdStr; }
+    public String sessionIdStr() { return this.listEntryObject().idStr(); }
+    public String browserThemeIdStr() { return this.browserThemeIdStr_; }
     public FabricGroup fabricGroup() { return this.fabricGroup_; }
-    ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
+    public ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
     public FabricSession(FabricLink link_object_val) {
         this.linkObject_ = link_object_val;
@@ -41,7 +41,7 @@ public class FabricSession {
     }
 
     public void setBrowserThemeIdStr(String str_val) {
-        this.browserThemeIdStr = str_val;
+        this.browserThemeIdStr_ = str_val;
     }
 
     public void enqueuePendingDownLinkData(String data_val) {

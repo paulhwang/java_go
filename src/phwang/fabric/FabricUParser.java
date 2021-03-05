@@ -170,7 +170,7 @@ public class FabricUParser {
             FabricSession session = (FabricSession)list_entry.data();
             if (session != null) {
                if (session.getPendingDownLinkDataCount() > 0) {
-                    downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.SessionIdStr();
+                    downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.sessionIdStr();
                 }
             }
         }
@@ -299,10 +299,10 @@ public class FabricUParser {
             group.insertSession(his_session);
             his_session.bindGroup(group);
 
-            his_link.setPendingSessionSetup(his_link.linkIdStr() + his_session.SessionIdStr(), theme_data);
+            his_link.setPendingSessionSetup(his_link.linkIdStr() + his_session.sessionIdStr(), theme_data);
         }
 
-        String response_data = this.generateSetupSessionResponse(link.linkIdStr(), session.SessionIdStr());
+        String response_data = this.generateSetupSessionResponse(link.linkIdStr(), session.sessionIdStr());
         return response_data;
     }
 
@@ -368,7 +368,7 @@ public class FabricUParser {
         }
         this.mallocRoom(group, theme_data_str);
 
-        String response_data = this.generateSetupSession2Response(link.linkIdStr(), session.SessionIdStr(), session.BrowserThemeIdStr());
+        String response_data = this.generateSetupSession2Response(link.linkIdStr(), session.sessionIdStr(), session.browserThemeIdStr());
         return response_data;
     }
 
@@ -409,7 +409,7 @@ public class FabricUParser {
             return errorProcessSetupSession3(link_id_str, "null session");
         }
 
-        String response_data = this.generateSetupSession3Response(link_id_str, session_id_str, session.BrowserThemeIdStr());
+        String response_data = this.generateSetupSession3Response(link_id_str, session_id_str, session.browserThemeIdStr());
         return response_data;
     }
 
@@ -468,7 +468,7 @@ public class FabricUParser {
         this.fabricUBinder().transmitData(uplink_data);
 
         /* send the response down */
-        String response_data = this.generatePutSessionDataResponse(link.linkIdStr(), session.SessionIdStr(), "job is done");
+        String response_data = this.generatePutSessionDataResponse(link.linkIdStr(), session.sessionIdStr(), "job is done");
         return response_data;
     }
 
@@ -512,7 +512,7 @@ public class FabricUParser {
         String data = session.getPendingDownLinkData();
 
         /* send the response down */
-        String response_data = this.generateGetSessionDataResponse(link.linkIdStr(), session.SessionIdStr(), data);
+        String response_data = this.generateGetSessionDataResponse(link.linkIdStr(), session.sessionIdStr(), data);
         return response_data;
     }
 

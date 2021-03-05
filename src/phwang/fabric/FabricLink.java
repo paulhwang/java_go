@@ -26,8 +26,8 @@ public class FabricLink {
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public FabricSessionMgr sessionMgrObject() { return this.sessionMgrObject_; }
 
-    public int GetSessionArrayMaxIndex() { return this.sessionMgrObject().GetSessionArrayMaxIndex(); }
-    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().GetSessionArrayEntryTable(); }
+    public int GetSessionArrayMaxIndex() { return this.sessionMgrObject().getSessionArrayMaxIndex(); }
+    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().getSessionArrayEntryTable(); }
 
     public FabricLink(String my_name_val) {
         this.debug(false, "FabricLink", "init start");

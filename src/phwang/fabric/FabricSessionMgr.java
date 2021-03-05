@@ -24,8 +24,8 @@ public class FabricSessionMgr {
 
     private FabricLink linkObject() { return this.linkObject_; }
     public ListMgrClass listMgr() { return this.listMgr_; }
-    public int GetSessionArrayMaxIndex() { return this.listMgr_.MaxIndex(); }
-    public ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr().EntryTableArray(); }
+    public int getSessionArrayMaxIndex() { return this.listMgr_.MaxIndex(); }
+    public ListEntryClass[] getSessionArrayEntryTable() { return this.listMgr().EntryTableArray(); }
 
     public FabricSessionMgr(FabricLink link_object_val) {
         this.debug(false, "FabricSessionMgr", "init start");
