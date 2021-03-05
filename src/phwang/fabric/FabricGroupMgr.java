@@ -25,10 +25,10 @@ public class FabricGroupMgr {
     private FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ListMgrClass listMgr() { return this.listMgr_; }
 
-    public FabricGroupMgr(FabricRoot root_fabric_object_val) {
+    public FabricGroupMgr(FabricRoot root_val) {
         this.debug(false, "FabricGroupMgr", "init start");
         
-        this.fabricRoot_ = root_fabric_object_val;
+        this.fabricRoot_ = root_val;
         this.listMgr_ = new ListMgrClass(FABRIC_GROUP_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_GROUP_ID);
     }
 

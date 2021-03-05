@@ -26,10 +26,10 @@ public class FabricLinkMgr implements ListMgrInterface {
     public ListMgrClass listMgr() { return this.listMgr_; }
     private FabricNameList nameListObject() { return this.fabricRoot().nameListObject(); }
 
-    public FabricLinkMgr(FabricRoot root_fabric_object_val) {
+    public FabricLinkMgr(FabricRoot root_val) {
         this.debug(false, "FabricLinkMgr", "init start");
         
-        this.fabricRoot_ = root_fabric_object_val;
+        this.fabricRoot_ = root_val;
         this.listMgr_ = new ListMgrClass(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
     }
 

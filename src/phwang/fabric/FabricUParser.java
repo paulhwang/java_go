@@ -23,8 +23,8 @@ public class FabricUParser {
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     private FabricDBinder fabricDBinder() { return this.fabricRoot().fabricDBinder(); }
     private FabricUBinder fabricUBinder() { return this.fabricRoot().fabricUBinder(); }
-    private FabricLinkMgr LinkMgr() { return this.fabricRoot().linkMgr(); }
-    private FabricGroupMgr GroupMgr() { return this.fabricRoot().groupMgr(); }
+    private FabricLinkMgr linkMgr() { return this.fabricRoot().linkMgr(); }
+    private FabricGroupMgr groupMgr() { return this.fabricRoot().groupMgr(); }
 
     public FabricUParser(FabricRoot root_val) {
         this.debug(false, "FabricUParser", "init start");
@@ -97,7 +97,7 @@ public class FabricUParser {
         this.debug(false, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(false, "processSetupLinkRequest", "password = " + password);
 
-        FabricLink link = this.LinkMgr().mallocLink(my_name);
+        FabricLink link = this.linkMgr().mallocLink(my_name);
         if (link == null) {
         	this.abend("processSetupLinkRequest", "link is null");
         	return null;
@@ -124,7 +124,7 @@ public class FabricUParser {
     	
         this.debug(false, "processRemoveLinkRequest", "link_id = " + link_id_str);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessRemoveLink(link_id_str, "*************null link");
         }
@@ -156,7 +156,7 @@ public class FabricUParser {
     	
         this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessGetLinkData(link_id_str, "*************null link");
         }
@@ -220,7 +220,7 @@ public class FabricUParser {
         String name_list_tag_str = rest_str.substring(0, FabricExport.NAME_LIST_TAG_SIZE);
         rest_str = rest_str.substring(FabricExport.NAME_LIST_TAG_SIZE);
     	
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessGetNameList(link_id_str, "*************null link");
         }
@@ -269,14 +269,14 @@ public class FabricUParser {
         String theme_id_str = theme_data_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);
         String theme_data = theme_data_str.substring(FabricImport.THEME_ROOM_ID_SIZE);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession(link_id_str, "*************null link");
         }
         
         FabricSession session = link.mallocSession();
         session.setBrowserThemeIdStr(theme_id_str);
-        FabricGroup group = this.GroupMgr().mallocGroup(theme_data);
+        FabricGroup group = this.groupMgr().mallocGroup(theme_data);
         if (group == null) {
         	this.abend("processSetupSessionRequest", "null group");
             return this.errorProcessSetupSession(link_id_str, "null group");
@@ -288,7 +288,7 @@ public class FabricUParser {
             this.mallocRoom(group, theme_data);
         }
         else {
-        	FabricLink his_link = this.LinkMgr().GetLinkByMyName(his_name);
+        	FabricLink his_link = this.linkMgr().GetLinkByMyName(his_name);
             if (his_link == null) {
                 return this.errorProcessSetupSession(link_id_str, "his_link does not exist");
             }
@@ -352,7 +352,7 @@ public class FabricUParser {
         this.debug(false, "processSetupSession2Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession2Request", "session_id = " + session_id_str);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
@@ -400,7 +400,7 @@ public class FabricUParser {
         this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
@@ -448,7 +448,7 @@ public class FabricUParser {
         //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
         this.debug(false, "processPutSessionDataRequest", "data = " + data);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }
@@ -500,7 +500,7 @@ public class FabricUParser {
         this.debug(false, "processGetSessionDataRequest", "link_id = " + link_id_str);
         this.debug(false, "processGetSessionDataRequest", "session_id = " + session_id_str);
 
-        FabricLink link = this.LinkMgr().getLinkByIdStr(link_id_str);
+        FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
             return this.errorProcessSetupSession3(link_id_str, "null link");
         }

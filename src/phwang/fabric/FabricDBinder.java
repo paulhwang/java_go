@@ -25,10 +25,10 @@ public class FabricDBinder implements ThreadInterface {
     private FabricUParser fabricUParser() { return this.fabricUParser_; }
     private BinderClass dBinderObject() { return this.dBinder_; }
   
-    public FabricDBinder(FabricRoot fabric_root_class_val) {
+    public FabricDBinder(FabricRoot root_val) {
         this.debug(false, "FabricDBinder", "init start");
         
-        this.fabricRoot_ = fabric_root_class_val;
+        this.fabricRoot_ = root_val;
         this.fabricUParser_ = new FabricUParser(this.fabricRoot());
         this.dBinder_ = new BinderClass(this.objectName());
         

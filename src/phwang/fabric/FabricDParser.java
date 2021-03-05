@@ -20,8 +20,8 @@ public class FabricDParser {
     public FabricRoot fabricRoot() { return this.fabricRoot_;}
     public FabricGroupMgr groupMgr() { return this.fabricRoot().groupMgr(); }
 
-    public FabricDParser(FabricRoot ufabric_object_val) {
-        this.fabricRoot_ = ufabric_object_val;
+    public FabricDParser(FabricRoot root_val) {
+        this.fabricRoot_ = root_val;
     }
 
     public void parseInputPacket(String input_data_val) {
