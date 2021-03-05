@@ -19,7 +19,7 @@ public class GoMove {
     public int Y() { return this.y_; }
     public int MyColor() { return this.myColor_; }
     public int TurnIndex() { return this.turnIndex_; }
-    public String MoveInfo() { return this.moveInfo_; }
+    public String moveInfo() { return this.moveInfo_; }
 
     public GoMove(String encoded_move_val) {
         this.decodeMove(encoded_move_val);

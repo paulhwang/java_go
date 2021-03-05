@@ -13,15 +13,15 @@ import phwang.utils.*;
 public class GoGroup {
     private String objectName() {return "GoGroup";}
 
-    GoGroupList goGroupList_;
+    private GoGroupList goGroupList_;
     private int maxX_;
     private int minX_;
     private int maxY_;
     private int minY_;
     private int indexNumber_;
-    int stoneCount_;
+    private int stoneCount_;
     private int myColor_;
-    int hisColor_;
+    private int hisColor_;
     private Boolean[][] existMatrix_;
     private Boolean[][] deadMatrix;
 
@@ -188,7 +188,7 @@ public class GoGroup {
             int j = this.minY_;
             while (j <= this.maxY_) {
                 if (this.existMatrix_[i][j]) {
-                    this.goGroupList_.goFight().goBoard().SetBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
+                    this.goGroupList_.goFight().goBoard().setBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
                     //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
                 }
                 j += 1;
@@ -198,7 +198,7 @@ public class GoGroup {
     }
 
     public void markLastDeadInfo() {
-        this.goGroupList_.goBoard().SetLastDeadStone(this.maxX_, this.maxY_);
+        this.goGroupList_.goBoard().setLastDeadStone(this.maxX_, this.maxY_);
 
         if (this.maxX_ != this.minX_) {
             this.abend("MarkLastDeadInfo", "bad x");

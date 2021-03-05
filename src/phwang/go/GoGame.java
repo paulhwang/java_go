@@ -15,9 +15,9 @@ public class GoGame {
     private static final int GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE = 1024;
 
     private GoRoot goRoot_;
-    private int theTotalMoves;
-    private int theMaxMove;
-    private int theNextColor;
+    private int totalMoves_;
+    private int maxMove_;
+    private int nextColor_;
     private Boolean thePassReceived = false;
     private Boolean theGameIsOver = false;
     private GoMove[] theMovesArray;
@@ -25,8 +25,8 @@ public class GoGame {
     public GoConfig goConfig() { return this.goRoot_.goConfig();  }
     public GoBoard goBoard() { return this.goRoot_.goBoard(); }
     public GoFight goFight() { return this.goRoot_.goFight(); }
-    public int TotalMoves() { return this.theTotalMoves; }
-    public int NextColor() { return this.theNextColor; }
+    public int totalMoves() { return this.totalMoves_; }
+    public int nextColor() { return this.nextColor_; }
 
     public GoGame(GoRoot go_root_val) {
         this.goRoot_ = go_root_val;
@@ -34,15 +34,15 @@ public class GoGame {
     }
 
     private void resetGameObjectPartialData() {
-        this.theNextColor = GoDefine.GO_BLACK_STONE;
+        this.nextColor_ = GoDefine.GO_BLACK_STONE;
         this.thePassReceived = false;
         this.theGameIsOver = false;
     }
 
     public void addNewMoveAndFight(GoMove move_val) {
-        this.debug(false, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
+        this.debug(false, "AddNewMoveAndFight", "Move = " + move_val.moveInfo());
 
-        if (move_val.TurnIndex() != this.theTotalMoves + 1) {
+        if (move_val.TurnIndex() != this.totalMoves_ + 1) {
             this.log("AddNewMoveAndFight", "duplicated move received *****************");
             return;
         }
@@ -56,23 +56,23 @@ public class GoGame {
         this.goBoard().clearLastDeadStone();
         this.insertMoveToMoveList(move_val);
         this.goFight().enterBattle(move_val);
-        this.theNextColor = GoDefine.getOppositeColor(move_val.MyColor());
+        this.nextColor_ = GoDefine.getOppositeColor(move_val.MyColor());
     }
 
     private void insertMoveToMoveList(GoMove move_val) {
-        this.theMovesArray[this.theTotalMoves] = move_val;
-        this.theTotalMoves++;
-        this.theMaxMove = this.theTotalMoves;
+        this.theMovesArray[this.totalMoves_] = move_val;
+        this.totalMoves_++;
+        this.maxMove_ = this.totalMoves_;
     }
 
     public void processBackwardMove() {
         this.debug(true, "ProcessBackwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves <= this.goConfig().handicapPoint()) {
+        if (this.totalMoves_ <= this.goConfig().handicapPoint()) {
             return;
         }
-        this.theTotalMoves--;
+        this.totalMoves_--;
         this.processTheWholeMoveList();
     }
 
@@ -80,10 +80,10 @@ public class GoGame {
         this.debug(true, "ProcessDoubleBackwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves <= this.goConfig().handicapPoint()) {
+        if (this.totalMoves_ <= this.goConfig().handicapPoint()) {
             return;
         }
-        this.theTotalMoves = this.goConfig().handicapPoint();
+        this.totalMoves_ = this.goConfig().handicapPoint();
         this.processTheWholeMoveList();
     }
 
@@ -91,14 +91,14 @@ public class GoGame {
         this.debug(true, "ProcessForwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves > this.theMaxMove) {
+        if (this.totalMoves_ > this.maxMove_) {
             this.abend("ProcessForwardMove", "totalMoves > maxMove=");
             return;
         }
-        if (this.theTotalMoves == this.theMaxMove) {
+        if (this.totalMoves_ == this.maxMove_) {
             return;
         }
-        this.theTotalMoves++;
+        this.totalMoves_++;
         this.processTheWholeMoveList();
     }
 
@@ -106,14 +106,14 @@ public class GoGame {
         this.debug(true, "ProcessDoubleForwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves > this.theMaxMove) {
+        if (this.totalMoves_ > this.maxMove_) {
             this.abend("ProcessDoubleForwardMove", "totalMoves > maxMove=");
             return;
         }
-        if (this.theTotalMoves == this.theMaxMove) {
+        if (this.totalMoves_ == this.maxMove_) {
             return;
         }
-        this.theTotalMoves = this.theMaxMove;
+        this.totalMoves_ = this.maxMove_;
         this.processTheWholeMoveList();
     }
 
@@ -123,10 +123,10 @@ public class GoGame {
         this.resetGameObjectPartialData();
 
         int i = 0;
-        while (i < this.theTotalMoves) {
+        while (i < this.totalMoves_) {
         	GoMove move = this.theMovesArray[i];
             this.goFight().enterBattle(move);
-            this.theNextColor = GoDefine.getOppositeColor(move.MyColor());
+            this.nextColor_ = GoDefine.getOppositeColor(move.MyColor());
             i += 1;
         }
     }

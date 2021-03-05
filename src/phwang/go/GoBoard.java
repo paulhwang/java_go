@@ -16,20 +16,20 @@ public class GoBoard {
     private int[][] theBoardArray;
     private int[][] theMarkedBoardArray;
     private String theBoardOutputBuffer;
-    int theBlackCapturedStones;
-    int theWhiteCapturedStones;
-    int theLastDeadX;
-    int theLastDeadY;
+    private int theBlackCapturedStones;
+    private int theWhiteCapturedStones;
+    private int theLastDeadX;
+    private int theLastDeadY;
     private GoRoot goRoot_;
 
     public GoConfig goConfig() { return this.goRoot_.goConfig(); }
     public GoGame goGame() { return this.goRoot_.goGame(); }
-    public String BoardOutputBuffer() { return this.theBoardOutputBuffer; }
-    public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
-    public void AddBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }
-    public void AddWhiteCapturedStones(int val) { this.theWhiteCapturedStones += val; }
-    public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
-    public void SetLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
+    public String boardOutputBuffer() { return this.theBoardOutputBuffer; }
+    public int boardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
+    public void addBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }
+    public void addWhiteCapturedStones(int val) { this.theWhiteCapturedStones += val; }
+    public void setBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
+    public void setLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
 
     public GoBoard(GoRoot root_val) {
         this.goRoot_ = root_val;
@@ -43,8 +43,8 @@ public class GoBoard {
     public void encodeBoard() {
         this.theBoardOutputBuffer = "";
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().TotalMoves(), 3);
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().NextColor(), 1);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().totalMoves(), 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().nextColor(), 1);
 
         int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
