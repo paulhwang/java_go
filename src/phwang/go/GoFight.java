@@ -15,13 +15,13 @@ public class GoFight {
 
     private static final int GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE = 7;
 
-    private GoRootClass theRootObject;
+    private GoRoot theRootObject;
     private Boolean abendEngineOn = false;
     GoGroupListClass[] theGroupListArray;
     String theCaptureCount;
     String theLastDeadStone;
 
-    public GoRootClass RootObject() { return this.theRootObject; }
+    public GoRoot RootObject() { return this.theRootObject; }
     public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
     public GoConfig ConfigObject() { return this.theRootObject.ConfigObject(); }
 
@@ -33,7 +33,7 @@ public class GoFight {
     GoGroupListClass blackEmptyGroupList() { return this.theGroupListArray[5]; }
     GoGroupListClass whiteEmptyGroupList() { return this.theGroupListArray[6]; }
 
-    public GoFight(GoRootClass go_root_object_val) {
+    public GoFight(GoRoot go_root_object_val) {
         this.theRootObject = go_root_object_val;
         this.theGroupListArray = new GoGroupListClass[GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE];
         this.resetEngineObjectData();

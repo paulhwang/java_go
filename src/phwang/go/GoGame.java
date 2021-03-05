@@ -14,7 +14,7 @@ public class GoGame {
     private String objectName() {return "GoGame";}
     private static final int GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE = 1024;
 
-    private GoRootClass theRootObject;
+    private GoRoot theRootObject;
     private int theTotalMoves;
     private int theMaxMove;
     private int theNextColor;
@@ -28,7 +28,7 @@ public class GoGame {
     public int TotalMoves() { return this.theTotalMoves; }
     public int NextColor() { return this.theNextColor; }
 
-    public GoGame(GoRootClass go_root_object_val) {
+    public GoGame(GoRoot go_root_object_val) {
         this.theRootObject = go_root_object_val;
         this.theMovesArray = new GoMove[GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE];
     }

@@ -9,14 +9,14 @@
 package phwang.engine;
 
 import phwang.utils.*;
-import phwang.go.GoRootClass;
+import phwang.go.GoRoot;
 
 public class EngineBase {
     private String objectName() {return "EngineBase";}
 
     private ListEntryClass listEntryObject_;
     private String roomIdStr_;
-    private GoRootClass goRootObject;
+    private GoRoot goRootObject;
 
     private ListEntryClass listEntryObject() { return this.listEntryObject_; }
     public int baseId() { return this.listEntryObject().id(); }
@@ -37,7 +37,7 @@ public class EngineBase {
 
         switch (input_data_val.charAt(0)) {
             case 'G':
-                this.goRootObject = new GoRootClass();
+                this.goRootObject = new GoRoot();
                 return this.goRootObject.doSetup(input_data);
 
             default:

@@ -13,7 +13,7 @@ import phwang.utils.*;
 public class GoConfig {
     private String objectName() {return "GoConfig";}
 
-    private GoRootClass theRootObject;
+    private GoRoot theRootObject;
     private int boardSize;
     private int handicapPoint;
     private int komiPoint;
@@ -22,7 +22,7 @@ public class GoConfig {
     public int HandicapPoint() { return this.handicapPoint; }
     public int KomiPoint() { return this.komiPoint; }
 
-    public GoConfig(GoRootClass root_object_val) {
+    public GoConfig(GoRoot root_object_val) {
         this.theRootObject = root_object_val;
     }
 

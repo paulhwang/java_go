@@ -27,7 +27,7 @@ public class GoGroupListClass {
     private GoGroupClass[] groupArray;
 
     public GoFight FightObject() { return this.theFightObject; }
-    public GoRootClass RootObject() { return this.theFightObject.RootObject(); }
+    public GoRoot RootObject() { return this.theFightObject.RootObject(); }
     public GoBoard BoardObject() { return RootObject().BoardObject(); }
     public GoConfig ConfigObject() { return RootObject().ConfigObject(); }
     public int MyColor() { return this.myColor; }

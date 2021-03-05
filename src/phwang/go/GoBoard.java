@@ -20,7 +20,7 @@ public class GoBoard {
     int theWhiteCapturedStones;
     int theLastDeadX;
     int theLastDeadY;
-    private GoRootClass theRootObject;
+    private GoRoot theRootObject;
 
     public GoConfig ConfigObject() { return this.theRootObject.ConfigObject(); }
     public GoGame GameObject() { return this.theRootObject.GameObject(); }
@@ -31,7 +31,7 @@ public class GoBoard {
     public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
     public void SetLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
 
-    public GoBoard(GoRootClass root_object_val) {
+    public GoBoard(GoRoot root_object_val) {
         this.theRootObject = root_object_val;
         this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
