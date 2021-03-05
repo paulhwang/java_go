@@ -22,8 +22,8 @@ public class GoFight {
     String theLastDeadStone;
 
     public GoRoot RootObject() { return this.theRootObject; }
-    public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
-    public GoConfig ConfigObject() { return this.theRootObject.ConfigObject(); }
+    public GoBoard BoardObject() { return this.theRootObject.goBoard(); }
+    public GoConfig ConfigObject() { return this.theRootObject.goConfig(); }
 
     GoGroupList emptyGroupList() { return this.theGroupListArray[0]; }
     GoGroupList blackGroupList() { return this.theGroupListArray[1]; }

@@ -22,7 +22,7 @@ public class GoBoard {
     int theLastDeadY;
     private GoRoot theRootObject;
 
-    public GoConfig ConfigObject() { return this.theRootObject.ConfigObject(); }
+    public GoConfig ConfigObject() { return this.theRootObject.goConfig(); }
     public GoGame GameObject() { return this.theRootObject.GameObject(); }
     public String BoardOutputBuffer() { return this.theBoardOutputBuffer; }
     public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
@@ -77,7 +77,7 @@ public class GoBoard {
     }
 
     private Boolean isEmptySpace(int x_val, int y_val) {
-        if (!this.theRootObject.ConfigObject().IsValidCoordinates(x_val, y_val)) {
+        if (!this.theRootObject.goConfig().IsValidCoordinates(x_val, y_val)) {
             return false;
         }
         if (this.theBoardArray[x_val][y_val] != GoDefine.GO_EMPTY_STONE) {

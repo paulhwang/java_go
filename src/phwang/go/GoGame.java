@@ -22,8 +22,8 @@ public class GoGame {
     private Boolean theGameIsOver = false;
     private GoMove[] theMovesArray;
 
-    public GoConfig ConfigObject() { return this.theRootObject.ConfigObject();  }
-    public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
+    public GoConfig ConfigObject() { return this.theRootObject.goConfig();  }
+    public GoBoard BoardObject() { return this.theRootObject.goBoard(); }
     public GoFight FightObject() { return this.theRootObject.FightObject(); }
     public int TotalMoves() { return this.theTotalMoves; }
     public int NextColor() { return this.theNextColor; }

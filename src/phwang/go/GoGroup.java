@@ -171,7 +171,7 @@ public class GoGroup {
             int j = this.minY;
             while (j <= this.maxY) {
                 if (this.existMatrix[i][j]) {
-                    if (this.theGroupListObject.FightObject().RootObject().BoardObject().stoneHasAir(i, j)) {
+                    if (this.theGroupListObject.FightObject().RootObject().goBoard().stoneHasAir(i, j)) {
                         return true;
                     }
                 }
