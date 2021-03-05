@@ -19,6 +19,7 @@ public class FabricUParser {
     private String RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
 
     private FabricDBinder dFabricObject;
+    private FabricRoot fabricRoot_;
 
     public FabricRoot fabricRoot() { return this.dFabricObject.fabricRoot(); }
     private FabricUBinder fabricUBinder() { return this.fabricRoot().fabricUBinder(); }

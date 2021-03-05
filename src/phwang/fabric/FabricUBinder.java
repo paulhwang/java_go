@@ -33,7 +33,7 @@ public class FabricUBinder implements ThreadInterface {
     public FabricUBinder(FabricRoot fabric_root_class_val) {
         this.debug(false, "FabricUBinder", "init start");
         this.fabricRoot_ = fabric_root_class_val;
-        this.fabricDParser = new FabricDParser(this);
+        this.fabricDParser = new FabricDParser(this.fabricRoot());
         this.uBinderObject_ = new BinderClass(this.objectName());
         this.uBinderObject().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
