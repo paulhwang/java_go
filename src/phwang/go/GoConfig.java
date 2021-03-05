@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.go;
 
 import phwang.utils.*;
 
-public class GoConfigClass {
-    private String objectName() {return "GoConfigClass";}
+public class GoConfig {
+    private String objectName() {return "GoConfig";}
 
     private GoRootClass theRootObject;
     private int boardSize;
@@ -22,7 +22,7 @@ public class GoConfigClass {
     public int HandicapPoint() { return this.handicapPoint; }
     public int KomiPoint() { return this.komiPoint; }
 
-    public GoConfigClass(GoRootClass root_object_val) {
+    public GoConfig(GoRootClass root_object_val) {
         this.theRootObject = root_object_val;
     }
 

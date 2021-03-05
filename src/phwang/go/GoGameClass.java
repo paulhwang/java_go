@@ -22,7 +22,7 @@ public class GoGameClass {
     private Boolean theGameIsOver = false;
     private GoMove[] theMovesArray;
 
-    public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject();  }
+    public GoConfig ConfigObject() { return this.theRootObject.ConfigObject();  }
     public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
     public GoFightClass FightObject() { return this.theRootObject.FightObject(); }
     public int TotalMoves() { return this.theTotalMoves; }

@@ -13,20 +13,20 @@ import phwang.utils.*;
 public class GoRootClass {
     private String objectName() {return "GoRootClass";}
 
-    private GoConfigClass configObject;
+    private GoConfig configObject;
     private GoBoard boardObject;
     private GoGameClass gameObject;
     private GoParseClass parseObject;
     private GoFightClass fightObject;
 
-    public GoConfigClass ConfigObject() { return this.configObject; }
+    public GoConfig ConfigObject() { return this.configObject; }
     public GoBoard BoardObject() { return this.boardObject; }
     public GoGameClass GameObject() { return this.gameObject; }
     public GoParseClass ParseObject() { return this.parseObject; }
     public GoFightClass FightObject() { return this.fightObject; }
 
     public GoRootClass() {
-        this.configObject = new GoConfigClass(this);
+        this.configObject = new GoConfig(this);
         this.boardObject = new GoBoard(this);
         this.gameObject = new GoGameClass(this);
         this.fightObject = new GoFightClass(this);
