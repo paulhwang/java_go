@@ -104,10 +104,15 @@ class FrontTestCaseClass implements ThreadInterface {
     	
         try {
             JSONParser parser = new JSONParser();
-        	JSONObject json_ajex_response = (JSONObject) parser.parse(str_json_ajex_response);
+        	JSONObject json_ajex_response = (JSONObject) parser.parse(str_json_ajex_response); 
+        	
+        	String command = (String) json_ajex_response.get("command");
+        	String str_json_response_data = (String) json_ajex_response.get("data");
+        	JSONObject json_response_data = (JSONObject) parser.parse(str_json_response_data); 
+        	
 
-            String name = (String) json_ajex_response.get("my_name");
-            this.linkIdString = (String) json_ajex_response.get("link_id");
+            String name = (String) json_response_data.get("my_name");
+            this.linkIdString = (String) json_response_data.get("link_id");
             if (!this.myNameString.equals(name)) {
             	this.abend("doSetupLink", "name not match");
             }
@@ -164,8 +169,12 @@ class FrontTestCaseClass implements ThreadInterface {
             JSONParser parser = new JSONParser();
         	JSONObject json_ajex_response = (JSONObject) parser.parse(str_json_ajex_response);
 
-            String link_id = (String) json_ajex_response.get("link_id");
-            this.sessionIdString = (String) json_ajex_response.get("session_id");
+        	String command = (String) json_ajex_response.get("command");
+        	String str_json_response_data = (String) json_ajex_response.get("data");
+        	JSONObject json_response_data = (JSONObject) parser.parse(str_json_response_data); 
+        	
+            String link_id = (String) json_response_data.get("link_id");
+            this.sessionIdString = (String) json_response_data.get("session_id");
             if (!this.linkIdString.equals(link_id)) {
             	this.abend("doSetupSession", "link_id not match");
             }

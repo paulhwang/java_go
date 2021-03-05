@@ -19,7 +19,7 @@ public class FrontDExport  implements FrontDExportInterface {
     private FrontRoot frontRoot() { return this.frontRoot_; }
     private FrontJobMgr JobMgr() { return this.frontRoot().JobMgr(); }
     private FrontUBinder frontUBinder() { return this.frontRoot().frontUBinder(); }
-    private BinderClass uBinderObject() { return this.frontUBinder().uBinderObject(); }
+    private BinderClass uBinderObject() { return this.frontUBinder().uBinder(); }
     private FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
     
     public FrontDExport(FrontRoot front_root_val) {

@@ -12,14 +12,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import phwang.utils.AbendClass;
-import phwang.utils.ListMgrClass;
 import phwang.utils.EncodeNumberClass;
-import phwang.browser.BrowserDefine;
-import phwang.fabric.FabricGroup;
-import phwang.fabric.FabricLink;
-import phwang.fabric.FabricSession;
 import phwang.protocols.ProtocolDefineClass;
-import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class FrontUParser {
     private String objectName() {return "FrontUParser";}
@@ -43,7 +37,6 @@ public class FrontUParser {
         try {
         	JSONParser parser = new JSONParser();
         	JSONObject json = (JSONObject) parser.parse(json_str);
-
             command = (String) json.get("command");
             data = (String) json.get("data");
         
@@ -59,29 +52,30 @@ public class FrontUParser {
         }
         
         this.debug(false, "parseInputPacket", "*********************command = " + command);
-        String response_data = null;
-        if (command.equals("setup_link")) {
+        
+        String response_data;
+        if (command.equals(FrontExport.FRONT_COMMAND_SETUP_LINK)) {
             response_data = this.processSetupLinkRequest(data);
         }
-        else if (command.equals("get_link_data")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_GET_LINK_DATA)) {
             response_data = this.processGetLinkDataRequest(data);
         }
-        else if (command.equals("get_name_list")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_GET_NAME_LIST)) {
             response_data = this.processGetNameListRequest(data);
         }
-        else if (command.equals("setup_session")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_SETUP_SESSION)) {
             response_data = this.processSetupSessionRequest(data);
         }
-        else if (command.equals("setup_session2")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_SETUP_SESSION2)) {
             response_data = this.processSetupSession2Request(data);
         }
-        else if (command.equals("setup_session3")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_SETUP_SESSION3)) {
             response_data = this.processSetupSession3Request(data);
         }
-        else if (command.equals("put_session_data")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_PUT_SESSION_DATA)) {
             response_data = this.processPutSessionDataRequest(data);
         }
-        else if (command.equals("get_session_data")) {
+        else if (command.equals(FrontExport.FRONT_COMMAND_GET_SESSION_DATA)) {
             response_data = this.processGetSessionDataRequest(data);
         }
         else {

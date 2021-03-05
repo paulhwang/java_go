@@ -80,7 +80,13 @@ public class FrontDParser {
     	json_data.put("my_name", my_name);
     	json_data.put("link_id", link_id_str);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_SETUP_LINK);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserGetLinkDataResponse(String input_str_val) {
@@ -106,7 +112,13 @@ public class FrontDParser {
     	json_data.put("data", data);
     	json_data.put("pending_session_setup", pending_session_setup);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_GET_LINK_DATA);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserGetNameListResponse(String input_str_val) {
@@ -125,7 +137,13 @@ public class FrontDParser {
     	json_data.put("link_id", link_id_str);
     	json_data.put("c_name_list", name_list_str);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_GET_NAME_LIST);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserSetupSessionResponse(String input_str_val) {
@@ -142,7 +160,13 @@ public class FrontDParser {
     	json_data.put("link_id", link_id_str);
     	json_data.put("session_id", session_id_str);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_SETUP_SESSION);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserSetupSession2Response(String input_str_val) {
@@ -163,7 +187,13 @@ public class FrontDParser {
     	json_data.put("session_id", session_id_str);
     	json_data.put("theme_id", theme_id_str);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_SETUP_SESSION2);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserSetupSession3Response(String input_str_val) {
@@ -184,7 +214,13 @@ public class FrontDParser {
     	json_data.put("session_id", session_id_str);
     	json_data.put("theme_id", theme_id_str);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_SETUP_SESSION3);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserPutSessionDataResponse(String input_str_val) {
@@ -207,7 +243,13 @@ public class FrontDParser {
     	json_data.put("session_id", session_id_str);
     	json_data.put("c_data", c_data);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+   		
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_PUT_SESSION_DATA);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     public String parserGetSessionDataResponse(String input_str_val) {
@@ -230,7 +272,13 @@ public class FrontDParser {
     	json_data.put("session_id", session_id_str);
     	json_data.put("c_data", c_data);
    		String json_str_data = json_data.toJSONString();
-   		return json_str_data;
+
+    	JSONObject json_command_data = new JSONObject();
+    	json_command_data.put("command", FrontExport.FRONT_COMMAND_GET_SESSION_DATA);
+    	json_command_data.put("data", json_str_data);
+   		String json_str_command_data = json_command_data.toJSONString();
+
+   		return json_str_command_data;
     }
 
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
