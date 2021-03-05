@@ -15,15 +15,15 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class ThemeDParser {
     private String objectName() {return "ThemeDParser";}
     
-    private ThemeUBinder uThemeObject;
+    private ThemeUBinder uThemeObject_;
 
-    public ThemeRoot ThemeRootObject() { return this.uThemeObject.ThemeRootObject(); }
-    public ThemeDBinder themeDBinder() { return this.ThemeRootObject().themeDBinder(); }
-    public ThemeRoomMgr roomMgr() { return this.ThemeRootObject().roomMgr(); }
+    public ThemeRoot themeRoot() { return this.uThemeObject_.ThemeRootObject(); }
+    public ThemeDBinder themeDBinder() { return this.themeRoot().themeDBinder(); }
+    public ThemeRoomMgr roomMgr() { return this.themeRoot().roomMgr(); }
 
     public ThemeDParser(ThemeUBinder u_theme_object_val) {
         this.debug(false, "ThemeDParser", "init start");
-        this.uThemeObject = u_theme_object_val;
+        this.uThemeObject_ = u_theme_object_val;
     }
     
     public void parseInputPacket(String input_data_val) {
@@ -56,7 +56,7 @@ public class ThemeDParser {
         ThemeRoom room_object = this.roomMgr().getRoomByIdStr(room_id_str);
         room_object.setBaseIdStr(base_id_str);
         String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
-        downlink_data = downlink_data + room_object.groupIdStr() + room_object.RoomIdStr();
+        downlink_data = downlink_data + room_object.groupIdStr() + room_object.roomIdStr();
         this.themeDBinder().transmitData(downlink_data);
 
         /*

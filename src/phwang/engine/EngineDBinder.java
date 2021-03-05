@@ -23,7 +23,7 @@ public class EngineDBinder implements ThreadInterface {
     public EngineRoot engineRoot() { return this.engineRoot_; }
     public EngineUParser engineUParser() { return this.engineRoot().engineUParser(); }
     private ThreadMgrClass threadMgr() { return this.engineRoot().threadMgr();}
-    private BinderClass dBinderObject() { return this.dBinder_; }
+    private BinderClass dBinder() { return this.dBinder_; }
     
     public EngineDBinder(EngineRoot root_val) {
         this.debug(false, "EngineDBinder", "init start");
@@ -31,7 +31,7 @@ public class EngineDBinder implements ThreadInterface {
         this.engineRoot_ = root_val;
         this.dBinder_ = new BinderClass(this.objectName());
 
-        this.dBinderObject().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.dBinder().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debug(false, "DEngineClass", "init done");
     }
 
@@ -50,7 +50,7 @@ public class EngineDBinder implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.dBinderObject().receiveData();
+            data = this.dBinder().receiveData();
             if (data == null) {
                 this.abend("dEngineReceiveThreadFunc", "null data");
                 continue;
@@ -62,7 +62,7 @@ public class EngineDBinder implements ThreadInterface {
     }
 
     public void TransmitData(String data_val) {
-        this.dBinderObject().transmitData(data_val);
+        this.dBinder().transmitData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

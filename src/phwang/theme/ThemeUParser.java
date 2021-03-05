@@ -18,7 +18,7 @@ public class ThemeUParser {
     private ThemeDBinder dThemeObject;
 
     public ThemeRoot themeRoot() { return this.dThemeObject.themeRoot(); }
-    public ThemeUBinder UThemeObject() { return this.themeRoot().themeUBinder(); }
+    public ThemeUBinder themeUBinder() { return this.themeRoot().themeUBinder(); }
     public ThemeRoomMgr roomMgr() { return this.themeRoot().roomMgr(); }
 
     public ThemeUParser(ThemeDBinder d_theme_object_val) {
@@ -72,8 +72,8 @@ public class ThemeUParser {
         strcpy(data_ptr, data_val);
         */
         String uplink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE;
-        uplink_data = uplink_data + room.RoomIdStr() + input_data;
-        this.UThemeObject().transmitData(uplink_data);
+        uplink_data = uplink_data + room.roomIdStr() + input_data;
+        this.themeUBinder().transmitData(uplink_data);
     }
 
     private void processPutRoomData(String input_data_val) {
@@ -89,7 +89,7 @@ public class ThemeUParser {
 
         String uplink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA;
         uplink_data = uplink_data + room.baseIdStr() + input_data;
-        this.UThemeObject().transmitData(uplink_data);
+        this.themeUBinder().transmitData(uplink_data);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

@@ -17,21 +17,21 @@ public class ThemeUBinder implements ThreadInterface {
 
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
-    private ThemeRoot themeRootObject;
+    private ThemeRoot themeRoot_;
     private ThemeDParser uThemeParserObject;
-    public BinderClass uBinderObject_;
+    public BinderClass uBinder_;
 
-    public ThemeRoot ThemeRootObject() { return this.themeRootObject; }
+    public ThemeRoot ThemeRootObject() { return this.themeRoot_; }
     private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
-    private BinderClass uBinderObject() { return this.uBinderObject_; }
+    private BinderClass uBinder() { return this.uBinder_; }
 
     public ThemeUBinder(ThemeRoot theme_root_object_val) {
         this.debug(false, "ThemeUBinder", "init start");
 
-        this.themeRootObject = theme_root_object_val;
+        this.themeRoot_ = theme_root_object_val;
         this.uThemeParserObject = new ThemeDParser(this);
-        this.uBinderObject_ = new BinderClass(this.objectName());
-        this.uBinderObject().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.uBinder_ = new BinderClass(this.objectName());
+        this.uBinder().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
@@ -49,7 +49,7 @@ public class ThemeUBinder implements ThreadInterface {
 
         String data;
         while (true) {
-            data = this.uBinderObject().receiveData();
+            data = this.uBinder().receiveData();
             if (data == null) {
                 this.abend("uThemeRreceiveThreadFunc", "null data");
                 continue;
@@ -62,7 +62,7 @@ public class ThemeUBinder implements ThreadInterface {
 
     public void transmitData(String data_val) {
         this.debug(false, "transmitData", "data=" + data_val);
-        this.uBinderObject().transmitData(data_val);
+        this.uBinder().transmitData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
