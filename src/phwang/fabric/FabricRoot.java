@@ -13,7 +13,7 @@ import phwang.utils.*;
 public class FabricRoot {
     private String objectName() {return "FabricRoot";}
     
-    private ThreadMgrClass threadMgrObject_;
+    private ThreadMgrClass threadMgr_;
     private FabricUBinder fabricUBinder_;
     private FabricDBinder fabricDBinder_;
     private FabricLinkMgr linkMgr_;
@@ -22,7 +22,7 @@ public class FabricRoot {
     private FabricDParser fabricDParser_;
     private FabricUParser fabricUParser_;
 
-    public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
+    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
     public FabricUBinder fabricUBinder() { return this.fabricUBinder_; }
     public FabricDBinder fabricDBinder() { return this.fabricDBinder_; }
     public FabricDParser fabricDParser() { return this.fabricDParser_; }
@@ -34,7 +34,7 @@ public class FabricRoot {
     public FabricRoot () {
         this.debug(false, "FabricRoot", "init start");
         
-        this.threadMgrObject_ = new ThreadMgrClass();
+        this.threadMgr_ = new ThreadMgrClass();
         this.fabricUBinder_ = new FabricUBinder(this);
         this.fabricDBinder_ = new FabricDBinder(this);
         this.fabricUParser_ = new FabricUParser(this);

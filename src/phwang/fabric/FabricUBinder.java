@@ -16,31 +16,25 @@ public class FabricUBinder implements ThreadInterface {
     private String receiveThreadName() { return "UFabricReceiveThread"; }
     
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
-    //private static final String FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
-    
-    ///////////////#define FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM 'r'
-    //////////////////#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
-    ///////////////#define FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA 'd'
 
     private FabricRoot fabricRoot_;
-    private FabricDParser fabricDParser;
     public BinderClass uBinderObject_;
     
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
-    private ThreadMgrClass ThreadMgrObject() { return this.fabricRoot().threadMgrObject();}
+    public FabricDParser fabricDParser() { return this.fabricRoot().fabricDParser(); }
+    private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
     private BinderClass uBinderObject() { return this.uBinderObject_; }
 
     public FabricUBinder(FabricRoot root_val) {
         this.debug(false, "FabricUBinder", "init start");
         this.fabricRoot_ = root_val;
-        this.fabricDParser = new FabricDParser(this.fabricRoot());
         this.uBinderObject_ = new BinderClass(this.objectName());
         this.uBinderObject().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
     	for (int i = 0; i < NUMBER_OF_D_WORK_THREADS; i++) {
-    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    		this.ThreadMgr().createThreadObject(this.receiveThreadName(), this);
     	}
      }
     
@@ -60,7 +54,7 @@ public class FabricUBinder implements ThreadInterface {
             }
             
             this.debug(false, "uFabricRreceiveThreadFunc", "data=" + data);
-            this.fabricDParser.parseInputPacket(data);
+            this.fabricDParser().parseInputPacket(data);
         }
     }
 
