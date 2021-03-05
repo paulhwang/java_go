@@ -14,13 +14,14 @@ import phwang.protocols.ThemeEngineProtocolClass;
 public class EngineUParser {
     private String objectName() {return "EngineUParser";}
 
-    private EngineDBinder engineDBinder_;
+    private EngineRoot engineRoot_;
 
-    public EngineRoot engineRoot() { return this.engineDBinder_.engineRoot(); }
+    public EngineRoot engineRoot() { return this.engineRoot_; }
+    public EngineDBinder engineDBinder() { return this.engineRoot().engineDBinder(); }
     public EngineBaseMgr baseMgr() { return this.engineRoot().baseMgr(); }
 
-    public EngineUParser(EngineDBinder d_engine_object_val) {
-        this.engineDBinder_ = d_engine_object_val;
+    public EngineUParser(EngineRoot root_val) {
+        this.engineRoot_ = root_val;
     }
 
     public void ParseInputPacket(String input_data_val) {
@@ -58,7 +59,7 @@ public class EngineUParser {
 
         String downlink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
         downlink_data = downlink_data + go_base_object.roomIdStr() + go_base_object.BaseIdStr() + output_data;
-        this.engineDBinder_.TransmitData(downlink_data);
+        this.engineDBinder().TransmitData(downlink_data);
     }
 
     private void processPutBaseData(String input_data_val) {
@@ -76,7 +77,7 @@ public class EngineUParser {
 
         String downlink_data = ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_PUT_BASE_DATA;
         downlink_data = downlink_data + go_base_object.roomIdStr() + output_data;
-        this.engineDBinder_.TransmitData(downlink_data);
+        this.engineDBinder().TransmitData(downlink_data);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

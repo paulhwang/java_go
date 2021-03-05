@@ -20,14 +20,15 @@ public class EngineRoot {
     
     public ThreadMgrClass threadMgr() { return this.threadMgr_; }
     public EngineBaseMgr baseMgr() { return this.baseMgr_; }
-    private EngineUParser engineUParser() { return this.engineUParser_; }
+    public EngineUParser engineUParser() { return this.engineUParser_; }
+    public EngineDBinder engineDBinder() { return this.engineDBinder_; }
 
 
     public EngineRoot() {
         this.debug(false, "EngineRoot", "init start");
 
         this.threadMgr_ = new ThreadMgrClass();
-        this.engineUParser_ = new EngineUParser(this.engineDBinder_);
+        this.engineUParser_ = new EngineUParser(this);
         this.engineDBinder_ = new EngineDBinder(this);
         this.baseMgr_ = new EngineBaseMgr(this);
         
