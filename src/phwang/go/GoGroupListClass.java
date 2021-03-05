@@ -15,7 +15,7 @@ public class GoGroupListClass {
 
     private static final int GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE = 400;
 
-    private GoFightClass theFightObject;
+    private GoFight theFightObject;
     private int indexNumber;
     private int myColor;
     int theHisColor;
@@ -26,7 +26,7 @@ public class GoGroupListClass {
     private int groupCount;
     private GoGroupClass[] groupArray;
 
-    public GoFightClass FightObject() { return this.theFightObject; }
+    public GoFight FightObject() { return this.theFightObject; }
     public GoRootClass RootObject() { return this.theFightObject.RootObject(); }
     public GoBoard BoardObject() { return RootObject().BoardObject(); }
     public GoConfig ConfigObject() { return RootObject().ConfigObject(); }
@@ -34,7 +34,7 @@ public class GoGroupListClass {
     public int GroupCount() { return this.groupCount; }
     public GoGroupClass GroupArray(int index_val) { return this.groupArray[index_val]; }
 
-    public GoGroupListClass(GoFightClass fight_object_val,
+    public GoGroupListClass(GoFight fight_object_val,
                    int index_val,
                    int color_val,
                    Boolean is_dead_val,
