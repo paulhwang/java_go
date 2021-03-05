@@ -40,10 +40,10 @@ public class FabricDBinder implements ThreadInterface {
     }
     
 	public void threadCallbackFunction() {
-		this.dFabricRreceiveThreadFunc();
+		this.dBinderRreceiveThreadFunc();
 	}
 
-    public void dFabricRreceiveThreadFunc() {
+    private void dBinderRreceiveThreadFunc() {
         this.debug(false, "dFabricRreceiveThreadFunc", "start " + this.receiveThreadName());
 
         String data;
