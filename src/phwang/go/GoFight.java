@@ -150,12 +150,12 @@ public class GoFight {
             return 0;
         }
 
-        if (this.goBoard().BoardArray(x_val, y_val) != my_group_val.HisColor())
+        if (this.goBoard().BoardArray(x_val, y_val) != my_group_val.hisColor())
         {
             return 0;
         }
 
-        his_group = this.getGroupByCoordinate(x_val, y_val, my_group_val.HisColor());
+        his_group = this.getGroupByCoordinate(x_val, y_val, my_group_val.hisColor());
         if (his_group == null)
         {
             //this.debugIt(true, "killOtherColorGroup", "my_color=" + this.myColor + " his_color=" + this.hisColor);
@@ -168,8 +168,8 @@ public class GoFight {
             return 0;
         }
 
-        int dead_count = his_group.StoneCount();
-        if ((my_group_val.StoneCount() == 1) && (his_group.StoneCount() == 1))
+        int dead_count = his_group.stoneCount();
+        if ((my_group_val.stoneCount() == 1) && (his_group.stoneCount() == 1))
         {
             his_group.markLastDeadInfo();
         }
@@ -189,11 +189,11 @@ public class GoFight {
             g_list = this.whiteGroupList();
         }
 
-        for (int i = 0; i < g_list.GroupCount(); i++)
+        for (int i = 0; i < g_list.groupCount(); i++)
         {
-            if (g_list.GroupArray(i).ExistMatrix(x_val, y_val))
+            if (g_list.groupArray(i).existMatrix(x_val, y_val))
             {
-                return g_list.GroupArray(i);
+                return g_list.groupArray(i);
             }
         }
         return null;
@@ -202,7 +202,7 @@ public class GoFight {
     private void removeDeadGroup(GoGroup group)
     {
         group.removeDeadStoneFromBoard();
-        if (group.MyColor() == GoDefine.GO_BLACK_STONE)
+        if (group.myColor() == GoDefine.GO_BLACK_STONE)
         {
             this.blackGroupList().removeGroupFromGroupList(group);
         }

@@ -19,48 +19,48 @@ public class GoGroup {
     private int maxY_;
     private int minY_;
     private int indexNumber_;
-    int stoneCount;
-    private int myColor;
-    int hisColor;
-    private Boolean[][] existMatrix;
+    int stoneCount_;
+    private int myColor_;
+    int hisColor_;
+    private Boolean[][] existMatrix_;
     private Boolean[][] deadMatrix;
 
     public GoGroupList goGroupList() { return this.goGroupList_; }
     public GoConfig goConfig() { return this.goGroupList().goConfig(); }
-    public int HisColor() { return this.hisColor; }
-    public int MyColor() { return this.myColor; }
-    public int StoneCount() { return this.stoneCount; }
-    public int IndexNumber() { return this.indexNumber_; }
-    public Boolean ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val][y_val]; }
-    public void SetIndexNumber(int val) { this.indexNumber_ = val; }
-    public void SetGroupListObject(GoGroupList group_list_val) { this.goGroupList_ = group_list_val; }
+    public int hisColor() { return this.hisColor_; }
+    public int myColor() { return this.myColor_; }
+    public int stoneCount() { return this.stoneCount_; }
+    public int indexNumber() { return this.indexNumber_; }
+    public Boolean existMatrix(int x_val, int y_val) { return this.existMatrix_[x_val][y_val]; }
+    public void setIndexNumber(int val) { this.indexNumber_ = val; }
+    public void setGroupListObject(GoGroupList group_list_val) { this.goGroupList_ = group_list_val; }
 
     public GoGroup(GoGroupList group_list_val) {
         this.goGroupList_ = group_list_val;
-        this.indexNumber_ = this.goGroupList_.GroupCount();
-        this.myColor = this.goGroupList_.MyColor();
-        this.stoneCount = 0;
+        this.indexNumber_ = this.goGroupList_.groupCount();
+        this.myColor_ = this.goGroupList_.myColor();
+        this.stoneCount_ = 0;
 
-        this.existMatrix = new Boolean[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
+        this.existMatrix_ = new Boolean[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
         this.deadMatrix = new Boolean[GoDefine.MAX_BOARD_SIZE] [GoDefine.MAX_BOARD_SIZE];
         for (int i = 0; i < GoDefine.MAX_BOARD_SIZE; i++) {
         	for (int j = 0; j < GoDefine.MAX_BOARD_SIZE; j++) {
-        		this.existMatrix[i][j] = false;
+        		this.existMatrix_[i][j] = false;
         		this.deadMatrix[i][j] = false;
         	}
         }
         
-        this.hisColor = (this.myColor == GoDefine.GO_EMPTY_STONE)
+        this.hisColor_ = (this.myColor_ == GoDefine.GO_EMPTY_STONE)
             ? GoDefine.GO_EMPTY_STONE
-            : GoDefine.getOppositeColor(this.myColor);
+            : GoDefine.getOppositeColor(this.myColor_);
     }
 
     public void insertStoneToGroup(int x_val, int y_val, Boolean dead_val) {
-        if (this.existMatrix[x_val][y_val]) {
+        if (this.existMatrix_[x_val][y_val]) {
             this.abend("insertStoneToGroup", "stone already exists in group");
         }
 
-        if (this.stoneCount == 0) {
+        if (this.stoneCount_ == 0) {
             this.maxX_ = x_val;
             this.minX_ = x_val;
             this.maxY_ = y_val;
@@ -81,8 +81,8 @@ public class GoGroup {
             }
         }
 
-        this.stoneCount++;
-        this.existMatrix[x_val] [y_val] = true;
+        this.stoneCount_++;
+        this.existMatrix_[x_val] [y_val] = true;
         this.deadMatrix[x_val] [y_val] = dead_val;
     }
 
@@ -93,7 +93,7 @@ public class GoGroup {
             int j = this.minY_;
             while (j <= this.maxY_)
             {
-                if (this.existMatrix[i][j])
+                if (this.existMatrix_[i][j])
                 {
                     //this.debug(false, "isCandidateGroup", "(" + x_val + "," + y_val + ") (" + i + "," + j + ")");
                     if (this.isNeighborStone(i, j, x_val, y_val))
@@ -128,22 +128,22 @@ public class GoGroup {
         while (i <= group2.maxX_) {
             int j = group2.minY_;
             while (j <= group2.maxY_) {
-                if (group2.existMatrix[i][j]) {
+                if (group2.existMatrix_[i][j]) {
                     //this.debug(false, "mergeWithOtherGroup", "i=" + i + " j=" + j);
-                    if (this.existMatrix[i][j]) {
+                    if (this.existMatrix_[i][j]) {
                         this.abend("mergeWithOtherGroup", "already exist");
                     }
-                    this.existMatrix[i][j] = group2.existMatrix[i][j];
-                    this.stoneCount++;
+                    this.existMatrix_[i][j] = group2.existMatrix_[i][j];
+                    this.stoneCount_++;
 
-                    group2.existMatrix[i][j] = false;
-                    group2.stoneCount--;
+                    group2.existMatrix_[i][j] = false;
+                    group2.stoneCount_--;
                 }
                 j += 1;
             }
             i += 1;
         }
-        if (group2.stoneCount != 0) {
+        if (group2.stoneCount_ != 0) {
             this.abend("mergeWithOtherGroup", "theStoneCount");
         }
 
@@ -160,7 +160,7 @@ public class GoGroup {
             this.minY_ = group2.minY_;
         }
 
-        if (group2.goGroupList_.GroupArray(group2.indexNumber_) != group2) {
+        if (group2.goGroupList_.groupArray(group2.indexNumber_) != group2) {
             this.abend("mergeWithOtherGroup", "group2");
         }
     }
@@ -170,7 +170,7 @@ public class GoGroup {
         while (i <= this.maxX_) {
             int j = this.minY_;
             while (j <= this.maxY_) {
-                if (this.existMatrix[i][j]) {
+                if (this.existMatrix_[i][j]) {
                     if (this.goGroupList_.goFight().goRoot().goBoard().stoneHasAir(i, j)) {
                         return true;
                     }
@@ -187,7 +187,7 @@ public class GoGroup {
         while (i <= this.maxX_) {
             int j = this.minY_;
             while (j <= this.maxY_) {
-                if (this.existMatrix[i][j]) {
+                if (this.existMatrix_[i][j]) {
                     this.goGroupList_.goFight().goBoard().SetBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
                     //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
                 }
@@ -206,7 +206,7 @@ public class GoGroup {
         if (this.maxY_ != this.minY_) {
             this.abend("MarkLastDeadInfo", "bad y");
         }
-        if (!this.existMatrix[this.maxX_][this.maxY_]) {
+        if (!this.existMatrix_[this.maxX_][this.maxY_]) {
             this.abend("MarkLastDeadInfo", "exist_matrix");
         }
     }
@@ -216,12 +216,12 @@ public class GoGroup {
         int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
-                if (this.existMatrix[i][j]) {
+                if (this.existMatrix_[i][j]) {
                     count++;
                 }
             }
         }
-        if (this.stoneCount != count) {
+        if (this.stoneCount_ != count) {
             this.abend("AbendGroup", "stone count");
         }
     }
@@ -230,8 +230,8 @@ public class GoGroup {
         int board_size = this.goConfig().boardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
-                if (this.existMatrix[i][j]) {
-                    if (other_group_val.existMatrix[i][j]) {
+                if (this.existMatrix_[i][j]) {
+                    if (other_group_val.existMatrix_[i][j]) {
                         this.abend("AbendOnGroupConflict", "stone  exists in 2 groups");
                         //this->abend("abendOnGroupConflict", "stone (" + i + "," + j + ") exists in 2 groups: (" + this.myColor() + ":" + this.indexNumber() + ":" + this.stoneCount() + ") ("
                         //    + other_group_val.myColor() + ":" + other_group_val.indexNumber() + ":" + other_group_val.stoneCount() + ")");
