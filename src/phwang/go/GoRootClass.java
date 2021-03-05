@@ -16,13 +16,13 @@ public class GoRootClass {
     private GoConfig configObject;
     private GoBoard boardObject;
     private GoGame gameObject;
-    private GoParseClass parseObject;
+    private GoParse parseObject;
     private GoFight fightObject;
 
     public GoConfig ConfigObject() { return this.configObject; }
     public GoBoard BoardObject() { return this.boardObject; }
     public GoGame GameObject() { return this.gameObject; }
-    public GoParseClass ParseObject() { return this.parseObject; }
+    public GoParse ParseObject() { return this.parseObject; }
     public GoFight FightObject() { return this.fightObject; }
 
     public GoRootClass() {
@@ -30,7 +30,7 @@ public class GoRootClass {
         this.boardObject = new GoBoard(this);
         this.gameObject = new GoGame(this);
         this.fightObject = new GoFight(this);
-        this.parseObject = new GoParseClass(this);
+        this.parseObject = new GoParse(this);
     }
 
     public String doSetup(String input_data_val) {
