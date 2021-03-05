@@ -9,27 +9,27 @@
 package phwang.go;
 
 public class GoMove {
-    private int theX;
-    private int theY;
-    private int myColor;
-    private int turnIndex;
-    private String moveInfo;
+    private int x_;
+    private int y_;
+    private int myColor_;
+    private int turnIndex_;
+    private String moveInfo_;
 
-    public int X() { return this.theX; }
-    public int Y() { return this.theY; }
-    public int MyColor() { return this.myColor; }
-    public int TurnIndex() { return this.turnIndex; }
-    public String MoveInfo() { return this.moveInfo; }
+    public int X() { return this.x_; }
+    public int Y() { return this.y_; }
+    public int MyColor() { return this.myColor_; }
+    public int TurnIndex() { return this.turnIndex_; }
+    public String MoveInfo() { return this.moveInfo_; }
 
     public GoMove(String encoded_move_val) {
         this.decodeMove(encoded_move_val);
     }
 
     private void decodeMove(String encoded_move_val) {
-        this.theX = (encoded_move_val.charAt(0) - '0') * 10 + (encoded_move_val.charAt(1) - '0');
-        this.theY = (encoded_move_val.charAt(2) - '0') * 10 + (encoded_move_val.charAt(3) - '0');
-        this.myColor = encoded_move_val.charAt(4) - '0';
-        this.turnIndex = (encoded_move_val.charAt(5) - '0') * 100 + (encoded_move_val.charAt(6) - '0') * 10 + (encoded_move_val.charAt(7) - '0');
-        this.moveInfo = "(" + this.theX + ", " + this.theY + ") " + this.myColor + ", " + this.turnIndex;
+        this.x_ = (encoded_move_val.charAt(0) - '0') * 10 + (encoded_move_val.charAt(1) - '0');
+        this.y_ = (encoded_move_val.charAt(2) - '0') * 10 + (encoded_move_val.charAt(3) - '0');
+        this.myColor_ = encoded_move_val.charAt(4) - '0';
+        this.turnIndex_ = (encoded_move_val.charAt(5) - '0') * 100 + (encoded_move_val.charAt(6) - '0') * 10 + (encoded_move_val.charAt(7) - '0');
+        this.moveInfo_ = "(" + this.x_ + ", " + this.y_ + ") " + this.myColor_ + ", " + this.turnIndex_;
     }
 }

@@ -34,14 +34,14 @@ public class GoGroupList {
     public int GroupCount() { return this.groupCount; }
     public GoGroup GroupArray(int index_val) { return this.groupArray[index_val]; }
 
-    public GoGroupList(GoFight fight_object_val,
+    public GoGroupList(GoFight fight_val,
                    int index_val,
                    int color_val,
                    Boolean is_dead_val,
                    String big_stone_val,
                    String small_stone_val)
     {
-        this.goFight_ = fight_object_val;
+        this.goFight_ = fight_val;
         this.groupArray = new GoGroup[GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE];
         this.indexNumber = index_val;
         this.myColor = color_val;

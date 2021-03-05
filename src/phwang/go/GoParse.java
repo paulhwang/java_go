@@ -13,13 +13,13 @@ import phwang.utils.*;
 public class GoParse {
     private String objectName() {return "GoParse";}
 
-    private GoRoot theRootObject;
+    private GoRoot goRoot_;
 
-    public GoGame goGame() { return this.theRootObject.goGame(); }
+    public GoGame goGame() { return this.goRoot_.goGame(); }
 
 
-    public GoParse(GoRoot go_root_object_val) {
-        this.theRootObject = go_root_object_val;
+    public GoParse(GoRoot go_root_val) {
+        this.goRoot_ = go_root_val;
     }
 
     public void parseInputData(String input_data_val)

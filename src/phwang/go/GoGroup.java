@@ -14,11 +14,11 @@ public class GoGroup {
     private String objectName() {return "GoGroup";}
 
     GoGroupList goGroupList_;
-    private int maxX;
-    private int minX;
-    private int maxY;
-    private int minY;
-    private int indexNumber;
+    private int maxX_;
+    private int minX_;
+    private int maxY_;
+    private int minY_;
+    private int indexNumber_;
     int stoneCount;
     private int myColor;
     int hisColor;
@@ -30,14 +30,14 @@ public class GoGroup {
     public int HisColor() { return this.hisColor; }
     public int MyColor() { return this.myColor; }
     public int StoneCount() { return this.stoneCount; }
-    public int IndexNumber() { return this.indexNumber; }
+    public int IndexNumber() { return this.indexNumber_; }
     public Boolean ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val][y_val]; }
-    public void SetIndexNumber(int val) { this.indexNumber = val; }
+    public void SetIndexNumber(int val) { this.indexNumber_ = val; }
     public void SetGroupListObject(GoGroupList group_list_val) { this.goGroupList_ = group_list_val; }
 
-    public GoGroup(GoGroupList group_list_object_val) {
-        this.goGroupList_ = group_list_object_val;
-        this.indexNumber = this.goGroupList_.GroupCount();
+    public GoGroup(GoGroupList group_list_val) {
+        this.goGroupList_ = group_list_val;
+        this.indexNumber_ = this.goGroupList_.GroupCount();
         this.myColor = this.goGroupList_.MyColor();
         this.stoneCount = 0;
 
@@ -61,23 +61,23 @@ public class GoGroup {
         }
 
         if (this.stoneCount == 0) {
-            this.maxX = x_val;
-            this.minX = x_val;
-            this.maxY = y_val;
-            this.minY = y_val;
+            this.maxX_ = x_val;
+            this.minX_ = x_val;
+            this.maxY_ = y_val;
+            this.minY_ = y_val;
         }
         else {
-            if (x_val > this.maxX) {
-                this.maxX = x_val;
+            if (x_val > this.maxX_) {
+                this.maxX_ = x_val;
             }
-            if (x_val < this.minX) {
-                this.minX = x_val;
+            if (x_val < this.minX_) {
+                this.minX_ = x_val;
             }
-            if (y_val > this.maxY) {
-                this.maxY = y_val;
+            if (y_val > this.maxY_) {
+                this.maxY_ = y_val;
             }
-            if (y_val < this.minY) {
-                this.minY = y_val;
+            if (y_val < this.minY_) {
+                this.minY_ = y_val;
             }
         }
 
@@ -87,11 +87,11 @@ public class GoGroup {
     }
 
     public Boolean isCandidateGroup(int x_val, int y_val) {
-        int i = this.minX;
-        while (i <= this.maxX)
+        int i = this.minX_;
+        while (i <= this.maxX_)
         {
-            int j = this.minY;
-            while (j <= this.maxY)
+            int j = this.minY_;
+            while (j <= this.maxY_)
             {
                 if (this.existMatrix[i][j])
                 {
@@ -124,10 +124,10 @@ public class GoGroup {
 
     public void mergeWithOtherGroup(GoGroup group2) {
         this.debug(false, "mergeWithOtherGroup", "");
-        int i = group2.minX;
-        while (i <= group2.maxX) {
-            int j = group2.minY;
-            while (j <= group2.maxY) {
+        int i = group2.minX_;
+        while (i <= group2.maxX_) {
+            int j = group2.minY_;
+            while (j <= group2.maxY_) {
                 if (group2.existMatrix[i][j]) {
                     //this.debug(false, "mergeWithOtherGroup", "i=" + i + " j=" + j);
                     if (this.existMatrix[i][j]) {
@@ -147,29 +147,29 @@ public class GoGroup {
             this.abend("mergeWithOtherGroup", "theStoneCount");
         }
 
-        if (this.maxX < group2.maxX) {
-            this.maxX = group2.maxX;
+        if (this.maxX_ < group2.maxX_) {
+            this.maxX_ = group2.maxX_;
         }
-        if (this.minX > group2.minX) {
-            this.minX = group2.minX;
+        if (this.minX_ > group2.minX_) {
+            this.minX_ = group2.minX_;
         }
-        if (this.maxY < group2.maxY) {
-            this.maxY = group2.maxY;
+        if (this.maxY_ < group2.maxY_) {
+            this.maxY_ = group2.maxY_;
         }
-        if (this.minY > group2.minY) {
-            this.minY = group2.minY;
+        if (this.minY_ > group2.minY_) {
+            this.minY_ = group2.minY_;
         }
 
-        if (group2.goGroupList_.GroupArray(group2.indexNumber) != group2) {
+        if (group2.goGroupList_.GroupArray(group2.indexNumber_) != group2) {
             this.abend("mergeWithOtherGroup", "group2");
         }
     }
 
     public Boolean groupHasAir() {
-        int i = this.minX;
-        while (i <= this.maxX) {
-            int j = this.minY;
-            while (j <= this.maxY) {
+        int i = this.minX_;
+        while (i <= this.maxX_) {
+            int j = this.minY_;
+            while (j <= this.maxY_) {
                 if (this.existMatrix[i][j]) {
                     if (this.goGroupList_.goFight().goRoot().goBoard().stoneHasAir(i, j)) {
                         return true;
@@ -183,10 +183,10 @@ public class GoGroup {
     }
 
     public void removeDeadStoneFromBoard() {
-        int i = this.minX;
-        while (i <= this.maxX) {
-            int j = this.minY;
-            while (j <= this.maxY) {
+        int i = this.minX_;
+        while (i <= this.maxX_) {
+            int j = this.minY_;
+            while (j <= this.maxY_) {
                 if (this.existMatrix[i][j]) {
                     this.goGroupList_.goFight().goBoard().SetBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
                     //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
@@ -198,15 +198,15 @@ public class GoGroup {
     }
 
     public void markLastDeadInfo() {
-        this.goGroupList_.goBoard().SetLastDeadStone(this.maxX, this.maxY);
+        this.goGroupList_.goBoard().SetLastDeadStone(this.maxX_, this.maxY_);
 
-        if (this.maxX != this.minX) {
+        if (this.maxX_ != this.minX_) {
             this.abend("MarkLastDeadInfo", "bad x");
         }
-        if (this.maxY != this.minY) {
+        if (this.maxY_ != this.minY_) {
             this.abend("MarkLastDeadInfo", "bad y");
         }
-        if (!this.existMatrix[this.maxX][this.maxY]) {
+        if (!this.existMatrix[this.maxX_][this.maxY_]) {
             this.abend("MarkLastDeadInfo", "exist_matrix");
         }
     }
