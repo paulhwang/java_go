@@ -27,9 +27,9 @@ public class GoGroupList {
     private GoGroup[] groupArray;
 
     public GoFight FightObject() { return this.theFightObject; }
-    public GoRoot RootObject() { return this.theFightObject.RootObject(); }
-    public GoBoard BoardObject() { return RootObject().goBoard(); }
-    public GoConfig ConfigObject() { return RootObject().goConfig(); }
+    public GoRoot goRoot() { return this.theFightObject.goRoot(); }
+    public GoBoard goBoard() { return goRoot().goBoard(); }
+    public GoConfig goConfig() { return goRoot().goConfig(); }
     public int MyColor() { return this.myColor; }
     public int GroupCount() { return this.groupCount; }
     public GoGroup GroupArray(int index_val) { return this.groupArray[index_val]; }

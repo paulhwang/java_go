@@ -26,7 +26,7 @@ public class GoGroup {
     private Boolean[][] deadMatrix;
 
     public GoGroupList GroupListObject() { return this.theGroupListObject; }
-    public GoConfig ConfigObject() { return this.theGroupListObject.ConfigObject(); }
+    public GoConfig ConfigObject() { return this.theGroupListObject.goConfig(); }
     public int HisColor() { return this.hisColor; }
     public int MyColor() { return this.myColor; }
     public int StoneCount() { return this.stoneCount; }
@@ -171,7 +171,7 @@ public class GoGroup {
             int j = this.minY;
             while (j <= this.maxY) {
                 if (this.existMatrix[i][j]) {
-                    if (this.theGroupListObject.FightObject().RootObject().goBoard().stoneHasAir(i, j)) {
+                    if (this.theGroupListObject.FightObject().goRoot().goBoard().stoneHasAir(i, j)) {
                         return true;
                     }
                 }
@@ -188,7 +188,7 @@ public class GoGroup {
             int j = this.minY;
             while (j <= this.maxY) {
                 if (this.existMatrix[i][j]) {
-                    this.theGroupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
+                    this.theGroupListObject.FightObject().goBoard().SetBoardArray(i, j, GoDefine.GO_EMPTY_STONE);
                     //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
                 }
                 j += 1;
@@ -198,7 +198,7 @@ public class GoGroup {
     }
 
     public void markLastDeadInfo() {
-        this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
+        this.theGroupListObject.goBoard().SetLastDeadStone(this.maxX, this.maxY);
 
         if (this.maxX != this.minX) {
             this.abend("MarkLastDeadInfo", "bad x");

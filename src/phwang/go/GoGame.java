@@ -22,8 +22,8 @@ public class GoGame {
     private Boolean theGameIsOver = false;
     private GoMove[] theMovesArray;
 
-    public GoConfig ConfigObject() { return this.theRootObject.goConfig();  }
-    public GoBoard BoardObject() { return this.theRootObject.goBoard(); }
+    public GoConfig goConfig() { return this.theRootObject.goConfig();  }
+    public GoBoard goBoard() { return this.theRootObject.goBoard(); }
     public GoFight goFight() { return this.theRootObject.goFight(); }
     public int TotalMoves() { return this.theTotalMoves; }
     public int NextColor() { return this.theNextColor; }
@@ -53,7 +53,7 @@ public class GoGame {
         }
 
         this.thePassReceived = false;
-        this.BoardObject().clearLastDeadStone();
+        this.goBoard().clearLastDeadStone();
         this.insertMoveToMoveList(move_val);
         this.goFight().enterBattle(move_val);
         this.theNextColor = GoDefine.getOppositeColor(move_val.MyColor());
@@ -69,7 +69,7 @@ public class GoGame {
         this.debug(true, "ProcessBackwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves <= this.ConfigObject().HandicapPoint()) {
+        if (this.theTotalMoves <= this.goConfig().HandicapPoint()) {
             return;
         }
         this.theTotalMoves--;
@@ -80,10 +80,10 @@ public class GoGame {
         this.debug(true, "ProcessDoubleBackwardMove", "");
 
         this.thePassReceived = false;
-        if (this.theTotalMoves <= this.ConfigObject().HandicapPoint()) {
+        if (this.theTotalMoves <= this.goConfig().HandicapPoint()) {
             return;
         }
-        this.theTotalMoves = this.ConfigObject().HandicapPoint();
+        this.theTotalMoves = this.goConfig().HandicapPoint();
         this.processTheWholeMoveList();
     }
 
@@ -118,7 +118,7 @@ public class GoGame {
     }
 
     private void processTheWholeMoveList() {
-        this.BoardObject().resetBoardObjectData();
+        this.goBoard().resetBoardObjectData();
         this.goFight().resetEngineObjectData();
         this.resetGameObjectPartialData();
 

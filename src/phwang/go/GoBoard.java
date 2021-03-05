@@ -22,8 +22,8 @@ public class GoBoard {
     int theLastDeadY;
     private GoRoot theRootObject;
 
-    public GoConfig ConfigObject() { return this.theRootObject.goConfig(); }
-    public GoGame GameObject() { return this.theRootObject.goGame(); }
+    public GoConfig goConfig() { return this.theRootObject.goConfig(); }
+    public GoGame goGame() { return this.theRootObject.goGame(); }
     public String BoardOutputBuffer() { return this.theBoardOutputBuffer; }
     public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
     public void AddBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }
@@ -43,10 +43,10 @@ public class GoBoard {
     public void encodeBoard() {
         this.theBoardOutputBuffer = "";
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.GameObject().TotalMoves(), 3);
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.GameObject().NextColor(), 1);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().TotalMoves(), 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumberClass.encodeNumber(this.goGame().NextColor(), 1);
 
-        int board_size = this.ConfigObject().BoardSize();
+        int board_size = this.goConfig().BoardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
                 char c = '0';
@@ -68,7 +68,7 @@ public class GoBoard {
     }
 
     public void addStoneToBoard(int x_val, int y_val, int color_val) {
-        if (!this.ConfigObject().IsValidCoordinates(x_val, y_val)) {
+        if (!this.goConfig().IsValidCoordinates(x_val, y_val)) {
             this.abend("addStoneToBoard", "bad coordinate");
             return;
         }
@@ -103,7 +103,7 @@ public class GoBoard {
     }
 
     public void resetBoardObjectData() {
-        int board_size = this.ConfigObject().BoardSize();
+        int board_size = this.goConfig().BoardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {
                 this.theBoardArray[i][j] = GoDefine.GO_EMPTY_STONE;
