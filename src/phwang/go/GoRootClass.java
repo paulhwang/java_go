@@ -15,20 +15,20 @@ public class GoRootClass {
 
     private GoConfig configObject;
     private GoBoard boardObject;
-    private GoGameClass gameObject;
+    private GoGame gameObject;
     private GoParseClass parseObject;
     private GoFight fightObject;
 
     public GoConfig ConfigObject() { return this.configObject; }
     public GoBoard BoardObject() { return this.boardObject; }
-    public GoGameClass GameObject() { return this.gameObject; }
+    public GoGame GameObject() { return this.gameObject; }
     public GoParseClass ParseObject() { return this.parseObject; }
     public GoFight FightObject() { return this.fightObject; }
 
     public GoRootClass() {
         this.configObject = new GoConfig(this);
         this.boardObject = new GoBoard(this);
-        this.gameObject = new GoGameClass(this);
+        this.gameObject = new GoGame(this);
         this.fightObject = new GoFight(this);
         this.parseObject = new GoParseClass(this);
     }
