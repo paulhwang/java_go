@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.go;
 
 import phwang.utils.*;
 
-public class GoGroupClass {
-    private String objectName() {return "GoGroupClass";}
+public class GoGroup {
+    private String objectName() {return "GoGroup";}
 
     GoGroupList theGroupListObject;
     private int maxX;
@@ -35,7 +35,7 @@ public class GoGroupClass {
     public void SetIndexNumber(int val) { this.indexNumber = val; }
     public void SetGroupListObject(GoGroupList group_list_val) { this.theGroupListObject = group_list_val; }
 
-    public GoGroupClass(GoGroupList group_list_object_val) {
+    public GoGroup(GoGroupList group_list_object_val) {
         this.theGroupListObject = group_list_object_val;
         this.indexNumber = this.theGroupListObject.GroupCount();
         this.myColor = this.theGroupListObject.MyColor();
@@ -122,7 +122,7 @@ public class GoGroupClass {
         return false;
     }
 
-    public void mergeWithOtherGroup(GoGroupClass group2) {
+    public void mergeWithOtherGroup(GoGroup group2) {
         this.debug(false, "mergeWithOtherGroup", "");
         int i = group2.minX;
         while (i <= group2.maxX) {
@@ -226,7 +226,7 @@ public class GoGroupClass {
         }
     }
 
-    public void abendOnGroupConflict(GoGroupClass other_group_val) {
+    public void abendOnGroupConflict(GoGroup other_group_val) {
         int board_size = this.ConfigObject().BoardSize();
         for (int i = 0; i < board_size; i++) {
             for (int j = 0; j < board_size; j++) {

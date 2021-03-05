@@ -24,7 +24,7 @@ public class GoGroupList {
     private String smallStoneColor;
     private int isMarkedDead;
     private int groupCount;
-    private GoGroupClass[] groupArray;
+    private GoGroup[] groupArray;
 
     public GoFight FightObject() { return this.theFightObject; }
     public GoRoot RootObject() { return this.theFightObject.RootObject(); }
@@ -32,7 +32,7 @@ public class GoGroupList {
     public GoConfig ConfigObject() { return RootObject().ConfigObject(); }
     public int MyColor() { return this.myColor; }
     public int GroupCount() { return this.groupCount; }
-    public GoGroupClass GroupArray(int index_val) { return this.groupArray[index_val]; }
+    public GoGroup GroupArray(int index_val) { return this.groupArray[index_val]; }
 
     public GoGroupList(GoFight fight_object_val,
                    int index_val,
@@ -42,7 +42,7 @@ public class GoGroupList {
                    String small_stone_val)
     {
         this.theFightObject = fight_object_val;
-        this.groupArray = new GoGroupClass[GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE];
+        this.groupArray = new GoGroup[GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE];
         this.indexNumber = index_val;
         this.myColor = color_val;
         this.isDead = is_dead_val;
@@ -60,14 +60,14 @@ public class GoGroupList {
         return count;
     }
 
-    public void insertGroupToGroupList(GoGroupClass group_val) {
+    public void insertGroupToGroupList(GoGroup group_val) {
         this.groupArray[this.groupCount] = group_val;
         group_val.SetIndexNumber(this.groupCount);
         this.groupCount++;
         group_val.SetGroupListObject(this);
     }
 
-    public GoGroupClass findCandidateGroup(int x_val, int y_val) {
+    public GoGroup findCandidateGroup(int x_val, int y_val) {
         int i = 0;
         while (i < this.groupCount) {
             if (this.groupArray[i].isCandidateGroup(x_val, y_val)) {
@@ -78,7 +78,7 @@ public class GoGroupList {
         return null;
     }
 
-    public GoGroupClass findOtherCandidateGroup(GoGroupClass group_val, int x_val, int y_val) {
+    public GoGroup findOtherCandidateGroup(GoGroup group_val, int x_val, int y_val) {
         int i = 0;
         while (i < this.groupCount) {
             if (this.groupArray[i] != group_val) {
@@ -91,7 +91,7 @@ public class GoGroupList {
         return null;
     }
 
-    public void removeGroupFromGroupList(GoGroupClass group_val) {
+    public void removeGroupFromGroupList(GoGroup group_val) {
         this.groupCount--;
         if (group_val.IndexNumber() != this.groupCount) {
             this.groupArray[this.groupCount].SetIndexNumber(group_val.IndexNumber());
@@ -103,7 +103,7 @@ public class GoGroupList {
     public Boolean stoneExistWithinMe(int x_val, int y_val) {
         int i = 0;
         while (i < this.groupCount) {
-            GoGroupClass group = this.groupArray[i];
+        	GoGroup group = this.groupArray[i];
             if (group.ExistMatrix(x_val, y_val)) {
                 return true;
             }
@@ -115,7 +115,7 @@ public class GoGroupList {
     public void abendGroupList() {
         int i = 0;
         while (i < this.groupCount) {
-            GoGroupClass group = this.groupArray[i];
+        	GoGroup group = this.groupArray[i];
             if (group == null) {
                 this.abend("abendGroupList", "null group");
                 return;

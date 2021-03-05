@@ -67,7 +67,7 @@ public class GoFight {
         this.debug(false, "enterBattle", move_val.MoveInfo());
 
         this.BoardObject().addStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
-        GoGroupClass my_group = this.insertStoneToGroupList(move_val);
+        GoGroup my_group = this.insertStoneToGroupList(move_val);
         if (my_group == null) {
             this.abend("enterBattle", "fail in insertStoneToGroupList");
             return;
@@ -93,7 +93,7 @@ public class GoFight {
         this.abendEngine();
     }
 
-    private GoGroupClass insertStoneToGroupList(GoMove move_val) {
+    private GoGroup insertStoneToGroupList(GoMove move_val) {
     	GoGroupList g_list;
 
         if (move_val.MyColor() == GoDefine.GO_BLACK_STONE) {
@@ -107,9 +107,9 @@ public class GoFight {
             return null;
         }
 
-        GoGroupClass group = g_list.findCandidateGroup(move_val.X(), move_val.Y());
+        GoGroup group = g_list.findCandidateGroup(move_val.X(), move_val.Y());
         if (group == null) {
-            group = new GoGroupClass(g_list);
+            group = new GoGroup(g_list);
             group.insertStoneToGroup(move_val.X(), move_val.Y(), false);
             g_list.insertGroupToGroupList(group);
             return group;
@@ -118,7 +118,7 @@ public class GoFight {
         group.insertStoneToGroup(move_val.X(), move_val.Y(), false);
 
         int dummy_count = 0;
-        GoGroupClass group2;
+        GoGroup group2;
         while (true) {
             group2 = g_list.findOtherCandidateGroup(group, move_val.X(), move_val.Y());
             if (group2 == null) {
@@ -134,7 +134,7 @@ public class GoFight {
         return group;
     }
 
-    private int killOtherColorGroups(GoMove move_val, GoGroupClass my_group_val) {
+    private int killOtherColorGroups(GoMove move_val, GoGroup my_group_val) {
         int count;
         count = this.killOtherColorGroup(my_group_val, move_val.X() - 1, move_val.Y());
         count += this.killOtherColorGroup(my_group_val, move_val.X() + 1, move_val.Y());
@@ -143,8 +143,8 @@ public class GoFight {
         return count;
     }
 
-    private int killOtherColorGroup(GoGroupClass my_group_val, int x_val, int y_val) {
-        GoGroupClass his_group;
+    private int killOtherColorGroup(GoGroup my_group_val, int x_val, int y_val) {
+    	GoGroup his_group;
 
         if (!this.ConfigObject().IsValidCoordinates(x_val, y_val)) {
             return 0;
@@ -178,7 +178,7 @@ public class GoFight {
         return dead_count;
     }
 
-    private GoGroupClass getGroupByCoordinate(int x_val, int y_val, int color_val) {
+    private GoGroup getGroupByCoordinate(int x_val, int y_val, int color_val) {
     	GoGroupList g_list;
         if ((color_val == GoDefine.GO_BLACK_STONE) || (color_val == GoDefine.GO_MARKED_DEAD_BLACK_STONE))
         {
@@ -199,7 +199,7 @@ public class GoFight {
         return null;
     }
 
-    private void removeDeadGroup(GoGroupClass group)
+    private void removeDeadGroup(GoGroup group)
     {
         group.removeDeadStoneFromBoard();
         if (group.MyColor() == GoDefine.GO_BLACK_STONE)
@@ -212,7 +212,7 @@ public class GoFight {
         }
      }
 
-    private void markLastDeadInfo1111111111111111(GoGroupClass group_val)
+    private void markLastDeadInfo1111111111111111(GoGroup group_val)
     {
         /*
         this->theBaseObject->boardObject()->setLastDeadStone(group_val->maxX(), group_val->maxY());
