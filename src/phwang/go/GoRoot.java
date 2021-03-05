@@ -16,21 +16,21 @@ public class GoRoot {
     private GoConfig goConfig_;
     private GoBoard goBoard_;
     private GoGame goGame_;
-    private GoParse parseObject;
-    private GoFight fightObject;
+    private GoParse goParse_;
+    private GoFight goFight_;
 
     public GoConfig goConfig() { return this.goConfig_; }
     public GoBoard goBoard() { return this.goBoard_; }
-    public GoGame GameObject() { return this.goGame_; }
-    public GoParse ParseObject() { return this.parseObject; }
-    public GoFight FightObject() { return this.fightObject; }
+    public GoGame goGame() { return this.goGame_; }
+    public GoParse goParse() { return this.goParse_; }
+    public GoFight goFight() { return this.goFight_; }
 
     public GoRoot() {
         this.goConfig_ = new GoConfig(this);
         this.goBoard_ = new GoBoard(this);
         this.goGame_ = new GoGame(this);
-        this.fightObject = new GoFight(this);
-        this.parseObject = new GoParse(this);
+        this.goFight_ = new GoFight(this);
+        this.goParse_ = new GoParse(this);
     }
 
     public String doSetup(String input_data_val) {
@@ -39,7 +39,7 @@ public class GoRoot {
     }
 
     public String processInputData(String input_data_val) {
-        this.parseObject.parseInputData(input_data_val);
+        this.goParse().parseInputData(input_data_val);
         this.goBoard().encodeBoard();
         this.debug(false, "transmitBoardData", this.goBoard().BoardOutputBuffer());
         return this.goBoard().BoardOutputBuffer();

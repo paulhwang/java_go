@@ -24,7 +24,7 @@ public class GoGame {
 
     public GoConfig ConfigObject() { return this.theRootObject.goConfig();  }
     public GoBoard BoardObject() { return this.theRootObject.goBoard(); }
-    public GoFight FightObject() { return this.theRootObject.FightObject(); }
+    public GoFight goFight() { return this.theRootObject.goFight(); }
     public int TotalMoves() { return this.theTotalMoves; }
     public int NextColor() { return this.theNextColor; }
 
@@ -55,7 +55,7 @@ public class GoGame {
         this.thePassReceived = false;
         this.BoardObject().clearLastDeadStone();
         this.insertMoveToMoveList(move_val);
-        this.FightObject().enterBattle(move_val);
+        this.goFight().enterBattle(move_val);
         this.theNextColor = GoDefine.getOppositeColor(move_val.MyColor());
     }
 
@@ -119,13 +119,13 @@ public class GoGame {
 
     private void processTheWholeMoveList() {
         this.BoardObject().resetBoardObjectData();
-        this.FightObject().resetEngineObjectData();
+        this.goFight().resetEngineObjectData();
         this.resetGameObjectPartialData();
 
         int i = 0;
         while (i < this.theTotalMoves) {
         	GoMove move = this.theMovesArray[i];
-            this.FightObject().enterBattle(move);
+            this.goFight().enterBattle(move);
             this.theNextColor = GoDefine.getOppositeColor(move.MyColor());
             i += 1;
         }

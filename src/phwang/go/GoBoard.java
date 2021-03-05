@@ -23,7 +23,7 @@ public class GoBoard {
     private GoRoot theRootObject;
 
     public GoConfig ConfigObject() { return this.theRootObject.goConfig(); }
-    public GoGame GameObject() { return this.theRootObject.GameObject(); }
+    public GoGame GameObject() { return this.theRootObject.goGame(); }
     public String BoardOutputBuffer() { return this.theBoardOutputBuffer; }
     public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val][y_val]; }
     public void AddBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }

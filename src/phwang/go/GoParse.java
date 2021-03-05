@@ -15,7 +15,7 @@ public class GoParse {
 
     private GoRoot theRootObject;
 
-    public GoGame GameObject() { return this.theRootObject.GameObject(); }
+    public GoGame GameObject() { return this.theRootObject.goGame(); }
 
 
     public GoParse(GoRoot go_root_object_val) {
