@@ -37,8 +37,8 @@ public class FabricRoot {
         this.threadMgrObject_ = new ThreadMgrClass();
         this.fabricUBinder_ = new FabricUBinder(this);
         this.fabricDBinder_ = new FabricDBinder(this);
-        //this.fabricUParser_ = new FabricUParser(this);
-        //this.fabricDParser_ = new FabricDParser(this);
+        this.fabricUParser_ = new FabricUParser(this);
+        this.fabricDParser_ = new FabricDParser(this);
         this.linkMgr_ = new FabricLinkMgr(this);
         this.groupMgr_ = new FabricGroupMgr(this);
         this.nameListObject_ = new FabricNameList(this);

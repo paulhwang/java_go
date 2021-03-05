@@ -18,18 +18,18 @@ public class FabricUParser {
 
     private String RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
 
-    private FabricDBinder dFabricObject;
     private FabricRoot fabricRoot_;
 
-    public FabricRoot fabricRoot() { return this.dFabricObject.fabricRoot(); }
+    public FabricRoot fabricRoot() { return this.fabricRoot_; }
+    private FabricDBinder fabricDBinder() { return this.fabricRoot().fabricDBinder(); }
     private FabricUBinder fabricUBinder() { return this.fabricRoot().fabricUBinder(); }
     private FabricLinkMgr LinkMgr() { return this.fabricRoot().linkMgr(); }
     private FabricGroupMgr GroupMgr() { return this.fabricRoot().groupMgr(); }
 
-    public FabricUParser(FabricDBinder dfabric_object_val) {
+    public FabricUParser(FabricRoot root_val) {
         this.debug(false, "FabricUParser", "init start");
 
-        this.dFabricObject = dfabric_object_val;
+        this.fabricRoot_ = root_val;
     }
 
     public void parseInputPacket(String input_data_val) {
@@ -77,7 +77,7 @@ public class FabricUParser {
         	this.abend("parseInputPacket", "response_data is null, data=" + input_data_val);
         }
         
-        this.dFabricObject.transmitData(job_id_str + response_data);
+        this.fabricDBinder().transmitData(job_id_str + response_data);
     }
 
     private String processSetupLinkRequest(String input_str_val) {
