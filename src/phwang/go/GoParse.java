@@ -27,28 +27,28 @@ public class GoParse {
         int len = input_data_val.length();//to be deleted
         switch (input_data_val.charAt(0))
         {
-            case GoProtocolClass.GO_PROTOCOL_MOVE_COMMAND:
+            case GoExport.GO_PROTOCOL_MOVE_COMMAND:
             	GoMove move = new GoMove(input_data_val.substring(1, 9));
                 this.GameObject().addNewMoveAndFight(move);
                 return;
 
-            case GoProtocolClass.GO_PROTOCOL_BACKWARD_COMMAND:
+            case GoExport.GO_PROTOCOL_BACKWARD_COMMAND:
                 this.GameObject().processBackwardMove();
                 return;
 
-            case GoProtocolClass.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
+            case GoExport.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
                 this.GameObject().processDoubleBackwardMove();
                 return;
 
-            case GoProtocolClass.GO_PROTOCOL_FORWARD_COMMAND:
+            case GoExport.GO_PROTOCOL_FORWARD_COMMAND:
                 this.GameObject().processForwardMove();
                 return;
 
-            case GoProtocolClass.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
+            case GoExport.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
                 this.GameObject().processDoubleForwardMove();
                 return;
 
-            case GoProtocolClass.GO_PROTOCOL_PASS_COMMAND:
+            case GoExport.GO_PROTOCOL_PASS_COMMAND:
                 return;
 
             default:
