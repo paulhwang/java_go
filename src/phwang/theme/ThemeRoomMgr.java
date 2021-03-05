@@ -19,25 +19,25 @@ public class ThemeRoomMgr {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_ROOM_ID = 7000;
 
-    private ThemeRoot themeRootObject;
-    private ListMgrClass listMgr;
+    private ThemeRoot themeRoot_;
+    private ListMgrClass listMgr_;
 
     public ThemeRoomMgr(ThemeRoot theme_root_object_val) {
         this.debug(false, "ThemeRoomMgr", "init start");
 
-        this.themeRootObject = theme_root_object_val;
-        this.listMgr = new ListMgrClass(THEME_ROOM_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);
+        this.themeRoot_ = theme_root_object_val;
+        this.listMgr_ = new ListMgrClass(THEME_ROOM_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);
     }
     
     public ThemeRoom mallocRoom(String group_id_str_val) {
     	ThemeRoom room = new ThemeRoom(group_id_str_val);
-        ListEntryClass list_entry = this.listMgr.malloc(room);
+        ListEntryClass list_entry = this.listMgr_.malloc(room);
         room.bindListEntry(list_entry);
         return room;
     }
 
     public ThemeRoom getRoomByIdStr(String room_id_str_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryByIdStr(room_id_str_val);
+        ListEntryClass list_entry = this.listMgr_.getEntryByIdStr(room_id_str_val);
         if (list_entry == null) {
             return null;
         }

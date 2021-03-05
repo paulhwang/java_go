@@ -35,7 +35,7 @@ public class ThemeRoot {
         this.themeUBinder_ = new ThemeUBinder(this);
         this.themeDBinder_ = new ThemeDBinder(this);
         this.themeDParser_ = new ThemeDParser(this);
-        this.themeUParser_ = new ThemeUParser(themeDBinder_);
+        this.themeUParser_ = new ThemeUParser(this);
         this.roomMgr_ = new ThemeRoomMgr(this);
         
         this.themeUBinder().startThreads();
