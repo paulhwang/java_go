@@ -19,18 +19,18 @@ public class EngineDBinder implements ThreadInterface {
     
     private EngineRoot engineRoot_;
     private EngineUParser dEngineParserObject;
-    private BinderClass dBinderObject_;
+    private BinderClass dBinder_;
 
     public EngineRoot engineRoot() { return this.engineRoot_; }
-    private ThreadMgrClass ThreadMgrObject() { return this.engineRoot().ThreadMgrObject();}
-    private BinderClass dBinderObject() { return this.dBinderObject_; }
+    private ThreadMgrClass threadMgr() { return this.engineRoot().threadMgr();}
+    private BinderClass dBinderObject() { return this.dBinder_; }
     
     public EngineDBinder(EngineRoot engine_root_object_val) {
         this.debug(false, "EngineDBinder", "init start");
         
         this.engineRoot_ = engine_root_object_val;
         this.dEngineParserObject = new EngineUParser(this);
-        this.dBinderObject_ = new BinderClass(this.objectName());
+        this.dBinder_ = new BinderClass(this.objectName());
 
         this.dBinderObject().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debug(false, "DEngineClass", "init done");
@@ -38,7 +38,7 @@ public class EngineDBinder implements ThreadInterface {
 
     public void startThreads() {
     	for (int i = 0; i < NUMBER_OF_U_WORK_THREADS; i++) {
-    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    		this.threadMgr().createThreadObject(this.receiveThreadName(), this);
     	}
      }
     

@@ -13,20 +13,24 @@ import phwang.utils.*;
 public class EngineRoot {
     private String objectName() {return "EngineRoot";}
 
-    private ThreadMgrClass threadMgrObject;
+    private ThreadMgrClass threadMgr_;
     private EngineDBinder engineDBinder_;
+    private EngineUParser engineUParser_;
     private EngineBaseMgr baseMgr_;
     
-    public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    public EngineBaseMgr BaseMgr() { return this.baseMgr_; }
+    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
+    public EngineBaseMgr baseMgr() { return this.baseMgr_; }
+    private EngineUParser engineUParser() { return this.engineUParser_; }
 
 
     public EngineRoot() {
         this.debug(false, "EngineRoot", "init start");
 
-        this.threadMgrObject = new ThreadMgrClass();
+        this.threadMgr_ = new ThreadMgrClass();
+        this.engineUParser_ = new EngineUParser(this.engineDBinder_);
         this.engineDBinder_ = new EngineDBinder(this);
         this.baseMgr_ = new EngineBaseMgr(this);
+        
         this.engineDBinder_.startThreads();
 	}
     
