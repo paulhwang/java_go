@@ -17,7 +17,7 @@ public class GoFight {
 
     private GoRoot theRootObject;
     private Boolean abendEngineOn = false;
-    GoGroupListClass[] theGroupListArray;
+    GoGroupList[] theGroupListArray;
     String theCaptureCount;
     String theLastDeadStone;
 
@@ -25,25 +25,25 @@ public class GoFight {
     public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
     public GoConfig ConfigObject() { return this.theRootObject.ConfigObject(); }
 
-    GoGroupListClass emptyGroupList() { return this.theGroupListArray[0]; }
-    GoGroupListClass blackGroupList() { return this.theGroupListArray[1]; }
-    GoGroupListClass whiteGroupList() { return this.theGroupListArray[2]; }
-    GoGroupListClass blackDeadGroupList() { return this.theGroupListArray[3]; }
-    GoGroupListClass whiteDeadGroupList() { return this.theGroupListArray[4]; }
-    GoGroupListClass blackEmptyGroupList() { return this.theGroupListArray[5]; }
-    GoGroupListClass whiteEmptyGroupList() { return this.theGroupListArray[6]; }
+    GoGroupList emptyGroupList() { return this.theGroupListArray[0]; }
+    GoGroupList blackGroupList() { return this.theGroupListArray[1]; }
+    GoGroupList whiteGroupList() { return this.theGroupListArray[2]; }
+    GoGroupList blackDeadGroupList() { return this.theGroupListArray[3]; }
+    GoGroupList whiteDeadGroupList() { return this.theGroupListArray[4]; }
+    GoGroupList blackEmptyGroupList() { return this.theGroupListArray[5]; }
+    GoGroupList whiteEmptyGroupList() { return this.theGroupListArray[6]; }
 
     public GoFight(GoRoot go_root_object_val) {
         this.theRootObject = go_root_object_val;
-        this.theGroupListArray = new GoGroupListClass[GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE];
+        this.theGroupListArray = new GoGroupList[GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE];
         this.resetEngineObjectData();
     }
 
     public void resetEngineObjectData() {
         this.BoardObject().resetBoardObjectData();
 
-        this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
-        this.theGroupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
+        this.theGroupListArray[1] = new GoGroupList(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
+        this.theGroupListArray[2] = new GoGroupList(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
         this.resetMarkedGroupLists();
         this.resetEmptyGroupLists();
 
@@ -52,15 +52,15 @@ public class GoFight {
     }
     
     private void resetMarkedGroupLists() {
-        this.theGroupListArray[3] = new GoGroupListClass(this, 3, GoDefineClass.GO_BLACK_STONE, true, "black", "gray");
-        this.theGroupListArray[4] = new GoGroupListClass(this, 4, GoDefineClass.GO_WHITE_STONE, true, "white", "gray");
+        this.theGroupListArray[3] = new GoGroupList(this, 3, GoDefineClass.GO_BLACK_STONE, true, "black", "gray");
+        this.theGroupListArray[4] = new GoGroupList(this, 4, GoDefineClass.GO_WHITE_STONE, true, "white", "gray");
         this.BoardObject().resetMarkedBoardObjectData();
     }
 
     private void resetEmptyGroupLists() {
-        this.theGroupListArray[0] = new GoGroupListClass(this, 0, GoDefineClass.GO_EMPTY_STONE, false, null, null);
-        this.theGroupListArray[5] = new GoGroupListClass(this, 5, GoDefineClass.GO_EMPTY_STONE, false, null, "black");
-        this.theGroupListArray[6] = new GoGroupListClass(this, 6, GoDefineClass.GO_EMPTY_STONE, false, null, "white");
+        this.theGroupListArray[0] = new GoGroupList(this, 0, GoDefineClass.GO_EMPTY_STONE, false, null, null);
+        this.theGroupListArray[5] = new GoGroupList(this, 5, GoDefineClass.GO_EMPTY_STONE, false, null, "black");
+        this.theGroupListArray[6] = new GoGroupList(this, 6, GoDefineClass.GO_EMPTY_STONE, false, null, "white");
     }
 
     public void enterBattle(GoMove move_val) {
@@ -94,7 +94,7 @@ public class GoFight {
     }
 
     private GoGroupClass insertStoneToGroupList(GoMove move_val) {
-        GoGroupListClass g_list;
+    	GoGroupList g_list;
 
         if (move_val.MyColor() == GoDefineClass.GO_BLACK_STONE) {
             g_list = this.blackGroupList();
@@ -179,7 +179,7 @@ public class GoFight {
     }
 
     private GoGroupClass getGroupByCoordinate(int x_val, int y_val, int color_val) {
-        GoGroupListClass g_list;
+    	GoGroupList g_list;
         if ((color_val == GoDefineClass.GO_BLACK_STONE) || (color_val == GoDefineClass.GO_MARKED_DEAD_BLACK_STONE))
         {
             g_list = this.blackGroupList();

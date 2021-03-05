@@ -13,7 +13,7 @@ import phwang.utils.*;
 public class GoGroupClass {
     private String objectName() {return "GoGroupClass";}
 
-    GoGroupListClass theGroupListObject;
+    GoGroupList theGroupListObject;
     private int maxX;
     private int minX;
     private int maxY;
@@ -25,7 +25,7 @@ public class GoGroupClass {
     private Boolean[][] existMatrix;
     private Boolean[][] deadMatrix;
 
-    public GoGroupListClass GroupListObject() { return this.theGroupListObject; }
+    public GoGroupList GroupListObject() { return this.theGroupListObject; }
     public GoConfig ConfigObject() { return this.theGroupListObject.ConfigObject(); }
     public int HisColor() { return this.hisColor; }
     public int MyColor() { return this.myColor; }
@@ -33,9 +33,9 @@ public class GoGroupClass {
     public int IndexNumber() { return this.indexNumber; }
     public Boolean ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val][y_val]; }
     public void SetIndexNumber(int val) { this.indexNumber = val; }
-    public void SetGroupListObject(GoGroupListClass group_list_val) { this.theGroupListObject = group_list_val; }
+    public void SetGroupListObject(GoGroupList group_list_val) { this.theGroupListObject = group_list_val; }
 
-    public GoGroupClass(GoGroupListClass group_list_object_val) {
+    public GoGroupClass(GoGroupList group_list_object_val) {
         this.theGroupListObject = group_list_object_val;
         this.indexNumber = this.theGroupListObject.GroupCount();
         this.myColor = this.theGroupListObject.MyColor();
