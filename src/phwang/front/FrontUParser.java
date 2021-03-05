@@ -29,10 +29,10 @@ public class FrontUParser {
     public FrontRoot frontRoot() { return this.frontRoot_; }
     public FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
     
-    public FrontUParser(FrontRoot front_root_object_val) {
+    public FrontUParser(FrontRoot root_val) {
         this.debug(false, "FrontUParser", "init start");
 
-        this.frontRoot_ = front_root_object_val;
+        this.frontRoot_ = root_val;
     }
 
     public String parseInputPacket(String input_data_val) {

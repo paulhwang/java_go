@@ -13,38 +13,37 @@ import phwang.utils.*;
 public class FrontJob {
     private String objectName() {return "FrontJob";}
 
-    private ListEntryClass listEntryObject_;
-    
-    private String theData;
-    private Thread pendingThread;
+    private ListEntryClass listEntry_;
+    private String data_;
+    private Thread pendingThread_;
     
     public int jobId() { return this.listEntryObject().id(); }
     public String jobIdStr() { return this.listEntryObject().idStr(); }
-    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
+    private ListEntryClass listEntryObject() { return this.listEntry_; }
 
     public void bindListEntry(ListEntryClass list_entry_object_val) {
-        this.listEntryObject_ = list_entry_object_val;
+        this.listEntry_ = list_entry_object_val;
     }
 
     public String readData() {
-        while (this.theData == null) {
+        while (this.data_ == null) {
         	try {
                 this.debug(false, "readData", "***sleep");
-                this.pendingThread = Thread.currentThread();
+                this.pendingThread_ = Thread.currentThread();
         		Thread.sleep(10000);
         	}
         	catch (InterruptedException e) {
         	}
             continue;
         }
-        this.debug(false, "readData", "theData=" + this.theData);
-        return this.theData;
+        this.debug(false, "readData", "theData=" + this.data_);
+        return this.data_;
     }
 
     public void WriteData(String data_val) {
-        this.theData = data_val;
-        if (this.pendingThread != null) {
-        	this.pendingThread.interrupt();
+        this.data_ = data_val;
+        if (this.pendingThread_ != null) {
+        	this.pendingThread_.interrupt();
         }
     }
     

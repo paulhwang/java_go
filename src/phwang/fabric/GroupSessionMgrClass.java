@@ -15,27 +15,27 @@ public class GroupSessionMgrClass {
 
     private static final int MAX_SESSION_ARRAY_SIZE = 10;
 
-    private FabricGroup groupObject;
-    private ArrayMgrClass arrayMgrObject;
+    private FabricGroup group_;
+    private ArrayMgrClass arrayMgr_;
 
-    public GroupSessionMgrClass(FabricGroup group_object_val) {
-        this.groupObject = group_object_val;
-        this.arrayMgrObject = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
+    public GroupSessionMgrClass(FabricGroup group_val) {
+        this.group_ = group_val;
+        this.arrayMgr_ = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
     }
 
     public void insertSession(FabricSession session_val) {
-        this.arrayMgrObject.insertObjectElement(session_val);
+        this.arrayMgr_.insertObjectElement(session_val);
     }
     public void removeSession(FabricSession session_val) {
-        this.arrayMgrObject.removeObjectElement(session_val);
+        this.arrayMgr_.removeObjectElement(session_val);
     }
 
     public int getSessionArraySize() {
-        return this.arrayMgrObject.ArraySize();
+        return this.arrayMgr_.ArraySize();
     }
 
     public Object[] getSessionArray() {
-        return this.arrayMgrObject.ObjectArrayTable();
+        return this.arrayMgr_.ObjectArrayTable();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

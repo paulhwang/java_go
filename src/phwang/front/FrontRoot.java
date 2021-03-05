@@ -14,7 +14,7 @@ import phwang.test.FrontTestClass;
 public class FrontRoot {
     private String objectName() {return "FrontRoot";}
     
-    private ThreadMgrClass threadMgrObject_;
+    private ThreadMgrClass threadMgr_;
     private FrontJobMgr frontJobMgr_;
     private FrontUBinder frontUBinder_;
     private FrontUParser frontUParser_;
@@ -22,7 +22,7 @@ public class FrontRoot {
     private FrontDExport frontDExport_;
     private FrontTestClass frontTestObject_;
     
-    public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
+    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
     public FrontUBinder frontUBinder() { return this.frontUBinder_; }
     public FrontJobMgr JobMgr() { return this.frontJobMgr_; }
     public FrontUParser frontUParser() { return this.frontUParser_; }
@@ -33,7 +33,7 @@ public class FrontRoot {
     public FrontRoot() {
         this.debug(false, "FrontRoot", "init start");
         
-        this.threadMgrObject_ = new ThreadMgrClass();
+        this.threadMgr_ = new ThreadMgrClass();
         this.frontUBinder_ = new FrontUBinder(this);
         this.frontDExport_ = new FrontDExport(this);
         this.frontUParser_ = new FrontUParser(this);

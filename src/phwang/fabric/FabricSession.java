@@ -27,8 +27,8 @@ public class FabricSession {
     public FabricGroup fabricGroup() { return this.fabricGroup_; }
     public ListQueueClass pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
-    public FabricSession(FabricLink link_object_val) {
-        this.link_ = link_object_val;
+    public FabricSession(FabricLink link_val) {
+        this.link_ = link_val;
         this.pendingDownLinkDataQueue_ = new ListQueueClass(false, 0);
     }
 

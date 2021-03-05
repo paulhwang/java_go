@@ -19,23 +19,23 @@ public class FabricSessionMgr {
 	private static final int LIST_MGR_ARRAY_SIZE = 8;
     private static final int FIRST_SESSION_ID = 3000;
 
-    private FabricLink linkObject_;
+    private FabricLink link_;
     private ListMgrClass listMgr_;
 
-    private FabricLink linkObject() { return this.linkObject_; }
+    private FabricLink link() { return this.link_; }
     public ListMgrClass listMgr() { return this.listMgr_; }
     public int getSessionArrayMaxIndex() { return this.listMgr_.MaxIndex(); }
     public ListEntryClass[] getSessionArrayEntryTable() { return this.listMgr().EntryTableArray(); }
 
-    public FabricSessionMgr(FabricLink link_object_val) {
+    public FabricSessionMgr(FabricLink link_val) {
         this.debug(false, "FabricSessionMgr", "init start");
         
-        this.linkObject_ = link_object_val;
+        this.link_ = link_val;
         this.listMgr_ = new ListMgrClass(FABRIC_SESSION_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
     }
 
     public FabricSession mallocSession() {
-    	FabricSession session = new FabricSession(this.linkObject());
+    	FabricSession session = new FabricSession(this.link());
         ListEntryClass list_entry = this.listMgr().malloc(session);
         session.bindListEntry(list_entry);
         return session;

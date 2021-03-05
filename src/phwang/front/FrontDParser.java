@@ -21,10 +21,10 @@ public class FrontDParser {
     
     public FrontRoot frontRoot() { return this.frontRoot_; }
     
-    public FrontDParser(FrontRoot front_root_object_val) {
+    public FrontDParser(FrontRoot root_val) {
         this.debug(false, "FrontDParser", "init start");
 
-        this.frontRoot_ = front_root_object_val;
+        this.frontRoot_ = root_val;
     }
     
     public String parserResponseData(String input_data_val) {
