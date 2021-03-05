@@ -96,7 +96,7 @@ public class GoGroupClass {
                 if (this.existMatrix[i][j])
                 {
                     //this.debug(false, "isCandidateGroup", "(" + x_val + "," + y_val + ") (" + i + "," + j + ")");
-                    if (GoStaticClass.isNeighborStone(i, j, x_val, y_val))
+                    if (this.isNeighborStone(i, j, x_val, y_val))
                     {
                         return true;
                     }
@@ -104,6 +104,20 @@ public class GoGroupClass {
                 j += 1;
             }
             i += 1;
+        }
+        return false;
+    }
+    
+    private Boolean isNeighborStone(int x1_val, int y1_val, int x2_val, int y2_val) {
+        if (x1_val == x2_val) {
+            if ((y1_val + 1 == y2_val) || (y1_val - 1 == y2_val)) {
+                return true;
+            }
+        }
+        if (y1_val == y2_val) {
+            if ((x1_val + 1 == x2_val) || (x1_val - 1 == x2_val)) {
+                return true;
+            }
         }
         return false;
     }
