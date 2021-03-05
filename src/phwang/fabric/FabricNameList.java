@@ -19,7 +19,7 @@ public class FabricNameList {
     final int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
 
     private FabricRoot fabricRoot;
-    private int nameListTag;
+    private int nameListTag_;
     private String nameListTagStr_;
     private String nameList_;
 
@@ -38,17 +38,17 @@ public class FabricNameList {
         int max_index = link_list_mgr.listMgr().MaxIndex();
         ListEntryClass[] list_entry_array = link_list_mgr.listMgr().EntryTableArray();
 
-        this.nameListTag++;
-        if (this.nameListTag > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
-            this.nameListTag = 1;
+        this.nameListTag_++;
+        if (this.nameListTag_ > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
+            this.nameListTag_ = 1;
         }
-        this.nameListTagStr_ = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
+        this.nameListTagStr_ = EncodeNumberClass.encodeNumber(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
 
         this.nameList_ = "";
         for (int i = max_index; i >= 0; i--) {
             if (list_entry_array[i] != null) {
                 if (this.nameList_.length() == 0) {
-                    this.nameList_ = EncodeNumberClass.encodeNumber(this.nameListTag, FabricExport.NAME_LIST_TAG_SIZE);
+                    this.nameList_ = EncodeNumberClass.encodeNumber(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
                 }
                 else {
                     this.nameList_ = this.nameList_ + ",";
@@ -66,7 +66,7 @@ public class FabricNameList {
     }
 
     public String getNameList(int tag_val) {
-        if (this.nameListTag == tag_val) {
+        if (this.nameListTag_ == tag_val) {
             return null;
         }
         return this.nameList_;

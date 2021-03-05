@@ -14,42 +14,42 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FabricLink {
     private String objectName() {return "FabricLink";}
 
-    private ListEntryClass listEntryObject_;
+    private ListEntryClass listEntry_;
     private String myName_;
-    private FabricSessionMgr sessionMgrObject_;
-    private ListQueueClass pendingSessionSetupQueue;
-    private ListQueueClass pendingSessionSetupQueue3;
+    private FabricSessionMgr sessionMgr_;
+    private ListQueueClass pendingSessionSetupQueue_;
+    private ListQueueClass pendingSessionSetupQueue3_;
 
     public String myName() { return this.myName_; }
-    public int linkId() { return this.listEntryObject().id(); }
-    public String linkIdStr() { return this.listEntryObject().idStr(); }
-    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
-    public FabricSessionMgr sessionMgrObject() { return this.sessionMgrObject_; }
+    public int linkId() { return this.listEntry().id(); }
+    public String linkIdStr() { return this.listEntry().idStr(); }
+    private ListEntryClass listEntry() { return this.listEntry_; }
+    public FabricSessionMgr sessionMgr() { return this.sessionMgr_; }
 
-    public int GetSessionArrayMaxIndex() { return this.sessionMgrObject().getSessionArrayMaxIndex(); }
-    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject().getSessionArrayEntryTable(); }
+    public int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }
+    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
 
     public FabricLink(String my_name_val) {
         this.debug(false, "FabricLink", "init start");
         
         this.myName_ = my_name_val;
 
-        this.pendingSessionSetupQueue = new ListQueueClass(false, 0);
-        this.pendingSessionSetupQueue3 = new ListQueueClass(false, 0);
-        this.sessionMgrObject_ = new FabricSessionMgr(this);
+        this.pendingSessionSetupQueue_ = new ListQueueClass(false, 0);
+        this.pendingSessionSetupQueue3_ = new ListQueueClass(false, 0);
+        this.sessionMgr_ = new FabricSessionMgr(this);
     }
 
     public void bindListEntry(ListEntryClass list_entry_object_val) {
-        this.listEntryObject_ = list_entry_object_val;
+        this.listEntry_ = list_entry_object_val;
     }
 
     public FabricSession mallocSession() {
-        return this.sessionMgrObject().mallocSession();
+        return this.sessionMgr().mallocSession();
     }
 
     public void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
         String data = link_session_id_str_val + theme_data_val;
-        this.pendingSessionSetupQueue.enqueue(data);
+        this.pendingSessionSetupQueue_.enqueue(data);
         /*
         char* buf, *data_ptr;
 
@@ -66,7 +66,7 @@ public class FabricLink {
         this.debug(false, "********************SetPendingSessionSetup3", "session_id_str_val =" + session_id_str_val);
         this.debug(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);
         String data = browser_theme_id_str_val + session_id_str_val + theme_data_val;
-        this.pendingSessionSetupQueue3.enqueue(data);
+        this.pendingSessionSetupQueue3_.enqueue(data);
         this.debug(false, "********************SetPendingSessionSetup3", "data =" + data);
         /*
         char* buf, *data_ptr;
@@ -81,11 +81,11 @@ public class FabricLink {
     }
     
     public String getPendingSessionSetup() {
-        return (String) this.pendingSessionSetupQueue.dequeue();
+        return (String) this.pendingSessionSetupQueue_.dequeue();
     }
 
     public String getPendingSessionSetup3() {
-        return (String) this.pendingSessionSetupQueue3.dequeue();
+        return (String) this.pendingSessionSetupQueue3_.dequeue();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

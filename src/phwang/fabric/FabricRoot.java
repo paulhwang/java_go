@@ -29,7 +29,7 @@ public class FabricRoot {
     public FabricUParser fabricUParser() { return this.fabricUParser_; }
     public FabricLinkMgr linkMgr() { return this.linkMgr_; }
     public FabricGroupMgr groupMgr() { return this.groupMgr_; }
-    public FabricNameList nameListObject() { return this.nameList_; }
+    public FabricNameList nameList() { return this.nameList_; }
 
     public FabricRoot () {
         this.debug(false, "FabricRoot", "init start");

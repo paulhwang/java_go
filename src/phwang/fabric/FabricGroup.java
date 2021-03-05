@@ -14,35 +14,35 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class FabricGroup {
     private String objectName() {return "FabricGroup";}
 
-    private ListEntryClass listEntryObject_;
+    private ListEntryClass listEntry_;
     private String roomIdStr_;
     private String themeData_;
-    private GroupSessionMgrClass groupSessionMgrObject_;
+    private GroupSessionMgrClass groupSessionMgr_;
 
-    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
+    private ListEntryClass listEntry() { return this.listEntry_; }
     public String themeData() { return this.themeData_; }
-    public int groupId() { return this.listEntryObject().id(); }
-    public String groupIdStr() { return this.listEntryObject().idStr(); }
+    public int groupId() { return this.listEntry().id(); }
+    public String groupIdStr() { return this.listEntry().idStr(); }
     public String roomIdStr() { return this.roomIdStr_; }
-    private GroupSessionMgrClass groupSessionMgrObject() { return this.groupSessionMgrObject_; }
+    private GroupSessionMgrClass groupSessionMgr() { return this.groupSessionMgr_; }
 
     public FabricGroup(String theme_data_val) {
         this.debug(false, "FabricGroup", "init start");
         
         this.themeData_ = theme_data_val;
-        this.groupSessionMgrObject_ = new GroupSessionMgrClass(this);
+        this.groupSessionMgr_ = new GroupSessionMgrClass(this);
     }
 
     public void bindListEntry(ListEntryClass list_entry_object_val) {
-        this.listEntryObject_ = list_entry_object_val;
+        this.listEntry_ = list_entry_object_val;
     }
 
     public void insertSession(FabricSession session_val) {
-        this.groupSessionMgrObject().insertSession(session_val);
+        this.groupSessionMgr().insertSession(session_val);
     }
     
     public void removeSession(FabricSession session_val) {
-        this.groupSessionMgrObject().removeSession(session_val);
+        this.groupSessionMgr().removeSession(session_val);
     }
 
     public void setRoomIdStr(String room_id_str_val) {
@@ -50,11 +50,11 @@ public class FabricGroup {
     }
 
     public int getSessionArraySize() {
-        return this.groupSessionMgrObject().getSessionArraySize();
+        return this.groupSessionMgr().getSessionArraySize();
     }
 
     public Object[] getSessionArray() {
-        return this.groupSessionMgrObject().getSessionArray();
+        return this.groupSessionMgr().getSessionArray();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
