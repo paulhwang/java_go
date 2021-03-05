@@ -1,14 +1,14 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
 
 package phwang.go;
 
-public class GoMoveClass {
+public class GoMove {
     private int theX;
     private int theY;
     private int myColor;
@@ -21,7 +21,7 @@ public class GoMoveClass {
     public int TurnIndex() { return this.turnIndex; }
     public String MoveInfo() { return this.moveInfo; }
 
-    public GoMoveClass(String encoded_move_val) {
+    public GoMove(String encoded_move_val) {
         this.decodeMove(encoded_move_val);
     }
 

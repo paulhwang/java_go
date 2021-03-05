@@ -14,20 +14,20 @@ public class EngineRoot {
     private String objectName() {return "EngineRoot";}
 
     private ThreadMgrClass threadMgrObject;
-    private EngineDBinder engineDBinder;
-    private EngineBaseMgr baseMgr;
+    private EngineDBinder engineDBinder_;
+    private EngineBaseMgr baseMgr_;
     
     public ThreadMgrClass ThreadMgrObject() { return this.threadMgrObject; }
-    public EngineBaseMgr BaseMgr() { return this.baseMgr; }
+    public EngineBaseMgr BaseMgr() { return this.baseMgr_; }
 
 
     public EngineRoot() {
         this.debug(false, "EngineRoot", "init start");
 
         this.threadMgrObject = new ThreadMgrClass();
-        this.engineDBinder = new EngineDBinder(this);
-        this.baseMgr = new EngineBaseMgr(this);
-        this.engineDBinder.startThreads();
+        this.engineDBinder_ = new EngineDBinder(this);
+        this.baseMgr_ = new EngineBaseMgr(this);
+        this.engineDBinder_.startThreads();
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

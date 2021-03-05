@@ -28,7 +28,7 @@ public class GoParseClass {
         switch (input_data_val.charAt(0))
         {
             case GoProtocolClass.GO_PROTOCOL_MOVE_COMMAND:
-                GoMoveClass move = new GoMoveClass(input_data_val.substring(1, 9));
+            	GoMove move = new GoMove(input_data_val.substring(1, 9));
                 this.GameObject().addNewMoveAndFight(move);
                 return;
 

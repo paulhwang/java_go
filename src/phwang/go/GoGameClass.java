@@ -20,7 +20,7 @@ public class GoGameClass {
     private int theNextColor;
     private Boolean thePassReceived = false;
     private Boolean theGameIsOver = false;
-    private GoMoveClass[] theMovesArray;
+    private GoMove[] theMovesArray;
 
     public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject();  }
     public GoBoardClass BoardObject() { return this.theRootObject.BoardObject(); }
@@ -30,7 +30,7 @@ public class GoGameClass {
 
     public GoGameClass(GoRootClass go_root_object_val) {
         this.theRootObject = go_root_object_val;
-        this.theMovesArray = new GoMoveClass[GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE];
+        this.theMovesArray = new GoMove[GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE];
     }
 
     private void resetGameObjectPartialData() {
@@ -39,7 +39,7 @@ public class GoGameClass {
         this.theGameIsOver = false;
     }
 
-    public void addNewMoveAndFight(GoMoveClass move_val) {
+    public void addNewMoveAndFight(GoMove move_val) {
         this.debug(false, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
 
         if (move_val.TurnIndex() != this.theTotalMoves + 1) {
@@ -59,7 +59,7 @@ public class GoGameClass {
         this.theNextColor = GoDefineClass.getOppositeColor(move_val.MyColor());
     }
 
-    private void insertMoveToMoveList(GoMoveClass move_val) {
+    private void insertMoveToMoveList(GoMove move_val) {
         this.theMovesArray[this.theTotalMoves] = move_val;
         this.theTotalMoves++;
         this.theMaxMove = this.theTotalMoves;
@@ -124,7 +124,7 @@ public class GoGameClass {
 
         int i = 0;
         while (i < this.theTotalMoves) {
-            GoMoveClass move = this.theMovesArray[i];
+        	GoMove move = this.theMovesArray[i];
             this.FightObject().enterBattle(move);
             this.theNextColor = GoDefineClass.getOppositeColor(move.MyColor());
             i += 1;
