@@ -15,15 +15,16 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class ThemeDParser {
     private String objectName() {return "ThemeDParser";}
     
-    private ThemeUBinder uThemeObject_;
+    private ThemeRoot themeRoot_;
 
-    public ThemeRoot themeRoot() { return this.uThemeObject_.ThemeRootObject(); }
+    public ThemeRoot themeRoot() { return this.themeRoot_; }
     public ThemeDBinder themeDBinder() { return this.themeRoot().themeDBinder(); }
+    public ThemeUBinder themeUBinder() { return this.themeRoot().themeUBinder(); }
     public ThemeRoomMgr roomMgr() { return this.themeRoot().roomMgr(); }
 
-    public ThemeDParser(ThemeUBinder u_theme_object_val) {
+    public ThemeDParser(ThemeRoot root_val) {
         this.debug(false, "ThemeDParser", "init start");
-        this.uThemeObject_ = u_theme_object_val;
+        this.themeRoot_ = root_val;
     }
     
     public void parseInputPacket(String input_data_val) {

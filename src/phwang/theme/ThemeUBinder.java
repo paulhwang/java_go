@@ -18,25 +18,25 @@ public class ThemeUBinder implements ThreadInterface {
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
     private ThemeRoot themeRoot_;
-    private ThemeDParser uThemeParserObject;
     public BinderClass uBinder_;
 
-    public ThemeRoot ThemeRootObject() { return this.themeRoot_; }
-    private ThreadMgrClass ThreadMgrObject() { return this.ThemeRootObject().ThreadMgrObject();}
+    public ThemeRoot themeRoot() { return this.themeRoot_; }
+    public ThemeDParser themeDParser() { return this.themeRoot().themeDParser(); }
+    private ThreadMgrClass threadMgr() { return this.themeRoot().threadMgr();}
     private BinderClass uBinder() { return this.uBinder_; }
 
-    public ThemeUBinder(ThemeRoot theme_root_object_val) {
+    public ThemeUBinder(ThemeRoot root_val) {
         this.debug(false, "ThemeUBinder", "init start");
 
-        this.themeRoot_ = theme_root_object_val;
-        this.uThemeParserObject = new ThemeDParser(this);
+        this.themeRoot_ = root_val;
         this.uBinder_ = new BinderClass(this.objectName());
+        
         this.uBinder().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 
     public void startThreads() {
     	for (int i = 0; i < NUMBER_OF_D_WORK_THREADS; i++) {
-    		this.ThreadMgrObject().createThreadObject(this.receiveThreadName(), this);
+    		this.threadMgr().createThreadObject(this.receiveThreadName(), this);
     	}
      }
     
@@ -56,7 +56,7 @@ public class ThemeUBinder implements ThreadInterface {
             }
             
             this.debug(false, "uThemeRreceiveThreadFunc", "data = " + data);
-            this.uThemeParserObject.parseInputPacket(data);
+            this.themeDParser().parseInputPacket(data);
         }
     }
 

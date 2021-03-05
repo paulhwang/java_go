@@ -20,8 +20,7 @@ public class ThemeRoot {
     private ThemeDParser themeDParser_ ;
     private ThemeUParser themeUParser_ ;
     
-    
-    public ThreadMgrClass ThreadMgrObject() { return this.threadMgr_; }
+    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
     public ThemeUBinder themeUBinder() { return this.themeUBinder_; }
     public ThemeDBinder themeDBinder() { return this.themeDBinder_; }
     public ThemeUParser themeUParser() { return this.themeUParser_ ; }
@@ -35,7 +34,7 @@ public class ThemeRoot {
         this.threadMgr_ = new ThreadMgrClass();
         this.themeUBinder_ = new ThemeUBinder(this);
         this.themeDBinder_ = new ThemeDBinder(this);
-        this.themeDParser_ = new ThemeDParser(themeUBinder_);
+        this.themeDParser_ = new ThemeDParser(this);
         this.themeUParser_ = new ThemeUParser(themeDBinder_);
         this.roomMgr_ = new ThemeRoomMgr(this);
         
