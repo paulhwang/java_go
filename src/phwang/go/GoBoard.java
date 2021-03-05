@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,8 +10,8 @@ package phwang.go;
 
 import phwang.utils.*;
 
-public class GoBoardClass {
-    private String objectName() {return "GoBoardClass";}
+public class GoBoard {
+    private String objectName() {return "GoBoard";}
     
     private int[][] theBoardArray;
     private int[][] theMarkedBoardArray;
@@ -31,7 +31,7 @@ public class GoBoardClass {
     public void SetBoardArray(int x_val, int y_val, int data_val) { this.theBoardArray[x_val][y_val] = data_val; }
     public void SetLastDeadStone(int x_val, int y_val) { this.theLastDeadX = x_val; this.theLastDeadY = y_val; }
 
-    public GoBoardClass(GoRootClass root_object_val) {
+    public GoBoard(GoRootClass root_object_val) {
         this.theRootObject = root_object_val;
         this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];
         this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE] [GoDefineClass.MAX_BOARD_SIZE];

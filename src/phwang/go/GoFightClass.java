@@ -22,7 +22,7 @@ public class GoFightClass {
     String theLastDeadStone;
 
     public GoRootClass RootObject() { return this.theRootObject; }
-    public GoBoardClass BoardObject() { return this.theRootObject.BoardObject(); }
+    public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
     public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject(); }
 
     GoGroupListClass emptyGroupList() { return this.theGroupListArray[0]; }

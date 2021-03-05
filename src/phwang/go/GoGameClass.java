@@ -23,7 +23,7 @@ public class GoGameClass {
     private GoMove[] theMovesArray;
 
     public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject();  }
-    public GoBoardClass BoardObject() { return this.theRootObject.BoardObject(); }
+    public GoBoard BoardObject() { return this.theRootObject.BoardObject(); }
     public GoFightClass FightObject() { return this.theRootObject.FightObject(); }
     public int TotalMoves() { return this.theTotalMoves; }
     public int NextColor() { return this.theNextColor; }
