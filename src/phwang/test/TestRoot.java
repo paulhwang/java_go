@@ -13,9 +13,16 @@ import phwang.utils.AbendClass;
 public class TestRoot {
     private String objectName() {return "TestRoot";}
 
-    public TestRoot() {
+    public TestRoot(Boolean http_on_val, Boolean android_on_val) {
         this.debug(false, "TestRoot", "init start");
+        
+        if (http_on_val) {
+        	
+        }
 
+        if (android_on_val) {
+        	
+        }
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
