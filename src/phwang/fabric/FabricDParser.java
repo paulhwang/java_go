@@ -8,9 +8,8 @@
 
 package phwang.fabric;
 
-import phwang.utils.*;
+import phwang.utils.Abend;
 import phwang.protocols.FabricThemeProtocolClass;
-import phwang.fabric.FabricRoot;
 
 public class FabricDParser {
     private String objectName() {return "FabricDParser";}
@@ -80,6 +79,6 @@ public class FabricDParser {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }

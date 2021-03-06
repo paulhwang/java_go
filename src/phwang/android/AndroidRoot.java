@@ -8,7 +8,7 @@
 
 package phwang.android;
 
-import phwang.utils.AbendClass;
+import phwang.utils.Abend;
 
 public class AndroidRoot {
     private String objectName() {return "AndroidRoot";}
@@ -23,6 +23,6 @@ public class AndroidRoot {
     public void abend(String s0, String s1) { this.abendIt(this.objectName() + "." + s0 + "()", s1); }
 
     private Boolean debug_on = true;
-    public void logIt(String s0, String s1) { if (this.debug_on) AbendClass.log(s0, s1); }
-    public void abendIt(String s0, String s1) { if (this.debug_on) AbendClass.abend(s0, s1); }
+    public void logIt(String s0, String s1) { if (this.debug_on) Abend.log(s0, s1); }
+    public void abendIt(String s0, String s1) { if (this.debug_on) Abend.abend(s0, s1); }
 }

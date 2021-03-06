@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -81,6 +81,6 @@ public class ArrayMgrClass {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }

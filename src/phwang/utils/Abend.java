@@ -1,8 +1,16 @@
+/*
+ ******************************************************************************
+ *                                       
+ *  Copyright (c) 2021 phwang. All rights reserved.
+ *
+ ******************************************************************************
+ */
+
 package phwang.utils;
 
 import java.util.concurrent.locks.*;
 
-public class AbendClass {
+public class Abend {
 	static boolean logStopped = false;
     static Lock abendLock = new ReentrantLock();
 	

@@ -7,7 +7,7 @@ package phwang.test;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import phwang.utils.AbendClass;
+import phwang.utils.Abend;
 import phwang.utils.UtilsClass;
 import phwang.utils.ThreadMgrClass;
 import phwang.utils.ThreadInterface;
@@ -246,7 +246,7 @@ class HttpTestCase implements ThreadInterface {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 
