@@ -8,7 +8,7 @@
 
 package phwang.fabric;
 
-import phwang.utils.BinderClass;
+import phwang.utils.Binder;
 import phwang.utils.ThreadInterface;
 import phwang.utils.ThreadMgrClass;
 
@@ -19,18 +19,18 @@ public class FabricDBinder implements ThreadInterface {
     private String receiveThreadName() { return "DFabricReceiveThread"; }
     
     private FabricRoot fabricRoot_;
-    private BinderClass dBinder_;
+    private Binder dBinder_;
 
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
     private FabricUParser fabricUParser() { return this.fabricRoot().fabricUParser(); }
-    private BinderClass dBinder() { return this.dBinder_; }
+    private Binder dBinder() { return this.dBinder_; }
   
     public FabricDBinder(FabricRoot root_val) {
         this.debug(false, "FabricDBinder", "init start");
         
         this.fabricRoot_ = root_val;
-        this.dBinder_ = new BinderClass(this.objectName());
+        this.dBinder_ = new Binder(this.objectName());
         
         this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
     }

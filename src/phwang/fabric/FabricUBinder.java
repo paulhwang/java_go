@@ -18,17 +18,17 @@ public class FabricUBinder implements ThreadInterface {
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
     private FabricRoot fabricRoot_;
-    public BinderClass uBinder_;
+    public Binder uBinder_;
     
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     public FabricDParser fabricDParser() { return this.fabricRoot().fabricDParser(); }
     private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
-    private BinderClass uBinder() { return this.uBinder_; }
+    private Binder uBinder() { return this.uBinder_; }
 
     public FabricUBinder(FabricRoot root_val) {
         this.debug(false, "FabricUBinder", "init start");
         this.fabricRoot_ = root_val;
-        this.uBinder_ = new BinderClass(this.objectName());
+        this.uBinder_ = new Binder(this.objectName());
         this.uBinder().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }
 

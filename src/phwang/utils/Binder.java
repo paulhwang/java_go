@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -15,8 +15,8 @@ import java.io.OutputStreamWriter;
 import java.net.*;
 import phwang.utils.*;
 
-public class BinderClass implements ThreadInterface {
-    private String objectName() {return "BinderClass";}
+public class Binder implements ThreadInterface {
+    private String objectName() {return "Binder";}
     public String binderServerThreadName() { return "BinderServerThread"; }
     public String binderClientThreadName() { return "BinderClientThread"; }
     public String binderTransmitThreadName() { return "BinderTransmitThread"; }
@@ -49,7 +49,7 @@ public class BinderClass implements ThreadInterface {
     public String TcpClientName() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostName() : ""; }
     public String TcpClientAddress() { return (this.TcpConnection() != null) ? this.TcpConnection().getInetAddress().getHostAddress() : ""; }
 
-    public BinderClass(String owner_object_name_val) {
+    public Binder(String owner_object_name_val) {
         this.ownerObjectName_ = owner_object_name_val;
         this.receiveQueue = new ListQueue(true, 0);
         this.transmitQueue = new ListQueue(true, 0);

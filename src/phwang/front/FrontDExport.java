@@ -9,7 +9,7 @@
 package phwang.front;
 
 import phwang.utils.Abend;
-import phwang.utils.BinderClass;
+import phwang.utils.Binder;
 
 public class FrontDExport  implements FrontDExportInterface {
     private String objectName() {return "FrontDExport";}
@@ -19,7 +19,7 @@ public class FrontDExport  implements FrontDExportInterface {
     private FrontRoot frontRoot() { return this.frontRoot_; }
     private FrontJobMgr jobMgr() { return this.frontRoot().jobMgr(); }
     private FrontUBinder frontUBinder() { return this.frontRoot().frontUBinder(); }
-    private BinderClass uBinderObject() { return this.frontUBinder().uBinder(); }
+    private Binder uBinderObject() { return this.frontUBinder().uBinder(); }
     private FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
     
     public FrontDExport(FrontRoot front_root_val) {

@@ -18,18 +18,18 @@ public class ThemeUBinder implements ThreadInterface {
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
 
     private ThemeRoot themeRoot_;
-    public BinderClass uBinder_;
+    public Binder uBinder_;
 
     public ThemeRoot themeRoot() { return this.themeRoot_; }
     public ThemeDParser themeDParser() { return this.themeRoot().themeDParser(); }
     private ThreadMgrClass threadMgr() { return this.themeRoot().threadMgr();}
-    private BinderClass uBinder() { return this.uBinder_; }
+    private Binder uBinder() { return this.uBinder_; }
 
     public ThemeUBinder(ThemeRoot root_val) {
         this.debug(false, "ThemeUBinder", "init start");
 
         this.themeRoot_ = root_val;
-        this.uBinder_ = new BinderClass(this.objectName());
+        this.uBinder_ = new Binder(this.objectName());
         
         this.uBinder().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }

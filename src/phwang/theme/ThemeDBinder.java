@@ -8,7 +8,7 @@
 
 package phwang.theme;
 
-import phwang.utils.BinderClass;
+import phwang.utils.Binder;
 import phwang.utils.ThreadMgrClass;
 import phwang.utils.ThreadInterface;
 import phwang.protocols.*;
@@ -20,18 +20,18 @@ public class ThemeDBinder implements ThreadInterface {
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
 
     private ThemeRoot themeRoot_;
-    private BinderClass dBinder_;
+    private Binder dBinder_;
 
     public ThemeRoot themeRoot() { return this.themeRoot_; }
     private ThreadMgrClass ThreadMgr() { return this.themeRoot().threadMgr();}
     private ThemeUParser themeUParser() { return this.themeRoot().themeUParser(); }
-    private BinderClass dBinder() { return this.dBinder_; }
+    private Binder dBinder() { return this.dBinder_; }
 
     public ThemeDBinder(ThemeRoot root_val) {
         this.debug(false, "ThemeDBinder", "init start");
 
         this.themeRoot_ = root_val;
-        this.dBinder_ = new BinderClass(this.objectName());
+        this.dBinder_ = new Binder(this.objectName());
 
         this.dBinder().bindAsTcpClient(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_SERVER_IP_ADDRESS, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
     }

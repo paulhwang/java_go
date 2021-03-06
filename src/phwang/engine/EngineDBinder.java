@@ -18,18 +18,18 @@ public class EngineDBinder implements ThreadInterface {
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;
     
     private EngineRoot engineRoot_;
-    private BinderClass dBinder_;
+    private Binder dBinder_;
 
     public EngineRoot engineRoot() { return this.engineRoot_; }
     public EngineUParser engineUParser() { return this.engineRoot().engineUParser(); }
     private ThreadMgrClass threadMgr() { return this.engineRoot().threadMgr();}
-    private BinderClass dBinder() { return this.dBinder_; }
+    private Binder dBinder() { return this.dBinder_; }
     
     public EngineDBinder(EngineRoot root_val) {
         this.debug(false, "EngineDBinder", "init start");
         
         this.engineRoot_ = root_val;
-        this.dBinder_ = new BinderClass(this.objectName());
+        this.dBinder_ = new Binder(this.objectName());
 
         this.dBinder().bindAsTcpClient(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_PROTOCOL_SERVER_IP_ADDRESS, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
         this.debug(false, "DEngineClass", "init done");
