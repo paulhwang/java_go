@@ -3,6 +3,7 @@ module java_go {
 	exports phwang.fabric;
 	exports phwang.protocols;
 	exports phwang.engine;
+	exports phwang.android;
 	exports phwang.go;
 	exports org.json.simple;
 	exports phwang.front;

@@ -11,10 +11,10 @@ package phwang.main;
 import phwang.test.TestRoot;
 
 public class MainClass {
-	static public GlobalVariableClass globalVariableObject;
+	private static PhwangRoot phwangRoot_;
 
 	public static void main(String[] args) {
-		globalVariableObject = new GlobalVariableClass();
+		phwangRoot_ = new PhwangRoot();
 		
 		Boolean httpTestOn = true;
 		Boolean androidTestOn = true;

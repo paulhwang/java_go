@@ -16,8 +16,8 @@ import phwang.android.AndroidRoot;
 import phwang.models.ModelRootClass;
 import phwang.theme.ThemeRoot;
 
-public class GlobalVariableClass {
-    private String objectName() {return "GlobalVariableClass";}
+public class PhwangRoot {
+    private String objectName() {return "PhwangRoot";}
     
     private FrontRoot frontRoot_;
     private FabricRoot fabricRoot_;
@@ -25,9 +25,16 @@ public class GlobalVariableClass {
     private EngineRoot engineRoot_;
     private AndroidRoot androidRoot_;
     private ModelRootClass modelRoot_;
+    
+    public FrontRoot frontRoot() { return this.frontRoot_; }
+    public FabricRoot fabricRoo() { return this.fabricRoot_; }
+    public ThemeRoot themeRoot() { return this.themeRoot_; }
+    public EngineRoot engineRoot() {return this.engineRoot_; }
+    public AndroidRoot androidRoot() { return this.androidRoot_; }
+    public ModelRootClass modelRoot() { return this.modelRoot_; }
 
-    public GlobalVariableClass() {
-        this.debug(false, "EngineRootClass", "init start");
+    public PhwangRoot() {
+        this.debug(false, "PhwangRoot", "init start");
     	this.fabricRoot_ = new FabricRoot();
     	this.frontRoot_ = new FrontRoot();
     	this.themeRoot_ = new ThemeRoot();
