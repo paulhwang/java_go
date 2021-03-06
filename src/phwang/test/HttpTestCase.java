@@ -7,24 +7,21 @@ package phwang.test;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import phwang.utils.*;
+import phwang.utils.AbendClass;
+import phwang.utils.UtilsClass;
+import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadInterface;
+import phwang.utils.EncodeNumberClass;
 import phwang.front.FrontDExportInterface;
-
-/*
- ******************************************************************************
- *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
- *
- ******************************************************************************
- */
 
 class HttpTestCase implements ThreadInterface {
     private String objectName() {return "HttpTestCase";}
-    private String frontTestCaseThreadName() { return "FrontTestCaseThread"; }
+    private String httpTestThreadName() { return "HttpTestThread"; }
     
-    private HttpTest frontTestObject_;
-    private String indexString;
-    private String myNameString;
+    private HttpTest httpTest_;
+    private String indexString_;
+    
+    private String myNameString_;
     private String password = "Tennis";
     private String themeData = "88889999G009090000";///////////////////
     private String themeData2 = "G009090000";
@@ -36,29 +33,29 @@ class HttpTestCase implements ThreadInterface {
     private String sessionIdString;
     private String themeIdString = "33333333";///////////////////////////////////////////////
     
-    private HttpTest frontTestObject() { return this.frontTestObject_; }
-    private ThreadMgrClass threadMgrObject() { return this.frontTestObject().threadMgrObject();}
-    private FrontDExportInterface frontExportInterface() { return this.frontTestObject().frontExportInterface();}
+    private HttpTest httpTest() { return this.httpTest_; }
+    private ThreadMgrClass threadMgr() { return this.httpTest().threadMgr();}
+    private FrontDExportInterface frontExportInterface() { return this.httpTest().frontExportInterface();}
 
     public HttpTestCase(HttpTest http_test_val, int index_val) {
         this.debug(false, "HttpTestCase", "init start");
         
-        this.frontTestObject_ = http_test_val;
-        this.indexString = EncodeNumberClass.encodeNumber(index_val, 6);
-        this.myNameString = "Test_" + this.indexString;
+        this.httpTest_ = http_test_val;
+        this.indexString_ = EncodeNumberClass.encodeNumber(index_val, 6);
+        this.myNameString_ = "Test_" + this.indexString_;
     }
     
     public void startTestTest() {
-    	this.threadMgrObject().createThreadObject(this.frontTestCaseThreadName(), this);
+    	this.threadMgr().createThreadObject(this.httpTestThreadName(), this);
      }
 
 	public void threadCallbackFunction() {
-		this.frontTestObject().incrementThreadCount();
-		this.frontTestCaseThreadFunc();
-		this.frontTestObject().decrementThreadCount();
+		this.httpTest().incrementThreadCount();
+		this.httpTestCaseThreadFunc();
+		this.httpTest().decrementThreadCount();
 	}
     
-    private void frontTestCaseThreadFunc() {
+    private void httpTestCaseThreadFunc() {
         try {
         	Thread.sleep(100);
         }
@@ -90,7 +87,7 @@ class HttpTestCase implements ThreadInterface {
     
     private void doSetupLink() {
     	JSONObject json_data = new JSONObject();
-    	json_data.put("my_name", this.myNameString);
+    	json_data.put("my_name", this.myNameString_);
     	json_data.put("password", this.password);
     	String str_json_data = json_data.toJSONString();
     	
@@ -113,7 +110,7 @@ class HttpTestCase implements ThreadInterface {
 
             String name = (String) json_response_data.get("my_name");
             this.linkIdString = (String) json_response_data.get("link_id");
-            if (!this.myNameString.equals(name)) {
+            if (!this.myNameString_.equals(name)) {
             	this.abend("doSetupLink", "name not match");
             }
         } catch (Exception e) {
@@ -153,7 +150,7 @@ class HttpTestCase implements ThreadInterface {
     private void doSetupSession() {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", this.linkIdString);
-    	json_data.put("his_name", this.myNameString);
+    	json_data.put("his_name", this.myNameString_);
     	json_data.put("theme_data", this.themeData);
     	String str_json_data = json_data.toJSONString();
     	

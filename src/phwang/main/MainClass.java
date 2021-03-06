@@ -18,13 +18,12 @@ public class MainClass {
 		
 		Boolean http_test_on = true;
 		if (http_test_on) {
-			HttpTest http_test_root = new HttpTest(root.frontRoot().frontDExport());
-			http_test_root.startTest();
+			new HttpTest(root.frontRoot().frontDExport()).startTest();
 		}
 		
-		Boolean android_test_on = true;
+		Boolean android_test_on = false;
 		if (android_test_on) {
-			new AndroidTest();
+			new AndroidTest().startTest();
 			
 		}
 	}
