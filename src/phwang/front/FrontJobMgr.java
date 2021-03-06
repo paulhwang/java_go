@@ -8,7 +8,8 @@
 
 package phwang.front;
 
-import phwang.utils.*;
+import phwang.utils.ListEntryClass;
+import phwang.utils.ListMgrClass;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -27,6 +28,7 @@ public class FrontJobMgr {
     private FrontRoot frontRoot_;
     private ListMgrClass listMgr_;
 
+    private FrontRoot frontRoot() { return this.frontRoot_; }
     private ListMgrClass listMgr() { return this.listMgr_; }
 
     public FrontJobMgr(FrontRoot front_root_object_val) {
@@ -56,6 +58,6 @@ public class FrontJobMgr {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.frontRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

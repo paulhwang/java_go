@@ -8,7 +8,9 @@
 
 package phwang.front;
 
-import phwang.utils.*;
+import phwang.utils.BinderClass;
+import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadInterface;
 
 public class FrontUBinder implements ThreadInterface {
     private String objectName() {return "FrontUBinder";}
@@ -85,6 +87,6 @@ public class FrontUBinder implements ThreadInterface {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.frontRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }
