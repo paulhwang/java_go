@@ -20,16 +20,16 @@ public class FabricGroupMgr {
     private static final int FIRST_GROUP_ID = 5000;
 
     private FabricRoot fabricRoot_;
-    private ListMgrClass listMgr_;
+    private ListMgr listMgr_;
 
     private FabricRoot fabricRoot() { return this.fabricRoot_; }
-    private ListMgrClass listMgr() { return this.listMgr_; }
+    private ListMgr listMgr() { return this.listMgr_; }
 
     public FabricGroupMgr(FabricRoot root_val) {
         this.debug(false, "FabricGroupMgr", "init start");
         
         this.fabricRoot_ = root_val;
-        this.listMgr_ = new ListMgrClass(FABRIC_GROUP_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_GROUP_ID);
+        this.listMgr_ = new ListMgr(FABRIC_GROUP_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_GROUP_ID);
     }
 
     public FabricGroup mallocGroup(String theme_data_val) {

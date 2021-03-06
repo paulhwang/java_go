@@ -9,7 +9,7 @@
 package phwang.front;
 
 import phwang.utils.ListEntry;
-import phwang.utils.ListMgrClass;
+import phwang.utils.ListMgr;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -26,16 +26,16 @@ public class FrontJobMgr {
     private static final int FIRST_JOB_ID = 0;
 
     private FrontRoot frontRoot_;
-    private ListMgrClass listMgr_;
+    private ListMgr listMgr_;
 
     private FrontRoot frontRoot() { return this.frontRoot_; }
-    private ListMgrClass listMgr() { return this.listMgr_; }
+    private ListMgr listMgr() { return this.listMgr_; }
 
     public FrontJobMgr(FrontRoot front_root_object_val) {
         this.debug(false, "FrontJobMgr", "init start");
 
         this.frontRoot_ = front_root_object_val;
-        this.listMgr_ = new ListMgrClass(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
+        this.listMgr_ = new ListMgr(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
     }
 
     public FrontJob mallocJob() {

@@ -20,16 +20,16 @@ public class EngineBaseMgr {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
 
     private EngineRoot engineRoot_;
-    private ListMgrClass listMgr;
+    private ListMgr listMgr;
 
     private EngineRoot engineRoot() { return this.engineRoot_; }
-    public ListMgrClass ListMgr() { return this.listMgr; }
+    public ListMgr ListMgr() { return this.listMgr; }
   
     public EngineBaseMgr(EngineRoot root_val) {
         this.debug(false, "EngineBaseMgr", "init start");
 
         this.engineRoot_ = root_val;
-        this.listMgr = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
+        this.listMgr = new ListMgr(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
     public EngineBase MallocGoBase(String room_id_val) {

@@ -20,17 +20,17 @@ public class FabricLinkMgr implements ListMgrInterface {
     private static final int FIRST_LINK_ID = 1000;
 
     private FabricRoot fabricRoot_;
-    private ListMgrClass listMgr_;
+    private ListMgr listMgr_;
 
     private FabricRoot fabricRoot() { return this.fabricRoot_; }
-    public ListMgrClass listMgr() { return this.listMgr_; }
+    public ListMgr listMgr() { return this.listMgr_; }
     private FabricNameList nameList() { return this.fabricRoot().nameList(); }
 
     public FabricLinkMgr(FabricRoot root_val) {
         this.debug(false, "FabricLinkMgr", "init start");
         
         this.fabricRoot_ = root_val;
-        this.listMgr_ = new ListMgrClass(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
+        this.listMgr_ = new ListMgr(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
     }
 
     public FabricLink mallocLink(String my_name_val) {

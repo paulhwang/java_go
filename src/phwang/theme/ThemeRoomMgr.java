@@ -20,13 +20,13 @@ public class ThemeRoomMgr {
     private static final int FIRST_ROOM_ID = 7000;
 
     private ThemeRoot themeRoot_;
-    private ListMgrClass listMgr_;
+    private ListMgr listMgr_;
 
     public ThemeRoomMgr(ThemeRoot theme_root_object_val) {
         this.debug(false, "ThemeRoomMgr", "init start");
 
         this.themeRoot_ = theme_root_object_val;
-        this.listMgr_ = new ListMgrClass(THEME_ROOM_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);
+        this.listMgr_ = new ListMgr(THEME_ROOM_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_ROOM_ID);
     }
     
     public ThemeRoom mallocRoom(String group_id_str_val) {
