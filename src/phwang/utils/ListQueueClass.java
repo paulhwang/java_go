@@ -22,19 +22,20 @@ public class ListQueueClass {
     private QueueEntryClass head;
     private QueueEntryClass tail;
     private int maxLength;
-    private Lock theLock;
+    private Lock queueLock_;
+    private Lock pendingThreadLock_;
     private Lock theMallocLock;
     private QueueEntryClass freeEntryList;
     private int freeListLength;
-
-    public void setPendingThread(Thread thread_val) { this.pendingThread = thread_val; }
+    
     public int length() { return this.length_; }
 
     public ListQueueClass(Boolean do_suspend_val, int max_length_val) {
         this.debug(false, "ListQueueClass", "init start");
         
         this.maxLength = max_length_val;
-        this.theLock = new ReentrantLock();
+        this.queueLock_ = new ReentrantLock();
+        this.pendingThreadLock_ = new ReentrantLock();
         this.theMallocLock = new ReentrantLock();
 
         if (this.maxLength == 0) {
@@ -49,13 +50,11 @@ public class ListQueueClass {
         entry.data = data_val;
         
         this.abendQueue("enqueue begin");
-    	this.theLock.lock();
+    	this.queueLock_.lock();
         this.enqueue_(entry);
-    	this.theLock.unlock();
-    	if (this.pendingThread != null) {
-    		pendingThread.interrupt();
-    		this.pendingThread = null;
-    	}
+    	this.queueLock_.unlock();
+    	
+    	this.interruptPendingThread();
         this.abendQueue("enqueue end");
     }
     
@@ -80,9 +79,9 @@ public class ListQueueClass {
         QueueEntryClass entry;
 
         this.abendQueue("dequeue start");
-    	this.theLock.lock();
+    	this.queueLock_.lock();
     	entry = this.dequeue_();
-    	this.theLock.unlock();
+    	this.queueLock_.unlock();
         this.abendQueue("dequeue end");
     	
         if (entry == null) {
@@ -121,9 +120,9 @@ public class ListQueueClass {
 
     private void flush() {
         this.abendQueue("flush start");
-    	this.theLock.lock();
+    	this.queueLock_.lock();
     	this.flush_();
-    	this.theLock.unlock();
+    	this.queueLock_.unlock();
         this.abendQueue("flush end");
     }
 
@@ -195,9 +194,9 @@ public class ListQueueClass {
     	if (!this.abendQueueIsOn)
     		return;
     	
-    	this.theLock.lock();
+    	this.queueLock_.lock();
     	this.abendQueue_(msg_val);
-    	this.theLock.unlock();
+    	this.queueLock_.unlock();
     }
 
     private void abendQueue_(String msg_val) {
@@ -231,6 +230,23 @@ public class ListQueueClass {
         if (length != this.length_) {
            this.abend("abendQueue_", msg_val + " from tail: bad length");
         }
+    }
+
+    public void setPendingThread(Thread thread_val) {
+    	this.pendingThreadLock_.lock();
+    	this.pendingThread = thread_val;
+    	this.pendingThreadLock_.unlock();
+    }
+    
+    private void interruptPendingThread() {
+    	this.pendingThreadLock_.lock();
+    	
+    	if (this.pendingThread != null) {
+    		pendingThread.interrupt();
+    		this.pendingThread = null;
+    	}
+    	
+    	this.pendingThreadLock_.unlock();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
