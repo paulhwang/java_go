@@ -8,7 +8,8 @@
 
 package phwang.engine;
 
-import phwang.utils.*;
+import phwang.utils.AbendClass;
+import phwang.utils.ThreadMgrClass;
 
 public class EngineRoot {
     private String objectName() {return "EngineRoot";}

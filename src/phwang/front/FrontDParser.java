@@ -9,7 +9,6 @@
 package phwang.front;
 
 import org.json.simple.JSONObject;
-
 import phwang.protocols.ProtocolDefineClass;
 import phwang.utils.EncodeNumberClass;
 
