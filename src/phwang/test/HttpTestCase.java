@@ -1,4 +1,4 @@
-/*  Copyright (c) 2018 phwang. All rights reserved.
+/*  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -18,11 +18,11 @@ import phwang.front.FrontDExportInterface;
  ******************************************************************************
  */
 
-class FrontTestCaseClass implements ThreadInterface {
-    private String objectName() {return "FrontTestClass";}
+class HttpTestCase implements ThreadInterface {
+    private String objectName() {return "HttpTestCase";}
     private String frontTestCaseThreadName() { return "FrontTestCaseThread"; }
     
-    private FrontTestClass frontTestObject_;
+    private HttpTest frontTestObject_;
     private String indexString;
     private String myNameString;
     private String password = "Tennis";
@@ -36,14 +36,14 @@ class FrontTestCaseClass implements ThreadInterface {
     private String sessionIdString;
     private String themeIdString = "33333333";///////////////////////////////////////////////
     
-    private FrontTestClass frontTestObject() { return this.frontTestObject_; }
+    private HttpTest frontTestObject() { return this.frontTestObject_; }
     private ThreadMgrClass threadMgrObject() { return this.frontTestObject().threadMgrObject();}
     private FrontDExportInterface frontExportInterface() { return this.frontTestObject().frontExportInterface();}
 
-    public FrontTestCaseClass(FrontTestClass front_test_object_val, int index_val) {
-        this.debug(false, "FrontTestClass", "init start");
+    public HttpTestCase(HttpTest http_test_val, int index_val) {
+        this.debug(false, "HttpTestCase", "init start");
         
-        this.frontTestObject_ = front_test_object_val;
+        this.frontTestObject_ = http_test_val;
         this.indexString = EncodeNumberClass.encodeNumber(index_val, 6);
         this.myNameString = "Test_" + this.indexString;
     }

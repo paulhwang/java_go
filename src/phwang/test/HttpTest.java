@@ -1,21 +1,19 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
 
+
 package phwang.test;
 
-//import java.util.concurrent.locks.*;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
 import phwang.utils.*;
 import phwang.front.FrontDExportInterface;
 
-public class FrontTestClass implements ThreadInterface {
-    private String objectName() {return "FrontTestClass";}
+public class HttpTest implements ThreadInterface {
+    private String objectName() {return "HttpTest";}
     private String frontTestThreadName() { return "FrontTestThread"; }
 
     private FrontDExportInterface frontExportIntervace_;
@@ -25,8 +23,8 @@ public class FrontTestClass implements ThreadInterface {
     public FrontDExportInterface frontExportInterface() { return this.frontExportIntervace_;}
     public ThreadMgrClass threadMgrObject() { return this.threadMgrObject_; }
 
-    public FrontTestClass(FrontDExportInterface front_export_interface_val) {
-        this.debug(false, "FrontTestClass", "init start");
+    public HttpTest(FrontDExportInterface front_export_interface_val) {
+        this.debug(false, "HttpTest", "init start");
         
         this.frontExportIntervace_ = front_export_interface_val;
         this.threadMgrObject_ = new ThreadMgrClass();
@@ -62,7 +60,7 @@ public class FrontTestClass implements ThreadInterface {
         
         for (int j = 0; j < 1; j++) {
         	for (int i = 0; i < 2; i++) {
-        		FrontTestCaseClass test_case = new FrontTestCaseClass(this, i);
+        		HttpTestCase test_case = new HttpTestCase(this, i);
         		test_case.startTestTest();
         		
         		//UtilsClass.sleep(1);
