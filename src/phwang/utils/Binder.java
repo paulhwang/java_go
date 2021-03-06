@@ -24,10 +24,10 @@ public class Binder implements ThreadInterface {
 
     private String ownerObjectName_;
     private String whichThread = null;
-    private ThreadClass binderServerThreadObject;
-    private ThreadClass binderClientThreadObject;
-    private ThreadClass binderReceiveThreadObject;
-    private ThreadClass binderTransmitThreadObject;
+    private ThreadEntity binderServerThreadObject;
+    private ThreadEntity binderClientThreadObject;
+    private ThreadEntity binderReceiveThreadObject;
+    private ThreadEntity binderTransmitThreadObject;
     
     private String serverIpAddr_;
     private short port_;
@@ -91,7 +91,7 @@ public class Binder implements ThreadInterface {
 		
 		if (create_server_thread_val) {
 	    	this.whichThread = this.binderServerThreadName();
-			this.binderServerThreadObject = new ThreadClass(this.binderServerThreadName(), this);
+			this.binderServerThreadObject = new ThreadEntity(this.binderServerThreadName(), this);
 			return true;
 		}
 		else {
@@ -133,7 +133,7 @@ public class Binder implements ThreadInterface {
 		
 		if (create_client_thread_val) {
 	    	this.whichThread = this.binderClientThreadName();
-			this.binderClientThreadObject = new ThreadClass(this.binderClientThreadName(), this);
+			this.binderClientThreadObject = new ThreadEntity(this.binderClientThreadName(), this);
 			return true;
 		}
 		else {
@@ -162,14 +162,14 @@ public class Binder implements ThreadInterface {
 
     private void createWorkingThreads() {
     	this.whichThread = this.binderReceiveThreadName();
-		this.binderReceiveThreadObject = new ThreadClass(this.binderReceiveThreadName(), this);
+		this.binderReceiveThreadObject = new ThreadEntity(this.binderReceiveThreadName(), this);
     }
 
     private void binderReceiveThreadFunc() {
         this.debug(false, "binderReceiveThreadFunc", "start thread ***");
         
     	this.whichThread = this.binderTransmitThreadName();
-		this.binderTransmitThreadObject = new ThreadClass(this.binderTransmitThreadName(), this);
+		this.binderTransmitThreadObject = new ThreadEntity(this.binderTransmitThreadName(), this);
         
         if (this.TcpConnection() == null) {
             this.abend("binderReceiveThreadFunc", "null networkStream");
