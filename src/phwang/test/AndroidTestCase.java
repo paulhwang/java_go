@@ -6,7 +6,7 @@
 package phwang.test;
 
 import phwang.utils.Abend;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadInterface;
 import phwang.utils.EncodeNumber;
 
@@ -19,7 +19,7 @@ class AndroidTestCase implements ThreadInterface {
     private String myNameString_;
     
     private AndroidTest androidTest() { return this.androidTest_; }
-    private ThreadMgrClass threadMgr() { return this.androidTest().threadMgr();}
+    private ThreadMgr threadMgr() { return this.androidTest().threadMgr();}
 
     public AndroidTestCase(AndroidTest android_test_val, int index_val) {
         this.debug(false, "AndroidTestCase", "init start");

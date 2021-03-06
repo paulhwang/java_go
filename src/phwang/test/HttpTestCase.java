@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import phwang.utils.Abend;
 import phwang.utils.UtilsClass;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadInterface;
 import phwang.utils.EncodeNumber;
 import phwang.front.FrontDExportInterface;
@@ -34,7 +34,7 @@ class HttpTestCase implements ThreadInterface {
     private String themeIdString = "33333333";///////////////////////////////////////////////
     
     private HttpTest httpTest() { return this.httpTest_; }
-    private ThreadMgrClass threadMgr() { return this.httpTest().threadMgr();}
+    private ThreadMgr threadMgr() { return this.httpTest().threadMgr();}
     private FrontDExportInterface frontExportInterface() { return this.httpTest().frontExportInterface();}
 
     public HttpTestCase(HttpTest http_test_val, int index_val) {

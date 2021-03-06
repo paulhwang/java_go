@@ -10,7 +10,7 @@ package phwang.fabric;
 
 import phwang.utils.Binder;
 import phwang.utils.ThreadInterface;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 
 public class FabricDBinder implements ThreadInterface {
     private String objectName() {return "FabricDBinder";}
@@ -22,7 +22,7 @@ public class FabricDBinder implements ThreadInterface {
     private Binder dBinder_;
 
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
-    private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
+    private ThreadMgr ThreadMgr() { return this.fabricRoot().threadMgr();}
     private FabricUParser fabricUParser() { return this.fabricRoot().fabricUParser(); }
     private Binder dBinder() { return this.dBinder_; }
   

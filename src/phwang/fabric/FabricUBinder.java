@@ -22,7 +22,7 @@ public class FabricUBinder implements ThreadInterface {
     
     public FabricRoot fabricRoot() { return this.fabricRoot_; }
     public FabricDParser fabricDParser() { return this.fabricRoot().fabricDParser(); }
-    private ThreadMgrClass ThreadMgr() { return this.fabricRoot().threadMgr();}
+    private ThreadMgr ThreadMgr() { return this.fabricRoot().threadMgr();}
     private Binder uBinder() { return this.uBinder_; }
 
     public FabricUBinder(FabricRoot root_val) {

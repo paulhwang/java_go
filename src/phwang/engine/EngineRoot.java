@@ -9,17 +9,17 @@
 package phwang.engine;
 
 import phwang.utils.Abend;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 
 public class EngineRoot {
     private String objectName() {return "EngineRoot";}
 
-    private ThreadMgrClass threadMgr_;
+    private ThreadMgr threadMgr_;
     private EngineDBinder engineDBinder_;
     private EngineUParser engineUParser_;
     private EngineBaseMgr baseMgr_;
     
-    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
+    public ThreadMgr threadMgr() { return this.threadMgr_; }
     public EngineBaseMgr baseMgr() { return this.baseMgr_; }
     public EngineUParser engineUParser() { return this.engineUParser_; }
     public EngineDBinder engineDBinder() { return this.engineDBinder_; }
@@ -28,7 +28,7 @@ public class EngineRoot {
     public EngineRoot() {
         this.debug(false, "EngineRoot", "init start");
 
-        this.threadMgr_ = new ThreadMgrClass();
+        this.threadMgr_ = new ThreadMgr();
         this.engineUParser_ = new EngineUParser(this);
         this.engineDBinder_ = new EngineDBinder(this);
         this.baseMgr_ = new EngineBaseMgr(this);

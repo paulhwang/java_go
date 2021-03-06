@@ -9,19 +9,19 @@
 package phwang.front;
 
 import phwang.utils.Abend;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 
 public class FrontRoot {
     private String objectName() {return "FrontRoot";}
     
-    private ThreadMgrClass threadMgr_;
+    private ThreadMgr threadMgr_;
     private FrontUBinder frontUBinder_;
     private FrontUParser frontUParser_;
     private FrontDParser frontDParser_;
     private FrontDExport frontDExport_;
     private FrontJobMgr jobMgr_;
     
-    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
+    public ThreadMgr threadMgr() { return this.threadMgr_; }
     public FrontUBinder frontUBinder() { return this.frontUBinder_; }
     public FrontUParser frontUParser() { return this.frontUParser_; }
     public FrontDParser frontDParser() { return this.frontDParser_; }
@@ -31,7 +31,7 @@ public class FrontRoot {
     public FrontRoot() {
         this.debug(false, "FrontRoot", "init start");
         
-        this.threadMgr_ = new ThreadMgrClass();
+        this.threadMgr_ = new ThreadMgr();
         this.frontUBinder_ = new FrontUBinder(this);
         this.frontDExport_ = new FrontDExport(this);
         this.frontUParser_ = new FrontUParser(this);

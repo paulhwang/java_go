@@ -17,17 +17,17 @@ public class HttpTest implements ThreadInterface {
     private String httpTestThreadName() { return "HttpTestThread"; }
 
     private FrontDExportInterface frontExportInterface_;
-    private ThreadMgrClass threadMgr_;
+    private ThreadMgr threadMgr_;
     private LockIntegerClass threadCount_;
     
     public FrontDExportInterface frontExportInterface() { return this.frontExportInterface_; }
-    public ThreadMgrClass threadMgr() { return this.threadMgr_; }
+    public ThreadMgr threadMgr() { return this.threadMgr_; }
 
     public HttpTest(FrontDExportInterface front_export_interface_val) {
         this.debug(false, "HttpTest", "init start");
         
         this.frontExportInterface_ = front_export_interface_val;
-        this.threadMgr_ = new ThreadMgrClass();
+        this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockIntegerClass(0);
     }
     

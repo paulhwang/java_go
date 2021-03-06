@@ -22,7 +22,7 @@ public class EngineDBinder implements ThreadInterface {
 
     public EngineRoot engineRoot() { return this.engineRoot_; }
     public EngineUParser engineUParser() { return this.engineRoot().engineUParser(); }
-    private ThreadMgrClass threadMgr() { return this.engineRoot().threadMgr();}
+    private ThreadMgr threadMgr() { return this.engineRoot().threadMgr();}
     private Binder dBinder() { return this.dBinder_; }
     
     public EngineDBinder(EngineRoot root_val) {

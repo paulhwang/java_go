@@ -9,7 +9,7 @@
 package phwang.front;
 
 import phwang.utils.Binder;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadInterface;
 
 public class FrontUBinder implements ThreadInterface {
@@ -25,7 +25,7 @@ public class FrontUBinder implements ThreadInterface {
     private FrontDParser frontDParser() { return this.frontRoot().frontDParser(); }
     public FrontRoot frontRoot() { return this.frontRoot_; }
     private FrontJobMgr jobMgr() { return this.frontRoot().jobMgr(); }
-    private ThreadMgrClass threadMgr() { return this.frontRoot().threadMgr();}
+    private ThreadMgr threadMgr() { return this.frontRoot().threadMgr();}
     public Binder uBinder() { return this.uBinder_; }
 
     public FrontUBinder(FrontRoot root_val) {

@@ -22,7 +22,7 @@ public class ThemeUBinder implements ThreadInterface {
 
     public ThemeRoot themeRoot() { return this.themeRoot_; }
     public ThemeDParser themeDParser() { return this.themeRoot().themeDParser(); }
-    private ThreadMgrClass threadMgr() { return this.themeRoot().threadMgr();}
+    private ThreadMgr threadMgr() { return this.themeRoot().threadMgr();}
     private Binder uBinder() { return this.uBinder_; }
 
     public ThemeUBinder(ThemeRoot root_val) {

@@ -9,7 +9,7 @@
 package phwang.theme;
 
 import phwang.utils.Binder;
-import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadInterface;
 import phwang.protocols.*;
 
@@ -23,7 +23,7 @@ public class ThemeDBinder implements ThreadInterface {
     private Binder dBinder_;
 
     public ThemeRoot themeRoot() { return this.themeRoot_; }
-    private ThreadMgrClass ThreadMgr() { return this.themeRoot().threadMgr();}
+    private ThreadMgr ThreadMgr() { return this.themeRoot().threadMgr();}
     private ThemeUParser themeUParser() { return this.themeRoot().themeUParser(); }
     private Binder dBinder() { return this.dBinder_; }
 
