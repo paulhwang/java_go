@@ -24,7 +24,7 @@ public class FrontUBinder implements ThreadInterface {
     
     private FrontDParser frontDParser() { return this.frontRoot().frontDParser(); }
     public FrontRoot frontRoot() { return this.frontRoot_; }
-    private FrontJobMgr frontJobMgr() { return this.frontRoot().JobMgr(); }
+    private FrontJobMgr jobMgr() { return this.frontRoot().jobMgr(); }
     private ThreadMgrClass threadMgr() { return this.frontRoot().threadMgr();}
     public BinderClass uBinder() { return this.uBinder_; }
 
@@ -63,7 +63,7 @@ public class FrontUBinder implements ThreadInterface {
             this.debug(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String ajax_id_str = received_data.substring(0, FrontExport.FRONT_JOB_ID_SIZE);
-            FrontJob job_entry = this.frontJobMgr().getJobByIdStr(ajax_id_str);
+            FrontJob job_entry = this.jobMgr().getJobByIdStr(ajax_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry");
                 continue;

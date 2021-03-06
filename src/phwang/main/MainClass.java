@@ -8,16 +8,22 @@
 
 package phwang.main;
 
-import phwang.test.TestRoot;
+import phwang.test.FrontTestClass;
 
 public class MainClass {
-	private static PhwangRoot phwangRoot_;
 
 	public static void main(String[] args) {
-		phwangRoot_ = new PhwangRoot();
+		PhwangRoot root = new PhwangRoot();
 		
-		Boolean httpTestOn = true;
-		Boolean androidTestOn = true;
-		new TestRoot(httpTestOn, androidTestOn);
+		Boolean http_test_on = true;
+		if (http_test_on) {
+			FrontTestClass http_test_root = new FrontTestClass(root.frontRoot().frontDExport());
+			http_test_root.startTest();
+		}
+		
+		Boolean android_test_on = true;
+		if (android_test_on) {
+			
+		}
 	}
 }
