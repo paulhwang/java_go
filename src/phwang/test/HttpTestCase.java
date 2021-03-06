@@ -11,7 +11,7 @@ import phwang.utils.Abend;
 import phwang.utils.UtilsClass;
 import phwang.utils.ThreadMgrClass;
 import phwang.utils.ThreadInterface;
-import phwang.utils.EncodeNumberClass;
+import phwang.utils.EncodeNumber;
 import phwang.front.FrontDExportInterface;
 
 class HttpTestCase implements ThreadInterface {
@@ -41,7 +41,7 @@ class HttpTestCase implements ThreadInterface {
         this.debug(false, "HttpTestCase", "init start");
         
         this.httpTest_ = http_test_val;
-        this.indexString_ = EncodeNumberClass.encodeNumber(index_val, 6);
+        this.indexString_ = EncodeNumber.encodeNumber(index_val, 6);
         this.myNameString_ = "Test_" + this.indexString_;
     }
     

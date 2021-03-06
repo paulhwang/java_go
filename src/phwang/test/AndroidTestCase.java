@@ -8,7 +8,7 @@ package phwang.test;
 import phwang.utils.Abend;
 import phwang.utils.ThreadMgrClass;
 import phwang.utils.ThreadInterface;
-import phwang.utils.EncodeNumberClass;
+import phwang.utils.EncodeNumber;
 
 class AndroidTestCase implements ThreadInterface {
     private String objectName() {return "AndroidTestCase";}
@@ -25,7 +25,7 @@ class AndroidTestCase implements ThreadInterface {
         this.debug(false, "AndroidTestCase", "init start");
         
         this.androidTest_ = android_test_val;
-        this.indexString_ = EncodeNumberClass.encodeNumber(index_val, 6);
+        this.indexString_ = EncodeNumber.encodeNumber(index_val, 6);
         this.myNameString_ = "Test_" + this.indexString_;
     }
     

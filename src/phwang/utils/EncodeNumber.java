@@ -1,14 +1,14 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
 
 package phwang.utils;
 
-public class EncodeNumberClass {
+public class EncodeNumber {
     public static String encodeNumber(int number_val, int size_val) {
         String str = Integer.toString(number_val);
 

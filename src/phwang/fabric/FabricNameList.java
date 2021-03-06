@@ -42,13 +42,13 @@ public class FabricNameList {
         if (this.nameListTag_ > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
             this.nameListTag_ = 1;
         }
-        this.nameListTagStr_ = EncodeNumberClass.encodeNumber(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
+        this.nameListTagStr_ = EncodeNumber.encodeNumber(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
 
         this.nameList_ = "";
         for (int i = max_index; i >= 0; i--) {
             if (list_entry_array[i] != null) {
                 if (this.nameList_.length() == 0) {
-                    this.nameList_ = EncodeNumberClass.encodeNumber(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
+                    this.nameList_ = EncodeNumber.encodeNumber(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
                 }
                 else {
                     this.nameList_ = this.nameList_ + ",";

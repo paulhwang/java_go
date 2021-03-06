@@ -148,8 +148,8 @@ public class ListMgrClass {
     public ListEntryClass getEntryByIdStr(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
     	String index_str = id_str_val.substring(idSize_);
-        int id = EncodeNumberClass.decodeNumber(id_str);
-        int index = EncodeNumberClass.decodeNumber(index_str);
+        int id = EncodeNumber.decodeNumber(id_str);
+        int index = EncodeNumber.decodeNumber(index_str);
     	
         ListEntryClass entry = this.entryArray[index];
         if (entry.data() == null) {
@@ -165,7 +165,7 @@ public class ListMgrClass {
     
     public ListEntryClass getEntryByIdStrOld(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
-        int id = EncodeNumberClass.decodeNumber(id_str);
+        int id = EncodeNumber.decodeNumber(id_str);
 
         return this.getEntryById(id);
     }
