@@ -8,46 +8,32 @@
 
 package phwang.main;
 
-import phwang.utils.*;
+import phwang.utils.AbendClass;
 import phwang.engine.EngineRoot;
 import phwang.fabric.FabricRoot;
 import phwang.front.FrontRoot;
+import phwang.android.AndroidRoot;
 import phwang.models.ModelRootClass;
 import phwang.theme.ThemeRoot;
 
 public class GlobalVariableClass {
     private String objectName() {return "GlobalVariableClass";}
     
-    static public FrontRoot frontEndRootObject;
-    static public FabricRoot fabricRootObject;
-    static public ThemeRoot themeRootObject;
-    static public EngineRoot engineRootObject;
-    static public ModelRootClass modelRootObject;
+    private FrontRoot frontRoot_;
+    private FabricRoot fabricRoot_;
+    private ThemeRoot themeRoot_;
+    private EngineRoot engineRoot_;
+    private AndroidRoot androidRoot_;
+    private ModelRootClass modelRoot_;
 
     public GlobalVariableClass() {
         this.debug(false, "EngineRootClass", "init start");
-	}
-    
-    public static void Initilization() {
-        if (frontEndRootObject == null) {
-            fabricRootObject = new FabricRoot();
-            frontEndRootObject = new FrontRoot();
-            themeRootObject = new ThemeRoot();
-            engineRootObject = new EngineRoot();
-            modelRootObject = new ModelRootClass();
-        }
-    }
-    
-    public static FrontRoot getGoRoot() {
-        Initilization();
-        return frontEndRootObject;
-    }
-	
-	public void doTest(Boolean do_it_val) {
-		if (do_it_val) {
-	        this.debug(true, "doTest", "init start ****************************");
-			new BinderTestClass();
-		}
+    	this.fabricRoot_ = new FabricRoot();
+    	this.frontRoot_ = new FrontRoot();
+    	this.themeRoot_ = new ThemeRoot();
+    	this.engineRoot_ = new EngineRoot();
+    	this.androidRoot_ = new AndroidRoot();
+    	this.modelRoot_ = new ModelRootClass();
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

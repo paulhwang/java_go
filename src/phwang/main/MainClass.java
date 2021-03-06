@@ -17,8 +17,6 @@ public class MainClass {
 		// TODO Auto-generated method stub
 		
 		globalVariableObject = new GlobalVariableClass();
-		globalVariableObject.getGoRoot();
-		
-		globalVariableObject.doTest(false);
+		//globalVariableObject.getGoRoot();
 	}
 }
