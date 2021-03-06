@@ -18,7 +18,7 @@ public class HttpTest implements ThreadInterface {
 
     private FrontDExportInterface frontExportInterface_;
     private ThreadMgr threadMgr_;
-    private LockIntegerClass threadCount_;
+    private LockedInteger threadCount_;
     
     public FrontDExportInterface frontExportInterface() { return this.frontExportInterface_; }
     public ThreadMgr threadMgr() { return this.threadMgr_; }
@@ -28,7 +28,7 @@ public class HttpTest implements ThreadInterface {
         
         this.frontExportInterface_ = front_export_interface_val;
         this.threadMgr_ = new ThreadMgr();
-        this.threadCount_ = new LockIntegerClass(0);
+        this.threadCount_ = new LockedInteger(0);
     }
     
     public void startTest() {

@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -10,13 +10,13 @@ package phwang.utils;
 
 import java.util.concurrent.locks.*;
 
-public class LockBooleanClass {
+public class LockedBoolean {
 	private Lock lock;
 	private Boolean it = false;
 
 	public Boolean get() { return this.it; }
 	
-	public LockBooleanClass() {
+	public LockedBoolean() {
         this.lock= new ReentrantLock();
 	}
 

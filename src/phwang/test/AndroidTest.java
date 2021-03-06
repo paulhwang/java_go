@@ -16,7 +16,7 @@ public class AndroidTest implements ThreadInterface {
     private String androidTestThreadName() { return "AndroidTestThread"; }
 
     private ThreadMgr threadMgr_;
-    private LockIntegerClass threadCount_;
+    private LockedInteger threadCount_;
     
     public ThreadMgr threadMgr() { return this.threadMgr_; }
 
@@ -24,7 +24,7 @@ public class AndroidTest implements ThreadInterface {
         this.debug(false, "AndroidTest", "init start");
         
         this.threadMgr_ = new ThreadMgr();
-        this.threadCount_ = new LockIntegerClass(0);
+        this.threadCount_ = new LockedInteger(0);
     }
     
     public void startTest() {
