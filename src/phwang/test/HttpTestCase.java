@@ -8,7 +8,7 @@ package phwang.test;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import phwang.utils.Abend;
-import phwang.utils.UtilsClass;
+import phwang.utils.Utils;
 import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadInterface;
 import phwang.utils.EncodeNumber;
@@ -72,16 +72,16 @@ class HttpTestCase implements ThreadInterface {
     	//UtilsClass.sleep(100);
     	this.doSetupSession();
     	
-    	UtilsClass.sleep(100);
+    	Utils.sleep(100);
     	this.doSetupSession3();
     	
-    	UtilsClass.sleep(100);
+    	Utils.sleep(100);
     	this.doPutSessionData();
     	
-    	UtilsClass.sleep(100);
+    	Utils.sleep(100);
     	this.doGetSessionData();
     	
-    	UtilsClass.sleep(100);
+    	Utils.sleep(100);
     	//this.doSetupSession2();
     }
     

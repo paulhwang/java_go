@@ -21,7 +21,7 @@ public class BinderTestClass {
     public BinderTestClass() {
     	this.useBinder = true;
         new BinderServerTestClass(this.useBinder, this.port);
-        UtilsClass.sleep(1000);
+        Utils.sleep(1000);
         new BinderClientTestClass(this.useBinder, this.host, this.port);
     }
 }

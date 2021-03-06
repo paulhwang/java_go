@@ -43,7 +43,7 @@ public class HttpTest implements ThreadInterface {
     
     private void httpTestThreadFunc() {
         this.debug(true, "httpTestThreadFunc", "*******start " + this.httpTestThreadName());
-        UtilsClass.sleep(100);  
+        Utils.sleep(100);  
         
         for (int j = 0; j < 1; j++) {
         	for (int i = 0; i < 2; i++) {
