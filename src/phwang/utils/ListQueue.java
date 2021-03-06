@@ -1,7 +1,7 @@
 /*
  ******************************************************************************
  *                                       
- *  Copyright (c) 2018 phwang. All rights reserved.
+ *  Copyright (c) 2021 phwang. All rights reserved.
  *
  ******************************************************************************
  */
@@ -11,8 +11,8 @@ package phwang.utils;
 import java.util.concurrent.locks.*;
 import phwang.utils.*;
 
-public class ListQueueClass {
-    private String objectName() {return "ListQueueClass";}
+public class ListQueue {
+    private String objectName() {return "ListQueue";}
 
     private int DEFAULT_MAX_QUEUE_LENGTH = 1000;
     private int MAX_FREE_LIST_LENGTH = 100;
@@ -30,8 +30,8 @@ public class ListQueueClass {
     
     public int length() { return this.length_; }
 
-    public ListQueueClass(Boolean do_suspend_val, int max_length_val) {
-        this.debug(false, "ListQueueClass", "init start");
+    public ListQueue(Boolean do_suspend_val, int max_length_val) {
+        this.debug(false, "ListQueue", "init start");
         
         this.maxLength = max_length_val;
         this.queueLock_ = new ReentrantLock();

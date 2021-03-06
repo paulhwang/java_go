@@ -17,8 +17,8 @@ public class FabricLink {
     private ListEntryClass listEntry_;
     private String myName_;
     private FabricSessionMgr sessionMgr_;
-    private ListQueueClass pendingSessionSetupQueue_;
-    private ListQueueClass pendingSessionSetupQueue3_;
+    private ListQueue pendingSessionSetupQueue_;
+    private ListQueue pendingSessionSetupQueue3_;
 
     public String myName() { return this.myName_; }
     public int linkId() { return this.listEntry().id(); }
@@ -34,8 +34,8 @@ public class FabricLink {
         
         this.myName_ = my_name_val;
 
-        this.pendingSessionSetupQueue_ = new ListQueueClass(false, 0);
-        this.pendingSessionSetupQueue3_ = new ListQueueClass(false, 0);
+        this.pendingSessionSetupQueue_ = new ListQueue(false, 0);
+        this.pendingSessionSetupQueue3_ = new ListQueue(false, 0);
         this.sessionMgr_ = new FabricSessionMgr(this);
     }
 

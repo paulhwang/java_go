@@ -38,8 +38,8 @@ public class BinderClass implements ThreadInterface {
     private OutputStreamWriter outputWriter;
     private Boolean useIOnotReaderWriter = true;
     
-    private ListQueueClass receiveQueue;
-    private ListQueueClass transmitQueue;
+    private ListQueue receiveQueue;
+    private ListQueue transmitQueue;
     
     private String ownerObjectName()  {return this.ownerObjectName_; }
     public short port() { return this.port_; }
@@ -51,8 +51,8 @@ public class BinderClass implements ThreadInterface {
 
     public BinderClass(String owner_object_name_val) {
         this.ownerObjectName_ = owner_object_name_val;
-        this.receiveQueue = new ListQueueClass(true, 0);
-        this.transmitQueue = new ListQueueClass(true, 0);
+        this.receiveQueue = new ListQueue(true, 0);
+        this.transmitQueue = new ListQueue(true, 0);
     }
     
 	public void threadCallbackFunction() {
