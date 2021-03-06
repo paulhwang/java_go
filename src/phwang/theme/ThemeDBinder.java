@@ -8,7 +8,9 @@
 
 package phwang.theme;
 
-import phwang.utils.*;
+import phwang.utils.BinderClass;
+import phwang.utils.ThreadMgrClass;
+import phwang.utils.ThreadInterface;
 import phwang.protocols.*;
 
 public class ThemeDBinder implements ThreadInterface {
@@ -66,6 +68,6 @@ public class ThemeDBinder implements ThreadInterface {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.themeRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { this.themeRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

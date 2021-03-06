@@ -43,6 +43,10 @@ public class ThemeRoot {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.logIt(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { this.abendIt(this.objectName() + "." + s0 + "()", s1); }
+
+    private Boolean debug_on = true;
+    public void logIt(String s0, String s1) { if (this.debug_on) AbendClass.log(s0, s1); }
+    public void abendIt(String s0, String s1) { if (this.debug_on) AbendClass.abend(s0, s1); }
 }

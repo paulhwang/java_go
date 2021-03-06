@@ -19,15 +19,16 @@ public class EngineBaseMgr {
     private static final int FIRST_BASE_ID = 9000;
     private static final int LIST_MGR_ARRAY_SIZE = 128;
 
-    private EngineRoot engineRootObject;
+    private EngineRoot engineRoot_;
     private ListMgrClass listMgr;
 
+    private EngineRoot engineRoot() { return this.engineRoot_; }
     public ListMgrClass ListMgr() { return this.listMgr; }
   
-    public EngineBaseMgr(EngineRoot engine_root_object_val) {
+    public EngineBaseMgr(EngineRoot root_val) {
         this.debug(false, "EngineBaseMgr", "init start");
 
-        this.engineRootObject = engine_root_object_val;
+        this.engineRoot_ = root_val;
         this.listMgr = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
@@ -51,6 +52,6 @@ public class EngineBaseMgr {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.engineRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { this.engineRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

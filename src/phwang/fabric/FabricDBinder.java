@@ -8,7 +8,9 @@
 
 package phwang.fabric;
 
-import phwang.utils.*;
+import phwang.utils.BinderClass;
+import phwang.utils.ThreadInterface;
+import phwang.utils.ThreadMgrClass;
 
 public class FabricDBinder implements ThreadInterface {
     private String objectName() {return "FabricDBinder";}
@@ -63,6 +65,6 @@ public class FabricDBinder implements ThreadInterface {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { AbendClass.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { AbendClass.abend(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.fabricRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    public void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }
