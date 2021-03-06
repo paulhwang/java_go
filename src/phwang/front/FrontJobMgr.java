@@ -8,7 +8,7 @@
 
 package phwang.front;
 
-import phwang.utils.ListEntryClass;
+import phwang.utils.ListEntry;
 import phwang.utils.ListMgrClass;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -40,7 +40,7 @@ public class FrontJobMgr {
 
     public FrontJob mallocJob() {
     	FrontJob job = new FrontJob();
-        ListEntryClass list_entry = this.listMgr().malloc(job);
+    	ListEntry list_entry = this.listMgr().malloc(job);
         job.bindListEntry(list_entry);
         return job;
     }
@@ -50,7 +50,7 @@ public class FrontJobMgr {
     }
     
     public FrontJob getJobByIdStr(String job_id_str_val) {
-     	ListEntryClass list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
+    	ListEntry list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
         if (list_entry == null) {
             return null;
         }

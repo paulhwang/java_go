@@ -35,7 +35,7 @@ public class FabricLinkMgr implements ListMgrInterface {
 
     public FabricLink mallocLink(String my_name_val) {
     	FabricLink link = new FabricLink(my_name_val);
-        ListEntryClass list_entry = this.listMgr().malloc(link);
+    	ListEntry list_entry = this.listMgr().malloc(link);
         link.bindListEntry(list_entry);
         this.nameList().updateNameList();
         return link;
@@ -46,7 +46,7 @@ public class FabricLinkMgr implements ListMgrInterface {
     }
     
     public FabricLink getLinkByIdStr(String link_id_str_val) {
-        ListEntryClass list_entry = this.listMgr().getEntryByIdStr(link_id_str_val);
+    	ListEntry list_entry = this.listMgr().getEntryByIdStr(link_id_str_val);
         if (list_entry == null) {
             return null;
         }
@@ -63,7 +63,7 @@ public class FabricLinkMgr implements ListMgrInterface {
     }
 
     public FabricLink GetLinkByMyName(String my_name_val) {
-        ListEntryClass list_entry = this.listMgr().getEntryByCompare(this, my_name_val);
+    	ListEntry list_entry = this.listMgr().getEntryByCompare(this, my_name_val);
         if (list_entry == null) {
             return null;
         }

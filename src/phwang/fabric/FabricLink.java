@@ -14,7 +14,7 @@ import phwang.protocols.FabricFrontEndProtocolClass;
 public class FabricLink {
     private String objectName() {return "FabricLink";}
 
-    private ListEntryClass listEntry_;
+    private ListEntry listEntry_;
     private String myName_;
     private FabricSessionMgr sessionMgr_;
     private ListQueue pendingSessionSetupQueue_;
@@ -23,11 +23,11 @@ public class FabricLink {
     public String myName() { return this.myName_; }
     public int linkId() { return this.listEntry().id(); }
     public String linkIdStr() { return this.listEntry().idStr(); }
-    private ListEntryClass listEntry() { return this.listEntry_; }
+    private ListEntry listEntry() { return this.listEntry_; }
     public FabricSessionMgr sessionMgr() { return this.sessionMgr_; }
 
     public int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }
-    public ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
+    public ListEntry[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
 
     public FabricLink(String my_name_val) {
         this.debug(false, "FabricLink", "init start");
@@ -39,7 +39,7 @@ public class FabricLink {
         this.sessionMgr_ = new FabricSessionMgr(this);
     }
 
-    public void bindListEntry(ListEntryClass list_entry_object_val) {
+    public void bindListEntry(ListEntry list_entry_object_val) {
         this.listEntry_ = list_entry_object_val;
     }
 

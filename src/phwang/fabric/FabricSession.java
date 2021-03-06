@@ -14,13 +14,13 @@ public class FabricSession {
     private String objectName() {return "FabricSession";}
 
     private FabricLink link_;
-    private ListEntryClass listEntryObject_;
+    private ListEntry listEntryObject_;
     private String browserThemeIdStr_;
     private FabricGroup fabricGroup_;
     private ListQueue pendingDownLinkDataQueue_;
 
     public FabricLink link() { return this.link_; }
-    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
+    private ListEntry listEntryObject() { return this.listEntryObject_; }
     public int sessionId() { return this.listEntryObject().id(); }
     public String sessionIdStr() { return this.listEntryObject().idStr(); }
     public String browserThemeIdStr() { return this.browserThemeIdStr_; }
@@ -32,7 +32,7 @@ public class FabricSession {
         this.pendingDownLinkDataQueue_ = new ListQueue(false, 0);
     }
 
-    public void bindListEntry(ListEntryClass list_entry_object_val) {
+    public void bindListEntry(ListEntry list_entry_object_val) {
         this.listEntryObject_ = list_entry_object_val;
     }
 

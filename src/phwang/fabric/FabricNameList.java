@@ -36,7 +36,7 @@ public class FabricNameList {
     	FabricLinkMgr link_list_mgr = this.fabricRoot.linkMgr();
 
         int max_index = link_list_mgr.listMgr().MaxIndex();
-        ListEntryClass[] list_entry_array = link_list_mgr.listMgr().EntryTableArray();
+        ListEntry[] list_entry_array = link_list_mgr.listMgr().EntryTableArray();
 
         this.nameListTag_++;
         if (this.nameListTag_ > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {

@@ -14,11 +14,11 @@ import phwang.go.GoRoot;
 public class EngineBase {
     private String objectName() {return "EngineBase";}
 
-    private ListEntryClass listEntryObject_;
+    private ListEntry listEntryObject_;
     private String roomIdStr_;
     private GoRoot goRootObject;
 
-    private ListEntryClass listEntryObject() { return this.listEntryObject_; }
+    private ListEntry listEntryObject() { return this.listEntryObject_; }
     public int baseId() { return this.listEntryObject().id(); }
     public String BaseIdStr() { return this.listEntryObject().idStr(); }
     public String roomIdStr() { return this.roomIdStr_; }
@@ -27,7 +27,7 @@ public class EngineBase {
         this.roomIdStr_ = room_id_str_val;
     }
 
-    public void bindListEntry(ListEntryClass list_entry_object_val) {
+    public void bindListEntry(ListEntry list_entry_object_val) {
         this.listEntryObject_ = list_entry_object_val;
     }
 

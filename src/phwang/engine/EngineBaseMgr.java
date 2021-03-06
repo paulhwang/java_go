@@ -34,7 +34,7 @@ public class EngineBaseMgr {
 
     public EngineBase MallocGoBase(String room_id_val) {
     	EngineBase go_base = new EngineBase(room_id_val);
-        ListEntryClass list_entry = this.listMgr.malloc(go_base);
+    	ListEntry list_entry = this.listMgr.malloc(go_base);
         go_base.bindListEntry(list_entry);
         return go_base;
     }
@@ -44,7 +44,7 @@ public class EngineBaseMgr {
     }
     
     public EngineBase GetBaseByIdStr(String base_id_str_val) {
-        ListEntryClass list_entry = this.listMgr.getEntryByIdStr(base_id_str_val);
+    	ListEntry list_entry = this.listMgr.getEntryByIdStr(base_id_str_val);
         if (list_entry == null) {
             return null;
         }

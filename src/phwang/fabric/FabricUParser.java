@@ -164,10 +164,10 @@ public class FabricUParser {
         String downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.fabricRoot().nameList().nameListTagStr();
 
         int max_session_table_array_index = link.GetSessionArrayMaxIndex();
-        ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
+        ListEntry[] session_table_array = link.GetSessionArrayEntryTable();
         String pending_session_data = "";
         for (int i = 0; i <= max_session_table_array_index; i++) {
-            ListEntryClass list_entry = session_table_array[i];
+        	ListEntry list_entry = session_table_array[i];
             FabricSession session = (FabricSession)list_entry.data();
             if (session != null) {
                if (session.getPendingDownLinkDataCount() > 0) {

@@ -8,20 +8,20 @@
 
 package phwang.front;
 
-import phwang.utils.ListEntryClass;
+import phwang.utils.ListEntry;
 
 public class FrontJob {
     private String objectName() {return "FrontJob";}
 
-    private ListEntryClass listEntry_;
+    private ListEntry listEntry_;
     private String data_;
     private Thread pendingThread_;
     
     public int jobId() { return this.listEntryObject().id(); }
     public String jobIdStr() { return this.listEntryObject().idStr(); }
-    private ListEntryClass listEntryObject() { return this.listEntry_; }
+    private ListEntry listEntryObject() { return this.listEntry_; }
 
-    public void bindListEntry(ListEntryClass list_entry_object_val) {
+    public void bindListEntry(ListEntry list_entry_object_val) {
         this.listEntry_ = list_entry_object_val;
     }
 

@@ -14,11 +14,11 @@ import phwang.protocols.FabricThemeProtocolClass;
 public class ThemeRoom {
     private String objectName() {return "ThemeRoom";}
 
-    private ListEntryClass listEntry_;
+    private ListEntry listEntry_;
     private String groupIdStr_;
     private String baseIdStr_;
 
-    private ListEntryClass listEntry() { return this.listEntry_; }
+    private ListEntry listEntry() { return this.listEntry_; }
     private int roomId() { return this.listEntry().id(); }
     public String roomIdStr() { return this.listEntry().idStr(); }
     public String groupIdStr() { return this.groupIdStr_; }
@@ -30,7 +30,7 @@ public class ThemeRoom {
         this.groupIdStr_ = group_id_str_val;
     }
 
-    public void bindListEntry(ListEntryClass list_entry_val) {
+    public void bindListEntry(ListEntry list_entry_val) {
         this.listEntry_ = list_entry_val;
     }
 

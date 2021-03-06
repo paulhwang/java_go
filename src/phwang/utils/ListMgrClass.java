@@ -25,13 +25,13 @@ public class ListMgrClass {
     private int maxIndex;
     private int maxGlobalId;
     int entryCount;
-    private ListEntryClass[] entryArray;
+    private ListEntry[] entryArray;
     private int arraySize;
     private Lock theLock;
 
     public int idSize() { return this.idSize_; }
     public int MaxIndex() { return this.maxIndex; }
-    public ListEntryClass[] EntryTableArray() { return this.entryArray; }
+    public ListEntry[] EntryTableArray() { return this.entryArray; }
 
     public ListMgrClass(int id_size_val, int array_size_val, String caller_name_val, int first_global_id_val) {
         this.debug(false, "ListMgrClass", "init start (" + caller_name_val + ")");
@@ -51,7 +51,7 @@ public class ListMgrClass {
         }
         this.maxGlobalId -= 1;
         
-        this.entryArray = new ListEntryClass[this.arraySize];
+        this.entryArray = new ListEntry[this.arraySize];
     }
 
     private int allocId() {
@@ -62,23 +62,23 @@ public class ListMgrClass {
         return this.globalId;
     }
 
-    public ListEntryClass malloc(Object object_val) {
+    public ListEntry malloc(Object object_val) {
         this.debug(false, "malloc", "start");
     	
         this.abendListMgr("before malloc");
         this.theLock.lock();
-        ListEntryClass entry = this.malloc_(object_val);
+        ListEntry entry = this.malloc_(object_val);
     	this.theLock.unlock();
         this.abendListMgr("after malloc");
         
         return entry;
     }
 
-    private ListEntryClass malloc_(Object object_val) {
+    private ListEntry malloc_(Object object_val) {
         int id = this.allocId();
         for (int i = 0; i < this.arraySize; i++) {
             if (this.entryArray[i] == null) {
-            	this.entryArray[i] = new ListEntryClass(i, this.idSize());
+            	this.entryArray[i] = new ListEntry(i, this.idSize());
                 if (i > this.maxIndex) {
                     this.maxIndex = i;
                 }
@@ -98,7 +98,7 @@ public class ListMgrClass {
         
         //this.abend("allocIndex", "run out");
         
-        ListEntryClass[] new_array = new ListEntryClass[this.arraySize * 2];
+        ListEntry[] new_array = new ListEntry[this.arraySize * 2];
         for (int i = 0; i < this.arraySize; i++) {
         	new_array[i] = this.entryArray[i];
         	this.entryArray[i] = null;;
@@ -107,12 +107,12 @@ public class ListMgrClass {
         this.maxIndex = this.arraySize;
         this.entryCount = this.arraySize + 1;
         this.arraySize = this.arraySize * 2;
-    	this.entryArray[this.maxIndex] = new ListEntryClass(this.maxIndex, this.idSize());
+    	this.entryArray[this.maxIndex] = new ListEntry(this.maxIndex, this.idSize());
         this.entryArray[this.maxIndex].setData(id, object_val);
         return this.entryArray[this.maxIndex];
     }
 
-    public void free(ListEntryClass entry_val) {
+    public void free(ListEntry entry_val) {
         this.abendListMgr("before free");
         
         this.theLock.lock();
@@ -122,7 +122,7 @@ public class ListMgrClass {
         this.abendListMgr("after free");
     }
 
-    private void free_(ListEntryClass entry_val) {
+    private void free_(ListEntry entry_val) {
         this.entryArray[entry_val.Index()].resetData();
         this.entryCount--;
     }
@@ -145,13 +145,13 @@ public class ListMgrClass {
         this.entryCount = 0;
     }
     
-    public ListEntryClass getEntryByIdStr(String id_str_val) {
+    public ListEntry getEntryByIdStr(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
     	String index_str = id_str_val.substring(idSize_);
         int id = EncodeNumber.decodeNumber(id_str);
         int index = EncodeNumber.decodeNumber(index_str);
     	
-        ListEntryClass entry = this.entryArray[index];
+        ListEntry entry = this.entryArray[index];
         if (entry.data() == null) {
         	this.abend("ListEntryClass", "null data");
         	return null;
@@ -163,26 +163,26 @@ public class ListMgrClass {
         return entry;
     }
     
-    public ListEntryClass getEntryByIdStrOld(String id_str_val) {
+    public ListEntry getEntryByIdStrOld(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
         int id = EncodeNumber.decodeNumber(id_str);
 
         return this.getEntryById(id);
     }
     
-    public ListEntryClass getEntryById(int id_val) {
+    public ListEntry getEntryById(int id_val) {
         this.abendListMgr("before getEntryById");
         
         this.theLock.lock();
-    	ListEntryClass entry = getEntryById_(id_val);
+        ListEntry entry = getEntryById_(id_val);
     	this.theLock.unlock();
     	
     	this.abendListMgr("after getEntryById");
     	return entry;
     }
 
-    private ListEntryClass getEntryById_(int id_val) {
-        ListEntryClass entry;
+    private ListEntry getEntryById_(int id_val) {
+    	ListEntry entry;
 
         for (int i = 0; i <= this.maxIndex; i++) {
             entry = this.entryArray[i];
@@ -193,19 +193,19 @@ public class ListMgrClass {
         return null;
     }
 
-    public ListEntryClass getEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
+    public ListEntry getEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
         this.abendListMgr("before getEntryByCompare");
         
         this.theLock.lock();
-        ListEntryClass entry = getEntryByCompare_(calling_object_val, string_val);
+        ListEntry entry = getEntryByCompare_(calling_object_val, string_val);
         this.theLock.unlock();
         
         this.abendListMgr("after getEntryByCompare");
     	return entry;
     }
     
-    private ListEntryClass getEntryByCompare_(ListMgrInterface calling_object_val, String string_val) {
-        ListEntryClass entry;
+    private ListEntry getEntryByCompare_(ListMgrInterface calling_object_val, String string_val) {
+    	ListEntry entry;
 
         for (int i = 0; i <= maxIndex; i++) {
             entry = this.entryArray[i];
