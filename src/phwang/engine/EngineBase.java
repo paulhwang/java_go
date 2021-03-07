@@ -31,6 +31,10 @@ public class EngineBase implements ListEntryInt {
         this.listEntry_ = list_entry_object_val;
     }
 
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
+
     public String setupBase(String input_data_val) {
     	this.debug(false, "setupBase", "input_data_val=" + input_data_val);
         String input_data = input_data_val.substring(1);

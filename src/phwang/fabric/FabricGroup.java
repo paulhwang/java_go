@@ -38,6 +38,10 @@ public class FabricGroup implements ListEntryInt {
         this.listEntry_ = list_entry_object_val;
     }
 
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
+
     public void insertSession(FabricSession session_val) {
         this.groupSessionMgr().insertSession(session_val);
     }

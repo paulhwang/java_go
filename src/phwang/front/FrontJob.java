@@ -26,6 +26,10 @@ public class FrontJob implements ListEntryInt {
         this.listEntry_ = list_entry_val;
     }
 
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
+
     public String readData() {
         while (this.data_ == null) {
         	try {

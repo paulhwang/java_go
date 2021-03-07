@@ -36,6 +36,10 @@ public class FabricSession implements ListEntryInt {
         this.listEntry_ = list_entry_object_val;
     }
 
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
+
     public void bindGroup(FabricGroup group_object_val) {
         this.fabricGroup_ = group_object_val;
     }

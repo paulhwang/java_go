@@ -11,7 +11,7 @@ package phwang.utils;
 public class ListEntry {
     private int id_;
     private String id_str_;
-    private Object data_;
+    private ListEntryInt data_;
     private int index_;
     private int id_size_;
     private String indexStr_;
@@ -19,7 +19,7 @@ public class ListEntry {
     public int index() { return this.index_; }
     public int id() { return this.id_; }
     public String idStr() { return this.id_str_; }
-    public Object data() { return this.data_; }
+    public ListEntryInt data() { return this.data_; }
 
 
     public ListEntry(int index_val, int id_size_val) {
@@ -28,7 +28,7 @@ public class ListEntry {
     	this.indexStr_ = EncodeNumber.encodeNumber(this.index_, this.id_size_);
     }
 
-    public void setData(int id_val, Object data_val) {
+    public void setData(int id_val, ListEntryInt data_val) {
         this.id_ = id_val;
         this.data_ = data_val;
         StringBuilder id_str_buf = new StringBuilder(EncodeNumber.encodeNumber(this.id_, this.id_size_));

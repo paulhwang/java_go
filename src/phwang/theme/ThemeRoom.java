@@ -34,6 +34,10 @@ public class ThemeRoom implements ListEntryInt {
         this.listEntry_ = list_entry_val;
     }
 
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
+
     public void setBaseIdStr(String base_id_str_val) {
         this.baseIdStr_ = base_id_str_val;
     }

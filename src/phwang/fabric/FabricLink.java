@@ -42,6 +42,10 @@ public class FabricLink implements ListEntryInt {
         this.listEntry_ = list_entry_object_val;
     }
 
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
+
     public FabricSession mallocSession() {
         return this.sessionMgr().mallocSession();
     }

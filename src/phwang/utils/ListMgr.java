@@ -130,6 +130,7 @@ public class ListMgr {
     }
 
     private void free_(ListEntry entry_val) {
+        this.entryArray_[entry_val.index()].data().unBindListEntry();
         this.entryArray_[entry_val.index()].clearData();
         this.entryCount_--;
     }
@@ -146,6 +147,7 @@ public class ListMgr {
 
     public void flush_() {
         for (int i = 0; i <= this.maxIndex_; i++) {
+            this.entryArray_[i].data().unBindListEntry();
             this.entryArray_[i].clearData();
             this.entryArray_[i] = null;
         }
