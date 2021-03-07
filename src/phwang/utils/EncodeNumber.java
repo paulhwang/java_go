@@ -9,7 +9,7 @@
 package phwang.utils;
 
 public class EncodeNumber {
-    public static String encodeNumber(int number_val, int size_val) {
+    public static String encode(int number_val, int size_val) {
         String str = Integer.toString(number_val);
 
         var buf = "";
@@ -20,7 +20,7 @@ public class EncodeNumber {
         return buf;
     }
 
-    public static int decodeNumber(String str_val) {
+    public static int decode(String str_val) {
         int str_len = str_val.length();
         int val = 0;
 

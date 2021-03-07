@@ -67,6 +67,7 @@ public class ListMgr {
         this.theLock.lock();
         
         ListEntry entry = this.malloc_();
+        
         int id = this.allocId();
         this.entryCount_++;
         entry.setData(id, entity_int_val);
@@ -157,8 +158,8 @@ public class ListMgr {
     public ListEntry getEntryByIdStr(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
     	String index_str = id_str_val.substring(idSize_);
-        int id = EncodeNumber.decodeNumber(id_str);
-        int index = EncodeNumber.decodeNumber(index_str);
+        int id = EncodeNumber.decode(id_str);
+        int index = EncodeNumber.decode(index_str);
         
     	ListEntry entry;
         //this.theLock.lock();
@@ -188,7 +189,7 @@ public class ListMgr {
     
     public ListEntry getEntryByIdStrOld(String id_str_val) {
     	String id_str = id_str_val.substring(0, idSize_);
-        int id = EncodeNumber.decodeNumber(id_str);
+        int id = EncodeNumber.decode(id_str);
 
         return this.getEntryById(id);
     }

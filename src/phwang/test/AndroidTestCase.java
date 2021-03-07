@@ -25,7 +25,7 @@ class AndroidTestCase implements ThreadEntityInt {
         this.debug(false, "AndroidTestCase", "init start");
         
         this.androidTest_ = android_test_val;
-        this.indexString_ = EncodeNumber.encodeNumber(index_val, 6);
+        this.indexString_ = EncodeNumber.encode(index_val, 6);
         this.myNameString_ = "Test_" + this.indexString_;
     }
     

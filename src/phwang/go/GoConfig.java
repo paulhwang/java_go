@@ -34,9 +34,9 @@ public class GoConfig {
         String handicap_str = input_data_val.substring(5, 7);
         String komi_str = input_data_val.substring(7, 9);
 
-        this.boardSize_ = EncodeNumber.decodeNumber(board_size_str);
-        this.handicapPoint_ = EncodeNumber.decodeNumber(handicap_str);
-        this.komiPoint_ = EncodeNumber.decodeNumber(komi_str);
+        this.boardSize_ = EncodeNumber.decode(board_size_str);
+        this.handicapPoint_ = EncodeNumber.decode(handicap_str);
+        this.komiPoint_ = EncodeNumber.decode(komi_str);
         
     	this.debug(false, "ConfigIt", "boardSize=" + boardSize());
     }

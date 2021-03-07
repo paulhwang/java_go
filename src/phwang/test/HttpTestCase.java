@@ -41,7 +41,7 @@ class HttpTestCase implements ThreadEntityInt {
         this.debug(false, "HttpTestCase", "init start");
         
         this.httpTest_ = http_test_val;
-        this.indexString_ = EncodeNumber.encodeNumber(index_val, 6);
+        this.indexString_ = EncodeNumber.encode(index_val, 6);
         this.myNameString_ = "Test_" + this.indexString_;
     }
     
