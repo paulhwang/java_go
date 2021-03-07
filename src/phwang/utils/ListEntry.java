@@ -18,7 +18,7 @@ public class ListEntry {
     private int id_size_;
     private String indexStr_;
     
-    public int Index() { return this.index_; }
+    public int index() { return this.index_; }
     public int id() { return this.id_; }
     public String idStr() { return this.id_str_; }
     public Object data() { return this.data_; }

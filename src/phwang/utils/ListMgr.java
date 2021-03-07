@@ -19,11 +19,11 @@ public class ListMgr {
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
     private String callerName;
-    private int globalId;
+    private int globalId_;
     int MaxIdIndexTableIndex;
     private int maxIndex_;
     private int maxGlobalId_;
-    int entryCount;
+    int entryCount_;
     private ListEntry[] entryArray_;
     private int arraySize_;
     private Lock theLock;
@@ -37,8 +37,8 @@ public class ListMgr {
 
         this.idSize_ = id_size_val;
         this.callerName = caller_name_val;
-        this.globalId = first_global_id_val;
-        this.entryCount = 0;
+        this.globalId_ = first_global_id_val - 1;
+        this.entryCount_ = 0;
         this.MaxIdIndexTableIndex = 0;
         this.maxIndex_ = -1;
         this.theLock = new ReentrantLock();
@@ -54,11 +54,11 @@ public class ListMgr {
     }
 
     private int allocId() {
-        if (this.globalId >= this.maxGlobalId_) {
-            this.globalId = -1;
+        if (this.globalId_ >= this.maxGlobalId_) {
+            this.globalId_ = -1;
         }
-        this.globalId++;
-        return this.globalId;
+        this.globalId_++;
+        return this.globalId_;
     }
 
     public ListEntry malloc(Object object_val) {
@@ -70,6 +70,15 @@ public class ListMgr {
     	this.theLock.unlock();
         this.abendListMgr("after malloc");
         
+        if (this.entryCount_ > this.maxGlobalId_) {
+            this.abend("malloc", "entryCount_=" + this.entryCount_ + " > maxGlobalId_=" + this.maxGlobalId_);
+        }
+        
+        if (entry.index() > this.maxGlobalId_) {
+            this.abend("malloc", "index=" + entry.index() + " > maxGlobalId_=" + this.maxGlobalId_);
+        }
+        
+        this.debug(false, "malloc", "id=" + entry.id() + " index=" + entry.index());
         return entry;
     }
 
@@ -82,9 +91,9 @@ public class ListMgr {
                     this.maxIndex_ = i;
                 }
                 else {
-                    this.abend("allocIndex", "maxIndex");
+                    this.abend("malloc_", "maxIndex");
                 }
-                this.entryCount++;
+                this.entryCount_++;
                 this.entryArray_[i].setData(id, object_val);
                 return this.entryArray_[i];
             }
@@ -104,7 +113,7 @@ public class ListMgr {
         }
         this.entryArray_ = new_array;
         this.maxIndex_ = this.arraySize_;
-        this.entryCount = this.arraySize_ + 1;
+        this.entryCount_ = this.arraySize_ + 1;
         this.arraySize_ = this.arraySize_ * 2;
     	this.entryArray_[this.maxIndex_] = new ListEntry(this.maxIndex_, this.idSize());
         this.entryArray_[this.maxIndex_].setData(id, object_val);
@@ -122,8 +131,8 @@ public class ListMgr {
     }
 
     private void free_(ListEntry entry_val) {
-        this.entryArray_[entry_val.Index()].resetData();
-        this.entryCount--;
+        this.entryArray_[entry_val.index()].resetData();
+        this.entryCount_--;
     }
 
     public void flush() {
@@ -141,7 +150,7 @@ public class ListMgr {
             this.entryArray_[i].resetData();
             this.entryArray_[i] = null;
         }
-        this.entryCount = 0;
+        this.entryCount_ = 0;
     }
     
     public ListEntry getEntryByIdStr(String id_str_val) {
@@ -246,7 +255,7 @@ public class ListMgr {
                 count++;
             }
         }
-        if (this.entryCount != count) {
+        if (this.entryCount_ != count) {
             this.abend("abendListMgr_", "count not match");
         }
     }
