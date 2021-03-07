@@ -22,6 +22,7 @@ public class ListMgr {
     private int maxIndex_;
     private int maxGlobalId_;
     int entryCount_;
+    private ListEntry[] oldEntryArray_;//needed for postponing garbage collection
     private ListEntry[] entryArray_;
     private int arraySize_;
     private Lock theLock;
@@ -105,9 +106,10 @@ public class ListMgr {
         
         //this.abend("allocIndex", "run out");
         
+        this.oldEntryArray_ = this.entryArray_;
         ListEntry[] new_array = new ListEntry[this.arraySize_ * 2];
         for (int i = 0; i < this.arraySize_; i++) {
-        	new_array[i] = this.entryArray_[i];
+        	new_array[i] = this.oldEntryArray_[i];
         	//*** to remove the lock from reading array //this.entryArray_[i] = null;;
         }
         this.entryArray_ = new_array;
