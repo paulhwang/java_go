@@ -9,8 +9,9 @@
 package phwang.front;
 
 import phwang.utils.ListEntry;
+import phwang.utils.ListEntryInt;
 
-public class FrontJob {
+public class FrontJob implements ListEntryInt {
     private String objectName() {return "FrontJob";}
 
     private ListEntry listEntry_;

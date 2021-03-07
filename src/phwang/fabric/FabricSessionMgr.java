@@ -37,7 +37,6 @@ public class FabricSessionMgr {
     public FabricSession mallocSession() {
     	FabricSession session = new FabricSession(this.link());
     	ListEntry list_entry = this.listMgr().malloc(session);
-        session.bindListEntry(list_entry);
         return session;
     }
 

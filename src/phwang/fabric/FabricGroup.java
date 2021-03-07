@@ -9,9 +9,10 @@
 package phwang.fabric;
 
 import phwang.utils.*;
+import phwang.utils.ListEntryInt;
 import phwang.protocols.FabricThemeProtocolClass;
 
-public class FabricGroup {
+public class FabricGroup implements ListEntryInt {
     private String objectName() {return "FabricGroup";}
 
     private ListEntry listEntry_;

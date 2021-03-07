@@ -36,7 +36,6 @@ public class EngineBaseMgr {
     public EngineBase MallocGoBase(String room_id_val) {
     	EngineBase go_base = new EngineBase(room_id_val);
     	ListEntry list_entry = this.listMgr_.malloc(go_base);
-        go_base.bindListEntry(list_entry);
         return go_base;
     }
 

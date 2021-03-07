@@ -60,7 +60,7 @@ public class ListMgr {
         return this.globalId_;
     }
 
-    public ListEntry malloc(Object object_val) {
+    public ListEntry malloc(ListEntryInt object_val) {
         this.debug(false, "malloc", "start");
     	
         this.abendListMgr("before malloc");
@@ -70,6 +70,7 @@ public class ListMgr {
         int id = this.allocId();
         this.entryCount_++;
         entry.setData(id, object_val);
+        object_val.bindListEntry(entry);
         
     	this.theLock.unlock();
         this.abendListMgr("after malloc");

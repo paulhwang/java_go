@@ -8,7 +8,6 @@
 
 package phwang.fabric;
 
-import phwang.front.FrontJob;
 import phwang.utils.*;
 
 public class FabricGroupMgr {
@@ -36,7 +35,6 @@ public class FabricGroupMgr {
     public FabricGroup mallocGroup(String theme_data_val) {
     	FabricGroup group = new FabricGroup(theme_data_val);
     	ListEntry list_entry = this.listMgr().malloc(group);
-        group.bindListEntry(list_entry);
         return group;
     }
 

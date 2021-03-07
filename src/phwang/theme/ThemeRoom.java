@@ -11,7 +11,7 @@ package phwang.theme;
 import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 
-public class ThemeRoom {
+public class ThemeRoom implements ListEntryInt {
     private String objectName() {return "ThemeRoom";}
 
     private ListEntry listEntry_;

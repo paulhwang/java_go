@@ -34,7 +34,6 @@ public class ThemeRoomMgr {
     public ThemeRoom mallocRoom(String group_id_str_val) {
     	ThemeRoom room = new ThemeRoom(group_id_str_val);
     	ListEntry list_entry = this.listMgr_.malloc(room);
-        room.bindListEntry(list_entry);
         return room;
     }
 

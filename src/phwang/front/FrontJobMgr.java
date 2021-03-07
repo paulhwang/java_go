@@ -36,7 +36,6 @@ public class FrontJobMgr {
     public FrontJob mallocJob() {
     	FrontJob job = new FrontJob();
     	ListEntry list_entry = this.listMgr().malloc(job);
-        job.bindListEntry(list_entry);
         return job;
     }
 

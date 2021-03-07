@@ -11,7 +11,7 @@ package phwang.engine;
 import phwang.utils.*;
 import phwang.go.GoRoot;
 
-public class EngineBase {
+public class EngineBase implements ListEntryInt {
     private String objectName() {return "EngineBase";}
 
     private ListEntry listEntry_;

@@ -8,7 +8,6 @@
 
 package phwang.utils;
 
-@FunctionalInterface
-public interface ListMgrInterface {
-    public Boolean compareObjectFunc(Object obj_val, String str_val);
+public interface ListEntryInt {
+    public void bindListEntry(ListEntry list_entry_val);
 }

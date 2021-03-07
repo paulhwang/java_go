@@ -10,7 +10,7 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class FabricLink {
+public class FabricLink implements ListEntryInt {
     private String objectName() {return "FabricLink";}
 
     private ListEntry listEntry_;
