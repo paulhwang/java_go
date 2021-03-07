@@ -14,13 +14,13 @@ import phwang.go.GoRoot;
 public class EngineBase {
     private String objectName() {return "EngineBase";}
 
-    private ListEntry listEntryObject_;
+    private ListEntry listEntry_;
     private String roomIdStr_;
-    private GoRoot goRootObject;
+    private GoRoot goRoot_;
 
-    private ListEntry listEntryObject() { return this.listEntryObject_; }
-    public int baseId() { return this.listEntryObject().id(); }
-    public String BaseIdStr() { return this.listEntryObject().idStr(); }
+    public ListEntry listEntry() { return this.listEntry_; }
+    public int baseId() { return this.listEntry().id(); }
+    public String BaseIdStr() { return this.listEntry().idStr(); }
     public String roomIdStr() { return this.roomIdStr_; }
 
     public EngineBase(String room_id_str_val) {
@@ -28,7 +28,7 @@ public class EngineBase {
     }
 
     public void bindListEntry(ListEntry list_entry_object_val) {
-        this.listEntryObject_ = list_entry_object_val;
+        this.listEntry_ = list_entry_object_val;
     }
 
     public String setupBase(String input_data_val) {
@@ -37,8 +37,8 @@ public class EngineBase {
 
         switch (input_data_val.charAt(0)) {
             case 'G':
-                this.goRootObject = new GoRoot();
-                return this.goRootObject.doSetup(input_data);
+                this.goRoot_ = new GoRoot();
+                return this.goRoot_.doSetup(input_data);
 
             default:
                 String err_msg = "command " + input_data_val.charAt(0) + " not supported";
@@ -52,7 +52,7 @@ public class EngineBase {
 
         switch (input_data_val.charAt(0)) {
             case 'G':
-                String output_data = this.goRootObject.processInputData(input_data);
+                String output_data = this.goRoot_.processInputData(input_data);
                 return output_data;
 
             default:

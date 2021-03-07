@@ -17,7 +17,7 @@ public class HttpTest implements ThreadInterface {
     private String httpTestThreadName() { return "HttpTestThread"; }
 
     private int i_ = 99;
-    private int j_ = 10;
+    private int j_ = 100;
     
     private FrontDExportInterface frontExportInterface_;
     private ThreadMgr threadMgr_;

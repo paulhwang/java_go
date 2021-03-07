@@ -8,7 +8,8 @@
 
 package phwang.engine;
 
-import phwang.utils.*;
+import phwang.utils.ListMgr;
+import phwang.utils.ListEntry;
 
 public class EngineBaseMgr {
     private String objectName() {return "EngineBaseMgr";}
@@ -20,31 +21,31 @@ public class EngineBaseMgr {
     private static final int LIST_MGR_ARRAY_SIZE = 128;
 
     private EngineRoot engineRoot_;
-    private ListMgr listMgr;
+    private ListMgr listMgr_;
 
     private EngineRoot engineRoot() { return this.engineRoot_; }
-    public ListMgr ListMgr() { return this.listMgr; }
+    public ListMgr ListMgr() { return this.listMgr_; }
   
     public EngineBaseMgr(EngineRoot root_val) {
         this.debug(false, "EngineBaseMgr", "init start");
 
         this.engineRoot_ = root_val;
-        this.listMgr = new ListMgr(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
+        this.listMgr_ = new ListMgr(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_BASE_ID);
     }
 
     public EngineBase MallocGoBase(String room_id_val) {
     	EngineBase go_base = new EngineBase(room_id_val);
-    	ListEntry list_entry = this.listMgr.malloc(go_base);
+    	ListEntry list_entry = this.listMgr_.malloc(go_base);
         go_base.bindListEntry(list_entry);
         return go_base;
     }
 
-    public void FreeGoBase(EngineBase link_val) {
-
+    public void FreeGoBase(EngineBase base_val) {
+    	this.listMgr_.free(base_val.listEntry());
     }
     
     public EngineBase GetBaseByIdStr(String base_id_str_val) {
-    	ListEntry list_entry = this.listMgr.getEntryByIdStr(base_id_str_val);
+    	ListEntry list_entry = this.listMgr_.getEntryByIdStr(base_id_str_val);
         if (list_entry == null) {
             return null;
         }
