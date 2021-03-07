@@ -68,6 +68,7 @@ public class FrontUBinder implements ThreadInterface {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry, job_id_str="  + job_id_str);
                 continue;
             }
+            this.jobMgr().freeJob(job_entry);
 
             String response_data = received_data.substring(FrontExport.FRONT_JOB_ID_SIZE);
             String json_response_data = this.frontDParser().parserResponseData(response_data);

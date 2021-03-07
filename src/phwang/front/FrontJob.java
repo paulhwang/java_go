@@ -17,9 +17,9 @@ public class FrontJob {
     private String data_;
     private Thread pendingThread_;
     
-    public int jobId() { return this.listEntryObject().id(); }
-    public String jobIdStr() { return this.listEntryObject().idStr(); }
-    private ListEntry listEntryObject() { return this.listEntry_; }
+    public int jobId() { return this.listEntry().id(); }
+    public String jobIdStr() { return this.listEntry().idStr(); }
+    public ListEntry listEntry() { return this.listEntry_; }
 
     public void bindListEntry(ListEntry list_entry_object_val) {
         this.listEntry_ = list_entry_object_val;

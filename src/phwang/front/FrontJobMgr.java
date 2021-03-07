@@ -46,7 +46,7 @@ public class FrontJobMgr {
     }
 
     public void freeJob(FrontJob job_val) {
-
+    	this.listMgr_.free(job_val.listEntry());
     }
     
     public FrontJob getJobByIdStr(String job_id_str_val) {

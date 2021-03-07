@@ -38,7 +38,7 @@ public class ListEntry {
         this.id_str_ = id_str_buf.toString();
     }
 
-    public void resetData() {
+    public void clearData() {
         this.data_ = null;
     }
 }

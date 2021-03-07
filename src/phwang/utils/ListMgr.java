@@ -99,6 +99,7 @@ public class ListMgr {
             }
             
             if (this.entryArray_[i].data() == null) {
+                this.entryCount_++;
                 this.entryArray_[i].setData(id, object_val);
                 return this.entryArray_[i];
             }
@@ -131,7 +132,7 @@ public class ListMgr {
     }
 
     private void free_(ListEntry entry_val) {
-        this.entryArray_[entry_val.index()].resetData();
+        this.entryArray_[entry_val.index()].clearData();
         this.entryCount_--;
     }
 
@@ -147,7 +148,7 @@ public class ListMgr {
 
     public void flush_() {
         for (int i = 0; i <= this.maxIndex_; i++) {
-            this.entryArray_[i].resetData();
+            this.entryArray_[i].clearData();
             this.entryArray_[i] = null;
         }
         this.entryCount_ = 0;
@@ -256,7 +257,7 @@ public class ListMgr {
             }
         }
         if (this.entryCount_ != count) {
-            this.abend("abendListMgr_", "count not match");
+            this.abend("abendListMgr_", msg_val + " entryCount_=" + this.entryCount_ + " != count=" + count);
         }
     }
     
