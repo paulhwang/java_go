@@ -149,20 +149,28 @@ public class ListMgr {
     	String index_str = id_str_val.substring(idSize_);
         int id = EncodeNumber.decodeNumber(id_str);
         int index = EncodeNumber.decodeNumber(index_str);
-    	
-        ListEntry entry = this.entryArray[index];
+        
+    	ListEntry entry;
+        this.theLock.lock();
+    	entry = this.getEntryByIdStr_(id, index);
+        this.theLock.unlock();
+    	return entry;
+    }
+    
+    private ListEntry getEntryByIdStr_(int id_val, int index_val) {
+        ListEntry entry = this.entryArray[index_val];
         if (entry == null) {
-        	this.abend("ListEntryClass", "null entry");
+        	this.abend("getEntryByIdStr_", "null entry");
         	return null;
         }
         
         if (entry.data() == null) {
-        	this.abend("ListEntryClass", "null data");
+        	this.abend("getEntryByIdStr_", "null data");
         	return null;
         }
         
-        if (entry.id() != id) {
-        	this.abend("ListEntryClass", "id not match");
+        if (entry.id() != id_val) {
+        	this.abend("getEntryByIdStr_", "id not match");
         	return null;
         }
         return entry;
