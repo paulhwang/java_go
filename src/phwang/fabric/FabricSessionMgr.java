@@ -41,6 +41,10 @@ public class FabricSessionMgr {
         return session;
     }
 
+    public void freeSession(FabricSession session_val) {
+    	this.listMgr_.free(session_val.listEntry());
+    }
+
     public FabricSession getSessionByIdStr(String session_id_str_val) {
     	ListEntry list_entry = this.listMgr().getEntryByIdStr(session_id_str_val);
         if (list_entry == null) {

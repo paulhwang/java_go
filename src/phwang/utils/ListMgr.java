@@ -10,8 +10,6 @@ package phwang.utils;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import phwang.fabric.FabricLink;
-import phwang.utils.*;
 
 public class ListMgr {
     private String objectName() {return "ListMgr";}

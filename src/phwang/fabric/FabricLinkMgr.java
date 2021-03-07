@@ -43,7 +43,7 @@ public class FabricLinkMgr implements ListMgrInterface {
     }
 
     public void freeLink(FabricLink link_val) {
-
+    	this.listMgr_.free(link_val.listEntry());
     }
     
     public FabricLink getLinkByIdStr(String link_id_str_val) {

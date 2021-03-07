@@ -9,7 +9,6 @@
 package phwang.fabric;
 
 import phwang.utils.*;
-import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class FabricLink {
     private String objectName() {return "FabricLink";}
@@ -23,7 +22,7 @@ public class FabricLink {
     public String myName() { return this.myName_; }
     public int linkId() { return this.listEntry().id(); }
     public String linkIdStr() { return this.listEntry().idStr(); }
-    private ListEntry listEntry() { return this.listEntry_; }
+    public ListEntry listEntry() { return this.listEntry_; }
     public FabricSessionMgr sessionMgr() { return this.sessionMgr_; }
 
     public int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }

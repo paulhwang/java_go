@@ -10,11 +10,6 @@ package phwang.front;
 
 import phwang.utils.ListEntry;
 import phwang.utils.ListMgr;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import phwang.fabric.FabricLink;
-import phwang.protocols.FabricFrontEndProtocolClass;
 
 public class FrontJobMgr {
     private String objectName() {return "FrontJobMgr";}
