@@ -50,6 +50,8 @@ public class FrontJobMgr {
     }
     
     public FrontJob getJobByIdStr(String job_id_str_val) {
+        this.debug(false, "getJobByIdStr", "job_id_str_val=" + job_id_str_val);
+
     	ListEntry list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
         if (list_entry == null) {
         	this.abend("getJobByIdStr", "null data");

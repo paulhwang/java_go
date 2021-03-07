@@ -29,9 +29,7 @@ public class Abend {
     	logStopped = true;
    	
     	abendLock.lock();
-    	System.out.println("***********************ABEND*************************");
-    	System.out.println(s0 + " " + s1);
-    	System.out.println("***********************ABEND*************************");
+    	System.out.println("***ABEND*** " + s0 + " " + s1);
     	forceCrash();
     	abendLock.unlock();
     }
