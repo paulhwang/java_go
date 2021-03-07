@@ -11,7 +11,7 @@ package phwang.engine;
 import phwang.utils.*;
 import phwang.protocols.*;
 
-public class EngineDBinder implements ThreadInterface {
+public class EngineDBinder implements ThreadEntityInt {
     private String objectName() {return "EngineDBinder";}
     private String receiveThreadName() { return "DEngineReceiveThread"; }
     

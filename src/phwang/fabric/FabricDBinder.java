@@ -9,10 +9,10 @@
 package phwang.fabric;
 
 import phwang.utils.Binder;
-import phwang.utils.ThreadInterface;
+import phwang.utils.ThreadEntityInt;
 import phwang.utils.ThreadMgr;
 
-public class FabricDBinder implements ThreadInterface {
+public class FabricDBinder implements ThreadEntityInt {
     private String objectName() {return "FabricDBinder";}
     
 	private static final int NUMBER_OF_U_WORK_THREADS = 5;

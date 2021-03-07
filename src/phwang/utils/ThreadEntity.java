@@ -15,18 +15,18 @@ public class ThreadEntity implements Runnable {
 
     private String threadName;
     private Thread theThread;
-	private ThreadInterface callingObject;
+	private ThreadEntityInt callingObject;
 	
     public String ThreadName( ) { return this.threadName; }
     
-    public ThreadEntity(String thread_name_val, ThreadInterface calling_object_val) {
+    public ThreadEntity(String thread_name_val, ThreadEntityInt calling_object_val) {
         this.debug(false, "ThreadEntity", "init start");
     	
         this.threadName = thread_name_val;
     	this.StartThread(calling_object_val);
     }
     
-    public void StartThread(ThreadInterface calling_object_val) {
+    public void StartThread(ThreadEntityInt calling_object_val) {
         this.debug(false, "StartThread", "Create thread (" + this.ThreadName() + ")");
         this.callingObject = calling_object_val;
         this.theThread = new Thread(this);

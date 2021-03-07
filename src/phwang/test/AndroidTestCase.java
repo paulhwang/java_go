@@ -7,10 +7,10 @@ package phwang.test;
 
 import phwang.utils.Abend;
 import phwang.utils.ThreadMgr;
-import phwang.utils.ThreadInterface;
+import phwang.utils.ThreadEntityInt;
 import phwang.utils.EncodeNumber;
 
-class AndroidTestCase implements ThreadInterface {
+class AndroidTestCase implements ThreadEntityInt {
     private String objectName() {return "AndroidTestCase";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
     

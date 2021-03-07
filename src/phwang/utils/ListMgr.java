@@ -60,17 +60,17 @@ public class ListMgr {
         return this.globalId_;
     }
 
-    public ListEntry malloc(ListEntryInt object_val) {
+    public ListEntry malloc(ListEntryInt entity_int_val) {
         this.debug(false, "malloc", "start");
     	
         this.abendListMgr("before malloc");
         this.theLock.lock();
         
-        ListEntry entry = this.malloc_(object_val);
+        ListEntry entry = this.malloc_();
         int id = this.allocId();
         this.entryCount_++;
-        entry.setData(id, object_val);
-        object_val.bindListEntry(entry);
+        entry.setData(id, entity_int_val);
+        entity_int_val.bindListEntry(entry);
         
     	this.theLock.unlock();
         this.abendListMgr("after malloc");
@@ -87,7 +87,7 @@ public class ListMgr {
         return entry;
     }
 
-    private ListEntry malloc_(Object object_val) {
+    private ListEntry malloc_() {
         for (int i = 0; i < this.arraySize_; i++) {
             if (this.entryArray_[i] == null) {
             	this.entryArray_[i] = new ListEntry(i, this.idSize());

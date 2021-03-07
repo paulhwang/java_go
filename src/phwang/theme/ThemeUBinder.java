@@ -11,7 +11,7 @@ package phwang.theme;
 import phwang.utils.*;
 import phwang.protocols.ThemeEngineProtocolClass;
 
-public class ThemeUBinder implements ThreadInterface {
+public class ThemeUBinder implements ThreadEntityInt {
     private String objectName() {return "ThemeUBinder";}
     private String receiveThreadName() { return "UThemeReceiveThread"; }
 

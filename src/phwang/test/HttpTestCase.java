@@ -10,11 +10,11 @@ import org.json.simple.parser.JSONParser;
 import phwang.utils.Abend;
 import phwang.utils.Utils;
 import phwang.utils.ThreadMgr;
-import phwang.utils.ThreadInterface;
+import phwang.utils.ThreadEntityInt;
 import phwang.utils.EncodeNumber;
 import phwang.front.FrontDExportInterface;
 
-class HttpTestCase implements ThreadInterface {
+class HttpTestCase implements ThreadEntityInt {
     private String objectName() {return "HttpTestCase";}
     private String httpTestThreadName() { return "HttpTestThread"; }
     

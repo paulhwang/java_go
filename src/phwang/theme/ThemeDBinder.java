@@ -10,10 +10,10 @@ package phwang.theme;
 
 import phwang.utils.Binder;
 import phwang.utils.ThreadMgr;
-import phwang.utils.ThreadInterface;
+import phwang.utils.ThreadEntityInt;
 import phwang.protocols.*;
 
-public class ThemeDBinder implements ThreadInterface {
+public class ThemeDBinder implements ThreadEntityInt {
     private String objectName() {return "ThemeDBinder";}
     private String receiveThreadName() { return "DThemeReceiveThread"; }
     

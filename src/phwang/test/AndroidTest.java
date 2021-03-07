@@ -11,7 +11,7 @@ package phwang.test;
 
 import phwang.utils.*;
 
-public class AndroidTest implements ThreadInterface {
+public class AndroidTest implements ThreadEntityInt {
     private String objectName() {return "AndroidTest";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
 

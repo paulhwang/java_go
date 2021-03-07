@@ -12,7 +12,7 @@ package phwang.test;
 import phwang.utils.*;
 import phwang.front.FrontDExportInterface;
 
-public class HttpTest implements ThreadInterface {
+public class HttpTest implements ThreadEntityInt {
     private String objectName() {return "HttpTest";}
     private String httpTestThreadName() { return "HttpTestThread"; }
 

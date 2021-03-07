@@ -13,9 +13,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.*;
-import phwang.utils.*;
 
-public class Binder implements ThreadInterface {
+public class Binder implements ThreadEntityInt {
     private String objectName() {return "Binder";}
     public String binderServerThreadName() { return "BinderServerThread"; }
     public String binderClientThreadName() { return "BinderClientThread"; }

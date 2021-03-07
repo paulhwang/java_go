@@ -10,9 +10,9 @@ package phwang.front;
 
 import phwang.utils.Binder;
 import phwang.utils.ThreadMgr;
-import phwang.utils.ThreadInterface;
+import phwang.utils.ThreadEntityInt;
 
-public class FrontUBinder implements ThreadInterface {
+public class FrontUBinder implements ThreadEntityInt {
     private String objectName() {return "FrontUBinder";}
     private String receiveThreadName() { return "UFrontReceiveThread"; }
     

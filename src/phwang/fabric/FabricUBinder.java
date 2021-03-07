@@ -11,7 +11,7 @@ package phwang.fabric;
 import phwang.utils.*;
 import phwang.protocols.FabricThemeProtocolClass;
 
-public class FabricUBinder implements ThreadInterface {
+public class FabricUBinder implements ThreadEntityInt {
     private String objectName() {return "FabricUBinder";}
     private String receiveThreadName() { return "UFabricReceiveThread"; }
     

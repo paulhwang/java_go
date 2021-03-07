@@ -16,7 +16,7 @@ public class ThreadMgr {
     	
     }
 
-    public ThreadEntity createThreadObject(String thread_name_val, ThreadInterface calling_object_val) {
+    public ThreadEntity createThreadObject(String thread_name_val, ThreadEntityInt calling_object_val) {
     	ThreadEntity thread_object = new ThreadEntity(thread_name_val, calling_object_val);
     	
     	this.insertToThreadList(thread_object);
