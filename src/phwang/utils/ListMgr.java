@@ -100,7 +100,7 @@ public class ListMgr {
         ListEntry[] new_array = new ListEntry[this.arraySize_ * 2];
         for (int i = 0; i < this.arraySize_; i++) {
         	new_array[i] = this.entryArray_[i];
-        	this.entryArray_[i] = null;;
+        	//*** to remove the lock from reading array //this.entryArray_[i] = null;;
         }
         this.entryArray_ = new_array;
         this.maxIndex_ = this.arraySize_;
@@ -151,9 +151,9 @@ public class ListMgr {
         int index = EncodeNumber.decodeNumber(index_str);
         
     	ListEntry entry;
-        this.theLock.lock();
+        //this.theLock.lock();
     	entry = this.getEntryByIdStr_(id, index);
-        this.theLock.unlock();
+        //this.theLock.unlock();
     	return entry;
     }
     

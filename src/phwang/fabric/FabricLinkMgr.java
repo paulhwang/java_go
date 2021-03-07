@@ -38,7 +38,7 @@ public class FabricLinkMgr implements ListMgrInterface {
     	ListEntry list_entry = this.listMgr().malloc(link);
         link.bindListEntry(list_entry);
         
-        /////////////////////////////////////this.nameList().updateNameList();
+        this.nameList().updateNameList();
         return link;
     }
 
