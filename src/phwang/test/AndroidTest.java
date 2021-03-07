@@ -15,6 +15,9 @@ public class AndroidTest implements ThreadInterface {
     private String objectName() {return "AndroidTest";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
 
+    private int i_ = 2;
+    private int j_ = 3;
+
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
@@ -41,8 +44,8 @@ public class AndroidTest implements ThreadInterface {
         this.debug(true, "httpTestThreadFunc", "*******start " + this.androidTestThreadName());
         Utils.sleep(100);  
         
-        for (int j = 0; j < 1; j++) {
-        	for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < this.i_; j++) {
+        	for (int i = 0; i < this.j_; i++) {
         		//HttpTestCase test_case = new HttpTestCase(this, i);
         		//test_case.startTestTest();
         		

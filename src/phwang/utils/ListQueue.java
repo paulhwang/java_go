@@ -17,7 +17,9 @@ public class ListQueue {
     private int DEFAULT_MAX_QUEUE_LENGTH = 1000;
     private int MAX_FREE_LIST_LENGTH = 100;
     private Boolean abendQueueIsOn = true;
-    private Thread pendingThread;
+    private int maxPendingThreadCount_ = 5;
+    
+    private Thread[] pendingThreadArray_;
     private int length_;
     private QueueEntryClass head;
     private QueueEntryClass tail;
@@ -34,6 +36,7 @@ public class ListQueue {
         this.debug(false, "ListQueue", "init start");
         
         this.maxLength = max_length_val;
+        this.pendingThreadArray_ = new Thread[this.maxPendingThreadCount_];
         this.queueLock_ = new ReentrantLock();
         this.pendingThreadLock_ = new ReentrantLock();
         this.theMallocLock = new ReentrantLock();
@@ -234,19 +237,33 @@ public class ListQueue {
 
     public void setPendingThread(Thread thread_val) {
     	this.pendingThreadLock_.lock();
-    	this.pendingThread = thread_val;
+    	this.setPendingThread_(thread_val);
     	this.pendingThreadLock_.unlock();
+    }
+
+    public void setPendingThread_(Thread thread_val) {
+    	for (int i = 0; i < this.maxPendingThreadCount_; i++) {
+    		if (this.pendingThreadArray_[i] == null) {
+    			this.pendingThreadArray_[i] = thread_val;
+    			return;
+    		}
+    	}
     }
     
     private void interruptPendingThread() {
     	this.pendingThreadLock_.lock();
-    	
-    	if (this.pendingThread != null) {
-    		pendingThread.interrupt();
-    		this.pendingThread = null;
-    	}
-    	
+    	this.interruptPendingThread_();
     	this.pendingThreadLock_.unlock();
+    }
+    
+    private void interruptPendingThread_() {
+    	for (int i = 0; i < this.maxPendingThreadCount_; i++) {
+    		if (this.pendingThreadArray_[i] != null) {
+    			pendingThreadArray_[i].interrupt();
+    			this.pendingThreadArray_[i] = null;
+    			return;
+    		}
+    	}
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

@@ -16,6 +16,9 @@ public class HttpTest implements ThreadInterface {
     private String objectName() {return "HttpTest";}
     private String httpTestThreadName() { return "HttpTestThread"; }
 
+    private int i_ = 10;
+    private int j_ = 99;
+    
     private FrontDExportInterface frontExportInterface_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
@@ -43,10 +46,10 @@ public class HttpTest implements ThreadInterface {
     
     private void httpTestThreadFunc() {
         this.debug(true, "httpTestThreadFunc", "*******start " + this.httpTestThreadName());
-        Utils.sleep(100);  
+        //Utils.sleep(100);  
         
-        for (int j = 0; j < 1; j++) {
-        	for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < this.i_; j++) {
+        	for (int i = 0; i < this.j_; i++) {
         		new HttpTestCase(this, i).startTestTest();
         		
         		//UtilsClass.sleep(1);
@@ -56,14 +59,17 @@ public class HttpTest implements ThreadInterface {
     
     public void incrementThreadCount() {
   		this.threadCount_.increment();
-    	this.debug(false, "incrementThreadCount", "*************************" + this.threadCount_.get());
+    	this.debug(false, "incrementThreadCount", "***" + this.threadCount_.get());
     }
     
     public void decrementThreadCount() {
   		this.threadCount_.decrement();
-    	this.debug(true, "decrementThreadCount", "*************************" + this.threadCount_.get());
     	if (this.threadCount_.get() < 0) {
     		this.abend("decrementThreadCount", "smaller than 0");
+    	}
+    	
+    	if (this.threadCount_.get() < 3) {
+    		this.debug(true, "decrementThreadCount", "***" + this.threadCount_.get());
     	}
     }
     

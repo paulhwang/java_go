@@ -151,10 +151,16 @@ public class ListMgr {
         int index = EncodeNumber.decodeNumber(index_str);
     	
         ListEntry entry = this.entryArray[index];
+        if (entry == null) {
+        	this.abend("ListEntryClass", "null entry");
+        	return null;
+        }
+        
         if (entry.data() == null) {
         	this.abend("ListEntryClass", "null data");
         	return null;
         }
+        
         if (entry.id() != id) {
         	this.abend("ListEntryClass", "id not match");
         	return null;

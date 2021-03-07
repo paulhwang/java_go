@@ -64,24 +64,24 @@ class HttpTestCase implements ThreadInterface {
     	this.doSetupLink();
     	
     	//UtilsClass.sleep(100);
-    	this.doGetLinkData();
+    	//this.doGetLinkData();
     	
     	//UtilsClass.sleep(100);
-    	this.doGetNameList();
+    	//this.doGetNameList();
     	
     	//UtilsClass.sleep(100);
     	this.doSetupSession();
     	
-    	Utils.sleep(100);
+    	//Utils.sleep(100);
     	this.doSetupSession3();
     	
-    	Utils.sleep(100);
+    	//Utils.sleep(100);
     	this.doPutSessionData();
     	
-    	Utils.sleep(100);
+    	//Utils.sleep(100);
     	this.doGetSessionData();
     	
-    	Utils.sleep(100);
+    	//Utils.sleep(100);
     	//this.doSetupSession2();
     }
     
@@ -242,7 +242,7 @@ class HttpTestCase implements ThreadInterface {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
-        this.debug(true, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
+        this.debug(false, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

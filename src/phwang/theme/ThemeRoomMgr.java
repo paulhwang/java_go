@@ -39,6 +39,7 @@ public class ThemeRoomMgr {
     public ThemeRoom getRoomByIdStr(String room_id_str_val) {
     	ListEntry list_entry = this.listMgr_.getEntryByIdStr(room_id_str_val);
         if (list_entry == null) {
+        	this.abend("getRoomByIdStr", "null data");
             return null;
         }
         return (ThemeRoom)list_entry.data();
