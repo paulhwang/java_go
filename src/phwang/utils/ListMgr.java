@@ -65,7 +65,12 @@ public class ListMgr {
     	
         this.abendListMgr("before malloc");
         this.theLock.lock();
+        
         ListEntry entry = this.malloc_(object_val);
+        int id = this.allocId();
+        this.entryCount_++;
+        entry.setData(id, object_val);
+        
     	this.theLock.unlock();
         this.abendListMgr("after malloc");
         
@@ -82,7 +87,6 @@ public class ListMgr {
     }
 
     private ListEntry malloc_(Object object_val) {
-        int id = this.allocId();
         for (int i = 0; i < this.arraySize_; i++) {
             if (this.entryArray_[i] == null) {
             	this.entryArray_[i] = new ListEntry(i, this.idSize());
@@ -92,19 +96,14 @@ public class ListMgr {
                 else {
                     this.abend("malloc_", "maxIndex");
                 }
-                this.entryCount_++;
-                this.entryArray_[i].setData(id, object_val);
                 return this.entryArray_[i];
             }
-            
-            if (this.entryArray_[i].data() == null) {
-                this.entryCount_++;
-                this.entryArray_[i].setData(id, object_val);
-                return this.entryArray_[i];
+            else {
+            	if (this.entryArray_[i].data() == null) {
+            		return this.entryArray_[i];
+            	}
             }
         }
-        
-        //this.abend("allocIndex", "run out");
         
         this.oldEntryArray_ = this.entryArray_;
         ListEntry[] new_array = new ListEntry[this.arraySize_ * 2];
@@ -114,10 +113,8 @@ public class ListMgr {
         }
         this.entryArray_ = new_array;
         this.maxIndex_ = this.arraySize_;
-        this.entryCount_ = this.arraySize_ + 1;
         this.arraySize_ = this.arraySize_ * 2;
     	this.entryArray_[this.maxIndex_] = new ListEntry(this.maxIndex_, this.idSize());
-        this.entryArray_[this.maxIndex_].setData(id, object_val);
         return this.entryArray_[this.maxIndex_];
     }
 

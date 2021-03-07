@@ -21,8 +21,8 @@ public class FrontJob {
     public String jobIdStr() { return this.listEntry().idStr(); }
     public ListEntry listEntry() { return this.listEntry_; }
 
-    public void bindListEntry(ListEntry list_entry_object_val) {
-        this.listEntry_ = list_entry_object_val;
+    public void bindListEntry(ListEntry list_entry_val) {
+        this.listEntry_ = list_entry_val;
     }
 
     public String readData() {
