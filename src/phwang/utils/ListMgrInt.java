@@ -9,6 +9,6 @@
 package phwang.utils;
 
 @FunctionalInterface
-public interface ListMgrInterface {
+public interface ListMgrInt {
     public Boolean compareObjectFunc(Object obj_val, String str_val);
 }

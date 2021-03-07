@@ -214,7 +214,7 @@ public class ListMgr {
         return null;
     }
 
-    public ListEntry getEntryByCompare(ListMgrInterface calling_object_val, String string_val) {
+    public ListEntry getEntryByCompare(ListMgrInt calling_object_val, String string_val) {
         this.abendListMgr("before getEntryByCompare");
         
         this.theLock.lock();
@@ -225,7 +225,7 @@ public class ListMgr {
     	return entry;
     }
     
-    private ListEntry getEntryByCompare_(ListMgrInterface calling_object_val, String string_val) {
+    private ListEntry getEntryByCompare_(ListMgrInt calling_object_val, String string_val) {
     	ListEntry entry;
 
         for (int i = 0; i <= maxIndex_; i++) {

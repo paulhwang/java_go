@@ -10,7 +10,7 @@ package phwang.fabric;
 
 import phwang.utils.*;
 
-public class FabricLinkMgr implements ListMgrInterface {
+public class FabricLinkMgr implements ListMgrInt {
     private String objectName() {return "FabricLinkMgr";}
 
 	public static final int FABRIC_LINK_ID_SIZE_ = 4;
