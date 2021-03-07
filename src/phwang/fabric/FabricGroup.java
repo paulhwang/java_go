@@ -19,7 +19,7 @@ public class FabricGroup {
     private String themeData_;
     private GroupSessionMgrClass groupSessionMgr_;
 
-    private ListEntry listEntry() { return this.listEntry_; }
+    public ListEntry listEntry() { return this.listEntry_; }
     public String themeData() { return this.themeData_; }
     public int groupId() { return this.listEntry().id(); }
     public String groupIdStr() { return this.listEntry().idStr(); }

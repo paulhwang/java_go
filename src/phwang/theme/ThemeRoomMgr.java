@@ -36,6 +36,10 @@ public class ThemeRoomMgr {
         return room;
     }
 
+    public void freeRoom(ThemeRoom room_val) {
+    	this.listMgr_.free(room_val.listEntry());
+    }
+
     public ThemeRoom getRoomByIdStr(String room_id_str_val) {
     	ListEntry list_entry = this.listMgr_.getEntryByIdStr(room_id_str_val);
         if (list_entry == null) {

@@ -8,6 +8,7 @@
 
 package phwang.fabric;
 
+import phwang.front.FrontJob;
 import phwang.utils.*;
 
 public class FabricGroupMgr {
@@ -39,8 +40,8 @@ public class FabricGroupMgr {
         return group;
     }
 
-    public void freeLink(FabricLink link_val) {
-
+    public void freeGroup(FabricGroup group_val) {
+    	this.listMgr_.free(group_val.listEntry());
     }
 
     public FabricGroup getGroupByIdStr(String group_id_str_val) {

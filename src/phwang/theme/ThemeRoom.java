@@ -18,7 +18,7 @@ public class ThemeRoom {
     private String groupIdStr_;
     private String baseIdStr_;
 
-    private ListEntry listEntry() { return this.listEntry_; }
+    public ListEntry listEntry() { return this.listEntry_; }
     private int roomId() { return this.listEntry().id(); }
     public String roomIdStr() { return this.listEntry().idStr(); }
     public String groupIdStr() { return this.groupIdStr_; }
