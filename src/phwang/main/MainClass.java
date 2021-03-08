@@ -23,7 +23,7 @@ public class MainClass {
 		
 		Boolean android_test_on = true;
 		if (android_test_on) {
-			new AndroidTest(root_.androidRoot().androidApi()).startTest();
+			new AndroidTest(root_.androidRoot().androidDExport()).startTest();
 			
 		}
 	}

@@ -8,15 +8,15 @@
 
 package phwang.android;
 
-public class AndroidApi implements AndroidExportInt {
-    private String objectName() {return "AndroidApi";}
+public class AndroidDExport implements AndroidExportInt {
+    private String objectName() {return "AndroidDExport";}
     
     private AndroidRoot androidRoot_;
     
     public AndroidRoot androidRoot() { return this.androidRoot_; }
     
-    public AndroidApi(AndroidRoot root_val) {
-        this.debug(false, "AndroidApi", "init start");
+    public AndroidDExport(AndroidRoot root_val) {
+        this.debug(false, "AndroidDExport", "init start");
         
     	this.androidRoot_ = root_val;
     }
