@@ -13,9 +13,14 @@ import phwang.utils.Abend;
 public class AndroidRoot {
     private String objectName() {return "AndroidRoot";}
 
+    private AndroidApi androidApi_;
+    
+    public AndroidApi androidApi() { return this.androidApi_; }
+    
     public AndroidRoot() {
         this.debug(false, "AndroidRoot", "init start");
 
+        this.androidApi_ = new AndroidApi(this);
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

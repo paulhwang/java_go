@@ -5,6 +5,9 @@
 
 package phwang.test;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import phwang.utils.Abend;
 import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadEntityInt;
@@ -45,6 +48,52 @@ class AndroidTestCase implements ThreadEntityInt {
         }
         catch (Exception ignore) {}
     	
+    	this.doSetupLink();
+    	
+    	//UtilsClass.sleep(100);
+    	this.doGetLinkData();
+    	
+    	//UtilsClass.sleep(100);
+    	this.doGetNameList();
+    	
+    	//UtilsClass.sleep(100);
+    	this.doSetupSession();
+    	
+    	//Utils.sleep(100);
+    	this.doSetupSession3();
+    	
+    	//Utils.sleep(100);
+    	this.doPutSessionData();
+    	
+    	//Utils.sleep(100);
+    	this.doGetSessionData();
+    	
+    	//Utils.sleep(100);
+    	this.doSetupSession2();
+    }
+    
+    private void doSetupLink() {
+    }
+    
+    private void doGetLinkData() {
+    }
+    
+    private void doGetNameList() {
+    }
+    
+    private void doSetupSession() {
+    }
+    
+    private void doSetupSession2() {
+    }
+    
+    private void doSetupSession3() {
+    }
+
+    private void doPutSessionData() {
+    }
+
+    private void doGetSessionData() {
     }
      
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
