@@ -8,7 +8,6 @@ package phwang.test;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import phwang.utils.Abend;
-import phwang.utils.Utils;
 import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadEntityInt;
 import phwang.utils.EncodeNumber;

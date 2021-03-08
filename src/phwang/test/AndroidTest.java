@@ -23,7 +23,7 @@ public class AndroidTest implements ThreadEntityInt {
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
-    private AndroidDExportInt androidExportInt() { return this.androidExportInt_; }
+    public AndroidDExportInt androidExportInt() { return this.androidExportInt_; }
     public ThreadMgr threadMgr() { return this.threadMgr_; }
 
     public AndroidTest(AndroidDExportInt android_export_int_val) {

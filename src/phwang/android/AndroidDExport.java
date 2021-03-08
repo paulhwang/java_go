@@ -8,6 +8,10 @@
 
 package phwang.android;
 
+import phwang.front.FrontImport;
+import phwang.protocols.ProtocolDefineClass;
+import phwang.utils.EncodeNumber;
+
 public class AndroidDExport implements AndroidDExportInt {
     private String objectName() {return "AndroidDExport";}
     
@@ -22,8 +26,18 @@ public class AndroidDExport implements AndroidDExportInt {
     }
 
     
-    public void setupLink(String name_val, String password_val) {
+    public void setupLink(String my_name_val, String password_val) {
+    	this.debug(true, "setupLink", "name=" + my_name_val);
     	
+        StringBuilder command_buf = new StringBuilder();
+        command_buf.append(FrontImport.FABRIC_COMMAND_SETUP_LINK); 
+        command_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(my_name_val);
+        command_buf.append(EncodeNumber.encode(password_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(password_val);
+        String command_str = command_buf.toString();
+        
+    	this.debug(true, "setupLink", "command_str=" + command_str);
     }
     
     public void removeLink(String link_id_val) {

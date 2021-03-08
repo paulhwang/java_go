@@ -24,6 +24,7 @@ class AndroidTestCase implements ThreadEntityInt {
     
     private AndroidTest androidTest() { return this.androidTest_; }
     private ThreadMgr threadMgr() { return this.androidTest().threadMgr();}
+    private AndroidDExportInt androidExportInt() { return this.androidTest().androidExportInt(); }
 
     public AndroidTestCase(AndroidTest android_test_val, int index_val) {
         this.debug(false, "AndroidTestCase", "init start");
@@ -74,7 +75,8 @@ class AndroidTestCase implements ThreadEntityInt {
     }
     
     private void doSetupLink() {
-    	this.debug(true, "doSetupLink", "doSetupLink");
+    	this.debug(false, "doSetupLink", "doSetupLink");
+    	this.androidExportInt().setupLink("phwang", "Oaktree");
     }
     
     private void doGetLinkData() {
