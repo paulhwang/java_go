@@ -16,8 +16,8 @@ public class HttpTest implements ThreadEntityInt {
     private String objectName() {return "HttpTest";}
     private String httpTestThreadName() { return "HttpTestThread"; }
 
-    private int i_ = 99;
-    private int j_ = 100;
+    private int i_ = 10;
+    private int j_ = 10;
     
     private FrontDExportInterface frontExportInterface_;
     private ThreadMgr threadMgr_;

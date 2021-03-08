@@ -12,7 +12,6 @@ module java_go {
 	exports org.json.simple.parser;
 	exports phwang.main;
 	exports phwang.theme;
-	exports phwang.browser;
 
 	requires java.xml;
 }
