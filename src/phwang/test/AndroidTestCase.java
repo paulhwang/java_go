@@ -12,6 +12,7 @@ import phwang.utils.Abend;
 import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadEntityInt;
 import phwang.utils.EncodeNumber;
+import phwang.android.AndroidExportInt;
 
 class AndroidTestCase implements ThreadEntityInt {
     private String objectName() {return "AndroidTestCase";}
@@ -73,6 +74,7 @@ class AndroidTestCase implements ThreadEntityInt {
     }
     
     private void doSetupLink() {
+    	this.debug(true, "doSetupLink", "doSetupLink");
     }
     
     private void doGetLinkData() {

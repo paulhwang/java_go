@@ -35,7 +35,7 @@ class HttpTestCase implements ThreadEntityInt {
     
     private HttpTest httpTest() { return this.httpTest_; }
     private ThreadMgr threadMgr() { return this.httpTest().threadMgr();}
-    private FrontDExportInterface frontExportInterface() { return this.httpTest().frontExportInterface();}
+    private FrontDExportInterface frontExportInt() { return this.httpTest().frontExportInt();}
 
     public HttpTestCase(HttpTest http_test_val, int index_val) {
         this.debug(false, "HttpTestCase", "init start");
@@ -96,7 +96,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
     	
         try {
@@ -128,7 +128,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doGetLinkData", "ajex_response data=" + str_json_ajex_response);
     }
     
@@ -143,7 +143,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doGetNameList", "ajex_response data=" + str_json_ajex_response);
     }
     
@@ -159,7 +159,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doSetupSession", "ajex_response data=" + str_json_ajex_response);
     	
         try {
@@ -194,7 +194,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doSetupSession2", "ajex_response data=" + str_json_ajex_response);
     }
     
@@ -209,7 +209,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doSetupSession3", "ajex_response data=" + str_json_ajex_response);
     }
 
@@ -226,7 +226,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doPutSessionData", "ajex_response data=" + str_json_ajex_response);
     }
 
@@ -241,7 +241,7 @@ class HttpTestCase implements ThreadEntityInt {
     	json_request.put("data", str_json_data);
     	String str_json_request = json_request.toJSONString();
     	
-    	String str_json_ajex_response = this.frontExportInterface().processHttpRequestPacket(str_json_request);
+    	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
         this.debug(false, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
     }
     

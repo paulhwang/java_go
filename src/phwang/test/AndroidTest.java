@@ -9,23 +9,27 @@
 
 package phwang.test;
 
+import phwang.android.AndroidExportInt;
 import phwang.utils.*;
 
 public class AndroidTest implements ThreadEntityInt {
     private String objectName() {return "AndroidTest";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
 
-    private int i_ = 2;
-    private int j_ = 3;
+    private int i_ = 1;
+    private int j_ = 1;
 
+    private AndroidExportInt androidExportInt_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
+    private AndroidExportInt androidExportInt() { return this.androidExportInt_; }
     public ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public AndroidTest() {
+    public AndroidTest(AndroidExportInt android_export_int_val) {
         this.debug(false, "AndroidTest", "init start");
         
+        this.androidExportInt_ = android_export_int_val;
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
     }
@@ -46,8 +50,7 @@ public class AndroidTest implements ThreadEntityInt {
         
         for (int j = 0; j < this.i_; j++) {
         	for (int i = 0; i < this.j_; i++) {
-        		//HttpTestCase test_case = new HttpTestCase(this, i);
-        		//test_case.startTestTest();
+        		new AndroidTestCase(this, i).startTestTest();
         		
         		//UtilsClass.sleep(1);
         	}

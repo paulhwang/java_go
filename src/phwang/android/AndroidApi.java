@@ -8,7 +8,7 @@
 
 package phwang.android;
 
-public class AndroidApi {
+public class AndroidApi implements AndroidExportInt {
     private String objectName() {return "AndroidApi";}
     
     private AndroidRoot androidRoot_;

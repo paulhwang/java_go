@@ -14,16 +14,16 @@ import phwang.test.AndroidTest;
 public class MainClass {
 
 	public static void main(String[] args) {
-		PhwangRoot root = new PhwangRoot();
+		PhwangRoot root_ = new PhwangRoot();
 		
 		Boolean http_test_on = true;
 		if (http_test_on) {
-			new HttpTest(root.frontRoot().frontDExport()).startTest();
+			new HttpTest(root_.frontRoot().frontDExport()).startTest();
 		}
 		
-		Boolean android_test_on = false;
+		Boolean android_test_on = true;
 		if (android_test_on) {
-			new AndroidTest().startTest();
+			new AndroidTest(root_.androidRoot().androidApi()).startTest();
 			
 		}
 	}

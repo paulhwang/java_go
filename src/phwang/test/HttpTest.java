@@ -19,17 +19,17 @@ public class HttpTest implements ThreadEntityInt {
     private int i_ = 10;
     private int j_ = 10;
     
-    private FrontDExportInterface frontExportInterface_;
+    private FrontDExportInterface frontExportInt_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
-    public FrontDExportInterface frontExportInterface() { return this.frontExportInterface_; }
+    public FrontDExportInterface frontExportInt() { return this.frontExportInt_; }
     public ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public HttpTest(FrontDExportInterface front_export_interface_val) {
+    public HttpTest(FrontDExportInterface front_export_int_val) {
         this.debug(false, "HttpTest", "init start");
         
-        this.frontExportInterface_ = front_export_interface_val;
+        this.frontExportInt_ = front_export_int_val;
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
     }
