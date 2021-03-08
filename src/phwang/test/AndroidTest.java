@@ -9,7 +9,7 @@
 
 package phwang.test;
 
-import phwang.android.AndroidExportInt;
+import phwang.android.AndroidDExportInt;
 import phwang.utils.*;
 
 public class AndroidTest implements ThreadEntityInt {
@@ -19,14 +19,14 @@ public class AndroidTest implements ThreadEntityInt {
     private int i_ = 1;
     private int j_ = 1;
 
-    private AndroidExportInt androidExportInt_;
+    private AndroidDExportInt androidExportInt_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
-    private AndroidExportInt androidExportInt() { return this.androidExportInt_; }
+    private AndroidDExportInt androidExportInt() { return this.androidExportInt_; }
     public ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public AndroidTest(AndroidExportInt android_export_int_val) {
+    public AndroidTest(AndroidDExportInt android_export_int_val) {
         this.debug(false, "AndroidTest", "init start");
         
         this.androidExportInt_ = android_export_int_val;

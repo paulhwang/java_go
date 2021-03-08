@@ -8,7 +8,7 @@
 
 package phwang.android;
 
-public class AndroidDExport implements AndroidExportInt {
+public class AndroidDExport implements AndroidDExportInt {
     private String objectName() {return "AndroidDExport";}
     
     private AndroidRoot androidRoot_;
