@@ -8,7 +8,6 @@
 
 package phwang.android;
 
-import phwang.front.FrontImport;
 import phwang.protocols.ProtocolDefineClass;
 import phwang.utils.EncodeNumber;
 
@@ -30,7 +29,7 @@ public class AndroidDExport implements AndroidDExportInt {
     	this.debug(true, "setupLink", "name=" + my_name_val);
     	
         StringBuilder command_buf = new StringBuilder();
-        command_buf.append(FrontImport.FABRIC_COMMAND_SETUP_LINK); 
+        command_buf.append(AndroidImport.FABRIC_COMMAND_SETUP_LINK); 
         command_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         command_buf.append(my_name_val);
         command_buf.append(EncodeNumber.encode(password_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
