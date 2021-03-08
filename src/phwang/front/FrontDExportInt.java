@@ -8,6 +8,6 @@
 
 package phwang.front;
 
-public interface FrontDExportInterface {
+public interface FrontDExportInt {
 	public String processHttpRequestPacket(String request_val);
 }

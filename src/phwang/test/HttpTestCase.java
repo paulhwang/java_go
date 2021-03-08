@@ -12,7 +12,7 @@ import phwang.utils.Utils;
 import phwang.utils.ThreadMgr;
 import phwang.utils.ThreadEntityInt;
 import phwang.utils.EncodeNumber;
-import phwang.front.FrontDExportInterface;
+import phwang.front.FrontDExportInt;
 
 class HttpTestCase implements ThreadEntityInt {
     private String objectName() {return "HttpTestCase";}
@@ -35,7 +35,7 @@ class HttpTestCase implements ThreadEntityInt {
     
     private HttpTest httpTest() { return this.httpTest_; }
     private ThreadMgr threadMgr() { return this.httpTest().threadMgr();}
-    private FrontDExportInterface frontExportInt() { return this.httpTest().frontExportInt();}
+    private FrontDExportInt frontExportInt() { return this.httpTest().frontExportInt();}
 
     public HttpTestCase(HttpTest http_test_val, int index_val) {
         this.debug(false, "HttpTestCase", "init start");

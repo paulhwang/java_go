@@ -11,7 +11,7 @@ package phwang.front;
 import phwang.utils.Abend;
 import phwang.utils.Binder;
 
-public class FrontDExport  implements FrontDExportInterface {
+public class FrontDExport  implements FrontDExportInt {
     private String objectName() {return "FrontDExport";}
     
     private FrontRoot frontRoot_;

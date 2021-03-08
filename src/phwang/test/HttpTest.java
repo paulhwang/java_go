@@ -10,7 +10,7 @@
 package phwang.test;
 
 import phwang.utils.*;
-import phwang.front.FrontDExportInterface;
+import phwang.front.FrontDExportInt;
 
 public class HttpTest implements ThreadEntityInt {
     private String objectName() {return "HttpTest";}
@@ -19,14 +19,14 @@ public class HttpTest implements ThreadEntityInt {
     private int i_ = 10;
     private int j_ = 10;
     
-    private FrontDExportInterface frontExportInt_;
+    private FrontDExportInt frontExportInt_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
-    public FrontDExportInterface frontExportInt() { return this.frontExportInt_; }
+    public FrontDExportInt frontExportInt() { return this.frontExportInt_; }
     public ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public HttpTest(FrontDExportInterface front_export_int_val) {
+    public HttpTest(FrontDExportInt front_export_int_val) {
         this.debug(false, "HttpTest", "init start");
         
         this.frontExportInt_ = front_export_int_val;
