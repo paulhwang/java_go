@@ -23,8 +23,8 @@ public class HttpTest implements ThreadEntityInt {
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
-    public FrontDExportInt frontExportInt() { return this.frontExportInt_; }
-    public ThreadMgr threadMgr() { return this.threadMgr_; }
+    protected FrontDExportInt frontExportInt() { return this.frontExportInt_; }
+    protected ThreadMgr threadMgr() { return this.threadMgr_; }
 
     public HttpTest(FrontDExportInt front_export_int_val) {
         this.debug(false, "HttpTest", "init start");
@@ -57,12 +57,12 @@ public class HttpTest implements ThreadEntityInt {
         }
     }
     
-    public void incrementThreadCount() {
+    protected void incrementThreadCount() {
   		this.threadCount_.increment();
     	this.debug(false, "incrementThreadCount", "***" + this.threadCount_.get());
     }
     
-    public void decrementThreadCount() {
+    protected void decrementThreadCount() {
   		this.threadCount_.decrement();
     	if (this.threadCount_.get() < 0) {
     		this.abend("decrementThreadCount", "smaller than 0");
@@ -75,5 +75,5 @@ public class HttpTest implements ThreadEntityInt {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }

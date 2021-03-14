@@ -16,9 +16,9 @@ public class AndroidDExport implements AndroidDExportInt {
     
     private AndroidRoot androidRoot_;
     
-    public AndroidRoot androidRoot() { return this.androidRoot_; }
+    private AndroidRoot androidRoot() { return this.androidRoot_; }
     
-    public AndroidDExport(AndroidRoot root_val) {
+    protected AndroidDExport(AndroidRoot root_val) {
         this.debug(false, "AndroidDExport", "init start");
         
     	this.androidRoot_ = root_val;
@@ -77,5 +77,5 @@ public class AndroidDExport implements AndroidDExportInt {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.androidRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.androidRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.androidRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

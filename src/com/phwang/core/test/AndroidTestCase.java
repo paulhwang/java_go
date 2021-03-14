@@ -5,9 +5,6 @@
 
 package com.phwang.core.test;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
@@ -21,20 +18,21 @@ class AndroidTestCase implements ThreadEntityInt {
     private AndroidTest androidTest_;
     private String indexString_;
     private String myNameString_;
-    
+    private String password_ = "Tennis";
+        
     private AndroidTest androidTest() { return this.androidTest_; }
     private ThreadMgr threadMgr() { return this.androidTest().threadMgr();}
     private AndroidDExportInt androidExportInt() { return this.androidTest().androidExportInt(); }
 
-    public AndroidTestCase(AndroidTest android_test_val, int index_val) {
+    protected AndroidTestCase(AndroidTest android_test_val, int index_val) {
         this.debug(false, "AndroidTestCase", "init start");
         
         this.androidTest_ = android_test_val;
         this.indexString_ = EncodeNumber.encode(index_val, 6);
-        this.myNameString_ = "Test_" + this.indexString_;
+        this.myNameString_ = "Android_" + this.indexString_;
     }
     
-    public void startTestTest() {
+    protected void startTestTest() {
     	this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
      }
 
@@ -76,7 +74,7 @@ class AndroidTestCase implements ThreadEntityInt {
     
     private void doSetupLink() {
     	this.debug(false, "doSetupLink", "doSetupLink");
-    	this.androidExportInt().setupLink("phwang", "Oaktree");
+    	this.androidExportInt().setupLink(this.myNameString_, this.password_);
     }
     
     private void doGetLinkData() {
@@ -102,6 +100,6 @@ class AndroidTestCase implements ThreadEntityInt {
      
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 

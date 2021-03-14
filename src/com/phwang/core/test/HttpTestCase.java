@@ -21,7 +21,7 @@ class HttpTestCase implements ThreadEntityInt {
     private String indexString_;
     
     private String myNameString_;
-    private String password = "Tennis";
+    private String password_ = "Tennis";
     private String themeData = "88889999G009090000";///////////////////
     private String themeData2 = "G009090000";
     private String acceptString = "Yes";
@@ -36,15 +36,15 @@ class HttpTestCase implements ThreadEntityInt {
     private ThreadMgr threadMgr() { return this.httpTest().threadMgr();}
     private FrontDExportInt frontExportInt() { return this.httpTest().frontExportInt();}
 
-    public HttpTestCase(HttpTest http_test_val, int index_val) {
+    protected HttpTestCase(HttpTest http_test_val, int index_val) {
         this.debug(false, "HttpTestCase", "init start");
         
         this.httpTest_ = http_test_val;
         this.indexString_ = EncodeNumber.encode(index_val, 6);
-        this.myNameString_ = "Test_" + this.indexString_;
+        this.myNameString_ = "Http_" + this.indexString_;
     }
     
-    public void startTestTest() {
+    protected void startTestTest() {
     	this.threadMgr().createThreadObject(this.httpTestThreadName(), this);
      }
 
@@ -87,7 +87,7 @@ class HttpTestCase implements ThreadEntityInt {
     private void doSetupLink() {
     	JSONObject json_data = new JSONObject();
     	json_data.put("my_name", this.myNameString_);
-    	json_data.put("password", this.password);
+    	json_data.put("password", this.password_);
     	String str_json_data = json_data.toJSONString();
     	
     	JSONObject json_request = new JSONObject();
@@ -246,6 +246,6 @@ class HttpTestCase implements ThreadEntityInt {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }
 
