@@ -1,17 +1,17 @@
 module java_go {
-	exports phwang.utils;
-	exports phwang.fabric;
-	exports phwang.protocols;
-	exports phwang.engine;
-	exports phwang.android;
-	exports phwang.go;
+	exports com.phwang.core.android;
+	exports com.phwang.core.main;
+	exports com.phwang.core.utils;
+	exports com.phwang.core.front;
+	exports com.phwang.core.theme;
 	exports org.json.simple;
-	exports phwang.front;
-	exports phwang.test;
-	exports phwang.models;
+	exports com.phwang.core.test;
+	exports com.phwang.core.protocols;
+	exports com.phwang.core.models;
 	exports org.json.simple.parser;
-	exports phwang.main;
-	exports phwang.theme;
+	exports com.phwang.core.go;
+	exports com.phwang.core.engine;
+	exports com.phwang.core.fabric;
 
 	requires java.xml;
 }
