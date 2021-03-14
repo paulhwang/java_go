@@ -8,7 +8,9 @@
 
 package com.phwang.core.android;
 
+import com.phwang.core.front.FrontUBinder;
 import com.phwang.core.protocols.ProtocolDefineClass;
+import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.EncodeNumber;
 
 public class AndroidDExport implements AndroidDExportInt {
@@ -17,6 +19,8 @@ public class AndroidDExport implements AndroidDExportInt {
     private AndroidRoot androidRoot_;
     
     private AndroidRoot androidRoot() { return this.androidRoot_; }
+    private AndroidUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
+    private Binder uBinder() { return this.androidUBinder().uBinder(); }
     
     protected AndroidDExport(AndroidRoot root_val) {
         this.debug(false, "AndroidDExport", "init start");
@@ -24,6 +28,11 @@ public class AndroidDExport implements AndroidDExportInt {
     	this.androidRoot_ = root_val;
     }
 
+    private void transmitToFabric(String data_str_val) {
+    	this.debug(true, "transmitToFabric", "data_str_val=" + data_str_val);
+    	this.uBinder().transmitData("00000000" + data_str_val);
+    	
+    }
     
     public void setupLink(String my_name_val, String password_val) {
     	this.debug(true, "setupLink", "name=" + my_name_val);
@@ -37,6 +46,8 @@ public class AndroidDExport implements AndroidDExportInt {
         String command_str = command_buf.toString();
         
     	this.debug(true, "setupLink", "command_str=" + command_str);
+    	
+    	this.transmitToFabric(command_str);
     }
     
     public void removeLink(String link_id_val) {

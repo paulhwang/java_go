@@ -19,7 +19,7 @@ public class FrontDExport  implements FrontDExportInt {
     private FrontRoot frontRoot() { return this.frontRoot_; }
     private FrontJobMgr jobMgr() { return this.frontRoot().jobMgr(); }
     private FrontUBinder frontUBinder() { return this.frontRoot().frontUBinder(); }
-    private Binder uBinderObject() { return this.frontUBinder().uBinder(); }
+    private Binder uBinder() { return this.frontUBinder().uBinder(); }
     private FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
     
     protected FrontDExport(FrontRoot front_root_val) {
@@ -37,10 +37,10 @@ public class FrontDExport  implements FrontDExportInt {
         
         if (output_str != null) {
             this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);
-        	this.uBinderObject().transmitData(job_entry.jobIdStr() + output_str);
+        	this.uBinder().transmitData(job_entry.jobIdStr() + output_str);
         }
         else {
-        	this.uBinderObject().transmitData(job_entry.jobIdStr() + input_data_val);
+        	this.uBinder().transmitData(job_entry.jobIdStr() + input_data_val);
         }
         
         String response_data = job_entry.readData();
