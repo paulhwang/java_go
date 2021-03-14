@@ -21,12 +21,12 @@ public class FabricDBinder implements ThreadEntityInt {
     private FabricRoot fabricRoot_;
     private Binder dBinder_;
 
-    public FabricRoot fabricRoot() { return this.fabricRoot_; }
+    protected FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ThreadMgr ThreadMgr() { return this.fabricRoot().threadMgr();}
     private FabricUParser fabricUParser() { return this.fabricRoot().fabricUParser(); }
     private Binder dBinder() { return this.dBinder_; }
   
-    public FabricDBinder(FabricRoot root_val) {
+    protected FabricDBinder(FabricRoot root_val) {
         this.debug(false, "FabricDBinder", "init start");
         
         this.fabricRoot_ = root_val;
@@ -35,13 +35,13 @@ public class FabricDBinder implements ThreadEntityInt {
         this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
     }
 
-    public void startThreads() {
+    protected void startThreads() {
     	for (int i = 0; i < NUMBER_OF_U_WORK_THREADS; i++) {
     		this.ThreadMgr().createThreadObject(this.receiveThreadName() + Integer.toString(i), this);
     	}
     }
     
-	public void threadCallbackFunction() {
+    public void threadCallbackFunction() {
 		this.dBinderRreceiveThreadFunc();
 	}
 
@@ -60,11 +60,11 @@ public class FabricDBinder implements ThreadEntityInt {
         }
     }
 
-    public void transmitData(String data_val) {
+    protected void transmitData(String data_val) {
         this.dBinder().transmitData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.fabricRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

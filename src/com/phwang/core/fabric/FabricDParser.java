@@ -8,7 +8,6 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.utils.Abend;
 import com.phwang.core.protocols.FabricThemeProtocolClass;
 
 public class FabricDParser {
@@ -16,14 +15,14 @@ public class FabricDParser {
 
     private FabricRoot fabricRoot_;
 
-    public FabricRoot fabricRoot() { return this.fabricRoot_;}
-    public FabricGroupMgr groupMgr() { return this.fabricRoot().groupMgr(); }
+    protected FabricRoot fabricRoot() { return this.fabricRoot_;}
+    protected FabricGroupMgr groupMgr() { return this.fabricRoot().groupMgr(); }
 
-    public FabricDParser(FabricRoot root_val) {
+    protected FabricDParser(FabricRoot root_val) {
         this.fabricRoot_ = root_val;
     }
 
-    public void parseInputPacket(String input_data_val) {
+    protected void parseInputPacket(String input_data_val) {
         this.debug(false, "parseInputPacket", input_data_val);
         
         String command = input_data_val.substring(0, 1);
@@ -80,5 +79,5 @@ public class FabricDParser {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.fabricRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

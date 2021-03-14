@@ -14,26 +14,26 @@ import com.phwang.core.protocols.FabricFrontEndProtocolClass;
 public class FabricNameList {
     private String objectName() {return "FabricNameList";}
 
-    public static final int NAME_LIST_TAG_SIZE = 4;
+    protected static final int NAME_LIST_TAG_SIZE = 4;
 
-    final int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
+    private final int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
 
     private FabricRoot fabricRoot_;
     private int nameListTag_;
     private String nameListTagStr_;
     private String nameList_;
 
-    public FabricRoot fabricRoot() { return this.fabricRoot_; }
-    public String nameListTagStr() { return this.nameListTagStr_; }
-    public String nameList() { return this.nameList_; }
+    protected FabricRoot fabricRoot() { return this.fabricRoot_; }
+    protected String nameListTagStr() { return this.nameListTagStr_; }
+    protected String nameList() { return this.nameList_; }
 
-    public FabricNameList(FabricRoot root_val) {
+    protected FabricNameList(FabricRoot root_val) {
         this.debug(false, "FabricNameList", "init start");
         
         this.fabricRoot_ = root_val;
     }
     
-    public void updateNameList() {
+    protected void updateNameList() {
     	FabricLinkMgr link_list_mgr = this.fabricRoot_.linkMgr();
 
         int max_index = link_list_mgr.listMgr().MaxIndex();
@@ -66,7 +66,7 @@ public class FabricNameList {
         this.debug(false, "updateNameList", this.nameList_);
     }
 
-    public String getNameList(int tag_val) {
+    protected String getNameList(int tag_val) {
         if (this.nameListTag_ == tag_val) {
             return null;
         }
@@ -75,5 +75,5 @@ public class FabricNameList {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.fabricRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

@@ -8,13 +8,14 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.utils.*;
+import com.phwang.core.utils.ListMgr;
+import com.phwang.core.utils.ListEntry;
 
 public class FabricGroupMgr {
     private String objectName() {return "FabricGroupMgr";}
 
-	public static final int FABRIC_GROUP_ID_SIZE_ = 4;
-	public static final int FABRIC_GROUP_ID_SIZE = FABRIC_GROUP_ID_SIZE_ * 2;
+    protected static final int FABRIC_GROUP_ID_SIZE_ = 4;
+    protected static final int FABRIC_GROUP_ID_SIZE = FABRIC_GROUP_ID_SIZE_ * 2;
 	
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_GROUP_ID = 5000;
@@ -25,7 +26,7 @@ public class FabricGroupMgr {
     private FabricRoot fabricRoot() { return this.fabricRoot_; }
     private ListMgr listMgr() { return this.listMgr_; }
 
-    public FabricGroupMgr(FabricRoot root_val) {
+    protected FabricGroupMgr(FabricRoot root_val) {
         this.debug(false, "FabricGroupMgr", "init start");
         
         this.fabricRoot_ = root_val;

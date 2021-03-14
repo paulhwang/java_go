@@ -8,7 +8,8 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.utils.*;
+import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.ListEntry;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.protocols.FabricFrontEndProtocolClass;
 import com.phwang.core.protocols.FabricThemeProtocolClass;
@@ -20,19 +21,19 @@ public class FabricUParser {
 
     private FabricRoot fabricRoot_;
 
-    public FabricRoot fabricRoot() { return this.fabricRoot_; }
+    protected FabricRoot fabricRoot() { return this.fabricRoot_; }
     private FabricDBinder fabricDBinder() { return this.fabricRoot().fabricDBinder(); }
     private FabricUBinder fabricUBinder() { return this.fabricRoot().fabricUBinder(); }
     private FabricLinkMgr linkMgr() { return this.fabricRoot().linkMgr(); }
     private FabricGroupMgr groupMgr() { return this.fabricRoot().groupMgr(); }
 
-    public FabricUParser(FabricRoot root_val) {
+    protected FabricUParser(FabricRoot root_val) {
         this.debug(false, "FabricUParser", "init start");
 
         this.fabricRoot_ = root_val;
     }
 
-    public void parseInputPacket(String input_data_val) {
+    protected void parseInputPacket(String input_data_val) {
         String job_id_str = input_data_val.substring(0, FabricImport.FRONT_JOB_ID_SIZE);
         String json_str = input_data_val.substring(FabricImport.FRONT_JOB_ID_SIZE);
         String response_data = null;
@@ -137,7 +138,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generateRemoveLinkResponse(String link_id_str_val, String result_val) {
+    protected String generateRemoveLinkResponse(String link_id_str_val, String result_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
@@ -236,7 +237,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generateGetNameListResponse(String link_id_str_val, String name_list_str_val) {
+    protected String generateGetNameListResponse(String link_id_str_val, String name_list_str_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_NAME_LIST); 
         response_buf.append(link_id_str_val);
@@ -322,7 +323,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
+    protected String generateSetupSessionResponse(String link_id_str_val, String session_id_str_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_SETUP_SESSION); 
         response_buf.append(link_id_str_val);
@@ -377,7 +378,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generateSetupSession2Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
+    protected String generateSetupSession2Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_SETUP_SESSION3); 
         response_buf.append(link_id_str_val);
@@ -418,7 +419,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generateSetupSession3Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
+    protected String generateSetupSession3Response(String link_id_str_val, String session_id_str_val, String theme_id_str_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_SETUP_SESSION3); 
         response_buf.append(link_id_str_val);
@@ -477,7 +478,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generatePutSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
+    protected String generatePutSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str_val);
@@ -521,7 +522,7 @@ public class FabricUParser {
         return error_msg_val;
     }
 
-    public String generateGetSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
+    protected String generateGetSessionDataResponse(String link_id_str_val, String session_id_str_val, String c_data_val) {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_SESSION_DATA); 
         response_buf.append(link_id_str_val);
@@ -536,5 +537,5 @@ public class FabricUParser {
 
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.fabricRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.fabricRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

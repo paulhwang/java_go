@@ -8,7 +8,10 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.utils.*;
+import com.phwang.core.utils.Abend;
+import com.phwang.core.utils.ListEntry;
+import com.phwang.core.utils.ListEntryInt;
+import com.phwang.core.utils.ListQueue;
 
 public class FabricLink implements ListEntryInt {
     private String objectName() {return "FabricLink";}
@@ -19,16 +22,16 @@ public class FabricLink implements ListEntryInt {
     private ListQueue pendingSessionSetupQueue_;
     private ListQueue pendingSessionSetupQueue3_;
 
-    public String myName() { return this.myName_; }
-    public int linkId() { return this.listEntry().id(); }
-    public String linkIdStr() { return this.listEntry().idStr(); }
-    public ListEntry listEntry() { return this.listEntry_; }
-    public FabricSessionMgr sessionMgr() { return this.sessionMgr_; }
+    protected String myName() { return this.myName_; }
+    protected int linkId() { return this.listEntry().id(); }
+    protected String linkIdStr() { return this.listEntry().idStr(); }
+    protected ListEntry listEntry() { return this.listEntry_; }
+    protected FabricSessionMgr sessionMgr() { return this.sessionMgr_; }
 
-    public int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }
-    public ListEntry[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
+    protected int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }
+    protected ListEntry[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
 
-    public FabricLink(String my_name_val) {
+    protected FabricLink(String my_name_val) {
         this.debug(false, "FabricLink", "init start");
         
         this.myName_ = my_name_val;
@@ -46,11 +49,11 @@ public class FabricLink implements ListEntryInt {
         this.listEntry_ = null;
     }
 
-    public FabricSession mallocSession() {
+    protected FabricSession mallocSession() {
         return this.sessionMgr().mallocSession();
     }
 
-    public void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
+    protected void setPendingSessionSetup(String link_session_id_str_val, String theme_data_val) {
         String data = link_session_id_str_val + theme_data_val;
         this.pendingSessionSetupQueue_.enqueue(data);
         /*
@@ -64,7 +67,7 @@ public class FabricLink implements ListEntryInt {
         */
     }
 
-    public void setPendingSessionSetup3(String browser_theme_id_str_val, String session_id_str_val, String theme_data_val) {
+    protected void setPendingSessionSetup3(String browser_theme_id_str_val, String session_id_str_val, String theme_data_val) {
         this.debug(false, "********************SetPendingSessionSetup3", "browser_theme_id_str_val =" + browser_theme_id_str_val);
         this.debug(false, "********************SetPendingSessionSetup3", "session_id_str_val =" + session_id_str_val);
         this.debug(false, "********************SetPendingSessionSetup3", "theme_data_val =" + theme_data_val);
@@ -83,15 +86,15 @@ public class FabricLink implements ListEntryInt {
 
     }
     
-    public String getPendingSessionSetup() {
+    protected String getPendingSessionSetup() {
         return (String) this.pendingSessionSetupQueue_.dequeue();
     }
 
-    public String getPendingSessionSetup3() {
+    protected String getPendingSessionSetup3() {
         return (String) this.pendingSessionSetupQueue3_.dequeue();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }
