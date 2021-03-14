@@ -26,14 +26,14 @@ public class FrontUBinder implements ThreadEntityInt {
     protected FrontRoot frontRoot() { return this.frontRoot_; }
     private FrontJobMgr jobMgr() { return this.frontRoot().jobMgr(); }
     private ThreadMgr threadMgr() { return this.frontRoot().threadMgr();}
-    public Binder uBinder() { return this.uBinder_; }
+    protected Binder uBinder() { return this.uBinder_; }
 
     protected FrontUBinder(FrontRoot root_val) {
         this.debug(false, "FrontUBinder", "init start");
         
         this.frontRoot_ = root_val;
         this.uBinder_ = new Binder(this.objectName());
-        this.uBinder().bindAsTcpClient(true, FrontImport.FABRIC_FRONT_SERVER_IP_ADDRESS, FrontImport.FABRIC_FRONT_PORT);
+        this.uBinder_.bindAsTcpClient(true, FrontImport.FABRIC_FRONT_SERVER_IP_ADDRESS, FrontImport.FABRIC_FRONT_PORT);
     }
 
     protected void startThreads() {

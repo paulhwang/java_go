@@ -38,7 +38,7 @@ public class FrontRoot {
         this.frontDParser_ = new FrontDParser(this);
         this.jobMgr_ = new FrontJobMgr(this);
         
-        this.frontUBinder().startThreads();
+        this.frontUBinder_.startThreads();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
