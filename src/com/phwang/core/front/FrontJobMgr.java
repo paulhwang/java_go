@@ -14,8 +14,8 @@ import com.phwang.core.utils.ListMgr;
 public class FrontJobMgr {
     private String objectName() {return "FrontJobMgr";}
 
-    public static final int FRONT_JOB_ID_SIZE_ = 4;
-    public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
+    protected static final int FRONT_JOB_ID_SIZE_ = 4;
+    protected static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
 
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_JOB_ID = 0;
@@ -26,24 +26,24 @@ public class FrontJobMgr {
     private FrontRoot frontRoot() { return this.frontRoot_; }
     private ListMgr listMgr() { return this.listMgr_; }
 
-    public FrontJobMgr(FrontRoot front_root_object_val) {
+    protected FrontJobMgr(FrontRoot front_root_object_val) {
         this.debug(false, "FrontJobMgr", "init start");
 
         this.frontRoot_ = front_root_object_val;
         this.listMgr_ = new ListMgr(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_JOB_ID);
     }
 
-    public FrontJob mallocJob() {
+    protected FrontJob mallocJob() {
     	FrontJob job = new FrontJob();
     	ListEntry list_entry = this.listMgr().malloc(job);
         return job;
     }
 
-    public void freeJob(FrontJob job_val) {
+    protected void freeJob(FrontJob job_val) {
     	this.listMgr_.free(job_val.listEntry());
     }
     
-    public FrontJob getJobByIdStr(String job_id_str_val) {
+    protected FrontJob getJobByIdStr(String job_id_str_val) {
         this.debug(false, "getJobByIdStr", "job_id_str_val=" + job_id_str_val);
 
     	ListEntry list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
@@ -56,5 +56,5 @@ public class FrontJobMgr {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.frontRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

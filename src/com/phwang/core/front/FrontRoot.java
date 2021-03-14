@@ -21,12 +21,12 @@ public class FrontRoot {
     private FrontDExport frontDExport_;
     private FrontJobMgr jobMgr_;
     
-    public ThreadMgr threadMgr() { return this.threadMgr_; }
-    public FrontUBinder frontUBinder() { return this.frontUBinder_; }
-    public FrontUParser frontUParser() { return this.frontUParser_; }
-    public FrontDParser frontDParser() { return this.frontDParser_; }
+    protected ThreadMgr threadMgr() { return this.threadMgr_; }
+    protected FrontUBinder frontUBinder() { return this.frontUBinder_; }
+    protected FrontUParser frontUParser() { return this.frontUParser_; }
+    protected FrontDParser frontDParser() { return this.frontDParser_; }
     public FrontDExport frontDExport() { return this.frontDExport_; }
-    public FrontJobMgr jobMgr() { return this.jobMgr_; }
+    protected FrontJobMgr jobMgr() { return this.jobMgr_; }
 
     public FrontRoot() {
         this.debug(false, "FrontRoot", "init start");
@@ -43,9 +43,9 @@ public class FrontRoot {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.abendIt(this.objectName() + "." + s0 + "()", s1); }
 
     private Boolean debug_on = true;
-    public void logIt(String s0, String s1) { if (this.debug_on) Abend.log(s0, s1); }
-    public void abendIt(String s0, String s1) { if (this.debug_on) Abend.abend(s0, s1); }
+    protected void logIt(String s0, String s1) { if (this.debug_on) Abend.log(s0, s1); }
+    protected void abendIt(String s0, String s1) { if (this.debug_on) Abend.abend(s0, s1); }
 }

@@ -17,14 +17,14 @@ public class FrontDParser {
     
     private FrontRoot frontRoot_;
     
-    public FrontRoot frontRoot() { return this.frontRoot_; }
+    protected FrontRoot frontRoot() { return this.frontRoot_; }
     
-    public FrontDParser(FrontRoot root_val) {
+    protected FrontDParser(FrontRoot root_val) {
         this.debug(false, "FrontDParser", "init start");
         this.frontRoot_ = root_val;
     }
     
-    public String parserResponseData(String input_data_val) {
+    protected String parserResponseData(String input_data_val) {
     	this.debug(false, "parserResponseData", "input_data_val=" + input_data_val);
     	String json_response_data;
     	
@@ -99,7 +99,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserGetLinkDataResponse(String input_str_val) {
+    private String parserGetLinkDataResponse(String input_str_val) {
     	this.debug(false, "parserGetLinkDataResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -126,7 +126,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserGetNameListResponse(String input_str_val) {
+    private String parserGetNameListResponse(String input_str_val) {
     	this.debug(false, "parserGetNameListResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -146,7 +146,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserSetupSessionResponse(String input_str_val) {
+    private String parserSetupSessionResponse(String input_str_val) {
     	this.debug(false, "generateSetupSessionResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -164,7 +164,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserSetupSession2Response(String input_str_val) {
+    private String parserSetupSession2Response(String input_str_val) {
     	this.debug(false, "parserSetupSession2Response", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -186,7 +186,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserSetupSession3Response(String input_str_val) {
+    private String parserSetupSession3Response(String input_str_val) {
     	this.debug(false, "parserSetupSession3Response", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -208,7 +208,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserPutSessionDataResponse(String input_str_val) {
+    private String parserPutSessionDataResponse(String input_str_val) {
     	this.debug(false, "parserPutSessionDataResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -232,7 +232,7 @@ public class FrontDParser {
    		return json_str_data;
     }
 
-    public String parserGetSessionDataResponse(String input_str_val) {
+    private String parserGetSessionDataResponse(String input_str_val) {
     	this.debug(false, "parserGetSessionDataResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
@@ -258,5 +258,5 @@ public class FrontDParser {
 
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.frontRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

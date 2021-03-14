@@ -18,9 +18,9 @@ public class FrontJob implements ListEntryInt {
     private String data_;
     private Thread pendingThread_;
     
-    public int jobId() { return this.listEntry().id(); }
-    public String jobIdStr() { return this.listEntry().idStr(); }
-    public ListEntry listEntry() { return this.listEntry_; }
+    protected int jobId() { return this.listEntry().id(); }
+    protected String jobIdStr() { return this.listEntry().idStr(); }
+    protected ListEntry listEntry() { return this.listEntry_; }
 
     public void bindListEntry(ListEntry list_entry_val) {
         this.listEntry_ = list_entry_val;
@@ -30,7 +30,7 @@ public class FrontJob implements ListEntryInt {
         this.listEntry_ = null;
     }
 
-    public String readData() {
+    protected String readData() {
         while (this.data_ == null) {
         	try {
                 //this.debug(false, "readData", "***sleep");
@@ -45,7 +45,7 @@ public class FrontJob implements ListEntryInt {
         return this.data_;
     }
 
-    public void WriteData(String data_val) {
+    protected void WriteData(String data_val) {
         this.data_ = data_val;
         if (this.pendingThread_ != null) {
         	this.pendingThread_.interrupt();

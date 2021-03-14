@@ -8,18 +8,22 @@
 
 package com.phwang.core.android;
 
+import com.phwang.core.front.FrontUBinder;
 import com.phwang.core.utils.Abend;
 
 public class AndroidRoot {
     private String objectName() {return "AndroidRoot";}
 
+    private AndroidUBinder androidUBinder_;
     private AndroidDExport androidDExport_;
     
     public AndroidDExport androidDExport() { return this.androidDExport_; }
+    protected AndroidUBinder androidUBinder() { return this.androidUBinder_; }
     
     public AndroidRoot() {
         this.debug(false, "AndroidRoot", "init start");
 
+        this.androidUBinder_ = new AndroidUBinder(this);
         this.androidDExport_ = new AndroidDExport(this);
 	}
     

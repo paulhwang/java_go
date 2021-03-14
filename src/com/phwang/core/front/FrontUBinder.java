@@ -23,12 +23,12 @@ public class FrontUBinder implements ThreadEntityInt {
     private Boolean stopReceiveThreadFlag = false;
     
     private FrontDParser frontDParser() { return this.frontRoot().frontDParser(); }
-    public FrontRoot frontRoot() { return this.frontRoot_; }
+    protected FrontRoot frontRoot() { return this.frontRoot_; }
     private FrontJobMgr jobMgr() { return this.frontRoot().jobMgr(); }
     private ThreadMgr threadMgr() { return this.frontRoot().threadMgr();}
     public Binder uBinder() { return this.uBinder_; }
 
-    public FrontUBinder(FrontRoot root_val) {
+    protected FrontUBinder(FrontRoot root_val) {
         this.debug(false, "FrontUBinder", "init start");
         
         this.frontRoot_ = root_val;
@@ -36,7 +36,7 @@ public class FrontUBinder implements ThreadEntityInt {
         this.uBinder().bindAsTcpClient(true, FrontImport.FABRIC_FRONT_SERVER_IP_ADDRESS, FrontImport.FABRIC_FRONT_PORT);
     }
 
-    public void startThreads() {
+    protected void startThreads() {
     	for (int i = 0; i < NUMBER_OF_D_WORK_THREADS; i++) {
     		this.threadMgr().createThreadObject(this.receiveThreadName(), this);
     	}
@@ -83,11 +83,11 @@ public class FrontUBinder implements ThreadEntityInt {
         this.debug(true, "UFrontReceiveThreadFunc", "exit");
     }
     
-    public void StopReceiveThread() {
+    protected void StopReceiveThread() {
         this.stopReceiveThreadFlag = true;
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.frontRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

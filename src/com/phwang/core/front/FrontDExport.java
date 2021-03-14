@@ -22,7 +22,7 @@ public class FrontDExport  implements FrontDExportInt {
     private Binder uBinderObject() { return this.frontUBinder().uBinder(); }
     private FrontUParser frontUParser() { return this.frontRoot().frontUParser(); }
     
-    public FrontDExport(FrontRoot front_root_val) {
+    protected FrontDExport(FrontRoot front_root_val) {
         this.debug(false, "FrontDExport", "init start");
         
         this.frontRoot_ = front_root_val;
@@ -51,5 +51,5 @@ public class FrontDExport  implements FrontDExportInt {
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
-    public void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { Abend.abend(this.objectName() + "." + s0 + "()", s1); }
 }
