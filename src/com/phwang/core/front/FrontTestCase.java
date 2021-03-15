@@ -3,7 +3,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.test;
+package com.phwang.core.front;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,11 +13,11 @@ import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.front.FrontDExportInt;
 
-class HttpTestCase implements ThreadEntityInt {
-    private String objectName() {return "HttpTestCase";}
+class FrontTestCase implements ThreadEntityInt {
+    private String objectName() {return "FrontTestCase";}
     private String httpTestThreadName() { return "HttpTestThread"; }
     
-    private HttpTest httpTest_;
+    private FrontTest httpTest_;
     private String indexString_;
     
     private String myNameString_;
@@ -32,12 +32,12 @@ class HttpTestCase implements ThreadEntityInt {
     private String sessionIdString;
     private String themeIdString = "33333333";///////////////////////////////////////////////
     
-    private HttpTest httpTest() { return this.httpTest_; }
+    private FrontTest httpTest() { return this.httpTest_; }
     private ThreadMgr threadMgr() { return this.httpTest().threadMgr();}
     private FrontDExportInt frontExportInt() { return this.httpTest().frontExportInt();}
 
-    protected HttpTestCase(HttpTest http_test_val, int index_val) {
-        this.debug(false, "HttpTestCase", "init start");
+    protected FrontTestCase(FrontTest http_test_val, int index_val) {
+        this.debug(false, "FrontTestCase", "init start");
         
         this.httpTest_ = http_test_val;
         this.indexString_ = EncodeNumber.encode(index_val, 6);

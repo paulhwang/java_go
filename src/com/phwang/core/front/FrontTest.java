@@ -7,13 +7,13 @@
  */
 
 
-package com.phwang.core.test;
+package com.phwang.core.front;
 
 import com.phwang.core.utils.*;
 import com.phwang.core.front.FrontDExportInt;
 
-public class HttpTest implements ThreadEntityInt {
-    private String objectName() {return "HttpTest";}
+public class FrontTest implements ThreadEntityInt {
+    private String objectName() {return "FrontTest";}
     private String httpTestThreadName() { return "HttpTestThread"; }
 
     private int i_ = 10;
@@ -26,8 +26,8 @@ public class HttpTest implements ThreadEntityInt {
     protected FrontDExportInt frontExportInt() { return this.frontExportInt_; }
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public HttpTest(FrontDExportInt front_export_int_val) {
-        this.debug(false, "HttpTest", "init start");
+    public FrontTest(FrontDExportInt front_export_int_val) {
+        this.debug(false, "FrontTest", "init start");
         
         this.frontExportInt_ = front_export_int_val;
         this.threadMgr_ = new ThreadMgr();
@@ -50,7 +50,7 @@ public class HttpTest implements ThreadEntityInt {
         
         for (int j = 0; j < this.i_; j++) {
         	for (int i = 0; i < this.j_; i++) {
-        		new HttpTestCase(this, i).startTestTest();
+        		new FrontTestCase(this, i).startTestTest();
         		
         		//UtilsClass.sleep(1);
         	}

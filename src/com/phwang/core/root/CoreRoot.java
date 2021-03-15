@@ -15,7 +15,7 @@ import com.phwang.core.front.FrontRoot;
 import com.phwang.core.android.AndroidRoot;
 import com.phwang.core.models.ModelRootClass;
 import com.phwang.core.android.AndroidTest;
-import com.phwang.core.test.HttpTest;
+import com.phwang.core.front.FrontTest;
 import com.phwang.core.theme.ThemeRoot;
 
 public class CoreRoot {
@@ -47,7 +47,7 @@ public class CoreRoot {
     
     public void startTest(Boolean http_test_on, Boolean android_test_on) {
 		if (http_test_on) {
-			new HttpTest(this.frontRoot_.frontDExport()).startTest();
+			new FrontTest(this.frontRoot_.frontDExport()).startTest();
 		}
 		
 		if (android_test_on) {
