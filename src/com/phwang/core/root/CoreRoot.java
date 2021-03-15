@@ -18,8 +18,8 @@ import com.phwang.core.test.AndroidTest;
 import com.phwang.core.test.HttpTest;
 import com.phwang.core.theme.ThemeRoot;
 
-public class PhwangRoot {
-    private String objectName() {return "PhwangRoot";}
+public class CoreRoot {
+    private String objectName() {return "CoreRoot";}
     
     private FrontRoot frontRoot_;
     private FabricRoot fabricRoot_;
@@ -35,8 +35,8 @@ public class PhwangRoot {
     protected AndroidRoot androidRoot() { return this.androidRoot_; }
     protected ModelRootClass modelRoot() { return this.modelRoot_; }
 
-    public PhwangRoot() {
-        this.debug(false, "PhwangRoot", "init start");
+    public CoreRoot() {
+        this.debug(false, "CoreRoot", "init start");
     	this.fabricRoot_ = new FabricRoot();
     	this.frontRoot_ = new FrontRoot();
     	this.themeRoot_ = new ThemeRoot();
