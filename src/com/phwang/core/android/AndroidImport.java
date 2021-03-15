@@ -9,8 +9,6 @@
 package com.phwang.core.android;
 
 import com.phwang.core.fabric.FabricExport;
-//import phwang.theme.ThemeExport;
-import com.phwang.front.FrontExport;
 import com.phwang.core.theme.ThemeExport;
 
 public class AndroidImport {

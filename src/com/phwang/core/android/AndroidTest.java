@@ -9,8 +9,11 @@
 
 package com.phwang.core.android;
 
-import com.phwang.core.android.AndroidDExportInt;
-import com.phwang.core.utils.*;
+import com.phwang.core.utils.Abend;
+import com.phwang.core.utils.ThreadEntityInt;
+import com.phwang.core.utils.ThreadMgr;
+import com.phwang.core.utils.LockedInteger;
+import com.phwang.core.utils.Utils;
 
 public class AndroidTest implements ThreadEntityInt {
     private String objectName() {return "AndroidTest";}

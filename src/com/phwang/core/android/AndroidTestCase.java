@@ -9,7 +9,6 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
-import com.phwang.core.android.AndroidDExportInt;
 
 class AndroidTestCase implements ThreadEntityInt {
     private String objectName() {return "AndroidTestCase";}
