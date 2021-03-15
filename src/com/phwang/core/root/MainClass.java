@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.main;
+package com.phwang.core.root;
 
 public class MainClass {
 
