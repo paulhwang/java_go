@@ -34,8 +34,8 @@ public class FabricUParser {
     }
 
     protected void parseInputPacket(String input_data_val) {
-        String job_id_str = input_data_val.substring(0, FabricImport.FRONT_JOB_ID_SIZE);
-        String json_str = input_data_val.substring(FabricImport.FRONT_JOB_ID_SIZE);
+        String job_id_str = input_data_val.substring(0, FabricExport.FRONT_JOB_ID_SIZE);
+        String json_str = input_data_val.substring(FabricExport.FRONT_JOB_ID_SIZE);
         String response_data = null;
         
         this.debug(false, "parseInputPacket", "input_data_val = " + input_data_val);

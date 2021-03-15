@@ -62,7 +62,7 @@ public class FrontUBinder implements ThreadEntityInt {
 
             this.debug(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
-            String job_id_str = received_data.substring(0, FrontExport.FRONT_JOB_ID_SIZE);
+            String job_id_str = received_data.substring(0, FrontImport.FRONT_JOB_ID_SIZE);
             FrontJob job_entry = this.jobMgr().getJobByIdStr(job_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry, job_id_str="  + job_id_str);
@@ -70,7 +70,7 @@ public class FrontUBinder implements ThreadEntityInt {
             }
             this.jobMgr().freeJob(job_entry);
 
-            String response_data = received_data.substring(FrontExport.FRONT_JOB_ID_SIZE);
+            String response_data = received_data.substring(FrontImport.FRONT_JOB_ID_SIZE);
             String json_response_data = this.frontDParser().parserResponseData(response_data);
             if (json_response_data != null) {
                 job_entry.WriteData(json_response_data);

@@ -11,6 +11,7 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Utils;
 import com.phwang.front.FrontDExportInt;
 
 class FrontTestCase implements ThreadEntityInt {
@@ -68,16 +69,16 @@ class FrontTestCase implements ThreadEntityInt {
     	//UtilsClass.sleep(100);
     	//this.doGetNameList();
     	
-    	//UtilsClass.sleep(100);
+    	Utils.sleep(100);
     	this.doSetupSession();
     	
-    	//Utils.sleep(100);
+    	Utils.sleep(100);
     	this.doSetupSession3();
     	
-    	//Utils.sleep(100);
+    	Utils.sleep(100);
     	this.doPutSessionData();
     	
-    	//Utils.sleep(100);
+    	Utils.sleep(100);
     	this.doGetSessionData();
     	
     	//Utils.sleep(100);
@@ -241,7 +242,7 @@ class FrontTestCase implements ThreadEntityInt {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
-        this.debug(false, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
+        this.debug(true, "doGetSessionData", "ajex_response data=" + str_json_ajex_response);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

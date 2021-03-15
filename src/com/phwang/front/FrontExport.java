@@ -9,8 +9,6 @@
 package com.phwang.front;
 
 public class FrontExport {
-   public static final int FRONT_JOB_ID_SIZE = FrontJobMgr.FRONT_JOB_ID_SIZE;
-   
    public static final String FRONT_COMMAND_SETUP_LINK       = "setup_link";
    public static final String FRONT_COMMAND_GET_LINK_DATA    = "get_link_data";
    public static final String FRONT_COMMAND_GET_NAME_LIST    = "get_name_list";

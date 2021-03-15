@@ -11,6 +11,9 @@ package com.phwang.core.fabric;
 public class FabricExport {
     public static final short FABRIC_ANDROID_PORT = 8001;
     public static final short FABRIC_FRONT_PORT = 8002;
+
+    public static final int FRONT_JOB_ID_SIZE_ = 4;
+    public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
 	
 	public static final int FABRIC_LINK_ID_SIZE = FabricLinkMgr.FABRIC_LINK_ID_SIZE;
 	public static final int FABRIC_SESSION_ID_SIZE = FabricSessionMgr.FABRIC_SESSION_ID_SIZE;
