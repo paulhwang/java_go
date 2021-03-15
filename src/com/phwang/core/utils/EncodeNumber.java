@@ -8,16 +8,28 @@
 
 package com.phwang.core.utils;
 
+import com.phwang.core.fabric.FabricExport;
+
 public class EncodeNumber {
     public static String encode(int number_val, int size_val) {
         String str = Integer.toString(number_val);
+        
+        StringBuilder buf = new StringBuilder();
+        for (int i = str.length(); i < size_val; i++) {
+            buf.append('0'); 
+       }
+       buf.append(str);
+       return buf.toString();
 
+
+        /*
         var buf = "";
         for (var i = str.length(); i < size_val; i++) {
             buf = buf + "0";
         }
         buf = buf + str;
-        return buf;
+        */
+        //return buf;
     }
 
     public static int decode(String str_val) {
