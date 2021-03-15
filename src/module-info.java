@@ -1,6 +1,7 @@
 module java_go {
 	exports com.phwang.core.android;
 	exports com.phwang.core.root;
+	exports com.phwang;
 	exports com.phwang.core.utils;
 	exports com.phwang.core.front;
 	exports com.phwang.core.theme;
