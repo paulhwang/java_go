@@ -11,6 +11,8 @@ package com.phwang.core.android;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.front.FrontJob;
+import com.phwang.front.FrontJobMgr;
 
 public class AndroidDExport implements AndroidDExportInt {
     private String objectName() {return "AndroidDExport";}
@@ -20,6 +22,7 @@ public class AndroidDExport implements AndroidDExportInt {
     private AndroidRoot androidRoot() { return this.androidRoot_; }
     private AndroidUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
     private Binder uBinder() { return this.androidUBinder().uBinder(); }
+    private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
     
     protected AndroidDExport(AndroidRoot root_val) {
         this.debug(false, "AndroidDExport", "init start");
@@ -29,7 +32,16 @@ public class AndroidDExport implements AndroidDExportInt {
 
     private void transmitToFabric(String data_str_val) {
     	this.debug(true, "transmitToFabric", "data_str_val=" + data_str_val);
-    	this.uBinder().transmitData("00000000" + data_str_val);
+    	
+        AndroidJob job_entry = this.jobMgr().mallocJob();
+    	
+        if (data_str_val != null) {
+            this.debug(false, "processHttpRequestPacket", "output_str=" + data_str_val);
+        	this.uBinder().transmitData(job_entry.jobIdStr() + data_str_val);
+        }
+        else {
+        	this.uBinder().transmitData(job_entry.jobIdStr() + data_str_val);
+        }
     	
     }
     

@@ -8,8 +8,6 @@
 
 package com.phwang.core.utils;
 
-import com.phwang.core.fabric.FabricExport;
-
 public class EncodeNumber {
     public static String encode(int number_val, int size_val) {
         String str = Integer.toString(number_val);
