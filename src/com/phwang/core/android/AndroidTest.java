@@ -7,7 +7,7 @@
  */
 
 
-package com.phwang.core.test;
+package com.phwang.core.android;
 
 import com.phwang.core.android.AndroidDExportInt;
 import com.phwang.core.utils.*;

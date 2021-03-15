@@ -3,7 +3,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.test;
+package com.phwang.core.android;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;

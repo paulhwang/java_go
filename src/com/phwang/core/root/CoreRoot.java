@@ -14,7 +14,7 @@ import com.phwang.core.fabric.FabricRoot;
 import com.phwang.core.front.FrontRoot;
 import com.phwang.core.android.AndroidRoot;
 import com.phwang.core.models.ModelRootClass;
-import com.phwang.core.test.AndroidTest;
+import com.phwang.core.android.AndroidTest;
 import com.phwang.core.test.HttpTest;
 import com.phwang.core.theme.ThemeRoot;
 
