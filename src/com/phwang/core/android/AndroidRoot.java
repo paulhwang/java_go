@@ -8,6 +8,7 @@
 
 package com.phwang.core.android;
 
+import com.phwang.core.front.FrontJobMgr;
 import com.phwang.core.front.FrontUBinder;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
@@ -18,10 +19,12 @@ public class AndroidRoot {
     private ThreadMgr threadMgr_;
     private AndroidUBinder androidUBinder_;
     private AndroidDExport androidDExport_;
+    private AndroidJobMgr jobMgr_;
     
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
     public AndroidDExport androidDExport() { return this.androidDExport_; }
     protected AndroidUBinder androidUBinder() { return this.androidUBinder_; }
+    protected AndroidJobMgr jobMgr() { return this.jobMgr_; }
     
     public AndroidRoot() {
         this.debug(false, "AndroidRoot", "init start");
@@ -29,6 +32,7 @@ public class AndroidRoot {
         this.threadMgr_ = new ThreadMgr();
         this.androidUBinder_ = new AndroidUBinder(this);
         this.androidDExport_ = new AndroidDExport(this);
+        this.jobMgr_ = new AndroidJobMgr(this);
         
         this.androidUBinder_.startThreads();
 	}

@@ -6,44 +6,41 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.core.android;
 
 import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.ListMgr;
 
-public class FrontJobMgr {
-    private String objectName() {return "FrontJobMgr";}
-
-    protected static final int FRONT_JOB_ID_SIZE_ = 4;
-    protected static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
+public class AndroidJobMgr {
+    private String objectName() {return "AndroidJobMgr";}
 
     private static final int LIST_MGR_ARRAY_SIZE_ = 128;
     private static final int FIRST_JOB_ID_ = 0;
 
-    private FrontRoot frontRoot_;
+    private AndroidRoot androidRoot_;
     private ListMgr listMgr_;
 
-    private FrontRoot frontRoot() { return this.frontRoot_; }
+    private AndroidRoot frontRoot() { return this.androidRoot_; }
     private ListMgr listMgr() { return this.listMgr_; }
 
-    protected FrontJobMgr(FrontRoot front_root_val) {
-        this.debug(false, "FrontJobMgr", "init start");
+    protected AndroidJobMgr(AndroidRoot android_root_val) {
+        this.debug(false, "AndroidJobMgr", "init start");
 
-        this.frontRoot_ = front_root_val;
-        this.listMgr_ = new ListMgr(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE_, this.objectName(), FIRST_JOB_ID_);
+        this.androidRoot_ = android_root_val;
+        this.listMgr_ = new ListMgr(AndroidImport.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE_, this.objectName(), FIRST_JOB_ID_);
     }
 
-    protected FrontJob mallocJob() {
-    	FrontJob job = new FrontJob();
+    protected AndroidJob mallocJob() {
+    	AndroidJob job = new AndroidJob();
     	ListEntry list_entry = this.listMgr().malloc(job);
         return job;
     }
 
-    protected void freeJob(FrontJob job_val) {
+    protected void freeJob(AndroidJob job_val) {
     	this.listMgr_.free(job_val.listEntry());
     }
     
-    protected FrontJob getJobByIdStr(String job_id_str_val) {
+    protected AndroidJob getJobByIdStr(String job_id_str_val) {
         this.debug(false, "getJobByIdStr", "job_id_str_val=" + job_id_str_val);
 
     	ListEntry list_entry = this.listMgr().getEntryByIdStr(job_id_str_val);
@@ -51,7 +48,7 @@ public class FrontJobMgr {
         	this.abend("getJobByIdStr", "null data");
             return null;
         }
-        return (FrontJob) list_entry.data();
+        return (AndroidJob) list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

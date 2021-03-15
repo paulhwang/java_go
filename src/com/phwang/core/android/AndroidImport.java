@@ -10,6 +10,8 @@ package com.phwang.core.android;
 
 import com.phwang.core.fabric.FabricExport;
 //import phwang.theme.ThemeExport;
+import com.phwang.core.front.FrontExport;
+import com.phwang.core.theme.ThemeExport;
 
 public class AndroidImport {
     protected static final String FABRIC_ANDROID_SERVER_IP_ADDRESS = "127.0.0.1";
@@ -30,4 +32,7 @@ public class AndroidImport {
     protected static final char FABRIC_COMMAND_SETUP_SESSION3   = FabricExport.FABRIC_COMMAND_SETUP_SESSION3;
     protected static final char FABRIC_COMMAND_PUT_SESSION_DATA = FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA;
     protected static final char FABRIC_COMMAND_GET_SESSION_DATA = FabricExport.FABRIC_COMMAND_GET_SESSION_DATA;
+
+	protected static final int FRONT_JOB_ID_SIZE = FrontExport.FRONT_JOB_ID_SIZE;
+	protected static final int THEME_ROOM_ID_SIZE = ThemeExport.THEME_ROOM_ID_SIZE;
 }

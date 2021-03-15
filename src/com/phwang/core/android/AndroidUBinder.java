@@ -3,9 +3,6 @@ package com.phwang.core.android;
 import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.ThreadMgr;
-import com.phwang.core.front.FrontExport;
-import com.phwang.core.front.FrontImport;
-import com.phwang.core.front.FrontJob;
 import com.phwang.core.utils.Binder;
 
 public class AndroidUBinder implements ThreadEntityInt {
@@ -19,6 +16,7 @@ public class AndroidUBinder implements ThreadEntityInt {
     private Boolean stopReceiveThreadFlag = false;
     
     private AndroidRoot androidRoot() { return this.androidRoot_; }
+    private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
     private ThreadMgr threadMgr() { return this.androidRoot().threadMgr();}
     protected Binder uBinder() { return this.uBinder_; }
     
@@ -43,7 +41,6 @@ public class AndroidUBinder implements ThreadEntityInt {
     private void uAndroidReceiveThreadFunc() {
         this.debug(false, "uAndroidReceiveThreadFunc", "start " + this.receiveThreadName());
         
-        /*
         while (true) {
             if (this.stopReceiveThreadFlag) {
                 break;
@@ -57,16 +54,16 @@ public class AndroidUBinder implements ThreadEntityInt {
 
             this.debug(false, "uAndroidReceiveThreadFunc", "received_data=" + received_data);
 
-            String job_id_str = received_data.substring(0, FrontExport.FRONT_JOB_ID_SIZE);
-            FrontJob job_entry = this.jobMgr().getJobByIdStr(job_id_str);
+            String job_id_str = received_data.substring(0, AndroidImport.FRONT_JOB_ID_SIZE);
+            AndroidJob job_entry = this.jobMgr().getJobByIdStr(job_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry, job_id_str="  + job_id_str);
                 continue;
             }
             this.jobMgr().freeJob(job_entry);
-
-            String response_data = received_data.substring(FrontExport.FRONT_JOB_ID_SIZE);
-            String json_response_data = this.frontDParser().parserResponseData(response_data);
+            
+            String response_data = received_data.substring(AndroidImport.FRONT_JOB_ID_SIZE);
+            String json_response_data = response_data;//////////////////this.frontDParser().parserResponseData(response_data);
             if (json_response_data != null) {
                 job_entry.WriteData(json_response_data);
             }
@@ -74,7 +71,6 @@ public class AndroidUBinder implements ThreadEntityInt {
             	job_entry.WriteData(response_data);
             }
         }
-*/
         this.debug(true, "uAndroidReceiveThreadFunc", "exit");
     }
     
