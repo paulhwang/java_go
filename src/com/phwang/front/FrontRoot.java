@@ -8,6 +8,7 @@
 
 package com.phwang.front;
 
+import com.phwang.core.android.AndroidTest;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 
@@ -39,6 +40,12 @@ public class FrontRoot {
         this.jobMgr_ = new FrontJobMgr(this);
         
         this.frontUBinder_.startThreads();
+    }
+    
+    public void startTest(Boolean front_test_on) {
+		if (front_test_on) {
+			new FrontTest(this.frontDExport()).startTest();
+		}
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
