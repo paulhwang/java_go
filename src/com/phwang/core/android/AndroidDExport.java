@@ -8,7 +8,7 @@
 
 package com.phwang.core.android;
 
-import com.phwang.core.front.FrontUBinder;
+import com.phwang.front.FrontUBinder;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.EncodeNumber;

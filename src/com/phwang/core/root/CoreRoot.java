@@ -11,11 +11,11 @@ package com.phwang.core.root;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.engine.EngineRoot;
 import com.phwang.core.fabric.FabricRoot;
-import com.phwang.core.front.FrontRoot;
+import com.phwang.front.FrontRoot;
 import com.phwang.core.android.AndroidRoot;
 import com.phwang.core.models.ModelRootClass;
 import com.phwang.core.android.AndroidTest;
-import com.phwang.core.front.FrontTest;
+import com.phwang.front.FrontTest;
 import com.phwang.core.theme.ThemeRoot;
 
 public class CoreRoot {

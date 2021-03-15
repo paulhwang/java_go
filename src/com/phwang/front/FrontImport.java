@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 import com.phwang.core.fabric.FabricExport;
 import com.phwang.core.theme.ThemeExport;

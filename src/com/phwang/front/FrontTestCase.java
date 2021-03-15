@@ -3,7 +3,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,7 +11,7 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
-import com.phwang.core.front.FrontDExportInt;
+import com.phwang.front.FrontDExportInt;
 
 class FrontTestCase implements ThreadEntityInt {
     private String objectName() {return "FrontTestCase";}

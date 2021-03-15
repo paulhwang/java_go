@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 public interface FrontDExportInt {
 	public String processHttpRequestPacket(String request_val);

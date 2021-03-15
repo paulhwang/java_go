@@ -8,7 +8,7 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.front.FrontExport;
+import com.phwang.front.FrontExport;
 import com.phwang.core.theme.ThemeExport;
 
 public class FabricImport {

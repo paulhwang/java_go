@@ -7,10 +7,10 @@
  */
 
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 import com.phwang.core.utils.*;
-import com.phwang.core.front.FrontDExportInt;
+import com.phwang.front.FrontDExportInt;
 
 public class FrontTest implements ThreadEntityInt {
     private String objectName() {return "FrontTest";}

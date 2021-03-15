@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.Binder;

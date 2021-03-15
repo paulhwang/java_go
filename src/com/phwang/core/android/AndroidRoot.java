@@ -8,8 +8,8 @@
 
 package com.phwang.core.android;
 
-import com.phwang.core.front.FrontJobMgr;
-import com.phwang.core.front.FrontUBinder;
+import com.phwang.front.FrontJobMgr;
+import com.phwang.front.FrontUBinder;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 

@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 public class FrontExport {
    public static final int FRONT_JOB_ID_SIZE = FrontJobMgr.FRONT_JOB_ID_SIZE;

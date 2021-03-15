@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.front;
+package com.phwang.front;
 
 import org.json.simple.JSONObject;
 import com.phwang.core.protocols.ProtocolDefineClass;
