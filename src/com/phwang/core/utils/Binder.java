@@ -102,7 +102,7 @@ public class Binder implements ThreadEntityInt {
     		this.debug(false, "BindAsTcpServer", this.ownerName() + " server accepted");
     		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.tcpClientName());
     		this.debug(false, "BindAsTcpServer", "clientName = " + this.tcpClientAddress());
-    		this.portMgr_.malloc(this.tcpConnection());
+    		this.portMgr_.mallocPort(this.tcpConnection());
             ss.close();
             return true;
     	}
@@ -137,7 +137,7 @@ public class Binder implements ThreadEntityInt {
         try {
     		this.tcpConnection_ = new Socket(this.serverIpAddr(), this.tcpPort());
     		this.debug(false, "BindAsTcpClient", this.ownerName() + " client connected");
-    		this.portMgr_.malloc(this.tcpConnection_);
+    		this.portMgr_.mallocPort(this.tcpConnection_);
     		return true;
     	}
     	catch (Exception e) {

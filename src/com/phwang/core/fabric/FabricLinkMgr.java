@@ -37,7 +37,7 @@ public class FabricLinkMgr implements ListMgrInt {
 
     protected FabricLink mallocLink(String my_name_val) {
     	FabricLink link = new FabricLink(my_name_val);
-    	ListEntry list_entry = this.listMgr().malloc(link);
+    	this.listMgr().malloc(link);
         
         this.nameList().updateNameList();
         return link;

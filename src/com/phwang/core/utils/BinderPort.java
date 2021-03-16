@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.*;
 
-public class BinderPort implements ThreadEntityInt {
+public class BinderPort implements ThreadEntityInt, ListEntryInt {
     private String objectName() {return "BinderPort";}
     private String transmitThreadName() { return "PortTransmitThread"; }
     private String receiveThreadName() { return "PortReceiveThread"; }
@@ -31,6 +31,7 @@ public class BinderPort implements ThreadEntityInt {
     private ThreadEntity receiveThread_;
     private ThreadEntity transmitThread_;
     private Boolean destructorOn = false;
+    private ListEntry listEntry_;
     
     protected BinderPortMgr portMgr() { return this.portMgr_; }
     protected String ownerName() { return this.portMgr_.ownerName(); }
@@ -40,6 +41,9 @@ public class BinderPort implements ThreadEntityInt {
     protected DataOutputStream outputStream() { return this.outputStream_; }
     protected InputStreamReader inputReader() { return this.inputReader_; }
     protected OutputStreamWriter outputWriter() { return this.outputWriter_; }
+    protected int PortId() { return this.listEntry_.id(); }
+    protected String PortIdStr() { return this.listEntry_.idStr(); }
+    protected ListEntry listEntry() { return this.listEntry_; }
 
     protected BinderPort(BinderPortMgr port_mgr_val, Socket tcp_connection_val) {
         this.portMgr_ = port_mgr_val;
@@ -99,6 +103,14 @@ public class BinderPort implements ThreadEntityInt {
     	catch (Exception e) {
     	}
      }
+
+    public void bindListEntry(ListEntry list_entry_object_val) {
+        this.listEntry_ = list_entry_object_val;
+    }
+
+    public void unBindListEntry() {
+        this.listEntry_ = null;
+    }
     
 	public void threadCallbackFunction() {
 		if (this.whichThread_.equals(this.receiveThreadName())) {

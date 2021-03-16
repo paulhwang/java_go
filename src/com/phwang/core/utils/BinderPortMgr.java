@@ -10,11 +10,18 @@ package com.phwang.core.utils;
 
 import java.net.*;
 
+import com.phwang.core.fabric.FabricLink;
+
 public class BinderPortMgr {
     private String objectName() {return "BinderPortMgr";}
+    protected static final int BINDER_PORT_ID_SIZE_ = 4;
+    protected static final int BINDER_PORT_ID_SIZE = BINDER_PORT_ID_SIZE_ * 2;
+    private static final int LIST_MGR_ARRAY_SIZE = 256;
+    private static final int FIRST_LINK_ID = 1000;
     
     private Binder binder_;
     private BinderPort singleBinderPort_ = null;
+    private ListMgr listMgr_;
     //private Boolean destructorOn = false;
     
     protected Binder binder() { return this.binder_; }
@@ -23,6 +30,7 @@ public class BinderPortMgr {
 
     protected BinderPortMgr(Binder binder_val) {
         this.binder_ = binder_val;
+        this.listMgr_ = new ListMgr(BINDER_PORT_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
     }
     
     protected void destructor() {
@@ -31,19 +39,33 @@ public class BinderPortMgr {
     		this.singleBinderPort_.destructor();
     		this.singleBinderPort_ = null;
     	}
+    	else {
+    		
+    	}
     }
     
-    protected void malloc(Socket tcp_connection_val) {
+    protected void mallocPort(Socket tcp_connection_val) {
     	BinderPort port = new BinderPort(this, tcp_connection_val);
     	
     	if (this.isSinglePort()) {
     		this.singleBinderPort_ = port;
-    		return;
+    	}
+    	else {
+        	this.listMgr_.malloc(port);
     	}
     }
     
-    protected void free(BinderPort port_val) {
+    protected void freePort(BinderPort port_val) {
+    	this.listMgr_.free(port_val.listEntry());
     	port_val.destructor();
+    }
+    
+    protected BinderPort getPortByIdStr(String port_id_str_val) {
+    	ListEntry list_entry = this.listMgr_.getEntryByIdStr(port_id_str_val);
+        if (list_entry == null) {
+            return null;
+        }
+        return (BinderPort) list_entry.data();
     }
     
     protected String receiveData() {
