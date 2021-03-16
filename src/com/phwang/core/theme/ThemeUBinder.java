@@ -31,7 +31,7 @@ public class ThemeUBinder implements ThreadEntityInt {
         this.themeRoot_ = root_val;
         this.uBinder_ = new Binder(this.objectName());
         
-        this.uBinder().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.uBinder().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER, true);
     }
 
     public void startThreads() {

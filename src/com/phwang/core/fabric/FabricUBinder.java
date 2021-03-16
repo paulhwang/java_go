@@ -31,7 +31,7 @@ public class FabricUBinder implements ThreadEntityInt {
         this.debug(false, "FabricUBinder", "init start");
         this.fabricRoot_ = root_val;
         this.uBinder_ = new Binder(this.objectName());
-        this.uBinder().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER);
+        this.uBinder().bindAsTcpServer(true, FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_TRANSPORT_PORT_NUMBER, true);
     }
 
     protected void startThreads() {

@@ -15,6 +15,7 @@ public class Binder implements ThreadEntityInt {
     private String binderServerThreadName() { return "BinderServerThread"; }
     private String binderClientThreadName() { return "BinderClientThread"; }
 
+    private Boolean isSinglePort_ = true;
     private String ownerName_;
     private String whichThread_ = null;
     private ThreadEntity serverThread_;
@@ -32,6 +33,7 @@ public class Binder implements ThreadEntityInt {
     public short tcpPort() { return this.tcpPort_; }
     public String serverIpAddr() { return this.serverIpAddr_; }
     public Socket tcpConnection() { return this.tcpConnection_; }
+    protected Boolean isSinglePort() { return this.isSinglePort_; }
     
     public String tcpClientName() { return (this.tcpConnection_ != null) ? this.tcpConnection_.getInetAddress().getHostName() : ""; }
     public String tcpClientAddress() { return (this.tcpConnection_ != null) ? this.tcpConnection_.getInetAddress().getHostAddress() : ""; }
@@ -71,13 +73,14 @@ public class Binder implements ThreadEntityInt {
         this.abend("binderReceiveThreadFunc", "not server or client");
 	}
 
-    public Boolean bindAsTcpServer(Boolean create_server_thread_val, short port_val) {
+    public Boolean bindAsTcpServer(Boolean create_server_thread_val, short port_val, Boolean is_single_port_val) {
     	if (this.whichThread_ != null) {
             this.abend("BindAsTcpServer", "bindAs is not null");
     		return false;
     	}
     	
 		this.tcpPort_ = port_val;
+		this.isSinglePort_ = is_single_port_val;
 		
 		if (create_server_thread_val) {
 	    	this.whichThread_ = this.binderServerThreadName();

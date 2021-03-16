@@ -32,7 +32,7 @@ public class FabricDBinder implements ThreadEntityInt {
         this.fabricRoot_ = root_val;
         this.dBinder_ = new Binder(this.objectName());
         
-        this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT);
+        this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT, true);
     }
 
     protected void startThreads() {

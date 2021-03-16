@@ -66,7 +66,7 @@ class BinderServerTestClass {
         
         if (this.useBinder) {
         	this.theBinderObject = new Binder("BinderTestServer");
-        	if (this.BinderObject().bindAsTcpServer(true, this.Port())) {
+        	if (this.BinderObject().bindAsTcpServer(true, this.Port(), true)) {
         		this.BinderObject().transmitData("Welcome!!");
         		String data = this.BinderObject().receiveData();
                 this.debug(true, "binderTestServerThreadFunc", "received data = " + data);
