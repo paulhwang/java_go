@@ -161,7 +161,7 @@ public class Binder implements ThreadEntityInt {
     	this.portMgr_.transmitStringData(data_val);
     }
 
-    public String receiveBundleData() {
+    public BinderBundle receiveBundleData() {
     	if (this.isSinglePort_) {
         	this.abend("readBundle", "wrong place");
         	return null;
@@ -170,13 +170,13 @@ public class Binder implements ThreadEntityInt {
     	return this.portMgr_.receiveBundleData();
     }
 
-    public void transmitBundleData(String data_val) {
+    public void transmitBundleData(BinderBundle bundle_val) {
     	if (this.isSinglePort_) {
         	this.abend("writeBundle", "wrong place");
         	return;
     	}
     	
-    	this.portMgr_.transmitBundleData(data_val);
+    	this.portMgr_.transmitBundleData(bundle_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

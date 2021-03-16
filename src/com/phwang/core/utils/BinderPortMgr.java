@@ -10,8 +10,6 @@ package com.phwang.core.utils;
 
 import java.net.*;
 
-import com.phwang.core.fabric.FabricLink;
-
 public class BinderPortMgr {
     private String objectName() {return "BinderPortMgr";}
     protected static final int BINDER_PORT_ID_SIZE_ = 4;
@@ -82,12 +80,12 @@ public class BinderPortMgr {
     	this.singleBinderPort_.transmitStringData(data_val);
     }
 
-    public String receiveBundleData() {
+    public BinderBundle receiveBundleData() {
     	this.abend("receiveBundleData", "TBD");
     	return null;
     }
 
-    public void transmitBundleData(String data_val) {
+    public void transmitBundleData(BinderBundle bundle_val) {
     	this.abend("transmitBundleData", "TBD");
     }
     
