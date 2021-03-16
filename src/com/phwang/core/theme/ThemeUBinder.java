@@ -49,7 +49,7 @@ public class ThemeUBinder implements ThreadEntityInt {
 
         String data;
         while (true) {
-            data = this.uBinder().receiveData();
+            data = this.uBinder().receiveStringData();
             if (data == null) {
                 this.abend("uThemeRreceiveThreadFunc", "null data");
                 continue;
@@ -62,7 +62,7 @@ public class ThemeUBinder implements ThreadEntityInt {
 
     public void transmitData(String data_val) {
         this.debug(false, "transmitData", "data=" + data_val);
-        this.uBinder().transmitData(data_val);
+        this.uBinder().transmitStringData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

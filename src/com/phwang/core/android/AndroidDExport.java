@@ -37,10 +37,10 @@ public class AndroidDExport implements AndroidDExportInt {
     	
         if (data_str_val != null) {
             this.debug(false, "processHttpRequestPacket", "output_str=" + data_str_val);
-        	this.uBinder().transmitData(job_entry.jobIdStr() + data_str_val);
+        	this.uBinder().transmitStringData(job_entry.jobIdStr() + data_str_val);
         }
         else {
-        	this.uBinder().transmitData(job_entry.jobIdStr() + data_str_val);
+        	this.uBinder().transmitStringData(job_entry.jobIdStr() + data_str_val);
         }
     	
     }

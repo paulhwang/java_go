@@ -37,10 +37,10 @@ public class FrontDExport  implements FrontDExportInt {
         
         if (output_str != null) {
             this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);
-        	this.uBinder().transmitData(job_entry.jobIdStr() + output_str);
+        	this.uBinder().transmitStringData(job_entry.jobIdStr() + output_str);
         }
         else {
-        	this.uBinder().transmitData(job_entry.jobIdStr() + input_data_val);
+        	this.uBinder().transmitStringData(job_entry.jobIdStr() + input_data_val);
         }
         
         String response_data = job_entry.readData();

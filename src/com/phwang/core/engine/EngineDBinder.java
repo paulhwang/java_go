@@ -50,7 +50,7 @@ public class EngineDBinder implements ThreadEntityInt {
 
         String data;
         while (true) {
-            data = this.dBinder().receiveData();
+            data = this.dBinder().receiveStringData();
             if (data == null) {
                 this.abend("dEngineReceiveThreadFunc", "null data");
                 continue;
@@ -62,7 +62,7 @@ public class EngineDBinder implements ThreadEntityInt {
     }
 
     public void TransmitData(String data_val) {
-        this.dBinder().transmitData(data_val);
+        this.dBinder().transmitStringData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

@@ -68,45 +68,27 @@ public class BinderPortMgr {
         return (BinderPort) list_entry.data();
     }
     
-    protected String receiveData() {
-    	if (this.isSinglePort()) {
-    		return this.receiveData_();
-    	}
-    	else {
-    		return this.receiveData__();
-    	}
-    }
-    
-    private String receiveData_() {
+    protected String receiveStringData() {
     	while (singleBinderPort_ == null) {
     		Utils.sleep(1);
     	}
-    	return this.singleBinderPort_.receiveData();
+    	return this.singleBinderPort_.receiveStringData();
     }
     
-    private String receiveData__() {
-    	this.abend("receiveData__", "TBD");
+    protected void transmitStringData(String data_val) {
+    	while (singleBinderPort_ == null) {
+    		Utils.sleep(1);
+    	}
+    	this.singleBinderPort_.transmitStringData(data_val);
+    }
+
+    public String receiveBundleData() {
+    	this.abend("receiveBundleData", "TBD");
     	return null;
     }
-    
-    protected void transmitData(String data_val) {
-    	if (this.isSinglePort()) {
-    		this.transmitData_(data_val);
-    	}
-    	else {
-    		this.transmitData__(data_val);
-    	}
-    }
-    
-    protected void transmitData_(String data_val) {
-    	while (singleBinderPort_ == null) {
-    		Utils.sleep(1);
-    	}
-    	this.singleBinderPort_.transmitData(data_val);
-    }
-    
-    protected void transmitData__(String data_val) {
-    	this.abend("transmitData__", "TBD");
+
+    public void transmitBundleData(String data_val) {
+    	this.abend("transmitBundleData", "TBD");
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

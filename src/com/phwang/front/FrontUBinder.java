@@ -54,7 +54,7 @@ public class FrontUBinder implements ThreadEntityInt {
                 break;
             }
 
-            String received_data = this.uBinder().receiveData();
+            String received_data = this.uBinder().receiveStringData();
             if (received_data == null) {
                 this.abend("UFrontReceiveThreadFunc", "null data");
             	continue;

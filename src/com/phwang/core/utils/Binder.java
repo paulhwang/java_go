@@ -145,12 +145,38 @@ public class Binder implements ThreadEntityInt {
     	}
     }
 
-    public String receiveData() {
-    	return this.portMgr_.receiveData();
+    public String receiveStringData() {
+    	if (!this.isSinglePort_) {
+        	this.abend("receiveStringData", "wrong place");
+        	return null;
+    	}
+    	return this.portMgr_.receiveStringData();
     }
 
-    public void transmitData(String data_val) {
-    	this.portMgr_.transmitData(data_val);
+    public void transmitStringData(String data_val) {
+    	if (!this.isSinglePort_) {
+        	this.abend("transmitStringData", "wrong place");
+        	return;
+    	}
+    	this.portMgr_.transmitStringData(data_val);
+    }
+
+    public String receiveBundleData() {
+    	if (this.isSinglePort_) {
+        	this.abend("readBundle", "wrong place");
+        	return null;
+    	}
+    	
+    	return this.portMgr_.receiveBundleData();
+    }
+
+    public void transmitBundleData(String data_val) {
+    	if (this.isSinglePort_) {
+        	this.abend("writeBundle", "wrong place");
+        	return;
+    	}
+    	
+    	this.portMgr_.transmitBundleData(data_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

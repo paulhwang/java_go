@@ -46,7 +46,7 @@ public class AndroidUBinder implements ThreadEntityInt {
                 break;
             }
 
-            String received_data = this.uBinder().receiveData();
+            String received_data = this.uBinder().receiveStringData();
             if (received_data == null) {
                 this.abend("uAndroidReceiveThreadFunc", "null data");
             	continue;
