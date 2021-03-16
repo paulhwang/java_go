@@ -30,7 +30,7 @@ public class BinderPort implements ThreadEntityInt, ListEntryInt {
     private String whichThread_ = null;
     private ThreadEntity receiveThread_;
     private ThreadEntity transmitThread_;
-    private Boolean destructorOn = false;
+    private Boolean destructorOn_ = false;
     private ListEntry listEntry_;
     
     protected BinderPortMgr portMgr() { return this.portMgr_; }
@@ -57,7 +57,7 @@ public class BinderPort implements ThreadEntityInt, ListEntryInt {
     }
     
     protected void destructor() {
-    	this.destructorOn = true;
+    	this.destructorOn_ = true;
     	
     	this.receiveThread_.thread().interrupt();
     	this.receiveThread_ = null;
@@ -147,7 +147,7 @@ public class BinderPort implements ThreadEntityInt, ListEntryInt {
         
         String data;
         while (true) {
-			if (this.destructorOn) {
+			if (this.destructorOn_) {
 				return;
 			}
 			
@@ -180,25 +180,23 @@ public class BinderPort implements ThreadEntityInt, ListEntryInt {
 
     protected String receiveStringData() {
     	while (true) {
-			if (this.destructorOn) {
+			if (this.destructorOn_) {
 				return null;
 			}
 			
     		String data = (String) this.receiveQueue_.dequeue();
-    		if (data == null) {
-				this.receiveQueue_.setPendingThread(Thread.currentThread());
-				
-   				try {
-   					Thread.sleep(1000);
-   				}
-   				catch (InterruptedException e) {
-   				}
-   				
-    			continue;
+    		if (data != null) {
+        		this.debug(false, "receiveStringData", "data = " + data);
+        		return data;
     		}
     		
-    		this.debug(false, "receiveStringData", "data = " + data);
-    		return data;
+			this.receiveQueue_.setPendingThread(Thread.currentThread());
+				
+   			try {
+   				Thread.sleep(1000);
+   			}
+   			catch (InterruptedException e) {
+   			}
     	}
     }
 
@@ -212,7 +210,7 @@ public class BinderPort implements ThreadEntityInt, ListEntryInt {
         }
         
 		while (true) {
-			if (this.destructorOn) {
+			if (this.destructorOn_) {
 				return;
 			}
 			

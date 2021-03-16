@@ -20,7 +20,7 @@ public class BinderPortMgr {
     private Binder binder_;
     private BinderPort singleBinderPort_ = null;
     private ListMgr listMgr_;
-    //private Boolean destructorOn = false;
+    //private Boolean destructorOn_ = false;
     
     protected Binder binder() { return this.binder_; }
     protected String ownerName() { return this.binder_.ownerName(); }
@@ -33,7 +33,8 @@ public class BinderPortMgr {
     }
     
     protected void destructor() {
-    	//this.destructorOn = true;
+    	//this.destructorOn_ = true;
+    	
     	if (this.isSinglePort()) {
     		this.singleBinderPort_.destructor();
     		this.singleBinderPort_ = null;
