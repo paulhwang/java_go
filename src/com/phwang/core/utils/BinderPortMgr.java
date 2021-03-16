@@ -15,13 +15,17 @@ public class BinderPortMgr {
     
     private Binder binder_;
     private BinderPort binderPort_;
+    //private Boolean destructorOn = false;
     
     protected Binder binder() { return this.binder_; }
     protected String ownerName() { return this.binder_.ownerName(); }
 
     protected BinderPortMgr(Binder binder_val) {
         this.binder_ = binder_val;
-    	
+    }
+    
+    protected void destructor() {
+    	//this.destructorOn = true;
     }
     
     protected BinderPort malloc(Socket tcp_connection_val) {
@@ -32,7 +36,7 @@ public class BinderPortMgr {
     }
     
     protected void free(BinderPort port_val) {
-    	this.binderPort_.destructor();
+    	port_val.destructor();
     }
     
     protected String receiveData() {

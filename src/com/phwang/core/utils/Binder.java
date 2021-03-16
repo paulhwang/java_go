@@ -17,8 +17,9 @@ public class Binder implements ThreadEntityInt {
 
     private String ownerName_;
     private String whichThread_ = null;
-    private ThreadEntity binderServerThread_;
-    private ThreadEntity binderClientThread_;
+    private ThreadEntity serverThread_;
+    private ThreadEntity clientThread_;
+    //private Boolean destructorOn = false;
     
     private String serverIpAddr_;
     private short tcpPort_;
@@ -32,12 +33,28 @@ public class Binder implements ThreadEntityInt {
     public String serverIpAddr() { return this.serverIpAddr_; }
     public Socket tcpConnection() { return this.tcpConnection_; }
     
-    public String TcpClientName() { return (this.tcpConnection_ != null) ? this.tcpConnection_.getInetAddress().getHostName() : ""; }
-    public String TcpClientAddress() { return (this.tcpConnection_ != null) ? this.tcpConnection_.getInetAddress().getHostAddress() : ""; }
+    public String tcpClientName() { return (this.tcpConnection_ != null) ? this.tcpConnection_.getInetAddress().getHostName() : ""; }
+    public String tcpClientAddress() { return (this.tcpConnection_ != null) ? this.tcpConnection_.getInetAddress().getHostAddress() : ""; }
 
     public Binder(String owner_object_name_val) {
         this.ownerName_ = owner_object_name_val;
         this.portMgr_ = new BinderPortMgr(this);
+    }
+    
+    public void destructor() {
+    	//this.destructorOn = true;
+    	
+    	this.portMgr_.destructor();
+    	
+    	if (serverThread_ != null) {
+    		this.serverThread_.thread().interrupt();
+    		this.serverThread_ = null;
+    	}
+    	
+    	if (clientThread_ != null) {
+    		this.clientThread_.thread().interrupt();
+    		this.clientThread_ = null;
+    	}
     }
     
 	public void threadCallbackFunction() {
@@ -64,7 +81,7 @@ public class Binder implements ThreadEntityInt {
 		
 		if (create_server_thread_val) {
 	    	this.whichThread_ = this.binderServerThreadName();
-			this.binderServerThread_ = new ThreadEntity(this.binderServerThreadName(), this);
+			this.serverThread_ = new ThreadEntity(this.binderServerThreadName(), this);
 			return true;
 		}
 		else {
@@ -80,8 +97,8 @@ public class Binder implements ThreadEntityInt {
     		ServerSocket ss = new ServerSocket(this.tcpPort());
     		this.tcpConnection_ = ss.accept();
     		this.debug(false, "BindAsTcpServer", this.ownerName() + " server accepted");
-    		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.TcpClientName());
-    		this.debug(false, "BindAsTcpServer", "clientName = " + this.TcpClientAddress());
+    		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.tcpClientName());
+    		this.debug(false, "BindAsTcpServer", "clientName = " + this.tcpClientAddress());
     		this.portMgr_.malloc(this.tcpConnection());
             ss.close();
             return true;
@@ -102,7 +119,7 @@ public class Binder implements ThreadEntityInt {
 		
 		if (create_client_thread_val) {
 	    	this.whichThread_ = this.binderClientThreadName();
-			this.binderClientThread_ = new ThreadEntity(this.binderClientThreadName(), this);
+			this.clientThread_ = new ThreadEntity(this.binderClientThreadName(), this);
 			return true;
 		}
 		else {
