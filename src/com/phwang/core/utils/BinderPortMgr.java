@@ -36,10 +36,16 @@ public class BinderPortMgr {
     }
     
     protected String receiveData() {
+    	while (binderPort_ == null) {
+    		Utils.sleep(1);
+    	}
     	return this.binderPort_.receiveData();
     }
     
     protected void transmitData(String data_val) {
+    	while (binderPort_ == null) {
+    		Utils.sleep(1);
+    	}
     	this.binderPort_.transmitData(data_val);
     }
     
