@@ -24,6 +24,7 @@ public class BinderPortMgr {
     
     protected Binder binder() { return this.binder_; }
     protected String ownerName() { return this.binder_.ownerName(); }
+    protected ListMgr listMgr() { return this.listMgr_; }
     protected Boolean isSinglePort() { return this.binder().isSinglePort(); }
 
     protected BinderPortMgr(Binder binder_val) {
@@ -85,12 +86,14 @@ public class BinderPortMgr {
     	
         int max_index = this.listMgr_.maxIndex();
         ListEntry[] list_entry_array = this.listMgr_.entryArray();
-        for (int i = max_index; i >= 0; i--) {
+        for (int i = 0; i < max_index; i++) {
             if (list_entry_array[i] != null) {
             	BinderPort port = (BinderPort) list_entry_array[i].data();
             	if (port.receiveQueue().length() != 0) {
             		String data = (String) port.receiveQueue().dequeue();
-                	return new BinderBundle(port.portIdStr(), data);
+            		if (data != null) {
+            			return new BinderBundle(port.portIdStr(), data);
+            		}
             	}
             }
         }

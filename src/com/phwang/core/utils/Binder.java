@@ -20,7 +20,7 @@ public class Binder implements ThreadEntityInt {
     private String whichThread_ = null;
     private ThreadEntity serverThread_;
     private ThreadEntity clientThread_;
-    //private Boolean destructorOn = false;
+    private Boolean destructorOn_ = false;
     
     private String serverIpAddr_;
     private short tcpPort_;
@@ -44,7 +44,7 @@ public class Binder implements ThreadEntityInt {
     }
     
     public void destructor() {
-    	//this.destructorOn = true;
+    	this.destructorOn_ = true;
     	
     	this.portMgr_.destructor();
     	
@@ -167,7 +167,32 @@ public class Binder implements ThreadEntityInt {
         	return null;
     	}
     	
-    	return this.portMgr_.receiveBundleData();
+    	while (true) {
+			if (this.destructorOn_) {
+				return null;
+			}
+			
+			BinderBundle bundle = this.portMgr_.receiveBundleData();
+    		if (bundle != null) {
+        		this.debug(false, "receiveStringData", "data = " + bundle.data());
+        		return bundle;
+    		}
+    		
+            int max_index = this.portMgr_.listMgr().maxIndex();
+            ListEntry[] list_entry_array = this.portMgr_.listMgr().entryArray();
+            for (int i = 0; i < max_index; i++) {
+                if (list_entry_array[i] != null) {
+                	BinderPort port = (BinderPort) list_entry_array[i].data();
+                	port.receiveQueue().setPendingThread(Thread.currentThread());
+                }
+            }
+				
+   			try {
+   				Thread.sleep(1000);
+   			}
+   			catch (InterruptedException e) {
+    		}
+    	}
     }
 
     public void transmitBundleData(BinderBundle bundle_val) {
