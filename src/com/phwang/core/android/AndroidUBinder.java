@@ -39,7 +39,7 @@ public class AndroidUBinder implements ThreadEntityInt {
 	}
     
     private void uAndroidReceiveThreadFunc() {
-        this.debug(true, "uAndroidReceiveThreadFunc", "start " + this.receiveThreadName());
+        this.debug(false, "uAndroidReceiveThreadFunc", "start " + this.receiveThreadName());
         
         while (true) {
             if (this.stopReceiveThreadFlag) {
