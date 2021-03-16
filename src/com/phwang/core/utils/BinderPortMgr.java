@@ -82,6 +82,19 @@ public class BinderPortMgr {
 
     public BinderBundle receiveBundleData() {
     	this.abend("receiveBundleData", "TBD");
+    	
+        int max_index = this.listMgr_.maxIndex();
+        ListEntry[] list_entry_array = this.listMgr_.entryArray();
+        for (int i = max_index; i >= 0; i--) {
+            if (list_entry_array[i] != null) {
+            	BinderPort port = (BinderPort) list_entry_array[i].data();
+            	if (port.receiveQueue().length() != 0) {
+            		String data = (String) port.receiveQueue().dequeue();
+                	return new BinderBundle(port.portIdStr(), data);
+            	}
+            }
+        }
+    	
     	return null;
     }
 

@@ -25,11 +25,11 @@ public class ListMgr {
     private ListEntry[] oldEntryArray_;//needed for postponing garbage collection
     private ListEntry[] entryArray_;
     private int arraySize_;
-    private Lock theLock;
+    private Lock lock_;
 
     public int idSize() { return this.idSize_; }
-    public int MaxIndex() { return this.maxIndex_; }
-    public ListEntry[] EntryTableArray() { return this.entryArray_; }
+    public int maxIndex() { return this.maxIndex_; }
+    public ListEntry[] entryArray() { return this.entryArray_; }
 
     public ListMgr(int id_size_val, int array_size_val, String caller_name_val, int first_global_id_val) {
         this.debug(false, "ListMgr", "init start (" + caller_name_val + ")");
@@ -40,7 +40,7 @@ public class ListMgr {
         this.entryCount_ = 0;
         this.MaxIdIndexTableIndex = 0;
         this.maxIndex_ = -1;
-        this.theLock = new ReentrantLock();
+        this.lock_ = new ReentrantLock();
         this.arraySize_ = array_size_val;
         
         this.maxGlobalId_ = 1;
@@ -64,7 +64,7 @@ public class ListMgr {
         this.debug(false, "malloc", "start");
     	
         this.abendListMgr("before malloc");
-        this.theLock.lock();
+        this.lock_.lock();
         
         ListEntry entry = this.malloc_();
         
@@ -73,7 +73,7 @@ public class ListMgr {
         entry.setData(id, entity_int_val);
         entity_int_val.bindListEntry(entry);
         
-    	this.theLock.unlock();
+    	this.lock_.unlock();
         this.abendListMgr("after malloc");
         
         if (this.entryCount_ > this.maxGlobalId_) {
@@ -123,9 +123,9 @@ public class ListMgr {
     public void free(ListEntry entry_val) {
         this.abendListMgr("before free");
         
-        this.theLock.lock();
+        this.lock_.lock();
         this.free_(entry_val);
-        this.theLock.unlock();
+        this.lock_.unlock();
         
         this.abendListMgr("after free");
     }
@@ -139,9 +139,9 @@ public class ListMgr {
     public void flush() {
         this.abendListMgr("before flush");
         
-        this.theLock.lock();
+        this.lock_.lock();
         this.flush_();
-        this.theLock.unlock();
+        this.lock_.unlock();
         
         this.abendListMgr("after flush");
     }
@@ -197,9 +197,9 @@ public class ListMgr {
     public ListEntry getEntryById(int id_val) {
         this.abendListMgr("before getEntryById");
         
-        this.theLock.lock();
+        this.lock_.lock();
         ListEntry entry = getEntryById_(id_val);
-    	this.theLock.unlock();
+    	this.lock_.unlock();
     	
     	this.abendListMgr("after getEntryById");
     	return entry;
@@ -220,9 +220,9 @@ public class ListMgr {
     public ListEntry getEntryByCompare(ListMgrInt calling_object_val, String string_val) {
         this.abendListMgr("before getEntryByCompare");
         
-        this.theLock.lock();
+        this.lock_.lock();
         ListEntry entry = getEntryByCompare_(calling_object_val, string_val);
-        this.theLock.unlock();
+        this.lock_.unlock();
         
         this.abendListMgr("after getEntryByCompare");
     	return entry;
@@ -244,9 +244,9 @@ public class ListMgr {
     	if (!this.abendListMgrClassIsOn)
     		return;
     	
-    	this.theLock.lock();
+    	this.lock_.lock();
     	this.abendListMgr_(msg_val);
-    	this.theLock.unlock();
+    	this.lock_.unlock();
     }
     
     private void abendListMgr_(String msg_val) {

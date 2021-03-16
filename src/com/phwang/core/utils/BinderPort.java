@@ -41,9 +41,11 @@ public class BinderPort implements ThreadEntityInt, ListEntryInt {
     protected DataOutputStream outputStream() { return this.outputStream_; }
     protected InputStreamReader inputReader() { return this.inputReader_; }
     protected OutputStreamWriter outputWriter() { return this.outputWriter_; }
-    protected int PortId() { return this.listEntry_.id(); }
-    protected String PortIdStr() { return this.listEntry_.idStr(); }
+    protected int portId() { return this.listEntry_.id(); }
+    protected String portIdStr() { return this.listEntry_.idStr(); }
     protected ListEntry listEntry() { return this.listEntry_; }
+    protected ListQueue receiveQueue() { return this.receiveQueue_; }
+    protected ListQueue transmitQueue() { return this.transmitQueue_; }
 
     protected BinderPort(BinderPortMgr port_mgr_val, Socket tcp_connection_val) {
         this.portMgr_ = port_mgr_val;
