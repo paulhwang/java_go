@@ -17,7 +17,7 @@ public class BinderPortMgr {
     private BinderPort binderPort_;
     
     protected Binder binder() { return this.binder_; }
-    protected String ownerObjectName() { return this.binder_.ownerName(); }
+    protected String ownerName() { return this.binder_.ownerName(); }
 
     protected BinderPortMgr(Binder binder_val) {
         this.binder_ = binder_val;
@@ -32,7 +32,7 @@ public class BinderPortMgr {
     }
     
     protected void free(BinderPort port_val) {
-    	
+    	this.binderPort_.destructor();
     }
     
     protected String receiveData() {

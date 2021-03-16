@@ -45,6 +45,10 @@ public class ListQueue {
             this.maxLength = DEFAULT_MAX_QUEUE_LENGTH;
         }
     }
+    
+    public void destructor() {
+    	this.releaseFreeEntryList();
+    }
 
     public void enqueue(Object data_val) {
         this.debug(false, "enqueue", (String) data_val);
@@ -187,10 +191,6 @@ public class ListQueue {
     		this.freeEntryList = this.freeEntryList.next;
     		entry.clear();
     	}
-    }
-    
-    public void destructQueue() {
-    	this.releaseFreeEntryList();
     }
     
     private void abendQueue (String msg_val) {
