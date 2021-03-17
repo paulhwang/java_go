@@ -56,7 +56,7 @@ public class FabricDBinder implements ThreadEntityInt {
                 this.abend("dBinderRreceiveThreadFunc", "null bundle");
                 continue;
             }
-            this.debug(true, "dBinderRreceiveThreadFunc", "data=" + bundle.data());
+            this.debug(false, "dBinderRreceiveThreadFunc", "data=" + bundle.data());
             this.fabricUParser().parseInputPacket(bundle);
         }
     }

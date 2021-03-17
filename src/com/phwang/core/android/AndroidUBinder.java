@@ -1,3 +1,11 @@
+/*
+ ******************************************************************************
+ *                                       
+ *  Copyright (c) 2021 phwang. All rights reserved.
+ *
+ ******************************************************************************
+ */
+
 package com.phwang.core.android;
 
 import com.phwang.core.utils.Binder;
@@ -14,7 +22,7 @@ public class AndroidUBinder implements ThreadEntityInt {
     private AndroidRoot androidRoot_;
     private Binder uBinder_;
     private Boolean stopReceiveThreadFlag = false;
-    
+        
     private AndroidRoot androidRoot() { return this.androidRoot_; }
     private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
     private ThreadMgr threadMgr() { return this.androidRoot().threadMgr();}

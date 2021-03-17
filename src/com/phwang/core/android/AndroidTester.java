@@ -79,6 +79,10 @@ class AndroidTester implements ThreadEntityInt {
     	this.androidRoot_.androidDExport().setupLink(this.myNameString_, this.password_);
     }
     
+    public void parserSetupLinkResponse() {
+    	this.debug(true, "*****parserSetupLinkResponse", "linkIdStr=" + this.androidRoot_.androidFabricInfo().linkIdStr());
+    }
+    
     private void doGetLinkData() {
     }
     

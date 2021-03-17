@@ -15,13 +15,15 @@ public class AndroidRoot {
     private String objectName() {return "AndroidRoot";}
 
     private ThreadMgr threadMgr_;
+    private AndroidFabricInfo androidFabricInfo_;
     private AndroidUBinder androidUBinder_;
     private AndroidDExport androidDExport_;
     private AndroidDParser androidDParser_;
     private AndroidJobMgr jobMgr_;
     
-    protected ThreadMgr threadMgr() { return this.threadMgr_; }
     public AndroidDExport androidDExport() { return this.androidDExport_; }
+    protected ThreadMgr threadMgr() { return this.threadMgr_; }
+    protected AndroidFabricInfo androidFabricInfo() { return this.androidFabricInfo_; }
     protected AndroidUBinder androidUBinder() { return this.androidUBinder_; }
     protected AndroidDParser androidDParser() { return this.androidDParser_; }
     protected AndroidJobMgr jobMgr() { return this.jobMgr_; }
@@ -29,6 +31,7 @@ public class AndroidRoot {
     public AndroidRoot() {
         this.debug(false, "AndroidRoot", "init start");
 
+        this.androidFabricInfo_ = new AndroidFabricInfo();
         this.threadMgr_ = new ThreadMgr();
         this.androidUBinder_ = new AndroidUBinder(this);
         this.androidDExport_ = new AndroidDExport(this);

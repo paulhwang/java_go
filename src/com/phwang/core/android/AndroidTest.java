@@ -19,8 +19,8 @@ public class AndroidTest implements ThreadEntityInt {
     private String objectName() {return "AndroidTest";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
 
-    private int numberOfTesterThread_ = 8;
-    private int numberOfTestPerTester = 3;
+    private int numberOfTesterThread_ = 2;
+    private int numberOfTestPerTester = 1;
     private LockedInteger indexCount_;
 
 

@@ -8,7 +8,6 @@
 
 package com.phwang.core.android;
 
-import org.json.simple.JSONObject;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.EncodeNumber;
 
@@ -18,7 +17,7 @@ public class AndroidDParser {
     private AndroidRoot frontRoot_;
     
     protected AndroidRoot frontRoot() { return this.frontRoot_; }
-    
+    private AndroidFabricInfo androidFabricInfo() { return this.frontRoot().androidFabricInfo(); }
     protected AndroidDParser(AndroidRoot root_val) {
         this.debug(false, "AndroidDParser", "init start");
         this.frontRoot_ = root_val;
@@ -69,6 +68,8 @@ public class AndroidDParser {
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         String my_name = rest_str.substring(0, my_name_len);
     	rest_str = rest_str.substring(my_name_len);
+    	
+    	this.androidFabricInfo().setLinkIdStr(link_id_str);
     }
 
     private void parserGetLinkDataResponse(String input_str_val) {
