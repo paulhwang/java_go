@@ -9,6 +9,8 @@
 package com.phwang.core.utils;
 
 import java.net.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BinderPortMgr {
     private String objectName() {return "BinderPortMgr";}
@@ -16,6 +18,11 @@ public class BinderPortMgr {
     protected static final int BINDER_PORT_ID_SIZE = BINDER_PORT_ID_SIZE_ * 2;
     private static final int LIST_MGR_ARRAY_SIZE = 256;
     private static final int FIRST_LINK_ID = 1000;
+
+    private static BinderBundle freeBundleList;
+    private static int freeListLength;
+    private static Lock freeListLock = new ReentrantLock();
+    private static int MAX_FREE_LIST_LENGTH = 1000;
     
     private Binder binder_;
     private BinderPort singleBinderPort_ = null;
@@ -93,7 +100,10 @@ public class BinderPortMgr {
             	if (port.receiveQueue().length() != 0) {
             		String data = (String) port.receiveQueue().dequeue();
             		if (data != null) {
-            			return new BinderBundle(port.portIdStr(), data);
+            			BinderBundle bundle = mallocBundle();
+            			bundle.setId(port.portIdStr());
+            			bundle.setData(data);
+            			return bundle;
             		}
             	}
             }
@@ -104,6 +114,53 @@ public class BinderPortMgr {
 
     public void transmitBundleData(BinderBundle bundle_val) {
     	this.abend("transmitBundleData", "TBD");
+    	
+    	freeBundle(bundle_val);
+    }
+
+    public static BinderBundle mallocBundle() {
+    	BinderBundle bundle;
+        
+        freeListLock.lock();
+    	if (freeBundleList != null) {
+    		bundle = freeBundleList;
+    		freeBundleList = freeBundleList.next;
+    		freeListLength--;
+    	}
+    	else {
+    		bundle = null;
+    	}
+    	freeListLock.unlock();
+    	
+    	if (bundle != null) {
+    		return bundle;
+    	}
+    	else {
+    		return new BinderBundle();
+    	}
+    }
+    
+    public static void freeBundle(BinderBundle bundle_val) {
+    	if (freeListLength > MAX_FREE_LIST_LENGTH) {
+    		bundle_val.clear();
+    		return;
+    	}
+    	
+    	freeListLock.lock();
+    	bundle_val.next = freeBundleList;
+    	freeBundleList = bundle_val;
+    	freeListLength++;
+    	freeListLock.unlock();
+    }
+    
+    public static void releaseBundleFreeEntryList() {
+    	freeListLock.lock();
+    	while (freeBundleList != null) {
+    		BinderBundle bundle = freeBundleList;
+    		freeBundleList = freeBundleList.next;
+    		bundle.clear();
+    	}
+    	freeListLock.unlock();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

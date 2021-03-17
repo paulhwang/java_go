@@ -149,51 +149,6 @@ public class ListQueue {
             this.abend("flush_", "length is not 0");
         }
     }
-
-    public static QueueEntryClass malloc() {
-        QueueEntryClass entry;
-        
-        freeListLock.lock();
-    	if (freeEntryList != null) {
-    		entry = freeEntryList;
-    		freeEntryList = freeEntryList.next;
-    		freeListLength--;
-    	}
-    	else {
-    		entry = null;
-    	}
-    	freeListLock.unlock();
-    	
-    	if (entry != null) {
-    		return entry;
-    	}
-    	else {
-    		return new QueueEntryClass();
-    	}
-    }
-    
-    public static void free(QueueEntryClass entry) {
-    	if (freeListLength > MAX_FREE_LIST_LENGTH) {
-    		entry.clear();
-    		return;
-    	}
-    	
-    	freeListLock.lock();
-    	entry.next = freeEntryList;
-    	freeEntryList = entry;
-    	freeListLength++;
-    	freeListLock.unlock();
-    }
-    
-    public static void releaseFreeEntryList() {
-    	freeListLock.lock();
-    	while (freeEntryList != null) {
-    		QueueEntryClass entry = freeEntryList;
-    		freeEntryList = freeEntryList.next;
-    		entry.clear();
-    	}
-    	freeListLock.unlock();
-    }
     
     private void abendQueue (String msg_val) {
     	if (!this.abendQueueIsOn_)
@@ -266,6 +221,51 @@ public class ListQueue {
     			return;
     		}
     	}
+    }
+
+    public static QueueEntryClass malloc() {
+        QueueEntryClass entry;
+        
+        freeListLock.lock();
+    	if (freeEntryList != null) {
+    		entry = freeEntryList;
+    		freeEntryList = freeEntryList.next;
+    		freeListLength--;
+    	}
+    	else {
+    		entry = null;
+    	}
+    	freeListLock.unlock();
+    	
+    	if (entry != null) {
+    		return entry;
+    	}
+    	else {
+    		return new QueueEntryClass();
+    	}
+    }
+    
+    public static void free(QueueEntryClass entry) {
+    	if (freeListLength > MAX_FREE_LIST_LENGTH) {
+    		entry.clear();
+    		return;
+    	}
+    	
+    	freeListLock.lock();
+    	entry.next = freeEntryList;
+    	freeEntryList = entry;
+    	freeListLength++;
+    	freeListLock.unlock();
+    }
+    
+    public static void releaseFreeEntryList() {
+    	freeListLock.lock();
+    	while (freeEntryList != null) {
+    		QueueEntryClass entry = freeEntryList;
+    		freeEntryList = freeEntryList.next;
+    		entry.clear();
+    	}
+    	freeListLock.unlock();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
