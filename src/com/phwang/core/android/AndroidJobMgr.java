@@ -27,7 +27,7 @@ public class AndroidJobMgr {
         this.debug(false, "AndroidJobMgr", "init start");
 
         this.androidRoot_ = android_root_val;
-        this.listMgr_ = new ListMgr(AndroidImport.FRONT_JOB_ID_SIZE, LIST_MGR_ARRAY_SIZE_, this.objectName(), FIRST_JOB_ID_);
+        this.listMgr_ = new ListMgr(AndroidImport.FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE_, this.objectName(), FIRST_JOB_ID_);
     }
 
     protected AndroidJob mallocJob() {

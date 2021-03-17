@@ -14,7 +14,7 @@ import com.phwang.front.FrontRoot;
 public class MainClass {
 
 	public static void main(String[] args) {
-		new CoreRoot().startTest(false);
-		new FrontRoot().startTest(true);
+		new CoreRoot().startTest(true);
+		new FrontRoot().startTest(false);
 	}
 }
