@@ -101,8 +101,8 @@ public class BinderPortMgr {
             		String data = (String) port.receiveQueue().dequeue();
             		if (data != null) {
             			BinderBundle bundle = mallocBundle();
-            			bundle.setId(port.portIdStr());
             			bundle.setData(data);
+            			bundle.setBinderPort(port);
             			return bundle;
             		}
             	}
@@ -114,7 +114,7 @@ public class BinderPortMgr {
 
     public void transmitBundleData(BinderBundle bundle_val) {
     	this.abend("transmitBundleData", "TBD");
-    	
+    	bundle_val.binderPort().transmitStringData(bundle_val.data());
     	freeBundle(bundle_val);
     }
 
