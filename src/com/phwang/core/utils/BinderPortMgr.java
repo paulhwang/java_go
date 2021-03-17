@@ -33,6 +33,7 @@ public class BinderPortMgr {
     protected String ownerName() { return this.binder_.ownerName(); }
     protected ListMgr listMgr() { return this.listMgr_; }
     protected Boolean isSinglePort() { return this.binder().isSinglePort(); }
+    private int portCount() { return this.listMgr_.entryCount(); }
 
     protected BinderPortMgr(Binder binder_val) {
         this.binder_ = binder_val;
@@ -59,6 +60,7 @@ public class BinderPortMgr {
     	}
     	else {
         	this.listMgr_.malloc(port);
+        	this.debug(true, "************mallocPort", "portCount=" + this.portCount());
     	}
     }
     

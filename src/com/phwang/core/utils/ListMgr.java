@@ -18,15 +18,16 @@ public class ListMgr {
     private int idSize_;
     private String callerName;
     private int globalId_;
-    int MaxIdIndexTableIndex;
+    int MaxIdIndexTableIndex_;
     private int maxIndex_;
     private int maxGlobalId_;
-    int entryCount_;
+    private int entryCount_;
     private ListEntry[] oldEntryArray_;//needed for postponing garbage collection
     private ListEntry[] entryArray_;
     private int arraySize_;
     private Lock lock_;
 
+    public int entryCount() { return this.entryCount_; }
     public int idSize() { return this.idSize_; }
     public int maxIndex() { return this.maxIndex_; }
     public ListEntry[] entryArray() { return this.entryArray_; }
@@ -38,7 +39,7 @@ public class ListMgr {
         this.callerName = caller_name_val;
         this.globalId_ = first_global_id_val - 1;
         this.entryCount_ = 0;
-        this.MaxIdIndexTableIndex = 0;
+        this.MaxIdIndexTableIndex_ = 0;
         this.maxIndex_ = -1;
         this.lock_ = new ReentrantLock();
         this.arraySize_ = array_size_val;
