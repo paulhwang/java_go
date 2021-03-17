@@ -22,22 +22,23 @@ public class AndroidTest implements ThreadEntityInt {
     private int i_ = 1;
     private int j_ = 1;
 
-    private AndroidDExportInt androidExportInt_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
-    protected AndroidDExportInt androidExportInt() { return this.androidExportInt_; }
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public AndroidTest(AndroidDExportInt android_export_int_val) {
+    public AndroidTest() {
         this.debug(false, "AndroidTest", "init start");
         
-        this.androidExportInt_ = android_export_int_val;
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
     }
     
-    public void startTest() {
+    public void startTest(Boolean test_on_val) {
+    	if (!test_on_val) {
+    		return;
+    	}
+    	
     	this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
     }
     
