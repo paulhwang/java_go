@@ -19,8 +19,10 @@ public class AndroidTest implements ThreadEntityInt {
     private String objectName() {return "AndroidTest";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
 
-    private int i_ = 1;
-    private int j_ = 1;
+    private int numberOfTesterThread_ = 8;
+    private int numberOfTestPerTester = 3;
+    private LockedInteger indexCount_;
+
 
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
@@ -32,6 +34,7 @@ public class AndroidTest implements ThreadEntityInt {
         
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
+        this.indexCount_ = new LockedInteger(0);
     }
     
     public void startTest(Boolean test_on_val) {
@@ -39,25 +42,28 @@ public class AndroidTest implements ThreadEntityInt {
     		return;
     	}
     	
-    	this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
+    	for (int i = 0; i < this.numberOfTesterThread_; i++) {
+            Utils.sleep(10);
+    		this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
+    	}
     }
     
 	public void threadCallbackFunction() {
 		this.incrementThreadCount();
-		this.httpTestThreadFunc();
+		this.androidTestThreadFunc();
 		this.decrementThreadCount();
 	}
     
-    private void httpTestThreadFunc() {
-        this.debug(true, "httpTestThreadFunc", "*******start " + this.androidTestThreadName());
-        Utils.sleep(100);  
+    private void androidTestThreadFunc() {
+        this.debug(true, "androidTestThreadFunc", "*******start " + this.androidTestThreadName());
         
-        for (int j = 0; j < this.i_; j++) {
-        	for (int i = 0; i < this.j_; i++) {
-        		new AndroidTestCase(this, i).startTestTest();
-        		
-        		//UtilsClass.sleep(1);
-        	}
+    	this.indexCount_.increment();
+    	int index = this.indexCount_.get();
+        AndroidTester tester = new AndroidTester(this, index);
+
+    	for (int i = 0; i < this.numberOfTestPerTester; i++) {
+       		tester.startTest();
+       		//UtilsClass.sleep(1);
         }
     }
     

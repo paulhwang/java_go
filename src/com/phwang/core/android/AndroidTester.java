@@ -10,8 +10,8 @@ import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
 
-class AndroidTestCase implements ThreadEntityInt {
-    private String objectName() {return "AndroidTestCase";}
+class AndroidTester implements ThreadEntityInt {
+    private String objectName() {return "AndroidTester";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
     
     private AndroidTest androidTest_;
@@ -23,8 +23,8 @@ class AndroidTestCase implements ThreadEntityInt {
     private AndroidTest androidTest() { return this.androidTest_; }
     private ThreadMgr threadMgr() { return this.androidTest().threadMgr();}
 
-    protected AndroidTestCase(AndroidTest android_test_val, int index_val) {
-        this.debug(false, "AndroidTestCase", "init start");
+    protected AndroidTester(AndroidTest android_test_val, int index_val) {
+        this.debug(false, "AndroidTester", "init start");
         
         this.androidTest_ = android_test_val;
         this.indexString_ = EncodeNumber.encode(index_val, 6);
@@ -34,7 +34,7 @@ class AndroidTestCase implements ThreadEntityInt {
         
     }
     
-    protected void startTestTest() {
+    protected void startTest() {
     	this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
      }
 
