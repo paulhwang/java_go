@@ -26,6 +26,7 @@ public class AndroidUBinder implements ThreadEntityInt {
     private AndroidRoot androidRoot() { return this.androidRoot_; }
     private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
     private ThreadMgr threadMgr() { return this.androidRoot().threadMgr();}
+    private AndroidDParser androidDParser() { return this.androidRoot().androidDParser();}
     protected Binder uBinder() { return this.uBinder_; }
     
     protected AndroidUBinder(AndroidRoot root_val) {
@@ -60,24 +61,8 @@ public class AndroidUBinder implements ThreadEntityInt {
             	continue;
             }
 
-            this.debug(false, "uAndroidReceiveThreadFunc", "received_data=" + received_data);
-
-            String job_id_str = received_data.substring(0, AndroidImport.FRONT_JOB_ID_SIZE);
-            AndroidJob job_entry = this.jobMgr().getJobByIdStr(job_id_str);
-            if (job_entry == null) {
-                this.abend("UFrontReceiveThreadFunc", "null ajax_entry, job_id_str="  + job_id_str);
-                continue;
-            }
-            this.jobMgr().freeJob(job_entry);
-            
-            String response_data = received_data.substring(AndroidImport.FRONT_JOB_ID_SIZE);
-            String json_response_data = response_data;//////////////////this.frontDParser().parserResponseData(response_data);
-            if (json_response_data != null) {
-                job_entry.WriteData(json_response_data);
-            }
-            else {
-            	job_entry.WriteData(response_data);
-            }
+            this.debug(true, "uAndroidReceiveThreadFunc", "received_data=" + received_data);
+            this.androidDParser().parserResponseData(received_data.substring(AndroidImport.FRONT_JOB_ID_SIZE));
         }
         this.debug(true, "uAndroidReceiveThreadFunc", "exit");
     }

@@ -24,7 +24,7 @@ public class AndroidDParser {
     }
     
     protected void parserResponseData(String input_data_val) {
-    	this.debug(false, "parserResponseData", "input_data_val=" + input_data_val);
+    	this.debug(true, "parserResponseData", "input_data_val=" + input_data_val);
     	
     	char command = input_data_val.charAt(0);
     	
@@ -58,7 +58,7 @@ public class AndroidDParser {
     }
     
     private void parserSetupLinkResponse(String input_str_val) {
-    	this.debug(false, "parserSetupLinkResponse", "input_str_val=" + input_str_val);
+    	this.debug(true, "parserSetupLinkResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, AndroidImport.FABRIC_LINK_ID_SIZE);

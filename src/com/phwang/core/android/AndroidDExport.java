@@ -23,7 +23,8 @@ public class AndroidDExport implements AndroidDExportInt {
     private AndroidUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
     private Binder uBinder() { return this.androidUBinder().uBinder(); }
     private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
-    
+    private AndroidFabricInfo androidFabricInfo() { return this.androidRoot_.androidFabricInfo(); }
+ 
     protected AndroidDExport(AndroidRoot root_val) {
         this.debug(false, "AndroidDExport", "init start");
         
@@ -32,17 +33,7 @@ public class AndroidDExport implements AndroidDExportInt {
 
     private void transmitToFabric(String data_str_val) {
     	this.debug(true, "transmitToFabric", "data_str_val=" + data_str_val);
-    	
-        AndroidJob job_entry = this.jobMgr().mallocJob();
-    	
-        if (data_str_val != null) {
-            this.debug(false, "processHttpRequestPacket", "output_str=" + data_str_val);
-        	this.uBinder().transmitStringData(job_entry.jobIdStr() + data_str_val);
-        }
-        else {
-        	this.uBinder().transmitStringData(job_entry.jobIdStr() + data_str_val);
-        }
-    	
+       	this.uBinder().transmitStringData(this.androidFabricInfo().jobIdStr() + data_str_val);
     }
     
     public void setupLink(String my_name_val, String password_val) {
