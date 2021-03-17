@@ -74,7 +74,11 @@ public class AndroidTest implements ThreadEntityInt {
     
     protected void decrementThreadCount() {
   		this.threadCount_.decrement();
-    	this.debug(true, "decrementThreadCount", "*************************" + this.threadCount_.get());
+  		
+  		if (this.threadCount_.get() < 2) {
+  			this.debug(true, "decrementThreadCount", "*************************" + this.threadCount_.get());
+  		}
+  		
     	if (this.threadCount_.get() < 0) {
     		this.abend("decrementThreadCount", "smaller than 0");
     	}
