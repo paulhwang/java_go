@@ -96,18 +96,23 @@ public class Binder implements ThreadEntityInt {
         this.debug(false, "TcpServerThreadFunc", "start (" + this.ownerName() + " " + this.binderServerThreadName() + ")");
         this.whichThread_ = null;
         
-    	try {
-    		ServerSocket ss = new ServerSocket(this.tcpPort());
-    		this.tcpConnection_ = ss.accept();
-    		this.debug(false, "BindAsTcpServer", this.ownerName() + " server accepted");
-    		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.tcpClientName());
-    		this.debug(false, "BindAsTcpServer", "clientName = " + this.tcpClientAddress());
-    		this.portMgr_.mallocPort(this.tcpConnection());
-            ss.close();
-            return true;
-    	}
-    	catch (Exception e) {
-    		return false;
+        while (true) {
+        	try {
+        		ServerSocket ss = new ServerSocket(this.tcpPort());
+        		this.tcpConnection_ = ss.accept();
+        		this.debug(false, "BindAsTcpServer", this.ownerName() + " server accepted");
+        		this.debug(false, "BindAsTcpServer", "clientAddress = " + this.tcpClientName());
+        		this.debug(false, "BindAsTcpServer", "clientName = " + this.tcpClientAddress());
+        		this.portMgr_.mallocPort(this.tcpConnection());
+        		ss.close();
+        	}
+        	catch (Exception e) {
+        		return false;
+        	}
+        	
+        	if (this.isSinglePort_) {
+        		return true;
+        	}
     	}
     }
 

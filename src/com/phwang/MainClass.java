@@ -15,6 +15,6 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		new CoreRoot().startTest(true);
-		new FrontRoot().startTest(false);
+		new FrontRoot().startTest(true);
 	}
 }

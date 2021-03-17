@@ -46,7 +46,7 @@ public class AndroidDExport implements AndroidDExportInt {
     }
     
     public void setupLink(String my_name_val, String password_val) {
-    	this.debug(true, "setupLink", "name=" + my_name_val);
+    	this.debug(false, "setupLink", "name=" + my_name_val);
     	
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(AndroidImport.FABRIC_COMMAND_SETUP_LINK); 
@@ -56,7 +56,7 @@ public class AndroidDExport implements AndroidDExportInt {
         command_buf.append(password_val);
         String command_str = command_buf.toString();
         
-    	this.debug(true, "setupLink", "command_str=" + command_str);
+    	this.debug(false, "setupLink", "command_str=" + command_str);
     	
     	this.transmitToFabric(command_str);
     }
