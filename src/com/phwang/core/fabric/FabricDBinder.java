@@ -9,6 +9,7 @@
 package com.phwang.core.fabric;
 
 import com.phwang.core.utils.Binder;
+import com.phwang.core.utils.BinderBundle;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.ThreadMgr;
 
@@ -32,7 +33,7 @@ public class FabricDBinder implements ThreadEntityInt {
         this.fabricRoot_ = root_val;
         this.dBinder_ = new Binder(this.objectName());
         
-        this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT, true);
+        this.dBinder().bindAsTcpServer(true, FabricExport.FABRIC_FRONT_PORT, false);
     }
 
     protected void startThreads() {
@@ -48,20 +49,20 @@ public class FabricDBinder implements ThreadEntityInt {
     private void dBinderRreceiveThreadFunc() {
         this.debug(false, "dBinderRreceiveThreadFunc", "start " + this.receiveThreadName());
 
-        String data;
+        BinderBundle bundle;
         while (true) {
-            data = this.dBinder().receiveStringData();
-            if (data == null) {
-                this.abend("dBinderRreceiveThreadFunc", "null data");
+            bundle = this.dBinder().receiveBundleData();
+            if (bundle == null) {
+                this.abend("dBinderRreceiveThreadFunc", "null bundle");
                 continue;
             }
-            this.debug(false, "dBinderRreceiveThreadFunc", "data=" + data);
-            this.fabricUParser().parseInputPacket(data);
+            this.debug(true, "dBinderRreceiveThreadFunc", "data=" + bundle.data());
+            this.fabricUParser().parseInputPacket(bundle);
         }
     }
 
-    protected void transmitData(String data_val) {
-        this.dBinder().transmitStringData(data_val);
+    protected void transmitBundleData(BinderBundle bundle_val) {
+        this.dBinder().transmitBundleData(bundle_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

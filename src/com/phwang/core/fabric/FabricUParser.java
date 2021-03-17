@@ -10,6 +10,7 @@ package com.phwang.core.fabric;
 
 import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.utils.ListEntry;
+import com.phwang.core.utils.BinderBundle;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.protocols.FabricFrontEndProtocolClass;
 import com.phwang.core.protocols.FabricThemeProtocolClass;
@@ -33,12 +34,13 @@ public class FabricUParser {
         this.fabricRoot_ = root_val;
     }
 
-    protected void parseInputPacket(String input_data_val) {
-        String job_id_str = input_data_val.substring(0, FabricExport.FRONT_JOB_ID_SIZE);
-        String json_str = input_data_val.substring(FabricExport.FRONT_JOB_ID_SIZE);
+    protected void parseInputPacket(BinderBundle bundle_val) {
+    	String input_data = bundle_val.data();
+        String job_id_str = input_data.substring(0, FabricExport.FRONT_JOB_ID_SIZE);
+        String json_str = input_data.substring(FabricExport.FRONT_JOB_ID_SIZE);
         String response_data = null;
         
-        this.debug(false, "parseInputPacket", "input_data_val = " + input_data_val);
+        this.debug(true, "parseInputPacket", "input_data_val = " + input_data);
         this.debug(false, "parseInputPacket", "json_str = " + json_str);
         
         char command = json_str.charAt(0);
@@ -71,14 +73,15 @@ public class FabricUParser {
             response_data = this.processGetSessionDataRequest(json_str.substring(1));
         }
         else {
-        	this.abend("parseInputPacket", "should not reach here, data=" + input_data_val);
+        	this.abend("parseInputPacket", "should not reach here, data=" + input_data);
         }
         
         if (response_data == null) {
-        	this.abend("parseInputPacket", "response_data is null, data=" + input_data_val);
+        	this.abend("parseInputPacket", "response_data is null, data=" + input_data);
         }
         
-        this.fabricDBinder().transmitData(job_id_str + response_data);
+        bundle_val.setData(job_id_str + response_data);
+        this.fabricDBinder().transmitBundleData(bundle_val);
     }
 
     private String processSetupLinkRequest(String input_str_val) {

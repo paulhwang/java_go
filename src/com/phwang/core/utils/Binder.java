@@ -180,7 +180,7 @@ public class Binder implements ThreadEntityInt {
     		
             int max_index = this.portMgr_.listMgr().maxIndex();
             ListEntry[] list_entry_array = this.portMgr_.listMgr().entryArray();
-            for (int i = 0; i < max_index; i++) {
+            for (int i = 0; i <= max_index; i++) {
                 if (list_entry_array[i] != null) {
                 	BinderPort port = (BinderPort) list_entry_array[i].data();
                 	port.receiveQueue().setPendingThread(Thread.currentThread());

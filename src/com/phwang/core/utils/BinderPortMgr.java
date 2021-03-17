@@ -90,11 +90,9 @@ public class BinderPortMgr {
     }
 
     public BinderBundle receiveBundleData() {
-    	this.abend("receiveBundleData", "TBD");
-    	
         int max_index = this.listMgr_.maxIndex();
         ListEntry[] list_entry_array = this.listMgr_.entryArray();
-        for (int i = 0; i < max_index; i++) {
+        for (int i = 0; i <= max_index; i++) {
             if (list_entry_array[i] != null) {
             	BinderPort port = (BinderPort) list_entry_array[i].data();
             	if (port.receiveQueue().length() != 0) {
@@ -113,7 +111,6 @@ public class BinderPortMgr {
     }
 
     public void transmitBundleData(BinderBundle bundle_val) {
-    	this.abend("transmitBundleData", "TBD");
     	bundle_val.binderPort().transmitStringData(bundle_val.data());
     	freeBundle(bundle_val);
     }
