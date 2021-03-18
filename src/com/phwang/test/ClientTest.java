@@ -79,7 +79,7 @@ public class ClientTest implements ThreadEntityInt {
   		this.threadCount_.decrement();
   		
   		if (this.threadCount_.get() < 2) {
-  			this.debug(true, "decrementThreadCount", "*************************" + this.threadCount_.get());
+  			this.debug(false, "decrementThreadCount", "*************************" + this.threadCount_.get());
   		}
   		
     	if (this.threadCount_.get() < 0) {
