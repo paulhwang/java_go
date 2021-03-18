@@ -7,7 +7,7 @@
  */
 
 
-package com.phwang.front;
+package com.phwang.test;
 
 import com.phwang.core.utils.*;
 import com.phwang.front.FrontDExportInt;

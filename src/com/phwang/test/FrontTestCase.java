@@ -3,7 +3,7 @@
  ******************************************************************************
  */
 
-package com.phwang.front;
+package com.phwang.test;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

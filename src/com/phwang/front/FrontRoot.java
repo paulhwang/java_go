@@ -8,7 +8,7 @@
 
 package com.phwang.front;
 
-//import com.phwang.client.ClientTest;
+import com.phwang.test.FrontTest;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 
