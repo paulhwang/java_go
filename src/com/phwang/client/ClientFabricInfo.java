@@ -25,8 +25,8 @@ public class ClientFabricInfo {
     
     public void setLinkIdStr(String val) { this.linkIdStr_ = val; }
     public void setSessionIdStr(String val) { this.SessionIdStr_ = val; }
-    public void myName(String val) { this.myName_ = val; }
-    public void password(String val) { this.password_= val; }
+    public void setMyName(String val) { this.myName_ = val; }
+    public void setPassword(String val) { this.password_= val; }
     
     public ClientFabricInfo(){
     	this.jobIdStr_ = EncodeNumber.encode(8, ClientImport.FRONT_JOB_ID_SIZE);
