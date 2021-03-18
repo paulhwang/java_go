@@ -21,7 +21,7 @@ public class ClientTest implements ThreadEntityInt {
     private String clientTesterThreadName() { return "ClientTesterThread"; }
 
     private int numberOfTesterThread_ = 2;
-    private int numberOfCasePerTester = 2;
+    private int numberOfCasePerTester_ = 2;
     private LockedInteger testerIndex_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
@@ -62,7 +62,7 @@ public class ClientTest implements ThreadEntityInt {
     	ClientRoot client_root = new ClientRoot();
         ClientTester tester = new ClientTester(this, client_root, tester_index);
 
-    	for (int i = 0; i < this.numberOfCasePerTester; i++) {
+    	for (int i = 0; i < this.numberOfCasePerTester_; i++) {
        		tester.startTest();
        		//UtilsClass.sleep(1);
         }

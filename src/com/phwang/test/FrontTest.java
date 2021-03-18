@@ -16,8 +16,7 @@ public class FrontTest implements ThreadEntityInt {
     private String objectName() {return "FrontTest";}
     private String httpTestThreadName() { return "HttpTestThread"; }
 
-    private int i_ = 1;
-    private int j_ = 1;
+    private int numberOfCasePerTester_ = 1;
     
     private FrontDExportInt frontExportInt_;
     private ThreadMgr threadMgr_;
@@ -52,12 +51,9 @@ public class FrontTest implements ThreadEntityInt {
         this.debug(true, "httpTestThreadFunc", "*******start " + this.httpTestThreadName());
         //Utils.sleep(100);  
         
-        for (int j = 0; j < this.i_; j++) {
-        	for (int i = 0; i < this.j_; i++) {
-        		new FrontTestCase(this, i).startTestTest();
-        		
-        		//UtilsClass.sleep(1);
-        	}
+       	for (int i = 0; i < this.numberOfCasePerTester_; i++) {
+       		new FrontTestCase(this, i).startTestTest();
+       		//UtilsClass.sleep(1);
         }
     }
     
