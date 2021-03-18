@@ -111,7 +111,7 @@ public class ClientDParser {
     }
 
     private void parserSetupSessionResponse(String input_str_val) {
-    	this.debug(false, "generateSetupSessionResponse", "input_str_val=" + input_str_val);
+    	this.debug(false, "parserSetupSessionResponse", "input_str_val=" + input_str_val);
     	
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, ClientImport.FABRIC_LINK_ID_SIZE);
@@ -120,6 +120,7 @@ public class ClientDParser {
         String session_id_str = rest_str.substring(0, ClientImport.FABRIC_SESSION_ID_SIZE);
         rest_str = rest_str.substring(ClientImport.FABRIC_SESSION_ID_SIZE);
     	
+    	this.clientFabricInfo().setSessionIdStr(link_id_str);
     	this.importInterface().handleSetupSessionResponse();
     }
 

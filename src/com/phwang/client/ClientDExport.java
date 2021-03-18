@@ -62,6 +62,20 @@ public class ClientDExport implements ClientDExportInt {
     }
     
     public void setupSession(String link_id_val, String my_name_val, String his_name_val) {
+    	this.debug(false, "setupSession", "link_id=" + link_id_val);
+    	
+        StringBuilder command_buf = new StringBuilder();
+        command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_SESSION); 
+        command_buf.append(link_id_val); 
+        command_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(my_name_val);
+        command_buf.append(EncodeNumber.encode(his_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(his_name_val);
+        String command_str = command_buf.toString();
+        
+    	this.debug(false, "setupSession", "command_str=" + command_str);
+    	
+    	this.transmitToFabric(command_str);
     	
     }
     

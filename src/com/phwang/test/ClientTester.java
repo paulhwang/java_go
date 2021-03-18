@@ -44,7 +44,7 @@ class ClientTester implements ClientDImportInt {
     }
     
 	public void handleSetupLinkResponse() {
-    	this.debug(true, "*****handleSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
+    	this.debug(true, "handleSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
 		this.doSetupSession();
 	}
 	
@@ -59,6 +59,7 @@ class ClientTester implements ClientDImportInt {
     }
 	
 	public void handleSetupSessionResponse() {
+    	this.debug(true, "handleSetupSessionResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
 		
 	}
 	
