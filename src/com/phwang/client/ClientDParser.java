@@ -17,6 +17,7 @@ public class ClientDParser {
     private ClientRoot clientRoot_;
     
     protected ClientRoot clientRoot() { return this.clientRoot_; }
+    protected ClientDImportInt importInterface() { return this.clientRoot_.importInterface(); }
     private ClientFabricInfo clientFabricInfo() { return this.clientRoot().clientFabricInfo(); }
     
     protected ClientDParser(ClientRoot root_val) {
@@ -71,6 +72,7 @@ public class ClientDParser {
     	rest_str = rest_str.substring(my_name_len);
     	
     	this.clientFabricInfo().setLinkIdStr(link_id_str);
+    	this.importInterface().handleSetupLinkResponse();
     }
 
     private void parserGetLinkDataResponse(String input_str_val) {

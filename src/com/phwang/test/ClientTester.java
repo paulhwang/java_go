@@ -35,7 +35,7 @@ class ClientTester implements ThreadEntityInt, ClientDImportInt {
         
         this.clientTest_ = client_test_val;
         this.myNameStr_ = "client_" + EncodeNumber.encode(tester_index_val, 5);
-		this.clientRoot_ = new ClientRoot();
+		this.clientRoot_ = new ClientRoot(this);
         this.caseIndex_ = new LockedInteger(0);
     }
     
