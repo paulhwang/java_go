@@ -17,13 +17,11 @@ import com.phwang.core.utils.Utils;
 
 public class ClientTest implements ThreadEntityInt {
     private String objectName() {return "ClientTest";}
-    private String clientTestThreadName() { return "ClientTestThread"; }
+    private String clientTesterThreadName() { return "ClientTesterThread"; }
 
     private int numberOfTesterThread_ = 2;
-    private int numberOfTestPerTester = 1;
-    private LockedInteger indexCount_;
-
-
+    private int numberOfCasePerTester = 2;
+    private LockedInteger testerIndex_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
@@ -34,7 +32,7 @@ public class ClientTest implements ThreadEntityInt {
         
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
-        this.indexCount_ = new LockedInteger(0);
+        this.testerIndex_ = new LockedInteger(0);
     }
     
     public void startTest(Boolean test_on_val) {
@@ -44,24 +42,26 @@ public class ClientTest implements ThreadEntityInt {
     	
     	for (int i = 0; i < this.numberOfTesterThread_; i++) {
             Utils.sleep(10);
-    		this.threadMgr().createThreadObject(this.clientTestThreadName(), this);
+    		this.threadMgr().createThreadObject(this.clientTesterThreadName(), this);
     	}
     }
     
 	public void threadCallbackFunction() {
 		this.incrementThreadCount();
-		this.androidTestThreadFunc();
+		this.clientTesterThreadFunc();
 		this.decrementThreadCount();
 	}
     
-    private void androidTestThreadFunc() {
-        this.debug(true, "androidTestThreadFunc", "*******start " + this.clientTestThreadName());
+    private void clientTesterThreadFunc() {
+        this.debug(true, "client_root_val", "*******start " + this.clientTesterThreadName());
         
-    	this.indexCount_.increment();
-    	int index = this.indexCount_.get();
-        ClientTester tester = new ClientTester(this, index);
+    	this.testerIndex_.increment();
+    	int tester_index = this.testerIndex_.get();
+    	
+    	ClientRoot client_root = new ClientRoot();
+        ClientTester tester = new ClientTester(this, client_root, tester_index);
 
-    	for (int i = 0; i < this.numberOfTestPerTester; i++) {
+    	for (int i = 0; i < this.numberOfCasePerTester; i++) {
        		tester.startTest();
        		//UtilsClass.sleep(1);
         }

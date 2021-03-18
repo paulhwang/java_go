@@ -9,50 +9,52 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.LockedInteger;
 
 class ClientTester implements ThreadEntityInt {
     private String objectName() {return "ClientTester";}
-    private String clientTestThreadName() { return "ClientTestThread"; }
+    private String clientTestCaseThreadName() { return "ClientTestCaseThread"; }
     
     private ClientTest clientTest_;
     private ClientRoot clientRoot_;
-    private String indexString_;
-    private String myNameString_;
+    private String myNameStr_;
     private String password_ = "Tennis";
+    private LockedInteger caseIndex_;
         
     private ClientTest clientTest() { return this.clientTest_; }
     private ThreadMgr threadMgr() { return this.clientTest().threadMgr();}
 
     private ClientDExport clientDExport() { return this.clientRoot_.clientDExport(); }
     
-    protected ClientTester(ClientTest android_test_val, int index_val) {
+    protected ClientTester(ClientTest client_test_val, ClientRoot client_root_val, int tester_index_val) {
         this.debug(false, "ClientTester", "init start");
         
-        this.clientTest_ = android_test_val;
-        this.indexString_ = EncodeNumber.encode(index_val, 6);
-        this.myNameString_ = "Android_" + this.indexString_;
-        
-		this.clientRoot_ = new ClientRoot();
-        
+        this.clientTest_ = client_test_val;
+		this.clientRoot_ = client_root_val;
+        this.myNameStr_ = "client_" + EncodeNumber.encode(tester_index_val, 5);
+        this.caseIndex_ = new LockedInteger(0);
     }
     
     protected void startTest() {
-    	this.threadMgr().createThreadObject(this.clientTestThreadName(), this);
+    	this.threadMgr().createThreadObject(this.clientTestCaseThreadName(), this);
      }
 
 	public void threadCallbackFunction() {
 		this.clientTest().incrementThreadCount();
-		this.clientTestCaseThreadFunc();
+		this.clienterThreadFunc();
 		this.clientTest().decrementThreadCount();
 	}
     
-    private void clientTestCaseThreadFunc() {
+    private void clienterThreadFunc() {
         try {
         	Thread.sleep(100);
         }
         catch (Exception ignore) {}
-    	
-    	this.doSetupLink();
+        
+    	this.caseIndex_.increment();
+    	int case_index = this.caseIndex_.get();
+    	String my_name = this.myNameStr_ + EncodeNumber.encode(case_index, 5);
+    	this.doSetupLink(my_name);
     	
     	//UtilsClass.sleep(100);
     	this.doGetLinkData();
@@ -76,9 +78,9 @@ class ClientTester implements ThreadEntityInt {
     	this.doSetupSession2();
     }
     
-    private void doSetupLink() {
+    private void doSetupLink(String my_name_val) {
     	this.debug(false, "doSetupLink", "doSetupLink");
-    	this.clientDExport().setupLink(this.myNameString_, this.password_);
+    	this.clientDExport().setupLink(my_name_val, this.password_);
     }
     
     public void parserSetupLinkResponse() {
