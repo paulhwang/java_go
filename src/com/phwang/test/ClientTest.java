@@ -25,6 +25,7 @@ public class ClientTest implements ThreadEntityInt {
     private LockedInteger testerIndex_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
+    private ClientTester[] testerArray_;
     
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
 
@@ -33,6 +34,7 @@ public class ClientTest implements ThreadEntityInt {
         
         this.numberOfTester_ = number_of_tester_val;
         this.numberOfCasePerTester_ = number_of_case_val;
+        this.testerArray_ = new ClientTester[this.numberOfTester_];
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
         this.testerIndex_ = new LockedInteger(0);
@@ -63,6 +65,7 @@ public class ClientTest implements ThreadEntityInt {
     	
     	ClientRoot client_root = new ClientRoot();
         ClientTester tester = new ClientTester(this, client_root, tester_index);
+        this.testerArray_[tester_index - 1] = tester;
 
     	for (int i = 0; i < this.numberOfCasePerTester_; i++) {
        		tester.startTest();
