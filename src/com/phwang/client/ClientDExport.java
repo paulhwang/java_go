@@ -21,6 +21,7 @@ public class ClientDExport implements ClientDExportInt {
     private ClientUBinder clientUBinder() { return this.clientRoot_.clientUBinder(); }
     private Binder uBinder() { return this.clientUBinder().uBinder(); }
     private ClientFabricInfo clientFabricInfo() { return this.clientRoot_.clientFabricInfo(); }
+    private ClientGoConfig goConfig() { return this.clientRoot_.goConfig(); }
  
     protected ClientDExport(ClientRoot root_val) {
         this.debug(false, "ClientDExport", "init start");
@@ -89,6 +90,7 @@ public class ClientDExport implements ClientDExportInt {
         command_buf.append(this.clientFabricInfo().myName());
         command_buf.append(EncodeNumber.encode(this.clientFabricInfo().hisName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         command_buf.append(this.clientFabricInfo().hisName());
+        command_buf.append(this.goConfig().getGoConfigStr());
         String command_str = command_buf.toString();
         
     	this.debug(false, "setupSession", "command_str=" + command_str);

@@ -56,7 +56,7 @@ class ClientTester implements ClientDImportInt {
 	public void handleGetLinkDataResponse() {
     	this.debug(true, "handleGetLinkDataResponse", "***");
     	//this.doGetNameList();
-		//this.doSetupSession();
+		this.doSetupSession();
 	}
     
     private void doGetNameList() {

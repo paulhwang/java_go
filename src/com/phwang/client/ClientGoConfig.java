@@ -11,9 +11,9 @@ package com.phwang.client;
 import com.phwang.core.utils.EncodeNumber;
 
 public class ClientGoConfig {
-    private int boardSize_;
-    private int handicapPoint_;
-    private int komiPoint_;
+    private int boardSize_ = 19;
+    private int handicapPoint_ = 0;
+    private int komiPoint_ = 0;
 
     public int boardSize() { return this.boardSize_; }
     public int handicapPoint() { return this.handicapPoint_; }
