@@ -20,17 +20,19 @@ public class ClientTest implements ThreadEntityInt {
     private String objectName() {return "ClientTest";}
     private String clientTesterThreadName() { return "ClientTesterThread"; }
 
-    private int numberOfTesterThread_ = 2;
-    private int numberOfCasePerTester_ = 2;
+    private int numberOfTester_;
+    private int numberOfCasePerTester_;
     private LockedInteger testerIndex_;
     private ThreadMgr threadMgr_;
     private LockedInteger threadCount_;
     
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public ClientTest() {
+    public ClientTest(int number_of_tester_val, int number_of_case_val) {
         this.debug(false, "ClientTest", "init start");
         
+        this.numberOfTester_ = number_of_tester_val;
+        this.numberOfCasePerTester_ = number_of_case_val;
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
         this.testerIndex_ = new LockedInteger(0);
@@ -41,7 +43,7 @@ public class ClientTest implements ThreadEntityInt {
     		return;
     	}
     	
-    	for (int i = 0; i < this.numberOfTesterThread_; i++) {
+    	for (int i = 0; i < this.numberOfTester_; i++) {
             Utils.sleep(10);
     		this.threadMgr().createThreadObject(this.clientTesterThreadName(), this);
     	}

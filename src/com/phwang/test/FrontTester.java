@@ -11,17 +11,18 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.LockedInteger;
 import com.phwang.core.utils.Utils;
 import com.phwang.front.FrontDExportInt;
 
-class FrontTestCase implements ThreadEntityInt {
-    private String objectName() {return "FrontTestCase";}
+class FrontTester implements ThreadEntityInt {
+    private String objectName() {return "FrontTester";}
     private String httpTestThreadName() { return "HttpTestThread"; }
     
     private FrontTest httpTest_;
     private String indexString_;
     
-    private String myNameString_;
+    private String myNameStr_;
     private String password_ = "Tennis";
     private String themeData = "88889999G009090000";///////////////////
     private String themeData2 = "G009090000";
@@ -32,17 +33,19 @@ class FrontTestCase implements ThreadEntityInt {
     private String linkIdString;
     private String sessionIdString;
     private String themeIdString = "33333333";///////////////////////////////////////////////
+    private LockedInteger caseIndex_;
     
     private FrontTest httpTest() { return this.httpTest_; }
     private ThreadMgr threadMgr() { return this.httpTest().threadMgr();}
     private FrontDExportInt frontExportInt() { return this.httpTest().frontExportInt();}
 
-    protected FrontTestCase(FrontTest http_test_val, int index_val) {
-        this.debug(false, "FrontTestCase", "init start");
+    protected FrontTester(FrontTest http_test_val, int index_val) {
+        this.debug(false, "FrontTester", "init start");
         
         this.httpTest_ = http_test_val;
-        this.indexString_ = EncodeNumber.encode(index_val, 6);
-        this.myNameString_ = "Http_" + this.indexString_;
+        this.indexString_ = EncodeNumber.encode(index_val, 5);
+        this.myNameStr_ = "Http_" + this.indexString_;
+        this.caseIndex_ = new LockedInteger(0);
     }
     
     protected void startTestTest() {
@@ -60,8 +63,12 @@ class FrontTestCase implements ThreadEntityInt {
         	Thread.sleep(100);
         }
         catch (Exception ignore) {}
-    	
-    	this.doSetupLink();
+        
+    	this.caseIndex_.increment();
+    	int case_index = this.caseIndex_.get();
+    	String my_name = this.myNameStr_ + EncodeNumber.encode(case_index, 5);
+     	
+    	this.doSetupLink(my_name);
     	
     	//UtilsClass.sleep(100);
     	//this.doGetLinkData();
@@ -70,7 +77,7 @@ class FrontTestCase implements ThreadEntityInt {
     	//this.doGetNameList();
     	
     	//Utils.sleep(100);
-    	this.doSetupSession();
+    	this.doSetupSession(my_name);
     	
     	Utils.sleep(100);
     	this.doSetupSession3();
@@ -85,9 +92,9 @@ class FrontTestCase implements ThreadEntityInt {
     	//this.doSetupSession2();
     }
     
-    private void doSetupLink() {
+    private void doSetupLink(String my_name_val) {
     	JSONObject json_data = new JSONObject();
-    	json_data.put("my_name", this.myNameString_);
+    	json_data.put("my_name", my_name_val);
     	json_data.put("password", this.password_);
     	String str_json_data = json_data.toJSONString();
     	
@@ -97,7 +104,7 @@ class FrontTestCase implements ThreadEntityInt {
     	String str_json_request = json_request.toJSONString();
     	
     	String str_json_ajex_response = this.frontExportInt().processHttpRequestPacket(str_json_request);
-        this.debug(false, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
+        this.debug(true, "doSetupLink", "str_json_ajex_response=" + str_json_ajex_response);
     	
         try {
             JSONParser parser = new JSONParser();
@@ -110,7 +117,7 @@ class FrontTestCase implements ThreadEntityInt {
 
             String name = (String) json_response_data.get("my_name");
             this.linkIdString = (String) json_response_data.get("link_id");
-            if (!this.myNameString_.equals(name)) {
+            if (!my_name_val.equals(name)) {
             	this.abend("doSetupLink", "name not match");
             }
         } catch (Exception e) {
@@ -147,10 +154,10 @@ class FrontTestCase implements ThreadEntityInt {
         this.debug(false, "doGetNameList", "ajex_response data=" + str_json_ajex_response);
     }
     
-    private void doSetupSession() {
+    private void doSetupSession(String my_name_val) {
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", this.linkIdString);
-    	json_data.put("his_name", this.myNameString_);
+    	json_data.put("his_name", my_name_val);
     	json_data.put("theme_data", this.themeData);
     	String str_json_data = json_data.toJSONString();
     	

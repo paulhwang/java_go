@@ -19,9 +19,9 @@ public class MainClass {
 		new CoreRoot();
 		
 		FrontRoot front_root = new FrontRoot();
-		new FrontTest(front_root.frontDExport()).startTest(true);
+		new FrontTest(front_root.frontDExport(), 2, 1).startTest(true);
 		
 		new ClientRoot();
-		new ClientTest().startTest(false);
+		new ClientTest(2, 2).startTest(true);
 	}
 }
