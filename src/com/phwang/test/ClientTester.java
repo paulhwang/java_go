@@ -13,8 +13,9 @@ import com.phwang.core.utils.LockedInteger;
 import com.phwang.client.ClientRoot;
 import com.phwang.client.ClientDExport;
 import com.phwang.client.ClientFabricInfo;
+import com.phwang.client.ClientDImportInt;
 
-class ClientTester implements ThreadEntityInt {
+class ClientTester implements ThreadEntityInt, ClientDImportInt {
     private String objectName() {return "ClientTester";}
     private String clientTestCaseThreadName() { return "ClientTestCaseThread"; }
     
@@ -86,9 +87,38 @@ class ClientTester implements ThreadEntityInt {
     	this.clientDExport().setupLink(my_name_val, this.password_);
     }
     
-    public void parserSetupLinkResponse() {
-    	this.debug(true, "*****parserSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
-    }
+	public void handleSetupLinkResponse() {
+    	this.debug(true, "*****handleSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
+		
+	}
+	
+	public void handleGetLinkDataResponse() {
+		
+	}
+	
+	public void handleGetNameListResponse() {
+		
+	}
+	
+	public void handleSetupSessionResponse() {
+		
+	}
+	
+	public void handleSetupSession2Response() {
+	
+	}
+	
+	public void handleSetupSession3Response() {
+		
+	}
+	
+	public void handlePutSessionDataResponse() {
+		
+	}
+	
+	public void handleGetSessionDataResponse() {
+		
+	}
     
     private void doGetLinkData() {
     }
