@@ -17,7 +17,7 @@ import com.phwang.core.utils.Utils;
 
 public class ClientTest implements ThreadEntityInt {
     private String objectName() {return "ClientTest";}
-    private String androidTestThreadName() { return "AndroidTestThread"; }
+    private String clientTestThreadName() { return "ClientTestThread"; }
 
     private int numberOfTesterThread_ = 2;
     private int numberOfTestPerTester = 1;
@@ -44,7 +44,7 @@ public class ClientTest implements ThreadEntityInt {
     	
     	for (int i = 0; i < this.numberOfTesterThread_; i++) {
             Utils.sleep(10);
-    		this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
+    		this.threadMgr().createThreadObject(this.clientTestThreadName(), this);
     	}
     }
     
@@ -55,7 +55,7 @@ public class ClientTest implements ThreadEntityInt {
 	}
     
     private void androidTestThreadFunc() {
-        this.debug(true, "androidTestThreadFunc", "*******start " + this.androidTestThreadName());
+        this.debug(true, "androidTestThreadFunc", "*******start " + this.clientTestThreadName());
         
     	this.indexCount_.increment();
     	int index = this.indexCount_.get();

@@ -15,27 +15,27 @@ public class ClientRoot {
     private String objectName() {return "ClientRoot";}
 
     private ThreadMgr threadMgr_;
-    private ClientFabricInfo androidFabricInfo_;
-    private ClientUBinder androidUBinder_;
-    private ClientDExport androidDExport_;
-    private ClientDParser androidDParser_;
+    private ClientFabricInfo clientFabricInfo_;
+    private ClientUBinder clientUBinder_;
+    private ClientDExport clientDExport_;
+    private ClientDParser clientDParser_;
     
-    public ClientDExport androidDExport() { return this.androidDExport_; }
+    public ClientDExport clientDExport() { return this.clientDExport_; }
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
-    protected ClientFabricInfo androidFabricInfo() { return this.androidFabricInfo_; }
-    protected ClientUBinder androidUBinder() { return this.androidUBinder_; }
-    protected ClientDParser androidDParser() { return this.androidDParser_; }
+    protected ClientFabricInfo clientFabricInfo() { return this.clientFabricInfo_; }
+    protected ClientUBinder clientUBinder() { return this.clientUBinder_; }
+    protected ClientDParser clientDParser() { return this.clientDParser_; }
     
     public ClientRoot() {
         this.debug(false, "ClientRoot", "init start");
 
-        this.androidFabricInfo_ = new ClientFabricInfo();
+        this.clientFabricInfo_ = new ClientFabricInfo();
         this.threadMgr_ = new ThreadMgr();
-        this.androidUBinder_ = new ClientUBinder(this);
-        this.androidDExport_ = new ClientDExport(this);
-        this.androidDParser_ = new ClientDParser(this);
+        this.clientUBinder_ = new ClientUBinder(this);
+        this.clientDExport_ = new ClientDExport(this);
+        this.clientDParser_ = new ClientDParser(this);
         
-        this.androidUBinder_.startThreads();
+        this.clientUBinder_.startThreads();
 	}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

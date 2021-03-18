@@ -14,14 +14,14 @@ import com.phwang.core.utils.EncodeNumber;
 public class ClientDParser {
     private String objectName() {return "ClientDParser";}
     
-    private ClientRoot frontRoot_;
+    private ClientRoot clientRoot_;
     
-    protected ClientRoot frontRoot() { return this.frontRoot_; }
-    private ClientFabricInfo androidFabricInfo() { return this.frontRoot().androidFabricInfo(); }
+    protected ClientRoot clientRoot() { return this.clientRoot_; }
+    private ClientFabricInfo clientFabricInfo() { return this.clientRoot().clientFabricInfo(); }
     
     protected ClientDParser(ClientRoot root_val) {
         this.debug(false, "ClientDParser", "init start");
-        this.frontRoot_ = root_val;
+        this.clientRoot_ = root_val;
     }
     
     protected void parserResponseData(String input_data_val) {
@@ -70,7 +70,7 @@ public class ClientDParser {
         String my_name = rest_str.substring(0, my_name_len);
     	rest_str = rest_str.substring(my_name_len);
     	
-    	this.androidFabricInfo().setLinkIdStr(link_id_str);
+    	this.clientFabricInfo().setLinkIdStr(link_id_str);
     }
 
     private void parserGetLinkDataResponse(String input_str_val) {
@@ -176,6 +176,6 @@ public class ClientDParser {
     }
 
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { this.frontRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    protected void abend(String s0, String s1) { this.frontRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.clientRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.clientRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }

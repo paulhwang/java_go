@@ -12,39 +12,41 @@ import com.phwang.core.utils.EncodeNumber;
 
 class ClientTester implements ThreadEntityInt {
     private String objectName() {return "ClientTester";}
-    private String androidTestThreadName() { return "AndroidTestThread"; }
+    private String clientTestThreadName() { return "ClientTestThread"; }
     
-    private ClientTest androidTest_;
-    private ClientRoot androidRoot_;
+    private ClientTest clientTest_;
+    private ClientRoot clientRoot_;
     private String indexString_;
     private String myNameString_;
     private String password_ = "Tennis";
         
-    private ClientTest androidTest() { return this.androidTest_; }
-    private ThreadMgr threadMgr() { return this.androidTest().threadMgr();}
+    private ClientTest clientTest() { return this.clientTest_; }
+    private ThreadMgr threadMgr() { return this.clientTest().threadMgr();}
 
+    private ClientDExport clientDExport() { return this.clientRoot_.clientDExport(); }
+    
     protected ClientTester(ClientTest android_test_val, int index_val) {
         this.debug(false, "ClientTester", "init start");
         
-        this.androidTest_ = android_test_val;
+        this.clientTest_ = android_test_val;
         this.indexString_ = EncodeNumber.encode(index_val, 6);
         this.myNameString_ = "Android_" + this.indexString_;
         
-		this.androidRoot_ = new ClientRoot();
+		this.clientRoot_ = new ClientRoot();
         
     }
     
     protected void startTest() {
-    	this.threadMgr().createThreadObject(this.androidTestThreadName(), this);
+    	this.threadMgr().createThreadObject(this.clientTestThreadName(), this);
      }
 
 	public void threadCallbackFunction() {
-		this.androidTest().incrementThreadCount();
-		this.androidTestCaseThreadFunc();
-		this.androidTest().decrementThreadCount();
+		this.clientTest().incrementThreadCount();
+		this.clientTestCaseThreadFunc();
+		this.clientTest().decrementThreadCount();
 	}
     
-    private void androidTestCaseThreadFunc() {
+    private void clientTestCaseThreadFunc() {
         try {
         	Thread.sleep(100);
         }
@@ -76,11 +78,11 @@ class ClientTester implements ThreadEntityInt {
     
     private void doSetupLink() {
     	this.debug(false, "doSetupLink", "doSetupLink");
-    	this.androidRoot_.androidDExport().setupLink(this.myNameString_, this.password_);
+    	this.clientDExport().setupLink(this.myNameString_, this.password_);
     }
     
     public void parserSetupLinkResponse() {
-    	this.debug(true, "*****parserSetupLinkResponse", "linkIdStr=" + this.androidRoot_.androidFabricInfo().linkIdStr());
+    	this.debug(true, "*****parserSetupLinkResponse", "linkIdStr=" + this.clientRoot_.clientFabricInfo().linkIdStr());
     }
     
     private void doGetLinkData() {

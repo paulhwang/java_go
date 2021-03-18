@@ -17,22 +17,22 @@ import com.phwang.front.FrontJobMgr;
 public class ClientDExport implements ClientDExportInt {
     private String objectName() {return "ClientDExport";}
     
-    private ClientRoot androidRoot_;
+    private ClientRoot clientRoot_;
     
-    private ClientRoot androidRoot() { return this.androidRoot_; }
-    private ClientUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
-    private Binder uBinder() { return this.androidUBinder().uBinder(); }
-    private ClientFabricInfo androidFabricInfo() { return this.androidRoot_.androidFabricInfo(); }
+    private ClientRoot clientRoot() { return this.clientRoot_; }
+    private ClientUBinder clientUBinder() { return this.clientRoot_.clientUBinder(); }
+    private Binder uBinder() { return this.clientUBinder().uBinder(); }
+    private ClientFabricInfo clientFabricInfo() { return this.clientRoot_.clientFabricInfo(); }
  
     protected ClientDExport(ClientRoot root_val) {
         this.debug(false, "ClientDExport", "init start");
         
-    	this.androidRoot_ = root_val;
+    	this.clientRoot_ = root_val;
     }
 
     private void transmitToFabric(String data_str_val) {
     	this.debug(true, "transmitToFabric", "data_str_val=" + data_str_val);
-       	this.uBinder().transmitStringData(this.androidFabricInfo().jobIdStr() + data_str_val);
+       	this.uBinder().transmitStringData(this.clientFabricInfo().jobIdStr() + data_str_val);
     }
     
     public void setupLink(String my_name_val, String password_val) {
@@ -88,6 +88,6 @@ public class ClientDExport implements ClientDExportInt {
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
-    private void log(String s0, String s1) { this.androidRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
-    protected void abend(String s0, String s1) { this.androidRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
+    private void log(String s0, String s1) { this.clientRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
+    protected void abend(String s0, String s1) { this.clientRoot().abendIt(this.objectName() + "." + s0 + "()", s1); }
 }
