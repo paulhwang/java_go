@@ -31,8 +31,8 @@ class ClientTester implements ClientDImportInt {
         this.debug(false, "ClientTester", "init start");
         
         this.clientTest_ = client_test_val;
-        this.myNameStr_ = "client_" + EncodeNumber.encode(tester_index_val, 5);
 		this.clientRoot_ = new ClientRoot(this);
+        this.myNameStr_ = "client_" + EncodeNumber.encode(tester_index_val, 5);
     }
     
     protected void startTest() {
