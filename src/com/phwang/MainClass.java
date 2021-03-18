@@ -9,7 +9,7 @@
 package com.phwang;
 
 import com.phwang.client.ClientRoot;
-import com.phwang.client.ClientTest;
+import com.phwang.test.ClientTest;
 import com.phwang.core.root.CoreRoot;
 import com.phwang.front.FrontRoot;
 
