@@ -45,14 +45,26 @@ class ClientTester implements ClientDImportInt {
     }
     
 	public void handleSetupLinkResponse() {
-    	this.debug(true, "handleSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
-		this.doSetupSession();
+    	this.debug(true, "handleSetupLinkResponse", "linkIdStr" + this.clientFabricInfo().linkIdStr());
+    	this.doGetLinkData();
 	}
+    
+    private void doGetLinkData() {
+    	this.clientDExport().getLinkData();
+    }
 	
 	public void handleGetLinkDataResponse() {
+    	this.debug(true, "handleGetLinkDataResponse", "***");
+    	//this.doGetNameList();
+		//this.doSetupSession();
 	}
+    
+    private void doGetNameList() {
+    	this.clientDExport().getNameList();
+    }
 	
 	public void handleGetNameListResponse() {
+    	this.debug(true, "handleGetNameListResponse", "***");
 	}
     
     private void doSetupSession() {
@@ -63,40 +75,34 @@ class ClientTester implements ClientDImportInt {
     	this.debug(true, "handleSetupSessionResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
 		
 	}
+    
+    private void doSetupSession2() {
+    }
 	
 	public void handleSetupSession2Response() {
 	
 	}
+    
+    private void doSetupSession3() {
+    }
 	
 	public void handleSetupSession3Response() {
 		
 	}
+
+    private void doPutSessionData() {
+    }
 	
 	public void handlePutSessionDataResponse() {
 		
 	}
+
+    private void doGetSessionData() {
+    }
 	
 	public void handleGetSessionDataResponse() {
 		
 	}
-    
-    private void doGetLinkData() {
-    }
-    
-    private void doGetNameList() {
-    }
-    
-    private void doSetupSession2() {
-    }
-    
-    private void doSetupSession3() {
-    }
-
-    private void doPutSessionData() {
-    }
-
-    private void doGetSessionData() {
-    }
      
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }

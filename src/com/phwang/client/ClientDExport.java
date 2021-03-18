@@ -54,11 +54,29 @@ public class ClientDExport implements ClientDExportInt {
     }
     
     public void getLinkData() {
+    	this.debug(false, "getLinkData", "link_id=" + this.clientFabricInfo().linkIdStr());
     	
+        StringBuilder command_buf = new StringBuilder();
+        command_buf.append(ClientImport.FABRIC_COMMAND_GET_LINK_DATA); 
+        command_buf.append(this.clientFabricInfo().linkIdStr()); 
+        String command_str = command_buf.toString();
+        
+    	this.debug(false, "getLinkData", "command_str=" + command_str);
+    	
+    	this.transmitToFabric(command_str);
     }
     
     public void getNameList() {
+    	this.debug(false, "getNameList", "link_id=" + this.clientFabricInfo().linkIdStr());
     	
+        StringBuilder command_buf = new StringBuilder();
+        command_buf.append(ClientImport.FABRIC_COMMAND_GET_LINK_DATA); 
+        command_buf.append(this.clientFabricInfo().linkIdStr()); 
+        String command_str = command_buf.toString();
+        
+    	this.debug(false, "getNameList", "command_str=" + command_str);
+    	
+    	this.transmitToFabric(command_str);
     }
     
     public void setupSession() {
