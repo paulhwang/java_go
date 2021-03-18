@@ -3,13 +3,16 @@
  ******************************************************************************
  */
 
-package com.phwang.client;
+package com.phwang.test;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.utils.LockedInteger;
+import com.phwang.client.ClientRoot;
+import com.phwang.client.ClientDExport;
+import com.phwang.client.ClientFabricInfo;
 
 class ClientTester implements ThreadEntityInt {
     private String objectName() {return "ClientTester";}
@@ -23,8 +26,8 @@ class ClientTester implements ThreadEntityInt {
         
     private ClientTest clientTest() { return this.clientTest_; }
     private ThreadMgr threadMgr() { return this.clientTest().threadMgr();}
-
     private ClientDExport clientDExport() { return this.clientRoot_.clientDExport(); }
+    private ClientFabricInfo clientFabricInfo() { return this.clientRoot_.clientFabricInfo();}
     
     protected ClientTester(ClientTest client_test_val, ClientRoot client_root_val, int tester_index_val) {
         this.debug(false, "ClientTester", "init start");
@@ -84,7 +87,7 @@ class ClientTester implements ThreadEntityInt {
     }
     
     public void parserSetupLinkResponse() {
-    	this.debug(true, "*****parserSetupLinkResponse", "linkIdStr=" + this.clientRoot_.clientFabricInfo().linkIdStr());
+    	this.debug(true, "*****parserSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
     }
     
     private void doGetLinkData() {

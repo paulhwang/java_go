@@ -7,13 +7,14 @@
  */
 
 
-package com.phwang.client;
+package com.phwang.test;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.LockedInteger;
 import com.phwang.core.utils.Utils;
+import com.phwang.client.ClientRoot;
 
 public class ClientTest implements ThreadEntityInt {
     private String objectName() {return "ClientTest";}
