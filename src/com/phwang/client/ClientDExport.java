@@ -96,7 +96,6 @@ public class ClientDExport implements ClientDExportInt {
     	this.debug(false, "setupSession", "command_str=" + command_str);
     	
     	this.transmitToFabric(command_str);
-    	
     }
     
     public void setupSession2() {
@@ -104,7 +103,17 @@ public class ClientDExport implements ClientDExportInt {
     }
     
     public void setupSession3() {
+    	this.debug(false, "setupSession3", "link_id=" + this.clientFabricInfo().linkIdStr());
     	
+        StringBuilder command_buf = new StringBuilder();
+        command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_SESSION); 
+        command_buf.append(this.clientFabricInfo().linkIdStr()); 
+        command_buf.append(this.goConfig().getGoConfigStr());
+        String command_str = command_buf.toString();
+        
+    	this.debug(false, "setupSession3", "command_str=" + command_str);
+    	
+    	this.transmitToFabric(command_str);
     }
     
     public void removeSession() {

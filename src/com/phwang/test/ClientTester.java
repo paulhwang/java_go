@@ -73,35 +73,42 @@ class ClientTester implements ClientDImportInt {
 	
 	public void handleSetupSessionResponse() {
     	this.debug(true, "handleSetupSessionResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
-		
+		this.doSetupSession3();
 	}
     
     private void doSetupSession2() {
+    	this.clientDExport().setupSession2();
     }
 	
 	public void handleSetupSession2Response() {
-	
+    	this.debug(true, "handleSetupSession2Response", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
 	}
     
     private void doSetupSession3() {
+    	this.clientDExport().setupSession3();
     }
 	
 	public void handleSetupSession3Response() {
-		
+    	this.debug(true, "handleSetupSession3Response", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
+		this.doPutSessionData();
 	}
 
     private void doPutSessionData() {
+    	this.clientDExport().putSessionData();
     }
 	
 	public void handlePutSessionDataResponse() {
+    	this.debug(true, "handlePutSessionDataResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
+		this.doGetSessionData();
 		
 	}
 
     private void doGetSessionData() {
+    	this.clientDExport().getSessionData();
     }
 	
 	public void handleGetSessionDataResponse() {
-		
+    	this.debug(true, "handleGetSessionDataResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
 	}
      
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
