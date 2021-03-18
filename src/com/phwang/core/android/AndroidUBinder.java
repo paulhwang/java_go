@@ -24,7 +24,6 @@ public class AndroidUBinder implements ThreadEntityInt {
     private Boolean stopReceiveThreadFlag = false;
         
     private AndroidRoot androidRoot() { return this.androidRoot_; }
-    private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
     private ThreadMgr threadMgr() { return this.androidRoot().threadMgr();}
     private AndroidDParser androidDParser() { return this.androidRoot().androidDParser();}
     protected Binder uBinder() { return this.uBinder_; }

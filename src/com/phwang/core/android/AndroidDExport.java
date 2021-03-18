@@ -22,7 +22,6 @@ public class AndroidDExport implements AndroidDExportInt {
     private AndroidRoot androidRoot() { return this.androidRoot_; }
     private AndroidUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
     private Binder uBinder() { return this.androidUBinder().uBinder(); }
-    private AndroidJobMgr jobMgr() { return this.androidRoot().jobMgr(); }
     private AndroidFabricInfo androidFabricInfo() { return this.androidRoot_.androidFabricInfo(); }
  
     protected AndroidDExport(AndroidRoot root_val) {
