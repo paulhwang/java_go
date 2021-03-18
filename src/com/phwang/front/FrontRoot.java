@@ -8,7 +8,6 @@
 
 package com.phwang.front;
 
-import com.phwang.test.FrontTest;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 
@@ -22,11 +21,11 @@ public class FrontRoot {
     private FrontDExport frontDExport_;
     private FrontJobMgr jobMgr_;
     
+    public FrontDExport frontDExport() { return this.frontDExport_; }
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
     protected FrontUBinder frontUBinder() { return this.frontUBinder_; }
     protected FrontUParser frontUParser() { return this.frontUParser_; }
     protected FrontDParser frontDParser() { return this.frontDParser_; }
-    public FrontDExport frontDExport() { return this.frontDExport_; }
     protected FrontJobMgr jobMgr() { return this.jobMgr_; }
 
     public FrontRoot() {
@@ -40,12 +39,6 @@ public class FrontRoot {
         this.jobMgr_ = new FrontJobMgr(this);
         
         this.frontUBinder_.startThreads();
-    }
-    
-    public void startTest(Boolean front_test_on) {
-		if (front_test_on) {
-			new FrontTest(this.frontDExport()).startTest();
-		}
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

@@ -34,7 +34,11 @@ public class FrontTest implements ThreadEntityInt {
         this.threadCount_ = new LockedInteger(0);
     }
     
-    public void startTest() {
+    public void startTest(Boolean test_on_val) {
+    	if (!test_on_val) {
+    		return;
+    	}
+
     	this.threadMgr().createThreadObject(this.httpTestThreadName(), this);
      }
     
