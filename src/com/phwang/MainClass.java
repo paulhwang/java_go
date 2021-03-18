@@ -14,11 +14,15 @@ import com.phwang.core.root.CoreRoot;
 import com.phwang.front.FrontRoot;
 
 public class MainClass {
-
+	private static FrontRoot frontRoot_;
+	
 	public static void main(String[] args) {
 		new CoreRoot();
-		new FrontRoot().startTest(false);
+		
+		frontRoot_ = new FrontRoot();
+		frontRoot_.startTest(true);
+		
 		new ClientRoot();
-		new ClientTest().startTest(true);
+		new ClientTest().startTest(false);
 	}
 }
