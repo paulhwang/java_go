@@ -25,9 +25,11 @@ public class ClientGoConfig {
     
     public String getGoConfigStr() {
     	StringBuilder buf = new StringBuilder();
+    	buf.append('G');
+    	buf.append(EncodeNumber.encode(9, 3));
     	buf.append(EncodeNumber.encode(this.boardSize_, 2));
-    	buf.append(EncodeNumber.encode(this.handicapPoint_, 1));
-    	buf.append(EncodeNumber.encode(this.handicapPoint_, 1));
+    	buf.append(EncodeNumber.encode(this.handicapPoint_, 2));
+    	buf.append(EncodeNumber.encode(this.handicapPoint_, 2));
     	return buf.toString();
     }
 }
