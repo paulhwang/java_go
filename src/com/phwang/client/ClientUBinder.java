@@ -6,34 +6,34 @@
  ******************************************************************************
  */
 
-package com.phwang.core.android;
+package com.phwang.client;
 
 import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.Binder;
 
-public class AndroidUBinder implements ThreadEntityInt {
-    private String objectName() {return "AndroidUBinder";}
+public class ClientUBinder implements ThreadEntityInt {
+    private String objectName() {return "ClientUBinder";}
     private String receiveThreadName() { return "UAndroidReceiveThread"; }
 
 	private static final int NUMBER_OF_D_WORK_THREADS = 5;
     
-    private AndroidRoot androidRoot_;
+    private ClientRoot androidRoot_;
     private Binder uBinder_;
     private Boolean stopReceiveThreadFlag = false;
         
-    private AndroidRoot androidRoot() { return this.androidRoot_; }
+    private ClientRoot androidRoot() { return this.androidRoot_; }
     private ThreadMgr threadMgr() { return this.androidRoot().threadMgr();}
-    private AndroidDParser androidDParser() { return this.androidRoot().androidDParser();}
+    private ClientDParser androidDParser() { return this.androidRoot().androidDParser();}
     protected Binder uBinder() { return this.uBinder_; }
     
-    protected AndroidUBinder(AndroidRoot root_val) {
-        this.debug(false, "AndroidUBinder", "init start");
+    protected ClientUBinder(ClientRoot root_val) {
+        this.debug(false, "ClientUBinder", "init start");
         
     	this.androidRoot_ = root_val;
         this.uBinder_ = new Binder(this.objectName());
-        this.uBinder_.bindAsTcpClient(true, AndroidImport.FABRIC_ANDROID_SERVER_IP_ADDRESS, AndroidImport.FABRIC_ANDROID_PORT);
+        this.uBinder_.bindAsTcpClient(true, ClientImport.FABRIC_ANDROID_SERVER_IP_ADDRESS, ClientImport.FABRIC_ANDROID_PORT);
     }
 
     protected void startThreads() {
@@ -61,7 +61,7 @@ public class AndroidUBinder implements ThreadEntityInt {
             }
 
             this.debug(true, "uAndroidReceiveThreadFunc", "received_data=" + received_data);
-            this.androidDParser().parserResponseData(received_data.substring(AndroidImport.FRONT_JOB_ID_SIZE));
+            this.androidDParser().parserResponseData(received_data.substring(ClientImport.FRONT_JOB_ID_SIZE));
         }
         this.debug(true, "uAndroidReceiveThreadFunc", "exit");
     }

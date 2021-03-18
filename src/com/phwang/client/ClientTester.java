@@ -3,34 +3,34 @@
  ******************************************************************************
  */
 
-package com.phwang.core.android;
+package com.phwang.client;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
 
-class AndroidTester implements ThreadEntityInt {
-    private String objectName() {return "AndroidTester";}
+class ClientTester implements ThreadEntityInt {
+    private String objectName() {return "ClientTester";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
     
-    private AndroidTest androidTest_;
-    private AndroidRoot androidRoot_;
+    private ClientTest androidTest_;
+    private ClientRoot androidRoot_;
     private String indexString_;
     private String myNameString_;
     private String password_ = "Tennis";
         
-    private AndroidTest androidTest() { return this.androidTest_; }
+    private ClientTest androidTest() { return this.androidTest_; }
     private ThreadMgr threadMgr() { return this.androidTest().threadMgr();}
 
-    protected AndroidTester(AndroidTest android_test_val, int index_val) {
-        this.debug(false, "AndroidTester", "init start");
+    protected ClientTester(ClientTest android_test_val, int index_val) {
+        this.debug(false, "ClientTester", "init start");
         
         this.androidTest_ = android_test_val;
         this.indexString_ = EncodeNumber.encode(index_val, 6);
         this.myNameString_ = "Android_" + this.indexString_;
         
-		this.androidRoot_ = new AndroidRoot();
+		this.androidRoot_ = new ClientRoot();
         
     }
     

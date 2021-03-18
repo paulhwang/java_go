@@ -7,7 +7,7 @@
  */
 
 
-package com.phwang.core.android;
+package com.phwang.client;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadEntityInt;
@@ -15,8 +15,8 @@ import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.LockedInteger;
 import com.phwang.core.utils.Utils;
 
-public class AndroidTest implements ThreadEntityInt {
-    private String objectName() {return "AndroidTest";}
+public class ClientTest implements ThreadEntityInt {
+    private String objectName() {return "ClientTest";}
     private String androidTestThreadName() { return "AndroidTestThread"; }
 
     private int numberOfTesterThread_ = 2;
@@ -29,8 +29,8 @@ public class AndroidTest implements ThreadEntityInt {
     
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
 
-    public AndroidTest() {
-        this.debug(false, "AndroidTest", "init start");
+    public ClientTest() {
+        this.debug(false, "ClientTest", "init start");
         
         this.threadMgr_ = new ThreadMgr();
         this.threadCount_ = new LockedInteger(0);
@@ -59,7 +59,7 @@ public class AndroidTest implements ThreadEntityInt {
         
     	this.indexCount_.increment();
     	int index = this.indexCount_.get();
-        AndroidTester tester = new AndroidTester(this, index);
+        ClientTester tester = new ClientTester(this, index);
 
     	for (int i = 0; i < this.numberOfTestPerTester; i++) {
        		tester.startTest();

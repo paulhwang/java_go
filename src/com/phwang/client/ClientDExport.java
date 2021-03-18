@@ -6,7 +6,7 @@
  ******************************************************************************
  */
 
-package com.phwang.core.android;
+package com.phwang.client;
 
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.Binder;
@@ -14,18 +14,18 @@ import com.phwang.core.utils.EncodeNumber;
 import com.phwang.front.FrontJob;
 import com.phwang.front.FrontJobMgr;
 
-public class AndroidDExport implements AndroidDExportInt {
-    private String objectName() {return "AndroidDExport";}
+public class ClientDExport implements ClientDExportInt {
+    private String objectName() {return "ClientDExport";}
     
-    private AndroidRoot androidRoot_;
+    private ClientRoot androidRoot_;
     
-    private AndroidRoot androidRoot() { return this.androidRoot_; }
-    private AndroidUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
+    private ClientRoot androidRoot() { return this.androidRoot_; }
+    private ClientUBinder androidUBinder() { return this.androidRoot().androidUBinder(); }
     private Binder uBinder() { return this.androidUBinder().uBinder(); }
-    private AndroidFabricInfo androidFabricInfo() { return this.androidRoot_.androidFabricInfo(); }
+    private ClientFabricInfo androidFabricInfo() { return this.androidRoot_.androidFabricInfo(); }
  
-    protected AndroidDExport(AndroidRoot root_val) {
-        this.debug(false, "AndroidDExport", "init start");
+    protected ClientDExport(ClientRoot root_val) {
+        this.debug(false, "ClientDExport", "init start");
         
     	this.androidRoot_ = root_val;
     }
@@ -39,7 +39,7 @@ public class AndroidDExport implements AndroidDExportInt {
     	this.debug(false, "setupLink", "name=" + my_name_val);
     	
         StringBuilder command_buf = new StringBuilder();
-        command_buf.append(AndroidImport.FABRIC_COMMAND_SETUP_LINK); 
+        command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_LINK); 
         command_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         command_buf.append(my_name_val);
         command_buf.append(EncodeNumber.encode(password_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));

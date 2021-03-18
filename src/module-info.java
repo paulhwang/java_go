@@ -1,5 +1,4 @@
 module java_go {
-	exports com.phwang.core.android;
 	exports com.phwang.core.root;
 	exports com.phwang;
 	exports com.phwang.core.utils;
@@ -7,6 +6,7 @@ module java_go {
 	exports com.phwang.core.theme;
 	exports org.json.simple;
 	exports com.phwang.core.protocols;
+	exports com.phwang.client;
 	exports com.phwang.core.models;
 	exports org.json.simple.parser;
 	exports com.phwang.core.go;

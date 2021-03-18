@@ -6,9 +6,9 @@
  ******************************************************************************
  */
 
-package com.phwang.core.android;
+package com.phwang.client;
 
-public interface AndroidDExportInt {
+public interface ClientDExportInt {
     public void setupLink(String name_val, String password_val);
     public void removeLink(String link_id_val);
     public void getLinkData(String link_id_val);

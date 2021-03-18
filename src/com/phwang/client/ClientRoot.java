@@ -6,34 +6,34 @@
  ******************************************************************************
  */
 
-package com.phwang.core.android;
+package com.phwang.client;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 
-public class AndroidRoot {
-    private String objectName() {return "AndroidRoot";}
+public class ClientRoot {
+    private String objectName() {return "ClientRoot";}
 
     private ThreadMgr threadMgr_;
-    private AndroidFabricInfo androidFabricInfo_;
-    private AndroidUBinder androidUBinder_;
-    private AndroidDExport androidDExport_;
-    private AndroidDParser androidDParser_;
+    private ClientFabricInfo androidFabricInfo_;
+    private ClientUBinder androidUBinder_;
+    private ClientDExport androidDExport_;
+    private ClientDParser androidDParser_;
     
-    public AndroidDExport androidDExport() { return this.androidDExport_; }
+    public ClientDExport androidDExport() { return this.androidDExport_; }
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
-    protected AndroidFabricInfo androidFabricInfo() { return this.androidFabricInfo_; }
-    protected AndroidUBinder androidUBinder() { return this.androidUBinder_; }
-    protected AndroidDParser androidDParser() { return this.androidDParser_; }
+    protected ClientFabricInfo androidFabricInfo() { return this.androidFabricInfo_; }
+    protected ClientUBinder androidUBinder() { return this.androidUBinder_; }
+    protected ClientDParser androidDParser() { return this.androidDParser_; }
     
-    public AndroidRoot() {
-        this.debug(false, "AndroidRoot", "init start");
+    public ClientRoot() {
+        this.debug(false, "ClientRoot", "init start");
 
-        this.androidFabricInfo_ = new AndroidFabricInfo();
+        this.androidFabricInfo_ = new ClientFabricInfo();
         this.threadMgr_ = new ThreadMgr();
-        this.androidUBinder_ = new AndroidUBinder(this);
-        this.androidDExport_ = new AndroidDExport(this);
-        this.androidDParser_ = new AndroidDParser(this);
+        this.androidUBinder_ = new ClientUBinder(this);
+        this.androidDExport_ = new ClientDExport(this);
+        this.androidDParser_ = new ClientDParser(this);
         
         this.androidUBinder_.startThreads();
 	}
