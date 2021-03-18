@@ -31,6 +31,7 @@ class ClientTester implements ClientDImportInt {
         this.clientTest_ = client_test_val;
 		this.clientRoot_ = new ClientRoot(this);
         this.clientFabricInfo().setMyName("client_" + EncodeNumber.encode(tester_index_val, 5));
+        this.clientFabricInfo().setHisName(this.clientFabricInfo().myName());
         this.clientFabricInfo().setPassword("TENNIS");
     }
     
@@ -40,7 +41,7 @@ class ClientTester implements ClientDImportInt {
     
     private void doSetupLink() {
     	this.debug(false, "doSetupLink", "doSetupLink");
-    	this.clientDExport().setupLink(this.clientFabricInfo().myName(), this.clientFabricInfo().password());
+    	this.clientDExport().setupLink();
     }
     
 	public void handleSetupLinkResponse() {
@@ -55,7 +56,7 @@ class ClientTester implements ClientDImportInt {
 	}
     
     private void doSetupSession() {
-    	this.clientDExport().setupSession(this.clientFabricInfo().linkIdStr(), this.clientFabricInfo().myName(), this.clientFabricInfo().myName());
+    	this.clientDExport().setupSession();
     }
 	
 	public void handleSetupSessionResponse() {

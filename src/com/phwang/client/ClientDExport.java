@@ -33,15 +33,15 @@ public class ClientDExport implements ClientDExportInt {
        	this.uBinder().transmitStringData(this.clientFabricInfo().jobIdStr() + data_str_val);
     }
     
-    public void setupLink(String my_name_val, String password_val) {
-    	this.debug(false, "setupLink", "name=" + my_name_val);
+    public void setupLink() {
+    	this.debug(false, "setupLink", "name=" + this.clientFabricInfo().myName());
     	
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_LINK); 
-        command_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
-        command_buf.append(my_name_val);
-        command_buf.append(EncodeNumber.encode(password_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
-        command_buf.append(password_val);
+        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().myName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(this.clientFabricInfo().myName());
+        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().password().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(this.clientFabricInfo().password());
         String command_str = command_buf.toString();
         
     	this.debug(false, "setupLink", "command_str=" + command_str);
@@ -49,28 +49,28 @@ public class ClientDExport implements ClientDExportInt {
     	this.transmitToFabric(command_str);
     }
     
-    public void removeLink(String link_id_val) {
+    public void removeLink() {
     	
     }
     
-    public void getLinkData(String link_id_val) {
+    public void getLinkData() {
     	
     }
     
-    public void getNameList(String link_id_val) {
+    public void getNameList() {
     	
     }
     
-    public void setupSession(String link_id_val, String my_name_val, String his_name_val) {
-    	this.debug(false, "setupSession", "link_id=" + link_id_val);
+    public void setupSession() {
+    	this.debug(false, "setupSession", "link_id=" + this.clientFabricInfo().linkIdStr());
     	
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_SESSION); 
-        command_buf.append(link_id_val); 
-        command_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
-        command_buf.append(my_name_val);
-        command_buf.append(EncodeNumber.encode(his_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
-        command_buf.append(his_name_val);
+        command_buf.append(this.clientFabricInfo().linkIdStr()); 
+        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().myName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(this.clientFabricInfo().myName());
+        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().hisName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(this.clientFabricInfo().hisName());
         String command_str = command_buf.toString();
         
     	this.debug(false, "setupSession", "command_str=" + command_str);
@@ -79,23 +79,23 @@ public class ClientDExport implements ClientDExportInt {
     	
     }
     
-    public void setupSession2(String link_id_val) {
+    public void setupSession2() {
     	
     }
     
-    public void setupSession3(String link_id_val) {
+    public void setupSession3() {
     	
     }
     
-    public void removeSession(String link_id_val, String session_id_val) {
+    public void removeSession() {
     	
     }
     
-    public void putSessionData(String link_id_val, String session_id_val) {
+    public void putSessionData() {
     	
     }
     
-    public void getSessionData(String link_id_val, String session_id_val) {
+    public void getSessionData() {
     	
     }
     
