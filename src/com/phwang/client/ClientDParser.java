@@ -91,6 +91,8 @@ public class ClientDParser {
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         String pending_session_setup = rest_str.substring(0, pending_session_setup_len);
     	rest_str = rest_str.substring(pending_session_setup_len);
+    	
+    	this.importInterface().handleGetLinkDataResponse();
     }
 
     private void parserGetNameListResponse(String input_str_val) {
@@ -104,6 +106,8 @@ public class ClientDParser {
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         String name_list_str = rest_str.substring(0, name_list_str_len);
     	rest_str = rest_str.substring(name_list_str_len);
+    	
+    	this.importInterface().handleGetNameListResponse();
     }
 
     private void parserSetupSessionResponse(String input_str_val) {
@@ -115,6 +119,8 @@ public class ClientDParser {
 
         String session_id_str = rest_str.substring(0, ClientImport.FABRIC_SESSION_ID_SIZE);
         rest_str = rest_str.substring(ClientImport.FABRIC_SESSION_ID_SIZE);
+    	
+    	this.importInterface().handleSetupSessionResponse();
     }
 
     private void parserSetupSession2Response(String input_str_val) {
@@ -129,6 +135,8 @@ public class ClientDParser {
 
         String theme_id_str = rest_str.substring(0, ClientImport.THEME_ROOM_ID_SIZE);
         rest_str = rest_str.substring(ClientImport.THEME_ROOM_ID_SIZE);
+    	
+    	this.importInterface().handleSetupSession2Response();
     }
 
     private void parserSetupSession3Response(String input_str_val) {
@@ -143,6 +151,8 @@ public class ClientDParser {
 
         String theme_id_str = rest_str.substring(0, ClientImport.THEME_ROOM_ID_SIZE);
         rest_str = rest_str.substring(ClientImport.THEME_ROOM_ID_SIZE);
+    	
+    	this.importInterface().handleSetupSession3Response();
     }
 
     private void parserPutSessionDataResponse(String input_str_val) {
@@ -159,6 +169,8 @@ public class ClientDParser {
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         String c_data = rest_str.substring(0, c_data_len);
     	rest_str = rest_str.substring(c_data_len);
+    	
+    	this.importInterface().handlePutSessionDataResponse();
     }
 
     private void parserGetSessionDataResponse(String input_str_val) {
@@ -175,6 +187,8 @@ public class ClientDParser {
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
         String c_data = rest_str.substring(0, c_data_len);
     	rest_str = rest_str.substring(c_data_len);
+    	
+    	this.importInterface().handleGetSessionDataResponse();
     }
 
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
