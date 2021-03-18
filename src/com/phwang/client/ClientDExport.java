@@ -11,8 +11,6 @@ package com.phwang.client;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.EncodeNumber;
-import com.phwang.front.FrontJob;
-import com.phwang.front.FrontJobMgr;
 
 public class ClientDExport implements ClientDExportInt {
     private String objectName() {return "ClientDExport";}
@@ -63,7 +61,7 @@ public class ClientDExport implements ClientDExportInt {
     	
     }
     
-    public void setupSession(String link_id_val) {
+    public void setupSession(String link_id_val, String my_name_val, String his_name_val) {
     	
     }
     

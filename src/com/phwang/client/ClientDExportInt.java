@@ -13,7 +13,7 @@ public interface ClientDExportInt {
     public void removeLink(String link_id_val);
     public void getLinkData(String link_id_val);
     public void getNameList(String link_id_val);
-    public void setupSession(String link_id_val);
+    public void setupSession(String link_id_val, String my_name_val, String his_name_val);
     public void setupSession2(String link_id_val);
     public void setupSession3(String link_id_val);
     public void removeSession(String link_id_val, String session_id_val);

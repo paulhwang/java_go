@@ -45,16 +45,18 @@ class ClientTester implements ClientDImportInt {
     
 	public void handleSetupLinkResponse() {
     	this.debug(true, "*****handleSetupLinkResponse", "linkIdStr=" + this.clientFabricInfo().linkIdStr());
-		
+		this.doSetupSession();
 	}
 	
 	public void handleGetLinkDataResponse() {
-		
 	}
 	
 	public void handleGetNameListResponse() {
-		
 	}
+    
+    private void doSetupSession() {
+    	this.clientDExport().setupSession(this.clientFabricInfo().linkIdStr(), this.clientFabricInfo().myName(), this.clientFabricInfo().myName());
+    }
 	
 	public void handleSetupSessionResponse() {
 		
@@ -80,9 +82,6 @@ class ClientTester implements ClientDImportInt {
     }
     
     private void doGetNameList() {
-    }
-    
-    private void doSetupSession() {
     }
     
     private void doSetupSession2() {
