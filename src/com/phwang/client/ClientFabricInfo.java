@@ -8,6 +8,7 @@
 
 package com.phwang.client;
 
+import com.phwang.core.go.GoRoot;
 import com.phwang.core.utils.EncodeNumber;
 
 public class ClientFabricInfo {
