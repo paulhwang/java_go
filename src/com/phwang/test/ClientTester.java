@@ -30,12 +30,12 @@ class ClientTester implements ThreadEntityInt, ClientDImportInt {
     private ClientDExport clientDExport() { return this.clientRoot_.clientDExport(); }
     private ClientFabricInfo clientFabricInfo() { return this.clientRoot_.clientFabricInfo();}
     
-    protected ClientTester(ClientTest client_test_val, ClientRoot client_root_val, int tester_index_val) {
+    protected ClientTester(ClientTest client_test_val, int tester_index_val) {
         this.debug(false, "ClientTester", "init start");
         
         this.clientTest_ = client_test_val;
-		this.clientRoot_ = client_root_val;
         this.myNameStr_ = "client_" + EncodeNumber.encode(tester_index_val, 5);
+		this.clientRoot_ = new ClientRoot();
         this.caseIndex_ = new LockedInteger(0);
     }
     

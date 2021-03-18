@@ -63,8 +63,7 @@ public class ClientTest implements ThreadEntityInt {
     	this.testerIndex_.increment();
     	int tester_index = this.testerIndex_.get();
     	
-    	ClientRoot client_root = new ClientRoot();
-        ClientTester tester = new ClientTester(this, client_root, tester_index);
+        ClientTester tester = new ClientTester(this, tester_index);
         this.testerArray_[tester_index - 1] = tester;
 
     	for (int i = 0; i < this.numberOfCasePerTester_; i++) {
