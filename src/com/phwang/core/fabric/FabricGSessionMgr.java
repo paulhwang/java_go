@@ -11,15 +11,15 @@ package com.phwang.core.fabric;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ArrayMgrClass;
 
-public class GroupSessionMgrClass {
-    private String objectName() {return "GroupSessionMgrClass";}
+public class FabricGSessionMgr {
+    private String objectName() {return "FabricGSessionMgr";}
 
     private static final int MAX_SESSION_ARRAY_SIZE = 10;
 
     private FabricGroup group_;
     private ArrayMgrClass arrayMgr_;
 
-    protected GroupSessionMgrClass(FabricGroup group_val) {
+    protected FabricGSessionMgr(FabricGroup group_val) {
         this.group_ = group_val;
         this.arrayMgr_ = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
     }

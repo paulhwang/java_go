@@ -18,20 +18,20 @@ public class FabricGroup implements ListEntryInt {
     private ListEntry listEntry_;
     private String roomIdStr_;
     private String themeData_;
-    private GroupSessionMgrClass groupSessionMgr_;
+    private FabricGSessionMgr gSessionMgr_;
 
     protected ListEntry listEntry() { return this.listEntry_; }
     protected String themeData() { return this.themeData_; }
     protected int groupId() { return this.listEntry().id(); }
     protected String groupIdStr() { return this.listEntry().idStr(); }
     protected String roomIdStr() { return this.roomIdStr_; }
-    protected GroupSessionMgrClass groupSessionMgr() { return this.groupSessionMgr_; }
+    protected FabricGSessionMgr groupSessionMgr() { return this.gSessionMgr_; }
 
     protected FabricGroup(String theme_data_val) {
         this.debug(false, "FabricGroup", "init start");
         
         this.themeData_ = theme_data_val;
-        this.groupSessionMgr_ = new GroupSessionMgrClass(this);
+        this.gSessionMgr_ = new FabricGSessionMgr(this);
     }
 
     public void bindListEntry(ListEntry list_entry_object_val) {
