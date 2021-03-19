@@ -18,7 +18,7 @@ public class ClientRoot {
     private ThreadMgr threadMgr_;
     private ClientFabricInfo clientFabricInfo_;
     private ClientGoConfig goConfig_;
-    private ClientPutData putData_;
+    private ClientGoAct goAct_;
     private ClientUBinder clientUBinder_;
     private ClientDExport clientDExport_;
     private ClientDParser clientDParser_;
@@ -26,7 +26,7 @@ public class ClientRoot {
     public ClientDExport clientDExport() { return this.clientDExport_; }
     public ClientFabricInfo clientFabricInfo() { return this.clientFabricInfo_; }
     public ClientGoConfig goConfig() { return this.goConfig_; }
-    public ClientPutData putData() { return this.putData_; }
+    public ClientGoAct goAct() { return this.goAct_; }
     protected ClientDImportInt importInterface() { return this.importInterface_; }
     protected ThreadMgr threadMgr() { return this.threadMgr_; }
     protected ClientUBinder clientUBinder() { return this.clientUBinder_; }
@@ -38,7 +38,7 @@ public class ClientRoot {
         this.importInterface_ = import_int_val;
         this.clientFabricInfo_ = new ClientFabricInfo();
         this.goConfig_ = new ClientGoConfig();
-        this.putData_ = new ClientPutData();
+        this.goAct_ = new ClientGoAct();
         this.threadMgr_ = new ThreadMgr();
         this.clientUBinder_ = new ClientUBinder(this);
         this.clientDExport_ = new ClientDExport(this);

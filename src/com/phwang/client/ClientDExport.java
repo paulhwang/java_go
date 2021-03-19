@@ -22,7 +22,7 @@ public class ClientDExport implements ClientDExportInt {
     private Binder uBinder() { return this.clientUBinder().uBinder(); }
     private ClientFabricInfo clientFabricInfo() { return this.clientRoot_.clientFabricInfo(); }
     private ClientGoConfig goConfig() { return this.clientRoot_.goConfig(); }
-    private ClientPutData pubData() { return this.clientRoot_.putData(); }
+    private ClientGoAct goAct() { return this.clientRoot_.goAct(); }
  
     protected ClientDExport(ClientRoot root_val) {
         this.debug(false, "ClientDExport", "init start");
@@ -126,7 +126,7 @@ public class ClientDExport implements ClientDExportInt {
         command_buf.append(ClientImport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         command_buf.append(this.clientFabricInfo().linkIdStr()); 
         command_buf.append(this.clientFabricInfo().sessionIdStr());
-        command_buf.append(this.pubData().getGoConfigStr());
+        command_buf.append(this.goAct().getGoActStr());
         String command_str = command_buf.toString();
         
     	this.debug(false, "putSessionData", "command_str=" + command_str);
