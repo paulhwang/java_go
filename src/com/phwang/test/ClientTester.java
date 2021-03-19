@@ -102,10 +102,10 @@ class ClientTester implements ClientDImportInt {
 	public void handlePutSessionDataResponse() {
     	this.debug(true, "handlePutSessionDataResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
 		this.doGetSessionData();
-		
 	}
 
     private void doGetSessionData() {
+    	Utils.sleep(100);
     	this.clientDExport().getSessionData();
     }
 	
