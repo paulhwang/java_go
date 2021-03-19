@@ -18,7 +18,7 @@ public class FabricLink implements ListEntryInt {
 
     private ListEntry listEntry_;
     private String myName_;
-    private FabricSessionMgr sessionMgr_;
+    private FabricLSessionMgr sessionMgr_;
     private ListQueue pendingSessionSetupQueue_;
     private ListQueue pendingSessionSetupQueue3_;
 
@@ -26,7 +26,7 @@ public class FabricLink implements ListEntryInt {
     protected int linkId() { return this.listEntry().id(); }
     protected String linkIdStr() { return this.listEntry().idStr(); }
     protected ListEntry listEntry() { return this.listEntry_; }
-    protected FabricSessionMgr sessionMgr() { return this.sessionMgr_; }
+    protected FabricLSessionMgr sessionMgr() { return this.sessionMgr_; }
 
     protected int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }
     protected ListEntry[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
@@ -38,7 +38,7 @@ public class FabricLink implements ListEntryInt {
 
         this.pendingSessionSetupQueue_ = new ListQueue(false, 0);
         this.pendingSessionSetupQueue3_ = new ListQueue(false, 0);
-        this.sessionMgr_ = new FabricSessionMgr(this);
+        this.sessionMgr_ = new FabricLSessionMgr(this);
     }
 
     public void bindListEntry(ListEntry list_entry_object_val) {

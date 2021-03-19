@@ -12,8 +12,8 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ListMgr;
 import com.phwang.core.utils.ListEntry;
 
-public class FabricSessionMgr {
-    private String objectName() {return "FabricSessionMgr";}
+public class FabricLSessionMgr {
+    private String objectName() {return "FabricLSessionMgr";}
     
     protected static final int FABRIC_SESSION_ID_SIZE_ = 4;
     protected static final int FABRIC_SESSION_ID_SIZE = FABRIC_SESSION_ID_SIZE_ * 2;
@@ -29,8 +29,8 @@ public class FabricSessionMgr {
     protected int getSessionArrayMaxIndex() { return this.listMgr_.maxIndex(); }
     protected ListEntry[] getSessionArrayEntryTable() { return this.listMgr().entryArray(); }
 
-    protected FabricSessionMgr(FabricLink link_val) {
-        this.debug(false, "FabricSessionMgr", "init start");
+    protected FabricLSessionMgr(FabricLink link_val) {
+        this.debug(false, "FabricLSessionMgr", "init start");
         
         this.link_ = link_val;
         this.listMgr_ = new ListMgr(FABRIC_SESSION_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
