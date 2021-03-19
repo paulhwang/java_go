@@ -250,7 +250,7 @@ public class FabricUParser {
     }
 
     private String processSetupSessionRequest(String input_str_val) {
-        this.debug(true, "processSetupSessionRequest", "input_str_val=" + input_str_val);
+        this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
@@ -359,12 +359,12 @@ public class FabricUParser {
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
-            return this.errorProcessSetupSession3(link_id_str, "null link");
+            return this.errorProcessSetupSession2(link_id_str, "null link");
         }
         
         FabricSession session = link.sessionMgr().getSessionByIdStr(session_id_str);
         if (session == null) {
-            return errorProcessSetupSession3(link_id_str, "null session");
+            return errorProcessSetupSession2(link_id_str, "null session");
         }
 
         session.setBrowserThemeIdStr(theme_id_str);
@@ -432,7 +432,7 @@ public class FabricUParser {
     }
 
     private String processPutSessionDataRequest(String input_str_val) {
-        this.debug(true, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
+        this.debug(false, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
     	//String xmt_seq_str = null;
         
         String rest_str = input_str_val;
@@ -447,10 +447,10 @@ public class FabricUParser {
         String data = rest_str.substring(0, data_len);
     	rest_str = rest_str.substring(data_len);
     	
-        this.debug(true, "processPutSessionDataRequest", "link_id=" + link_id_str);
-        this.debug(true, "processPutSessionDataRequest", "session_id=" + session_id_str);
+        this.debug(false, "processPutSessionDataRequest", "link_id=" + link_id_str);
+        this.debug(false, "processPutSessionDataRequest", "session_id=" + session_id_str);
         //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
-        this.debug(true, "processPutSessionDataRequest", "data=" + data);
+        this.debug(false, "processPutSessionDataRequest", "data=" + data);
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
