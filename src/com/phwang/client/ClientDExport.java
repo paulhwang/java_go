@@ -88,9 +88,7 @@ public class ClientDExport implements ClientDExportInt {
         command_buf.append(this.clientFabricInfo().linkIdStr()); 
         command_buf.append(EncodeNumber.encode(this.clientFabricInfo().hisName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         command_buf.append(this.clientFabricInfo().hisName());
-        String theme_data_str = this.goConfig().getGoConfigStr();
-        command_buf.append(EncodeNumber.encode(theme_data_str.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
-        command_buf.append(theme_data_str);
+        command_buf.append(this.goConfig().getGoConfigStr());
         String command_str = command_buf.toString();
         
     	this.debug(false, "setupSession", "command_str=" + command_str);
@@ -121,6 +119,17 @@ public class ClientDExport implements ClientDExportInt {
     }
     
     public void putSessionData() {
+    	this.debug(false, "putSessionData", "link_id=" + this.clientFabricInfo().linkIdStr());
+    	
+        StringBuilder command_buf = new StringBuilder();
+        command_buf.append(ClientImport.FABRIC_COMMAND_PUT_SESSION_DATA); 
+        command_buf.append(this.clientFabricInfo().linkIdStr()); 
+        command_buf.append(this.clientFabricInfo().sessionIdStr());
+        String command_str = command_buf.toString();
+        
+    	this.debug(false, "putSessionData", "command_str=" + command_str);
+    	
+    	this.transmitToFabric(command_str);
     	
     }
     

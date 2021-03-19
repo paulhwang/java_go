@@ -400,10 +400,9 @@ public class FabricUParser {
         
         String session_id_str = rest_str.substring(0, FabricExport.FABRIC_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FabricExport.FABRIC_SESSION_ID_SIZE);
-        
     	
-        this.debug(true, "processSetupSession3Request", "link_id = " + link_id_str);
-        this.debug(true, "processSetupSession3Request", "session_id = " + session_id_str);
+        this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
+        this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
@@ -433,7 +432,7 @@ public class FabricUParser {
     }
 
     private String processPutSessionDataRequest(String input_str_val) {
-        this.debug(false, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
+        this.debug(true, "processPutSessionDataRequest", "input_str_val = " + input_str_val);
     	//String xmt_seq_str = null;
         
         String rest_str = input_str_val;
@@ -448,19 +447,19 @@ public class FabricUParser {
         String data = rest_str.substring(0, data_len);
     	rest_str = rest_str.substring(data_len);
     	
-        this.debug(false, "processPutSessionDataRequest", "link_id = " + link_id_str);
-        this.debug(false, "processPutSessionDataRequest", "session_id = " + session_id_str);
+        this.debug(true, "processPutSessionDataRequest", "link_id=" + link_id_str);
+        this.debug(true, "processPutSessionDataRequest", "session_id=" + session_id_str);
         //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
-        this.debug(false, "processPutSessionDataRequest", "data = " + data);
+        this.debug(true, "processPutSessionDataRequest", "data=" + data);
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {
-            return this.errorProcessSetupSession3(link_id_str, "null link");
+            return this.errorProcessPutSessionData(link_id_str, "null link");
         }
         
         FabricSession session = link.sessionMgr().getSessionByIdStr(session_id_str);
         if (session == null) {
-            return errorProcessSetupSession3(link_id_str, "null session");
+            return errorProcessPutSessionData(link_id_str, "null session");
         }
 
         String room_id_str = session.fabricGroup().roomIdStr();
