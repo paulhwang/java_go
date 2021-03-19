@@ -33,7 +33,6 @@ public class ClientGoAct {
     	buf.append('G');
 		buf.append(this.action_);
     	if (this.action_ == 'M') {
-    		buf.append('M');
     		buf.append(EncodeNumber.encode(this.x_, 2));
     		buf.append(EncodeNumber.encode(this.y_, 2));
     		buf.append(EncodeNumber.encode(this.color_, 1));

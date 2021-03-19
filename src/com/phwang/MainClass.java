@@ -22,6 +22,6 @@ public class MainClass {
 		new FrontTest(front_root.frontDExport(), 1, 1).startTest(false);
 		
 		//new ClientRoot();
-		new ClientTest(1, 1).startTest(true);
+		new ClientTest(3, 1).startTest(true);
 	}
 }

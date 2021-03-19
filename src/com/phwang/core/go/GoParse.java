@@ -22,11 +22,11 @@ public class GoParse {
         this.goRoot_ = go_root_val;
     }
 
-    public void parseInputData(String input_data_val)
-    {
+    public void parseInputData(String input_data_val) {
+    	this.debug(false, "parseInputData", "input_data_val=" + input_data_val);
+    	
         int len = input_data_val.length();//to be deleted
-        switch (input_data_val.charAt(0))
-        {
+        switch (input_data_val.charAt(0)) {
             case GoExport.GO_PROTOCOL_MOVE_COMMAND:
             	GoMove move = new GoMove(input_data_val.substring(1, 9));
                 this.goGame().addNewMoveAndFight(move);
