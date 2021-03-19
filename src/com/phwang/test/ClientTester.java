@@ -7,6 +7,7 @@ package com.phwang.test;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
+import com.phwang.core.utils.Utils;
 import com.phwang.core.utils.ThreadEntityInt;
 import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.utils.LockedInteger;
@@ -94,6 +95,7 @@ class ClientTester implements ClientDImportInt {
 	}
 
     private void doPutSessionData() {
+    	Utils.sleep(100);
     	this.clientDExport().putSessionData();
     }
 	
