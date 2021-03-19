@@ -10,18 +10,28 @@ package com.phwang.core.fabric;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ArrayMgrClass;
+import com.phwang.core.utils.ListMgr;
 
 public class FabricGSessionMgr {
     private String objectName() {return "FabricGSessionMgr";}
 
-    private static final int MAX_SESSION_ARRAY_SIZE = 10;
+    protected static final int FABRIC_G_SESSION_ID_SIZE_ = 4;
+    protected static final int FABRIC_G_SESSION_ID_SIZE = FABRIC_G_SESSION_ID_SIZE_ * 2;
+
+	private static final int G_SESSION_LIST_MGR_ARRAY_SIZE = 8;
+    private static final int FIRST_G_SESSION_ID = 3000;
+    
+    private static final int MAX_SESSION_ARRAY_SIZE = 10;/////////////////////////
 
     private FabricGroup group_;
+    private ListMgr listMgr_;
     private ArrayMgrClass arrayMgr_;
 
     protected FabricGSessionMgr(FabricGroup group_val) {
         this.group_ = group_val;
-        this.arrayMgr_ = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);
+        this.listMgr_ = new ListMgr(FABRIC_G_SESSION_ID_SIZE_, G_SESSION_LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_G_SESSION_ID);
+        
+        this.arrayMgr_ = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);//////////////////
     }
 
     protected void insertSession(FabricLSession session_val) {

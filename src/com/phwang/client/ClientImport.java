@@ -18,7 +18,7 @@ public class ClientImport {
 	//public static final int THEME_ROOM_ID_SIZE = ThemeExport.THEME_ROOM_ID_SIZE;
 	
     protected static final int FABRIC_LINK_ID_SIZE    = FabricExport.FABRIC_LINK_ID_SIZE;
-    protected static final int FABRIC_SESSION_ID_SIZE = FabricExport.FABRIC_SESSION_ID_SIZE;
+    protected static final int FABRIC_SESSION_ID_SIZE = FabricExport.FABRIC_L_SESSION_ID_SIZE;
 	
 	
     protected static final char FABRIC_COMMAND_SETUP_LINK       = FabricExport.FABRIC_COMMAND_SETUP_LINK;

@@ -15,11 +15,11 @@ import com.phwang.core.utils.ListEntry;
 public class FabricLSessionMgr {
     private String objectName() {return "FabricLSessionMgr";}
     
-    protected static final int FABRIC_SESSION_ID_SIZE_ = 4;
-    protected static final int FABRIC_SESSION_ID_SIZE = FABRIC_SESSION_ID_SIZE_ * 2;
+    protected static final int FABRIC_L_SESSION_ID_SIZE_ = 4;
+    protected static final int FABRIC_L_SESSION_ID_SIZE = FABRIC_L_SESSION_ID_SIZE_ * 2;
 
-	private static final int LIST_MGR_ARRAY_SIZE = 8;
-    private static final int FIRST_SESSION_ID = 3000;
+	private static final int L_SESSION_LIST_MGR_ARRAY_SIZE = 8;
+    private static final int FIRST_L_SESSION_ID = 2000;
 
     private FabricLink link_;
     private ListMgr listMgr_;
@@ -33,7 +33,7 @@ public class FabricLSessionMgr {
         this.debug(false, "FabricLSessionMgr", "init start");
         
         this.link_ = link_val;
-        this.listMgr_ = new ListMgr(FABRIC_SESSION_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_SESSION_ID);
+        this.listMgr_ = new ListMgr(FABRIC_L_SESSION_ID_SIZE_, L_SESSION_LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_L_SESSION_ID);
     }
 
     protected FabricLSession mallocSession() {

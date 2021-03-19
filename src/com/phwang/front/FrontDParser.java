@@ -153,8 +153,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -171,8 +171,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
         String theme_id_str = rest_str.substring(0, FrontImport.THEME_ROOM_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.THEME_ROOM_ID_SIZE);
@@ -193,8 +193,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
         String theme_id_str = rest_str.substring(0, FrontImport.THEME_ROOM_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.THEME_ROOM_ID_SIZE);
@@ -215,8 +215,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
         int c_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
@@ -239,8 +239,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_SESSION_ID_SIZE);
+        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
         int c_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
