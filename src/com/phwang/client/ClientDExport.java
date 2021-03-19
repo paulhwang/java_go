@@ -86,11 +86,11 @@ public class ClientDExport implements ClientDExportInt {
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_SESSION); 
         command_buf.append(this.clientFabricInfo().linkIdStr()); 
-        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().myName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
-        command_buf.append(this.clientFabricInfo().myName());
         command_buf.append(EncodeNumber.encode(this.clientFabricInfo().hisName().length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
         command_buf.append(this.clientFabricInfo().hisName());
-        command_buf.append(this.goConfig().getGoConfigStr());
+        String theme_data_str = this.goConfig().getGoConfigStr();
+        command_buf.append(EncodeNumber.encode(theme_data_str.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        command_buf.append(theme_data_str);
         String command_str = command_buf.toString();
         
     	this.debug(false, "setupSession", "command_str=" + command_str);

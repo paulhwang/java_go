@@ -35,49 +35,49 @@ public class FabricUParser {
     }
 
     protected void parseInputPacket(BinderBundle bundle_val) {
-    	String input_data = bundle_val.data();
-        String job_id_str = input_data.substring(0, FabricExport.FRONT_JOB_ID_SIZE);
-        String json_str = input_data.substring(FabricExport.FRONT_JOB_ID_SIZE);
+    	String input_data_str = bundle_val.data();
+        String job_id_str = input_data_str.substring(0, FabricExport.FRONT_JOB_ID_SIZE);
+        String data_str = input_data_str.substring(FabricExport.FRONT_JOB_ID_SIZE);
         String response_data = null;
         
-        this.debug(true, "parseInputPacket", "input_data_val = " + input_data);
-        this.debug(false, "parseInputPacket", "json_str = " + json_str);
+        this.debug(true, "parseInputPacket", "input_data_val = " + input_data_str);
+        this.debug(false, "parseInputPacket", "data_str = " + data_str);
         
-        char command = json_str.charAt(0);
+        char command = data_str.charAt(0);
         
         if (command == FabricExport.FABRIC_COMMAND_SETUP_LINK) {
-            response_data = this.processSetupLinkRequest(json_str.substring(1));
+            response_data = this.processSetupLinkRequest(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_REMOVE_LINK) {
-            response_data = this.processRemoveLinkRequest(json_str.substring(1));
+            response_data = this.processRemoveLinkRequest(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_GET_LINK_DATA) {
-            response_data = this.processGetLinkDataRequest(json_str.substring(1));
+            response_data = this.processGetLinkDataRequest(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_GET_NAME_LIST) {
-            response_data = this.processGetNameListRequest(json_str.substring(1));
+            response_data = this.processGetNameListRequest(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION) {
-            response_data = this.processSetupSessionRequest(json_str.substring(1));
+            response_data = this.processSetupSessionRequest(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION2) {
-            response_data = this.processSetupSession2Request(json_str.substring(1));
+            response_data = this.processSetupSession2Request(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION3) {
-            response_data = this.processSetupSession3Request(json_str.substring(1));
+            response_data = this.processSetupSession3Request(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA) {
-            response_data = this.processPutSessionDataRequest(json_str.substring(1));
+            response_data = this.processPutSessionDataRequest(data_str.substring(1));
         }
         else if (command == FabricExport.FABRIC_COMMAND_GET_SESSION_DATA) {
-            response_data = this.processGetSessionDataRequest(json_str.substring(1));
+            response_data = this.processGetSessionDataRequest(data_str.substring(1));
         }
         else {
-        	this.abend("parseInputPacket", "should not reach here, data=" + input_data);
+        	this.abend("parseInputPacket", "should not reach here, data=" + input_data_str);
         }
         
         if (response_data == null) {
-        	this.abend("parseInputPacket", "response_data is null, data=" + input_data);
+        	this.abend("parseInputPacket", "response_data is null, data=" + input_data_str);
         }
         
         bundle_val.setData(job_id_str + response_data);
@@ -250,7 +250,7 @@ public class FabricUParser {
     }
 
     private String processSetupSessionRequest(String input_str_val) {
-        this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
+        this.debug(true, "processSetupSessionRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;
         String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
@@ -270,8 +270,9 @@ public class FabricUParser {
         this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
         this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-        String theme_id_str = theme_data_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);
-        String theme_data = theme_data_str.substring(FabricImport.THEME_ROOM_ID_SIZE);
+        String theme_id_str = theme_data_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);////////////////////
+        String theme_data = theme_data_str.substring(FabricImport.THEME_ROOM_ID_SIZE);//////////////////////
+        theme_data = theme_data_str;
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {

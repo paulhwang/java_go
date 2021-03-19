@@ -43,11 +43,11 @@ public class ClientUBinder implements ThreadEntityInt {
      }
     
 	public void threadCallbackFunction() {
-		this.uAndroidReceiveThreadFunc();
+		this.uClientReceiveThreadFunc();
 	}
     
-    private void uAndroidReceiveThreadFunc() {
-        this.debug(false, "uAndroidReceiveThreadFunc", "start " + this.receiveThreadName());
+    private void uClientReceiveThreadFunc() {
+        this.debug(false, "uClientReceiveThreadFunc", "start " + this.receiveThreadName());
         
         while (true) {
             if (this.stopReceiveThreadFlag) {
@@ -56,14 +56,14 @@ public class ClientUBinder implements ThreadEntityInt {
 
             String received_data = this.uBinder().receiveStringData();
             if (received_data == null) {
-                this.abend("uAndroidReceiveThreadFunc", "null data");
+                this.abend("uClientReceiveThreadFunc", "null data");
             	continue;
             }
 
-            this.debug(true, "uAndroidReceiveThreadFunc", "received_data=" + received_data);
+            this.debug(true, "uClientReceiveThreadFunc", "received_data=" + received_data);
             this.clientDParser().parserResponseData(received_data.substring(ClientImport.FRONT_JOB_ID_SIZE));
         }
-        this.debug(true, "uAndroidReceiveThreadFunc", "exit");
+        this.debug(true, "uClientReceiveThreadFunc", "exit");
     }
     
     protected void StopReceiveThread() {
