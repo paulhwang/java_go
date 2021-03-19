@@ -42,11 +42,11 @@ public class FabricGroup implements ListEntryInt {
         this.listEntry_ = null;
     }
 
-    protected void insertSession(FabricSession session_val) {
+    protected void insertSession(FabricLSession session_val) {
         this.groupSessionMgr().insertSession(session_val);
     }
     
-    protected void removeSession(FabricSession session_val) {
+    protected void removeSession(FabricLSession session_val) {
         this.groupSessionMgr().removeSession(session_val);
     }
 

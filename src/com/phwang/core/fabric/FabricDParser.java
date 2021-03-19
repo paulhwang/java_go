@@ -55,7 +55,7 @@ public class FabricDParser {
             //group->setSessionTableArray((SessionClass**)phwangArrayMgrGetArrayTable(group->sessionArrayMgr(), &session_array_size));
             //printf("++++++++++++++++++++++++++++++++++++++++++++%d\n", session_array_size);
             for (int i = 0; i < session_array_size; i++) {
-            	FabricSession session = (FabricSession) session_array[i];
+            	FabricLSession session = (FabricLSession) session_array[i];
                 session.link().setPendingSessionSetup3(session.browserThemeIdStr(), session.sessionIdStr(), "");
             }
         }
@@ -71,7 +71,7 @@ public class FabricDParser {
             int session_array_size = group.getSessionArraySize();
             Object[] session_array = group.getSessionArray();
             for (int i = 0; i < session_array_size; i++) {
-            	FabricSession session = (FabricSession)session_array[i];
+            	FabricLSession session = (FabricLSession)session_array[i];
                 session.enqueuePendingDownLinkData(input_data);
             }
         }
