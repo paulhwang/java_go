@@ -120,7 +120,7 @@ public class ClientDParser {
         String session_id_str = rest_str.substring(0, ClientImport.FABRIC_SESSION_ID_SIZE);
         rest_str = rest_str.substring(ClientImport.FABRIC_SESSION_ID_SIZE);
     	
-    	this.clientFabricInfo().setSessionIdStr(link_id_str);
+    	this.clientFabricInfo().setSessionIdStr(session_id_str);
     	this.importInterface().handleSetupSessionResponse();
     }
 

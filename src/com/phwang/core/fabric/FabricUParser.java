@@ -402,8 +402,8 @@ public class FabricUParser {
         rest_str = rest_str.substring(FabricExport.FABRIC_SESSION_ID_SIZE);
         
     	
-        this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
-        this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
+        this.debug(true, "processSetupSession3Request", "link_id = " + link_id_str);
+        this.debug(true, "processSetupSession3Request", "session_id = " + session_id_str);
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
         if (link == null) {

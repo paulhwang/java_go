@@ -73,7 +73,7 @@ class ClientTester implements ClientDImportInt {
 	
 	public void handleSetupSessionResponse() {
     	this.debug(true, "handleSetupSessionResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
-		//this.doSetupSession3();
+    	this.doSetupSession3();
 	}
     
     private void doSetupSession2() {
