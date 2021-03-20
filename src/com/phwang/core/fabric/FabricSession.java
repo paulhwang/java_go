@@ -13,8 +13,8 @@ import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.ListEntryInt;
 import com.phwang.core.utils.ListQueue;
 
-public class FabricLSession implements ListEntryInt {
-    private String objectName() {return "FabricLSession";}
+public class FabricSession implements ListEntryInt {
+    private String objectName() {return "FabricSession";}
 
     private FabricLink link_;
     private ListEntry lListEntry_;
@@ -30,7 +30,7 @@ public class FabricLSession implements ListEntryInt {
     protected FabricGroup fabricGroup() { return this.fabricGroup_; }
     protected ListQueue pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
-    protected FabricLSession(FabricLink link_val) {
+    protected FabricSession(FabricLink link_val) {
         this.link_ = link_val;
         this.pendingDownLinkDataQueue_ = new ListQueue(false, 0);
     }

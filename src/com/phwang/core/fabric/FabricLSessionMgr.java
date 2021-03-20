@@ -36,22 +36,22 @@ public class FabricLSessionMgr {
         this.listMgr_ = new ListMgr(FABRIC_L_SESSION_ID_SIZE_, L_SESSION_LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_L_SESSION_ID);
     }
 
-    protected FabricLSession mallocSession() {
-    	FabricLSession session = new FabricLSession(this.link());
+    protected FabricSession mallocSession() {
+    	FabricSession session = new FabricSession(this.link());
     	ListEntry list_entry = this.listMgr().malloc(session);
         return session;
     }
 
-    protected void freeSession(FabricLSession session_val) {
+    protected void freeSession(FabricSession session_val) {
     	this.listMgr_.free(session_val.listEntry());
     }
 
-    protected FabricLSession getSessionByIdStr(String session_id_str_val) {
+    protected FabricSession getSessionByIdStr(String session_id_str_val) {
     	ListEntry list_entry = this.listMgr().getEntryByIdStr(session_id_str_val);
         if (list_entry == null) {
             return null;
         }
-        return (FabricLSession)list_entry.data();
+        return (FabricSession)list_entry.data();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

@@ -34,10 +34,10 @@ public class FabricGSessionMgr {
         this.arrayMgr_ = new ArrayMgrClass(this.objectName(), 'o', MAX_SESSION_ARRAY_SIZE);//////////////////
     }
 
-    protected void insertSession(FabricLSession session_val) {
+    protected void insertSession(FabricSession session_val) {
         this.arrayMgr_.insertObjectElement(session_val);
     }
-    protected void removeSession(FabricLSession session_val) {
+    protected void removeSession(FabricSession session_val) {
         this.arrayMgr_.removeObjectElement(session_val);
     }
 

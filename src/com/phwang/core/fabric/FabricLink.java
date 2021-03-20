@@ -49,7 +49,7 @@ public class FabricLink implements ListEntryInt {
         this.listEntry_ = null;
     }
 
-    protected FabricLSession mallocSession() {
+    protected FabricSession mallocSession() {
         return this.sessionMgr().mallocSession();
     }
 
