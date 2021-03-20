@@ -27,11 +27,11 @@ public class FabricSession implements ListEntryInt {
     protected ListEntry lListEntry() { return this.lListEntry_; }
     public int lSessionId() { return this.lListEntry_.id(); }
     protected String lSessionIdStr() { return this.lListEntry_.idStr(); }
+    protected FabricGroup group() { return this.group_; }
     protected ListEntry gListEntry() { return this.gListEntry_; }
     public int gSessionId() { return this.gListEntry_.id(); }
     protected String gSessionIdStr() { return this.gListEntry_.idStr(); }
     protected String browserThemeIdStr() { return this.browserThemeIdStr_; }
-    protected FabricGroup group() { return this.group_; }
     protected ListQueue pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
     protected FabricSession(FabricLink link_val) {

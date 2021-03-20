@@ -13,7 +13,7 @@ import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.ListEntryInt;
 
 public class FabricGroup implements ListEntryInt {
-    private String objectName() {return "FabricGroup";}
+    private static String objectName() {return "FabricGroup";}
 
     private ListEntry listEntry_;
     private String roomIdStr_;
@@ -34,8 +34,8 @@ public class FabricGroup implements ListEntryInt {
         this.gSessionMgr_ = new FabricGSessionMgr(this);
     }
 
-    public void bindListEntry(ListEntry list_entry_object_val, String who_val) {
-        this.listEntry_ = list_entry_object_val;
+    public void bindListEntry(ListEntry list_entry_val, String who_val) {
+        this.listEntry_ = list_entry_val;
     }
 
     public void unBindListEntry(String who_val) {

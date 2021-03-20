@@ -468,9 +468,11 @@ public class FabricUParser {
         }
 
         /* transfer data up */
-        String uplink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA;
-        uplink_data = uplink_data + room_id_str + data;
-        this.fabricUBinder().transmitData(uplink_data);
+        StringBuilder buf = new StringBuilder();
+        buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA);
+        buf.append(room_id_str);
+        buf.append(data);
+        this.fabricUBinder().transmitData(buf.toString());
 
         /* send the response down */
         String response_data = this.generatePutSessionDataResponse(link.linkIdStr(), session.lSessionIdStr(), "job is done");
