@@ -9,7 +9,6 @@
 package com.phwang.core.fabric;
 
 import com.phwang.core.utils.*;
-import com.phwang.core.protocols.FabricFrontEndProtocolClass;
 
 public class FabricNameList {
     private String objectName() {return "FabricNameList";}

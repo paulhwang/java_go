@@ -12,12 +12,11 @@ import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.BinderBundle;
 import com.phwang.core.protocols.ProtocolDefineClass;
-import com.phwang.core.protocols.FabricFrontEndProtocolClass;
 
 public class FabricUParser {
     private static String objectName() {return "FabricUParser";}
 
-    private String RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
+    private String RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricExport.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
 
     private FabricRoot fabricRoot_;
 
@@ -174,7 +173,7 @@ public class FabricUParser {
         	FabricSession session = (FabricSession)list_entry.data();
             if (session != null) {
                if (session.getPendingDownLinkDataCount() > 0) {
-                    downlink_data = downlink_data + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.lSessionIdStr();
+                    downlink_data = downlink_data + FabricExport.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.linkIdStr() + session.lSessionIdStr();
                 }
             }
         }
@@ -182,13 +181,13 @@ public class FabricUParser {
         String pending_session_setup = "";
         String pending_session_str = link.getPendingSessionSetup();
         if (pending_session_str != null) {
-            pending_session_setup = pending_session_setup + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION;
+            pending_session_setup = pending_session_setup + FabricExport.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION;
             pending_session_setup = pending_session_setup + pending_session_str;
         }
 
         String pending_session_str3 = link.getPendingSessionSetup3();
         if (pending_session_str3 != null) {
-            pending_session_setup = pending_session_setup + FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3;
+            pending_session_setup = pending_session_setup + FabricExport.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3;
             pending_session_setup = pending_session_setup + pending_session_str3;
         }
 
