@@ -30,12 +30,12 @@ public class EngineUParser {
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
 
-        if (command.equals(ThemeEngineProtocolClass.THEME_ENGINE_COMMAND_SETUP_BASE)) {
+        if (command.equals(EngineImport.THEME_ENGINE_COMMAND_SETUP_BASE)) {
             this.processSetupBase(input_data);
             return;
         }
 
-        if (command.equals(ThemeEngineProtocolClass.THEME_ENGINE_COMMAND_PUT_BASE_DATA)) {
+        if (command.equals(EngineImport.THEME_ENGINE_COMMAND_PUT_BASE_DATA)) {
             this.processPutBaseData(input_data);
             return;
         }
@@ -57,7 +57,7 @@ public class EngineUParser {
 
         String output_data = go_base_object.setupBase(input_data);
 
-        String downlink_data = ThemeEngineProtocolClass.THEME_ENGINE_RESPOND_SETUP_BASE;
+        String downlink_data = EngineImport.THEME_ENGINE_RESPOND_SETUP_BASE;
         downlink_data = downlink_data + go_base_object.roomIdStr() + go_base_object.BaseIdStr() + output_data;
         this.engineDBinder().TransmitData(downlink_data);
     }
@@ -75,7 +75,7 @@ public class EngineUParser {
 
         String output_data = go_base_object.processInputData(input_data);
 
-        String downlink_data = ThemeEngineProtocolClass.THEME_ENGINE_RESPOND_PUT_BASE_DATA;
+        String downlink_data = EngineImport.THEME_ENGINE_RESPOND_PUT_BASE_DATA;
         downlink_data = downlink_data + go_base_object.roomIdStr() + output_data;
         this.engineDBinder().TransmitData(downlink_data);
     }

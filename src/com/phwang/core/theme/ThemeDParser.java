@@ -8,9 +8,8 @@
 
 package com.phwang.core.theme;
 
-import com.phwang.core.utils.*;
+//import com.phwang.core.utils.*;
 import com.phwang.core.protocols.ThemeEngineProtocolClass;
-import com.phwang.core.protocols.FabricThemeProtocolClass;
 
 public class ThemeDParser {
     private static String objectName() {return "ThemeDParser";}
@@ -32,12 +31,12 @@ public class ThemeDParser {
         String command = input_data_val.substring(0, 1);
         String input_data = input_data_val.substring(1);
 
-        if (command.equals(ThemeEngineProtocolClass.THEME_ENGINE_RESPOND_SETUP_BASE)) {
+        if (command.equals(ThemeExport.THEME_ENGINE_RESPOND_SETUP_BASE)) {
                 this.processSetupBaseResponse(input_data);
                 return;
         }
 
-        if (command.equals(ThemeEngineProtocolClass.THEME_ENGINE_RESPOND_PUT_BASE_DATA)) {
+        if (command.equals(ThemeExport.THEME_ENGINE_RESPOND_PUT_BASE_DATA)) {
             this.processPutBaseDataResponse(input_data);
             return;
         }
