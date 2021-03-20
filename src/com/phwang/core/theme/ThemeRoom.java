@@ -30,11 +30,11 @@ public class ThemeRoom implements ListEntryInt {
         this.groupIdStr_ = group_id_str_val;
     }
 
-    public void bindListEntry(ListEntry list_entry_val) {
+    public void bindListEntry(ListEntry list_entry_val, String who_val) {
         this.listEntry_ = list_entry_val;
     }
 
-    public void unBindListEntry() {
+    public void unBindListEntry(String who_val) {
         this.listEntry_ = null;
     }
 

@@ -17,13 +17,13 @@ public class FabricLSession implements ListEntryInt {
     private String objectName() {return "FabricLSession";}
 
     private FabricLink link_;
-    private ListEntry listEntry_;
+    private ListEntry lListEntry_;
     private String browserThemeIdStr_;
     private FabricGroup fabricGroup_;
     private ListQueue pendingDownLinkDataQueue_;
 
     protected FabricLink link() { return this.link_; }
-    protected ListEntry listEntry() { return this.listEntry_; }
+    protected ListEntry listEntry() { return this.lListEntry_; }
     public int sessionId() { return this.listEntry().id(); }
     protected String sessionIdStr() { return this.listEntry().idStr(); }
     protected String browserThemeIdStr() { return this.browserThemeIdStr_; }
@@ -35,12 +35,12 @@ public class FabricLSession implements ListEntryInt {
         this.pendingDownLinkDataQueue_ = new ListQueue(false, 0);
     }
 
-    public void bindListEntry(ListEntry list_entry_object_val) {
-        this.listEntry_ = list_entry_object_val;
+    public void bindListEntry(ListEntry list_entry_object_val, String who_val) {
+        this.lListEntry_ = list_entry_object_val;
     }
 
-    public void unBindListEntry() {
-        this.listEntry_ = null;
+    public void unBindListEntry(String who_val) {
+        this.lListEntry_ = null;
     }
 
     protected void bindGroup(FabricGroup group_object_val) {

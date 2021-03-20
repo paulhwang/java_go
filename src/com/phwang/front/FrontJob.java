@@ -22,11 +22,11 @@ public class FrontJob implements ListEntryInt {
     protected String jobIdStr() { return this.listEntry().idStr(); }
     protected ListEntry listEntry() { return this.listEntry_; }
 
-    public void bindListEntry(ListEntry list_entry_val) {
+    public void bindListEntry(ListEntry list_entry_val, String who_val) {
         this.listEntry_ = list_entry_val;
     }
 
-    public void unBindListEntry() {
+    public void unBindListEntry(String who_val) {
         this.listEntry_ = null;
     }
 

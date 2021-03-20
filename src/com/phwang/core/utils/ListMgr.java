@@ -72,7 +72,7 @@ public class ListMgr {
         int id = this.allocId();
         this.entryCount_++;
         entry.setData(id, entity_int_val);
-        entity_int_val.bindListEntry(entry);
+        entity_int_val.bindListEntry(entry, this.objectName());
         
     	this.lock_.unlock();
         this.abendListMgr("after malloc");
@@ -132,7 +132,7 @@ public class ListMgr {
     }
 
     private void free_(ListEntry entry_val) {
-        this.entryArray_[entry_val.index()].data().unBindListEntry();
+        this.entryArray_[entry_val.index()].data().unBindListEntry(this.objectName());
         this.entryArray_[entry_val.index()].clearData();
         this.entryCount_--;
     }
@@ -149,7 +149,7 @@ public class ListMgr {
 
     public void flush_() {
         for (int i = 0; i <= this.maxIndex_; i++) {
-            this.entryArray_[i].data().unBindListEntry();
+            this.entryArray_[i].data().unBindListEntry(this.objectName());
             this.entryArray_[i].clearData();
             this.entryArray_[i] = null;
         }

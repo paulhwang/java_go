@@ -27,11 +27,11 @@ public class EngineBase implements ListEntryInt {
         this.roomIdStr_ = room_id_str_val;
     }
 
-    public void bindListEntry(ListEntry list_entry_object_val) {
+    public void bindListEntry(ListEntry list_entry_object_val, String who_val) {
         this.listEntry_ = list_entry_object_val;
     }
 
-    public void unBindListEntry() {
+    public void unBindListEntry(String who_val) {
         this.listEntry_ = null;
     }
 

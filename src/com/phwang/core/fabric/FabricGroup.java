@@ -34,11 +34,11 @@ public class FabricGroup implements ListEntryInt {
         this.gSessionMgr_ = new FabricGSessionMgr(this);
     }
 
-    public void bindListEntry(ListEntry list_entry_object_val) {
+    public void bindListEntry(ListEntry list_entry_object_val, String who_val) {
         this.listEntry_ = list_entry_object_val;
     }
 
-    public void unBindListEntry() {
+    public void unBindListEntry(String who_val) {
         this.listEntry_ = null;
     }
 
