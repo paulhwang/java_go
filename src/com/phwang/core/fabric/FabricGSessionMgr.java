@@ -10,6 +10,7 @@ package com.phwang.core.fabric;
 
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ArrayMgrClass;
+import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.ListMgr;
 
 public class FabricGSessionMgr {
@@ -48,6 +49,24 @@ public class FabricGSessionMgr {
     protected Object[] getSessionArray() {
         return this.arrayMgr_.ObjectArrayTable();
     }
+
+
+    protected void bindSession(FabricSession session_val) {
+    	this.listMgr_.malloc(session_val);
+    }
+
+    protected void unbindSession(FabricSession session_val) {
+    	this.listMgr_.free(session_val.lListEntry());
+    }
+
+    protected FabricSession getSessionByIdStr(String session_id_str_val) {
+    	ListEntry list_entry = this.listMgr_.getEntryByIdStr(session_id_str_val);
+        if (list_entry == null) {
+            return null;
+        }
+        return (FabricSession)list_entry.data();
+    }
+    
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { Abend.log(this.objectName() + "." + s0 + "()", s1); }
