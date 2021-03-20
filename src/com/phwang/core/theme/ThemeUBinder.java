@@ -9,7 +9,6 @@
 package com.phwang.core.theme;
 
 import com.phwang.core.utils.*;
-import com.phwang.core.protocols.ThemeEngineProtocolClass;
 
 public class ThemeUBinder implements ThreadEntityInt {
     private String objectName() {return "ThemeUBinder";}
@@ -31,7 +30,7 @@ public class ThemeUBinder implements ThreadEntityInt {
         this.themeRoot_ = root_val;
         this.uBinder_ = new Binder(this.objectName());
         
-        this.uBinder().bindAsTcpServer(true, ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_TRANSPORT_PORT_NUMBER, true);
+        this.uBinder().bindAsTcpServer(true, ThemeExport.THEME_ENGINE_PORT, true);
     }
 
     public void startThreads() {
