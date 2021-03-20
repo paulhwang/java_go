@@ -36,11 +36,16 @@ public class FabricLSession implements ListEntryInt {
     }
 
     public void bindListEntry(ListEntry list_entry_object_val, String who_val) {
-        this.lListEntry_ = list_entry_object_val;
+    	this.debug(true, "*********************bindListEntry", "who_val=" + who_val);
+    	if (who_val.equals(FabricLSessionMgr.objectName())) {
+    		this.lListEntry_ = list_entry_object_val;
+    	}
     }
 
     public void unBindListEntry(String who_val) {
-        this.lListEntry_ = null;
+    	if (who_val.equals(FabricLSessionMgr.objectName())) {
+    		this.lListEntry_ = null;
+    	}
     }
 
     protected void bindGroup(FabricGroup group_object_val) {

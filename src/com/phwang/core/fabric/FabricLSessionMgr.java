@@ -13,7 +13,7 @@ import com.phwang.core.utils.ListMgr;
 import com.phwang.core.utils.ListEntry;
 
 public class FabricLSessionMgr {
-    private String objectName() {return "FabricLSessionMgr";}
+    protected static String objectName() {return "FabricLSessionMgr";}
     
     protected static final int FABRIC_L_SESSION_ID_SIZE_ = 4;
     protected static final int FABRIC_L_SESSION_ID_SIZE = FABRIC_L_SESSION_ID_SIZE_ * 2;

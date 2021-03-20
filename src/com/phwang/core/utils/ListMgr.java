@@ -16,7 +16,7 @@ public class ListMgr {
     
     private Boolean abendListMgrClassIsOn = true;
     private int idSize_;
-    private String callerName;
+    private String callerName_;
     private int globalId_;
     int MaxIdIndexTableIndex_;
     private int maxIndex_;
@@ -36,7 +36,7 @@ public class ListMgr {
         this.debug(false, "ListMgr", "init start (" + caller_name_val + ")");
 
         this.idSize_ = id_size_val;
-        this.callerName = caller_name_val;
+        this.callerName_ = caller_name_val;
         this.globalId_ = first_global_id_val - 1;
         this.entryCount_ = 0;
         this.MaxIdIndexTableIndex_ = 0;
@@ -72,7 +72,7 @@ public class ListMgr {
         int id = this.allocId();
         this.entryCount_++;
         entry.setData(id, entity_int_val);
-        entity_int_val.bindListEntry(entry, this.objectName());
+        entity_int_val.bindListEntry(entry, this.callerName_);
         
     	this.lock_.unlock();
         this.abendListMgr("after malloc");
@@ -132,7 +132,7 @@ public class ListMgr {
     }
 
     private void free_(ListEntry entry_val) {
-        this.entryArray_[entry_val.index()].data().unBindListEntry(this.objectName());
+        this.entryArray_[entry_val.index()].data().unBindListEntry(this.callerName_);
         this.entryArray_[entry_val.index()].clearData();
         this.entryCount_--;
     }
@@ -149,7 +149,7 @@ public class ListMgr {
 
     public void flush_() {
         for (int i = 0; i <= this.maxIndex_; i++) {
-            this.entryArray_[i].data().unBindListEntry(this.objectName());
+            this.entryArray_[i].data().unBindListEntry(this.callerName_);
             this.entryArray_[i].clearData();
             this.entryArray_[i] = null;
         }
