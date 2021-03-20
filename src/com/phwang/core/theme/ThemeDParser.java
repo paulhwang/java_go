@@ -13,7 +13,7 @@ import com.phwang.core.protocols.ThemeEngineProtocolClass;
 import com.phwang.core.protocols.FabricThemeProtocolClass;
 
 public class ThemeDParser {
-    private String objectName() {return "ThemeDParser";}
+    private static String objectName() {return "ThemeDParser";}
     
     private ThemeRoot themeRoot_;
 
@@ -56,9 +56,12 @@ public class ThemeDParser {
 
         ThemeRoom room_object = this.roomMgr().getRoomByIdStr(room_id_str);
         room_object.setBaseIdStr(base_id_str);
-        String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
-        downlink_data = downlink_data + room_object.groupIdStr() + room_object.roomIdStr();
-        this.themeDBinder().transmitData(downlink_data);
+        
+        StringBuilder buf = new StringBuilder();
+        buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM);
+        buf.append(room_object.groupIdStr());
+        buf.append(room_object.roomIdStr());
+        this.themeDBinder().transmitData(buf.toString());
 
         /*
         char* room_id_index_val = data_val;
@@ -102,9 +105,11 @@ public class ThemeDParser {
             return;
         }
 
-        String downlink_data = FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA;
-        downlink_data = downlink_data + room_object.groupIdStr() + data;
-        this.themeDBinder().transmitData(downlink_data);
+        StringBuilder buf = new StringBuilder();
+        buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA);
+        buf.append(room_object.groupIdStr());
+        buf.append(data);
+        this.themeDBinder().transmitData(buf.toString());
 
         /*
         char* downlink_data;

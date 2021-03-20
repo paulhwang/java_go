@@ -25,15 +25,15 @@ public class FabricDParser {
     protected void parseInputPacket(String input_data_val) {
         this.debug(false, "parseInputPacket", input_data_val);
         
-        String command = input_data_val.substring(0, 1);
+        char command = input_data_val.charAt(0);
         String input_data = input_data_val.substring(1);
 
-        if (command.equals(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM)) {
+        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM) {
             this.processSetupRoomResponse(input_data);
             return;
         }
 
-        if (command.equals(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA)) {
+        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA) {
             this.processPutRoomDataResponse(input_data);
             return;
         }
