@@ -9,8 +9,11 @@
 package com.phwang.core.fabric;
 
 public class FabricExport {
+    public static final String FABRIC_THEME_IP_ADDRESS = "127.0.0.1";
+    
     public static final short FABRIC_ANDROID_PORT = 8001;
     public static final short FABRIC_FRONT_PORT = 8001;
+    public static final short FABRIC_THEME_PORT = 8009;
 
     public static final int FRONT_JOB_ID_SIZE_ = 4;
     public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;

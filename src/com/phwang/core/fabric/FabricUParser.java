@@ -13,7 +13,6 @@ import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.BinderBundle;
 import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.protocols.FabricFrontEndProtocolClass;
-import com.phwang.core.protocols.FabricThemeProtocolClass;
 
 public class FabricUParser {
     private static String objectName() {return "FabricUParser";}
@@ -346,8 +345,8 @@ public class FabricUParser {
         String session_id_str = rest_str.substring(0, FabricExport.FABRIC_L_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FabricExport.FABRIC_L_SESSION_ID_SIZE);
         
-        String theme_id_str = rest_str.substring(0, FabricThemeProtocolClass.THEME_ROOM_ID_SIZE);//////////////////////
-        rest_str = rest_str.substring(FabricThemeProtocolClass.THEME_ROOM_ID_SIZE);///////////////////////
+        String theme_id_str = rest_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);//////////////////////
+        rest_str = rest_str.substring(FabricImport.THEME_ROOM_ID_SIZE);///////////////////////
         
         int theme_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);

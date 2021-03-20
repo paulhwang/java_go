@@ -8,8 +8,6 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.protocols.FabricThemeProtocolClass;
-
 public class FabricDParser {
     private String objectName() {return "FabricDParser";}
 

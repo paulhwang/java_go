@@ -9,7 +9,6 @@
 package com.phwang.core.theme;
 
 //import com.phwang.core.utils.*;
-import com.phwang.core.protocols.FabricThemeProtocolClass;
 import com.phwang.core.protocols.ThemeEngineProtocolClass;
 
 public class ThemeUParser {
@@ -47,8 +46,8 @@ public class ThemeUParser {
     private void processSetupRoom(String input_data_val) {
         this.debug(false, "processSetupRoom", input_data_val);
 
-        String group_id_str = input_data_val.substring(0, FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
-        String input_data = input_data_val.substring(FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
+        String group_id_str = input_data_val.substring(0, ThemeImport.FABRIC_GROUP_ID_SIZE);
+        String input_data = input_data_val.substring(ThemeImport.FABRIC_GROUP_ID_SIZE);
 
         ThemeRoom room = this.roomMgr().mallocRoom(group_id_str);
         if (room == null) {
