@@ -58,7 +58,7 @@ public class ThemeDParser {
         room_object.setBaseIdStr(base_id_str);
         
         StringBuilder buf = new StringBuilder();
-        buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM);
+        buf.append(ThemeImport.FABRIC_THEME_RESPOND_SETUP_ROOM);
         buf.append(room_object.groupIdStr());
         buf.append(room_object.roomIdStr());
         this.themeDBinder().transmitData(buf.toString());
@@ -106,7 +106,7 @@ public class ThemeDParser {
         }
 
         StringBuilder buf = new StringBuilder();
-        buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA);
+        buf.append(ThemeImport.FABRIC_THEME_RESPOND_PUT_ROOM_DATA);
         buf.append(room_object.groupIdStr());
         buf.append(data);
         this.themeDBinder().transmitData(buf.toString());

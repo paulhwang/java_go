@@ -29,4 +29,9 @@ public class FabricExport {
 	public static final char FABRIC_COMMAND_SETUP_SESSION3 = 'T';
 	public static final char FABRIC_COMMAND_PUT_SESSION_DATA = 'P';
 	public static final char FABRIC_COMMAND_GET_SESSION_DATA = 'G';
+
+    public static final char FABRIC_THEME_COMMAND_SETUP_ROOM = 'R';
+    public static final char FABRIC_THEME_RESPOND_SETUP_ROOM = 'r';
+    public static final char FABRIC_THEME_COMMAND_PUT_ROOM_DATA = 'D';
+    public static final char FABRIC_THEME_RESPOND_PUT_ROOM_DATA = 'd';
 }

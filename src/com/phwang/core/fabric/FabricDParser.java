@@ -28,12 +28,12 @@ public class FabricDParser {
         char command = input_data_val.charAt(0);
         String input_data = input_data_val.substring(1);
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM) {
+        if (command == FabricExport.FABRIC_THEME_RESPOND_SETUP_ROOM) {
             this.processSetupRoomResponse(input_data);
             return;
         }
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA) {
+        if (command == FabricExport.FABRIC_THEME_RESPOND_PUT_ROOM_DATA) {
             this.processPutRoomDataResponse(input_data);
             return;
         }

@@ -31,12 +31,12 @@ public class ThemeUParser {
         char command = data_val.charAt(0);
         String data = data_val.substring(1);
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM) {
+        if (command == ThemeImport.FABRIC_THEME_COMMAND_SETUP_ROOM) {
             this.processSetupRoom(data);
             return;
         }
 
-        if (command == FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA) {
+        if (command == ThemeImport.FABRIC_THEME_COMMAND_PUT_ROOM_DATA) {
             this.processPutRoomData(data);
             return;
         }

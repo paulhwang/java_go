@@ -316,7 +316,7 @@ public class FabricUParser {
         this.debug(false, "mallocRoom", "theme_info_val=" + theme_info_val);
     	
         StringBuilder data_buf = new StringBuilder();
-        data_buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM);
+        data_buf.append(FabricExport.FABRIC_THEME_COMMAND_SETUP_ROOM);
         data_buf.append(group_val.groupIdStr());
         data_buf.append(theme_info_val);
         String uplink_data = data_buf.toString();
@@ -469,7 +469,7 @@ public class FabricUParser {
 
         /* transfer data up */
         StringBuilder buf = new StringBuilder();
-        buf.append(FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA);
+        buf.append(FabricExport.FABRIC_THEME_COMMAND_PUT_ROOM_DATA);
         buf.append(room_id_str);
         buf.append(data);
         this.fabricUBinder().transmitData(buf.toString());
