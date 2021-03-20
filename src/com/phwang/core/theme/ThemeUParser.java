@@ -57,7 +57,7 @@ public class ThemeUParser {
         }
         
         StringBuilder buf = new StringBuilder();
-        buf.append(ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE);
+        buf.append(ThemeEngineProtocolClass.THEME_ENGINE_COMMAND_SETUP_BASE);
         buf.append(room.roomIdStr());
         buf.append(input_data);
         this.themeUBinder().transmitData(buf.toString());
@@ -75,7 +75,7 @@ public class ThemeUParser {
         }
 
         StringBuilder buf = new StringBuilder();
-        buf.append(ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA);
+        buf.append(ThemeEngineProtocolClass.THEME_ENGINE_COMMAND_PUT_BASE_DATA);
         buf.append(room.baseIdStr());
         buf.append(input_data);
         this.themeUBinder().transmitData(buf.toString());

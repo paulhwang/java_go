@@ -16,8 +16,9 @@ public class FabricExport {
     public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
 	
 	public static final int FABRIC_LINK_ID_SIZE = FabricLinkMgr.FABRIC_LINK_ID_SIZE;
-	public static final int FABRIC_L_SESSION_ID_SIZE = FabricLSessionMgr.FABRIC_L_SESSION_ID_SIZE;
 	public static final int FABRIC_GROUP_ID_SIZE = FabricGroupMgr.FABRIC_GROUP_ID_SIZE;
+	public static final int FABRIC_L_SESSION_ID_SIZE = FabricLSessionMgr.FABRIC_L_SESSION_ID_SIZE;
+	public static final int FABRIC_G_SESSION_ID_SIZE = FabricGSessionMgr.FABRIC_G_SESSION_ID_SIZE;
     public static final int NAME_LIST_TAG_SIZE = FabricNameList.NAME_LIST_TAG_SIZE;
 	
 	public static final char FABRIC_COMMAND_SETUP_LINK = 'L';
