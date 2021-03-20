@@ -12,7 +12,7 @@ import com.phwang.core.utils.*;
 import com.phwang.core.protocols.ThemeEngineProtocolClass;
 
 public class EngineUParser {
-    private String objectName() {return "EngineUParser";}
+    private static String objectName() {return "EngineUParser";}
 
     private EngineRoot engineRoot_;
 
@@ -57,9 +57,12 @@ public class EngineUParser {
 
         String output_data = go_base_object.setupBase(input_data);
 
-        String downlink_data = EngineImport.THEME_ENGINE_RESPOND_SETUP_BASE;
-        downlink_data = downlink_data + go_base_object.roomIdStr() + go_base_object.BaseIdStr() + output_data;
-        this.engineDBinder().TransmitData(downlink_data);
+        StringBuilder buf = new StringBuilder();
+        buf.append(EngineImport.THEME_ENGINE_RESPOND_SETUP_BASE);
+        buf.append(go_base_object.roomIdStr());
+        buf.append(go_base_object.BaseIdStr());
+        buf.append(output_data);
+        this.engineDBinder().TransmitData(buf.toString());
     }
 
     private void processPutBaseData(String input_data_val) {
@@ -75,10 +78,12 @@ public class EngineUParser {
 
         String output_data = go_base_object.processInputData(input_data);
 
-        String downlink_data = EngineImport.THEME_ENGINE_RESPOND_PUT_BASE_DATA;
-        downlink_data = downlink_data + go_base_object.roomIdStr() + output_data;
-        this.engineDBinder().TransmitData(downlink_data);
-    }
+        StringBuilder buf = new StringBuilder();
+        buf.append(EngineImport.THEME_ENGINE_RESPOND_PUT_BASE_DATA);
+        buf.append(go_base_object.roomIdStr());
+        buf.append(output_data);
+        this.engineDBinder().TransmitData(buf.toString());
+}
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
     private void log(String s0, String s1) { this.engineRoot().logIt(this.objectName() + "." + s0 + "()", s1); }
