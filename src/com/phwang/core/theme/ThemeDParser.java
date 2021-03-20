@@ -28,20 +28,20 @@ public class ThemeDParser {
     
     public void parseInputPacket(String input_data_val) {
         this.debug(false, "parseInputPacket", input_data_val);
-        String command = input_data_val.substring(0, 1);
+        char command = input_data_val.charAt(0);
         String input_data = input_data_val.substring(1);
 
-        if (command.equals(ThemeExport.THEME_ENGINE_RESPOND_SETUP_BASE)) {
+        if (command == ThemeExport.THEME_ENGINE_RESPOND_SETUP_BASE) {
                 this.processSetupBaseResponse(input_data);
                 return;
         }
 
-        if (command.equals(ThemeExport.THEME_ENGINE_RESPOND_PUT_BASE_DATA)) {
+        if (command == ThemeExport.THEME_ENGINE_RESPOND_PUT_BASE_DATA) {
             this.processPutBaseDataResponse(input_data);
             return;
         }
 
-        this.abend("parseInputPacket", command);
+        this.abend("parseInputPacket", input_data_val);
     }
 
     private void processSetupBaseResponse(String input_data_val) {
