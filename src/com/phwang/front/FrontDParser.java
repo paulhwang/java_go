@@ -9,8 +9,8 @@
 package com.phwang.front;
 
 import org.json.simple.JSONObject;
-import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Define;
 
 public class FrontDParser {
     private String objectName() {return "FrontDParser";}
@@ -86,8 +86,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
         
-        int my_name_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int my_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String my_name = rest_str.substring(0, my_name_len);
     	rest_str = rest_str.substring(my_name_len);
     	
@@ -106,13 +106,13 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
         
-        int data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String data = rest_str.substring(0, data_len);
     	rest_str = rest_str.substring(data_len);
         
-        int pending_session_setup_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int pending_session_setup_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String pending_session_setup = rest_str.substring(0, pending_session_setup_len);
     	rest_str = rest_str.substring(pending_session_setup_len);
     	
@@ -133,8 +133,8 @@ public class FrontDParser {
         String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
         
-        int name_list_str_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int name_list_str_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String name_list_str = rest_str.substring(0, name_list_str_len);
     	rest_str = rest_str.substring(name_list_str_len);
         
@@ -218,8 +218,8 @@ public class FrontDParser {
         String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
-        int c_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int c_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String c_data = rest_str.substring(0, c_data_len);
     	rest_str = rest_str.substring(c_data_len);
 
@@ -242,8 +242,8 @@ public class FrontDParser {
         String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
-        int c_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int c_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String c_data = rest_str.substring(0, c_data_len);
     	rest_str = rest_str.substring(c_data_len);
     	

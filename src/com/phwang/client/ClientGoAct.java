@@ -9,8 +9,8 @@
 package com.phwang.client;
 
 import com.phwang.core.go.GoExport;
-import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Define;
 
 public class ClientGoAct {
 	private char action_ = GoExport.GO_PROTOCOL_MOVE_COMMAND;
@@ -43,7 +43,7 @@ public class ClientGoAct {
     	String data = buf.toString();
 
     	buf = new StringBuilder();
-        buf.append(EncodeNumber.encode(data.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        buf.append(EncodeNumber.encode(data.length(), Define.DATA_LENGTH_SIZE));
         buf.append(data);
         return buf.toString();
 

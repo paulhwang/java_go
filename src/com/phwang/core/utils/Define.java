@@ -6,9 +6,9 @@
  ******************************************************************************
  */
 
-package com.phwang.core.protocols;
+package com.phwang.core.utils;
 
-public class ProtocolDefineClass {
+public class Define {
 	public static final int DATA_LENGTH_SIZE = 2;
 	public static final int BIG_DATA_LENGTH_SIZE = 4;
 }

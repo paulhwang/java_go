@@ -8,8 +8,8 @@
 
 package com.phwang.client;
 
-import com.phwang.core.protocols.ProtocolDefineClass;
 import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Define;
 
 public class ClientGoConfig {
     private int boardSize_ = 9;
@@ -34,7 +34,7 @@ public class ClientGoConfig {
     	String data = buf.toString();
 
     	buf = new StringBuilder();
-        buf.append(EncodeNumber.encode(data.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        buf.append(EncodeNumber.encode(data.length(), Define.DATA_LENGTH_SIZE));
         buf.append(data);
         return buf.toString();
 

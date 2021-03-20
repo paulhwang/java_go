@@ -5,7 +5,6 @@ module java_go {
 	exports com.phwang.front;
 	exports com.phwang.core.theme;
 	exports org.json.simple;
-	exports com.phwang.core.protocols;
 	exports com.phwang.test;
 	exports com.phwang.client;
 	exports com.phwang.core.models;

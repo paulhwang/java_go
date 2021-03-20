@@ -11,7 +11,7 @@ package com.phwang.core.fabric;
 import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.BinderBundle;
-import com.phwang.core.protocols.ProtocolDefineClass;
+import com.phwang.core.utils.Define;
 
 public class FabricUParser {
     private static String objectName() {return "FabricUParser";}
@@ -86,13 +86,13 @@ public class FabricUParser {
         this.debug(false, "processSetupLinkRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;
-        int my_name_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int my_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String my_name = rest_str.substring(0, my_name_len);
     	rest_str = rest_str.substring(my_name_len);
     	
-        int password_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int password_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
     	String password = rest_str.substring(0, password_len);
     	//rest_str = rest_str.substring(password_len);
     	
@@ -112,7 +112,7 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(my_name_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(my_name_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(my_name_val);
         return response_buf.toString();
     }
@@ -143,7 +143,7 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(result_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(result_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(result_val);
         return response_buf.toString();
     }
@@ -205,9 +205,9 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(data_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(data_val);
-        response_buf.append(EncodeNumber.encode(pending_session_setup_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(pending_session_setup_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(pending_session_setup_val);
         return response_buf.toString();
     }
@@ -242,7 +242,7 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_NAME_LIST); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(name_list_str_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(name_list_str_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(name_list_str_val);
         return response_buf.toString();
     }
@@ -254,13 +254,13 @@ public class FabricUParser {
         String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
         rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
 
-        int his_name_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int his_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String his_name = rest_str.substring(0, his_name_len);
     	rest_str = rest_str.substring(his_name_len);
         
-        int theme_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int theme_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String theme_data_str = rest_str.substring(0, theme_data_len);
     	//rest_str = rest_str.substring(theme_data_len);
     	
@@ -347,8 +347,8 @@ public class FabricUParser {
         String theme_id_str = rest_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);//////////////////////
         rest_str = rest_str.substring(FabricImport.THEME_ROOM_ID_SIZE);///////////////////////
         
-        int theme_data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int theme_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String theme_data_str = rest_str.substring(0, theme_data_len);
     	rest_str = rest_str.substring(theme_data_len);
     	
@@ -440,8 +440,8 @@ public class FabricUParser {
         String session_id_str = rest_str.substring(0, FabricExport.FABRIC_L_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FabricExport.FABRIC_L_SESSION_ID_SIZE);
 
-        int data_len = EncodeNumber.decode(rest_str.substring(0, ProtocolDefineClass.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(ProtocolDefineClass.DATA_LENGTH_SIZE);
+        int data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String data = rest_str.substring(0, data_len);
     	rest_str = rest_str.substring(data_len);
     	
@@ -486,7 +486,7 @@ public class FabricUParser {
         response_buf.append(FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
-        response_buf.append(EncodeNumber.encode(c_data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(c_data_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(c_data_val);
         return response_buf.toString();
     }
@@ -533,7 +533,7 @@ public class FabricUParser {
         if (c_data_val == null) {//////////////////////////////////for now
         	c_data_val = "";
         }
-        response_buf.append(EncodeNumber.encode(c_data_val.length(), ProtocolDefineClass.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(c_data_val.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(c_data_val);
         return response_buf.toString();
     }

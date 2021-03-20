@@ -11,7 +11,6 @@ package com.phwang.core.theme;
 import com.phwang.core.utils.Binder;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
-import com.phwang.core.protocols.*;
 
 public class ThemeDBinder implements ThreadEntityInt {
     private String objectName() {return "ThemeDBinder";}
