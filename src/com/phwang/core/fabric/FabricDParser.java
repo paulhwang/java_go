@@ -56,7 +56,7 @@ public class FabricDParser {
             //printf("++++++++++++++++++++++++++++++++++++++++++++%d\n", session_array_size);
             for (int i = 0; i < session_array_size; i++) {
             	FabricSession session = (FabricSession) session_array[i];
-                session.link().setPendingSessionSetup3(session.browserThemeIdStr(), session.sessionIdStr(), "");
+                session.link().setPendingSessionSetup3(session.browserThemeIdStr(), session.lSessionIdStr(), "");
             }
         }
     }

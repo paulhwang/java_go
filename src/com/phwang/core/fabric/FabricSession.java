@@ -18,16 +18,20 @@ public class FabricSession implements ListEntryInt {
 
     private FabricLink link_;
     private ListEntry lListEntry_;
+    private ListEntry gListEntry_;
     private String browserThemeIdStr_;
-    private FabricGroup fabricGroup_;
+    private FabricGroup group_;
     private ListQueue pendingDownLinkDataQueue_;
 
     protected FabricLink link() { return this.link_; }
-    protected ListEntry listEntry() { return this.lListEntry_; }
-    public int sessionId() { return this.listEntry().id(); }
-    protected String sessionIdStr() { return this.listEntry().idStr(); }
+    protected ListEntry lListEntry() { return this.lListEntry_; }
+    public int lSessionId() { return this.lListEntry_.id(); }
+    protected String lSessionIdStr() { return this.lListEntry_.idStr(); }
+    protected ListEntry gListEntry() { return this.gListEntry_; }
+    public int gSessionId() { return this.gListEntry_.id(); }
+    protected String gSessionIdStr() { return this.gListEntry_.idStr(); }
     protected String browserThemeIdStr() { return this.browserThemeIdStr_; }
-    protected FabricGroup fabricGroup() { return this.fabricGroup_; }
+    protected FabricGroup group() { return this.group_; }
     protected ListQueue pendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue_; }
 
     protected FabricSession(FabricLink link_val) {
@@ -35,10 +39,13 @@ public class FabricSession implements ListEntryInt {
         this.pendingDownLinkDataQueue_ = new ListQueue(false, 0);
     }
 
-    public void bindListEntry(ListEntry list_entry_object_val, String who_val) {
+    public void bindListEntry(ListEntry list_entry_val, String who_val) {
     	this.debug(true, "*********************bindListEntry", "who_val=" + who_val);
     	if (who_val.equals(FabricLSessionMgr.objectName())) {
-    		this.lListEntry_ = list_entry_object_val;
+    		this.lListEntry_ = list_entry_val;
+    	}
+    	else if (who_val.equals(FabricGSessionMgr.objectName())) {
+    		this.gListEntry_ = list_entry_val;
     	}
     }
 
@@ -46,10 +53,13 @@ public class FabricSession implements ListEntryInt {
     	if (who_val.equals(FabricLSessionMgr.objectName())) {
     		this.lListEntry_ = null;
     	}
+    	else if (who_val.equals(FabricGSessionMgr.objectName())) {
+    		this.gListEntry_ = null;
+    	}
     }
 
     protected void bindGroup(FabricGroup group_object_val) {
-        this.fabricGroup_ = group_object_val;
+        this.group_ = group_object_val;
     }
 
     protected void setBrowserThemeIdStr(String str_val) {

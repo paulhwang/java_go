@@ -43,7 +43,7 @@ public class FabricLSessionMgr {
     }
 
     protected void freeSession(FabricSession session_val) {
-    	this.listMgr_.free(session_val.listEntry());
+    	this.listMgr_.free(session_val.lListEntry());
     }
 
     protected FabricSession getSessionByIdStr(String session_id_str_val) {
