@@ -28,6 +28,8 @@ public class FabricGSessionMgr {
     private ListMgr listMgr_;
     private ArrayMgrClass arrayMgr_;
 
+    protected ListMgr listMgr() { return this.listMgr_; }
+
     protected FabricGSessionMgr(FabricGroup group_val) {
         this.group_ = group_val;
         this.listMgr_ = new ListMgr(FABRIC_G_SESSION_ID_SIZE_, G_SESSION_LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_G_SESSION_ID);

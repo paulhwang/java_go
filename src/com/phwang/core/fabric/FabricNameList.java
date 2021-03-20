@@ -35,9 +35,6 @@ public class FabricNameList {
     protected void updateNameList() {
     	FabricLinkMgr link_list_mgr = this.fabricRoot_.linkMgr();
 
-        int max_index = link_list_mgr.listMgr().maxIndex();
-        ListEntry[] list_entry_array = link_list_mgr.listMgr().entryArray();
-
         this.nameListTag_++;
         if (this.nameListTag_ > NAME_LIST_CLASS_MAX_NAME_LIST_TAG) {
             this.nameListTag_ = 1;
@@ -45,6 +42,9 @@ public class FabricNameList {
         this.nameListTagStr_ = EncodeNumber.encode(this.nameListTag_, FabricExport.NAME_LIST_TAG_SIZE);
 
         this.nameList_ = "";
+        
+        int max_index = link_list_mgr.listMgr().maxIndex();
+        ListEntry[] list_entry_array = link_list_mgr.listMgr().entryArray();
         for (int i = max_index; i >= 0; i--) {
             if (list_entry_array[i] != null) {
                 if (this.nameList_.length() == 0) {

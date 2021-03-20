@@ -8,6 +8,8 @@
 
 package com.phwang.core.fabric;
 
+import com.phwang.core.utils.ListEntry;
+
 public class FabricDParser {
     private String objectName() {return "FabricDParser";}
 
@@ -48,6 +50,16 @@ public class FabricDParser {
         FabricGroup group = this.groupMgr().getGroupByIdStr(group_id_str);
         if (group != null) {
             group.setRoomIdStr(room_id_str);
+            
+            int max_index = group.gSessionMgr().listMgr().maxIndex();
+            ListEntry[] list_entry_array = group.gSessionMgr().listMgr().entryArray();
+            for (int i = max_index; i >= 0; i--) {
+                if (list_entry_array[i] != null) {
+                    FabricSession session = (FabricSession) list_entry_array[i].data();
+                    session.link().setPendingSessionSetup3(session.browserThemeIdStr(), session.lSessionIdStr(), "");
+                }
+            }
+            
             int session_array_size = group.getSessionArraySize();
             Object[] session_array = group.getSessionArray();
             //group->setSessionTableArray((SessionClass**)phwangArrayMgrGetArrayTable(group->sessionArrayMgr(), &session_array_size));
@@ -66,6 +78,15 @@ public class FabricDParser {
         String input_data = input_data_val.substring(FabricExport.FABRIC_GROUP_ID_SIZE);
         FabricGroup group = this.groupMgr().getGroupByIdStr(group_id_str);
         if (group != null) {
+            int max_index = group.gSessionMgr().listMgr().maxIndex();
+            ListEntry[] list_entry_array = group.gSessionMgr().listMgr().entryArray();
+            for (int i = max_index; i >= 0; i--) {
+                if (list_entry_array[i] != null) {
+                    FabricSession session = (FabricSession) list_entry_array[i].data();
+                    session.enqueuePendingDownLinkData(input_data);
+                }
+            }
+        	
             int session_array_size = group.getSessionArraySize();
             Object[] session_array = group.getSessionArray();
             for (int i = 0; i < session_array_size; i++) {

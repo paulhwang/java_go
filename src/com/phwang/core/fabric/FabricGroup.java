@@ -25,7 +25,7 @@ public class FabricGroup implements ListEntryInt {
     protected int groupId() { return this.listEntry().id(); }
     protected String groupIdStr() { return this.listEntry().idStr(); }
     protected String roomIdStr() { return this.roomIdStr_; }
-    protected FabricGSessionMgr groupSessionMgr() { return this.gSessionMgr_; }
+    protected FabricGSessionMgr gSessionMgr() { return this.gSessionMgr_; }
 
     protected FabricGroup(String theme_data_val) {
         this.debug(false, "FabricGroup", "init start");
@@ -43,11 +43,11 @@ public class FabricGroup implements ListEntryInt {
     }
 
     protected void insertSession(FabricSession session_val) {
-        this.groupSessionMgr().insertSession(session_val);
+        this.gSessionMgr().insertSession(session_val);
     }
     
     protected void removeSession(FabricSession session_val) {
-        this.groupSessionMgr().removeSession(session_val);
+        this.gSessionMgr().removeSession(session_val);
     }
 
     protected void setRoomIdStr(String room_id_str_val) {
@@ -55,11 +55,11 @@ public class FabricGroup implements ListEntryInt {
     }
 
     protected int getSessionArraySize() {
-        return this.groupSessionMgr().getSessionArraySize();
+        return this.gSessionMgr().getSessionArraySize();
     }
 
     protected Object[] getSessionArray() {
-        return this.groupSessionMgr().getSessionArray();
+        return this.gSessionMgr().getSessionArray();
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }
