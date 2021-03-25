@@ -85,7 +85,8 @@ public class FabricUParser {
     private String processSetupLinkRequest(String input_str_val) {
         this.debug(false, "processSetupLinkRequest", "input_str_val=" + input_str_val);
         
-        String rest_str = input_str_val;
+        char client_type = input_str_val.charAt(0);
+        String rest_str = input_str_val.substring(1);
         int my_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
         rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
         String my_name = rest_str.substring(0, my_name_len);
@@ -99,7 +100,7 @@ public class FabricUParser {
         this.debug(false, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(false, "processSetupLinkRequest", "password = " + password);
 
-        FabricLink link = this.linkMgr().mallocLink(my_name);
+        FabricLink link = this.linkMgr().mallocLink(client_type, my_name);
         if (link == null) {
         	this.abend("processSetupLinkRequest", "link is null");
         	return null;
@@ -533,7 +534,7 @@ public class FabricUParser {
         if (c_data_val == null) {//////////////////////////////////for now
         	c_data_val = "";
         }
-        response_buf.append(EncodeNumber.encode(c_data_val.length(), Define.DATA_LENGTH_SIZE));
+        response_buf.append(EncodeNumber.encode(c_data_val.length(), Define.BIG_DATA_LENGTH_SIZE));
         response_buf.append(c_data_val);
         return response_buf.toString();
     }

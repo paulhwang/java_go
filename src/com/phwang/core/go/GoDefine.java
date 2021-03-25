@@ -23,6 +23,8 @@ public class GoDefine {
     public static final int GO_MARKED_EMPTY_BLACK_STONE = (GO_BLACK_STONE + GO_MARK_EMPTY_STONE_DIFF);
     public static final int GO_MARKED_EMPTY_WHITE_STONE = (GO_WHITE_STONE + GO_MARK_EMPTY_STONE_DIFF);
 
+    public static final int TOTAL_MOVE_SIZE = 3;
+
     public static int getOppositeColor(int color_val) {
         switch (color_val) {
             case GO_BLACK_STONE:

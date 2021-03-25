@@ -29,7 +29,14 @@ public class ClientGoAct {
     public void setY(int val) { this.y_ = val; }
     public void setColor(int val) { this.color_ = val; }
     public void setIndex(int val) { this.index_ = val; }
-    
+
+    public void setMove(int x_val, int y_val, int color_val, int index_val) {
+        this.x_ = x_val;
+        this.y_ = y_val;
+        this.color_ = color_val;
+        this.index_ = index_val;
+    }
+
     public String getGoActStr() {
     	StringBuilder buf = new StringBuilder();
     	buf.append('G');
@@ -46,7 +53,6 @@ public class ClientGoAct {
         buf.append(EncodeNumber.encode(data.length(), Define.DATA_LENGTH_SIZE));
         buf.append(data);
         return buf.toString();
-
     }
 }
 

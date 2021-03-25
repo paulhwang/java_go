@@ -39,7 +39,8 @@ public class ClientDExport implements ClientDExportInt {
     	this.debug(false, "setupLink", "name=" + this.clientFabricInfo().myName());
     	
         StringBuilder command_buf = new StringBuilder();
-        command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_LINK); 
+        command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_LINK);
+        command_buf.append(ClientImport.CLIENT_IS_ANDROID);
         command_buf.append(EncodeNumber.encode(this.clientFabricInfo().myName().length(), Define.DATA_LENGTH_SIZE));
         command_buf.append(this.clientFabricInfo().myName());
         command_buf.append(EncodeNumber.encode(this.clientFabricInfo().password().length(), Define.DATA_LENGTH_SIZE));
@@ -119,17 +120,17 @@ public class ClientDExport implements ClientDExportInt {
     	
     }
     
-    public void putSessionData() {
+    public void putSessionData(String data_str_val) {
     	this.debug(false, "putSessionData", "link_id=" + this.clientFabricInfo().linkIdStr());
     	
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         command_buf.append(this.clientFabricInfo().linkIdStr()); 
         command_buf.append(this.clientFabricInfo().sessionIdStr());
-        command_buf.append(this.goAct().getGoActStr());
+        command_buf.append(data_str_val);
         String command_str = command_buf.toString();
         
-    	this.debug(false, "putSessionData", "command_str=" + command_str);
+    	this.debug(true, "putSessionData", "command_str=" + command_str);
     	
     	this.transmitToFabric(command_str);
     }

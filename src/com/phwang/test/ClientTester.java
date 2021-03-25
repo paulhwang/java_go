@@ -15,6 +15,7 @@ import com.phwang.client.ClientRoot;
 import com.phwang.client.ClientDExport;
 import com.phwang.client.ClientFabricInfo;
 import com.phwang.client.ClientDImportInt;
+import com.phwang.client.ClientGoAct;
 
 class ClientTester implements ClientDImportInt {
     private String objectName() {return "ClientTester";}
@@ -25,6 +26,7 @@ class ClientTester implements ClientDImportInt {
     private ClientTest clientTest() { return this.clientTest_; }
     private ClientDExport clientDExport() { return this.clientRoot_.clientDExport(); }
     private ClientFabricInfo clientFabricInfo() { return this.clientRoot_.clientFabricInfo();}
+    private ClientGoAct goAct() { return this.clientRoot_.goAct();}
     
     protected ClientTester(ClientTest client_test_val, int tester_index_val) {
         this.debug(false, "ClientTester", "init start");
@@ -91,12 +93,12 @@ class ClientTester implements ClientDImportInt {
 	
 	public void handleSetupSession3Response() {
     	this.debug(true, "handleSetupSession3Response", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
-		this.doPutSessionData();
+		this.doPutSessionData(this.goAct().getGoActStr());
 	}
 
-    private void doPutSessionData() {
+    private void doPutSessionData(String data_str_val) {
     	Utils.sleep(100);
-    	this.clientDExport().putSessionData();
+    	this.clientDExport().putSessionData(data_str_val);
     }
 	
 	public void handlePutSessionDataResponse() {
@@ -109,7 +111,7 @@ class ClientTester implements ClientDImportInt {
     	this.clientDExport().getSessionData();
     }
 	
-	public void handleGetSessionDataResponse() {
+	public void handleGetSessionDataResponse(String data_str_val) {
     	this.debug(true, "handleGetSessionDataResponse", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
 	}
      

@@ -115,7 +115,8 @@ public class Binder implements ThreadEntityInt {
         		}
         	}
         	catch (Exception e) {
-        		return false;
+				this.debug(true, "tcpServerThreadFunc", this.ownerName() + " Exception=" + e);
+				return false;
         	}
     	}
     }
@@ -150,6 +151,7 @@ public class Binder implements ThreadEntityInt {
     		return true;
     	}
     	catch (Exception e) {
+			this.debug(true, "tcpClientThreadFunc", this.ownerName() + " Exception=" + e);
     		return false;
     	}
     }

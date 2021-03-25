@@ -17,6 +17,6 @@ public interface ClientDExportInt {
     public void setupSession2();
     public void setupSession3();
     public void removeSession();
-    public void putSessionData();
+    public void putSessionData(String data_str_val);
     public void getSessionData();
 }

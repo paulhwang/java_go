@@ -41,12 +41,12 @@ public class GoConfig {
     	this.debug(false, "ConfigIt", "boardSize=" + boardSize());
     }
 
-    private Boolean isValidCoordinate(int coordinate_val) {
+    private Boolean isValidCoordinate_(int coordinate_val) {
         return (0 <= coordinate_val) && (coordinate_val < this.boardSize());
     }
     
-    public Boolean IsValidCoordinates(int x_val, int y_val) {
-        return this.isValidCoordinate(x_val) && this.isValidCoordinate(y_val);
+    public Boolean isValidCoordinates(int x_val, int y_val) {
+        return this.isValidCoordinate_(x_val) && this.isValidCoordinate_(y_val);
     }
     
     private void debug(Boolean on_off, String s0, String s1) { if (on_off) this.log(s0, s1); }

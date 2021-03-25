@@ -12,7 +12,7 @@ import com.phwang.core.utils.EncodeNumber;
 import com.phwang.core.utils.Define;
 
 public class ClientGoConfig {
-    private int boardSize_ = 9;
+    private int boardSize_ = 19;
     private int handicapPoint_ = 0;
     private int komiPoint_ = 0;
 

@@ -14,6 +14,8 @@ import com.phwang.core.theme.ThemeExport;
 public class FrontImport {
 	protected static final String FABRIC_FRONT_SERVER_IP_ADDRESS = "127.0.0.1";
 	protected static final short FABRIC_FRONT_PORT = FabricExport.FABRIC_FRONT_PORT;
+	
+    public static final char CLIENT_IS_HTTP = FabricExport.CLIENT_IS_HTTP;
 
 	public static final int FRONT_JOB_ID_SIZE_ = FabricExport.FRONT_JOB_ID_SIZE_;
 	public static final int FRONT_JOB_ID_SIZE = FabricExport.FRONT_JOB_ID_SIZE;

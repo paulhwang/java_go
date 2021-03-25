@@ -14,7 +14,9 @@ import com.phwang.core.theme.ThemeExport;
 public class ClientImport {
     protected static final String FABRIC_ANDROID_SERVER_IP_ADDRESS = "127.0.0.1";
     protected static final short FABRIC_ANDROID_PORT = FabricExport.FABRIC_ANDROID_PORT;
-    
+
+    public static final char CLIENT_IS_ANDROID = FabricExport.CLIENT_IS_ANDROID;
+
 	//public static final int THEME_ROOM_ID_SIZE = ThemeExport.THEME_ROOM_ID_SIZE;
 	
     protected static final int FABRIC_LINK_ID_SIZE    = FabricExport.FABRIC_LINK_ID_SIZE;

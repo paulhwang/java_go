@@ -110,6 +110,7 @@ public class FrontUParser {
 
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_LINK); 
+        response_buf.append(FrontImport.CLIENT_IS_HTTP);
         response_buf.append(EncodeNumber.encode(my_name.length(), Define.DATA_LENGTH_SIZE));
         response_buf.append(my_name);
         response_buf.append(EncodeNumber.encode(password.length(), Define.DATA_LENGTH_SIZE));

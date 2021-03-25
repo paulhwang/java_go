@@ -43,7 +43,7 @@ public class GoBoard {
     public void encodeBoard() {
         this.theBoardOutputBuffer = "";
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + GO_PROTOCOL_GAME_INFO;
-        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumber.encode(this.goGame().totalMoves(), 3);
+        this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumber.encode(this.goGame().totalMoves(), GoDefine.TOTAL_MOVE_SIZE);
         this.theBoardOutputBuffer = this.theBoardOutputBuffer + EncodeNumber.encode(this.goGame().nextColor(), 1);
 
         int board_size = this.goConfig().boardSize();
@@ -68,8 +68,9 @@ public class GoBoard {
     }
 
     public void addStoneToBoard(int x_val, int y_val, int color_val) {
-        if (!this.goConfig().IsValidCoordinates(x_val, y_val)) {
-            this.abend("addStoneToBoard", "bad coordinate");
+        if (!this.goConfig().isValidCoordinates(x_val, y_val)) {
+            this.log("addStoneToBoard", "bad coordinate: " + x_val + " " + y_val);
+            this.abend("addStoneToBoard", "bad coordinate: " + x_val + " " + y_val);
             return;
         }
 
@@ -77,7 +78,7 @@ public class GoBoard {
     }
 
     private Boolean isEmptySpace(int x_val, int y_val) {
-        if (!this.goRoot_.goConfig().IsValidCoordinates(x_val, y_val)) {
+        if (!this.goRoot_.goConfig().isValidCoordinates(x_val, y_val)) {
             return false;
         }
         if (this.theBoardArray[x_val][y_val] != GoDefine.GO_EMPTY_STONE) {

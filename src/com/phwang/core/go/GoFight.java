@@ -146,7 +146,7 @@ public class GoFight {
     private int killOtherColorGroup(GoGroup my_group_val, int x_val, int y_val) {
     	GoGroup his_group;
 
-        if (!this.goConfig().IsValidCoordinates(x_val, y_val)) {
+        if (!this.goConfig().isValidCoordinates(x_val, y_val)) {
             return 0;
         }
 

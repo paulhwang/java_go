@@ -15,9 +15,13 @@ public class FabricExport {
     public static final short FABRIC_FRONT_PORT = 8001;
     public static final short FABRIC_THEME_PORT = 8009;
 
+    public static final char CLIENT_IS_ANDROID = 'A';
+    public static final char CLIENT_IS_IPHONE = 'I';
+    public static final char CLIENT_IS_HTTP = 'H';
+
     public static final int FRONT_JOB_ID_SIZE_ = 4;
     public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2;
-	
+
 	public static final int FABRIC_LINK_ID_SIZE = FabricLinkMgr.FABRIC_LINK_ID_SIZE;
 	public static final int FABRIC_GROUP_ID_SIZE = FabricGroupMgr.FABRIC_GROUP_ID_SIZE;
 	public static final int FABRIC_L_SESSION_ID_SIZE = FabricLSessionMgr.FABRIC_L_SESSION_ID_SIZE;

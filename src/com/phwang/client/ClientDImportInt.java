@@ -16,5 +16,5 @@ public interface ClientDImportInt {
 	public void handleSetupSession2Response();
 	public void handleSetupSession3Response();
 	public void handlePutSessionDataResponse();
-	public void handleGetSessionDataResponse();
+	public void handleGetSessionDataResponse(String data_val);
 }

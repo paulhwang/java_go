@@ -17,11 +17,13 @@ public class FabricLink implements ListEntryInt {
     private String objectName() {return "FabricLink";}
 
     private ListEntry listEntry_;
+    private char clientType_;
     private String myName_;
     private FabricLSessionMgr sessionMgr_;
     private ListQueue pendingSessionSetupQueue_;
     private ListQueue pendingSessionSetupQueue3_;
 
+    protected char clientType() { return this.clientType_; };
     protected String myName() { return this.myName_; }
     protected int linkId() { return this.listEntry().id(); }
     protected String linkIdStr() { return this.listEntry().idStr(); }
@@ -31,9 +33,10 @@ public class FabricLink implements ListEntryInt {
     protected int GetSessionArrayMaxIndex() { return this.sessionMgr().getSessionArrayMaxIndex(); }
     protected ListEntry[] GetSessionArrayEntryTable() { return this.sessionMgr().getSessionArrayEntryTable(); }
 
-    protected FabricLink(String my_name_val) {
+    protected FabricLink(char client_type_val, String my_name_val) {
         this.debug(false, "FabricLink", "init start");
-        
+
+        this.clientType_ = client_type_val;
         this.myName_ = my_name_val;
 
         this.pendingSessionSetupQueue_ = new ListQueue(false, 0);

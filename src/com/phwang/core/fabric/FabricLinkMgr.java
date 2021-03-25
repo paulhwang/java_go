@@ -35,8 +35,8 @@ public class FabricLinkMgr implements ListMgrInt {
         this.listMgr_ = new ListMgr(FABRIC_LINK_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this.objectName(), FIRST_LINK_ID);
     }
 
-    protected FabricLink mallocLink(String my_name_val) {
-    	FabricLink link = new FabricLink(my_name_val);
+    protected FabricLink mallocLink(char client_type_val, String my_name_val) {
+    	FabricLink link = new FabricLink(client_type_val, my_name_val);
     	this.listMgr().malloc(link);
         
         this.nameList().updateNameList();
