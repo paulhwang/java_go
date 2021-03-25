@@ -242,8 +242,8 @@ public class FrontDParser {
         String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
         rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
 
-        int c_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
+        int c_data_len = EncodeNumber.decode(rest_str.substring(0, Define.BIG_DATA_LENGTH_SIZE));
+        rest_str = rest_str.substring(Define.BIG_DATA_LENGTH_SIZE);
         String c_data = rest_str.substring(0, c_data_len);
     	rest_str = rest_str.substring(c_data_len);
     	
