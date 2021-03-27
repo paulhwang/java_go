@@ -42,11 +42,14 @@ public class EngineUParser {
         this.abend("ParseInputPacket", input_data_val);
     }
 
-    private void processSetupBase(String input_data_val) {
-        this.debug(false, "processSetupBase", "data=" + input_data_val);
+    private void processSetupBase(String input_str_val) {
+        this.debug(false, "processSetupBase", "data=" + input_str_val);
 
-        String room_id_str = input_data_val.substring(0, EngineImport.THEME_ROOM_ID_SIZE);
-        String input_data = input_data_val.substring(EngineImport.THEME_ROOM_ID_SIZE);
+        String rest_str = input_str_val;
+        String room_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String input_data = rest_str;
 
         EngineBase go_base = this.baseMgr().MallocGoBase(room_id_str);
         if (go_base == null) {
@@ -64,10 +67,14 @@ public class EngineUParser {
         this.engineDBinder().TransmitData(buf.toString());
     }
 
-    private void processPutBaseData(String input_data_val) {
-        this.debug(false, "processPutBaseData", "data=" + input_data_val);
-        String base_id_str = input_data_val.substring(0, EngineExport.ENGINE_BASE_ID_SIZE);
-        String input_data = input_data_val.substring(EngineExport.ENGINE_BASE_ID_SIZE);
+    private void processPutBaseData(String input_str_val) {
+        this.debug(false, "processPutBaseData", "data=" + input_str_val);
+
+        String rest_str = input_str_val;
+        String base_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String input_data = rest_str;
 
         EngineBase go_base = this.baseMgr().GetBaseByIdStr(base_id_str);
         if (go_base == null) {

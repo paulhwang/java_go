@@ -14,7 +14,7 @@ public class ThemeRoomMgr {
     private String objectName() {return "ThemeRoomMgr";}
 
     public static final int THEME_ROOM_ID_SIZE_ = 4;
-    public static final int THEME_ROOM_ID_SIZE = THEME_ROOM_ID_SIZE_ * 2;
+    public static final int THEME_ROOM_ID_SIZE = THEME_ROOM_ID_SIZE_ * 2 + 2;
     
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_ROOM_ID = 7000;

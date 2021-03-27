@@ -9,7 +9,7 @@ import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.Utils;
 import com.phwang.core.utils.ThreadEntityInt;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.LockedInteger;
 import com.phwang.client.ClientRoot;
 import com.phwang.client.ClientDExport;
@@ -33,7 +33,7 @@ class ClientTester implements ClientDImportInt {
         
         this.clientTest_ = client_test_val;
 		this.clientRoot_ = new ClientRoot(this);
-        this.clientFabricInfo().setMyName("client_" + EncodeNumber.encode(tester_index_val, 5));
+        this.clientFabricInfo().setMyName("client_" + Encoders.iEncodeRaw5(tester_index_val));
         this.clientFabricInfo().setHisName(this.clientFabricInfo().myName());
         this.clientFabricInfo().setPassword("TENNIS");
     }
@@ -93,7 +93,7 @@ class ClientTester implements ClientDImportInt {
 	
 	public void handleSetupSession3Response() {
     	this.debug(true, "handleSetupSession3Response", "sessionIdStr=" + this.clientFabricInfo().sessionIdStr());
-		this.doPutSessionData(this.goAct().getGoActStr());
+		this.doPutSessionData("0812345678");
 	}
 
     private void doPutSessionData(String data_str_val) {

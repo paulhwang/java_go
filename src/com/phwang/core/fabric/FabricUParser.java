@@ -8,7 +8,7 @@
 
 package com.phwang.core.fabric;
 
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.ListEntry;
 import com.phwang.core.utils.BinderBundle;
 import com.phwang.core.utils.Define;
@@ -33,52 +33,57 @@ public class FabricUParser {
     }
 
     protected void parseInputPacket(BinderBundle bundle_val) {
-    	String input_data_str = bundle_val.data();
-        String job_id_str = input_data_str.substring(0, FabricExport.FRONT_JOB_ID_SIZE);
-        String data_str = input_data_str.substring(FabricExport.FRONT_JOB_ID_SIZE);
         String response_data = null;
-        
-        this.debug(true, "parseInputPacket", "input_data_val = " + input_data_str);
-        this.debug(false, "parseInputPacket", "data_str = " + data_str);
-        
-        char command = data_str.charAt(0);
-        
-        if (command == FabricExport.FABRIC_COMMAND_SETUP_LINK) {
-            response_data = this.processSetupLinkRequest(data_str.substring(1));
+        String job_id_str = null;
+        String input_str = bundle_val.data();
+        this.debug(true, "parseInputPacket", "input_str = " + input_str);
+
+        String rest_str = input_str;
+        if (rest_str.charAt(0) == FabricExport.FABRIC_COMMAND_HTTP_DATA) {
+            rest_str = rest_str.substring(1);
+            job_id_str = Encoders.sSubstring2(rest_str);
+            rest_str = Encoders.sSubstring2_(rest_str);
         }
-        else if (command == FabricExport.FABRIC_COMMAND_REMOVE_LINK) {
-            response_data = this.processRemoveLinkRequest(data_str.substring(1));
+
+        this.debug(false, "parseInputPacket", "data_str = " + rest_str);
+        switch (rest_str.charAt(0)) {
+            case FabricExport.FABRIC_COMMAND_SETUP_LINK:
+                response_data = this.processSetupLinkRequest(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_REMOVE_LINK:
+                response_data = this.processRemoveLinkRequest(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_GET_LINK_DATA:
+                response_data = this.processGetLinkDataRequest(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_GET_NAME_LIST:
+                response_data = this.processGetNameListRequest(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_SETUP_SESSION:
+                response_data = this.processSetupSessionRequest(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_SETUP_SESSION2:
+                response_data = this.processSetupSession2Request(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_SETUP_SESSION3:
+                response_data = this.processSetupSession3Request(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA:
+                response_data = this.processPutSessionDataRequest(rest_str.substring(1));
+                break;
+            case FabricExport.FABRIC_COMMAND_GET_SESSION_DATA:
+                response_data = this.processGetSessionDataRequest(rest_str.substring(1));
+                break;
+            default:
+                response_data = "*** Bad command! Fix it!";
+        	    this.abend("parseInputPacket", "should not reach here, data=" + input_str);
+        	    break;
         }
-        else if (command == FabricExport.FABRIC_COMMAND_GET_LINK_DATA) {
-            response_data = this.processGetLinkDataRequest(data_str.substring(1));
+
+        if (job_id_str != null) {
+            response_data = job_id_str + response_data;
         }
-        else if (command == FabricExport.FABRIC_COMMAND_GET_NAME_LIST) {
-            response_data = this.processGetNameListRequest(data_str.substring(1));
-        }
-        else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION) {
-            response_data = this.processSetupSessionRequest(data_str.substring(1));
-        }
-        else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION2) {
-            response_data = this.processSetupSession2Request(data_str.substring(1));
-        }
-        else if (command == FabricExport.FABRIC_COMMAND_SETUP_SESSION3) {
-            response_data = this.processSetupSession3Request(data_str.substring(1));
-        }
-        else if (command == FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA) {
-            response_data = this.processPutSessionDataRequest(data_str.substring(1));
-        }
-        else if (command == FabricExport.FABRIC_COMMAND_GET_SESSION_DATA) {
-            response_data = this.processGetSessionDataRequest(data_str.substring(1));
-        }
-        else {
-        	this.abend("parseInputPacket", "should not reach here, data=" + input_data_str);
-        }
-        
-        if (response_data == null) {
-        	this.abend("parseInputPacket", "response_data is null, data=" + input_data_str);
-        }
-        
-        bundle_val.setData(job_id_str + response_data);
+        bundle_val.setData(response_data);
         this.fabricDBinder().transmitBundleData(bundle_val);
     }
 
@@ -87,16 +92,13 @@ public class FabricUParser {
         
         char client_type = input_str_val.charAt(0);
         String rest_str = input_str_val.substring(1);
-        int my_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String my_name = rest_str.substring(0, my_name_len);
-    	rest_str = rest_str.substring(my_name_len);
-    	
-        int password_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-    	String password = rest_str.substring(0, password_len);
-    	//rest_str = rest_str.substring(password_len);
-    	
+
+        String my_name = Encoders.sDecode2(rest_str);
+    	rest_str = Encoders.sDecode2_(rest_str);
+
+        String password = Encoders.sDecode2(rest_str);
+        rest_str = Encoders.sDecode2_(rest_str);
+
         this.debug(false, "processSetupLinkRequest", "my_name = " + my_name);
         this.debug(false, "processSetupLinkRequest", "password = " + password);
 
@@ -113,8 +115,7 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(my_name_val.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(my_name_val);
+        response_buf.append(Encoders.sEncode2(my_name_val));
         return response_buf.toString();
     }
     
@@ -122,8 +123,8 @@ public class FabricUParser {
         this.debug(false, "processRemoveLinkRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
         this.debug(false, "processRemoveLinkRequest", "link_id = " + link_id_str);
 
@@ -144,8 +145,7 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(result_val.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(result_val);
+        response_buf.append(Encoders.sEncode2(result_val));
         return response_buf.toString();
     }
     
@@ -154,8 +154,8 @@ public class FabricUParser {
         this.debug(false, "processGetLinkDataRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
         this.debug(false, "processGetLinkDataRequest", "link_id = " + link_id_str);
 
@@ -206,10 +206,8 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_LINK_DATA); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(data_val.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(data_val);
-        response_buf.append(EncodeNumber.encode(pending_session_setup_val.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(pending_session_setup_val);
+        response_buf.append(Encoders.sEncode2(data_val));
+        response_buf.append(Encoders.sEncode2(pending_session_setup_val));
         return response_buf.toString();
     }
     
@@ -217,8 +215,8 @@ public class FabricUParser {
         this.debug(false, "processGetNameListRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
         String name_list_tag_str = rest_str.substring(0, FabricExport.NAME_LIST_TAG_SIZE);
         rest_str = rest_str.substring(FabricExport.NAME_LIST_TAG_SIZE);
@@ -228,7 +226,7 @@ public class FabricUParser {
             return this.errorProcessGetNameList(link_id_str, "*************null link");
         }
 
-        int name_list_tag = EncodeNumber.decode(name_list_tag_str);
+        int name_list_tag = Encoders.iDecode111(name_list_tag_str);
         String name_list = this.fabricRoot().nameList().getNameList(name_list_tag);
 
         String response_data = this.generateGetNameListResponse(link.linkIdStr(), name_list);
@@ -243,8 +241,7 @@ public class FabricUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FabricExport.FABRIC_COMMAND_GET_NAME_LIST); 
         response_buf.append(link_id_str_val);
-        response_buf.append(EncodeNumber.encode(name_list_str_val.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(name_list_str_val);
+        response_buf.append(Encoders.sEncode2(name_list_str_val));
         return response_buf.toString();
     }
 
@@ -252,25 +249,24 @@ public class FabricUParser {
         this.debug(false, "processSetupSessionRequest", "input_str_val=" + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        int his_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String his_name = rest_str.substring(0, his_name_len);
-    	rest_str = rest_str.substring(his_name_len);
-        
-        int theme_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String theme_data_str = rest_str.substring(0, theme_data_len);
-    	//rest_str = rest_str.substring(theme_data_len);
-    	
+        String his_name = Encoders.sDecode2(rest_str);
+        rest_str = Encoders.sDecode2_(rest_str);
+
+        String theme_data_str = Encoders.sDecode2(rest_str);
+        //rest_str = Encoders.sDecode2_(rest_str);
+
         this.debug(false, "processSetupSessionRequest", "link_id = " + link_id_str);
         this.debug(false, "processSetupSessionRequest", "his_name = " + his_name);
         this.debug(false, "processSetupSessionRequest", "theme_data = " + theme_data_str);
 
-        String theme_id_str = theme_data_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);////////////////////
-        String theme_data = theme_data_str.substring(FabricImport.THEME_ROOM_ID_SIZE);//////////////////////
+        String rest_str1 = input_str_val;
+        String theme_id_str = Encoders.sSubstring2(rest_str1);
+        rest_str1 = Encoders.sSubstring2_(rest_str1);
+
+        String theme_data = rest_str1;
         theme_data = theme_data_str;
 
         FabricLink link = this.linkMgr().getLinkByIdStr(link_id_str);
@@ -339,20 +335,18 @@ public class FabricUParser {
     	/////String accept_str;
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
-        
-        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_L_SESSION_ID_SIZE);
-        
-        String theme_id_str = rest_str.substring(0, FabricImport.THEME_ROOM_ID_SIZE);//////////////////////
-        rest_str = rest_str.substring(FabricImport.THEME_ROOM_ID_SIZE);///////////////////////
-        
-        int theme_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String theme_data_str = rest_str.substring(0, theme_data_len);
-    	rest_str = rest_str.substring(theme_data_len);
-    	
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String theme_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String theme_data_str = Encoders.sDecode2(rest_str);
+        //rest_str = Encoders.sDecode2_(rest_str);
+
         this.debug(false, "processSetupSession2Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession2Request", "session_id = " + session_id_str);
 
@@ -391,14 +385,14 @@ public class FabricUParser {
     }
 
     private String processSetupSession3Request(String input_str_val) {
-        this.debug(false, "processSetupSession3Request", "input_str_val = " + input_str_val);
+        this.debug(true, "processSetupSession3Request", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
-        
-        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_L_SESSION_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
         this.debug(false, "processSetupSession3Request", "link_id = " + link_id_str);
         this.debug(false, "processSetupSession3Request", "session_id = " + session_id_str);
@@ -435,17 +429,15 @@ public class FabricUParser {
     	//String xmt_seq_str = null;
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
-        
-        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_L_SESSION_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        int data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String data = rest_str.substring(0, data_len);
-    	rest_str = rest_str.substring(data_len);
-    	
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String data = Encoders.sDecode2(rest_str);
+        //rest_str = Encoders.sDecode2_(rest_str);
+
         this.debug(false, "processPutSessionDataRequest", "link_id=" + link_id_str);
         this.debug(false, "processPutSessionDataRequest", "session_id=" + session_id_str);
         //this.debug(false, "processPutSessionDataRequest", "xmt_seq = " + xmt_seq_str);
@@ -487,8 +479,7 @@ public class FabricUParser {
         response_buf.append(FabricExport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str_val);
         response_buf.append(session_id_str_val);
-        response_buf.append(EncodeNumber.encode(c_data_val.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(c_data_val);
+        response_buf.append(Encoders.sEncode2(c_data_val));
         return response_buf.toString();
     }
 
@@ -496,11 +487,11 @@ public class FabricUParser {
         this.debug(false, "processGetSessionDataRequest", "input_str_val = " + input_str_val);
         
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FabricExport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_LINK_ID_SIZE);
-        
-        String session_id_str = rest_str.substring(0, FabricExport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FabricExport.FABRIC_L_SESSION_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
         this.debug(false, "processGetSessionDataRequest", "link_id = " + link_id_str);
         this.debug(false, "processGetSessionDataRequest", "session_id = " + session_id_str);
@@ -534,8 +525,8 @@ public class FabricUParser {
         if (c_data_val == null) {//////////////////////////////////for now
         	c_data_val = "";
         }
-        response_buf.append(EncodeNumber.encode(c_data_val.length(), Define.BIG_DATA_LENGTH_SIZE));
-        response_buf.append(c_data_val);
+        response_buf.append(Encoders.sEncode5(c_data_val));
+
         return response_buf.toString();
     }
 

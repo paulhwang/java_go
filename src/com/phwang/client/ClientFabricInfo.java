@@ -9,7 +9,7 @@
 package com.phwang.client;
 
 import com.phwang.core.go.GoRoot;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 
 public class ClientFabricInfo {
 	private String jobIdStr_;
@@ -33,6 +33,6 @@ public class ClientFabricInfo {
     public void setPassword(String val) { this.password_= val; }
     
     public ClientFabricInfo(){
-    	this.jobIdStr_ = EncodeNumber.encode(8, ClientImport.FRONT_JOB_ID_SIZE);
+    	this.jobIdStr_ = "0812345678";
     }
 }

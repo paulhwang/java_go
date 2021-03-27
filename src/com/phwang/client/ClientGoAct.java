@@ -9,7 +9,7 @@
 package com.phwang.client;
 
 import com.phwang.core.go.GoExport;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.Define;
 
 public class ClientGoAct {
@@ -37,22 +37,18 @@ public class ClientGoAct {
         this.index_ = index_val;
     }
 
-    public String getGoActStr() {
+    protected String getGoActStr() {
     	StringBuilder buf = new StringBuilder();
     	buf.append('G');
 		buf.append(this.action_);
     	if (this.action_ == GoExport.GO_PROTOCOL_MOVE_COMMAND) {
-    		buf.append(EncodeNumber.encode(this.x_, 2));
-    		buf.append(EncodeNumber.encode(this.y_, 2));
-    		buf.append(EncodeNumber.encode(this.color_, 1));
-    		buf.append(EncodeNumber.encode(this.index_, 3));
+    		buf.append(Encoders.iEncodeRaw2(this.x_));
+    		buf.append(Encoders.iEncodeRaw2(this.y_));
+    		buf.append(Encoders.iEncodeRaw1(this.color_));
+    		buf.append(Encoders.iEncodeRaw3(this.index_));
     	}
     	String data = buf.toString();
-
-    	buf = new StringBuilder();
-        buf.append(EncodeNumber.encode(data.length(), Define.DATA_LENGTH_SIZE));
-        buf.append(data);
-        return buf.toString();
+        return Encoders.sEncode2(data);
     }
 }
 

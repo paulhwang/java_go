@@ -16,7 +16,7 @@ public class FabricLSessionMgr {
     protected static String objectName() {return "FabricLSessionMgr";}
     
     protected static final int FABRIC_L_SESSION_ID_SIZE_ = 4;
-    protected static final int FABRIC_L_SESSION_ID_SIZE = FABRIC_L_SESSION_ID_SIZE_ * 2;
+    protected static final int FABRIC_L_SESSION_ID_SIZE = FABRIC_L_SESSION_ID_SIZE_ * 2 + 2;
 
 	private static final int L_SESSION_LIST_MGR_ARRAY_SIZE = 8;
     private static final int FIRST_L_SESSION_ID = 2000;

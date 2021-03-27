@@ -21,9 +21,9 @@ public class MainClass {
 		new CoreRoot();
 		
 		FrontRoot front_root = new FrontRoot();
-		new FrontTest(front_root.frontDExport(), 1, 1).startTest(false);
+		new FrontTest(front_root.frontDExport(), 1, 1).startTest(true);
 		
 		//new ClientRoot();
-		new ClientTest(1, 1).startTest(true);
+		new ClientTest(1, 1).startTest(false);
 	}
 }

@@ -9,7 +9,7 @@
 package com.phwang.client;
 
 import com.phwang.core.utils.Binder;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.Define;
 
 public class ClientDExport implements ClientDExportInt {
@@ -32,7 +32,7 @@ public class ClientDExport implements ClientDExportInt {
 
     private void transmitToFabric(String data_str_val) {
     	this.debug(true, "transmitToFabric", "data_str_val=" + data_str_val);
-       	this.uBinder().transmitStringData(this.clientFabricInfo().jobIdStr() + data_str_val);
+       	this.uBinder().transmitStringData(data_str_val);
     }
     
     public void setupLink() {
@@ -41,10 +41,8 @@ public class ClientDExport implements ClientDExportInt {
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_LINK);
         command_buf.append(ClientImport.CLIENT_IS_ANDROID);
-        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().myName().length(), Define.DATA_LENGTH_SIZE));
-        command_buf.append(this.clientFabricInfo().myName());
-        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().password().length(), Define.DATA_LENGTH_SIZE));
-        command_buf.append(this.clientFabricInfo().password());
+        command_buf.append(Encoders.sEncode2(this.clientFabricInfo().myName()));
+        command_buf.append(Encoders.sEncode2(this.clientFabricInfo().password()));
         String command_str = command_buf.toString();
         
     	this.debug(false, "setupLink", "command_str=" + command_str);
@@ -88,8 +86,7 @@ public class ClientDExport implements ClientDExportInt {
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_SESSION); 
         command_buf.append(this.clientFabricInfo().linkIdStr()); 
-        command_buf.append(EncodeNumber.encode(this.clientFabricInfo().hisName().length(), Define.DATA_LENGTH_SIZE));
-        command_buf.append(this.clientFabricInfo().hisName());
+        command_buf.append(Encoders.sEncode2(this.clientFabricInfo().hisName()));
         command_buf.append(this.goConfig().getGoConfigStr());
         String command_str = command_buf.toString();
         
@@ -103,7 +100,7 @@ public class ClientDExport implements ClientDExportInt {
     }
     
     public void setupSession3() {
-    	this.debug(false, "setupSession3", "link_id=" + this.clientFabricInfo().linkIdStr());
+    	this.debug(true, "setupSession3", "link_id=" + this.clientFabricInfo().linkIdStr() + "session_id=" + this.clientFabricInfo().sessionIdStr());
     	
         StringBuilder command_buf = new StringBuilder();
         command_buf.append(ClientImport.FABRIC_COMMAND_SETUP_SESSION3); 

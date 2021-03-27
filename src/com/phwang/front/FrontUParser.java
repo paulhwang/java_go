@@ -11,7 +11,7 @@ package com.phwang.front;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.Define;
 
 public class FrontUParser {
@@ -111,10 +111,8 @@ public class FrontUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_LINK); 
         response_buf.append(FrontImport.CLIENT_IS_HTTP);
-        response_buf.append(EncodeNumber.encode(my_name.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(my_name);
-        response_buf.append(EncodeNumber.encode(password.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(password);
+        response_buf.append(Encoders.sEncode2(my_name));
+        response_buf.append(Encoders.sEncode2(password));
         return response_buf.toString();
     }
     
@@ -200,10 +198,8 @@ public class FrontUParser {
         StringBuilder response_buf = new StringBuilder();
         response_buf.append(FrontImport.FABRIC_COMMAND_SETUP_SESSION); 
         response_buf.append(link_id_str);
-        response_buf.append(EncodeNumber.encode(his_name.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(his_name);
-        response_buf.append(EncodeNumber.encode(theme_data_str.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(theme_data_str);
+        response_buf.append(Encoders.sEncode2(his_name));
+        response_buf.append(Encoders.sEncode2(theme_data_str));
         return response_buf.toString();
     }
 
@@ -242,8 +238,7 @@ public class FrontUParser {
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
         response_buf.append(theme_id_str);
-        response_buf.append(EncodeNumber.encode(theme_data_str.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(theme_data_str);
+        response_buf.append(Encoders.sEncode2(theme_data_str));
         return response_buf.toString();
     }
 
@@ -310,8 +305,7 @@ public class FrontUParser {
         response_buf.append(FrontImport.FABRIC_COMMAND_PUT_SESSION_DATA); 
         response_buf.append(link_id_str);
         response_buf.append(session_id_str);
-        response_buf.append(EncodeNumber.encode(data.length(), Define.DATA_LENGTH_SIZE));
-        response_buf.append(data);
+        response_buf.append(Encoders.sEncode2(data));
         return response_buf.toString();
     }
     

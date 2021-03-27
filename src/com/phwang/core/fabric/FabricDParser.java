@@ -8,6 +8,7 @@
 
 package com.phwang.core.fabric;
 
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.ListEntry;
 
 public class FabricDParser {
@@ -41,11 +42,15 @@ public class FabricDParser {
         this.abend("exportedParseFunction", input_data_val);
     }
     
-    private void processSetupRoomResponse(String input_data_val) {
-        this.debug(false, "processSetupRoomResponse", input_data_val);
-        
-        String group_id_str = input_data_val.substring(0, FabricExport.FABRIC_GROUP_ID_SIZE);
-        String room_id_str = input_data_val.substring(FabricExport.FABRIC_GROUP_ID_SIZE);
+    private void processSetupRoomResponse(String input_str_val) {
+        this.debug(false, "processSetupRoomResponse", input_str_val);
+
+        String rest_str = input_str_val;
+        String group_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String room_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
         FabricGroup group = this.groupMgr().getGroupByIdStr(group_id_str);
         if (group != null) {
@@ -71,11 +76,15 @@ public class FabricDParser {
         }
     }
     
-    private void processPutRoomDataResponse(String input_data_val) {
-        this.debug(false, "processPutRoomDataResponse", input_data_val);
-        
-        String group_id_str = input_data_val.substring(0, FabricExport.FABRIC_GROUP_ID_SIZE);
-        String input_data = input_data_val.substring(FabricExport.FABRIC_GROUP_ID_SIZE);
+    private void processPutRoomDataResponse(String input_str_val) {
+        this.debug(false, "processPutRoomDataResponse", input_str_val);
+
+        String rest_str = input_str_val;
+        String group_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String input_data = rest_str;
+
         FabricGroup group = this.groupMgr().getGroupByIdStr(group_id_str);
         if (group != null) {
             int max_index = group.gSessionMgr().listMgr().maxIndex();

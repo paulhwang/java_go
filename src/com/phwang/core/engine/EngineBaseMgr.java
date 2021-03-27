@@ -15,7 +15,7 @@ public class EngineBaseMgr {
     private String objectName() {return "EngineBaseMgr";}
     
     public static final int ENGINE_BASE_ID_SIZE_ = 4;
-    public static final int ENGINE_BASE_ID_SIZE = ENGINE_BASE_ID_SIZE_ * 2;
+    public static final int ENGINE_BASE_ID_SIZE = ENGINE_BASE_ID_SIZE_ * 2 + 2;
     
     private static final int FIRST_BASE_ID = 9000;
     private static final int LIST_MGR_ARRAY_SIZE = 128;

@@ -10,7 +10,7 @@ import org.json.simple.parser.JSONParser;
 import com.phwang.core.utils.Abend;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.LockedInteger;
 import com.phwang.core.utils.Utils;
 import com.phwang.front.FrontDExportInt;
@@ -43,7 +43,7 @@ class FrontTester implements ThreadEntityInt {
         this.debug(false, "FrontTester", "init start");
         
         this.httpTest_ = http_test_val;
-        this.indexString_ = EncodeNumber.encode(index_val, 5);
+        this.indexString_ = Encoders.iEncodeRaw5(index_val);
         this.myNameStr_ = "Http_" + this.indexString_;
         this.caseIndex_ = new LockedInteger(0);
     }
@@ -66,7 +66,7 @@ class FrontTester implements ThreadEntityInt {
         
     	this.caseIndex_.increment();
     	int case_index = this.caseIndex_.get();
-    	String my_name = this.myNameStr_ + EncodeNumber.encode(case_index, 5);
+    	String my_name = this.myNameStr_ + Encoders.iEncodeRaw5(case_index);
      	
     	this.doSetupLink(my_name);
     	

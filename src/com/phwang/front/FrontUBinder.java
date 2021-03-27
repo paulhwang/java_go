@@ -60,7 +60,7 @@ public class FrontUBinder implements ThreadEntityInt {
             	continue;
             }
 
-            this.debug(false, "UFrontReceiveThreadFunc", "received_data=" + received_data);
+            this.debug(true, "UFrontReceiveThreadFunc", "received_data=" + received_data);
 
             String job_id_str = received_data.substring(0, FrontImport.FRONT_JOB_ID_SIZE);
             FrontJob job_entry = this.jobMgr().getJobByIdStr(job_id_str);

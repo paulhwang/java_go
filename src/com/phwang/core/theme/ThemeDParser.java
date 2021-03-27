@@ -10,6 +10,8 @@ package com.phwang.core.theme;
 
 //import com.phwang.core.utils.*;
 
+import com.phwang.core.utils.Encoders;
+
 public class ThemeDParser {
     private static String objectName() {return "ThemeDParser";}
     
@@ -43,12 +45,16 @@ public class ThemeDParser {
         this.abend("parseInputPacket", input_data_val);
     }
 
-    private void processSetupBaseResponse(String input_data_val) {
-        this.debug(false, "processSetupBaseResponse", input_data_val);
+    private void processSetupBaseResponse(String input_str_val) {
+        this.debug(false, "processSetupBaseResponse", input_str_val);
 
-        String room_id_str = input_data_val.substring(0, ThemeExport.THEME_ROOM_ID_SIZE);
-        String base_id_str = input_data_val.substring(ThemeExport.THEME_ROOM_ID_SIZE);
-        
+        String rest_str = input_str_val;
+        String room_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String base_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
         this.debug(false, "processSetupBaseResponse", "room_id_str=" + room_id_str);
         this.debug(false, "processSetupBaseResponse", "base_id_str=" + base_id_str);
 
@@ -92,10 +98,14 @@ public class ThemeDParser {
         */
     }
 
-    private void processPutBaseDataResponse(String input_data_val) {
-        this.debug(false, "processPutBaseDataResponse", input_data_val);
-        String room_id_str = input_data_val.substring(0, ThemeExport.THEME_ROOM_ID_SIZE);
-        String data = input_data_val.substring(ThemeExport.THEME_ROOM_ID_SIZE);
+    private void processPutBaseDataResponse(String input_str_val) {
+        this.debug(false, "processPutBaseDataResponse", input_str_val);
+
+        String rest_str = input_str_val;
+        String room_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String data = rest_str;
 
         ThemeRoom room_object = this.roomMgr().getRoomByIdStr(room_id_str);
         if (room_object == null) {

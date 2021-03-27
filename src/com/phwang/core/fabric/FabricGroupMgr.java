@@ -15,7 +15,7 @@ public class FabricGroupMgr {
     private String objectName() {return "FabricGroupMgr";}
 
     protected static final int FABRIC_GROUP_ID_SIZE_ = 4;
-    protected static final int FABRIC_GROUP_ID_SIZE = FABRIC_GROUP_ID_SIZE_ * 2;
+    protected static final int FABRIC_GROUP_ID_SIZE = FABRIC_GROUP_ID_SIZE_ * 2 + 2;
 	
     private static final int LIST_MGR_ARRAY_SIZE = 128;
     private static final int FIRST_GROUP_ID = 5000;

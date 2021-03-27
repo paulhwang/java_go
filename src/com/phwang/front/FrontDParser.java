@@ -9,7 +9,7 @@
 package com.phwang.front;
 
 import org.json.simple.JSONObject;
-import com.phwang.core.utils.EncodeNumber;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.Define;
 
 public class FrontDParser {
@@ -81,15 +81,13 @@ public class FrontDParser {
     
     private String parserSetupLinkResponse(String input_str_val) {
     	this.debug(false, "parserSetupLinkResponse", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
         
-        int my_name_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String my_name = rest_str.substring(0, my_name_len);
-    	rest_str = rest_str.substring(my_name_len);
+        String my_name = Encoders.sDecode2(rest_str);
+    	rest_str = Encoders.sDecode2_(rest_str);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("my_name", my_name);
@@ -101,21 +99,16 @@ public class FrontDParser {
 
     private String parserGetLinkDataResponse(String input_str_val) {
     	this.debug(false, "parserGetLinkDataResponse", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
-        
-        int data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String data = rest_str.substring(0, data_len);
-    	rest_str = rest_str.substring(data_len);
-        
-        int pending_session_setup_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String pending_session_setup = rest_str.substring(0, pending_session_setup_len);
-    	rest_str = rest_str.substring(pending_session_setup_len);
-    	
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String data = Encoders.sDecode2(rest_str);
+        rest_str = Encoders.sDecode2_(rest_str);
+
+        String pending_session_setup = Encoders.sDecode2(rest_str);
+        //rest_str = Encoders.sDecode2_(rest_str);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -128,15 +121,13 @@ public class FrontDParser {
 
     private String parserGetNameListResponse(String input_str_val) {
     	this.debug(false, "parserGetNameListResponse", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
-        
-        int name_list_str_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String name_list_str = rest_str.substring(0, name_list_str_len);
-    	rest_str = rest_str.substring(name_list_str_len);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String name_list_str = Encoders.sDecode2(rest_str);
+        //rest_str = Encoders.sDecode2_(rest_str);
         
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -148,13 +139,13 @@ public class FrontDParser {
 
     private String parserSetupSessionResponse(String input_str_val) {
     	this.debug(false, "generateSetupSessionResponse", "input_str_val=" + input_str_val);
-    	
-        String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        String rest_str = input_str_val;
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
+
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -166,16 +157,16 @@ public class FrontDParser {
 
     private String parserSetupSession2Response(String input_str_val) {
     	this.debug(false, "parserSetupSession2Response", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        String theme_id_str = rest_str.substring(0, FrontImport.THEME_ROOM_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.THEME_ROOM_ID_SIZE);
+        String theme_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -188,16 +179,16 @@ public class FrontDParser {
 
     private String parserSetupSession3Response(String input_str_val) {
     	this.debug(false, "parserSetupSession3Response", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        String theme_id_str = rest_str.substring(0, FrontImport.THEME_ROOM_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.THEME_ROOM_ID_SIZE);
+        String theme_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -210,18 +201,16 @@ public class FrontDParser {
 
     private String parserPutSessionDataResponse(String input_str_val) {
     	this.debug(false, "parserPutSessionDataResponse", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        int c_data_len = EncodeNumber.decode(rest_str.substring(0, Define.DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.DATA_LENGTH_SIZE);
-        String c_data = rest_str.substring(0, c_data_len);
-    	rest_str = rest_str.substring(c_data_len);
+        String c_data = Encoders.sDecode2(rest_str);
+        //rest_str = Encoders.sDecode2_(rest_str);
 
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);
@@ -234,18 +223,16 @@ public class FrontDParser {
 
     private String parserGetSessionDataResponse(String input_str_val) {
     	this.debug(false, "parserGetSessionDataResponse", "input_str_val=" + input_str_val);
-    	
+
         String rest_str = input_str_val;
-        String link_id_str = rest_str.substring(0, FrontImport.FABRIC_LINK_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_LINK_ID_SIZE);
+        String link_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        String session_id_str = rest_str.substring(0, FrontImport.FABRIC_L_SESSION_ID_SIZE);
-        rest_str = rest_str.substring(FrontImport.FABRIC_L_SESSION_ID_SIZE);
+        String session_id_str = Encoders.sSubstring2(rest_str);
+        rest_str = Encoders.sSubstring2_(rest_str);
 
-        int c_data_len = EncodeNumber.decode(rest_str.substring(0, Define.BIG_DATA_LENGTH_SIZE));
-        rest_str = rest_str.substring(Define.BIG_DATA_LENGTH_SIZE);
-        String c_data = rest_str.substring(0, c_data_len);
-    	rest_str = rest_str.substring(c_data_len);
+        String c_data = Encoders.sDecode5(rest_str);
+    	//rest_str = Encoders.sDecode5_(rest_str);
     	
     	JSONObject json_data = new JSONObject();
     	json_data.put("link_id", link_id_str);

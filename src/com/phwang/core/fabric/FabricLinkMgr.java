@@ -16,7 +16,7 @@ public class FabricLinkMgr implements ListMgrInt {
     private String objectName() {return "FabricLinkMgr";}
 
     protected static final int FABRIC_LINK_ID_SIZE_ = 4;
-    protected static final int FABRIC_LINK_ID_SIZE = FABRIC_LINK_ID_SIZE_ * 2;
+    protected static final int FABRIC_LINK_ID_SIZE = FABRIC_LINK_ID_SIZE_ * 2 + 2;
 	
     private static final int LIST_MGR_ARRAY_SIZE = 256;
     private static final int FIRST_LINK_ID = 1000;
