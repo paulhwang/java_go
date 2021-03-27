@@ -24,8 +24,7 @@ class FrontTester implements ThreadEntityInt {
     
     private String myNameStr_;
     private String password_ = "Tennis";
-    private String themeData = "88889999G009090000";///////////////////
-    private String themeData2 = "G009090000";
+    private String themeData = "G009090000";
     private String acceptString = "Yes";
     private String xmtSeqString = "1111";
     private String goMoveString = "GM01021001";
@@ -193,7 +192,7 @@ class FrontTester implements ThreadEntityInt {
     	json_data.put("session_id", this.sessionIdString);
     	json_data.put("theme_id", this.themeIdString);
     	json_data.put("accept", this.acceptString);
-    	json_data.put("theme_data", this.themeData2);
+    	json_data.put("theme_data", this.themeData);
     	String str_json_data = json_data.toJSONString();
     	
     	JSONObject json_request = new JSONObject();
