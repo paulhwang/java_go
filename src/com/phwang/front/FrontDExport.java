@@ -36,7 +36,7 @@ public class FrontDExport  implements FrontDExportInt {
         FrontJob job_entry = this.jobMgr().mallocJob();
         
         if (output_str != null) {
-            this.debug(false, "processHttpRequestPacket", "output_str=" + output_str);
+            this.debug(true, "processHttpRequestPacket", "output_str=" + output_str);
         	this.uBinder().transmitStringData("H" + job_entry.jobIdStr() + output_str);
         }
         else {

@@ -17,8 +17,8 @@ public class FrontImport {
 	
     public static final char CLIENT_IS_HTTP = FabricExport.CLIENT_IS_HTTP;
 
-	public static final int FRONT_JOB_ID_SIZE_ = 4;
-	public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2 + 2;
+	//public static final int FRONT_JOB_ID_SIZE_ = 4;
+	//public static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2 + 2;
 	
 	protected static final char FABRIC_COMMAND_SETUP_LINK       = FabricExport.FABRIC_COMMAND_SETUP_LINK;
 	protected static final char FABRIC_COMMAND_REMOVE_LINK      = FabricExport.FABRIC_COMMAND_REMOVE_LINK;

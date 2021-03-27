@@ -15,7 +15,10 @@ public class FrontJobMgr {
     private String objectName() {return "FrontJobMgr";}
 
     private static final int LIST_MGR_ARRAY_SIZE_ = 128;
-    private static final int FIRST_JOB_ID_ = 0;
+    private static final int FIRST_JOB_ID_ = 5000;
+
+    protected static final int FRONT_JOB_ID_SIZE_ = 4;
+    protected static final int FRONT_JOB_ID_SIZE = FRONT_JOB_ID_SIZE_ * 2 + 2;
 
     private FrontRoot frontRoot_;
     private ListMgr listMgr_;
@@ -27,7 +30,7 @@ public class FrontJobMgr {
         this.debug(false, "FrontJobMgr", "init start");
 
         this.frontRoot_ = front_root_val;
-        this.listMgr_ = new ListMgr(FrontImport.FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE_, this.objectName(), FIRST_JOB_ID_);
+        this.listMgr_ = new ListMgr(FRONT_JOB_ID_SIZE_, LIST_MGR_ARRAY_SIZE_, this.objectName(), FIRST_JOB_ID_);
     }
 
     protected FrontJob mallocJob() {

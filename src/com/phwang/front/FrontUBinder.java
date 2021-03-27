@@ -9,6 +9,7 @@
 package com.phwang.front;
 
 import com.phwang.core.utils.Binder;
+import com.phwang.core.utils.Encoders;
 import com.phwang.core.utils.ThreadMgr;
 import com.phwang.core.utils.ThreadEntityInt;
 
@@ -54,15 +55,18 @@ public class FrontUBinder implements ThreadEntityInt {
                 break;
             }
 
-            String received_data = this.uBinder().receiveStringData();
-            if (received_data == null) {
+            String received_str = this.uBinder().receiveStringData();
+            if (received_str == null) {
                 this.abend("UFrontReceiveThreadFunc", "null data");
             	continue;
             }
 
-            this.debug(true, "UFrontReceiveThreadFunc", "received_data=" + received_data);
+            this.debug(true, "UFrontReceiveThreadFunc", "received_str=" + received_str);
 
-            String job_id_str = received_data.substring(0, FrontImport.FRONT_JOB_ID_SIZE);
+            String rest_str = received_str;
+            String job_id_str = Encoders.sSubstring2(rest_str);
+            rest_str = Encoders.sSubstring2_(rest_str);
+
             FrontJob job_entry = this.jobMgr().getJobByIdStr(job_id_str);
             if (job_entry == null) {
                 this.abend("UFrontReceiveThreadFunc", "null ajax_entry, job_id_str="  + job_id_str);
@@ -70,7 +74,10 @@ public class FrontUBinder implements ThreadEntityInt {
             }
             this.jobMgr().freeJob(job_entry);
 
-            String response_data = received_data.substring(FrontImport.FRONT_JOB_ID_SIZE);
+            String response_data = rest_str;
+            //String response_data = Encoders.sSubstring2(rest_str);
+            //rest_str = Encoders.sSubstring2_(rest_str);
+
             String json_response_data = this.frontDParser().parserResponseData(response_data);
             if (json_response_data != null) {
                 job_entry.WriteData(json_response_data);
